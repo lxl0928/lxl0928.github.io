@@ -1,0 +1,881 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=6.3.0" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=6.3.0">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=6.3.0">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=6.3.0">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=6.3.0" color="#222">
+
+
+
+
+
+
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    version: '6.3.0',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: false,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  
+
+
+
+
+  <meta name="description" content="Description12Description:    Write a program to find the n-th ugly number. Example1234Example:    Ugly numbers are positive numbers whose prime factors only include 2, 3, 5.     For example, 1, 2, 3,">
+<meta name="keywords" content="leetcode">
+<meta property="og:type" content="article">
+<meta property="og:title" content="leetcode-ugly_number2">
+<meta property="og:url" content="http://timilong.com/2017/06/13/leetcode-ugly_number_2/index.html">
+<meta property="og:site_name" content="timilong&#39;s blog">
+<meta property="og:description" content="Description12Description:    Write a program to find the n-th ugly number. Example1234Example:    Ugly numbers are positive numbers whose prime factors only include 2, 3, 5.     For example, 1, 2, 3,">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2018-07-24T00:18:47.840Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="leetcode-ugly_number2">
+<meta name="twitter:description" content="Description12Description:    Write a program to find the n-th ugly number. Example1234Example:    Ugly numbers are positive numbers whose prime factors only include 2, 3, 5.     For example, 1, 2, 3,">
+
+
+
+
+
+
+  <link rel="canonical" href="http://timilong.com/2017/06/13/leetcode-ugly_number_2/"/>
+
+
+
+<script type="text/javascript" id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>leetcode-ugly_number2 | timilong's blog</title>
+  
+
+
+
+
+
+
+
+
+
+  <noscript>
+  <style type="text/css">
+    .use-motion .motion-element,
+    .use-motion .brand,
+    .use-motion .menu-item,
+    .sidebar-inner,
+    .use-motion .post-block,
+    .use-motion .pagination,
+    .use-motion .comments,
+    .use-motion .post-header,
+    .use-motion .post-body,
+    .use-motion .collection-title { opacity: initial; }
+
+    .use-motion .logo,
+    .use-motion .site-title,
+    .use-motion .site-subtitle {
+      opacity: initial;
+      top: initial;
+    }
+
+    .use-motion {
+      .logo-line-before i { left: initial; }
+      .logo-line-after i { right: initial; }
+    }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">timilong's blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+    
+      
+        <p class="site-subtitle">Cease to struggle and you cease to live.--Thomas Carlyle</p>
+      
+    
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="Toggle navigation bar">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+          
+          <li class="menu-item menu-item-home">
+    <a href="/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-home"></i> <br />首页</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+    <a href="/archives/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />归档</a>
+  </li>
+
+      
+      
+    </ul>
+  
+
+  
+    
+
+  
+
+  
+</nav>
+
+
+
+  
+
+
+
+</div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://timilong.com/2017/06/13/leetcode-ugly_number_2/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="博主">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="timilong's blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">leetcode-ugly_number2
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建于：2017-06-12 21:37:54" itemprop="dateCreated datePublished" datetime="2017-06-12T21:37:54Z">2017-06-12</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Edited on</span>
+                
+                <time title="更新于：2018-07-24 00:18:47" itemprop="dateModified" datetime="2018-07-24T00:18:47Z">2018-07-24</time>
+              
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/leetcode/" itemprop="url" rel="index"><span itemprop="name">leetcode</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="Description"><a href="#Description" class="headerlink" title="Description"></a>Description</h2><figure class="highlight fortran"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Description:</span><br><span class="line">    <span class="built_in">Write</span> a <span class="function"><span class="keyword">program</span></span> to find the n-th ugly <span class="keyword">number</span>.</span><br></pre></td></tr></table></figure>
+<h2 id="Example"><a href="#Example" class="headerlink" title="Example"></a>Example</h2><figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">Example:</span><br><span class="line">    Ugly numbers are positive numbers whose prime factors only include 2, 3, 5. </span><br><span class="line">    <span class="keyword">For</span> example, 1, 2, 3, 4, 5, 6, 8, 9, 10, 12 is the sequence of the first 10 ugly numbers.</span><br><span class="line">   <span class="built_in"> Note </span>that 1 is typically treated as an ugly number, <span class="keyword">and</span> n does <span class="keyword">not</span> exceed 1690.</span><br></pre></td></tr></table></figure>
+<a id="more"></a>
+<h2 id="Hints"><a href="#Hints" class="headerlink" title="Hints"></a>Hints</h2><figure class="highlight vbnet"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line">Hints:</span><br><span class="line">    Assume you have Uk, the kth ugly number. <span class="keyword">Then</span> Uk+<span class="number">1</span> must be Min(L1 * <span class="number">2</span>, L2 * <span class="number">3</span>, L3 * <span class="number">5</span>).</span><br><span class="line">    The <span class="keyword">key</span> <span class="keyword">is</span> <span class="keyword">to</span> realize <span class="keyword">each</span> number can be <span class="keyword">and</span> have <span class="keyword">to</span> be generated <span class="keyword">by</span> a former number multiplied <span class="keyword">by</span> <span class="number">2</span>, <span class="number">3</span> <span class="keyword">or</span> <span class="number">5</span></span><br><span class="line">    e.g.</span><br><span class="line">        <span class="number">1</span> <span class="number">2</span> <span class="number">3</span> <span class="number">4</span> <span class="number">5</span> <span class="number">6</span> <span class="number">8</span> <span class="number">9</span> <span class="number">10</span> <span class="number">12</span> <span class="number">15.</span>.</span><br><span class="line">    what <span class="keyword">is</span> <span class="keyword">next</span>?</span><br><span class="line">        it must be x * <span class="number">2</span> <span class="keyword">or</span> y * <span class="number">3</span> <span class="keyword">or</span> z * <span class="number">5</span>, <span class="keyword">where</span> x, y, z <span class="keyword">is</span> an existing number.</span><br><span class="line"></span><br><span class="line">    How <span class="keyword">do</span> we determine x, y, z <span class="keyword">then</span>?</span><br><span class="line">        apparently, you can just traverse the sequence generated <span class="keyword">by</span> far <span class="keyword">from</span> <span class="number">1</span> ... <span class="number">15</span>,</span><br><span class="line">        <span class="keyword">until</span> you find such x, y, z that x * <span class="number">2</span>, y * <span class="number">3</span>, z * <span class="number">5</span> <span class="keyword">is</span> just bigger than <span class="number">15.</span> </span><br><span class="line">        <span class="keyword">In</span> this <span class="keyword">case</span> x=<span class="number">8</span>, y=<span class="number">6</span>, z=<span class="number">4.</span> <span class="keyword">Then</span> you <span class="keyword">compare</span> x * <span class="number">2</span>, y * <span class="number">3</span>, z * <span class="number">5</span> so you know <span class="keyword">next</span> number will be x * <span class="number">2</span> = <span class="number">8</span> * <span class="number">2</span> = <span class="number">16.</span></span><br><span class="line">        k, now you have <span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>,....,<span class="number">15</span>, <span class="number">16</span>,</span><br><span class="line"></span><br><span class="line">    <span class="keyword">Then</span> what <span class="keyword">is</span> <span class="keyword">next</span>?</span><br><span class="line">        You wanna <span class="keyword">do</span> the same process again <span class="keyword">to</span> find the <span class="keyword">new</span> x, y, z, but you realize, wait, <span class="keyword">do</span> I have <span class="keyword">to</span></span><br><span class="line">        traverse the sequence generated <span class="keyword">by</span> far again?</span><br><span class="line"></span><br><span class="line">    NO! since you know last time, x=<span class="number">8</span>, y=<span class="number">6</span>, z=<span class="number">4</span> <span class="keyword">and</span> x=<span class="number">8</span> was used <span class="keyword">to</span> generate <span class="number">16</span>, so this time, </span><br><span class="line">    you can immediately know the new_x = <span class="number">9</span> (the <span class="keyword">next</span> number after <span class="number">8</span> <span class="keyword">is</span> <span class="number">9</span> <span class="keyword">in</span> the generated sequence), y=<span class="number">6</span>, z=<span class="number">4.</span></span><br><span class="line">    <span class="keyword">Then</span> you need <span class="keyword">to</span> <span class="keyword">compare</span> new_x * <span class="number">2</span>, y * <span class="number">3</span>, z * <span class="number">5.</span> You know <span class="keyword">next</span> number <span class="keyword">is</span> <span class="number">9</span> * <span class="number">2</span> = <span class="number">18</span>;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">And</span> you also know, the <span class="keyword">next</span> x will be <span class="number">10</span> since new_x = <span class="number">9</span> was used this time.</span><br><span class="line">    But what <span class="keyword">is</span> <span class="keyword">next</span> y? apparently, <span class="keyword">if</span> y=<span class="number">6</span>, <span class="number">6</span>*<span class="number">3</span> = <span class="number">18</span>, which <span class="keyword">is</span> already generated <span class="keyword">in</span> this round. So you also need <span class="keyword">to</span> update <span class="keyword">next</span> y <span class="keyword">from</span> <span class="number">6</span> <span class="keyword">to</span> <span class="number">8.</span></span><br><span class="line"></span><br><span class="line">    Based <span class="keyword">on</span> the idea above, you can actually generated x,y,z <span class="keyword">from</span> very beginning, <span class="keyword">and</span> update x, y, z accordingly. It ends up <span class="keyword">with</span> a O(n) solution.</span><br></pre></td></tr></table></figure>
+<h2 id="Solution"><a href="#Solution" class="headerlink" title="Solution"></a>Solution</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span><span class="params">(object)</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">nthUglyNumber</span><span class="params">(self, num)</span>:</span></span><br><span class="line">        <span class="string">"""</span></span><br><span class="line"><span class="string">        :type num: int</span></span><br><span class="line"><span class="string">        :rtype: int</span></span><br><span class="line"><span class="string">        """</span></span><br><span class="line">        <span class="keyword">if</span> num &lt;= <span class="number">0</span> <span class="keyword">or</span> num &gt; <span class="number">1690</span>:</span><br><span class="line">            <span class="keyword">return</span> </span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            ugly_num = [<span class="number">1</span>]</span><br><span class="line">            i2, i3, i5 = <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span></span><br><span class="line">            <span class="keyword">while</span> num &gt; <span class="number">1</span>:</span><br><span class="line">                t2 ,t3, t5 = <span class="number">2</span>*ugly_num[i2], <span class="number">3</span>*ugly_num[i3], <span class="number">5</span>*ugly_num[i5]</span><br><span class="line">                temp_min = min((t2, t3, t5))</span><br><span class="line">                <span class="keyword">if</span> temp_min == t2:</span><br><span class="line">                    i2 += <span class="number">1</span></span><br><span class="line">                <span class="keyword">if</span> temp_min == t3:</span><br><span class="line">                    i3 += <span class="number">1</span></span><br><span class="line">                <span class="keyword">if</span> temp_min == t5:</span><br><span class="line">                    i5 += <span class="number">1</span></span><br><span class="line">                ugly_num.append(temp_min)</span><br><span class="line">                num -= <span class="number">1</span></span><br><span class="line">            <span class="keyword">return</span> ugly_num[<span class="number">-1</span>]</span><br><span class="line">solution = Solution()</span><br><span class="line">print(solution.nthUglyNumber(<span class="number">300</span>))</span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/leetcode/" rel="tag"># leetcode</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/06/07/linux-sed命令/" rel="next" title="Linux-sed命令">
+                <i class="fa fa-chevron-left"></i> Linux-sed命令
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2017/06/17/linux-rpm包管理命令/" rel="prev" title="Linux-rpm包管理命令">
+                Linux-rpm包管理命令 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+  </div>
+
+
+          </div>
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">博主</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/">
+                
+                    <span class="site-state-item-count">89</span>
+                    <span class="site-state-item-name">日志</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-categories">
+                  
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">16</span>
+                    <span class="site-state-item-name">分类</span>
+                  
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">39</span>
+                    <span class="site-state-item-name">标签</span>
+                  
+                </div>
+              
+            </nav>
+          
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+            
+          
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Description"><span class="nav-number">1.</span> <span class="nav-text">Description</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Example"><span class="nav-number">2.</span> <span class="nav-text">Example</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Hints"><span class="nav-number">3.</span> <span class="nav-text">Hints</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Solution"><span class="nav-number">4.</span> <span class="nav-text">Solution</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">博主</span>
+
+  
+
+  
+</div>
+
+
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动 v3.7.1</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://theme-next.org">NexT.Muse</a> v6.3.0</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+	
+    
+
+    
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=6.3.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=6.3.0"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=6.3.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=6.3.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=6.3.0"></script>
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

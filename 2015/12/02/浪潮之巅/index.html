@@ -1,0 +1,882 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=6.3.0" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=6.3.0">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=6.3.0">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=6.3.0">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=6.3.0" color="#222">
+
+
+
+
+
+
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    version: '6.3.0',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: false,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  
+
+
+
+
+  <meta name="description" content="作者：吴军  1.摩尔定律（Gordon Moore）“每18个月，IT产品性能翻一番or相同性能的IT产品价钱降一半”必须快速开发产品（要有钱啊）；新应用的大量涌现；现在的研发必须针对多年后的市场。 2.安迪-比尔定律“比尔盖茨要拿走安迪格鲁夫所给的！即软件把硬件提示带来的好处用光鸟～”软件的更新带动了硬件的更新，微软为首的软件开发商迫使用户更新机器，让惠普戴尔等公司收益，同时带动英特尔等公司">
+<meta name="keywords" content="科技公司发展史,IT公司简史">
+<meta property="og:type" content="article">
+<meta property="og:title" content="《浪潮之巅》读书笔记">
+<meta property="og:url" content="http://timilong.com/2015/12/02/浪潮之巅/index.html">
+<meta property="og:site_name" content="timilong&#39;s blog">
+<meta property="og:description" content="作者：吴军  1.摩尔定律（Gordon Moore）“每18个月，IT产品性能翻一番or相同性能的IT产品价钱降一半”必须快速开发产品（要有钱啊）；新应用的大量涌现；现在的研发必须针对多年后的市场。 2.安迪-比尔定律“比尔盖茨要拿走安迪格鲁夫所给的！即软件把硬件提示带来的好处用光鸟～”软件的更新带动了硬件的更新，微软为首的软件开发商迫使用户更新机器，让惠普戴尔等公司收益，同时带动英特尔等公司">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="http://a.hiphotos.baidu.com/baike/c0%3Dbaike116%2C5%2C5%2C116%2C38/sign=c14ce66439dbb6fd3156ed74684dc07d/aa64034f78f0f7363f551e9e0a55b319eac41381.jpg">
+<meta property="og:updated_time" content="2018-07-24T00:18:47.858Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="《浪潮之巅》读书笔记">
+<meta name="twitter:description" content="作者：吴军  1.摩尔定律（Gordon Moore）“每18个月，IT产品性能翻一番or相同性能的IT产品价钱降一半”必须快速开发产品（要有钱啊）；新应用的大量涌现；现在的研发必须针对多年后的市场。 2.安迪-比尔定律“比尔盖茨要拿走安迪格鲁夫所给的！即软件把硬件提示带来的好处用光鸟～”软件的更新带动了硬件的更新，微软为首的软件开发商迫使用户更新机器，让惠普戴尔等公司收益，同时带动英特尔等公司">
+<meta name="twitter:image" content="http://a.hiphotos.baidu.com/baike/c0%3Dbaike116%2C5%2C5%2C116%2C38/sign=c14ce66439dbb6fd3156ed74684dc07d/aa64034f78f0f7363f551e9e0a55b319eac41381.jpg">
+
+
+
+
+
+
+  <link rel="canonical" href="http://timilong.com/2015/12/02/浪潮之巅/"/>
+
+
+
+<script type="text/javascript" id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>《浪潮之巅》读书笔记 | timilong's blog</title>
+  
+
+
+
+
+
+
+
+
+
+  <noscript>
+  <style type="text/css">
+    .use-motion .motion-element,
+    .use-motion .brand,
+    .use-motion .menu-item,
+    .sidebar-inner,
+    .use-motion .post-block,
+    .use-motion .pagination,
+    .use-motion .comments,
+    .use-motion .post-header,
+    .use-motion .post-body,
+    .use-motion .collection-title { opacity: initial; }
+
+    .use-motion .logo,
+    .use-motion .site-title,
+    .use-motion .site-subtitle {
+      opacity: initial;
+      top: initial;
+    }
+
+    .use-motion {
+      .logo-line-before i { left: initial; }
+      .logo-line-after i { right: initial; }
+    }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">timilong's blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+    
+      
+        <p class="site-subtitle">Cease to struggle and you cease to live.--Thomas Carlyle</p>
+      
+    
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="Toggle navigation bar">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+          
+          <li class="menu-item menu-item-home">
+    <a href="/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-home"></i> <br />首页</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+    <a href="/archives/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />归档</a>
+  </li>
+
+      
+      
+    </ul>
+  
+
+  
+    
+
+  
+
+  
+</nav>
+
+
+
+  
+
+
+
+</div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://timilong.com/2015/12/02/浪潮之巅/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="博主">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="timilong's blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">《浪潮之巅》读书笔记
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建于：2015-12-01 16:03:00" itemprop="dateCreated datePublished" datetime="2015-12-01T16:03:00Z">2015-12-01</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Edited on</span>
+                
+                <time title="更新于：2018-07-24 00:18:47" itemprop="dateModified" datetime="2018-07-24T00:18:47Z">2018-07-24</time>
+              
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/读书笔记/" itemprop="url" rel="index"><span itemprop="name">读书笔记</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p><img src="http://a.hiphotos.baidu.com/baike/c0%3Dbaike116%2C5%2C5%2C116%2C38/sign=c14ce66439dbb6fd3156ed74684dc07d/aa64034f78f0f7363f551e9e0a55b319eac41381.jpg" alt="封面"></p>
+<p>作者：吴军</p>
+<hr>
+<p>1.摩尔定律（Gordon Moore）“每18个月，IT产品性能翻一番or相同性能的IT产品价钱降一半”必须快速开发产品（要有钱啊）；新应用的大量涌现；现在的研发必须针对多年后的市场。</p>
+<p>2.安迪-比尔定律“比尔盖茨要拿走安迪格鲁夫所给的！即软件把硬件提示带来的好处用光鸟～”软件的更新带动了硬件的更新，微软为首的软件开发商迫使用户更新机器，让惠普戴尔等公司收益，同时带动英特尔等公司的发展。</p>
+<p>3.反摩尔定律（Eric Schmidt）“一个IT公司如果今天和18个月前卖掉同样多的相同产品，营业额就要降一半。”硬件设备公司鸭梨很大啊，需要与摩尔定律赛跑。但这也逼着大家寻求产生质变的技术革新，促进了信息产业的飞速发展，也给了能抓住机遇的小公司腾飞的机会。</p>
+<p>以上是摘要<br><a id="more"></a><br>以下是余下全文</p>
+<p>4.70-20-10律（John Sculley）“一般来说，在信息科技的某个领域，存在一个占据着百分之六七十市场的老大，还有一个有着稳定的百分之二三十的市场的老二，剩下一群小商家占据百分之十或更少的市场。”行业霸主靠制定规则占据了很大优势，其他公司凭借技术和管理的小优势都不足以抗衡，这就是左右游戏规则的威力。例子：微软制定软件标准，Google阴影下的SEO，高通的CDMA2000标准。IT领域产生这种现象的原因：低制造成本，各环节的耦合性强，硬性的性能指标，反垄断法。</p>
+<p>5.诺威格定律（Peter Norvig）“一家公司的市场占有率超过50%后，就无法再使市场占有率翻番了！”IT公司成长飞快，当一家公司占领了大部分市场时就必须考虑寻找新的成长点了，否则就会受制于某一行业的发展。两条路：扩展现有业务与转型。扩展成功例子：微软的Office，Google成立Android联盟。转型则容易失败，why？基因！</p>
+<p>6.基因决定定律“公司进入成熟期后有着自己特定的基因，很难在新领域里获得成功。”在某领域特别成功的大公司一定被优化得非常适应其市场，其企业文化，管理方法，商业模式等都会作为内在因素深深植入该公司。这就是为啥大公司转型之难，也是很多跨国企业衰落的根本原因。例子：IBM放弃PC业务，Apple的封闭之路，微软迟迟不能打开互联网市场，Symbian的伪开放。</p>
+<p>7.在工业史上，一种新技术代替旧的技术是不以人的意志为转移的。人生最幸运之事就是发现和顺应这个潮流。</p>
+<p>8.IBM能成为科技界的常青树，要归功于它的二字秘诀—保守。毫无疑问，保守使得IBM失去了无数发展机会，但是也让它能专注于最重要的事，并因此立于不败之地。</p>
+<p>9.有一位先哲说过，社会的需求对科技进步的作用要超过十所大学。</p>
+<p>10.摩尔定理、安迪-比尔定理和反摩尔定理，这三个定理和在一起，描述了IT产业中最重要的组成部分—计算机行业的发展规律。</p>
+<p>11.如果你反过来看摩尔定理，一个IT公司如果今天和十八个月前卖掉同样多的、同样的产品，它的营业额就要降一半。IT界把它称之为反摩尔定理。</p>
+<p>12.有时，一个好的公司不能完全按华尔街的意愿办事。</p>
+<p>13.一个操作系统成功与否，最终要看上面有多少既有用又廉价的应用软件。</p>
+<p>14.从生意经上讲，盖茨深知赚大钱和赚小钱的关系。盖茨和他的忘年交投资大师巴菲特做法相同，他们都是要从每一个人身上挣或多或少的一笔钱，而不是从富人身上狠宰一刀了事。要知道，世界上最挣钱的汽车公司是生产大众型汽车的丰田而不是生产跑车的法拉利和豪华车的劳斯莱斯，事实上后者因为亏损已经被卖给了宝马。</p>
+<p>15.我非常喜欢黑格尔的一句话：凡是现实的都是合理的，凡是合理的都是现实的。（All that is real is rational; and all that is rational is real）. 虽然这句话常常被误解成为当今不合理的现实来开脱，其实，如果我们动态的看待现实性和合理性，可以把这句话理解成，现在存在的现象，当初产生他的时候必然有产生它的原因和理由。如果这个理由将来不存在了，终究有一天它也会消亡。</p>
+<p>16.他们对世界的贡献远不只是创建了世界上最大的互联网门户网站雅虎公司，更重要的是制定下了互联网这个行业全世界至今遵守的游戏规则—开放、免费喝盈利。</p>
+<p>17.当年朗讯公司已经占了美国程控交换机市场的大半江山，它依然梦想着在这个已经开始萎缩的市场上做到快速成长。这当然是不可能的，朗讯公司采用回避问题的方式，自己创造出一个实际上并不存在的虚拟市场：它将设备卖给根本还不上钱的公司。从短期效果看，朗讯公司向外公布的营业额上去了，虽然一大笔钱还只以应收款项出现在它的财务报表上，实际并没有进账。但是当2000年后这些钱真的收不回来的时候，朗讯公司就彻底垮掉了（同样的错误非科技公司也会犯，世界第一大银行花旗银行为首的金融公司为了达到高速成长的目的，贷款给根本无法还贷的客户，导致几千亿美元的贷款成了换张不得不报亏损，而且这个黑洞至今看不到底）。</p>
+<p>18.从斯坦福夫人身上我们看到一位真正慈善家的美德。慈善不是在富有以后拿出自己的闲钱来沽名钓誉，更不是以此来为自己做软广告，慈善是在自己哪怕也很困难的时候都在帮助社会的一种善行。</p>
+<p>19.十九世纪后半叶，美国因为种族矛盾尖锐，后来又爆发内战，罗斯柴尔德家族对美国不看好，撤走了在美国的大部分业务，失去了追随美国发展的大好时机。（我常常和别人讲，错过现在中国发展的快车，就像一百年前错过美国发展一样可惜。）</p>
+<p>20.企业级的产品和服务受经济大环境的影响太大，收入相对不如消费者产品来得稳定。</p>
+<p>21.所有成功的大公司都有好的商业模式，很多大公司的兴起，不是靠技术的革命而是商业模式的转变。</p>
+<p>22.好的商业模式都非常简单，即使是外行业一眼能看清楚。</p>
+<p>23.科技的发展不是均匀的，而是以浪潮的形式出现。对个人来讲，看清楚浪潮，赶上浪潮，便不枉此生。</p>
+
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/科技公司发展史/" rel="tag"># 科技公司发展史</a>
+          
+            <a href="/tags/IT公司简史/" rel="tag"># IT公司简史</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2015/12/01/程序员从优秀到卓越/" rel="next" title="《程序员从优秀到卓越》读书笔记">
+                <i class="fa fa-chevron-left"></i> 《程序员从优秀到卓越》读书笔记
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2015/12/02/世界因你不同-李开复传/" rel="prev" title="《世界因你不同-李开复自传》-读书笔记">
+                《世界因你不同-李开复自传》-读书笔记 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+  </div>
+
+
+          </div>
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+
+      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">博主</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/">
+                
+                    <span class="site-state-item-count">89</span>
+                    <span class="site-state-item-name">日志</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-categories">
+                  
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">16</span>
+                    <span class="site-state-item-name">分类</span>
+                  
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">39</span>
+                    <span class="site-state-item-name">标签</span>
+                  
+                </div>
+              
+            </nav>
+          
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+            
+          
+          
+
+        </div>
+      </section>
+
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">博主</span>
+
+  
+
+  
+</div>
+
+
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动 v3.7.1</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://theme-next.org">NexT.Muse</a> v6.3.0</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+	
+    
+
+    
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=6.3.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=6.3.0"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=6.3.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=6.3.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=6.3.0"></script>
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

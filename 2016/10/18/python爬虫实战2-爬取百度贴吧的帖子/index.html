@@ -1,0 +1,908 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=6.3.0" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=6.3.0">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=6.3.0">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=6.3.0">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=6.3.0" color="#222">
+
+
+
+
+
+
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    version: '6.3.0',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: false,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  
+
+
+
+
+  <meta name="description" content="分析百度贴吧的帖子以西南民族大学贴吧－9月10月交易贴为例子:  标题部分  帖子标题的原HTML: 1234567891011121314151617181920&amp;lt;div class=&quot;core_title core_title_theme_bright&quot;&amp;gt;  &amp;lt;h1 class=&quot;core_title_txt  &quot; title=&quot;【跳蚤市场】2016年9.10月份交易专贴&quot;">
+<meta name="keywords" content="爬虫">
+<meta property="og:type" content="article">
+<meta property="og:title" content="python爬虫实战2-爬取百度贴吧的帖子">
+<meta property="og:url" content="http://timilong.com/2016/10/18/python爬虫实战2-爬取百度贴吧的帖子/index.html">
+<meta property="og:site_name" content="timilong&#39;s blog">
+<meta property="og:description" content="分析百度贴吧的帖子以西南民族大学贴吧－9月10月交易贴为例子:  标题部分  帖子标题的原HTML: 1234567891011121314151617181920&amp;lt;div class=&quot;core_title core_title_theme_bright&quot;&amp;gt;  &amp;lt;h1 class=&quot;core_title_txt  &quot; title=&quot;【跳蚤市场】2016年9.10月份交易专贴&quot;">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="http://7xorah.com1.z0.glb.clouddn.com/%E6%B7%B1%E5%BA%A6%E6%88%AA%E5%9B%BE20161018143022.png">
+<meta property="og:image" content="http://7xorah.com1.z0.glb.clouddn.com/%E6%B7%B1%E5%BA%A6%E6%88%AA%E5%9B%BE20161018143308.png">
+<meta property="og:updated_time" content="2018-07-24T00:18:47.852Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="python爬虫实战2-爬取百度贴吧的帖子">
+<meta name="twitter:description" content="分析百度贴吧的帖子以西南民族大学贴吧－9月10月交易贴为例子:  标题部分  帖子标题的原HTML: 1234567891011121314151617181920&amp;lt;div class=&quot;core_title core_title_theme_bright&quot;&amp;gt;  &amp;lt;h1 class=&quot;core_title_txt  &quot; title=&quot;【跳蚤市场】2016年9.10月份交易专贴&quot;">
+<meta name="twitter:image" content="http://7xorah.com1.z0.glb.clouddn.com/%E6%B7%B1%E5%BA%A6%E6%88%AA%E5%9B%BE20161018143022.png">
+
+
+
+
+
+
+  <link rel="canonical" href="http://timilong.com/2016/10/18/python爬虫实战2-爬取百度贴吧的帖子/"/>
+
+
+
+<script type="text/javascript" id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>python爬虫实战2-爬取百度贴吧的帖子 | timilong's blog</title>
+  
+
+
+
+
+
+
+
+
+
+  <noscript>
+  <style type="text/css">
+    .use-motion .motion-element,
+    .use-motion .brand,
+    .use-motion .menu-item,
+    .sidebar-inner,
+    .use-motion .post-block,
+    .use-motion .pagination,
+    .use-motion .comments,
+    .use-motion .post-header,
+    .use-motion .post-body,
+    .use-motion .collection-title { opacity: initial; }
+
+    .use-motion .logo,
+    .use-motion .site-title,
+    .use-motion .site-subtitle {
+      opacity: initial;
+      top: initial;
+    }
+
+    .use-motion {
+      .logo-line-before i { left: initial; }
+      .logo-line-after i { right: initial; }
+    }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">timilong's blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+    
+      
+        <p class="site-subtitle">Cease to struggle and you cease to live.--Thomas Carlyle</p>
+      
+    
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="Toggle navigation bar">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+          
+          <li class="menu-item menu-item-home">
+    <a href="/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-home"></i> <br />首页</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+    <a href="/archives/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />归档</a>
+  </li>
+
+      
+      
+    </ul>
+  
+
+  
+    
+
+  
+
+  
+</nav>
+
+
+
+  
+
+
+
+</div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://timilong.com/2016/10/18/python爬虫实战2-爬取百度贴吧的帖子/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="博主">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="timilong's blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">python爬虫实战2-爬取百度贴吧的帖子
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建于：2016-10-18 14:04:43" itemprop="dateCreated datePublished" datetime="2016-10-18T14:04:43Z">2016-10-18</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Edited on</span>
+                
+                <time title="更新于：2018-07-24 00:18:47" itemprop="dateModified" datetime="2018-07-24T00:18:47Z">2018-07-24</time>
+              
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/python/" itemprop="url" rel="index"><span itemprop="name">python</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h3 id="分析百度贴吧的帖子"><a href="#分析百度贴吧的帖子" class="headerlink" title="分析百度贴吧的帖子"></a>分析百度贴吧的帖子</h3><p>以<a href="http://tieba.baidu.com/p/4763194794" target="_blank" rel="noopener">西南民族大学贴吧－9月10月交易贴</a>为例子:</p>
+<ol>
+<li>标题部分</li>
+</ol>
+<p>帖子标题的原HTML:</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"core_title core_title_theme_bright"</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">h1</span> <span class="attr">class</span>=<span class="string">"core_title_txt  "</span> <span class="attr">title</span>=<span class="string">"【跳蚤市场】2016年9.10月份交易专贴"</span> <span class="attr">style</span>=<span class="string">"width: 470px"</span>&gt;</span></span><br><span class="line">    【跳蚤市场】2016年9.10月份交易专贴</span><br><span class="line">  <span class="tag">&lt;/<span class="name">h1</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">ul</span> <span class="attr">class</span>=<span class="string">"core_title_btns"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">li</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">a</span> <span class="attr">id</span>=<span class="string">"lzonly_cntn"</span> <span class="attr">href</span>=<span class="string">"/p/4763194794?see_lz=1"</span> <span class="attr">alog-alias</span>=<span class="string">"lzonly"</span> <span class="attr">class</span>=<span class="string">"l_lzonly"</span>&gt;</span><span class="tag">&lt;<span class="name">span</span> <span class="attr">id</span>=<span class="string">"lzonly"</span> <span class="attr">class</span>=<span class="string">"d_lzonly_bdaside"</span>&gt;</span>只看楼主<span class="tag">&lt;/<span class="name">span</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;/<span class="name">a</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">li</span> <span class="attr">id</span>=<span class="string">"j_favthread"</span> <span class="attr">class</span>=<span class="string">"p_favthread"</span> <span class="attr">data-field</span>=<span class="string">"&#123;&amp;quot;status&amp;quot;:0,&amp;quot;is_anonym&amp;quot;:false&#125;"</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"p_favthr_tip"</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"p_favthr_main"</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">p</span>&gt;</span>收藏<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">li</span> <span class="attr">class</span>=<span class="string">"quick_reply"</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">"#"</span> <span class="attr">id</span>=<span class="string">"quick_reply"</span> <span class="attr">class</span>=<span class="string">"j_quick_reply"</span>&gt;</span>回复</span><br><span class="line">      <span class="tag">&lt;/<span class="name">a</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">li</span>&gt;</span>       </span><br><span class="line">  <span class="tag">&lt;/<span class="name">ul</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>分析知帖子标题的h1的class属性以”core_title_txt”组成。<br>所以可以用正则表达式：</p>
+<figure class="highlight ini"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">pattern</span> = re.compile(<span class="string">'&lt;h1 class="core_title_txt.*?&gt;(.*?)&lt;/h1&gt;'</span>, re.S)</span><br></pre></td></tr></table></figure>
+<p>获得该贴的标题。</p>
+<a id="more"></a>
+<ol start="2">
+<li>回复贴的总页数</li>
+</ol>
+<p>页数的原HTML代码:</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line">&lt;div <span class="class"><span class="keyword">class</span></span>=<span class="string">"p_thread thread_theme_7"</span> id=<span class="string">"thread_theme_7"</span>&gt;</span><br><span class="line">  &lt;div <span class="class"><span class="keyword">class</span></span>=<span class="string">"l_thread_info"</span>&gt;</span><br><span class="line">    &lt;ul <span class="class"><span class="keyword">class</span></span>=<span class="string">"l_posts_num"</span>&gt;</span><br><span class="line">      &lt;li <span class="class"><span class="keyword">class</span></span>=<span class="string">"l_pager pager_theme_5 pb_list_pager"</span>&gt;<span class="xml"><span class="tag">&lt;<span class="name">span</span> <span class="attr">class</span>=<span class="string">"tP"</span>&gt;</span>1<span class="tag">&lt;/<span class="name">span</span>&gt;</span></span></span><br><span class="line">        &lt;a href=<span class="string">"/p/4763194794?pn=2"</span>&gt;<span class="number">2</span>&lt;<span class="regexp">/a&gt;</span></span><br><span class="line"><span class="regexp">        &lt;a href="/</span>p/<span class="number">4763194794</span>?pn=<span class="number">3</span><span class="string">"&gt;3&lt;/a&gt;</span></span><br><span class="line"><span class="string">        &lt;a href="</span>/p/<span class="number">4763194794</span>?pn=<span class="number">4</span><span class="string">"&gt;4&lt;/a&gt;</span></span><br><span class="line"><span class="string">        &lt;a href="</span>/p/<span class="number">4763194794</span>?pn=<span class="number">5</span><span class="string">"&gt;5&lt;/a&gt;</span></span><br><span class="line"><span class="string">        &lt;a href="</span>/p/<span class="number">4763194794</span>?pn=<span class="number">6</span><span class="string">"&gt;6&lt;/a&gt;</span></span><br><span class="line"><span class="string">        &lt;a href="</span>/p/<span class="number">4763194794</span>?pn=<span class="number">2</span><span class="string">"&gt;下一页&lt;/a&gt;</span></span><br><span class="line"><span class="string">        &lt;a href="</span>/p/<span class="number">4763194794</span>?pn=<span class="number">9</span><span class="string">"&gt;尾页&lt;/a&gt;</span></span><br><span class="line"><span class="string">      &lt;/li&gt;</span></span><br><span class="line"><span class="string">      &lt;li class="</span>l_reply_num<span class="string">" style="</span>margin-left:<span class="number">8</span>px<span class="string">"&gt;</span></span><br><span class="line"><span class="string">        &lt;span class="</span>red<span class="string">" style="</span>margin-right:<span class="number">3</span>px<span class="string">"&gt;608&lt;/span&gt;回复贴，共</span></span><br><span class="line"><span class="string">        &lt;span class="</span>red<span class="string">"&gt;9&lt;/span&gt;页</span></span><br><span class="line"><span class="string">      &lt;/li&gt;</span></span><br><span class="line"><span class="string">      &lt;li class="</span>l_reply_num<span class="string">"&gt;，跳到 </span></span><br><span class="line"><span class="string">        &lt;input theme="</span><span class="number">6</span><span class="string">" id="</span>jumpPage6<span class="string">" max-page="</span><span class="number">9</span><span class="string">" type="</span>text<span class="string">" class="</span>jump_input_bright<span class="string">"&gt;页&amp;nbsp;</span></span><br><span class="line"><span class="string">        &lt;button id="</span>pager_go6<span class="string">" type="</span>button<span class="string">" value="</span>确定<span class="string">" class="</span>jump_btn_bright<span class="string">"&gt;确定&lt;/button&gt;&amp;nbsp;</span></span><br><span class="line"><span class="string">      &lt;/li&gt;</span></span><br><span class="line"><span class="string">    &lt;/ul&gt;</span></span><br><span class="line"><span class="string">  &lt;/div&gt;</span></span><br><span class="line"><span class="string">  &lt;div id="</span>tofrs_up<span class="string">" class="</span>tofrs_up<span class="string">"&gt;</span></span><br><span class="line"><span class="string">    &lt;a href="</span>/f?kw=%E8%A5%BF%E5%<span class="number">8</span>D%<span class="number">97</span>%E6%B0%<span class="number">91</span>%E6%<span class="number">97</span>%<span class="number">8</span>F%E5%A4%A7%E5%AD%A6&amp;amp;ie=utf<span class="number">-8</span><span class="string">" title="</span>西南民族大学<span class="string">"&gt;&amp;lt;&amp;lt;返回西南民族大学吧&lt;/a&gt;</span></span><br><span class="line"><span class="string">  &lt;/div&gt;</span></span><br><span class="line"><span class="string">&lt;/div&gt;</span></span><br></pre></td></tr></table></figure>
+<p>分析知帖子主题内容部分的li的class属性以”l_reply_num”组成。<br>所以可以用正则表达式：</p>
+<figure class="highlight vbnet"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pattern = re.compile(<span class="comment">'<span class="doctag">&lt;li class="l_reply_num.*?&lt;/span&gt;</span>.*?<span class="doctag">&lt;span.*?&gt;</span>(.*?)<span class="doctag">&lt;/span&gt;</span>',re.S)</span></span><br></pre></td></tr></table></figure>
+<p>获得总的页数</p>
+<ol start="3">
+<li>帖子内容</li>
+</ol>
+<p>帖子内容的原HTML:</p>
+<figure class="highlight llvm"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">&lt;div id=<span class="string">"post_content_97207207866"</span> class=<span class="string">"d_post_content j_d_post_content  clearfix"</span>&gt;</span><br><span class="line">  为维护吧内秩序、整合资源方便吧友查看，请各位把各类广告、交易、兼职等信息统一发到此贴，大家有要卖的要买的可以在这里看看。在贴吧内另开贴的你懂的。</span><br><span class="line">  &lt;<span class="keyword">br</span>&gt;也可发至交易专区&lt;<span class="keyword">br</span>&gt;交易区吧传送门：</span><br><span class="line">  &lt;a href=<span class="string">"http://jump.bdimg.com/safecheck/index?url=x+Z5mMbGPAs95UolpNuq+CwM2BpViN6QmOAUpYcHEp3yh2g54/DNZkwZOyqc+ysHracV4bv5FhgOh7UAFerFKP6yLAEdcrKLyeGknQty2X0jRha1FKRps3NThXBpPvJle+dwuR5U/I3rj2gEWSj0J1ylgIj3lwMhC9PC1kFa9y1H/mFRJ8LD7iZqNqoA+5sYYfeLqDUKUME2ccw3UuJz3St9mSeEws4jeLOj9K+ShbpV92TAmoWV0zA8Zu4mdgY0"</span> <span class="keyword">target</span>=<span class="string">"_blank"</span>&gt;http://tieba.baidu.com/f?kw=<span class="symbol">%CE</span><span class="symbol">%F7</span><span class="symbol">%C4</span><span class="symbol">%CF</span><span class="symbol">%C3</span><span class="symbol">%F1</span><span class="symbol">%B4</span><span class="symbol">%F3</span><span class="symbol">%BD</span><span class="symbol">%BB</span><span class="symbol">%D2</span><span class="symbol">%D7</span><span class="symbol">%C7</span><span class="symbol">%F8</span>&amp;amp<span class="comment">;fr=itb_favo&amp;amp;fp=favo</span></span><br><span class="line"><span class="comment">  &lt;/a&gt;  </span></span><br><span class="line"><span class="comment">  &lt;br&gt;</span></span><br><span class="line"><span class="comment">  另外，出于方便翻阅的目的，各类信息</span></span><br><span class="line"><span class="comment">  &lt;br&gt;</span></span><br><span class="line"><span class="comment">  请勿超过200字＋四张图，大量</span></span><br><span class="line"><span class="comment">  &lt;br&gt;</span></span><br><span class="line"><span class="comment">  刷楼删除，骗子信息自重。</span></span><br><span class="line"><span class="comment">  &lt;br&gt;</span></span><br><span class="line"><span class="comment">  本贴只提供平台，请各位睁大双眼</span></span><br><span class="line"><span class="comment">  &lt;br&gt;</span></span><br><span class="line"><span class="comment">  确认信息真实度。&lt;/div&gt;</span></span><br></pre></td></tr></table></figure>
+<p>分析知帖子主题内容部分的div的id属性以”post_content_id”组成。<br>所以可以用正则表达式：</p>
+<figure class="highlight ini"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">pattern</span> = re.compile(<span class="string">'&lt;div id="post_content_.*?&gt;(.*?)&lt;/div&gt;'</span>, re.S)</span><br></pre></td></tr></table></figure>
+<p>获得所有楼层的回复内容。</p>
+<h3 id="代码实现部分"><a href="#代码实现部分" class="headerlink" title="代码实现部分:"></a>代码实现部分:</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br><span class="line">151</span><br><span class="line">152</span><br><span class="line">153</span><br><span class="line">154</span><br><span class="line">155</span><br><span class="line">156</span><br><span class="line">157</span><br><span class="line">158</span><br><span class="line">159</span><br><span class="line">160</span><br><span class="line">161</span><br><span class="line">162</span><br><span class="line">163</span><br><span class="line">164</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#! /usr/bin/env python2</span></span><br><span class="line"><span class="comment"># -*- coding:utf-8 -*-</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> urllib</span><br><span class="line"><span class="keyword">import</span> urllib2</span><br><span class="line"><span class="keyword">import</span> re</span><br><span class="line"></span><br><span class="line"><span class="comment"># 处理页面标签类</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Tool</span>:</span></span><br><span class="line">    <span class="comment"># 去除img标签,7位长空格</span></span><br><span class="line">    removeImg = re.compile(<span class="string">'&lt;img.*?&gt;| &#123;7&#125;|'</span>)</span><br><span class="line"></span><br><span class="line">    <span class="comment"># 删除超链接标签</span></span><br><span class="line">    removeAddr = re.compile(<span class="string">'&lt;a.*?&gt;|&lt;/a&gt;'</span>)</span><br><span class="line"></span><br><span class="line">    <span class="comment">#把换行的标签换为\n</span></span><br><span class="line">    replaceLine = re.compile(<span class="string">'&lt;tr&gt;|&lt;div&gt;|&lt;/div&gt;|&lt;/p&gt;'</span>)</span><br><span class="line"></span><br><span class="line">    <span class="comment"># 将表格制表&lt;td&gt;替换为\t</span></span><br><span class="line">    replaceTD= re.compile(<span class="string">'&lt;td&gt;'</span>)</span><br><span class="line"></span><br><span class="line">    <span class="comment"># 把段落开头换为\n加空两格</span></span><br><span class="line">    replacePara = re.compile(<span class="string">'&lt;p.*?&gt;'</span>)</span><br><span class="line"></span><br><span class="line">    <span class="comment"># 将换行符或双换行符替换为\n</span></span><br><span class="line">    replaceBR = re.compile(<span class="string">'&lt;br&gt;&lt;br&gt;|&lt;br&gt;'</span>)</span><br><span class="line"></span><br><span class="line">    <span class="comment"># 将其余标签剔除</span></span><br><span class="line">    removeExtraTag = re.compile(<span class="string">'&lt;.*?&gt;'</span>)</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">replace</span><span class="params">(self,x)</span>:</span></span><br><span class="line">        x = re.sub(self.removeImg,<span class="string">""</span>,x)</span><br><span class="line">        x = re.sub(self.removeAddr,<span class="string">""</span>,x)</span><br><span class="line">        x = re.sub(self.replaceLine,<span class="string">"\n"</span>,x)</span><br><span class="line">        x = re.sub(self.replaceTD,<span class="string">"\t"</span>,x)</span><br><span class="line">        x = re.sub(self.replacePara,<span class="string">"\n    "</span>,x)</span><br><span class="line">        x = re.sub(self.replaceBR,<span class="string">"\n"</span>,x)</span><br><span class="line">        x = re.sub(self.removeExtraTag,<span class="string">""</span>,x)</span><br><span class="line"></span><br><span class="line">        <span class="comment"># strip()将前后多余内容删除</span></span><br><span class="line">        <span class="keyword">return</span> x.strip()</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment"># 百度贴吧爬虫类</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">BDTB</span>:</span></span><br><span class="line">    <span class="comment"># 初始化，传入基地址，是否只看楼主的参数</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self,baseUrl,seeLZ,floorTag)</span>:</span></span><br><span class="line">        <span class="comment"># base链接地址</span></span><br><span class="line">        self.baseURL = baseUrl</span><br><span class="line"></span><br><span class="line">        <span class="comment"># 是否只看楼主</span></span><br><span class="line">        self.seeLZ = <span class="string">'?see_lz='</span>+str(seeLZ)</span><br><span class="line"></span><br><span class="line">        <span class="comment"># HTML标签剔除工具类对象</span></span><br><span class="line">        self.tool = Tool()</span><br><span class="line"></span><br><span class="line">        <span class="comment"># 全局file变量，文件写入操作对象</span></span><br><span class="line">        self.file = <span class="keyword">None</span></span><br><span class="line"></span><br><span class="line">        <span class="comment"># 楼层标号，初始为1</span></span><br><span class="line">        self.floor = <span class="number">1</span></span><br><span class="line"></span><br><span class="line">        <span class="comment"># 默认的标题，如果没有成功获取到标题的话则会用这个标题</span></span><br><span class="line">        self.defaultTitle = <span class="string">u"百度贴吧"</span></span><br><span class="line"></span><br><span class="line">        <span class="comment"># 是否写入楼分隔符的标记</span></span><br><span class="line">        self.floorTag = floorTag</span><br><span class="line"></span><br><span class="line">    <span class="comment"># 传入页码，获取该页帖子的代码</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">getPage</span><span class="params">(self,pageNum)</span>:</span></span><br><span class="line">        <span class="keyword">try</span>:</span><br><span class="line">            <span class="comment"># 构建URL</span></span><br><span class="line">            url = self.baseURL+ self.seeLZ + <span class="string">'&amp;pn='</span> + str(pageNum)</span><br><span class="line">            request = urllib2.Request(url)</span><br><span class="line">            response = urllib2.urlopen(request)</span><br><span class="line"></span><br><span class="line">            <span class="comment"># 返回UTF-8格式编码内容</span></span><br><span class="line">            <span class="keyword">return</span> response.read().decode(<span class="string">'utf-8'</span>)</span><br><span class="line"></span><br><span class="line">        <span class="comment"># 无法连接，报错</span></span><br><span class="line">        <span class="keyword">except</span> urllib2.URLError, e:</span><br><span class="line">            <span class="keyword">if</span> hasattr(e,<span class="string">"reason"</span>):</span><br><span class="line">                <span class="keyword">print</span> <span class="string">u"连接百度贴吧失败,错误原因"</span>, e.reason</span><br><span class="line">                <span class="keyword">return</span> <span class="keyword">None</span></span><br><span class="line"></span><br><span class="line">    <span class="comment"># 获取帖子标题</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">getTitle</span><span class="params">(self,page)</span>:</span></span><br><span class="line">        <span class="comment"># 得到标题的正则表达式</span></span><br><span class="line">        pattern = re.compile(<span class="string">'&lt;h1 class="core_title_txt.*?&gt;(.*?)&lt;/h1&gt;'</span>, re.S)</span><br><span class="line">        result = re.search(pattern,page)</span><br><span class="line">        <span class="keyword">if</span> result:</span><br><span class="line">            <span class="comment"># 如果存在，则返回标题</span></span><br><span class="line">            <span class="keyword">return</span> result.group(<span class="number">1</span>).strip()</span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">None</span></span><br><span class="line"></span><br><span class="line">    <span class="comment"># 获取帖子一共有多少页</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">getPageNum</span><span class="params">(self,page)</span>:</span></span><br><span class="line">        <span class="comment"># 获取帖子页数的正则表达式</span></span><br><span class="line">        pattern = re.compile(<span class="string">'&lt;li class="l_reply_num.*?&lt;/span&gt;.*?&lt;span.*?&gt;(.*?)&lt;/span&gt;'</span>,re.S)</span><br><span class="line">        result = re.search(pattern,page)</span><br><span class="line">        <span class="keyword">if</span> result:</span><br><span class="line">            <span class="keyword">return</span> result.group(<span class="number">1</span>).strip()</span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">None</span></span><br><span class="line"></span><br><span class="line">    <span class="comment"># 获取每一层楼的内容,传入页面内容</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">getContent</span><span class="params">(self,page)</span>:</span></span><br><span class="line">        <span class="comment"># 匹配所有楼层的内容</span></span><br><span class="line">        pattern = re.compile(<span class="string">'&lt;div id="post_content_.*?&gt;(.*?)&lt;/div&gt;'</span>,re.S)</span><br><span class="line">        items = re.findall(pattern,page)</span><br><span class="line">        contents = []</span><br><span class="line">        <span class="keyword">for</span> item <span class="keyword">in</span> items:</span><br><span class="line">            <span class="comment"># 将文本进行去除标签处理，同时在前后加入换行符</span></span><br><span class="line">            content = <span class="string">"\n"</span> + self.tool.replace(item) + <span class="string">"\n"</span></span><br><span class="line">            contents.append(content.encode(<span class="string">'utf-8'</span>))</span><br><span class="line">        <span class="keyword">return</span> contents</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">setFileTitle</span><span class="params">(self,title)</span>:</span></span><br><span class="line">        <span class="comment"># 如果标题不是为None，即成功获取到标题</span></span><br><span class="line">        <span class="keyword">if</span> title <span class="keyword">is</span> <span class="keyword">not</span> <span class="keyword">None</span>:</span><br><span class="line">            self.file = open(title + <span class="string">".txt"</span>,<span class="string">"w+"</span>)</span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            self.file = open(self.defaultTitle + <span class="string">".txt"</span>,<span class="string">"w+"</span>)</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">writeData</span><span class="params">(self,contents)</span>:</span></span><br><span class="line">        <span class="comment"># 向文件写入每一楼的信息</span></span><br><span class="line">        <span class="keyword">for</span> item <span class="keyword">in</span> contents:</span><br><span class="line">            <span class="keyword">if</span> self.floorTag == <span class="string">'1'</span>:</span><br><span class="line">                <span class="comment"># 楼之间的分隔符</span></span><br><span class="line">                floorLine = <span class="string">"\n"</span> + str(self.floor) + <span class="string">u"-----------------------------------------------------------------------------------------\n"</span></span><br><span class="line">                self.file.write(floorLine)</span><br><span class="line">            self.file.write(item)</span><br><span class="line">            self.floor += <span class="number">1</span></span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">start</span><span class="params">(self)</span>:</span></span><br><span class="line">        indexPage = self.getPage(<span class="number">1</span>)</span><br><span class="line">        pageNum = self.getPageNum(indexPage)</span><br><span class="line">        title = self.getTitle(indexPage)</span><br><span class="line">        self.setFileTitle(title)</span><br><span class="line">        <span class="keyword">if</span> pageNum == <span class="keyword">None</span>:</span><br><span class="line">            <span class="keyword">print</span> <span class="string">"URL已失效，请重试"</span></span><br><span class="line">            <span class="keyword">return</span></span><br><span class="line">        <span class="keyword">try</span>:</span><br><span class="line">            <span class="keyword">print</span> <span class="string">"该帖子共有"</span> + str(pageNum) + <span class="string">"页"</span></span><br><span class="line">            <span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">1</span>,int(pageNum)+<span class="number">1</span>):</span><br><span class="line">                <span class="keyword">print</span> <span class="string">"正在写入第"</span> + str(i) + <span class="string">"页数据"</span></span><br><span class="line">                page = self.getPage(i)</span><br><span class="line">                contents = self.getContent(page)</span><br><span class="line">                self.writeData(contents)</span><br><span class="line">        <span class="comment">#出现写入异常</span></span><br><span class="line">        <span class="keyword">except</span> IOError,e:</span><br><span class="line">            <span class="keyword">print</span> <span class="string">"写入异常，原因"</span> + e.message</span><br><span class="line">        <span class="keyword">finally</span>:</span><br><span class="line">            <span class="keyword">print</span> <span class="string">"写入任务完成"</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">print</span> <span class="string">u"请输入帖子代号"</span></span><br><span class="line">baseURL = <span class="string">'http://tieba.baidu.com/p/'</span> + str(raw_input(<span class="string">u'http://tieba.baidu.com/p/'</span>))</span><br><span class="line">seeLZ = raw_input(<span class="string">"是否只获取楼主发言，是输入1，否输入0\n"</span>)</span><br><span class="line">floorTag = raw_input(<span class="string">"是否写入楼层信息，是输入1，否输入0\n"</span>)</span><br><span class="line">bdtb = BDTB(baseURL, seeLZ, floorTag)</span><br><span class="line">bdtb.start()</span><br></pre></td></tr></table></figure>
+<h3 id="运行效果"><a href="#运行效果" class="headerlink" title="运行效果:"></a>运行效果:</h3><p><img src="http://7xorah.com1.z0.glb.clouddn.com/%E6%B7%B1%E5%BA%A6%E6%88%AA%E5%9B%BE20161018143022.png" alt="运行效果"></p>
+<h3 id="结果展示"><a href="#结果展示" class="headerlink" title="结果展示"></a>结果展示</h3><p><img src="http://7xorah.com1.z0.glb.clouddn.com/%E6%B7%B1%E5%BA%A6%E6%88%AA%E5%9B%BE20161018143308.png" alt="结果展示"></p>
+
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/爬虫/" rel="tag"># 爬虫</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/10/12/python爬虫实战1-爬取糗事百科-md/" rel="next" title="python爬虫实战1-爬取糗事百科.md">
+                <i class="fa fa-chevron-left"></i> python爬虫实战1-爬取糗事百科.md
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2017/01/04/leetcode-missing-number/" rel="prev" title="leetcode-'missing-number'">
+                leetcode-'missing-number' <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+  </div>
+
+
+          </div>
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">博主</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/">
+                
+                    <span class="site-state-item-count">89</span>
+                    <span class="site-state-item-name">日志</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-categories">
+                  
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">16</span>
+                    <span class="site-state-item-name">分类</span>
+                  
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">39</span>
+                    <span class="site-state-item-name">标签</span>
+                  
+                </div>
+              
+            </nav>
+          
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+            
+          
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#分析百度贴吧的帖子"><span class="nav-number">1.</span> <span class="nav-text">分析百度贴吧的帖子</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#代码实现部分"><span class="nav-number">2.</span> <span class="nav-text">代码实现部分:</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#运行效果"><span class="nav-number">3.</span> <span class="nav-text">运行效果:</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#结果展示"><span class="nav-number">4.</span> <span class="nav-text">结果展示</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">博主</span>
+
+  
+
+  
+</div>
+
+
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动 v3.7.1</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://theme-next.org">NexT.Muse</a> v6.3.0</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+	
+    
+
+    
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=6.3.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=6.3.0"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=6.3.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=6.3.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=6.3.0"></script>
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
