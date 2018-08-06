@@ -108,27 +108,27 @@
 
 
 
-  <meta name="description" content="为了让nodejs的文件可以相互调用，nodejs提供了一个简单的模块系统 模块是nodejs应用程序的基本组成部分，文件和模块是一一对应的。 换言之，一个nodejs文件就是一个模块，这个文件可能是JavaScript代码，JSON或者是编译过的C/C++扩展">
-<meta name="keywords" content="Nodejs模块系统">
+  <meta name="description" content="在客户端生成秘钥1&amp;gt;&amp;gt;&amp;gt; ssh-keygen -t rsa  # 如果已经生成则直接查看cat .ssh/id_rsa.pub是否有内容 将客户端的公钥添加到server端的.ssh/authorized_keys中实现免密登录12&amp;gt;&amp;gt;&amp;gt; ssh-copy-id -i .ssh/id_rsa.pub root@47.xx.yy.zzz&amp;gt;&amp;gt;&amp;gt;">
+<meta name="keywords" content="Linux">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Node.js模块系统">
-<meta property="og:url" content="http://timilong.com/2016/03/02/nodejs_模块系统/index.html">
+<meta property="og:title" content="linux-上传公钥至服务器实现免密码登录">
+<meta property="og:url" content="http://timilong.com/2018/08/06/linux-上传公钥至服务器实现免密码登录/index.html">
 <meta property="og:site_name" content="timilong&#39;s blog">
-<meta property="og:description" content="为了让nodejs的文件可以相互调用，nodejs提供了一个简单的模块系统 模块是nodejs应用程序的基本组成部分，文件和模块是一一对应的。 换言之，一个nodejs文件就是一个模块，这个文件可能是JavaScript代码，JSON或者是编译过的C/C++扩展">
+<meta property="og:description" content="在客户端生成秘钥1&amp;gt;&amp;gt;&amp;gt; ssh-keygen -t rsa  # 如果已经生成则直接查看cat .ssh/id_rsa.pub是否有内容 将客户端的公钥添加到server端的.ssh/authorized_keys中实现免密登录12&amp;gt;&amp;gt;&amp;gt; ssh-copy-id -i .ssh/id_rsa.pub root@47.xx.yy.zzz&amp;gt;&amp;gt;&amp;gt;">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="http://www.runoob.com/wp-content/uploads/2014/03/nodejs-require.jpg">
-<meta property="og:updated_time" content="2018-07-24T00:18:47.846Z">
+<meta property="og:image" content="http://7xorah.com1.z0.glb.clouddn.com/ssh-copy-id.png">
+<meta property="og:updated_time" content="2018-08-06T03:35:26.984Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Node.js模块系统">
-<meta name="twitter:description" content="为了让nodejs的文件可以相互调用，nodejs提供了一个简单的模块系统 模块是nodejs应用程序的基本组成部分，文件和模块是一一对应的。 换言之，一个nodejs文件就是一个模块，这个文件可能是JavaScript代码，JSON或者是编译过的C/C++扩展">
-<meta name="twitter:image" content="http://www.runoob.com/wp-content/uploads/2014/03/nodejs-require.jpg">
+<meta name="twitter:title" content="linux-上传公钥至服务器实现免密码登录">
+<meta name="twitter:description" content="在客户端生成秘钥1&amp;gt;&amp;gt;&amp;gt; ssh-keygen -t rsa  # 如果已经生成则直接查看cat .ssh/id_rsa.pub是否有内容 将客户端的公钥添加到server端的.ssh/authorized_keys中实现免密登录12&amp;gt;&amp;gt;&amp;gt; ssh-copy-id -i .ssh/id_rsa.pub root@47.xx.yy.zzz&amp;gt;&amp;gt;&amp;gt;">
+<meta name="twitter:image" content="http://7xorah.com1.z0.glb.clouddn.com/ssh-copy-id.png">
 
 
 
 
 
 
-  <link rel="canonical" href="http://timilong.com/2016/03/02/nodejs_模块系统/"/>
+  <link rel="canonical" href="http://timilong.com/2018/08/06/linux-上传公钥至服务器实现免密码登录/"/>
 
 
 
@@ -138,7 +138,7 @@
   };
 </script>
 
-  <title>Node.js模块系统 | timilong's blog</title>
+  <title>linux-上传公钥至服务器实现免密码登录 | timilong's blog</title>
   
 
 
@@ -287,7 +287,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://timilong.com/2016/03/02/nodejs_模块系统/">
+    <link itemprop="mainEntityOfPage" href="http://timilong.com/2018/08/06/linux-上传公钥至服务器实现免密码登录/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="博主">
@@ -304,7 +304,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">Node.js模块系统
+          <h1 class="post-title" itemprop="name headline">linux-上传公钥至服务器实现免密码登录
               
             
           </h1>
@@ -329,46 +329,16 @@
                 
               
 
-              <time title="创建于：2016-03-01 17:38:00" itemprop="dateCreated datePublished" datetime="2016-03-01T17:38:00Z">2016-03-01</time>
+              <time title="创建于：2018-08-06 11:14:41 / 更新于：03:35:26" itemprop="dateCreated datePublished" datetime="2018-08-06T11:14:41Z">2018-08-06</time>
             
 
             
               
 
-              
-                
-                <span class="post-meta-divider">|</span>
-                
-
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">Edited on</span>
-                
-                <time title="更新于：2018-07-24 00:18:47" itemprop="dateModified" datetime="2018-07-24T00:18:47Z">2018-07-24</time>
               
             
           </span>
 
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Node/" itemprop="url" rel="index"><span itemprop="name">Node</span></a></span>
-
-                
-                
-              
-            </span>
           
 
           
@@ -397,36 +367,12 @@
       
 
       
-        <p>为了让nodejs的文件可以相互调用，nodejs提供了一个简单的模块系统</p>
-<p>模块是nodejs应用程序的基本组成部分，文件和模块是一一对应的。</p>
-<p>换言之，一个nodejs文件就是一个模块，这个文件可能是JavaScript代码，JSON或者是编译过的C/C++扩展</p>
+        <h1 id="在客户端生成秘钥"><a href="#在客户端生成秘钥" class="headerlink" title="在客户端生成秘钥"></a>在客户端生成秘钥</h1><figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;</span>&gt; ssh-keygen -t rsa  <span class="comment"># 如果已经生成则直接查看cat .ssh/id_rsa.pub是否有内容</span></span><br></pre></td></tr></table></figure>
+<h1 id="将客户端的公钥添加到server端的-ssh-authorized-keys中实现免密登录"><a href="#将客户端的公钥添加到server端的-ssh-authorized-keys中实现免密登录" class="headerlink" title="将客户端的公钥添加到server端的.ssh/authorized_keys中实现免密登录"></a>将客户端的公钥添加到server端的.ssh/authorized_keys中实现免密登录</h1><figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&gt;&gt;&gt; ssh-copy-id -<span class="selector-tag">i</span> .ssh/id_rsa<span class="selector-class">.pub</span> root@<span class="number">47</span><span class="selector-class">.xx</span><span class="selector-class">.yy</span><span class="selector-class">.zzz</span></span><br><span class="line">&gt;&gt;&gt; 输入root的密码 &lt;enter&gt;</span><br></pre></td></tr></table></figure>
 <a id="more"></a>
-<h3 id="创建模块"><a href="#创建模块" class="headerlink" title="创建模块"></a>创建模块</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="keyword">var</span> hello = <span class="built_in">require</span>(<span class="string">'./hello'</span>);</span><br><span class="line">hello.world();</span><br></pre></td></tr></table></figure>
-<p>以上实例中，代码require(‘./hello’)引入了当前目录下的hello.js文件(./为当前目录, node.js默认后缀是js).</p>
-<!--more-->
-<p>Node.js提供了exports和require两个对象，其中exports是模块公开的接口，require用于外部获取一个模块的接口，即所获取模块的exports对象。<br>接下来我们创建hello.js文件，代码如下:</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">exports.world = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">'Hello World'</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>在以上的示例中，hello.js通过exports对象把world作为模块的访问接口，　在main.js中通过require(‘./hello’)加载这个模块，然后就可以直接访问hello.js中exports对象的成员函数了。<br>有时候我们只是想要把一个对象封装到模块中，格式如下:</p>
-<figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="built_in">module</span>.exports = <span class="function"><span class="keyword">function</span><span class="title">I</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    <span class="comment">//...</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>例如:</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="comment">//hello.js</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Hello</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    <span class="keyword">var</span> name;</span><br><span class="line">    <span class="keyword">this</span>.setName = <span class="function"><span class="keyword">function</span>(<span class="params">thyName</span>)</span>&#123;</span><br><span class="line">        name = thyName;</span><br><span class="line">    &#125;;</span><br><span class="line">    <span class="keyword">this</span>.sayHello = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">        <span class="built_in">console</span>.log(<span class="string">'Hello'</span> + name);</span><br><span class="line">    &#125;;</span><br><span class="line">&#125;;</span><br><span class="line"><span class="built_in">module</span>.exports = Hello;</span><br></pre></td></tr></table></figure>
-<p>这样就可以直接获得这个这个对象了:</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="comment">//main.js</span></span><br><span class="line"><span class="keyword">var</span> Hello = <span class="built_in">require</span>(<span class="string">'./hello'</span>);</span><br><span class="line">hello = <span class="keyword">new</span> Hello();</span><br><span class="line">hello.setName(<span class="string">'BYVoid'</span>);</span><br><span class="line">hello.sayHello();</span><br></pre></td></tr></table></figure>
-<p>模块接口的唯一变化是使用module.exports　＝　Hello 代替了exports.world = function(){}。在外部引用该模块时候，其接口对象就是要输出的Hello对象本身，而不是原先的exports.</p>
-<hr>
-<h3 id="服务端的模块放在哪里"><a href="#服务端的模块放在哪里" class="headerlink" title="服务端的模块放在哪里?"></a>服务端的模块放在哪里?</h3><p>也许你已经注意到，我们已经在代码中使用了模块了。像这样:</p>
-<figure class="highlight lasso"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="built_in">var</span> http = <span class="keyword">require</span>(<span class="string">'http'</span>);</span><br><span class="line"><span class="params">...</span></span><br><span class="line">http.createServer(<span class="params">...</span>);</span><br></pre></td></tr></table></figure>
-<p>Node.js中自带了一个叫做”http”的模块，　我们在我们的代码中请求它并把返回值赋值给一个本地的变量。<br>这把我们的本地变量变成了一个拥有所有的http模块所提供的公共方法的对象。<br>Node.js的require方法中的文件查找策略如下:<br>由于Node.js中存在四类模块(原生模块和三种文件模块), 尽管require方法及其简单，但是内部的加载确实十分复杂的，其加载优先级也各自不同。如下图所示:</p>
-<p><img src="http://www.runoob.com/wp-content/uploads/2014/03/nodejs-require.jpg" alt="require方法的内部加载"></p>
-<h4 id="从文件模块缓存中加载"><a href="#从文件模块缓存中加载" class="headerlink" title="从文件模块缓存中加载"></a>从文件模块缓存中加载</h4><p>尽管原生模块与文件模块的优先级不同，但是都不会优先于从文件模块的缓存中加载已经存在的模块。</p>
-<h4 id="从原生模块加载"><a href="#从原生模块加载" class="headerlink" title="从原生模块加载"></a>从原生模块加载</h4><p>原生模块的优先级仅次于文件模块缓存的优先级。require方法在解析文件名之后，优先检查模块是否在原生模块列表中。以http模块为例，尽管在目录下存在一个http/http.js/http.node/http.json文件，require(“http”)都不会从这些文件中加载，而是从原生模块中加载。<br>原生模块也有一个缓存区，同样也是优先从缓存区加载。如果缓存区没有被加载过，则调用原生模块的加载方式进行加载和执行。</p>
-<h4 id="从文件加载"><a href="#从文件加载" class="headerlink" title="从文件加载"></a>从文件加载</h4><p>当文件模块缓存中不存在，而且不是原生模块的时候，Node.js会解析require方法传入的参数，并从文件系统中加载实际的文件，加载过程中的包装和编译细节在前一节中已经介绍过，这里我们将详细描述查找文件模块的过程，其中，也有一些细节值得知晓。<br>require方法接受以下几种参数的传递：</p>
-<ul>
-<li>http、fs、path等，原生模块。</li>
-<li>./mod或../mod，相对路径的文件模块。</li>
-<li>/pathtomodule/mod，绝对路径的文件模块。</li>
-<li>mod，非原生模块的文件模块。</li>
-</ul>
+<h1 id="上传成功可看到"><a href="#上传成功可看到" class="headerlink" title="上传成功可看到"></a>上传成功可看到</h1><p><img src="http://7xorah.com1.z0.glb.clouddn.com/ssh-copy-id.png" alt="上传成功"></p>
+<h1 id="免密登录"><a href="#免密登录" class="headerlink" title="免密登录"></a>免密登录</h1><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">ssh</span> <span class="selector-tag">root</span>@<span class="keyword">47</span>.<span class="keyword">xx</span>.<span class="keyword">yy</span>.<span class="keyword">zzz</span></span><br></pre></td></tr></table></figure>
+<p>后续如有需要、可在服务上关闭密码登录</p>
 
       
     </div>
@@ -447,7 +393,7 @@
       
         <div class="post-tags">
           
-            <a href="/tags/Nodejs模块系统/" rel="tag"># Nodejs模块系统</a>
+            <a href="/tags/Linux/" rel="tag"># Linux</a>
           
         </div>
       
@@ -460,8 +406,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2016/02/02/JavaScript-DOM获取元素的三种方法/" rel="next" title="JavaScript DOM获取元素的三种方法">
-                <i class="fa fa-chevron-left"></i> JavaScript DOM获取元素的三种方法
+              <a href="/2018/07/10/leetcode-74-搜索二维矩阵/" rel="next" title="leetcode-74.搜索二维矩阵">
+                <i class="fa fa-chevron-left"></i> leetcode-74.搜索二维矩阵
               </a>
             
           </div>
@@ -469,10 +415,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2016/03/22/eisoo前端面试题/" rel="prev" title="eisoo前端面试题">
-                eisoo前端面试题 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -714,7 +656,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#创建模块"><span class="nav-number">1.</span> <span class="nav-text">创建模块</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#服务端的模块放在哪里"><span class="nav-number">2.</span> <span class="nav-text">服务端的模块放在哪里?</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#从文件模块缓存中加载"><span class="nav-number">2.1.</span> <span class="nav-text">从文件模块缓存中加载</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#从原生模块加载"><span class="nav-number">2.2.</span> <span class="nav-text">从原生模块加载</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#从文件加载"><span class="nav-number">2.3.</span> <span class="nav-text">从文件加载</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#在客户端生成秘钥"><span class="nav-number">1.</span> <span class="nav-text">在客户端生成秘钥</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#将客户端的公钥添加到server端的-ssh-authorized-keys中实现免密登录"><span class="nav-number">2.</span> <span class="nav-text">将客户端的公钥添加到server端的.ssh/authorized_keys中实现免密登录</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#上传成功可看到"><span class="nav-number">3.</span> <span class="nav-text">上传成功可看到</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#免密登录"><span class="nav-number">4.</span> <span class="nav-text">免密登录</span></a></li></ol></div>
             
 
           </div>
