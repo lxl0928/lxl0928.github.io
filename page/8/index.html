@@ -281,6 +281,162 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://timilong.com/2016/05/10/deepin2015加载windows7启动项/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="博主">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="timilong's blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2016/05/10/deepin2015加载windows7启动项/" itemprop="url">
+                  deepin 2015加载windows 7启动项
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建于：2016-05-09 19:50:04" itemprop="dateCreated datePublished" datetime="2016-05-09T19:50:04Z">2016-05-09</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Edited on</span>
+                
+                <time title="更新于：2018-07-24 00:18:47" itemprop="dateModified" datetime="2018-07-24T00:18:47Z">2018-07-24</time>
+              
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h3 id="安装deepin-2015后无法加载出windows-7启动项解决方法"><a href="#安装deepin-2015后无法加载出windows-7启动项解决方法" class="headerlink" title="安装deepin 2015后无法加载出windows 7启动项解决方法"></a>安装deepin 2015后无法加载出windows 7启动项解决方法</h3><p>在终端输入如下命令：</p>
+<figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">grub-mkconfig -o <span class="regexp">/boot/g</span>rub<span class="regexp">/grub.cfg</span></span><br></pre></td></tr></table></figure>
+<p>然后回车;</p>
+<p>查看启动菜单，出现windows 7的启动项。</p>
+<p>重启电脑， OK。</p>
+
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://timilong.com/2016/04/18/node的4大优势/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1232,14 +1388,14 @@
           
             <a id="more"></a>
 <h2 id="JavaScript-DOM获取元素的三种方法"><a href="#JavaScript-DOM获取元素的三种方法" class="headerlink" title="JavaScript DOM获取元素的三种方法"></a>JavaScript DOM获取元素的三种方法</h2><h3 id="通过id"><a href="#通过id" class="headerlink" title="通过id"></a>通过id</h3><p>DOM提供了一个名为: getElementById的方法, 这个方法将返回一个那个有着给定id属性的值的元素节点对应的对象。在这里强调: JavaScript语言严格区分字母的大小写!<br>它是document对象特有的函数。在脚本代码里, 函数名的后面必须跟有一对圆括号, 这对圆括号包含着函数的参数。getElementById方法只有一个参数: 想要获得的那个元素的id属性的值, 这个id值必须放在单引号或者双引号里面:</p>
-<figure class="highlight applescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">document.getElementById(<span class="built_in">id</span>)</span><br></pre></td></tr></table></figure>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">document</span>.getElementById(id)</span><br></pre></td></tr></table></figure>
 <p>例子：<br><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;!DOCTYPE html&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">head</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">meta</span> <span class="attr">charset</span>=<span class="string">"utf-8"</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">title</span>&gt;</span>Shopping list<span class="tag">&lt;/<span class="name">title</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">h1</span>&gt;</span>What to buy<span class="tag">&lt;/<span class="name">h1</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">p</span> <span class="attr">title</span>=<span class="string">"a gentle reminder"</span>&gt;</span>Don't forget to buy this stuff.<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">ul</span> <span class="attr">id</span>=<span class="string">"purchases"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">li</span>&gt;</span>A tin of beanns<span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">li</span> <span class="attr">class</span>=<span class="string">"sale"</span>&gt;</span>Cheese<span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">li</span> <span class="attr">class</span>=<span class="string">"sale important"</span>&gt;</span>Milk<span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">ul</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">script</span>&gt;</span><span class="undefined"></span></span><br><span class="line"><span class="javascript">    alert(<span class="keyword">typeof</span> <span class="built_in">document</span>.getElementById(<span class="string">"purchases"</span>));</span></span><br><span class="line"><span class="undefined">  </span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br></pre></td></tr></table></figure></p>
 <p>文档中的每一个元素都是一个对象。利用DOM提供的方法能得到任何一个对象。<br>一般来说，用不着为文档里面每一个元素都定义一个独一无二的id值。DOM提供了另一个方法获取那些没有id属性的对象。</p>
 <hr>
 <h3 id="通过标签名字"><a href="#通过标签名字" class="headerlink" title="通过标签名字"></a>通过标签名字</h3><p>DOM提供了一个名为：getElementsByTagName的方法。<br>getElementsByTagName方法返回一个对象数组，每个对象分别对应着文档里有着给定标签的一个元素。类似于getElementById。该方法只有一个参数，它的参数是标签的名字。</p>
 <figure class="highlight abnf"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">element.getElementsByTagName(tag)<span class="comment">;</span></span><br></pre></td></tr></table></figure>
 <p>该方法返回的是一个数组。<br>例子：</p>
-<figure class="highlight abnf"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">document.getElementsByTagName(<span class="string">"li"</span>)<span class="comment">;</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">document</span>.getElementsByTagName(<span class="string">"li"</span>);</span><br></pre></td></tr></table></figure>
 <p>这个调用将返回一个对象数组, 每个对象分别对应着document对象中的一个li项元素。与其他任何数组一样，我们可以通过length属性查出这个数组的长度。</p>
 <figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;!DOCTYPE html&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">head</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">meta</span> <span class="attr">charset</span>=<span class="string">"utf-8"</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">title</span>&gt;</span>Shopping list<span class="tag">&lt;/<span class="name">title</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">h1</span>&gt;</span>What to buy<span class="tag">&lt;/<span class="name">h1</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">p</span> <span class="attr">title</span>=<span class="string">"a gentle reminder"</span>&gt;</span>Don't forget to buy this stuff.<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">ul</span> <span class="attr">id</span>=<span class="string">"purchases"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">li</span>&gt;</span>A tin of beanns<span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">li</span> <span class="attr">class</span>=<span class="string">"sale"</span>&gt;</span>Cheese<span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">li</span> <span class="attr">class</span>=<span class="string">"sale important"</span>&gt;</span>Milk<span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line"> <span class="tag">&lt;/<span class="name">ul</span>&gt;</span></span><br><span class="line"> <span class="tag">&lt;<span class="name">script</span>&gt;</span><span class="undefined"></span></span><br><span class="line"><span class="javascript">   alert(<span class="keyword">typeof</span> <span class="built_in">document</span>.getElementsByTagName(<span class="string">"li"</span>));</span></span><br><span class="line"><span class="undefined"> </span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br></pre></td></tr></table></figure>
 <p>浏览器显示：3<br>该数组中的每个元素都是一个对象。可以通过一个循环语句和typeof操作符去遍历该数组，得到三个对象:</p>
@@ -1257,7 +1413,7 @@
 <p>类名的顺序无关。<br>组合使用getElementById和getElementsByClassName：<br>在id = purchases下寻找class = sale元素标签。</p>
 <figure class="highlight ebnf"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">var shopping</span> = document.getElementById(<span class="string">"purchases"</span>);</span><br><span class="line"><span class="attribute">var sales</span> = shopping.getElementsByClassName(<span class="string">"sale"</span>);</span><br></pre></td></tr></table></figure>
 <p>该方法只有支持html5 DOM的新浏览器才支持。<br>所以，通过以下代码兼容老浏览器；</p>
-<figure class="highlight crmsh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">function getElementsByClassName(<span class="keyword">node</span><span class="title">, classname</span>)&#123;</span><br><span class="line">  if(<span class="keyword">node</span>.<span class="title">getElementsByClassName</span>)&#123;</span><br><span class="line">    return <span class="keyword">node</span>.<span class="title">getElementsByClassName</span>(class);</span><br><span class="line">  &#125;else&#123;</span><br><span class="line">     var results = new Array();</span><br><span class="line">     var elems = <span class="keyword">node</span>.<span class="title">getElementsByTagName</span>(<span class="string">"*"</span>);</span><br><span class="line">     for(var i=<span class="number">0</span>; i<span class="tag">&lt;elems.length; i++)&#123;</span></span><br><span class="line"><span class="tag">       if(elems[i].className.indexOf(classname) != -1)&#123;</span></span><br><span class="line"><span class="tag">         results[results.length] = elems[i];</span></span><br><span class="line"><span class="tag">       &#125;</span></span><br><span class="line"><span class="tag">     &#125;return results;</span></span><br><span class="line"><span class="tag">  &#125;</span></span><br><span class="line"><span class="tag">&#125;</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">getElementsByClassName</span>(<span class="params">node, classname</span>)</span>&#123;</span><br><span class="line">  <span class="keyword">if</span>(node.getElementsByClassName)&#123;</span><br><span class="line">    <span class="keyword">return</span> node.getElementsByClassName(<span class="class"><span class="keyword">class</span>)</span>;</span><br><span class="line">  &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">     <span class="keyword">var</span> results = <span class="keyword">new</span> <span class="built_in">Array</span>();</span><br><span class="line">     <span class="keyword">var</span> elems = node.getElementsByTagName(<span class="string">"*"</span>);</span><br><span class="line">     <span class="keyword">for</span>(<span class="keyword">var</span> i=<span class="number">0</span>; i&lt;elems.length; i++)&#123;</span><br><span class="line">       <span class="keyword">if</span>(elems[i].className.indexOf(classname) != <span class="number">-1</span>)&#123;</span><br><span class="line">         results[results.length] = elems[i];</span><br><span class="line">       &#125;</span><br><span class="line">     &#125;<span class="keyword">return</span> results;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>这个getElementsByClassName接受两个参数， 第一个node表示DOM树中的搜索起点， 第二个classname表示要搜索的类名。</p>
 <p>&lt;完&gt;</p>
 
@@ -2307,199 +2463,11 @@ void roundrun(char chose)
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://timilong.com/2015/12/05/三体-第一部/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="博主">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="timilong's blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2015/12/05/三体-第一部/" itemprop="url">
-                  《三体1》-读书笔记
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-
-              
-                
-              
-
-              <time title="创建于：2015-12-04 19:41:44" itemprop="dateCreated datePublished" datetime="2015-12-04T19:41:44Z">2015-12-04</time>
-            
-
-            
-              
-
-              
-                
-                <span class="post-meta-divider">|</span>
-                
-
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">Edited on</span>
-                
-                <time title="更新于：2018-07-24 00:18:47" itemprop="dateModified" datetime="2018-07-24T00:18:47Z">2018-07-24</time>
-              
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/读书笔记/" itemprop="url" rel="index"><span itemprop="name">读书笔记</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p><img src="http://d.hiphotos.baidu.com/baike/w%3D268/sign=1d9af3728594a4c20a23e02d36f41bac/a50f4bfbfbedab64c85d5fbdf536afc379311e9b.jpg" alt="封面"></p>
-<p>作者：刘慈欣</p>
-<hr>
-<p>《三体》三部曲，又名“地球往事”三部曲，作者刘慈欣。该系列小说由《三体》、《黑暗森林》、《死神永生》三部小说组成，于2006年至2010年由《科幻世界》杂志连载，出版。<br>《三体》三部曲讲述了地球文明在宇宙中的兴衰历程。作品对人类历史、物理学、天文学、社会学及哲学等均有涉及，从科幻的角度对人性进行了深入探讨，全书格局宏大，立意高远，被誉为迄今为止中国当代最杰出的科幻小说，是中国科幻文学的里程碑之作，将中国科幻推上了世界的高度。<br>2014年底小说第一部的英文版在美国上市，反响热烈，并于2015年获得美国科幻奇幻协会“星云奖”等五个奖项提名。 2015年8月23日，《三体》获第73届世界科幻大会颁发的雨果奖最佳长篇小说奖，这是亚洲科幻小说首次获得雨果奖。 10月，作者刘慈欣因该作获得全球华语科幻文学最高成就奖。</p>
-<hr>
-<p>“比起已经在风雨中成熟了许多的第一代红卫兵，新生的造反派们像火炭上的狼群，除了疯狂还是疯狂。”<br>——在1967年的时代背景之下 一个跨越时光的故事开始了</p>
-<p>“你父亲在回忆这件事后，对我发出这样的感叹：在中国，任何超脱飞扬的思想都会砰然坠地的，现实的引力太沉重了。”<br>——绍琳的父亲在和叶哲泰的回忆中发出的感叹，也许也是大刘借故事中的人物对中国科幻、中国现状的一种感叹吧</p>
-<p>“一切的一切都导向这样一个结果：物理学从来就没有存在过，将来也不会存在。我知道自己这样做是不负责任的，但别无选择。”<br>——当杨冬留下这样的字句离去时，很多人都认为她过于脆弱……但就像丁仪说的,杨冬知道的肯定比他要多，想得也比他远，她知道一些很多物理学家都没看到的事儿，如果和杨冬多交流一些，可能丁仪也会一样离去。</p>
-<p>“是的，整个人类历史也是偶然，从石器时代到今天，都没什么重大变故，真幸运。但既然是幸运，总有结束的一天；现在我告诉你，结束了，做好思想准备吧。”<br>——常伟思将军让汪淼做好思想准备 我们故事的大幕也就一步步揭开了</p>
-<p>“你的无畏来源于无知。”<br>——面对令人崩溃的现实，汪淼仍有着身为科学家的一种自负，对大史超脱的人生态度有些不以为然</p>
-<p>“旁观者清，千秋功罪，可真的有人评说了。”<br>——这是中央上级对于“红岸”的【批示】，当我们阅尽三部作品，再来看这句话，难免唏嘘不已</p>
-<p>“空不是无，空是一种存在，你得用空这种存在填满自己。”<br>——通过寺院里长老的指点，魏成想到了用三体问题来充填自己的人生。其实，我们的人生也未尝不需要寻找这样的“空”。</p>
-<p>“上帝是个无耻的老赌徒，他抛弃了我们！”<br>——三体游戏中的爱因斯坦在看到三体是一个不可预测的混沌系统后说</p>
-<p>“齐家屯的生活是没有空白的，像古典的油画那样，充满着浓郁得化不开的色彩。一切都是浓烈和温热的:铺着厚厚乌拉草的火炕、铜烟锅里的关东烟和莫合烟、厚实的高粱饭、六十五度的高粱酒……但这一切，又都在宁静与平和中流逝着，像屯子边上的小溪一样。”<br>——最令叶文洁难忘的是在齐家屯的夜晚，在那时她真正感受到对生活的眷恋</p>
-<p>“一个大人和一个小孩儿站在死于武斗的红卫兵墓前，那孩子问大人:他们是烈士吗？大人说不是；孩子又问:他们是敌人吗？大人说也不是；孩子再问：那他们是什么？大人说：‘是历史。’”<br>——电影《枫》的结尾处，昭示着一切的热血和汗水都会随着时间的流逝变成历史。</p>
-<p>“审问者:那你为什么对其抱有那样的期望，认为它们能够改造和完善人类社会呢？<br>叶文洁:如果他们能够跨越星际来到我们的世界，说明他们的科学已经发展到相当的高度，一个科学如此昌明的社会，必然拥有更高的文明和道德水准。<br>审问者:你认为这个结论，本身科学吗？<br>叶文洁:……<br>审问者:让我冒昧推测一下:你的父亲深受你祖父科学救国思想的影响，而你又深受父亲的影响。<br>叶文洁(不为人察觉地叹息一声):我不知道。”<br>——审问者的话一针见血，叶文洁坚持了数十年的信念如此经不起推敲，一击即溃。我们坚持的信念又到底是否受到自己经历的限制，而又无法自知呢……</p>
-<p>“这是人类的落日……”<br>——叶文洁透过雷达峰、透过红岸基地的天空，仿佛看到了很远很远……</p>
-<hr>
-<p>2015年9月阅读</p>
-
-          
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/page/7/"><i class="fa fa-angle-left" aria-label="Previous page"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/7/">7</a><span class="page-number current">8</span><a class="page-number" href="/page/9/">9</a><a class="extend next" rel="next" href="/page/9/"><i class="fa fa-angle-right" aria-label="Next page"></i></a>
+    <a class="extend prev" rel="prev" href="/page/7/"><i class="fa fa-angle-left" aria-label="Previous page"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/7/">7</a><span class="page-number current">8</span><a class="page-number" href="/page/9/">9</a><a class="page-number" href="/page/10/">10</a><a class="extend next" rel="next" href="/page/9/"><i class="fa fa-angle-right" aria-label="Next page"></i></a>
   </nav>
 
 
@@ -2542,7 +2510,7 @@ void roundrun(char chose)
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">90</span>
+                    <span class="site-state-item-count">91</span>
                     <span class="site-state-item-name">日志</span>
                   </a>
                 </div>
