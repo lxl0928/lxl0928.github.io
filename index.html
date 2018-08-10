@@ -281,6 +281,152 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://timilong.com/2018/08/10/mysql-索引分类及用途/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="博主">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="timilong's blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/08/10/mysql-索引分类及用途/" itemprop="url">
+                  mysql-索引分类及用途
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建于：2018-08-10 11:47:57 / 更新于：04:09:00" itemprop="dateCreated datePublished" datetime="2018-08-10T11:47:57Z">2018-08-10</time>
+            
+
+            
+              
+
+              
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <h2 id="索引分类"><a href="#索引分类" class="headerlink" title="索引分类"></a>索引分类</h2><p>MySQL索引分为普通索引、唯一性索引、全文索引、单列索引、多列索引等等。</p>
+<h2 id="MySQL-索引以B树格式保存"><a href="#MySQL-索引以B树格式保存" class="headerlink" title="MySQL: 索引以B树格式保存"></a>MySQL: 索引以B树格式保存</h2><p>Memory存储引擎可以选择Hash或BTree索引，Hash索引只能用于=或&lt;=&gt;的等式比较。 </p>
+<h2 id="普通索引"><a href="#普通索引" class="headerlink" title="普通索引"></a>普通索引</h2><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">create</span> <span class="keyword">index</span> <span class="keyword">on</span> Tablename (列的列表) </span><br><span class="line"><span class="keyword">alter</span> <span class="keyword">table</span> TableName <span class="keyword">add</span> <span class="keyword">index</span> (列的列表) </span><br><span class="line"><span class="keyword">create</span> <span class="keyword">table</span> TableName([...], <span class="keyword">index</span> [IndexName] (列的列表)</span><br></pre></td></tr></table></figure>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2018/08/10/mysql-索引分类及用途/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://timilong.com/2018/08/10/mysql-联合索引的命中规则/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -327,7 +473,7 @@
                 
               
 
-              <time title="创建于：2018-08-10 11:23:37 / 更新于：03:37:52" itemprop="dateCreated datePublished" datetime="2018-08-10T11:23:37Z">2018-08-10</time>
+              <time title="创建于：2018-08-10 11:23:37 / 更新于：04:04:18" itemprop="dateCreated datePublished" datetime="2018-08-10T11:23:37Z">2018-08-10</time>
             
 
             
@@ -366,15 +512,14 @@
 
       
         
-          
-            <h2 id="联合索引优点"><a href="#联合索引优点" class="headerlink" title="联合索引优点"></a>联合索引优点</h2><figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">查询语句 SELECT T.* <span class="keyword">FROM</span> T WHERE T.<span class="attribute">c1</span>=1 <span class="keyword">AND</span> T.<span class="attribute">c3</span>=2;  涉及到两列，这个时候我们一般采用一个联合索引(c1, c3); </span><br><span class="line">而不用两个单列索引，这是因为一条查询语句往往应为mysql优化器的关系只用一个索引</span><br><span class="line">就算有两个索引，也只用一个；</span><br><span class="line"></span><br><span class="line">在只用一个的基础之上，联合索引会比单列索引更快；</span><br></pre></td></tr></table></figure>
-<h2 id="联合索引命中规则"><a href="#联合索引命中规则" class="headerlink" title="联合索引命中规则"></a>联合索引命中规则</h2><p>示例如下<br>1) 首先创建表：<code>CREATE TABLE T (c1 INT, c2 VARCHAR(9), c3 INT, PRIMARY KEY(c1, c3));</code><br>这样就建立了一个联合索引：c1,c3</p>
-<p>2) 触发联合索引规则:<br>  1、使用联合索引的全部索引键，可触发索引的使用.<br>  例如: <code>SELECT T.* FROM T WHERE T.c1=1 AND T.c3=2;</code></p>
-<p>  2、使用联合索引的前缀部分索引键，如“key_part_1 <op>常量”，可触发索引的使用.<br>  例如：<code>SELECT T.* FROM T WHERE T.c1=1; </code></op></p>
-<p>  3、使用部分索引键，但不是联合索引的前缀部分如: “key_part_2 <op>常量”, 不可触发索引的使用。<br>  例如: <code>SELECT T.* FROM T WHERE T.c3=1; </code></op></p>
-<p>  4、使用联合索引的全部索引键，但索引键不是AND操作，不可触发索引的使用。<br>  例如: <code>SELECT T.* FROM T WHERE T.c3=2 OR T.c1=1; </code></p>
-
-          
+          <h2 id="联合索引优点"><a href="#联合索引优点" class="headerlink" title="联合索引优点"></a>联合索引优点</h2><figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">查询语句 SELECT T.* <span class="keyword">FROM</span> T WHERE T.<span class="attribute">c1</span>=1 <span class="keyword">AND</span> T.<span class="attribute">c3</span>=2;  涉及到两列，这个时候我们一般采用一个联合索引(c1, c3); </span><br><span class="line">而不用两个单列索引，这是因为一条查询语句往往应为mysql优化器的关系只用一个索引</span><br><span class="line">就算有两个索引，也只用一个；</span><br><span class="line"></span><br><span class="line">在只用一个的基础之上，联合索引会比单列索引更快；</span><br></pre></td></tr></table></figure>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2018/08/10/mysql-联合索引的命中规则/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
@@ -1589,163 +1734,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://timilong.com/2018/07/10/python-列出文件夹下所有文件路径/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="博主">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="timilong's blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/07/10/python-列出文件夹下所有文件路径/" itemprop="url">
-                  python-列出文件夹下所有文件名
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-
-              
-                
-              
-
-              <time title="创建于：2018-07-09 18:34:41" itemprop="dateCreated datePublished" datetime="2018-07-09T18:34:41Z">2018-07-09</time>
-            
-
-            
-              
-
-              
-                
-                <span class="post-meta-divider">|</span>
-                
-
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">Edited on</span>
-                
-                <time title="更新于：2018-07-24 00:18:47" itemprop="dateModified" datetime="2018-07-24T00:18:47Z">2018-07-24</time>
-              
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <h1 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h1><figure class="highlight makefile"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="section">描述:</span></span><br><span class="line">    给定一个文件夹的路径fpath, 请输出此文件夹下所有文件的路径，包括子文件夹中的文件路径</span><br></pre></td></tr></table></figure>
-<h1 id="解答"><a href="#解答" class="headerlink" title="解答"></a>解答</h1><figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#! /usr/bin/python3</span></span><br><span class="line"><span class="comment"># coding: utf-8</span></span><br><span class="line"></span><br><span class="line">import os</span><br><span class="line">rootdir = <span class="string">"/home/timilong/hexoBlog/source"</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> parent, dirnames, filenames <span class="keyword">in</span> os.walk(rootdir):</span><br><span class="line">    <span class="keyword">for</span> dirname <span class="keyword">in</span> dirnames:</span><br><span class="line">        <span class="builtin-name">print</span>(<span class="string">"目录名: "</span>, dirname)</span><br><span class="line"></span><br><span class="line">    <span class="builtin-name">print</span>(<span class="string">"\n\n"</span>)</span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span> filename <span class="keyword">in</span> filenames:</span><br><span class="line">        <span class="builtin-name">print</span>(<span class="string">"文件名: "</span>, filename)</span><br></pre></td></tr></table></figure>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2018/07/10/python-列出文件夹下所有文件路径/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -1793,7 +1781,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">94</span>
+                    <span class="site-state-item-count">95</span>
                     <span class="site-state-item-name">日志</span>
                   </a>
                 </div>

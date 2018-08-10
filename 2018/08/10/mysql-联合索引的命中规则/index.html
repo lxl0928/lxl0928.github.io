@@ -108,18 +108,18 @@
 
 
 
-  <meta name="description" content="联合索引优点12345查询语句 SELECT T.* FROM T WHERE T.c1=1 AND T.c3=2;  涉及到两列，这个时候我们一般采用一个联合索引(c1, c3); 而不用两个单列索引，这是因为一条查询语句往往应为mysql优化器的关系只用一个索引就算有两个索引，也只用一个；在只用一个的基础之上，联合索引会比单列索引更快； 联合索引命中规则示例如下1) 首先创建表：CREATE">
+  <meta name="description" content="联合索引优点12345查询语句 SELECT T.* FROM T WHERE T.c1=1 AND T.c3=2;  涉及到两列，这个时候我们一般采用一个联合索引(c1, c3); 而不用两个单列索引，这是因为一条查询语句往往应为mysql优化器的关系只用一个索引就算有两个索引，也只用一个；在只用一个的基础之上，联合索引会比单列索引更快；">
 <meta name="keywords" content="mysql">
 <meta property="og:type" content="article">
 <meta property="og:title" content="mysql-联合索引的命中规则">
 <meta property="og:url" content="http://timilong.com/2018/08/10/mysql-联合索引的命中规则/index.html">
 <meta property="og:site_name" content="timilong&#39;s blog">
-<meta property="og:description" content="联合索引优点12345查询语句 SELECT T.* FROM T WHERE T.c1=1 AND T.c3=2;  涉及到两列，这个时候我们一般采用一个联合索引(c1, c3); 而不用两个单列索引，这是因为一条查询语句往往应为mysql优化器的关系只用一个索引就算有两个索引，也只用一个；在只用一个的基础之上，联合索引会比单列索引更快； 联合索引命中规则示例如下1) 首先创建表：CREATE">
+<meta property="og:description" content="联合索引优点12345查询语句 SELECT T.* FROM T WHERE T.c1=1 AND T.c3=2;  涉及到两列，这个时候我们一般采用一个联合索引(c1, c3); 而不用两个单列索引，这是因为一条查询语句往往应为mysql优化器的关系只用一个索引就算有两个索引，也只用一个；在只用一个的基础之上，联合索引会比单列索引更快；">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-08-10T03:37:52.659Z">
+<meta property="og:updated_time" content="2018-08-10T04:04:18.138Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="mysql-联合索引的命中规则">
-<meta name="twitter:description" content="联合索引优点12345查询语句 SELECT T.* FROM T WHERE T.c1=1 AND T.c3=2;  涉及到两列，这个时候我们一般采用一个联合索引(c1, c3); 而不用两个单列索引，这是因为一条查询语句往往应为mysql优化器的关系只用一个索引就算有两个索引，也只用一个；在只用一个的基础之上，联合索引会比单列索引更快； 联合索引命中规则示例如下1) 首先创建表：CREATE">
+<meta name="twitter:description" content="联合索引优点12345查询语句 SELECT T.* FROM T WHERE T.c1=1 AND T.c3=2;  涉及到两列，这个时候我们一般采用一个联合索引(c1, c3); 而不用两个单列索引，这是因为一条查询语句往往应为mysql优化器的关系只用一个索引就算有两个索引，也只用一个；在只用一个的基础之上，联合索引会比单列索引更快；">
 
 
 
@@ -327,7 +327,7 @@
                 
               
 
-              <time title="创建于：2018-08-10 11:23:37 / 更新于：03:37:52" itemprop="dateCreated datePublished" datetime="2018-08-10T11:23:37Z">2018-08-10</time>
+              <time title="创建于：2018-08-10 11:23:37 / 更新于：04:04:18" itemprop="dateCreated datePublished" datetime="2018-08-10T11:23:37Z">2018-08-10</time>
             
 
             
@@ -366,6 +366,7 @@
 
       
         <h2 id="联合索引优点"><a href="#联合索引优点" class="headerlink" title="联合索引优点"></a>联合索引优点</h2><figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">查询语句 SELECT T.* <span class="keyword">FROM</span> T WHERE T.<span class="attribute">c1</span>=1 <span class="keyword">AND</span> T.<span class="attribute">c3</span>=2;  涉及到两列，这个时候我们一般采用一个联合索引(c1, c3); </span><br><span class="line">而不用两个单列索引，这是因为一条查询语句往往应为mysql优化器的关系只用一个索引</span><br><span class="line">就算有两个索引，也只用一个；</span><br><span class="line"></span><br><span class="line">在只用一个的基础之上，联合索引会比单列索引更快；</span><br></pre></td></tr></table></figure>
+<a id="more"></a>
 <h2 id="联合索引命中规则"><a href="#联合索引命中规则" class="headerlink" title="联合索引命中规则"></a>联合索引命中规则</h2><p>示例如下<br>1) 首先创建表：<code>CREATE TABLE T (c1 INT, c2 VARCHAR(9), c3 INT, PRIMARY KEY(c1, c3));</code><br>这样就建立了一个联合索引：c1,c3</p>
 <p>2) 触发联合索引规则:<br>  1、使用联合索引的全部索引键，可触发索引的使用.<br>  例如: <code>SELECT T.* FROM T WHERE T.c1=1 AND T.c3=2;</code></p>
 <p>  2、使用联合索引的前缀部分索引键，如“key_part_1 <op>常量”，可触发索引的使用.<br>  例如：<code>SELECT T.* FROM T WHERE T.c1=1; </code></op></p>
@@ -413,6 +414,10 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018/08/10/mysql-索引分类及用途/" rel="prev" title="mysql-索引分类及用途">
+                mysql-索引分类及用途 <i class="fa fa-chevron-right"></i>
+              </a>
             
           </div>
         </div>
@@ -482,7 +487,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">94</span>
+                    <span class="site-state-item-count">95</span>
                     <span class="site-state-item-name">日志</span>
                   </a>
                 </div>
