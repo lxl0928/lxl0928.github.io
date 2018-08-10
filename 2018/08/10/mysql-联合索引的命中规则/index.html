@@ -108,20 +108,25 @@
 
 
 
-  <meta property="og:type" content="website">
-<meta property="og:title" content="timilong&#39;s blog">
-<meta property="og:url" content="http://timilong.com/tags/前端面试/index.html">
+  <meta name="description" content="联合索引优点12345查询语句 SELECT T.* FROM T WHERE T.c1=1 AND T.c3=2;  涉及到两列，这个时候我们一般采用一个联合索引(c1, c3); 而不用两个单列索引，这是因为一条查询语句往往应为mysql优化器的关系只用一个索引就算有两个索引，也只用一个；在只用一个的基础之上，联合索引会比单列索引更快； 联合索引命中规则示例如下1) 首先创建表：CREATE">
+<meta name="keywords" content="mysql">
+<meta property="og:type" content="article">
+<meta property="og:title" content="mysql-联合索引的命中规则">
+<meta property="og:url" content="http://timilong.com/2018/08/10/mysql-联合索引的命中规则/index.html">
 <meta property="og:site_name" content="timilong&#39;s blog">
+<meta property="og:description" content="联合索引优点12345查询语句 SELECT T.* FROM T WHERE T.c1=1 AND T.c3=2;  涉及到两列，这个时候我们一般采用一个联合索引(c1, c3); 而不用两个单列索引，这是因为一条查询语句往往应为mysql优化器的关系只用一个索引就算有两个索引，也只用一个；在只用一个的基础之上，联合索引会比单列索引更快； 联合索引命中规则示例如下1) 首先创建表：CREATE">
 <meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2018-08-10T03:37:52.659Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="timilong&#39;s blog">
+<meta name="twitter:title" content="mysql-联合索引的命中规则">
+<meta name="twitter:description" content="联合索引优点12345查询语句 SELECT T.* FROM T WHERE T.c1=1 AND T.c3=2;  涉及到两列，这个时候我们一般采用一个联合索引(c1, c3); 而不用两个单列索引，这是因为一条查询语句往往应为mysql优化器的关系只用一个索引就算有两个索引，也只用一个；在只用一个的基础之上，联合索引会比单列索引更快； 联合索引命中规则示例如下1) 首先创建表：CREATE">
 
 
 
 
 
 
-  <link rel="canonical" href="http://timilong.com/tags/前端面试/"/>
+  <link rel="canonical" href="http://timilong.com/2018/08/10/mysql-联合索引的命中规则/"/>
 
 
 
@@ -131,7 +136,7 @@
   };
 </script>
 
-  <title>标签: 前端面试 | timilong's blog</title>
+  <title>mysql-联合索引的命中规则 | timilong's blog</title>
   
 
 
@@ -178,7 +183,7 @@
     
   
 
-  <div class="container sidebar-position-left ">
+  <div class="container sidebar-position-left page-post-detail">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -240,19 +245,6 @@
   
     
 
-    
-    
-      
-      
-    
-      
-      
-    
-    
-
-  
-
-
   
 
   
@@ -277,58 +269,174 @@
           <div id="content" class="content">
             
 
-  
-  
-  
-  <div class="post-block tag">
+  <div id="posts" class="posts-expand">
+    
 
-    <div id="posts" class="posts-collapse">
-      <div class="collection-title">
-        <h1>前端面试<small>标签</small>
-        </h1>
-      </div>
+  
 
-      
-        
+  
+  
+  
+
+  
 
   <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://timilong.com/2018/08/10/mysql-联合索引的命中规则/">
 
-      <h2 class="post-title">
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="博主">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="timilong's blog">
+    </span>
+
+    
+      <header class="post-header">
+
         
-            <a class="post-title-link" href="/2016/03/22/eisoo前端面试题/" itemprop="url">
-              
-                <span itemprop="name">eisoo前端面试题</span>
-              
-            </a>
         
-      </h2>
+          <h1 class="post-title" itemprop="name headline">mysql-联合索引的命中规则
+              
+            
+          </h1>
+        
 
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2016-03-21T22:13:23Z"
-              content="2016-03-21" >
-          03-21
-        </time>
-      </div>
+        <div class="post-meta">
+          <span class="post-time">
 
-    </header>
-  </article>
+            
+            
+            
 
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建于：2018-08-10 11:23:37 / 更新于：03:37:52" itemprop="dateCreated datePublished" datetime="2018-08-10T11:23:37Z">2018-08-10</time>
+            
+
+            
+              
+
+              
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="联合索引优点"><a href="#联合索引优点" class="headerlink" title="联合索引优点"></a>联合索引优点</h2><figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">查询语句 SELECT T.* <span class="keyword">FROM</span> T WHERE T.<span class="attribute">c1</span>=1 <span class="keyword">AND</span> T.<span class="attribute">c3</span>=2;  涉及到两列，这个时候我们一般采用一个联合索引(c1, c3); </span><br><span class="line">而不用两个单列索引，这是因为一条查询语句往往应为mysql优化器的关系只用一个索引</span><br><span class="line">就算有两个索引，也只用一个；</span><br><span class="line"></span><br><span class="line">在只用一个的基础之上，联合索引会比单列索引更快；</span><br></pre></td></tr></table></figure>
+<h2 id="联合索引命中规则"><a href="#联合索引命中规则" class="headerlink" title="联合索引命中规则"></a>联合索引命中规则</h2><p>示例如下<br>1) 首先创建表：<code>CREATE TABLE T (c1 INT, c2 VARCHAR(9), c3 INT, PRIMARY KEY(c1, c3));</code><br>这样就建立了一个联合索引：c1,c3</p>
+<p>2) 触发联合索引规则:<br>  1、使用联合索引的全部索引键，可触发索引的使用.<br>  例如: <code>SELECT T.* FROM T WHERE T.c1=1 AND T.c3=2;</code></p>
+<p>  2、使用联合索引的前缀部分索引键，如“key_part_1 <op>常量”，可触发索引的使用.<br>  例如：<code>SELECT T.* FROM T WHERE T.c1=1; </code></op></p>
+<p>  3、使用部分索引键，但不是联合索引的前缀部分如: “key_part_2 <op>常量”, 不可触发索引的使用。<br>  例如: <code>SELECT T.* FROM T WHERE T.c3=1; </code></op></p>
+<p>  4、使用联合索引的全部索引键，但索引键不是AND操作，不可触发索引的使用。<br>  例如: <code>SELECT T.* FROM T WHERE T.c3=2 OR T.c1=1; </code></p>
 
       
     </div>
 
+    
+
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/mysql/" rel="tag"># mysql</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/08/09/python-开源包hashids/" rel="next" title="python-三方开源库hashids">
+                <i class="fa fa-chevron-left"></i> python-三方开源库hashids
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
   </div>
   
   
   
+  </article>
 
-  
+
+  </div>
 
 
           </div>
           
+
+  
+
+
 
         </div>
         
@@ -349,8 +457,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -532,6 +649,22 @@
       </section>
 
       
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#联合索引优点"><span class="nav-number">1.</span> <span class="nav-text">联合索引优点</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#联合索引命中规则"><span class="nav-number">2.</span> <span class="nav-text">联合索引命中规则</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
 
       
 
@@ -661,6 +794,10 @@
   
 
   
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=6.3.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=6.3.0"></script>
+
+
 
   
 
