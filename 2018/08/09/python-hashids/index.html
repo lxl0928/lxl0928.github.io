@@ -116,7 +116,7 @@
 <meta property="og:site_name" content="timilong&#39;s blog">
 <meta property="og:description" content="转载自知乎专栏: 码洞 hashids介绍Hashids是一个非常小巧的开源库，它用来把数字编码成一个随机字符串。不同于md5这种算法这种单向映射，Hashids除了编码还会解码。 拿论坛来说，一般帖子在数据库里的id都是顺序递增的，但是你可能不想在url上直接把id暴露出来，以免爬虫直接遍历id爬取你的内容，给你带来损失。那现在你就可以使用Hashids把这个id搞乱，让它失去顺序性，无法直接遍">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-08-09T07:21:42.227Z">
+<meta property="og:updated_time" content="2018-08-21T04:44:19.988Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="python-三方开源库hashids">
 <meta name="twitter:description" content="转载自知乎专栏: 码洞 hashids介绍Hashids是一个非常小巧的开源库，它用来把数字编码成一个随机字符串。不同于md5这种算法这种单向映射，Hashids除了编码还会解码。 拿论坛来说，一般帖子在数据库里的id都是顺序递增的，但是你可能不想在url上直接把id暴露出来，以免爬虫直接遍历id爬取你的内容，给你带来损失。那现在你就可以使用Hashids把这个id搞乱，让它失去顺序性，无法直接遍">
@@ -327,12 +327,24 @@
                 
               
 
-              <time title="创建于：2018-08-09 15:05:16 / 更新于：07:21:42" itemprop="dateCreated datePublished" datetime="2018-08-09T15:05:16Z">2018-08-09</time>
+              <time title="创建于：2018-08-09 15:05:16" itemprop="dateCreated datePublished" datetime="2018-08-09T15:05:16Z">2018-08-09</time>
             
 
             
               
 
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Edited on</span>
+                
+                <time title="更新于：2018-08-21 04:44:19" itemprop="dateModified" datetime="2018-08-21T04:44:19Z">2018-08-21</time>
               
             
           </span>
@@ -371,7 +383,8 @@
 <p>著名的Youtube网站就是这么做的。</p>
 <h2 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h2><figure class="highlight cmake"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pip <span class="keyword">install</span> hashids</span><br></pre></td></tr></table></figure>
 <a id="more"></a>
-<h2 id="具体使用"><a href="#具体使用" class="headerlink" title="具体使用"></a>具体使用</h2><figure class="highlight vala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">import hashids</span><br><span class="line"></span><br><span class="line">hasher = hashids.Hashids(salt=<span class="string">"yoursedcretkey"</span>)</span><br><span class="line"></span><br><span class="line"><span class="meta"># encode</span></span><br><span class="line">hasher.encode(<span class="number">123456</span>)</span><br><span class="line"><span class="meta"># 输出: '3Pl8o'</span></span><br><span class="line"></span><br><span class="line"><span class="meta"># decode</span></span><br><span class="line">hasher.decode(<span class="string">'3Pl8o'</span>)</span><br><span class="line"><span class="meta"># 输出: (123456, )</span></span><br><span class="line"></span><br><span class="line"><span class="meta"># 多个数字同事编码</span></span><br><span class="line">hasher.encode(<span class="number">1234546</span>, <span class="number">789012</span>, <span class="number">345678</span>)</span><br><span class="line"><span class="meta"># 输出: '3Pl8oibxv5uNDoB'</span></span><br><span class="line"></span><br><span class="line"><span class="meta"># 解码</span></span><br><span class="line">hasher.decode(<span class="string">'3Pl8oibxv5uNDoB'</span>)</span><br><span class="line"><span class="meta"># 输出: (1234546, 789012, 345678)</span></span><br></pre></td></tr></table></figure>
+<h2 id="具体使用"><a href="#具体使用" class="headerlink" title="具体使用"></a>具体使用</h2><figure class="highlight vala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">import hashids</span><br><span class="line"></span><br><span class="line">hasher = hashids.Hashids(salt=<span class="string">"yoursecretkey"</span>)</span><br><span class="line"></span><br><span class="line"><span class="meta"># encode</span></span><br><span class="line">hasher.encode(<span class="number">123456</span>)</span><br><span class="line"><span class="meta"># 输出: '3Pl8o'</span></span><br><span class="line"></span><br><span class="line"><span class="meta"># decode</span></span><br><span class="line">hasher.decode(<span class="string">'3Pl8o'</span>)</span><br><span class="line"><span class="meta"># 输出: (123456, )</span></span><br><span class="line"></span><br><span class="line"><span class="meta"># 多个数字同事编码</span></span><br><span class="line">hasher.encode(<span class="number">1234546</span>, <span class="number">789012</span>, <span class="number">345678</span>)</span><br><span class="line"><span class="meta"># 输出: '3Pl8oibxv5uNDoB'</span></span><br><span class="line"></span><br><span class="line"><span class="meta"># 解码</span></span><br><span class="line">hasher.decode(<span class="string">'3Pl8oibxv5uNDoB'</span>)</span><br><span class="line"><span class="meta"># 输出: (1234546, 789012, 345678)</span></span><br></pre></td></tr></table></figure>
+<h2 id="缺点"><a href="#缺点" class="headerlink" title="缺点"></a>缺点</h2><figure class="highlight stata"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">对 salt 依赖太严重，通一salt下的<span class="keyword">encode</span>结果必定相同，这是无法避免的</span><br></pre></td></tr></table></figure>
 
       
     </div>
@@ -663,7 +676,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#hashids介绍"><span class="nav-number">1.</span> <span class="nav-text">hashids介绍</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#安装"><span class="nav-number">2.</span> <span class="nav-text">安装</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#具体使用"><span class="nav-number">3.</span> <span class="nav-text">具体使用</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#hashids介绍"><span class="nav-number">1.</span> <span class="nav-text">hashids介绍</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#安装"><span class="nav-number">2.</span> <span class="nav-text">安装</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#具体使用"><span class="nav-number">3.</span> <span class="nav-text">具体使用</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#缺点"><span class="nav-number">4.</span> <span class="nav-text">缺点</span></a></li></ol></div>
             
 
           </div>
