@@ -289,6 +289,183 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://timilong.com/2017/06/07/linux-sed命令/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="博主">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="timilong's blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2017/06/07/linux-sed命令/" itemprop="url">
+                  Linux-sed命令
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建于：2017-06-06 22:06:39" itemprop="dateCreated datePublished" datetime="2017-06-06T22:06:39Z">2017-06-06</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Edited on</span>
+                
+                <time title="更新于：2018-07-24 00:18:47" itemprop="dateModified" datetime="2018-07-24T00:18:47Z">2018-07-24</time>
+              
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/linux/" itemprop="url" rel="index"><span itemprop="name">linux</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <h2 id="语法"><a href="#语法" class="headerlink" title="语法"></a>语法</h2><ol>
+<li>语法如下<figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">sed命令行格式为：</span><br><span class="line">         sed [-nefri]  ‘command’  输入文本/文件</span><br><span class="line">常用选项：</span><br><span class="line">        -n: 取消默认的输出,使用安静(silent)模式。在一般 sed 的用法中，所有来自 STDIN的资料一般都会被列出到屏幕上。</span><br><span class="line">            但如果加上 -n 参数后，则只有经过sed 特殊处理的那一行(或者动作)才会被列出来</span><br><span class="line">        -e: 进行多项编辑，即对输入行应用多条sed命令时使用. 直接在指令列模式上进行 sed 的动作编辑</span><br><span class="line">        -f: 指定sed脚本的文件名. 直接将 sed 的动作写在一个档案内， -f filename 则可以执行 filename 内的sed 动作</span><br><span class="line">        -r: sed 的动作支援的是延伸型正则表达式的语法。(预设是基础正则表达式语法)</span><br><span class="line">        -<span class="selector-tag">i</span>: 直接修改读取的文件内容，而不是由屏幕输出      </span><br><span class="line"></span><br><span class="line">常用命令：</span><br><span class="line">        <span class="selector-tag">a</span>: 新增， <span class="selector-tag">a</span> 的后面可以接字串，而这些字串会在新的一行出现(目前的下一行)</span><br><span class="line">        c: 取代， c 的后面可以接字串，这些字串可以取代 n1,n2 之间的行</span><br><span class="line">        d: 删除，因为是删除，所以 d 后面通常不接任何内容</span><br><span class="line">        <span class="selector-tag">i</span>: 插入， <span class="selector-tag">i</span> 的后面可以接字串，而这些字串会在新的一行出现(目前的上一行)</span><br><span class="line">        <span class="selector-tag">p</span>: 列印，亦即将某个选择的资料印出。通常 <span class="selector-tag">p</span> 会与参数 sed -n 一起用</span><br><span class="line">        s: 取代，可以直接进行替换的工作。通常这个 s 的动作可以搭配正则表达式。例如 <span class="number">1</span>,<span class="number">20s</span>/old/new/g</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2017/06/07/linux-sed命令/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://timilong.com/2017/06/03/算法-两个有序数组归并/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1776,176 +1953,6 @@
             <h2 id="Description"><a href="#Description" class="headerlink" title="Description"></a>Description</h2><figure class="highlight armasm"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="symbol">Description</span>:</span><br><span class="line">    给定一个API: <span class="keyword">isBadVersion()</span></span><br><span class="line"><span class="keyword"> </span>   要求: 在需要编写的firstBadVersion()中最少次数调用该API得到第一个<span class="keyword">bad </span>version</span><br></pre></td></tr></table></figure>
 <h2 id="Example"><a href="#Example" class="headerlink" title="Example"></a>Example</h2><figure class="highlight vim"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Example:</span><br><span class="line">    Suppose you have n versions [<span class="number">1</span>, <span class="number">2</span>, ..., n] </span><br><span class="line">    <span class="built_in">and</span> you want <span class="keyword">to</span> <span class="keyword">find</span> out the <span class="keyword">first</span> <span class="keyword">bad</span> one, which causes <span class="keyword">all</span> the following ones <span class="keyword">to</span> <span class="keyword">be</span> <span class="keyword">bad</span>.</span><br></pre></td></tr></table></figure>
 <h2 id="Solution"><a href="#Solution" class="headerlink" title="Solution"></a>Solution</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">"""</span></span><br><span class="line"><span class="string">Solution:</span></span><br><span class="line"><span class="string">    时间复杂度: O(log(n))</span></span><br><span class="line"><span class="string">    空间复杂度: O(1)</span></span><br><span class="line"><span class="string">    二分查找到最先被坏掉的版本号</span></span><br><span class="line"><span class="string">"""</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="string">"""</span></span><br><span class="line"><span class="string"># The isBadVersion API is already defined for you.</span></span><br><span class="line"><span class="string"># @param version, an integer</span></span><br><span class="line"><span class="string"># @return a bool</span></span><br><span class="line"><span class="string"># def isBadVersion(version):</span></span><br><span class="line"><span class="string">"""</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span><span class="params">(object)</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">firstBadVersion</span><span class="params">(self, n)</span>:</span></span><br><span class="line">        <span class="string">"""</span></span><br><span class="line"><span class="string">        :type n: int</span></span><br><span class="line"><span class="string">        :rtype: int</span></span><br><span class="line"><span class="string">        """</span></span><br><span class="line">        left, right = n, <span class="number">1</span> </span><br><span class="line">        <span class="keyword">while</span> left &lt; right:</span><br><span class="line">            mid = int(left + (right - left)/<span class="number">2</span>)</span><br><span class="line">            <span class="keyword">if</span> isBadVersion(mid):</span><br><span class="line">                right = mid  <span class="comment"># mid是，表示目标值在mid左侧，则更新right=mid，继续</span></span><br><span class="line">            <span class="keyword">else</span>:</span><br><span class="line">                left = mid + <span class="number">1</span>  <span class="comment"># mid不是，表示目标值在mid右侧，更新left=mid+1，继续</span></span><br><span class="line">        <span class="keyword">return</span> left  <span class="comment"># 返回左侧较小值</span></span><br></pre></td></tr></table></figure>
-
-          
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://timilong.com/2017/03/19/leetcode_valid_anagram/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="博主">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="timilong's blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2017/03/19/leetcode_valid_anagram/" itemprop="url">
-                  leetcode-'valid_anagram'
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-
-              
-                
-              
-
-              <time title="创建于：2017-03-18 21:37:54" itemprop="dateCreated datePublished" datetime="2017-03-18T21:37:54Z">2017-03-18</time>
-            
-
-            
-              
-
-              
-                
-                <span class="post-meta-divider">|</span>
-                
-
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">Edited on</span>
-                
-                <time title="更新于：2018-07-24 00:18:47" itemprop="dateModified" datetime="2018-07-24T00:18:47Z">2018-07-24</time>
-              
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/leetcode/" itemprop="url" rel="index"><span itemprop="name">leetcode</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h2 id="different-ways-to-add-parentheses"><a href="#different-ways-to-add-parentheses" class="headerlink" title="different_ways_to_add_parentheses"></a>different_ways_to_add_parentheses</h2><figure class="highlight vim"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">#! /usr/bin/<span class="keyword">python3</span></span><br><span class="line"># codin<span class="variable">g:</span> utf-<span class="number">8</span></span><br><span class="line"></span><br><span class="line"><span class="string">""</span><span class="comment">"</span></span><br><span class="line">Description<span class="variable">s:</span></span><br><span class="line">    Given two strings s <span class="built_in">and</span> t, <span class="keyword">write</span> <span class="keyword">a</span> <span class="function"><span class="keyword">function</span> <span class="title">to</span> <span class="title">determine</span> <span class="title">if</span> <span class="title">t</span> <span class="title">is</span> <span class="title">an</span> <span class="title">anagram</span> <span class="title">of</span> <span class="title">s</span>.  </span></span><br><span class="line"></span><br><span class="line">Example: </span><br><span class="line">    s = <span class="string">"anagram"</span>, t = <span class="string">"nagaram"</span>, <span class="keyword">return</span> true.  </span><br><span class="line">    s = <span class="string">"rat"</span>, t = <span class="string">"car"</span>, <span class="keyword">return</span> false.  </span><br><span class="line"></span><br><span class="line">Note: </span><br><span class="line">    You may assume the <span class="built_in">string</span> contains <span class="keyword">only</span> lowercase alphabets.</span><br><span class="line"></span><br><span class="line">Follow <span class="keyword">up</span>:</span><br><span class="line">    What <span class="keyword">if</span> the inputs contain unicode characters? How would you adapt your solution <span class="keyword">to</span> such case?</span><br><span class="line"></span><br><span class="line"><span class="string">""</span><span class="comment">"</span></span><br><span class="line"></span><br><span class="line">class Solution(object):</span><br><span class="line">    def isAnagram(self, s, t):</span><br><span class="line">        <span class="string">""</span><span class="comment">"</span></span><br><span class="line">        <span class="variable">s:</span> <span class="symbol">&lt;str&gt;</span></span><br><span class="line">        <span class="variable">t:</span> <span class="symbol">&lt;str&gt;</span></span><br><span class="line">        <span class="keyword">return</span>: <span class="symbol">&lt;bool&gt;</span></span><br><span class="line">        <span class="string">""</span><span class="comment">"</span></span><br><span class="line">        res_s = &#123;&#125;</span><br><span class="line">        res_t = &#123;&#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">for</span> item in <span class="variable">s:</span></span><br><span class="line">            res_s[item] = res_s.<span class="built_in">get</span>(item, <span class="number">0</span>) + <span class="number">1</span></span><br><span class="line"></span><br><span class="line">        <span class="keyword">for</span> item in <span class="variable">t:</span></span><br><span class="line">            res_t[item] = res_t.<span class="built_in">get</span>(item, <span class="number">0</span>) + <span class="number">1</span></span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> res_s == res_t</span><br><span class="line"></span><br><span class="line">    def isAnagram1(self, s, t):</span><br><span class="line">        <span class="keyword">return</span> sorted(s) == sorted(t)</span><br><span class="line"></span><br><span class="line">solution = Solution()</span><br><span class="line"></span><br><span class="line">s = <span class="string">"anagram"</span></span><br><span class="line"></span><br><span class="line">t = <span class="string">"ganaamr"</span></span><br><span class="line"><span class="keyword">print</span>(solution.isAnagram(s, t))</span><br></pre></td></tr></table></figure>
 
           
         

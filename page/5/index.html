@@ -289,6 +289,176 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://timilong.com/2017/03/19/leetcode_valid_anagram/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="博主">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="timilong's blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2017/03/19/leetcode_valid_anagram/" itemprop="url">
+                  leetcode-'valid_anagram'
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建于：2017-03-18 21:37:54" itemprop="dateCreated datePublished" datetime="2017-03-18T21:37:54Z">2017-03-18</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Edited on</span>
+                
+                <time title="更新于：2018-07-24 00:18:47" itemprop="dateModified" datetime="2018-07-24T00:18:47Z">2018-07-24</time>
+              
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/leetcode/" itemprop="url" rel="index"><span itemprop="name">leetcode</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="different-ways-to-add-parentheses"><a href="#different-ways-to-add-parentheses" class="headerlink" title="different_ways_to_add_parentheses"></a>different_ways_to_add_parentheses</h2><figure class="highlight vim"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">#! /usr/bin/<span class="keyword">python3</span></span><br><span class="line"># codin<span class="variable">g:</span> utf-<span class="number">8</span></span><br><span class="line"></span><br><span class="line"><span class="string">""</span><span class="comment">"</span></span><br><span class="line">Description<span class="variable">s:</span></span><br><span class="line">    Given two strings s <span class="built_in">and</span> t, <span class="keyword">write</span> <span class="keyword">a</span> <span class="function"><span class="keyword">function</span> <span class="title">to</span> <span class="title">determine</span> <span class="title">if</span> <span class="title">t</span> <span class="title">is</span> <span class="title">an</span> <span class="title">anagram</span> <span class="title">of</span> <span class="title">s</span>.  </span></span><br><span class="line"></span><br><span class="line">Example: </span><br><span class="line">    s = <span class="string">"anagram"</span>, t = <span class="string">"nagaram"</span>, <span class="keyword">return</span> true.  </span><br><span class="line">    s = <span class="string">"rat"</span>, t = <span class="string">"car"</span>, <span class="keyword">return</span> false.  </span><br><span class="line"></span><br><span class="line">Note: </span><br><span class="line">    You may assume the <span class="built_in">string</span> contains <span class="keyword">only</span> lowercase alphabets.</span><br><span class="line"></span><br><span class="line">Follow <span class="keyword">up</span>:</span><br><span class="line">    What <span class="keyword">if</span> the inputs contain unicode characters? How would you adapt your solution <span class="keyword">to</span> such case?</span><br><span class="line"></span><br><span class="line"><span class="string">""</span><span class="comment">"</span></span><br><span class="line"></span><br><span class="line">class Solution(object):</span><br><span class="line">    def isAnagram(self, s, t):</span><br><span class="line">        <span class="string">""</span><span class="comment">"</span></span><br><span class="line">        <span class="variable">s:</span> <span class="symbol">&lt;str&gt;</span></span><br><span class="line">        <span class="variable">t:</span> <span class="symbol">&lt;str&gt;</span></span><br><span class="line">        <span class="keyword">return</span>: <span class="symbol">&lt;bool&gt;</span></span><br><span class="line">        <span class="string">""</span><span class="comment">"</span></span><br><span class="line">        res_s = &#123;&#125;</span><br><span class="line">        res_t = &#123;&#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">for</span> item in <span class="variable">s:</span></span><br><span class="line">            res_s[item] = res_s.<span class="built_in">get</span>(item, <span class="number">0</span>) + <span class="number">1</span></span><br><span class="line"></span><br><span class="line">        <span class="keyword">for</span> item in <span class="variable">t:</span></span><br><span class="line">            res_t[item] = res_t.<span class="built_in">get</span>(item, <span class="number">0</span>) + <span class="number">1</span></span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> res_s == res_t</span><br><span class="line"></span><br><span class="line">    def isAnagram1(self, s, t):</span><br><span class="line">        <span class="keyword">return</span> sorted(s) == sorted(t)</span><br><span class="line"></span><br><span class="line">solution = Solution()</span><br><span class="line"></span><br><span class="line">s = <span class="string">"anagram"</span></span><br><span class="line"></span><br><span class="line">t = <span class="string">"ganaamr"</span></span><br><span class="line"><span class="keyword">print</span>(solution.isAnagram(s, t))</span><br></pre></td></tr></table></figure>
+
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://timilong.com/2017/03/16/leetcode_binary_tree_paths/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1793,188 +1963,6 @@
 <h2 id="Solution"><a href="#Solution" class="headerlink" title="Solution"></a>Solution</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span><span class="params">(object)</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">missingNumber</span><span class="params">(self, nums)</span>:</span></span><br><span class="line">        <span class="string">"""</span></span><br><span class="line"><span class="string">        :type nums: List[int]</span></span><br><span class="line"><span class="string">        :rtype: int</span></span><br><span class="line"><span class="string">        """</span></span><br><span class="line">        <span class="comment"># 方法1: 利用前n项和公式  n*(n+1)/2 减去sum(nums)</span></span><br><span class="line">        <span class="keyword">return</span> len(nums)*(len(nums)+<span class="number">1</span>) // <span class="number">2</span> - sum(nums)</span><br><span class="line">        <span class="string">""" 方法2: 利用两集合的差值极为所求结果</span></span><br><span class="line"><span class="string">        length = len(nums)</span></span><br><span class="line"><span class="string">        temp_set = set([i for i in range(length+1)])</span></span><br><span class="line"><span class="string">        nums_set = set(nums)</span></span><br><span class="line"><span class="string">        res = list(temp_set - nums_set)</span></span><br><span class="line"><span class="string">        return res[0]</span></span><br><span class="line"><span class="string">        """</span></span><br><span class="line">solution = Solution()</span><br><span class="line">nums = [<span class="number">0</span>, <span class="number">1</span>, <span class="number">3</span>]</span><br><span class="line">print(solution.missingNumber(nums))</span><br><span class="line"><span class="comment"># output: 2</span></span><br></pre></td></tr></table></figure>
 
           
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://timilong.com/2016/10/18/python爬虫实战2-爬取百度贴吧的帖子/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="博主">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="timilong's blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2016/10/18/python爬虫实战2-爬取百度贴吧的帖子/" itemprop="url">
-                  python爬虫实战2-爬取百度贴吧的帖子
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-
-              
-                
-              
-
-              <time title="创建于：2016-10-18 14:04:43" itemprop="dateCreated datePublished" datetime="2016-10-18T14:04:43Z">2016-10-18</time>
-            
-
-            
-              
-
-              
-                
-                <span class="post-meta-divider">|</span>
-                
-
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">Edited on</span>
-                
-                <time title="更新于：2018-07-24 00:18:47" itemprop="dateModified" datetime="2018-07-24T00:18:47Z">2018-07-24</time>
-              
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/python/" itemprop="url" rel="index"><span itemprop="name">python</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <h3 id="分析百度贴吧的帖子"><a href="#分析百度贴吧的帖子" class="headerlink" title="分析百度贴吧的帖子"></a>分析百度贴吧的帖子</h3><p>以<a href="http://tieba.baidu.com/p/4763194794" target="_blank" rel="noopener">西南民族大学贴吧－9月10月交易贴</a>为例子:</p>
-<ol>
-<li>标题部分</li>
-</ol>
-<p>帖子标题的原HTML:</p>
-<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"core_title core_title_theme_bright"</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">h1</span> <span class="attr">class</span>=<span class="string">"core_title_txt  "</span> <span class="attr">title</span>=<span class="string">"【跳蚤市场】2016年9.10月份交易专贴"</span> <span class="attr">style</span>=<span class="string">"width: 470px"</span>&gt;</span></span><br><span class="line">    【跳蚤市场】2016年9.10月份交易专贴</span><br><span class="line">  <span class="tag">&lt;/<span class="name">h1</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">ul</span> <span class="attr">class</span>=<span class="string">"core_title_btns"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">li</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">a</span> <span class="attr">id</span>=<span class="string">"lzonly_cntn"</span> <span class="attr">href</span>=<span class="string">"/p/4763194794?see_lz=1"</span> <span class="attr">alog-alias</span>=<span class="string">"lzonly"</span> <span class="attr">class</span>=<span class="string">"l_lzonly"</span>&gt;</span><span class="tag">&lt;<span class="name">span</span> <span class="attr">id</span>=<span class="string">"lzonly"</span> <span class="attr">class</span>=<span class="string">"d_lzonly_bdaside"</span>&gt;</span>只看楼主<span class="tag">&lt;/<span class="name">span</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;/<span class="name">a</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">li</span> <span class="attr">id</span>=<span class="string">"j_favthread"</span> <span class="attr">class</span>=<span class="string">"p_favthread"</span> <span class="attr">data-field</span>=<span class="string">"&#123;&amp;quot;status&amp;quot;:0,&amp;quot;is_anonym&amp;quot;:false&#125;"</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"p_favthr_tip"</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"p_favthr_main"</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">p</span>&gt;</span>收藏<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">li</span> <span class="attr">class</span>=<span class="string">"quick_reply"</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">"#"</span> <span class="attr">id</span>=<span class="string">"quick_reply"</span> <span class="attr">class</span>=<span class="string">"j_quick_reply"</span>&gt;</span>回复</span><br><span class="line">      <span class="tag">&lt;/<span class="name">a</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">li</span>&gt;</span>       </span><br><span class="line">  <span class="tag">&lt;/<span class="name">ul</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
-<p>分析知帖子标题的h1的class属性以”core_title_txt”组成。<br>所以可以用正则表达式：</p>
-<figure class="highlight ini"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">pattern</span> = re.compile(<span class="string">'&lt;h1 class="core_title_txt.*?&gt;(.*?)&lt;/h1&gt;'</span>, re.S)</span><br></pre></td></tr></table></figure>
-<p>获得该贴的标题。</p>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2016/10/18/python爬虫实战2-爬取百度贴吧的帖子/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
         
       
     </div>
