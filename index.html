@@ -281,7 +281,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://timilong.com/2018/08/17/Linux-设置脚本开机自启动/">
+    <link itemprop="mainEntityOfPage" href="http://timilong.com/2018/08/17/linux-设置脚本开机自启动/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="博主">
@@ -300,7 +300,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2018/08/17/Linux-设置脚本开机自启动/" itemprop="url">
+                <a class="post-title-link" href="/2018/08/17/linux-设置脚本开机自启动/" itemprop="url">
                   Linux-设置脚本开机自启动
                 </a>
               
@@ -369,7 +369,7 @@
           <h3 id="设置自启动"><a href="#设置自启动" class="headerlink" title="设置自启动"></a>设置自启动</h3><figure class="highlight makefile"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="section">具体作法: 以mysql为例</span></span><br><span class="line"><span class="section">1: 先把 mysql 放到 /etc/init.d目录下</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="section">2: 查看当前系统的启动级别</span></span><br><span class="line">$ sudo runlevel </span><br><span class="line">N 3</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="section">3: 设定启动级别 </span></span><br><span class="line">$ update-rc.d mysql start 98 2 . </span><br><span class="line">    98 为启动序号，</span><br><span class="line">    2是系统的运行级别，可自己调整，</span><br><span class="line">    注意不要忘了结尾的句点。</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">现在我们到 /etc/rc2.d 下，就多了一个 S98mysql 这样的符号链接。</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">4. 然后启动系统，测试一下设置是否有效。</span><br></pre></td></tr></table></figure>
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/2018/08/17/Linux-设置脚本开机自启动/#more" rel="contents">
+            <a class="btn" href="/2018/08/17/linux-设置脚本开机自启动/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -425,7 +425,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://timilong.com/2018/08/15/坐标解析系统/">
+    <link itemprop="mainEntityOfPage" href="http://timilong.com/2018/08/15/面试-拓天速贷面试题-坐标解析系统/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="博主">
@@ -444,7 +444,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2018/08/15/坐标解析系统/" itemprop="url">
+                <a class="post-title-link" href="/2018/08/15/面试-拓天速贷面试题-坐标解析系统/" itemprop="url">
                   坐标解析系统
                 </a>
               
@@ -514,7 +514,7 @@
 <h2 id="项目地址"><a href="#项目地址" class="headerlink" title="项目地址"></a>项目地址</h2><p><a href="https://www.github.com/lxl0928/tuo_tian_su_dai" target="_blank" rel="noopener">github项目地址</a></p>
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/2018/08/15/坐标解析系统/#more" rel="contents">
+            <a class="btn" href="/2018/08/15/面试-拓天速贷面试题-坐标解析系统/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -860,7 +860,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://timilong.com/2018/08/09/python-开源包hashids/">
+    <link itemprop="mainEntityOfPage" href="http://timilong.com/2018/08/09/python-hashids/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="博主">
@@ -879,7 +879,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2018/08/09/python-开源包hashids/" itemprop="url">
+                <a class="post-title-link" href="/2018/08/09/python-hashids/" itemprop="url">
                   python-三方开源库hashids
                 </a>
               
@@ -952,7 +952,7 @@
 <h2 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h2><figure class="highlight cmake"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pip <span class="keyword">install</span> hashids</span><br></pre></td></tr></table></figure>
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/2018/08/09/python-开源包hashids/#more" rel="contents">
+            <a class="btn" href="/2018/08/09/python-hashids/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -1152,7 +1152,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://timilong.com/2018/08/08/docker-build简单实用/">
+    <link itemprop="mainEntityOfPage" href="http://timilong.com/2018/08/08/docker-dockerbuild的用法/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="博主">
@@ -1171,7 +1171,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2018/08/08/docker-build简单实用/" itemprop="url">
+                <a class="post-title-link" href="/2018/08/08/docker-dockerbuild的用法/" itemprop="url">
                   docker-build简单实用
                 </a>
               
@@ -1240,7 +1240,7 @@
           <h2 id="说明"><a href="#说明" class="headerlink" title="说明"></a>说明</h2><p>docker build 命令用于使用 Dockerfile 创建镜像。</p>
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/2018/08/08/docker-build简单实用/#more" rel="contents">
+            <a class="btn" href="/2018/08/08/docker-dockerbuild的用法/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -1593,7 +1593,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://timilong.com/2018/07/10/深入理解计算机系统/">
+    <link itemprop="mainEntityOfPage" href="http://timilong.com/2018/07/10/计算机-深入理解计算机系统/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="博主">
@@ -1612,7 +1612,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2018/07/10/深入理解计算机系统/" itemprop="url">
+                <a class="post-title-link" href="/2018/07/10/计算机-深入理解计算机系统/" itemprop="url">
                   深入理解计算机系统
                 </a>
               

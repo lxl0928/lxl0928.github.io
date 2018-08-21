@@ -1,0 +1,871 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=6.3.0" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=6.3.0">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=6.3.0">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=6.3.0">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=6.3.0" color="#222">
+
+
+
+
+
+
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    version: '6.3.0',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: false,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  
+
+
+
+
+  <meta name="description" content="测试环境： Windows 7 使用前请关闭电脑管家、安全卫士等安全软件 loadRunner使用入门loadRunner是一种预测行为和性能的负载测试工具。可适用于各种体系架构的自动负责测试，能预测系统行为并评估系统性能。 本篇教程以测试loadRunner自带的webTours网站为例。">
+<meta name="keywords" content="loadRunner">
+<meta property="og:type" content="article">
+<meta property="og:title" content="loadRunner入门教程">
+<meta property="og:url" content="http://timilong.com/2016/06/01/测试-loadRunner入门教程/index.html">
+<meta property="og:site_name" content="timilong&#39;s blog">
+<meta property="og:description" content="测试环境： Windows 7 使用前请关闭电脑管家、安全卫士等安全软件 loadRunner使用入门loadRunner是一种预测行为和性能的负载测试工具。可适用于各种体系架构的自动负责测试，能预测系统行为并评估系统性能。 本篇教程以测试loadRunner自带的webTours网站为例。">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2018-07-24T00:18:47.845Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="loadRunner入门教程">
+<meta name="twitter:description" content="测试环境： Windows 7 使用前请关闭电脑管家、安全卫士等安全软件 loadRunner使用入门loadRunner是一种预测行为和性能的负载测试工具。可适用于各种体系架构的自动负责测试，能预测系统行为并评估系统性能。 本篇教程以测试loadRunner自带的webTours网站为例。">
+
+
+
+
+
+
+  <link rel="canonical" href="http://timilong.com/2016/06/01/测试-loadRunner入门教程/"/>
+
+
+
+<script type="text/javascript" id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>loadRunner入门教程 | timilong's blog</title>
+  
+
+
+
+
+
+
+
+
+
+  <noscript>
+  <style type="text/css">
+    .use-motion .motion-element,
+    .use-motion .brand,
+    .use-motion .menu-item,
+    .sidebar-inner,
+    .use-motion .post-block,
+    .use-motion .pagination,
+    .use-motion .comments,
+    .use-motion .post-header,
+    .use-motion .post-body,
+    .use-motion .collection-title { opacity: initial; }
+
+    .use-motion .logo,
+    .use-motion .site-title,
+    .use-motion .site-subtitle {
+      opacity: initial;
+      top: initial;
+    }
+
+    .use-motion {
+      .logo-line-before i { left: initial; }
+      .logo-line-after i { right: initial; }
+    }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">timilong's blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+    
+      
+        <p class="site-subtitle">Cease to struggle and you cease to live.--Thomas Carlyle</p>
+      
+    
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="Toggle navigation bar">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+          
+          <li class="menu-item menu-item-home">
+    <a href="/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-home"></i> <br />首页</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+    <a href="/archives/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />归档</a>
+  </li>
+
+      
+      
+    </ul>
+  
+
+  
+    
+
+  
+
+  
+</nav>
+
+
+
+  
+
+
+
+</div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://timilong.com/2016/06/01/测试-loadRunner入门教程/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="博主">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="timilong's blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">loadRunner入门教程
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建于：2016-05-31 20:59:13" itemprop="dateCreated datePublished" datetime="2016-05-31T20:59:13Z">2016-05-31</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Edited on</span>
+                
+                <time title="更新于：2018-07-24 00:18:47" itemprop="dateModified" datetime="2018-07-24T00:18:47Z">2018-07-24</time>
+              
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>测试环境： Windows 7 使用前请关闭电脑管家、安全卫士等安全软件</p>
+<h3 id="loadRunner使用入门"><a href="#loadRunner使用入门" class="headerlink" title="loadRunner使用入门"></a>loadRunner使用入门</h3><p>loadRunner是一种预测行为和性能的负载测试工具。<br>可适用于各种体系架构的自动负责测试，能预测系统行为并评估系统性能。</p>
+<p>本篇教程以测试loadRunner自带的webTours网站为例。<br><a id="more"></a></p>
+<h3 id="1-启动loadRunner自带的webTours网站。"><a href="#1-启动loadRunner自带的webTours网站。" class="headerlink" title="1. 启动loadRunner自带的webTours网站。"></a>1. 启动loadRunner自带的webTours网站。</h3><figure class="highlight clean"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">开始菜单-&gt;所有程序-&gt;HP-&gt;Samples-&gt;start the web tour server</span><br></pre></td></tr></table></figure>
+<p>启动后，在浏览器(默认是ie浏览器，google浏览器亲测有效，其它没有测过)输入以下网址访问:<br><figure class="highlight dts"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="symbol">http:</span><span class="comment">//localhost:1080\webTours</span></span><br></pre></td></tr></table></figure></p>
+<h3 id="2-访问成功后，关闭浏览器，然后打开loadRunner-Virtual-UserGene-Generator"><a href="#2-访问成功后，关闭浏览器，然后打开loadRunner-Virtual-UserGene-Generator" class="headerlink" title="2. 访问成功后，关闭浏览器，然后打开loadRunner Virtual UserGene Generator:"></a>2. 访问成功后，关闭浏览器，然后打开loadRunner Virtual UserGene Generator:</h3><figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="bullet">1. </span>新建一个录制脚本，使用"Web（http/html）"进行创建，此时相当于选择的录制协议就是http协议，</span><br><span class="line">这个协议适合录制web的应用程序。</span><br><span class="line"><span class="bullet">2. </span>开始录制，点击开始录制按钮，点击后在弹出框“Url Address”中键入要录制网页的地址</span><br><span class="line">“http://localhost:1080\webTours”，点击确定。浏览器使用默认的IE浏览器。</span><br><span class="line"><span class="bullet">3. </span>接着，loadRunner会自动打开浏览器，跳转到你指定的网页。</span><br><span class="line"><span class="bullet">4. </span>进行录制脚本的工作，可以选择sign up注册用户然后自动登录订票，</span><br><span class="line">也可以使用默认账户:jojo, 密码:bean登录，开始订票，一步一步操作。</span><br><span class="line"><span class="bullet">5. </span>订票完成后，退出登录，然后点击loadRunner控制台的停止按钮。</span><br><span class="line"><span class="bullet">6. </span>等待loadRunner自动生成脚本语言。</span><br></pre></td></tr></table></figure>
+<h3 id="3-录制成功后，可在loadRunner中Action中看到刚刚录制的脚本。"><a href="#3-录制成功后，可在loadRunner中Action中看到刚刚录制的脚本。" class="headerlink" title="3. 录制成功后，可在loadRunner中Action中看到刚刚录制的脚本。"></a>3. 录制成功后，可在loadRunner中Action中看到刚刚录制的脚本。</h3><p>这时需要，重放刚刚录制的脚本，查看是否错误，有错误按照相应错误解决，或者重新录制脚本<br>，可直接覆盖当前的脚本录制。回放无错误后进行下步操作。</p>
+<p>###4. 打开loadRunner Control<br><figure class="highlight pf"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">加载刚刚录制的脚本，设置并发用户数等等参数信息。点击开始运行。等待较长的一段时间。</span><br><span class="line">运行完毕后，生成了一个运行脚本，这时可在菜单栏找到分析结果的按钮。会自动打开<span class="built_in">load</span>Runner Analysis分析刚刚运行的结果。</span><br></pre></td></tr></table></figure></p>
+<p>###5. 进入loadRunner Analysis后<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">可直接查看到刚刚的并发测试的结果，报表，图等等。</span><br></pre></td></tr></table></figure></p>
+
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/loadRunner/" rel="tag"># loadRunner</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/05/28/前端-html中将非a标签变成超链接/" rel="next" title="html中将非a标签变成超链接">
+                <i class="fa fa-chevron-left"></i> html中将非a标签变成超链接
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2016/06/15/读书-明朝那些事/" rel="prev" title="《明朝那些事》-读书笔记">
+                《明朝那些事》-读书笔记 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+  </div>
+
+
+          </div>
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">博主</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/">
+                
+                    <span class="site-state-item-count">96</span>
+                    <span class="site-state-item-name">日志</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-categories">
+                  
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">16</span>
+                    <span class="site-state-item-name">分类</span>
+                  
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">41</span>
+                    <span class="site-state-item-name">标签</span>
+                  
+                </div>
+              
+            </nav>
+          
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+            
+          
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#loadRunner使用入门"><span class="nav-number">1.</span> <span class="nav-text">loadRunner使用入门</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-启动loadRunner自带的webTours网站。"><span class="nav-number">2.</span> <span class="nav-text">1. 启动loadRunner自带的webTours网站。</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-访问成功后，关闭浏览器，然后打开loadRunner-Virtual-UserGene-Generator"><span class="nav-number">3.</span> <span class="nav-text">2. 访问成功后，关闭浏览器，然后打开loadRunner Virtual UserGene Generator:</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-录制成功后，可在loadRunner中Action中看到刚刚录制的脚本。"><span class="nav-number">4.</span> <span class="nav-text">3. 录制成功后，可在loadRunner中Action中看到刚刚录制的脚本。</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">博主</span>
+
+  
+
+  
+</div>
+
+
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动 v3.7.1</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://theme-next.org">NexT.Muse</a> v6.3.0</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+	
+    
+
+    
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=6.3.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=6.3.0"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=6.3.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=6.3.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=6.3.0"></script>
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

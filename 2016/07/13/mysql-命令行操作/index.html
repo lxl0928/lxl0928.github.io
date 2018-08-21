@@ -1,0 +1,926 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=6.3.0" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=6.3.0">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=6.3.0">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=6.3.0">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=6.3.0" color="#222">
+
+
+
+
+
+
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    version: '6.3.0',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: false,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  
+
+
+
+
+  <meta name="description" content="打开终端，进入root1su -i 输入密码：1******">
+<meta name="keywords" content="MySQL">
+<meta property="og:type" content="article">
+<meta property="og:title" content="MySQL学习1-linux下基本操作">
+<meta property="og:url" content="http://timilong.com/2016/07/13/mysql-命令行操作/index.html">
+<meta property="og:site_name" content="timilong&#39;s blog">
+<meta property="og:description" content="打开终端，进入root1su -i 输入密码：1******">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2018-07-24T00:18:47.846Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="MySQL学习1-linux下基本操作">
+<meta name="twitter:description" content="打开终端，进入root1su -i 输入密码：1******">
+
+
+
+
+
+
+  <link rel="canonical" href="http://timilong.com/2016/07/13/mysql-命令行操作/"/>
+
+
+
+<script type="text/javascript" id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>MySQL学习1-linux下基本操作 | timilong's blog</title>
+  
+
+
+
+
+
+
+
+
+
+  <noscript>
+  <style type="text/css">
+    .use-motion .motion-element,
+    .use-motion .brand,
+    .use-motion .menu-item,
+    .sidebar-inner,
+    .use-motion .post-block,
+    .use-motion .pagination,
+    .use-motion .comments,
+    .use-motion .post-header,
+    .use-motion .post-body,
+    .use-motion .collection-title { opacity: initial; }
+
+    .use-motion .logo,
+    .use-motion .site-title,
+    .use-motion .site-subtitle {
+      opacity: initial;
+      top: initial;
+    }
+
+    .use-motion {
+      .logo-line-before i { left: initial; }
+      .logo-line-after i { right: initial; }
+    }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">timilong's blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+    
+      
+        <p class="site-subtitle">Cease to struggle and you cease to live.--Thomas Carlyle</p>
+      
+    
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="Toggle navigation bar">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+          
+          <li class="menu-item menu-item-home">
+    <a href="/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-home"></i> <br />首页</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+    <a href="/archives/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />归档</a>
+  </li>
+
+      
+      
+    </ul>
+  
+
+  
+    
+
+  
+
+  
+</nav>
+
+
+
+  
+
+
+
+</div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://timilong.com/2016/07/13/mysql-命令行操作/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="博主">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="timilong's blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">MySQL学习1-linux下基本操作
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建于：2016-07-13 00:08:18" itemprop="dateCreated datePublished" datetime="2016-07-13T00:08:18Z">2016-07-13</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Edited on</span>
+                
+                <time title="更新于：2018-07-24 00:18:47" itemprop="dateModified" datetime="2018-07-24T00:18:47Z">2018-07-24</time>
+              
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/MySQL/" itemprop="url" rel="index"><span itemprop="name">MySQL</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h3 id="打开终端，进入root"><a href="#打开终端，进入root" class="headerlink" title="打开终端，进入root"></a>打开终端，进入root</h3><figure class="highlight stata"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">su</span> -<span class="built_in">i</span></span><br></pre></td></tr></table></figure>
+<p>输入密码：<br><figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="strong">*****</span>*</span><br></pre></td></tr></table></figure></p>
+<a id="more"></a>
+<h3 id="进入MySQL"><a href="#进入MySQL" class="headerlink" title="进入MySQL"></a>进入MySQL</h3><figure class="highlight ebnf"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">mysql -h localhost -u root -p</span></span><br></pre></td></tr></table></figure>
+<p>回车</p>
+<p>输入密码：<br><figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="strong">*****</span>*</span><br></pre></td></tr></table></figure></p>
+<p>成功进入mysql，页面如下：<br><figure class="highlight smali"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">root@timilong-pc:~<span class="comment"># mysql -h localhost -u root -p</span></span><br><span class="line">Enter password: </span><br><span class="line">Welcome to the MySQ<span class="class">L monitor.  Commands end with ;</span><span class="built_in"> or </span>\g.</span><br><span class="line">Your MySQL connection id is 7</span><br><span class="line">Server version: 5.6.28-1 (Debian)</span><br><span class="line"></span><br><span class="line">Copyright (c) 2000, 2015, Oracle<span class="built_in"> and/or </span>its affiliates. All rights reserved.</span><br><span class="line"></span><br><span class="line">Oracle is a registered trademark of Oracle Corporation<span class="built_in"> and/or </span>its</span><br><span class="line">affiliates. Other names may be trademarks of their respective</span><br><span class="line">owners.</span><br><span class="line"></span><br><span class="line">Type 'help;'<span class="built_in"> or </span>'\h' for help. Type '\c' to clear the current input statement.</span><br><span class="line"></span><br><span class="line">mysql&gt;</span><br></pre></td></tr></table></figure></p>
+<p> 输入help：<br><figure class="highlight stata"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt; <span class="keyword">help</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">For</span> information <span class="keyword">about</span> MySQL products and services, visit:</span><br><span class="line">   http:<span class="comment">//www.mysql.com/</span></span><br><span class="line">   <span class="keyword">For</span> developer information, including the MySQL Reference Manual, visit:</span><br><span class="line">      http:<span class="comment">//dev.mysql.com/</span></span><br><span class="line">      To buy MySQL Enterprise support, training, or other products, visit:</span><br><span class="line">         https:<span class="comment">//shop.mysql.com/</span></span><br><span class="line"></span><br><span class="line">         <span class="keyword">List</span> of all MySQL commands:</span><br><span class="line">         <span class="keyword">Note</span> that all text commands must be first <span class="keyword">on</span> <span class="keyword">line</span> and end with ';'</span><br><span class="line">         ?         (\?) Synonym <span class="keyword">for</span> <span class="symbol">`help'</span>.</span><br><span class="line">         <span class="keyword">clear</span>     (\c) <span class="keyword">Clear</span> the current <span class="keyword">input</span> statement.</span><br><span class="line">         connect   (\r) Reconnect to the server. Optional arguments are <span class="keyword">db</span> and host.</span><br><span class="line">         delimiter (\<span class="keyword">d</span>) <span class="keyword">Set</span> statement delimiter.</span><br><span class="line">         <span class="keyword">edit</span>      (\<span class="keyword">e</span>) <span class="keyword">Edit</span> command with <span class="variable">$EDITOR</span>.</span><br><span class="line">         ego       (\<span class="keyword">G</span>) Send command to mysql server, <span class="keyword">display</span> result vertically.</span><br><span class="line">         <span class="keyword">exit</span>      (\q) <span class="keyword">Exit</span> mysql. Same <span class="keyword">as</span> quit.</span><br><span class="line">         go        (\<span class="keyword">g</span>) Send command to mysql server.</span><br><span class="line">         <span class="keyword">help</span>      (\<span class="keyword">h</span>) <span class="keyword">Display</span> this <span class="keyword">help</span>.</span><br><span class="line">         nopager   (\<span class="keyword">n</span>) Disable pager, <span class="keyword">print</span> to stdout.</span><br><span class="line">         notee     (\t) Don't write into <span class="keyword">outfile</span>.</span><br><span class="line">         pager     (\P) <span class="keyword">Set</span> PAGER [to_pager]. <span class="keyword">Print</span> the <span class="keyword">query</span> results via PAGER.</span><br><span class="line">         <span class="keyword">print</span>     (\p) <span class="keyword">Print</span> current command.</span><br><span class="line">         prompt    (\R) Change your mysql prompt.</span><br><span class="line">         quit      (\q) Quit mysql.</span><br><span class="line">         rehash    (\#) Rebuild completion hash.</span><br><span class="line">         source    (\.) Execute <span class="keyword">an</span> SQL script <span class="keyword">file</span>. Takes a <span class="keyword">file</span> name <span class="keyword">as</span> <span class="keyword">an</span> argument.</span><br><span class="line">         status    (\s) Get status information from the server.</span><br><span class="line">         system    (\!) Execute a system <span class="keyword">shell</span> command.</span><br><span class="line">         tee       (\T) <span class="keyword">Set</span> <span class="keyword">outfile</span> [to_outfile]. <span class="keyword">Append</span> everything into given <span class="keyword">outfile</span>.</span><br><span class="line">         <span class="keyword">use</span>       (\<span class="keyword">u</span>) <span class="keyword">Use</span> another database. Takes database name <span class="keyword">as</span> argument.</span><br><span class="line">         charset   (\C) Switch to another charset. Might be needed <span class="keyword">for</span> processing binlog with multi-byte charsets.</span><br><span class="line">         warnings  (\W) Show warnings after every statement.</span><br><span class="line">         nowarning (\w) Don't show warnings after every statement.</span><br><span class="line"></span><br><span class="line">         <span class="keyword">For</span> server side <span class="keyword">help</span>, <span class="keyword">type</span> '<span class="keyword">help</span> contents'</span><br></pre></td></tr></table></figure></p>
+<h3 id="MySQL常用操作"><a href="#MySQL常用操作" class="headerlink" title="MySQL常用操作"></a>MySQL常用操作</h3><p>注意：MySQL中每个命令后都要以分号；结尾。</p>
+<h4 id="显示数据库"><a href="#显示数据库" class="headerlink" title="显示数据库"></a>显示数据库</h4><figure class="highlight mipsasm"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt; <span class="keyword">show </span>databases<span class="comment">;</span></span><br></pre></td></tr></table></figure>
+<p>返回结果：<br><figure class="highlight asciidoc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt; show databases;</span><br><span class="line"><span class="code">+--------------------+</span></span><br><span class="line">| Database           |</span><br><span class="line"><span class="code">+--------------------+</span></span><br><span class="line">| information<span class="emphasis">_schema |</span></span><br><span class="line"><span class="emphasis">| mysql              |</span></span><br><span class="line"><span class="emphasis">| performance_</span>schema |</span><br><span class="line">| test<span class="emphasis">_aaa           |</span></span><br><span class="line"><span class="emphasis">+--------------------+</span></span><br><span class="line"><span class="emphasis">4 rows in set (0.00 sec)</span></span><br><span class="line"><span class="emphasis"></span></span><br><span class="line"><span class="emphasis">mysql&gt;</span></span><br></pre></td></tr></table></figure></p>
+<p>mysql库非常重要，它里面有MySQL的系统信息，我们改密码和新增用户，实际上就是用这个库中的相关表进行操作。</p>
+<h4 id="显示数据库中的表"><a href="#显示数据库中的表" class="headerlink" title="显示数据库中的表"></a>显示数据库中的表</h4><p>打开库，对每个库进行操作就要打开此库，类似于foxpro<br><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt; <span class="keyword">use</span> <span class="title">test_aaa</span>;</span><br></pre></td></tr></table></figure></p>
+<p>返回结果：<br><figure class="highlight livescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt; use test_aaa;</span><br><span class="line">Reading table information <span class="keyword">for</span> completion <span class="keyword">of</span> table <span class="keyword">and</span> column names</span><br><span class="line">You can turn <span class="literal">off</span> <span class="keyword">this</span> feature <span class="keyword">to</span> get a quicker startup <span class="keyword">with</span> -A</span><br><span class="line"></span><br><span class="line">Database changed</span><br><span class="line">mysql&gt;</span><br></pre></td></tr></table></figure></p>
+<p>显示表格：<br><figure class="highlight mipsasm"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt;<span class="keyword">show </span>tables<span class="comment">;</span></span><br></pre></td></tr></table></figure></p>
+<p>返回结果：<br><figure class="highlight asciidoc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt; show tables;</span><br><span class="line"><span class="code">+--------------------+</span></span><br><span class="line">| Tables<span class="emphasis">_in_</span>test<span class="emphasis">_aaa |</span></span><br><span class="line"><span class="emphasis">+--------------------+</span></span><br><span class="line"><span class="emphasis">| account            |</span></span><br><span class="line"><span class="emphasis">+--------------------+</span></span><br><span class="line"><span class="emphasis">1 row in set (0.00 sec)</span></span><br><span class="line"><span class="emphasis"></span></span><br><span class="line"><span class="emphasis">mysql&gt;</span></span><br></pre></td></tr></table></figure></p>
+<p>在数据库test_aaa中有一个名为account的表格。</p>
+<h4 id="显示数据表的结构"><a href="#显示数据表的结构" class="headerlink" title="显示数据表的结构"></a>显示数据表的结构</h4><p>输入：<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">mysql&gt;</span><span class="bash"> describe account;</span></span><br></pre></td></tr></table></figure></p>
+<p>返回结果：<br><figure class="highlight asciidoc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt; describe account;</span><br><span class="line"><span class="code">+--------+</span>---------<span class="code">+------+</span>-----<span class="code">+---------+</span>-------+</span><br><span class="line">| Field  | Type    | Null | Key | Default | Extra |</span><br><span class="line"><span class="code">+--------+</span>---------<span class="code">+------+</span>-----<span class="code">+---------+</span>-------+</span><br><span class="line">| acctid | int(11) | YES  |     | NULL    |       |</span><br><span class="line">| money  | int(11) | YES  |     | NULL    |       |</span><br><span class="line"><span class="code">+--------+</span>---------<span class="code">+------+</span>-----<span class="code">+---------+</span>-------+</span><br><span class="line">2 rows in set (0.00 sec)</span><br><span class="line"></span><br><span class="line">mysql&gt;</span><br></pre></td></tr></table></figure></p>
+<h4 id="显示表中的记录"><a href="#显示表中的记录" class="headerlink" title="显示表中的记录"></a>显示表中的记录</h4><p>输入：<br><figure class="highlight n1ql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt; <span class="keyword">select</span> * <span class="keyword">from</span> account;</span><br></pre></td></tr></table></figure></p>
+<p>返回结果：<br><figure class="highlight asciidoc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt; select * from account;</span><br><span class="line"><span class="code">+--------+</span>-------+</span><br><span class="line">| acctid | money |</span><br><span class="line"><span class="code">+--------+</span>-------+</span><br><span class="line">|      1 |    30 |</span><br><span class="line">|      2 |   110 |</span><br><span class="line"><span class="code">+--------+</span>-------+</span><br><span class="line">2 rows in set (0.00 sec)</span><br><span class="line"></span><br><span class="line">mysql&gt;</span><br></pre></td></tr></table></figure></p>
+<h4 id="创建一个新的数据库"><a href="#创建一个新的数据库" class="headerlink" title="创建一个新的数据库"></a>创建一个新的数据库</h4><p>输入：<br><figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt; create database 库名；--&gt;不指定编码方式</span><br><span class="line">mysql&gt; create database `timilong_tiffocr`<span class="built_in"> default </span>character <span class="builtin-name">set</span> utf8 collate utf8_general_ci; --&gt;指定编码方式</span><br></pre></td></tr></table></figure></p>
+<p>例如：穿件一个名字为test_db的数据库：<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">mysql&gt;</span><span class="bash"> create database test_db;</span></span><br><span class="line">Query OK, 1 row affected (0.00 sec)</span><br><span class="line"></span><br><span class="line"><span class="meta">mysql&gt;</span><span class="bash"></span></span><br></pre></td></tr></table></figure></p>
+<h4 id="创建一个新的表格"><a href="#创建一个新的表格" class="headerlink" title="创建一个新的表格"></a>创建一个新的表格</h4><p>输入：<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">mysql&gt;</span><span class="bash"> use 库名;    </span></span><br><span class="line"><span class="meta">mysql&gt;</span><span class="bash"> create table 表名(字段设定列表);</span></span><br></pre></td></tr></table></figure></p>
+<p>例如：在刚创建的test_db数据库中建立name表，表中有id(序号，自动增长)，xm(姓名)，xb(性别)，csny(出身年月)四个字段。<br><figure class="highlight excel"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt; use test_db;</span><br><span class="line">Database changed</span><br><span class="line">mysql&gt; create table name (id <span class="built_in">int</span>(<span class="number">3</span>) auto_increment <span class="built_in">not</span> null primary key ,xm <span class="built_in">char</span>(<span class="number">8</span>), xb <span class="built_in">char</span>(<span class="number">2</span>), csny <span class="built_in">date</span>)charset=utf8;</span><br><span class="line">Query OK, <span class="number">0</span> <span class="built_in">rows</span> affected (<span class="number">0.32</span> <span class="built_in">sec</span>)</span><br><span class="line"></span><br><span class="line">mysql&gt;</span><br></pre></td></tr></table></figure></p>
+<p>可以用describe命令察看刚建立的表结构。<br><figure class="highlight gherkin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt; describe name;</span><br><span class="line">+-------+---------+------+-----+---------+----------------+</span><br><span class="line">|<span class="string"> Field </span>|<span class="string"> Type    </span>|<span class="string"> Null </span>|<span class="string"> Key </span>|<span class="string"> Default </span>|<span class="string"> Extra          </span>|</span><br><span class="line">+-------+---------+------+-----+---------+----------------+</span><br><span class="line">|<span class="string"> id    </span>|<span class="string"> int(3)  </span>|<span class="string"> NO   </span>|<span class="string"> PRI </span>|<span class="string"> NULL    </span>|<span class="string"> auto_increment </span>|</span><br><span class="line">|<span class="string"> xm    </span>|<span class="string"> char(8) </span>|<span class="string"> YES  </span>|<span class="string">     </span>|<span class="string"> NULL    </span>|<span class="string">                </span>|</span><br><span class="line">|<span class="string"> xb    </span>|<span class="string"> char(2) </span>|<span class="string"> YES  </span>|<span class="string">     </span>|<span class="string"> NULL    </span>|<span class="string">                </span>|</span><br><span class="line">|<span class="string"> csny  </span>|<span class="string"> date    </span>|<span class="string"> YES  </span>|<span class="string">     </span>|<span class="string"> NULL    </span>|<span class="string">                </span>|</span><br><span class="line">+-------+---------+------+-----+---------+----------------+</span><br><span class="line">4 rows in set (0.00 sec)</span><br><span class="line"></span><br><span class="line">mysql&gt;</span><br></pre></td></tr></table></figure></p>
+<h4 id="增加记录"><a href="#增加记录" class="headerlink" title="增加记录"></a>增加记录</h4><p>例如：增加几条相关纪录。<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">mysql&gt;</span><span class="bash"> insert into name values(<span class="string">''</span>, <span class="string">'张三'</span>, <span class="string">'男'</span>, <span class="string">'1971-10-01'</span>);</span></span><br><span class="line">Query OK, 1 row affected, 3 warnings (0.11 sec)</span><br><span class="line"></span><br><span class="line"><span class="meta">mysql&gt;</span><span class="bash"> insert into name values(<span class="string">''</span>, <span class="string">'白云'</span>, <span class="string">'女'</span>, <span class="string">'1972-05-20'</span>);</span></span><br><span class="line">Query OK, 1 row affected, 3 warnings (0.09 sec)</span><br><span class="line"></span><br><span class="line"><span class="meta">mysql&gt;</span><span class="bash"></span></span><br></pre></td></tr></table></figure></p>
+<p>可用select命令来验证结果。<br><figure class="highlight asciidoc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt; select * from name;</span><br><span class="line"><span class="code">+----+</span>--------<span class="code">+------+</span>------------+</span><br><span class="line">| id | xm     | xb   | csny       |</span><br><span class="line"><span class="code">+----+</span>--------<span class="code">+------+</span>------------+</span><br><span class="line">|  1 | 张三   | 男   | 1971-10-01 |</span><br><span class="line">|  2 | 白云   | 女   | 1972-05-20 |</span><br><span class="line"><span class="code">+----+</span>--------<span class="code">+------+</span>------------+</span><br><span class="line">2 rows in set (0.00 sec)</span><br><span class="line"></span><br><span class="line">mysql&gt;</span><br></pre></td></tr></table></figure></p>
+<h4 id="修改记录"><a href="#修改记录" class="headerlink" title="修改记录"></a>修改记录</h4><p>例如：将张三的出生年月改为1971-01-10<br><figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt; update name <span class="builtin-name">set</span> <span class="attribute">csny</span>=<span class="string">'1971-01-10'</span> where <span class="attribute">xm</span>=<span class="string">'张三'</span>;</span><br></pre></td></tr></table></figure></p>
+<p>查看结果:<br><figure class="highlight asciidoc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt; update name set csny="1971-01-10" where xm="张三";</span><br><span class="line">Query OK, 1 row affected (0.12 sec)</span><br><span class="line">Rows matched: 1  Changed: 1  Warnings: 0</span><br><span class="line"></span><br><span class="line">mysql&gt; select * from name;</span><br><span class="line"><span class="code">+----+</span>--------<span class="code">+------+</span>------------+</span><br><span class="line">| id | xm     | xb   | csny       |</span><br><span class="line"><span class="code">+----+</span>--------<span class="code">+------+</span>------------+</span><br><span class="line">|  1 | 张三   | 男   | 1971-01-10 |</span><br><span class="line">|  2 | 白云   | 女   | 1972-05-20 |</span><br><span class="line"><span class="code">+----+</span>--------<span class="code">+------+</span>------------+</span><br><span class="line">2 rows in set (0.00 sec)</span><br><span class="line"></span><br><span class="line">mysql&gt;</span><br></pre></td></tr></table></figure></p>
+<h4 id="删除记录"><a href="#删除记录" class="headerlink" title="删除记录"></a>删除记录</h4><p>例如：删除张三的记录<br><figure class="highlight applescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt; delete <span class="keyword">from</span> <span class="built_in">name</span> <span class="keyword">where</span> xm=<span class="string">"张三"</span>;</span><br></pre></td></tr></table></figure></p>
+<p>查看结果：<br><figure class="highlight asciidoc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt; delete from name where xm="张三";</span><br><span class="line">Query OK, 1 row affected (0.11 sec)</span><br><span class="line"></span><br><span class="line">mysql&gt; select * from name;</span><br><span class="line"><span class="code">+----+</span>--------<span class="code">+------+</span>------------+</span><br><span class="line">| id | xm     | xb   | csny       |</span><br><span class="line"><span class="code">+----+</span>--------<span class="code">+------+</span>------------+</span><br><span class="line">|  2 | 白云   | 女   | 1972-05-20 |</span><br><span class="line"><span class="code">+----+</span>--------<span class="code">+------+</span>------------+</span><br><span class="line">1 row in set (0.00 sec)</span><br><span class="line"></span><br><span class="line">mysql&gt;</span><br></pre></td></tr></table></figure></p>
+<h4 id="删除表格"><a href="#删除表格" class="headerlink" title="删除表格"></a>删除表格</h4><figure class="highlight gams"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt; drop <span class="keyword">table</span> 表名;</span><br></pre></td></tr></table></figure>
+<h4 id="删除数据库"><a href="#删除数据库" class="headerlink" title="删除数据库"></a>删除数据库</h4><figure class="highlight n1ql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt; <span class="keyword">drop</span> <span class="keyword">database</span> 库名;</span><br></pre></td></tr></table></figure>
+<h3 id="查看MySQL的编码"><a href="#查看MySQL的编码" class="headerlink" title="查看MySQL的编码"></a>查看MySQL的编码</h3><p>MySQL默认编码是Latin1，不支持中文，要支持中文需要把数据库的默认编码修改为gbk或者utf8。</p>
+<p>需要以root用户身份登陆才可以查看数据库编码方式(以root用户身份登陆的命令为：&gt;mysql -h localhost -u root  –p,之后输入root用户的密码)，查看数据库的编码方式命令为:<br><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">show</span> <span class="keyword">variables</span> <span class="keyword">like</span> <span class="string">'character%'</span>;</span><br></pre></td></tr></table></figure></p>
+<p>查看结果：<br><figure class="highlight asciidoc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt; show variables like <span class="emphasis">'character%'</span>;</span><br><span class="line"><span class="code">+--------------------------+</span>----------------------------+</span><br><span class="line">| Variable<span class="emphasis">_name            | Value                      |</span></span><br><span class="line"><span class="emphasis">+--------------------------+----------------------------+</span></span><br><span class="line"><span class="emphasis">| character_</span>set<span class="emphasis">_client     | utf8                       |</span></span><br><span class="line"><span class="emphasis">| character_</span>set<span class="emphasis">_connection | utf8                       |</span></span><br><span class="line"><span class="emphasis">| character_</span>set<span class="emphasis">_database   | latin1                     |</span></span><br><span class="line"><span class="emphasis">| character_</span>set<span class="emphasis">_filesystem | binary                     |</span></span><br><span class="line"><span class="emphasis">| character_</span>set<span class="emphasis">_results    | utf8                       |</span></span><br><span class="line"><span class="emphasis">| character_</span>set<span class="emphasis">_server     | latin1                     |</span></span><br><span class="line"><span class="emphasis">| character_</span>set<span class="emphasis">_system     | utf8                       |</span></span><br><span class="line"><span class="emphasis">| character_</span>sets<span class="emphasis">_dir       | /usr/share/mysql/charsets/ |</span></span><br><span class="line"><span class="emphasis">+--------------------------+----------------------------+</span></span><br><span class="line"><span class="emphasis">8 rows in set (0.00 sec)</span></span><br><span class="line"><span class="emphasis"></span></span><br><span class="line"><span class="emphasis">mysql&gt;</span></span><br></pre></td></tr></table></figure></p>
+<p>以上可知数据库的编码方式是latin1. 数据库服务器编码为latin1.<br>需要修改为gbk或者utf8.</p>
+<p>修改编码方式：<br><figure class="highlight gams"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">set</span> charcter_set_database <span class="comment">= utf8</span>;</span><br><span class="line"><span class="keyword">set</span> charcter_set_server <span class="comment">= utf8</span>;</span><br></pre></td></tr></table></figure></p>
+<p>以上方法经过测试后发现，是在当前环境中修改编码方式成功。<br>当退出后编码方式又恢复为以前的latin1编码。</p>
+<p>另外一种查看编码的方式：<br><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">show</span> <span class="keyword">variables</span> <span class="keyword">like</span> <span class="string">'collation%'</span>;</span><br></pre></td></tr></table></figure></p>
+<h3 id="修改MySQL中某个表格的编码"><a href="#修改MySQL中某个表格的编码" class="headerlink" title="修改MySQL中某个表格的编码"></a>修改MySQL中某个表格的编码</h3><p>利用sql语句进行修改，举例说明：</p>
+<h4 id="将表test的编码方式改为utf8"><a href="#将表test的编码方式改为utf8" class="headerlink" title="将表test的编码方式改为utf8"></a>将表test的编码方式改为utf8</h4><figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt; alter table `test`<span class="built_in"> default </span>character <span class="builtin-name">set</span> utf8;</span><br></pre></td></tr></table></figure>
+<h4 id="将表test中name字段的编码方式改为utf8"><a href="#将表test中name字段的编码方式改为utf8" class="headerlink" title="将表test中name字段的编码方式改为utf8"></a>将表test中name字段的编码方式改为utf8</h4><figure class="highlight autohotkey"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt; alter table `test` change `name` `name` varchar(<span class="number">36</span>) character set utf8<span class="comment">;</span></span><br></pre></td></tr></table></figure>
+<h3 id="linux下mysql修改配置文件的编码方式"><a href="#linux下mysql修改配置文件的编码方式" class="headerlink" title="linux下mysql修改配置文件的编码方式"></a>linux下mysql修改配置文件的编码方式</h3><p>修改mysql的配置文件,使数据库与服务器操作系统的字符集设置一致。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">待完善</span><br></pre></td></tr></table></figure></p>
+<h3 id="创建表格时默认编码方式为utf8"><a href="#创建表格时默认编码方式为utf8" class="headerlink" title="创建表格时默认编码方式为utf8"></a>创建表格时默认编码方式为utf8</h3><figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">CREATE DATABASE `test2`<span class="built_in"> DEFAULT </span>CHARACTER <span class="builtin-name">SET</span> utf8 COLLATE utf8_general_ci</span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/MySQL/" rel="tag"># MySQL</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/07/09/python-pymysql学习/" rel="next" title="python-MySQL数据库操作">
+                <i class="fa fa-chevron-left"></i> python-MySQL数据库操作
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2016/10/04/python爬虫入门1-基础/" rel="prev" title="python爬虫入门1-基础">
+                python爬虫入门1-基础 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+  </div>
+
+
+          </div>
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">博主</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/">
+                
+                    <span class="site-state-item-count">96</span>
+                    <span class="site-state-item-name">日志</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-categories">
+                  
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">16</span>
+                    <span class="site-state-item-name">分类</span>
+                  
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">41</span>
+                    <span class="site-state-item-name">标签</span>
+                  
+                </div>
+              
+            </nav>
+          
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+            
+          
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#打开终端，进入root"><span class="nav-number">1.</span> <span class="nav-text">打开终端，进入root</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#进入MySQL"><span class="nav-number">2.</span> <span class="nav-text">进入MySQL</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#MySQL常用操作"><span class="nav-number">3.</span> <span class="nav-text">MySQL常用操作</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#显示数据库"><span class="nav-number">3.1.</span> <span class="nav-text">显示数据库</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#显示数据库中的表"><span class="nav-number">3.2.</span> <span class="nav-text">显示数据库中的表</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#显示数据表的结构"><span class="nav-number">3.3.</span> <span class="nav-text">显示数据表的结构</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#显示表中的记录"><span class="nav-number">3.4.</span> <span class="nav-text">显示表中的记录</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#创建一个新的数据库"><span class="nav-number">3.5.</span> <span class="nav-text">创建一个新的数据库</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#创建一个新的表格"><span class="nav-number">3.6.</span> <span class="nav-text">创建一个新的表格</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#增加记录"><span class="nav-number">3.7.</span> <span class="nav-text">增加记录</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#修改记录"><span class="nav-number">3.8.</span> <span class="nav-text">修改记录</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#删除记录"><span class="nav-number">3.9.</span> <span class="nav-text">删除记录</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#删除表格"><span class="nav-number">3.10.</span> <span class="nav-text">删除表格</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#删除数据库"><span class="nav-number">3.11.</span> <span class="nav-text">删除数据库</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#查看MySQL的编码"><span class="nav-number">4.</span> <span class="nav-text">查看MySQL的编码</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#修改MySQL中某个表格的编码"><span class="nav-number">5.</span> <span class="nav-text">修改MySQL中某个表格的编码</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#将表test的编码方式改为utf8"><span class="nav-number">5.1.</span> <span class="nav-text">将表test的编码方式改为utf8</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#将表test中name字段的编码方式改为utf8"><span class="nav-number">5.2.</span> <span class="nav-text">将表test中name字段的编码方式改为utf8</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#linux下mysql修改配置文件的编码方式"><span class="nav-number">6.</span> <span class="nav-text">linux下mysql修改配置文件的编码方式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#创建表格时默认编码方式为utf8"><span class="nav-number">7.</span> <span class="nav-text">创建表格时默认编码方式为utf8</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">博主</span>
+
+  
+
+  
+</div>
+
+
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动 v3.7.1</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://theme-next.org">NexT.Muse</a> v6.3.0</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+	
+    
+
+    
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=6.3.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=6.3.0"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=6.3.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=6.3.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=6.3.0"></script>
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
