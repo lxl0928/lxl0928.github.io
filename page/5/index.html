@@ -109,12 +109,12 @@
 
 
   <meta property="og:type" content="website">
-<meta property="og:title" content="timilong&#39;s blog">
+<meta property="og:title" content="Timilong&#39;s blog">
 <meta property="og:url" content="http://timilong.com/page/5/index.html">
-<meta property="og:site_name" content="timilong&#39;s blog">
+<meta property="og:site_name" content="Timilong&#39;s blog">
 <meta property="og:locale" content="zh-Hans">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="timilong&#39;s blog">
+<meta name="twitter:title" content="Timilong&#39;s blog">
 
 
 
@@ -131,7 +131,7 @@
   };
 </script>
 
-  <title>timilong's blog</title>
+  <title>Timilong's blog</title>
   
 
 
@@ -190,7 +190,7 @@
     <div class="custom-logo-site-title">
       <a href="/" class="brand" rel="start">
         <span class="logo-line-before"><i></i></span>
-        <span class="site-title">timilong's blog</span>
+        <span class="site-title">Timilong's blog</span>
         <span class="logo-line-after"><i></i></span>
       </a>
     </div>
@@ -289,6 +289,178 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://timilong.com/2017/03/26/leetcode_add_digits/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="博主">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Timilong's blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2017/03/26/leetcode_add_digits/" itemprop="url">
+                  leetcode-'add_digits'
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建于：2017-03-25 21:37:54" itemprop="dateCreated datePublished" datetime="2017-03-25T21:37:54Z">2017-03-25</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Edited on</span>
+                
+                <time title="更新于：2018-07-24 00:18:47" itemprop="dateModified" datetime="2018-07-24T00:18:47Z">2018-07-24</time>
+              
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/leetcode/" itemprop="url" rel="index"><span itemprop="name">leetcode</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="Description"><a href="#Description" class="headerlink" title="Description"></a>Description</h2><figure class="highlight livecodeserver"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Description:</span><br><span class="line">    Given <span class="keyword">a</span> non-negative <span class="keyword">integer</span> <span class="built_in">num</span>, repeatedly <span class="built_in">add</span> all its digits <span class="keyword">until</span> <span class="keyword">the</span> <span class="built_in">result</span> has only <span class="literal">one</span> digit.</span><br></pre></td></tr></table></figure>
+<h2 id="Example"><a href="#Example" class="headerlink" title="Example"></a>Example</h2><figure class="highlight livecodeserver"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Example:</span><br><span class="line">    Given <span class="built_in">num</span> = <span class="number">38</span>, <span class="keyword">the</span> <span class="built_in">process</span> is like: <span class="number">3</span> + <span class="number">8</span> = <span class="number">11</span>, <span class="number">1</span> + <span class="number">1</span> = <span class="number">2.</span> Since <span class="number">2</span> has only <span class="literal">one</span> digit, <span class="literal">return</span> <span class="keyword">it</span>.</span><br></pre></td></tr></table></figure>
+<h2 id="Solution"><a href="#Solution" class="headerlink" title="Solution"></a>Solution</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span><span class="params">(object)</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">addDigits</span><span class="params">(self, num)</span>:</span></span><br><span class="line">        <span class="string">"""</span></span><br><span class="line"><span class="string">        num: &lt;int&gt;</span></span><br><span class="line"><span class="string">        return: &lt;int&gt;</span></span><br><span class="line"><span class="string">        """</span></span><br><span class="line">        <span class="keyword">if</span> num == <span class="number">0</span>:</span><br><span class="line">            <span class="keyword">return</span> <span class="number">0</span></span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            <span class="keyword">return</span> (num<span class="number">-1</span>) % <span class="number">9</span> + <span class="number">1</span>  <span class="comment"># 9是区分最大的一位数</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">solution = Solution()</span><br><span class="line">print(solution.addDigits(<span class="number">38</span>))</span><br></pre></td></tr></table></figure>
+
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://timilong.com/2017/03/21/leetcode-first-bad-version/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -298,7 +470,7 @@
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="timilong's blog">
+      <meta itemprop="name" content="Timilong's blog">
     </span>
 
     
@@ -470,7 +642,7 @@
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="timilong's blog">
+      <meta itemprop="name" content="Timilong's blog">
     </span>
 
     
@@ -640,7 +812,7 @@
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="timilong's blog">
+      <meta itemprop="name" content="Timilong's blog">
     </span>
 
     
@@ -812,7 +984,7 @@
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="timilong's blog">
+      <meta itemprop="name" content="Timilong's blog">
     </span>
 
     
@@ -984,7 +1156,7 @@
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="timilong's blog">
+      <meta itemprop="name" content="Timilong's blog">
     </span>
 
     
@@ -1156,7 +1328,7 @@
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="timilong's blog">
+      <meta itemprop="name" content="Timilong's blog">
     </span>
 
     
@@ -1334,7 +1506,7 @@
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="timilong's blog">
+      <meta itemprop="name" content="Timilong's blog">
     </span>
 
     
@@ -1507,7 +1679,7 @@
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="timilong's blog">
+      <meta itemprop="name" content="Timilong's blog">
     </span>
 
     
@@ -1679,7 +1851,7 @@
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="timilong's blog">
+      <meta itemprop="name" content="Timilong's blog">
     </span>
 
     
@@ -1789,178 +1961,6 @@
             <h2 id="Description"><a href="#Description" class="headerlink" title="Description"></a>Description</h2><figure class="highlight smali"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">Description:</span><br><span class="line">    Given an<span class="built_in"> array </span>nums, </span><br><span class="line">    there is a sliding window of size k which is moving from the very left of the<span class="built_in"> array </span>to the very right. </span><br><span class="line">    You can only see the k numbers in the window. </span><br><span class="line">    Each time the sliding window moves right by one position.</span><br></pre></td></tr></table></figure>
 <h2 id="Example"><a href="#Example" class="headerlink" title="Example"></a>Example</h2><figure class="highlight subunit"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">Example:</span><br><span class="line">    Given nums = [1,3,<span class="string">-1</span>,<span class="string">-3</span>,5,3,6,7], and k = 3.</span><br><span class="line"></span><br><span class="line">        Window position                Max</span><br><span class="line">        ---------------               -----</span><br><span class="line">        [1  3  <span class="string">-1</span>] <span class="string">-3</span>  5  3  6  7       3</span><br><span class="line">         1 [3  <span class="string">-1</span>  <span class="string">-3</span>] 5  3  6  7       3</span><br><span class="line">         1  3 [<span class="string">-1</span>  <span class="string">-3</span>  5] 3  6  7       5</span><br><span class="line">         1  3  <span class="string">-1</span> [<span class="string">-3</span>  5  3] 6  7       5</span><br><span class="line">         1  3  <span class="string">-1</span>  <span class="string">-3</span> [5  3  6] 7       6</span><br><span class="line">         1  3  <span class="string">-1</span>  <span class="string">-3</span>  5 [3  6  7]      7</span><br><span class="line"></span><br><span class="line">    Therefore, return the max sliding window as [3,3,5,5,6,7].</span><br></pre></td></tr></table></figure>
 <h2 id="Solution"><a href="#Solution" class="headerlink" title="Solution"></a>Solution</h2><figure class="highlight vim"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">class Solution(object):</span><br><span class="line">    def maxSlidingWindow(self, nums, <span class="keyword">k</span>):</span><br><span class="line">        <span class="string">""</span><span class="comment">"</span></span><br><span class="line">        num<span class="variable">s:</span> &lt;List[<span class="keyword">int</span>]&gt;</span><br><span class="line">        <span class="keyword">k</span>: <span class="symbol">&lt;int&gt;</span></span><br><span class="line">        <span class="keyword">return</span>: &lt;List[<span class="keyword">int</span>]&gt;</span><br><span class="line">        <span class="string">""</span><span class="comment">"</span></span><br><span class="line">        nums_length = <span class="built_in">len</span>(nums)</span><br><span class="line">        <span class="built_in">count</span> = nums_length - <span class="keyword">k</span> + <span class="number">1</span></span><br><span class="line">        <span class="keyword">res</span> = []</span><br><span class="line">        <span class="keyword">if</span> nums_length == <span class="number">0</span>:</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">res</span></span><br><span class="line">        </span><br><span class="line">        <span class="keyword">for</span> i in <span class="built_in">range</span>(<span class="built_in">count</span>):</span><br><span class="line">            tmp_list = nums[i:i+<span class="keyword">k</span>]</span><br><span class="line">            <span class="keyword">res</span>.<span class="keyword">append</span>(<span class="built_in">max</span>(tmp_list))</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">res</span></span><br><span class="line"></span><br><span class="line">solution = Solution()</span><br><span class="line">nums = [<span class="number">1</span>, <span class="number">3</span>, -<span class="number">1</span>, -<span class="number">3</span>, <span class="number">5</span>, <span class="number">3</span>, <span class="number">6</span>, <span class="number">7</span>]</span><br><span class="line"><span class="keyword">print</span>(solution.maxSlidingWindow(nums, <span class="keyword">k</span>=<span class="number">3</span>))</span><br><span class="line">nums = [<span class="number">1</span>, <span class="number">2</span>]</span><br><span class="line"><span class="keyword">print</span>(solution.maxSlidingWindow(nums, <span class="keyword">k</span>=<span class="number">1</span>))</span><br></pre></td></tr></table></figure>
-
-          
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://timilong.com/2017/02/04/leetcode-integer-to-english-words/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="博主">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="timilong's blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2017/02/04/leetcode-integer-to-english-words/" itemprop="url">
-                  leetcode-'integer-to-english-words'
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-
-              
-                
-              
-
-              <time title="创建于：2017-02-03 21:37:54" itemprop="dateCreated datePublished" datetime="2017-02-03T21:37:54Z">2017-02-03</time>
-            
-
-            
-              
-
-              
-                
-                <span class="post-meta-divider">|</span>
-                
-
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">Edited on</span>
-                
-                <time title="更新于：2018-07-24 00:18:47" itemprop="dateModified" datetime="2018-07-24T00:18:47Z">2018-07-24</time>
-              
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/leetcode/" itemprop="url" rel="index"><span itemprop="name">leetcode</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h2 id="Description"><a href="#Description" class="headerlink" title="Description"></a>Description</h2><figure class="highlight applescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Description:</span><br><span class="line">    Convert a non-negative <span class="built_in">integer</span> <span class="keyword">to</span> <span class="keyword">its</span> english <span class="built_in">words</span> representation. </span><br><span class="line">    Given input <span class="keyword">is</span> guaranteed <span class="keyword">to</span> be <span class="keyword">less than</span> <span class="number">2</span>(<span class="number">31</span>次方) - <span class="number">1.</span></span><br></pre></td></tr></table></figure>
-<h2 id="Example"><a href="#Example" class="headerlink" title="Example"></a>Example</h2><figure class="highlight coq"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">Example</span>:</span><br><span class="line">    <span class="number">123</span> -&gt; <span class="string">"One Hundred Twenty Three"</span></span><br><span class="line">    <span class="number">12345</span> -&gt; <span class="string">"Twelve Thousand Three Hundred Forty Five"</span></span><br><span class="line">    <span class="number">1234567</span> -&gt; <span class="string">"One Million Two Hundred Thirty Four Thousand Five Hundred Sixty Seven"</span></span><br></pre></td></tr></table></figure>
-<h2 id="Solution"><a href="#Solution" class="headerlink" title="Solution"></a>Solution</h2><figure class="highlight dart"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span>(<span class="title">object</span>):</span></span><br><span class="line"><span class="class">    <span class="title">def</span> <span class="title">numberToWords</span>(<span class="title">self</span>, <span class="title">num</span>):</span></span><br><span class="line"><span class="class">        """</span></span><br><span class="line"><span class="class">        :<span class="title">type</span> <span class="title">num</span>: <span class="title">int</span></span></span><br><span class="line"><span class="class">        :<span class="title">rtype</span>: <span class="title">str</span></span></span><br><span class="line"><span class="class">        """</span></span><br><span class="line"><span class="class">        <span class="title">num1_dict</span> = </span>&#123;</span><br><span class="line">            <span class="number">0</span>: <span class="string">'Zero'</span>, <span class="number">1</span>: <span class="string">'One'</span>, <span class="number">2</span>: <span class="string">'Two'</span>,</span><br><span class="line">            <span class="number">3</span>: <span class="string">'Three'</span>, <span class="number">4</span>: <span class="string">'Four'</span>, <span class="number">5</span>: <span class="string">'Five'</span>,</span><br><span class="line">            <span class="number">6</span>: <span class="string">'Six'</span>, <span class="number">7</span>: <span class="string">'Seven'</span>, <span class="number">8</span>: <span class="string">'Eight'</span>,</span><br><span class="line">            <span class="number">8</span>: <span class="string">'Eight'</span>, <span class="number">9</span>: <span class="string">'Nine'</span>, <span class="number">10</span>: <span class="string">'Ten'</span>,</span><br><span class="line">            <span class="number">11</span>: <span class="string">'Eleven'</span>, <span class="number">12</span>: <span class="string">'Twelve'</span>, <span class="number">13</span>: <span class="string">'Thirteen'</span>,</span><br><span class="line">            <span class="number">14</span>: <span class="string">'Fourteen'</span>, <span class="number">15</span>: <span class="string">'Fifteen'</span>, <span class="number">16</span>: <span class="string">'Sixteen'</span>,</span><br><span class="line">            <span class="number">17</span>: <span class="string">'Seventeen'</span>, <span class="number">18</span>: <span class="string">'Eighteen'</span>, <span class="number">19</span>: <span class="string">'Nineteen'</span>,</span><br><span class="line">            <span class="number">20</span>: <span class="string">'Twenty'</span>, <span class="number">30</span>: <span class="string">'Thirty'</span>, <span class="number">40</span>: <span class="string">'Forty'</span>,</span><br><span class="line">            <span class="number">50</span>: <span class="string">'Fifty'</span>, <span class="number">60</span>: <span class="string">'Sixty'</span>, <span class="number">70</span>: <span class="string">'Seventy'</span>,</span><br><span class="line">            <span class="number">80</span>: <span class="string">'Eighty'</span>, <span class="number">90</span>: <span class="string">'Ninety'</span>,</span><br><span class="line">        &#125;</span><br><span class="line">        def int2Str(<span class="built_in">num</span>):</span><br><span class="line">            <span class="keyword">if</span> <span class="built_in">num</span> &gt;= <span class="number">1000000000</span>:</span><br><span class="line">                int_n = <span class="built_in">num</span> <span class="comment">// 1000000000</span></span><br><span class="line">                <span class="keyword">return</span> int2Str(int_n) + <span class="string">" Billion"</span> + int2Str(<span class="built_in">num</span> - int_n * <span class="number">1000000000</span>)</span><br><span class="line">            elif <span class="built_in">num</span> &gt;= <span class="number">1000000</span>:</span><br><span class="line">                int_n = <span class="built_in">num</span> <span class="comment">// 1000000</span></span><br><span class="line">                <span class="keyword">return</span> <span class="string">" "</span> + int2Str(int_n) + <span class="string">" Million"</span> + int2Str(<span class="built_in">num</span> - int_n * <span class="number">1000000</span>)</span><br><span class="line">            elif <span class="built_in">num</span> &gt;= <span class="number">1000</span>:</span><br><span class="line">                int_n = <span class="built_in">num</span> <span class="comment">// 1000</span></span><br><span class="line">                <span class="keyword">return</span> <span class="string">" "</span> + int2Str(int_n) + <span class="string">" Thousand"</span> + int2Str(<span class="built_in">num</span> - int_n * <span class="number">1000</span>)</span><br><span class="line">            elif <span class="built_in">num</span> &gt;= <span class="number">100</span>:</span><br><span class="line">                int_n = <span class="built_in">num</span> <span class="comment">// 100</span></span><br><span class="line">                <span class="keyword">return</span> <span class="string">" "</span> + num1_dict[int_n] + <span class="string">" Hundred"</span> + int2Str(<span class="built_in">num</span> - int_n * <span class="number">100</span>)</span><br><span class="line">            elif <span class="built_in">num</span> &gt;= <span class="number">20</span>:</span><br><span class="line">                int_n = <span class="built_in">num</span> <span class="comment">// 10 </span></span><br><span class="line">                <span class="keyword">return</span> <span class="string">" "</span> + num1_dict[int_n * <span class="number">10</span>] + int2Str(<span class="built_in">num</span> - int_n*<span class="number">10</span>)</span><br><span class="line">            elif <span class="built_in">num</span> &gt;= <span class="number">1</span>:</span><br><span class="line">                <span class="keyword">return</span> <span class="string">" "</span> + num1_dict[<span class="built_in">num</span>] </span><br><span class="line">            <span class="keyword">else</span>:</span><br><span class="line">                <span class="keyword">return</span> <span class="string">""</span></span><br><span class="line">        <span class="keyword">if</span> <span class="built_in">num</span> <span class="keyword">in</span> num1_dict: </span><br><span class="line">            <span class="keyword">return</span> num1_dict[<span class="built_in">num</span>]</span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            <span class="keyword">return</span> int2Str(<span class="built_in">num</span>).lstrip().replace(<span class="string">'  '</span>, <span class="string">' '</span>) </span><br><span class="line">solution = Solution()</span><br><span class="line"><span class="built_in">print</span>(solution.numberToWords(<span class="number">1</span>))</span><br><span class="line"><span class="built_in">print</span>(solution.numberToWords(<span class="number">12</span>))</span><br><span class="line"><span class="built_in">print</span>(solution.numberToWords(<span class="number">123</span>))</span><br><span class="line"><span class="built_in">print</span>(solution.numberToWords(<span class="number">1234</span>))</span><br><span class="line"><span class="built_in">print</span>(solution.numberToWords(<span class="number">12345</span>))</span><br><span class="line"><span class="built_in">print</span>(solution.numberToWords(<span class="number">123456</span>))</span><br><span class="line"><span class="built_in">print</span>(solution.numberToWords(<span class="number">1234567</span>))</span><br><span class="line"><span class="built_in">print</span>(solution.numberToWords(<span class="number">12345678</span>))</span><br><span class="line"><span class="built_in">print</span>(solution.numberToWords(<span class="number">123456789</span>))</span><br><span class="line"><span class="built_in">print</span>(solution.numberToWords(<span class="number">1234567890</span>))</span><br></pre></td></tr></table></figure>
 
           
         
