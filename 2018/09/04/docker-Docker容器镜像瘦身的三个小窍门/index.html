@@ -1,0 +1,958 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=6.3.0" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=6.3.0">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=6.3.0">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=6.3.0">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=6.3.0" color="#222">
+
+
+
+
+
+
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    version: '6.3.0',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: false,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  
+
+
+
+
+  <meta name="description" content="在构建Docker容器时，我们应尽可能减小镜像的大小。使用共享层的镜像尺寸越小，其传输和部署速度越快。 不过在每个RUN语句都会创建一个新层的情况下，如果我们需要获取镜像完成前的中间产物，又如何控制其大小呢？">
+<meta name="keywords" content="Docker">
+<meta property="og:type" content="article">
+<meta property="og:title" content="docker-Docker容器镜像瘦身的三个小窍门">
+<meta property="og:url" content="http://timilong.com/2018/09/04/docker-Docker容器镜像瘦身的三个小窍门/index.html">
+<meta property="og:site_name" content="Timilong&#39;s blog">
+<meta property="og:description" content="在构建Docker容器时，我们应尽可能减小镜像的大小。使用共享层的镜像尺寸越小，其传输和部署速度越快。 不过在每个RUN语句都会创建一个新层的情况下，如果我们需要获取镜像完成前的中间产物，又如何控制其大小呢？">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="http://omdt9pa3d.bkt.clouddn.com/docker-%E5%88%86%E5%B1%82">
+<meta property="og:image" content="http://omdt9pa3d.bkt.clouddn.com/docke-%E5%90%88%E5%B9%B6%E5%B1%82">
+<meta property="og:updated_time" content="2018-09-03T11:57:36.589Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="docker-Docker容器镜像瘦身的三个小窍门">
+<meta name="twitter:description" content="在构建Docker容器时，我们应尽可能减小镜像的大小。使用共享层的镜像尺寸越小，其传输和部署速度越快。 不过在每个RUN语句都会创建一个新层的情况下，如果我们需要获取镜像完成前的中间产物，又如何控制其大小呢？">
+<meta name="twitter:image" content="http://omdt9pa3d.bkt.clouddn.com/docker-%E5%88%86%E5%B1%82">
+
+
+
+
+
+
+  <link rel="canonical" href="http://timilong.com/2018/09/04/docker-Docker容器镜像瘦身的三个小窍门/"/>
+
+
+
+<script type="text/javascript" id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>docker-Docker容器镜像瘦身的三个小窍门 | Timilong's blog</title>
+  
+
+
+
+
+
+
+
+
+
+  <noscript>
+  <style type="text/css">
+    .use-motion .motion-element,
+    .use-motion .brand,
+    .use-motion .menu-item,
+    .sidebar-inner,
+    .use-motion .post-block,
+    .use-motion .pagination,
+    .use-motion .comments,
+    .use-motion .post-header,
+    .use-motion .post-body,
+    .use-motion .collection-title { opacity: initial; }
+
+    .use-motion .logo,
+    .use-motion .site-title,
+    .use-motion .site-subtitle {
+      opacity: initial;
+      top: initial;
+    }
+
+    .use-motion {
+      .logo-line-before i { left: initial; }
+      .logo-line-after i { right: initial; }
+    }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Timilong's blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+    
+      
+        <p class="site-subtitle">Cease to struggle and you cease to live.--Thomas Carlyle</p>
+      
+    
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="Toggle navigation bar">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+          
+          <li class="menu-item menu-item-home">
+    <a href="/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-home"></i> <br />首页</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+    <a href="/archives/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />归档</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-about">
+    <a href="/about/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-user"></i> <br />关于</a>
+  </li>
+
+      
+      
+    </ul>
+  
+
+  
+    
+
+  
+
+  
+</nav>
+
+
+
+  
+
+
+
+</div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://timilong.com/2018/09/04/docker-Docker容器镜像瘦身的三个小窍门/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="博主">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Timilong's blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">docker-Docker容器镜像瘦身的三个小窍门
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建于：2018-09-03 19:38:09 / 更新于：11:57:36" itemprop="dateCreated datePublished" datetime="2018-09-03T19:38:09Z">2018-09-03</time>
+            
+
+            
+              
+
+              
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+              <div class="post-description">在构建Docker容器时，我们应尽可能减小镜像的大小。使用共享层的镜像尺寸越小，其传输和部署速度越快。 不过在每个RUN语句都会创建一个新层的情况下，如果我们需要获取镜像完成前的中间产物，又如何控制其大小呢？</div>
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>转载自: 微信公众号<a href="https://mp.weixin.qq.com/s/Iwn4bMQwD-HEK-WI1494GQ" target="_blank" rel="noopener">Docker 梁晓勇 译</a></p>
+<h3 id="介绍"><a href="#介绍" class="headerlink" title="介绍"></a>介绍</h3><p>在构建Docker容器时，我们应尽可能减小镜像的大小。使用共享层的镜像尺寸越小，其传输和部署速度越快。</p>
+<p>不过在每个RUN语句都会创建一个新层的情况下，如果我们需要获取镜像完成前的中间产物，又如何控制其大小呢？</p>
+<p>你可能已经注意到市面上多数的Dockerfile都会使用类似这样的招数：<br><figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">FROM</span> ubuntu</span><br><span class="line"><span class="builtin-name">RUN</span> apt-<span class="builtin-name">get</span> update &amp;&amp; apt-<span class="builtin-name">get</span> install vim</span><br></pre></td></tr></table></figure></p>
+<p>为什么要使用<code>&amp;&amp;</code>，而不像这样运行两个<code>RUN</code>语句？<br><figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">FROM</span> ubuntu</span><br><span class="line"><span class="builtin-name">RUN</span> apt-<span class="builtin-name">get</span> update</span><br><span class="line"><span class="builtin-name">RUN</span> apt-<span class="builtin-name">get</span> install vim</span><br></pre></td></tr></table></figure></p>
+<p>从Docker 1.10起，COPY、ADD和RUN语句会在镜像中添加新层。上述示例将创建两个层，而不是一个。<br><img src="http://omdt9pa3d.bkt.clouddn.com/docker-%E5%88%86%E5%B1%82" alt="分层"></p>
+<h3 id="层跟Git提交类似。"><a href="#层跟Git提交类似。" class="headerlink" title="层跟Git提交类似。"></a>层跟Git提交类似。</h3><p>Docker层存储了镜像上一版本和当前版本之间的差异。与Git提交类似，层有利于与其他仓库或镜像进行共享。</p>
+<p>实际上，当我们从Registry请求镜像时，我们只会下载那些不存在的层。这种方式让镜像共享更高效。</p>
+<p>但是，层是有代价的。</p>
+<p>层会占用空间，层越多，最终的镜像就越大。Git仓库在这方面是相似的。因为Git需要保存提交之间的所有变更，仓库的大小会随着层数的增加而增加。<br>在过去，做法就是像第一个例子那样将几个RUN语句合并在一行中。</p>
+<h3 id="使用Docker多阶段构建将层合并为一"><a href="#使用Docker多阶段构建将层合并为一" class="headerlink" title="使用Docker多阶段构建将层合并为一"></a>使用Docker多阶段构建将层合并为一</h3><p>当Git仓库变得越来越大时，我们可以放弃所有过往信息，将历史提交合并成一个。</p>
+<p>使用Docker的多阶段构建，我们也能实现类似的功能。</p>
+<p>接下来的例子中，我们将构建一个Node.js容器。</p>
+<p>首先是index.js文件：<br><figure class="highlight coffeescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">const express = <span class="built_in">require</span>(<span class="string">'express'</span>)</span><br><span class="line">const app = express()</span><br><span class="line"></span><br><span class="line">app.get(<span class="string">'/'</span>, <span class="function"><span class="params">(req, res)</span> =&gt;</span> res.send(<span class="string">'Hello World!'</span>))</span><br><span class="line"></span><br><span class="line">app.listen(<span class="number">3000</span>, <span class="function"><span class="params">()</span> =&gt;</span> &#123;</span><br><span class="line">  <span class="built_in">console</span>.log(`<span class="javascript">Example app listening on port <span class="number">3000</span>!</span>`)</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure></p>
+<p>接着是package.json文件：<br><figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  <span class="attr">"name"</span>: <span class="string">"hello-world"</span>,</span><br><span class="line">  <span class="attr">"version"</span>: <span class="string">"1.0.0"</span>,</span><br><span class="line">  <span class="attr">"main"</span>: <span class="string">"index.js"</span>,</span><br><span class="line">  <span class="attr">"dependencies"</span>: &#123;</span><br><span class="line">    <span class="attr">"express"</span>: <span class="string">"^4.16.2"</span></span><br><span class="line">  &#125;,</span><br><span class="line">  <span class="attr">"scripts"</span>: &#123;</span><br><span class="line">    <span class="attr">"start"</span>: <span class="string">"node index.js"</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>通过以下Dockerfile来打包该应用：<br><figure class="highlight dockerfile"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">FROM</span> node:<span class="number">8</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">EXPOSE</span> <span class="number">3000</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">WORKDIR</span><span class="bash"> /app</span></span><br><span class="line"><span class="bash">COPY package.json index.js ./</span></span><br><span class="line"><span class="bash">RUN npm install</span></span><br><span class="line"><span class="bash"></span></span><br><span class="line"><span class="bash">CMD [<span class="string">"npm"</span>, <span class="string">"start"</span>]</span></span><br></pre></td></tr></table></figure></p>
+<p>构建镜像：<br><figure class="highlight crmsh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ docker build -t <span class="keyword">node</span><span class="title">-vanilla</span> .</span><br></pre></td></tr></table></figure></p>
+<p>然后我们可以这么验证它：<br><figure class="highlight crmsh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ docker run -p <span class="number">3000</span>:<span class="number">3000</span> -ti --rm --init <span class="keyword">node</span><span class="title">-vanilla</span></span><br></pre></td></tr></table></figure></p>
+<p>访问 <a href="http://localhost:3000" target="_blank" rel="noopener">http://localhost:3000</a> 应该就能看到“Hello World!”欢迎语。</p>
+<p>这个Dockerfile文件中有一个COPY和一个RUN语句。在我们的预期中，在基础镜像上应该至少有两层：<br><figure class="highlight stata"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">$ docker history node-vanilla</span><br><span class="line">IMAGE          CREATED <span class="keyword">BY</span>                                      SIZE</span><br><span class="line">075d229d3f48   /bin/<span class="keyword">sh</span> -c #(nop)  CMD [<span class="string">"npm"</span> <span class="string">"start"</span>]          0B</span><br><span class="line">bc8c3cc813ae   /bin/<span class="keyword">sh</span> -c npm install                          2.91MB</span><br><span class="line">bac31afb6f42   /bin/<span class="keyword">sh</span> -c #(nop) <span class="keyword">COPY</span> multi:3071ddd474429e1…   364B</span><br><span class="line">500a9fbef90e   /bin/<span class="keyword">sh</span> -c #(nop) WORKDIR /<span class="keyword">app</span>                  0B</span><br><span class="line">78b28027dfbf   /bin/<span class="keyword">sh</span> -c #(nop)  EXPOSE 3000                  0B</span><br><span class="line">b87c2ad8344d   /bin/<span class="keyword">sh</span> -c #(nop)  CMD [<span class="string">"node"</span>]                 0B</span><br><span class="line">&lt;missing&gt;      /bin/<span class="keyword">sh</span> -c <span class="keyword">set</span> -<span class="keyword">ex</span>   &amp;&amp; <span class="keyword">for</span> key <span class="keyword">in</span>     6A010…   4.17MB</span><br><span class="line">&lt;missing&gt;      /bin/<span class="keyword">sh</span> -c #(nop)  ENV YARN_VERSION=1.3.2       0B</span><br><span class="line">&lt;missing&gt;      /bin/<span class="keyword">sh</span> -c <span class="keyword">ARCH</span>= &amp;&amp; dpkgArch="$(dpkg --<span class="keyword">print</span>…   56.9MB</span><br><span class="line">&lt;missing&gt;      /bin/<span class="keyword">sh</span> -c #(nop)  ENV NODE_VERSION=8.9.4       0B</span><br><span class="line">&lt;missing&gt;      /bin/<span class="keyword">sh</span> -c <span class="keyword">set</span> -<span class="keyword">ex</span>   &amp;&amp; <span class="keyword">for</span> key <span class="keyword">in</span>     94AE3…   129kB</span><br><span class="line">&lt;missing&gt;      /bin/<span class="keyword">sh</span> -c groupadd --gid 1000 node   &amp;&amp; <span class="keyword">use</span>…   335kB</span><br><span class="line">&lt;missing&gt;      /bin/<span class="keyword">sh</span> -c <span class="keyword">set</span> -<span class="keyword">ex</span>;  apt-get <span class="keyword">update</span>;  apt-<span class="keyword">ge</span>…   324MB</span><br><span class="line">&lt;missing&gt;      /bin/<span class="keyword">sh</span> -c apt-get <span class="keyword">update</span> &amp;&amp; apt-get install…   123MB</span><br><span class="line">&lt;missing&gt;      /bin/<span class="keyword">sh</span> -c <span class="keyword">set</span> -<span class="keyword">ex</span>;  <span class="keyword">if</span> ! command -v gpg &gt; /…   0B</span><br><span class="line">&lt;missing&gt;      /bin/<span class="keyword">sh</span> -c apt-get <span class="keyword">update</span> &amp;&amp; apt-get install…   44.6MB</span><br><span class="line">&lt;missing&gt;      /bin/<span class="keyword">sh</span> -c #(nop)  CMD [<span class="string">"bash"</span>]                 0B</span><br><span class="line">&lt;missing&gt;      /bin/<span class="keyword">sh</span> -c #(nop) ADD <span class="keyword">file</span>:1dd78a123212328bd…   123MB</span><br></pre></td></tr></table></figure></p>
+<p>实际上，最终的镜像上添加了五个新层：Dockerfile里的每条语句一层。</p>
+<p>我们来试试Docker的多阶段构建。</p>
+<p>我们使用的Dockerfile与之前相同，不过分成了两部分：<br><figure class="highlight dockerfile"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">FROM</span> node:<span class="number">8</span> as build</span><br><span class="line"></span><br><span class="line"><span class="keyword">WORKDIR</span><span class="bash"> /app</span></span><br><span class="line"><span class="bash">COPY package.json index.js ./</span></span><br><span class="line"><span class="bash">RUN npm install</span></span><br><span class="line"><span class="bash"></span></span><br><span class="line"><span class="bash">FROM node:8</span></span><br><span class="line"><span class="bash"></span></span><br><span class="line"><span class="bash">COPY --from=build /app /</span></span><br><span class="line"><span class="bash">EXPOSE 3000</span></span><br><span class="line"><span class="bash">CMD [<span class="string">"index.js"</span>]</span></span><br></pre></td></tr></table></figure></p>
+<p>Dockerfile的第一部分创建了三个层。接着这些层被合并复制到第二个阶段中。然后又在这个镜像之上添加了两层，最终变成三个层。<br><img src="http://omdt9pa3d.bkt.clouddn.com/docke-%E5%90%88%E5%B9%B6%E5%B1%82" alt="合并层"></p>
+<p>现在来验证一下。首先，构建该容器：<br><figure class="highlight crmsh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ docker build -t <span class="keyword">node</span><span class="title">-multi-stage</span> .</span><br></pre></td></tr></table></figure></p>
+<p>查看其构建历史：<br><figure class="highlight n1ql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">$ docker history node-multi-stage</span><br><span class="line">IMAGE          CREATED BY                                      SIZE</span><br><span class="line">331b81a245b1   /bin/sh -c #(nop)  CMD ["<span class="keyword">index</span>.js<span class="string">"]             0B</span></span><br><span class="line"><span class="string">bdfc932314af   /bin/sh -c #(nop)  EXPOSE 3000                  0B</span></span><br><span class="line"><span class="string">f8992f6c62a6   /bin/sh -c #(nop) COPY dir:e2b57dff89be62f77…   1.62MB</span></span><br><span class="line"><span class="string">b87c2ad8344d   /bin/sh -c #(nop)  CMD ["</span>node<span class="string">"]                 0B</span></span><br><span class="line"><span class="string">&lt;missing&gt;      /bin/sh -c set -ex   &amp;&amp; for key in     6A010…   4.17MB</span></span><br><span class="line"><span class="string">&lt;missing&gt;      /bin/sh -c #(nop)  ENV YARN_VERSION=1.3.2       0B</span></span><br><span class="line"><span class="string">&lt;missing&gt;      /bin/sh -c ARCH= &amp;&amp; dpkgArch="</span>$(dpkg --print…   <span class="number">56.9</span>MB</span><br><span class="line">&lt;<span class="literal">missing</span>&gt;      /bin/sh -c #(nop)  ENV NODE_VERSION=<span class="number">8.9</span><span class="number">.4</span>       <span class="number">0</span>B</span><br><span class="line">&lt;<span class="literal">missing</span>&gt;      /bin/sh -c <span class="keyword">set</span> -ex   &amp;&amp; <span class="keyword">for</span> <span class="keyword">key</span> <span class="keyword">in</span>     <span class="number">94</span>AE3…   <span class="number">129</span>kB</span><br><span class="line">&lt;<span class="literal">missing</span>&gt;      /bin/sh -c groupadd --gid <span class="number">1000</span> node   &amp;&amp; <span class="keyword">use</span>…   <span class="number">335</span>kB</span><br><span class="line">&lt;<span class="literal">missing</span>&gt;      /bin/sh -c <span class="keyword">set</span> -ex;  apt-get <span class="keyword">update</span>;  apt-ge…   324MB</span><br><span class="line">&lt;missing&gt;      /bin/sh -c apt-get <span class="keyword">update</span> &amp;&amp; apt-get install…   <span class="number">123</span>MB</span><br><span class="line">&lt;<span class="literal">missing</span>&gt;      /bin/sh -c <span class="keyword">set</span> -ex;  if ! command -v gpg &gt; /…   0B</span><br><span class="line">&lt;missing&gt;      /bin/sh -c apt-get <span class="keyword">update</span> &amp;&amp; apt-get install…   <span class="number">44.6</span>MB</span><br><span class="line">&lt;<span class="literal">missing</span>&gt;      /bin/sh -c #(nop)  CMD [<span class="string">"bash"</span>]                 <span class="number">0</span>B</span><br><span class="line">&lt;<span class="literal">missing</span>&gt;      /bin/sh -c #(nop) ADD file:<span class="number">1</span>dd78a123212328bd…   <span class="number">123</span>MB</span><br></pre></td></tr></table></figure></p>
+<p>符合预期！文件大小有变化么？<br><figure class="highlight crmsh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$ docker images | grep <span class="keyword">node</span><span class="title">-</span></span><br><span class="line"><span class="title">node-multi-stage</span>   <span class="number">331</span>b81a245b1   <span class="number">678M</span>B</span><br><span class="line"><span class="keyword">node</span><span class="title">-vanilla</span>       <span class="number">075</span>d229d3f48   <span class="number">679M</span>B</span><br></pre></td></tr></table></figure></p>
+<p>是的，新的镜像要小一点点。</p>
+<p>看起来还不错！尽管应用本身已经做了精简，我们还是减少了其整体大小。</p>
+<p>不过，镜像依然很大！</p>
+<p>要让它变得更小一点，我们还能做点什么？</p>
+<h3 id="使用Distroless移除容器中的所有累赘"><a href="#使用Distroless移除容器中的所有累赘" class="headerlink" title="使用Distroless移除容器中的所有累赘"></a>使用Distroless移除容器中的所有累赘</h3><p>目前的镜像不仅含有Node.js，还含有yarn、npm、bash以及大量其他二进制文件。同时，它是基于Ubuntu的。因此拥有一个完整的操作系统以及所有的二进制文件和实用程序。</p>
+<p>这些在运行容器时都不是必需的。我们唯一的依赖项是Node.js。</p>
+<p>Docker容器应封装在单一进程中，且只包含运行所需的最精简内容。我们不需要一个操作系统。</p>
+<p>实际上，除了Node.js，其他都可以移除。</p>
+<p>那么要怎么做呢？</p>
+<p>幸运的是，Google也有同样的想法，他们带来了GoogleCloudPlatform/distroless[1]。</p>
+<p>有如其仓库说明所述：<br>“Distroless”镜像只包含应用程序及其运行时依赖。不包含包管理器、Shell以及其他标准Linux发行版中能找到的其他程序。<br>这正是我们所需要的！</p>
+<p>我们可以调整Dockerfile文件来使用这个新的基础镜像：<br><figure class="highlight dockerfile"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">FROM</span> node:<span class="number">8</span> as build</span><br><span class="line"></span><br><span class="line"><span class="keyword">WORKDIR</span><span class="bash"> /app</span></span><br><span class="line"><span class="bash">COPY package.json index.js ./</span></span><br><span class="line"><span class="bash">RUN npm install</span></span><br><span class="line"><span class="bash"></span></span><br><span class="line"><span class="bash">FROM gcr.io/distroless/nodejs</span></span><br><span class="line"><span class="bash"></span></span><br><span class="line"><span class="bash">COPY --from=build /app /</span></span><br><span class="line"><span class="bash">EXPOSE 3000</span></span><br><span class="line"><span class="bash">CMD [<span class="string">"index.js"</span>]</span></span><br></pre></td></tr></table></figure></p>
+<p>然后像平常那样编译镜像：<br><figure class="highlight crmsh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ docker build -t <span class="keyword">node</span><span class="title">-distroless</span> .</span><br></pre></td></tr></table></figure></p>
+<p>应用程序应能正常运行。要验证这一点，可以像这样运行容器：<br><figure class="highlight crmsh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ docker run -p <span class="number">3000</span>:<span class="number">3000</span> -ti --rm --init <span class="keyword">node</span><span class="title">-distroless</span></span><br></pre></td></tr></table></figure></p>
+<p>访问 <a href="http://localhost:3000" target="_blank" rel="noopener">http://localhost:3000</a> 页面即可。</p>
+<p>这个未包含额外程序的镜像会多小呢？</p>
+<p>$ docker images | grep node-distroless<br>node-distroless   7b4db3b7f1e5   76.7MB</p>
+<p>仅仅76.76MB！</p>
+<p>比前一个镜像少了600MB！</p>
+<p>真是个好消息！不过在使用Distroless时有些事项需要注意。</p>
+<p>容器运行时，如果想对其进行检查，可以这么做：<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> docker <span class="built_in">exec</span> -ti &lt;替换成_docker_id&gt; bash</span></span><br></pre></td></tr></table></figure></p>
+<p>上述命令将附加到容器中并运行bash，这与发起一个SSH会话相近。</p>
+<p>不过由于Distroless是原始操作系统的精简版本，不包含额外的程序。容器里并没有Shell！</p>
+<p>如果没有Shell，要如何附加到运行的容器中呢？</p>
+<p>好消息和坏消息是，做不到。</p>
+<p>坏消息是我们只能运行容器中的二进制程序。这里能运行的只有Node.js：<br><figure class="highlight crmsh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ docker exec -ti <span class="tag">&lt;替换成_docker_id&gt;</span> <span class="keyword">node</span><span class="title"></span></span><br></pre></td></tr></table></figure></p>
+<p>好消息是因为没有Shell，如果黑客入侵了我们的应用程序并获取了容器的访问权限，他也无法造成太大的损害。也就是说，程序越少则尺寸越小也越安全。不过，代价是调试更麻烦。<br>需要注意的是，我们不应该在生产环境中附加到容器中进行调试，而应依靠正确的日志和监控。<br>如果我们既希望能调试，又关心尺寸大小，又该怎么办？</p>
+<h3 id="使用Alpine作为更小的基础镜像"><a href="#使用Alpine作为更小的基础镜像" class="headerlink" title="使用Alpine作为更小的基础镜像"></a>使用Alpine作为更小的基础镜像</h3><p>我们可以使用Alpine取代Distroless来作为基础镜像。</p>
+<p>Alpine Linux[2]是：</p>
+<blockquote>
+<p>一个基于musl libc[3]和busybox[4]、面向安全的轻量级Linux发行版。</p>
+</blockquote>
+<p>换言之，它是一个尺寸更小、更安全的Linux发行版。</p>
+<p>是否言过其实，我们来检查一下这个镜像是否更小。</p>
+<p>修改之前的Dockerfile并使用node:8-alpine：<br><figure class="highlight dockerfile"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">FROM</span> node:<span class="number">8</span> as build</span><br><span class="line"></span><br><span class="line"><span class="keyword">WORKDIR</span><span class="bash"> /app</span></span><br><span class="line"><span class="bash">COPY package.json index.js ./</span></span><br><span class="line"><span class="bash">RUN npm install</span></span><br><span class="line"><span class="bash"></span></span><br><span class="line"><span class="bash">FROM node:8-alpine</span></span><br><span class="line"><span class="bash"></span></span><br><span class="line"><span class="bash">COPY --from=build /app /</span></span><br><span class="line"><span class="bash">EXPOSE 3000</span></span><br><span class="line"><span class="bash">CMD [<span class="string">"npm"</span>, <span class="string">"start"</span>]</span></span><br></pre></td></tr></table></figure></p>
+<p>构建该镜像：<br><figure class="highlight crmsh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ docker build -t <span class="keyword">node</span><span class="title">-alpine</span> .</span><br></pre></td></tr></table></figure></p>
+<p>现在看一下它的大小：<br><figure class="highlight crmsh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ docker images | grep <span class="keyword">node</span><span class="title">-alpine</span></span><br><span class="line"><span class="keyword">node</span><span class="title">-alpine</span>   aa1f85f8e724   <span class="number">69.7M</span>B</span><br></pre></td></tr></table></figure></p>
+<p>69.7MB！</p>
+<p>甚至比Distroless镜像还要小！</p>
+<p>我们来看看能不能附加运行中的容器。</p>
+<p>首先，启动容器：<br><figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ docker <span class="builtin-name">run</span> -p 3000:3000 -ti --rm --init node-alpine</span><br><span class="line">Example app listening on<span class="built_in"> port </span>3000!</span><br></pre></td></tr></table></figure></p>
+<p>现在附加到容器中：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ docker <span class="built_in">exec</span> -ti 9d8e97e307d7 bash</span><br><span class="line">OCI runtime <span class="built_in">exec</span> failed: <span class="built_in">exec</span> failed: container_linux.go:296: starting container process caused <span class="string">"exec: \"bash\": executable file not found in <span class="variable">$PATH</span>"</span>: unknown</span><br></pre></td></tr></table></figure></p>
+<p>运气不佳。但或许容器有sh这个Shell？<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> docker <span class="built_in">exec</span> -ti 9d8e97e307d7 sh</span></span><br><span class="line">/ #</span><br></pre></td></tr></table></figure></p>
+<p>很好！我们既可以附加到运行的容器中，得到的镜像尺寸也很小。</p>
+<p>听起来很棒，不过有一个小问题。</p>
+<p>Alpine基础镜像是基于muslc的，这是一个C的替代标准库。</p>
+<p>但是，多数Linux发行版，比如Ubuntu、Debian及CentOS都是基于glibc的。这两个库照理应该实现了相同的接口。</p>
+<p>不过，它们的目标不同：</p>
+<ul>
+<li>glibc最常用，速度更快</li>
+<li>muslc占用空间更少，以安全为核心</li>
+</ul>
+<p>在编译应用程序时，多数情况下是使用某个libc来编译的。如果想在其他libc中使用，只能重新编译。</p>
+<p>也就是说，使用Alpine镜像来构建容器可能会造成不可预期的问题，因为使用的是不同的C标准库。</p>
+<p>特别是在处理预编译的二进制文件时，比如Node.js的C++扩展，这个差异更明显。</p>
+<p>举个例子，PhantomJS预置包就无法在Alpine中工作。</p>
+<h3 id="怎么选择基础镜像？"><a href="#怎么选择基础镜像？" class="headerlink" title="怎么选择基础镜像？"></a>怎么选择基础镜像？</h3><p>Alpine、Distroless或是原生镜像到底用哪个？</p>
+<p>如果是在生产环境中运行，并且注重安全性， Distroless镜像可能会更合适。</p>
+<p>Docker镜像中每增加一个二进制程序，就会给整个应用程序带来一定的风险。</p>
+<p>在容器中只安装一个二进制程序即可降低整体风险。</p>
+<p>举个例子，如果黑客在运行于Distroless的应用中发现了一个漏洞，他也无法在容器中创建Shell，因为根本就没有。<br>注意：最小化攻击面是OWASP的推荐做法[5]。<br>如果更在意要是大小，则可以换成Alpine基础镜像。</p>
+<p>这两个都很小，代价是兼容性。Alpine用了一个稍稍有点不一样的C标准库——muslc。时不时会碰到点兼容性的问题。比如这个[6]和这个[7]。</p>
+<p>原生基础镜像非常适合用于测试和开发。</p>
+<p>它的尺寸比较大，不过用起来就像你主机上安装的Ubuntu一样。并且，你能访问该操作系统里有的所有二进制程序。</p>
+<p>下面，回顾一下各个镜像大小：<br><figure class="highlight crmsh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">node</span><span class="title">:8</span> <span class="number">681M</span>B</span><br><span class="line"><span class="keyword">node</span><span class="title">:8</span>结合多阶段构建 <span class="number">678M</span>B</span><br><span class="line">gcr.io/distroless/nodejs <span class="number">76.7M</span>B</span><br><span class="line"><span class="keyword">node</span><span class="title">:8-alpine</span> <span class="number">69.7M</span>B</span><br></pre></td></tr></table></figure></p>
+<p>相关链接：</p>
+<p><a href="https://github.com/GoogleCloudPlatform/distroless" target="_blank" rel="noopener">https://github.com/GoogleCloudPlatform/distroless</a><br><a href="https://alpinelinux.org" target="_blank" rel="noopener">https://alpinelinux.org</a><br><a href="https://www.musl-libc.org" target="_blank" rel="noopener">https://www.musl-libc.org</a><br><a href="https://www.busybox.net" target="_blank" rel="noopener">https://www.busybox.net</a><br><a href="https://www.owasp.org/index.php/Minimize_attack_surface_area" target="_blank" rel="noopener">https://www.owasp.org/index.php/Minimize_attack_surface_area</a><br><a href="https://github.com/grpc/grpc/issues/8528" target="_blank" rel="noopener">https://github.com/grpc/grpc/issues/8528</a><br><a href="https://github.com/grpc/grpc/issues/6126" target="_blank" rel="noopener">https://github.com/grpc/grpc/issues/6126</a></p>
+<p>原文链接：<a href="https://itnext.io/3-simple-tricks-for-smaller-docker-images-f0d2bda17d1e" target="_blank" rel="noopener">https://itnext.io/3-simple-tricks-for-smaller-docker-images-f0d2bda17d1e</a></p>
+
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Docker/" rel="tag"># Docker</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/09/04/RPC-01解决的核心问题和在企业服务中的地位/" rel="next" title="RPC_01.解决的核心问题和在企业服务中的地位">
+                <i class="fa fa-chevron-left"></i> RPC_01.解决的核心问题和在企业服务中的地位
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+  </div>
+
+
+          </div>
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">博主</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/">
+                
+                    <span class="site-state-item-count">99</span>
+                    <span class="site-state-item-name">日志</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-categories">
+                  
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">16</span>
+                    <span class="site-state-item-name">分类</span>
+                  
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">43</span>
+                    <span class="site-state-item-name">标签</span>
+                  
+                </div>
+              
+            </nav>
+          
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+            
+          
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#介绍"><span class="nav-number">1.</span> <span class="nav-text">介绍</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#层跟Git提交类似。"><span class="nav-number">2.</span> <span class="nav-text">层跟Git提交类似。</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#使用Docker多阶段构建将层合并为一"><span class="nav-number">3.</span> <span class="nav-text">使用Docker多阶段构建将层合并为一</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#使用Distroless移除容器中的所有累赘"><span class="nav-number">4.</span> <span class="nav-text">使用Distroless移除容器中的所有累赘</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#使用Alpine作为更小的基础镜像"><span class="nav-number">5.</span> <span class="nav-text">使用Alpine作为更小的基础镜像</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#怎么选择基础镜像？"><span class="nav-number">6.</span> <span class="nav-text">怎么选择基础镜像？</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">博主</span>
+
+  
+
+  
+</div>
+
+
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动 v3.7.1</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://theme-next.org">NexT.Muse</a> v6.3.0</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+	
+    
+
+    
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=6.3.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=6.3.0"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=6.3.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=6.3.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=6.3.0"></script>
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
