@@ -108,25 +108,30 @@
 
 
 
-  <meta name="description" content="转载自知乎专栏: 码洞 hashids介绍Hashids是一个非常小巧的开源库，它用来把数字编码成一个随机字符串。不同于md5这种算法这种单向映射，Hashids除了编码还会解码。 拿论坛来说，一般帖子在数据库里的id都是顺序递增的，但是你可能不想在url上直接把id暴露出来，以免爬虫直接遍历id爬取你的内容，给你带来损失。那现在你就可以使用Hashids把这个id搞乱，让它失去顺序性，无法直接遍">
-<meta name="keywords" content="python">
+  <meta name="description" content="RPC 是两个子系统之间进行的直接消息交互，它使用操作系统提供的套接字来作为消息的载体，以特定的消息格式来定义消息内容和边界。 RPC 的客户端通过文件描述符的读写 API (read &amp; write) 来访问操作系统内核中的网络模块为当前套接字分配的发送 (send buffer) 和接收 (recv buffer) 缓存。">
+<meta name="keywords" content="RPC">
 <meta property="og:type" content="article">
-<meta property="og:title" content="python-三方开源库hashids">
-<meta property="og:url" content="http://timilong.com/2018/08/09/python-hashids/index.html">
+<meta property="og:title" content="RPC-02深入理解RPC交互流程">
+<meta property="og:url" content="http://timilong.com/2018/09/05/RPC-02深入理解RPC交互流程/index.html">
 <meta property="og:site_name" content="Timilong&#39;s blog">
-<meta property="og:description" content="转载自知乎专栏: 码洞 hashids介绍Hashids是一个非常小巧的开源库，它用来把数字编码成一个随机字符串。不同于md5这种算法这种单向映射，Hashids除了编码还会解码。 拿论坛来说，一般帖子在数据库里的id都是顺序递增的，但是你可能不想在url上直接把id暴露出来，以免爬虫直接遍历id爬取你的内容，给你带来损失。那现在你就可以使用Hashids把这个id搞乱，让它失去顺序性，无法直接遍">
+<meta property="og:description" content="RPC 是两个子系统之间进行的直接消息交互，它使用操作系统提供的套接字来作为消息的载体，以特定的消息格式来定义消息内容和边界。 RPC 的客户端通过文件描述符的读写 API (read &amp; write) 来访问操作系统内核中的网络模块为当前套接字分配的发送 (send buffer) 和接收 (recv buffer) 缓存。">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-08-21T04:44:19.988Z">
+<meta property="og:image" content="https://user-gold-cdn.xitu.io/2018/6/5/163cf789da84cb53?imageView2/0/w/1280/h/960/format/webp/ignore-error/1">
+<meta property="og:image" content="https://user-gold-cdn.xitu.io/2018/5/31/163b4dcf06e0a780?imageView2/0/w/1280/h/960/format/webp/ignore-error/1">
+<meta property="og:image" content="https://user-gold-cdn.xitu.io/2018/5/31/163b4e1f464cbdc2?imageView2/0/w/1280/h/960/format/webp/ignore-error/1">
+<meta property="og:image" content="https://user-gold-cdn.xitu.io/2018/5/31/163b4e36daa5cc79?imageView2/0/w/1280/h/960/format/webp/ignore-error/1">
+<meta property="og:updated_time" content="2018-09-05T02:11:10.508Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="python-三方开源库hashids">
-<meta name="twitter:description" content="转载自知乎专栏: 码洞 hashids介绍Hashids是一个非常小巧的开源库，它用来把数字编码成一个随机字符串。不同于md5这种算法这种单向映射，Hashids除了编码还会解码。 拿论坛来说，一般帖子在数据库里的id都是顺序递增的，但是你可能不想在url上直接把id暴露出来，以免爬虫直接遍历id爬取你的内容，给你带来损失。那现在你就可以使用Hashids把这个id搞乱，让它失去顺序性，无法直接遍">
+<meta name="twitter:title" content="RPC-02深入理解RPC交互流程">
+<meta name="twitter:description" content="RPC 是两个子系统之间进行的直接消息交互，它使用操作系统提供的套接字来作为消息的载体，以特定的消息格式来定义消息内容和边界。 RPC 的客户端通过文件描述符的读写 API (read &amp; write) 来访问操作系统内核中的网络模块为当前套接字分配的发送 (send buffer) 和接收 (recv buffer) 缓存。">
+<meta name="twitter:image" content="https://user-gold-cdn.xitu.io/2018/6/5/163cf789da84cb53?imageView2/0/w/1280/h/960/format/webp/ignore-error/1">
 
 
 
 
 
 
-  <link rel="canonical" href="http://timilong.com/2018/08/09/python-hashids/"/>
+  <link rel="canonical" href="http://timilong.com/2018/09/05/RPC-02深入理解RPC交互流程/"/>
 
 
 
@@ -136,7 +141,7 @@
   };
 </script>
 
-  <title>python-三方开源库hashids | Timilong's blog</title>
+  <title>RPC-02深入理解RPC交互流程 | Timilong's blog</title>
   
 
 
@@ -293,7 +298,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://timilong.com/2018/08/09/python-hashids/">
+    <link itemprop="mainEntityOfPage" href="http://timilong.com/2018/09/05/RPC-02深入理解RPC交互流程/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="博主">
@@ -310,7 +315,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">python-三方开源库hashids
+          <h1 class="post-title" itemprop="name headline">RPC-02深入理解RPC交互流程
               
             
           </h1>
@@ -335,24 +340,12 @@
                 
               
 
-              <time title="创建于：2018-08-09 15:05:16" itemprop="dateCreated datePublished" datetime="2018-08-09T15:05:16Z">2018-08-09</time>
+              <time title="创建于：2018-09-05 09:48:04 / 更新于：02:11:10" itemprop="dateCreated datePublished" datetime="2018-09-05T09:48:04Z">2018-09-05</time>
             
 
             
               
 
-              
-                
-                <span class="post-meta-divider">|</span>
-                
-
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">Edited on</span>
-                
-                <time title="更新于：2018-08-21 04:44:19" itemprop="dateModified" datetime="2018-08-21T04:44:19Z">2018-08-21</time>
               
             
           </span>
@@ -371,6 +364,8 @@
           
 
           
+              <div class="post-description">RPC 是两个子系统之间进行的直接消息交互，它使用操作系统提供的套接字来作为消息的载体，以特定的消息格式来定义消息内容和边界。 RPC 的客户端通过文件描述符的读写 API (read & write) 来访问操作系统内核中的网络模块为当前套接字分配的发送 (send buffer) 和接收 (recv buffer) 缓存。</div>
+          
 
         </div>
       </header>
@@ -385,14 +380,41 @@
       
 
       
-        <p><a href="https://zhuanlan.zhihu.com/p/32671455" target="_blank" rel="noopener">转载自知乎专栏: 码洞</a></p>
-<h2 id="hashids介绍"><a href="#hashids介绍" class="headerlink" title="hashids介绍"></a>hashids介绍</h2><p>Hashids是一个非常小巧的开源库，它用来把数字编码成一个随机字符串。<br>不同于md5这种算法这种单向映射，Hashids除了编码还会解码。</p>
-<p>拿论坛来说，一般帖子在数据库里的id都是顺序递增的，但是你可能不想在url上直接把id暴露出来，以免爬虫直接遍历id爬取你的内容，给你带来损失。<br>那现在你就可以使用Hashids把这个id搞乱，让它失去顺序性，无法直接遍历，这样就可以直接提高了爬虫的门槛。</p>
-<p>著名的Youtube网站就是这么做的。</p>
-<h2 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h2><figure class="highlight cmake"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pip <span class="keyword">install</span> hashids</span><br></pre></td></tr></table></figure>
-<a id="more"></a>
-<h2 id="具体使用"><a href="#具体使用" class="headerlink" title="具体使用"></a>具体使用</h2><figure class="highlight vala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">import hashids</span><br><span class="line"></span><br><span class="line">hasher = hashids.Hashids(salt=<span class="string">"yoursecretkey"</span>)</span><br><span class="line"></span><br><span class="line"><span class="meta"># encode</span></span><br><span class="line">hasher.encode(<span class="number">123456</span>)</span><br><span class="line"><span class="meta"># 输出: '3Pl8o'</span></span><br><span class="line"></span><br><span class="line"><span class="meta"># decode</span></span><br><span class="line">hasher.decode(<span class="string">'3Pl8o'</span>)</span><br><span class="line"><span class="meta"># 输出: (123456, )</span></span><br><span class="line"></span><br><span class="line"><span class="meta"># 多个数字同事编码</span></span><br><span class="line">hasher.encode(<span class="number">1234546</span>, <span class="number">789012</span>, <span class="number">345678</span>)</span><br><span class="line"><span class="meta"># 输出: '3Pl8oibxv5uNDoB'</span></span><br><span class="line"></span><br><span class="line"><span class="meta"># 解码</span></span><br><span class="line">hasher.decode(<span class="string">'3Pl8oibxv5uNDoB'</span>)</span><br><span class="line"><span class="meta"># 输出: (1234546, 789012, 345678)</span></span><br></pre></td></tr></table></figure>
-<h2 id="缺点"><a href="#缺点" class="headerlink" title="缺点"></a>缺点</h2><figure class="highlight stata"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">对 salt 依赖太严重，通一salt下的<span class="keyword">encode</span>结果必定相同，这是无法避免的</span><br></pre></td></tr></table></figure>
+        <h3 id="RPC本质"><a href="#RPC本质" class="headerlink" title="RPC本质"></a>RPC本质</h3><p>本节我们开始讲解 RPC 的消息交互流程，目的是搞清楚一个简单的 RPC 方法调用背后究竟发生了怎样复杂曲折的故事，以看透 RPC 的本质。</p>
+<p><img src="https://user-gold-cdn.xitu.io/2018/6/5/163cf789da84cb53?imageView2/0/w/1280/h/960/format/webp/ignore-error/1" alt="RPC"><br>上图是信息系统交互模型宏观示意图，RPC 的消息交互则会深入到底层。</p>
+<p>RPC 是两个子系统之间进行的直接消息交互，它使用操作系统提供的套接字来作为消息的载体，以特定的消息格式来定义消息内容和边界。</p>
+<p>RPC 的客户端通过文件描述符的读写 API (read &amp; write) 来访问操作系统内核中的网络模块为当前套接字分配的发送 (send buffer) 和接收 (recv buffer) 缓存。</p>
+<h3 id="RPC消息流程"><a href="#RPC消息流程" class="headerlink" title="RPC消息流程"></a>RPC消息流程</h3><p><img src="https://user-gold-cdn.xitu.io/2018/5/31/163b4dcf06e0a780?imageView2/0/w/1280/h/960/format/webp/ignore-error/1" alt="RPC"></p>
+<p>如上图所示，左边的客户端进程写 RPC 指令消息到内核的发送缓存中，内核将发送缓存中的数据传送到物理硬件 NIC，也就是网络接口芯片 (Network Interface Circuit)。NIC 负责将翻译出来的模拟信号通过网络硬件传递到服务器硬件的 NIC。服务器的 NIC 再将模拟信号转成字节数据存放到内核为套接字分配的接收缓存中，最终服务器进程从接收缓存中读取数据即为源客户端进程传递过来的 RPC 指令消息。</p>
+<p>消息从用户进程流向物理硬件，又从物理硬件流向用户进程，中间还经过了一系列的路由网关节点。</p>
+<p>上图呈现的只是 RPC 一次消息交互的上半场，下半场是一个逆向的过程，从服务器进程向客户端进程返回响应数据。完整的一次 RPC 过程如下图所示：</p>
+<p><img src="https://user-gold-cdn.xitu.io/2018/5/31/163b4e1f464cbdc2?imageView2/0/w/1280/h/960/format/webp/ignore-error/1" alt="RPC"></p>
+<h3 id="Python-代码描述"><a href="#Python-代码描述" class="headerlink" title="Python 代码描述"></a>Python 代码描述</h3><p>下面用 Python 代码来描述上述过程。</p>
+<ul>
+<li>Server 端死循环监听本地 8080 端口，等待客户端的连接。</li>
+<li>客户端启动时连接本地 8080 端口，紧接着发送词一个字符串 hello，然后等待服务器响应。</li>
+<li>服务器接收到客户端连接后立即收取客户端发送过来的字符串，也就是 hello，打印出来。然后立即给对方回复一个字符串 world。</li>
+<li>客户端接收到服务器发送过来的 world，马上打印出来。</li>
+<li>关闭连接，结束。</li>
+</ul>
+<figure class="highlight livecodeserver"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># coding: utf-8</span></span><br><span class="line"><span class="comment"># server</span></span><br><span class="line"></span><br><span class="line">import <span class="built_in">socket</span></span><br><span class="line"></span><br><span class="line">sock = <span class="built_in">socket</span>.<span class="built_in">socket</span>(<span class="built_in">socket</span>.AF_INET, <span class="built_in">socket</span>.SOCK_STREAM)</span><br><span class="line">sock.bind((<span class="string">"localhost"</span>, <span class="number">8080</span>))</span><br><span class="line">sock.listen(<span class="number">1</span>)  <span class="comment"># 监听客户端连接</span></span><br><span class="line"><span class="keyword">while</span> True:</span><br><span class="line">    conn, addr = sock.accept()  <span class="comment"># 接收一个客户端连接</span></span><br><span class="line">    print conn.recv(<span class="number">1024</span>)  <span class="comment"># 从接收缓冲读消息 recv buffer</span></span><br><span class="line">    conn.sendall(<span class="string">"world"</span>)  <span class="comment"># 将响应发送到发送缓冲 send buffer</span></span><br><span class="line">    conn.<span class="built_in">close</span>() <span class="comment"># 关闭连接</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># coding: utf-8</span></span><br><span class="line"><span class="comment"># client</span></span><br><span class="line"></span><br><span class="line">import <span class="built_in">socket</span></span><br><span class="line"></span><br><span class="line">sock = <span class="built_in">socket</span>.<span class="built_in">socket</span>(<span class="built_in">socket</span>.AF_INET, <span class="built_in">socket</span>.SOCK_STREAM)</span><br><span class="line">sock.connect((<span class="string">"localhost"</span>, <span class="number">8080</span>))  <span class="comment"># 连接服务器</span></span><br><span class="line">sock.sendall(<span class="string">"hello"</span>)  <span class="comment"># 将消息输出到发送缓冲 send buffer</span></span><br><span class="line">print sock.recv(<span class="number">1024</span>)  <span class="comment"># 从接收缓冲 recv buffer 中读响应</span></span><br><span class="line">sock.<span class="built_in">close</span>() <span class="comment"># 关闭套接字</span></span><br></pre></td></tr></table></figure>
+<p>如果从上面代码上观察，我们其实很难看出上图所示的复杂过程。浮现在多数人脑海中往往是下面的这幅简约模型图。相比之下它要简单很多，这也正是操作系统设计的魅力所在，让你时时刻刻都在使用它却感受不到它的存在。</p>
+<p><img src="https://user-gold-cdn.xitu.io/2018/5/31/163b4e36daa5cc79?imageView2/0/w/1280/h/960/format/webp/ignore-error/1" alt="RPC"></p>
+<h3 id="小结"><a href="#小结" class="headerlink" title="小结"></a>小结</h3><p>通过本节内容，读者们对 RPC 的交互流程应该有了大致了解，但是还并不知道 RPC 之间到底交互了什么。就好比你能看到远方有几个人在说话，但是不知道他们在说啥。</p>
+<p>下一节我们将放大细节，仔细观察 RPC 客户端服务器之间窃窃私语了什么，它们究竟是在用什么外星语言交流。</p>
+<h3 id="练习题"><a href="#练习题" class="headerlink" title="练习题"></a>练习题</h3><p>一个很有趣的小测试实验 , 请读者编写代码实现以下情景:</p>
+<p>客户端疯狂发送请求，但是服务器不读不处理，会发生什么？</p>
+<blockquote>
+<p>BrokenPipeError: [Errno 32] Broken pipe 这个错误不是表示客户端阻塞了。这个是因为服务器调用了conn.close()然后，服务器返回了reset，但是客户端没有去做处理（关闭连接），而是继续往服务器写入数据，导致了Broken pipe这个异常</p>
+</blockquote>
+<blockquote>
+<p>答案: socket缓冲区堆满 一直阻塞下去</p>
+</blockquote>
+<blockquote>
+<ol>
+<li>如果接收和发送队列没有设置大小，服务器处理能力弱，tcp会动态调整直至耗尽整个内存。2. 设置了大小，那么socket会出现阻塞，不接受发送端的消息。3. 如果发送的请求size大于发送和接收队列之和，那么会一直阻塞下去</li>
+</ol>
+</blockquote>
 
       
     </div>
@@ -413,7 +435,7 @@
       
         <div class="post-tags">
           
-            <a href="/tags/python/" rel="tag"># python</a>
+            <a href="/tags/RPC/" rel="tag"># RPC</a>
           
         </div>
       
@@ -426,8 +448,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2018/08/08/mysql-8-04以上版本修改root密码/" rel="next" title="mysql-8.04以上版本修改root密码">
-                <i class="fa fa-chevron-left"></i> mysql-8.04以上版本修改root密码
+              <a href="/2018/09/04/读书-安德鲁-卡内基传/" rel="next" title="读书-安德鲁.卡内基传">
+                <i class="fa fa-chevron-left"></i> 读书-安德鲁.卡内基传
               </a>
             
           </div>
@@ -435,10 +457,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2018/08/10/mysql-联合索引的命中规则/" rel="prev" title="mysql-联合索引的命中规则">
-                mysql-联合索引的命中规则 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -688,7 +706,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#hashids介绍"><span class="nav-number">1.</span> <span class="nav-text">hashids介绍</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#安装"><span class="nav-number">2.</span> <span class="nav-text">安装</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#具体使用"><span class="nav-number">3.</span> <span class="nav-text">具体使用</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#缺点"><span class="nav-number">4.</span> <span class="nav-text">缺点</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#RPC本质"><span class="nav-number">1.</span> <span class="nav-text">RPC本质</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#RPC消息流程"><span class="nav-number">2.</span> <span class="nav-text">RPC消息流程</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Python-代码描述"><span class="nav-number">3.</span> <span class="nav-text">Python 代码描述</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#小结"><span class="nav-number">4.</span> <span class="nav-text">小结</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#练习题"><span class="nav-number">5.</span> <span class="nav-text">练习题</span></a></li></ol></div>
             
 
           </div>
