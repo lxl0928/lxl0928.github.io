@@ -58,19 +58,19 @@
 
 <link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
 
-<link href="/css/main.css?v=6.3.0" rel="stylesheet" type="text/css" />
+<link href="/css/main.css?v=6.4.1" rel="stylesheet" type="text/css" />
 
 
-  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=6.3.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=6.4.1">
 
 
-  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=6.3.0">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=6.4.1">
 
 
-  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=6.3.0">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=6.4.1">
 
 
-  <link rel="mask-icon" href="/images/logo.svg?v=6.3.0" color="#222">
+  <link rel="mask-icon" href="/images/logo.svg?v=6.4.1" color="#222">
 
 
 
@@ -85,7 +85,7 @@
   var CONFIG = {
     root: '/',
     scheme: 'Muse',
-    version: '6.3.0',
+    version: '6.4.1',
     sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
     fancybox: false,
     fastclick: false,
@@ -228,6 +228,22 @@
         
         
           
+          <li class="menu-item menu-item-tags">
+    <a href="/tags/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />标签</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-categories">
+    <a href="/categories/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-th"></i> <br />分类</a>
+  </li>
+        
+        
+        
+          
           <li class="menu-item menu-item-archives">
     <a href="/archives/" rel="section">
       <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />归档</a>
@@ -289,7 +305,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://timilong.com/2017/05/19/vim-基础教程/">
+    <link itemprop="mainEntityOfPage" href="http://timilong.com/2016/10/08/python爬虫入门6-正则表达式/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="博主">
@@ -308,8 +324,8 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2017/05/19/vim-基础教程/" itemprop="url">
-                  vim教程-基础
+                <a class="post-title-link" href="/2016/10/08/python爬虫入门6-正则表达式/" itemprop="url">
+                  python爬虫入门6-正则表达式
                 </a>
               
             
@@ -335,7 +351,7 @@
                 
               
 
-              <time title="创建于：2017-05-19 06:55:45" itemprop="dateCreated datePublished" datetime="2017-05-19T06:55:45Z">2017-05-19</time>
+              <time title="创建于：2016-10-07 20:21:12" itemprop="dateCreated datePublished" datetime="2016-10-07T20:21:12Z">2016-10-07</time>
             
 
             
@@ -369,7 +385,7 @@
                 <span class="post-meta-item-text">分类于</span>
               
               
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/vim/" itemprop="url" rel="index"><span itemprop="name">vim</span></a></span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/python/" itemprop="url" rel="index"><span itemprop="name">python</span></a></span>
 
                 
                 
@@ -404,11 +420,232 @@
 
       
         
-          <h3 id="1-简介"><a href="#1-简介" class="headerlink" title="1. 简介"></a>1. 简介</h3><p>Vim（Vi[Improved]）编辑器是功能强大的跨平台文本文件编辑工具，继承自Unix系统的Vi编辑器，支持Linux/Mac OS X/Windows系统，利用它可以建立、修改文本文件。进入Vim编辑程序，可以在终端输入下面的命令：<br><figure class="highlight gams"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta"><span class="meta-keyword">$vim</span> [filename]</span></span><br></pre></td></tr></table></figure></p>
-<p>其中filename是要编辑器的文件的路径名。如果文件不存在，它将为你建立一个新文件。Vim编辑程序有三种操作模式，分别称为 编辑模式、插入模式 和 命令模式，当运行Vim时，首先进入编辑模式。<br>
+          
+            <p>[TOC]</p>
+<h3 id="了解正则表达式"><a href="#了解正则表达式" class="headerlink" title="了解正则表达式"></a>了解正则表达式</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">正则表达式是对字符串操作的一种逻辑公式，就是用事先定义好的一些特定字符、及这些特定字符的组合，组成一个“规则字符串”，这个“规则字符串”用来表达对字符串的一种过滤逻辑。</span><br></pre></td></tr></table></figure>
+<p>正则表达式是用来匹配字符串非常强大的工具，在其他编程语言中同样有正则表达式的概念，Python同样不例外，利用了正则表达式，我们想要从返回的页面内容提取出我们想要的内容就易如反掌了。</p>
+<figure class="highlight lsl"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">正则表达式的大致匹配过程是：</span><br><span class="line"><span class="number">1.</span>依次拿出表达式和文本中的字符比较，</span><br><span class="line"><span class="number">2.</span>如果每一个字符都能匹配，则匹配成功；一旦有匹配不成功的字符则匹配失败。</span><br><span class="line"><span class="number">3.</span>如果表达式中有量词或边界，这个过程会稍微有一些不同。</span><br></pre></td></tr></table></figure>
+<h3 id="正则表达式的语法规则"><a href="#正则表达式的语法规则" class="headerlink" title="正则表达式的语法规则"></a>正则表达式的语法规则</h3><p>下面是Python中正则表达式的一些匹配规则，图片资料来自CSDN:</p>
+<p><img src="http://7xorah.com1.z0.glb.clouddn.com/zhengzebiaodas.png" alt="python正则表达式匹配规则"></p>
+<h3 id="正则表达式相关注解"><a href="#正则表达式相关注解" class="headerlink" title="正则表达式相关注解"></a>正则表达式相关注解</h3><h4 id="数量词的贪婪模式与非贪婪模式"><a href="#数量词的贪婪模式与非贪婪模式" class="headerlink" title="数量词的贪婪模式与非贪婪模式"></a>数量词的贪婪模式与非贪婪模式</h4><p>正则表达式通常用于在文本中查找匹配的字符串。Python里数量词默认是贪婪的（在少数语言里也可能是默认非贪婪），总是尝试匹配尽可能多的字符；非贪婪的则相反，总是尝试匹配尽可能少的字符。例如：正则表达式”ab<em>”如果用于查找”abbbc”，将找到”abbb”。而如果使用非贪婪的数量词”ab</em>?”，将找到”a”。</p>
+<p>注：我们一般使用非贪婪模式来提取。</p>
+<h4 id="反斜杠问题"><a href="#反斜杠问题" class="headerlink" title="反斜杠问题"></a>反斜杠问题</h4><p>与大多数编程语言相同，正则表达式里使用”\”作为转义字符，这就可能造成反斜杠困扰。假如你需要匹配文本中的字符”\”，那么使用编程语言表示的正则表达式里将需要4个反斜杠”\\”：前两个和后两个分别用于在编程语言里转义成反斜杠，转换成两个反斜杠后再在正则表达式里转义成一个反斜杠。</p>
+<p>Python里的原生字符串很好地解决了这个问题，这个例子中的正则表达式可以使用r”\”表示。同样，匹配一个数字的”\d”可以写成r”\d”。有了原生字符串，妈妈也不用担心是不是漏写了反斜杠，写出来的表达式也更直观勒。</p>
+<h3 id="Python-Re模块"><a href="#Python-Re模块" class="headerlink" title="Python Re模块"></a>Python Re模块</h3><p>Python 自带了re模块，它提供了对正则表达式的支持。主要用到的方法列举如下:</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">#返回<span class="selector-tag">pattern</span>对象</span><br><span class="line"><span class="selector-tag">re</span><span class="selector-class">.compile</span>(<span class="selector-tag">string</span><span class="selector-attr">[,flag]</span>)  </span><br><span class="line">#以下为匹配所用函数</span><br><span class="line"><span class="selector-tag">re</span><span class="selector-class">.match</span>(<span class="selector-tag">pattern</span>, <span class="selector-tag">string</span><span class="selector-attr">[, flags]</span>)</span><br><span class="line"><span class="selector-tag">re</span><span class="selector-class">.search</span>(<span class="selector-tag">pattern</span>, <span class="selector-tag">string</span><span class="selector-attr">[, flags]</span>)</span><br><span class="line"><span class="selector-tag">re</span><span class="selector-class">.split</span>(<span class="selector-tag">pattern</span>, <span class="selector-tag">string</span><span class="selector-attr">[, maxsplit]</span>)</span><br><span class="line"><span class="selector-tag">re</span><span class="selector-class">.findall</span>(<span class="selector-tag">pattern</span>, <span class="selector-tag">string</span><span class="selector-attr">[, flags]</span>)</span><br><span class="line"><span class="selector-tag">re</span><span class="selector-class">.finditer</span>(<span class="selector-tag">pattern</span>, <span class="selector-tag">string</span><span class="selector-attr">[, flags]</span>)</span><br><span class="line"><span class="selector-tag">re</span><span class="selector-class">.sub</span>(<span class="selector-tag">pattern</span>, <span class="selector-tag">repl</span>, <span class="selector-tag">string</span><span class="selector-attr">[, count]</span>)</span><br><span class="line"><span class="selector-tag">re</span><span class="selector-class">.subn</span>(<span class="selector-tag">pattern</span>, <span class="selector-tag">repl</span>, <span class="selector-tag">string</span><span class="selector-attr">[, count]</span>)</span><br></pre></td></tr></table></figure>
+<p>在介绍这几个方法之前，我们先来介绍一下pattern的概念，pattern可以理解为一个匹配模式，那么我们怎么获得这个匹配模式呢？很简单，我们需要利用re.compile方法就可以。例如:</p>
+<figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pattern = re.compile(<span class="string">r'hello'</span>)</span><br></pre></td></tr></table></figure>
+<p>在参数中我们传入了原生字符串对象，通过compile方法编译生成一个pattern对象，然后我们利用这个对象来进行进一步的匹配。</p>
+<p>另外大家可能注意到了另一个参数 flags，在这里解释一下这个参数的含义：</p>
+<p>参数flag是匹配模式，取值可以使用按位或运算符’|’表示同时生效，比如re.I | re.M。</p>
+<p>可选值有：</p>
+<figure class="highlight livescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">• re.I(全拼：IGNORECASE): 忽略大小写（括号内是完整写法，下同）</span><br><span class="line">• re.M(全拼：MULTILINE): 多行模式，改变<span class="string">'^'</span>和<span class="string">'$'</span>的行为（参见上图）</span><br><span class="line">• re.S(全拼：DOTALL): 点任意匹配模式，改变<span class="string">'.'</span>的行为</span><br><span class="line">• re.L(全拼：LOCALE): 使预定字符类 <span class="string">\w</span> <span class="string">\W</span> <span class="string">\b</span> <span class="string">\B</span> <span class="string">\s</span> <span class="string">\S</span> 取决于当前区域设定</span><br><span class="line">• re.U(全拼：UNICODE): 使预定字符类 <span class="string">\w</span> <span class="string">\W</span> <span class="string">\b</span> <span class="string">\B</span> <span class="string">\s</span> <span class="string">\S</span> <span class="string">\d</span> <span class="string">\D</span> 取决于unicode定义的字符属性</span><br><span class="line">• re.X(全拼：VERBOSE): 详细模式。这个模式下正则表达式可以是多行，忽略空白字符，并可以加入注释。</span><br></pre></td></tr></table></figure>
+<p>在刚才所说的另外几个方法例如 re.match 里我们就需要用到这个pattern了，下面我们一一介绍。<br><figure class="highlight oxygene"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">注：以下七个方法中的<span class="keyword">flags</span>同样是代表匹配模式的意思，如果在pattern生成时已经指明了<span class="keyword">flags</span>，那么在下面的方法中就不需要传入这个参数了。</span><br></pre></td></tr></table></figure></p>
+<h4 id="re-match-pattern-string-flags"><a href="#re-match-pattern-string-flags" class="headerlink" title="re.match(pattern, string[, flags])"></a>re.match(pattern, string[, flags])</h4><p>这个方法将会从string（我们要匹配的字符串）的开头开始，尝试匹配pattern，一直向后匹配，如果遇到无法匹配的字符，立即返回None，如果匹配未结束已经到达string的末尾，也会返回None。两个结果均表示匹配失败，否则匹配pattern成功，同时匹配终止，不再对string向后匹配。下面我们通过一个例子理解一下:</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br></pre></td><td class="code"><pre><span class="line">__author__ = <span class="string">'TIMILONG'</span></span><br><span class="line"><span class="comment"># -*- coding: utf-8 -*-</span></span><br><span class="line"></span><br><span class="line"><span class="comment">#导入re模块</span></span><br><span class="line"><span class="keyword">import</span> re</span><br><span class="line"></span><br><span class="line"><span class="comment"># 将正则表达式编译成Pattern对象，注意hello前面的r的意思是“原生字符串”</span></span><br><span class="line">pattern = re.compile(<span class="string">r'hello'</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 使用re.match匹配文本，获得匹配结果，无法匹配时将返回None</span></span><br><span class="line">result1 = re.match(pattern,<span class="string">'hello'</span>)</span><br><span class="line">result2 = re.match(pattern,<span class="string">'helloo TIMILONG!'</span>)</span><br><span class="line">result3 = re.match(pattern,<span class="string">'helo TIMILONG!'</span>)</span><br><span class="line">result4 = re.match(pattern,<span class="string">'hello TIMILONG!'</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment">#如果1匹配成功</span></span><br><span class="line"><span class="keyword">if</span> result1:</span><br><span class="line">    <span class="comment"># 使用Match获得分组信息</span></span><br><span class="line">    <span class="keyword">print</span> result1.group()</span><br><span class="line"><span class="keyword">else</span>:</span><br><span class="line">    <span class="keyword">print</span> <span class="string">'1匹配失败！'</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">#如果2匹配成功</span></span><br><span class="line"><span class="keyword">if</span> result2:</span><br><span class="line">    <span class="comment"># 使用Match获得分组信息</span></span><br><span class="line">    <span class="keyword">print</span> result2.group()</span><br><span class="line"><span class="keyword">else</span>:</span><br><span class="line">    <span class="keyword">print</span> <span class="string">'2匹配失败！'</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">#如果3匹配成功</span></span><br><span class="line"><span class="keyword">if</span> result3:</span><br><span class="line">    <span class="comment"># 使用Match获得分组信息</span></span><br><span class="line">    <span class="keyword">print</span> result3.group()</span><br><span class="line"><span class="keyword">else</span>:</span><br><span class="line">    <span class="keyword">print</span> <span class="string">'3匹配失败！'</span></span><br><span class="line"></span><br><span class="line"><span class="comment">#如果4匹配成功</span></span><br><span class="line"><span class="keyword">if</span> result4:</span><br><span class="line">    <span class="comment"># 使用Match获得分组信息</span></span><br><span class="line">    <span class="keyword">print</span> result4.group()</span><br><span class="line"><span class="keyword">else</span>:</span><br><span class="line">    <span class="keyword">print</span> <span class="string">'4匹配失败！'</span></span><br></pre></td></tr></table></figure>
+<p>运行结果:<br><figure class="highlight lsl"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">hello</span><br><span class="line">hello</span><br><span class="line"><span class="number">3</span>匹配失败！</span><br><span class="line">hello</span><br></pre></td></tr></table></figure></p>
+<p>匹配分析</p>
+<p>1.第一个匹配，pattern正则表达式为’hello’，我们匹配的目标字符串string也为hello，从头至尾完全匹配，匹配成功。</p>
+<p>2.第二个匹配，string为helloo CQC，从string头开始匹配pattern完全可以匹配，pattern匹配结束，同时匹配终止，后面的o CQC不再匹配，返回匹配成功的信息。</p>
+<p>3.第三个匹配，string为helo CQC，从string头开始匹配pattern，发现到 ‘o’ 时无法完成匹配，匹配终止，返回None</p>
+<p>4.第四个匹配，同第二个匹配原理，即使遇到了空格符也不会受影响。</p>
+<p>我们还看到最后打印出了result.group()，这个是什么意思呢？下面我们说一下关于match对象的的属性和方法<br>Match对象是一次匹配的结果，包含了很多关于此次匹配的信息，可以使用Match提供的可读属性或方法来获取这些信息。</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">属性：</span><br><span class="line">1<span class="selector-class">.string</span>: 匹配时使用的文本。</span><br><span class="line">2<span class="selector-class">.re</span>: 匹配时使用的<span class="selector-tag">Pattern</span>对象。</span><br><span class="line">3<span class="selector-class">.pos</span>: 文本中正则表达式开始搜索的索引。值与<span class="selector-tag">Pattern</span><span class="selector-class">.match</span>()和<span class="selector-tag">Pattern</span><span class="selector-class">.seach</span>()方法的同名参数相同。</span><br><span class="line">4<span class="selector-class">.endpos</span>: 文本中正则表达式结束搜索的索引。值与<span class="selector-tag">Pattern</span><span class="selector-class">.match</span>()和<span class="selector-tag">Pattern</span><span class="selector-class">.seach</span>()方法的同名参数相同。</span><br><span class="line">5<span class="selector-class">.lastindex</span>: 最后一个被捕获的分组在文本中的索引。如果没有被捕获的分组，将为<span class="selector-tag">None</span>。</span><br><span class="line">6<span class="selector-class">.lastgroup</span>: 最后一个被捕获的分组的别名。如果这个分组没有别名或者没有被捕获的分组，将为<span class="selector-tag">None</span>。</span><br><span class="line">方法：</span><br><span class="line">1<span class="selector-class">.group</span>(<span class="selector-attr">[group1, …]</span>):</span><br><span class="line">获得一个或多个分组截获的字符串；指定多个参数时将以元组形式返回。<span class="selector-tag">group1</span>可以使用编号也可以使用别名；编号0代表整个匹配的子串；不填写参数时，返回<span class="selector-tag">group</span>(0)；没有截获字符串的组返回<span class="selector-tag">None</span>；截获了多次的组返回最后一次截获的子串。</span><br><span class="line">2<span class="selector-class">.groups</span>(<span class="selector-attr">[default]</span>):</span><br><span class="line">以元组形式返回全部分组截获的字符串。相当于调用<span class="selector-tag">group</span>(1,2,…<span class="selector-tag">last</span>)。<span class="selector-tag">default</span>表示没有截获字符串的组以这个值替代，默认为<span class="selector-tag">None</span>。</span><br><span class="line">3<span class="selector-class">.groupdict</span>(<span class="selector-attr">[default]</span>):</span><br><span class="line">返回以有别名的组的别名为键、以该组截获的子串为值的字典，没有别名的组不包含在内。<span class="selector-tag">default</span>含义同上。</span><br><span class="line">4<span class="selector-class">.start</span>(<span class="selector-attr">[group]</span>):</span><br><span class="line">返回指定的组截获的子串在<span class="selector-tag">string</span>中的起始索引（子串第一个字符的索引）。<span class="selector-tag">group</span>默认值为0。</span><br><span class="line">5<span class="selector-class">.end</span>(<span class="selector-attr">[group]</span>):</span><br><span class="line">返回指定的组截获的子串在<span class="selector-tag">string</span>中的结束索引（子串最后一个字符的索引+1）。<span class="selector-tag">group</span>默认值为0。</span><br><span class="line">6<span class="selector-class">.span</span>(<span class="selector-attr">[group]</span>):</span><br><span class="line">返回(<span class="selector-tag">start</span>(<span class="selector-tag">group</span>), <span class="selector-tag">end</span>(<span class="selector-tag">group</span>))。</span><br><span class="line">7<span class="selector-class">.expand</span>(<span class="selector-tag">template</span>):</span><br><span class="line">将匹配到的分组代入<span class="selector-tag">template</span>中然后返回。<span class="selector-tag">template</span>中可以使用\<span class="selector-tag">id</span>或\<span class="selector-tag">g</span>、\<span class="selector-tag">g</span>引用分组，但不能使用编号0。\<span class="selector-tag">id</span>与\<span class="selector-tag">g</span>是等价的；但\10将被认为是第10个分组，如果你想表达\1之后是字符’0’，只能使用\<span class="selector-tag">g0</span>。</span><br></pre></td></tr></table></figure>
+<p>下面我们用一个例子来体会一下:</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># -*- coding: utf-8 -*-</span></span><br><span class="line"><span class="comment">#一个简单的match实例</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> re</span><br><span class="line"><span class="comment"># 匹配如下内容：单词+空格+单词+任意字符</span></span><br><span class="line">m = re.match(<span class="string">r'(\w+) (\w+)(?P&lt;sign&gt;.*)'</span>, <span class="string">'hello world!'</span>)</span><br><span class="line"></span><br><span class="line"><span class="keyword">print</span> <span class="string">"m.string:"</span>, m.string</span><br><span class="line"><span class="keyword">print</span> <span class="string">"m.re:"</span>, m.re</span><br><span class="line"><span class="keyword">print</span> <span class="string">"m.pos:"</span>, m.pos</span><br><span class="line"><span class="keyword">print</span> <span class="string">"m.endpos:"</span>, m.endpos</span><br><span class="line"><span class="keyword">print</span> <span class="string">"m.lastindex:"</span>, m.lastindex</span><br><span class="line"><span class="keyword">print</span> <span class="string">"m.lastgroup:"</span>, m.lastgroup</span><br><span class="line"><span class="keyword">print</span> <span class="string">"m.group():"</span>, m.group()</span><br><span class="line"><span class="keyword">print</span> <span class="string">"m.group(1,2):"</span>, m.group(<span class="number">1</span>, <span class="number">2</span>)</span><br><span class="line"><span class="keyword">print</span> <span class="string">"m.groups():"</span>, m.groups()</span><br><span class="line"><span class="keyword">print</span> <span class="string">"m.groupdict():"</span>, m.groupdict()</span><br><span class="line"><span class="keyword">print</span> <span class="string">"m.start(2):"</span>, m.start(<span class="number">2</span>)</span><br><span class="line"><span class="keyword">print</span> <span class="string">"m.end(2):"</span>, m.end(<span class="number">2</span>)</span><br><span class="line"><span class="keyword">print</span> <span class="string">"m.span(2):"</span>, m.span(<span class="number">2</span>)</span><br><span class="line"><span class="keyword">print</span> <span class="string">r"m.expand(r'\g \g\g'):"</span>, m.expand(<span class="string">r'\2 \1\3'</span>)</span><br><span class="line"> </span><br><span class="line"><span class="comment">### output ###</span></span><br><span class="line"><span class="comment"># m.string: hello world!</span></span><br><span class="line"><span class="comment"># m.re: </span></span><br><span class="line"><span class="comment"># m.pos: 0</span></span><br><span class="line"><span class="comment"># m.endpos: 12</span></span><br><span class="line"><span class="comment"># m.lastindex: 3</span></span><br><span class="line"><span class="comment"># m.lastgroup: sign</span></span><br><span class="line"><span class="comment"># m.group(1,2): ('hello', 'world')</span></span><br><span class="line"><span class="comment"># m.groups(): ('hello', 'world', '!')</span></span><br><span class="line"><span class="comment"># m.groupdict(): &#123;'sign': '!'&#125;</span></span><br><span class="line"><span class="comment"># m.start(2): 6</span></span><br><span class="line"><span class="comment"># m.end(2): 11</span></span><br><span class="line"><span class="comment"># m.span(2): (6, 11)</span></span><br><span class="line"><span class="comment"># m.expand(r'\2 \1\3'): world hello!</span></span><br></pre></td></tr></table></figure>
+<h4 id="re-search-pattern-string-flags"><a href="#re-search-pattern-string-flags" class="headerlink" title="re.search(pattern, string[, flags])"></a>re.search(pattern, string[, flags])</h4><p>search方法与match方法极其类似，区别在于match()函数只检测re是不是在string的开始位置匹配，search()会扫描整个string查找匹配，match（）只有在0位置匹配成功的话才有返回，如果不是开始位置匹配成功的话，match()就返回None。同样，search方法的返回对象同样match()返回对象的方法和属性。我们用一个例子感受一下:</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#导入re模块</span></span><br><span class="line"><span class="keyword">import</span> re</span><br><span class="line"></span><br><span class="line"><span class="comment"># 将正则表达式编译成Pattern对象</span></span><br><span class="line">pattern = re.compile(<span class="string">r'world'</span>)</span><br><span class="line"><span class="comment"># 使用search()查找匹配的子串，不存在能匹配的子串时将返回None</span></span><br><span class="line"><span class="comment"># 这个例子中使用match()无法成功匹配</span></span><br><span class="line">match = re.search(pattern,<span class="string">'hello world!'</span>)</span><br><span class="line"><span class="keyword">if</span> match:</span><br><span class="line">    <span class="comment"># 使用Match获得分组信息</span></span><br><span class="line">    <span class="keyword">print</span> match.group()</span><br><span class="line"><span class="comment">### 输出 ###</span></span><br><span class="line"><span class="comment"># world</span></span><br></pre></td></tr></table></figure>
+<h4 id="re-split-pattern-string-maxsplit"><a href="#re-split-pattern-string-maxsplit" class="headerlink" title="re.split(pattern, string[, maxsplit])"></a>re.split(pattern, string[, maxsplit])</h4><p>按照能够匹配的子串将string分割后返回列表。maxsplit用于指定最大分割次数，不指定将全部分割。我们通过下面的例子感受一下。</p>
+<figure class="highlight clean"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> re</span><br><span class="line"> </span><br><span class="line">pattern = re.compile(r<span class="string">'\d+'</span>)</span><br><span class="line">print re.split(pattern,<span class="string">'one1two2three3four4'</span>)</span><br><span class="line"> </span><br><span class="line">### 输出 ###</span><br><span class="line"># [<span class="string">'one'</span>, <span class="string">'two'</span>, <span class="string">'three'</span>, <span class="string">'four'</span>, <span class="string">''</span>]</span><br></pre></td></tr></table></figure>
+<h4 id="e-findall-pattern-string-flags"><a href="#e-findall-pattern-string-flags" class="headerlink" title="e.findall(pattern, string[, flags])"></a>e.findall(pattern, string[, flags])</h4><p>搜索string，以列表形式返回全部能匹配的子串。我们通过这个例子来感受一下:</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> re</span><br><span class="line"></span><br><span class="line">pattern = re.compile(<span class="string">r'\d+'</span>)</span><br><span class="line"><span class="keyword">print</span> re.findall(pattern,<span class="string">'one1two2three3four4'</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment">### 输出 ###</span></span><br><span class="line"><span class="comment"># ['1', '2', '3', '4']</span></span><br></pre></td></tr></table></figure>
+<h4 id="re-finditer-pattern-string-flags"><a href="#re-finditer-pattern-string-flags" class="headerlink" title="re.finditer(pattern, string[, flags])"></a>re.finditer(pattern, string[, flags])</h4><p>搜索string，返回一个顺序访问每一个匹配结果（Match对象）的迭代器。我们通过下面的例子来感受一下</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> re</span><br><span class="line"></span><br><span class="line">pattern = re.compile(<span class="string">r'\d+'</span>)</span><br><span class="line"><span class="keyword">for</span> m <span class="keyword">in</span> re.finditer(pattern,<span class="string">'one1two2three3four4'</span>):</span><br><span class="line">    <span class="keyword">print</span> m.group(),</span><br><span class="line"></span><br><span class="line"><span class="comment">### 输出 ###</span></span><br><span class="line"><span class="comment"># 1 2 3 4</span></span><br></pre></td></tr></table></figure>
+<h4 id="re-sub-pattern-repl-string-count"><a href="#re-sub-pattern-repl-string-count" class="headerlink" title="re.sub(pattern, repl, string[, count])"></a>re.sub(pattern, repl, string[, count])</h4><p>使用repl替换string中每一个匹配的子串后返回替换后的字符串。<br>当repl是一个字符串时，可以使用\id或\g、\g引用分组，但不能使用编号0。<br>当repl是一个方法时，这个方法应当只接受一个参数（Match对象），并返回一个字符串用于替换（返回的字符串中不能再引用分组）。<br>count用于指定最多替换次数，不指定时全部替换。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> re</span><br><span class="line"></span><br><span class="line">pattern = re.compile(<span class="string">r'(\w+) (\w+)'</span>)</span><br><span class="line">s = <span class="string">'i say, hello world!'</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">print</span> re.sub(pattern,<span class="string">r'\2 \1'</span>, s)</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">func</span><span class="params">(m)</span>:</span></span><br><span class="line">    <span class="keyword">return</span> m.group(<span class="number">1</span>).title() + <span class="string">' '</span> + m.group(<span class="number">2</span>).title()</span><br><span class="line"></span><br><span class="line"><span class="keyword">print</span> re.sub(pattern,func, s)</span><br><span class="line"></span><br><span class="line"><span class="comment">### output ###</span></span><br><span class="line"><span class="comment"># say i, world hello!</span></span><br><span class="line"><span class="comment"># I Say, Hello World!</span></span><br></pre></td></tr></table></figure>
+<h4 id="re-subn-pattern-repl-string-count"><a href="#re-subn-pattern-repl-string-count" class="headerlink" title="re.subn(pattern, repl, string[, count])"></a>re.subn(pattern, repl, string[, count])</h4><p>返回 (sub(repl, string[, count]), 替换次数)。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> re</span><br><span class="line"> </span><br><span class="line">pattern = re.compile(<span class="string">r'(\w+) (\w+)'</span>)</span><br><span class="line">s = <span class="string">'i say, hello world!'</span></span><br><span class="line"> </span><br><span class="line"><span class="keyword">print</span> re.subn(pattern,<span class="string">r'\2 \1'</span>, s)</span><br><span class="line"> </span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">func</span><span class="params">(m)</span>:</span></span><br><span class="line">    <span class="keyword">return</span> m.group(<span class="number">1</span>).title() + <span class="string">' '</span> + m.group(<span class="number">2</span>).title()</span><br><span class="line"> </span><br><span class="line"><span class="keyword">print</span> re.subn(pattern,func, s)</span><br><span class="line"> </span><br><span class="line"><span class="comment">### output ###</span></span><br><span class="line"><span class="comment"># ('say i, world hello!', 2)</span></span><br><span class="line"><span class="comment"># ('I Say, Hello World!', 2)</span></span><br></pre></td></tr></table></figure>
+<h3 id="Python-Re模块的另一种使用方式"><a href="#Python-Re模块的另一种使用方式" class="headerlink" title="Python Re模块的另一种使用方式"></a>Python Re模块的另一种使用方式</h3><p>在上面我们介绍了7个工具方法，例如match，search等等，不过调用方式都是 re.match，re.search的方式，其实还有另外一种调用方式，可以通过pattern.match，pattern.search调用，这样调用便不用将pattern作为第一个参数传入了，大家想怎样调用皆可。</p>
+<p>函数API列表:</p>
+<figure class="highlight vim"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">match</span>(<span class="built_in">string</span>[, pos[, endpos]]) | re.<span class="keyword">match</span>(pattern, <span class="built_in">string</span>[, flags])</span><br><span class="line"><span class="built_in">search</span>(<span class="built_in">string</span>[, pos[, endpos]]) | re.<span class="built_in">search</span>(pattern, <span class="built_in">string</span>[, flags])</span><br><span class="line"><span class="keyword">split</span>(<span class="built_in">string</span>[, maxsplit]) | re.<span class="keyword">split</span>(pattern, <span class="built_in">string</span>[, maxsplit])</span><br><span class="line">findall(<span class="built_in">string</span>[, pos[, endpos]]) | re.findall(pattern, <span class="built_in">string</span>[, flags])</span><br><span class="line">finditer(<span class="built_in">string</span>[, pos[, endpos]]) | re.finditer(pattern, <span class="built_in">string</span>[, flags])</span><br><span class="line">sub(repl, <span class="built_in">string</span>[, <span class="built_in">count</span>]) | re.sub(pattern, repl, <span class="built_in">string</span>[, <span class="built_in">count</span>])</span><br><span class="line">subn(repl, <span class="built_in">string</span>[, <span class="built_in">count</span>]) |re.sub(pattern, repl, <span class="built_in">string</span>[, <span class="built_in">count</span>])</span><br></pre></td></tr></table></figure>
+<p>具体的调用方法不必详说了，原理都类似，只是参数的变化不同。</p>
+
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://timilong.com/2016/10/08/python爬虫入门5-cookie的使用/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="博主">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Timilong's blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2016/10/08/python爬虫入门5-cookie的使用/" itemprop="url">
+                  python爬虫入门5-cookie的使用
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建于：2016-10-07 19:31:04" itemprop="dateCreated datePublished" datetime="2016-10-07T19:31:04Z">2016-10-07</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Edited on</span>
+                
+                <time title="更新于：2018-07-24 00:18:47" itemprop="dateModified" datetime="2018-07-24T00:18:47Z">2018-07-24</time>
+              
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/python/" itemprop="url" rel="index"><span itemprop="name">python</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <p>为什么要使用Cookie呢？</p>
+<p>Cookie，指某些网站为了辨别用户身份、进行session跟踪而储存在用户本地终端上的数据（通常经过加密）</p>
+<p>比如说有些网站需要登录后才能访问某个页面，在登录之前，你想抓取某个页面内容是不允许的。那么我们可以利用Urllib2库保存我们登录的Cookie，然后再抓取其他页面就达到目的了。</p>
+<p>在此之前呢，我们必须先介绍一个opener的概念。</p>
+<h3 id="Opener"><a href="#Opener" class="headerlink" title="Opener"></a>Opener</h3><p>当你获取一个URL你使用一个opener(一个urllib2.OpenerDirector的实例)。在前面，我们都是使用的默认的opener，也就是urlopen。它是一个特殊的opener，可以理解成opener的一个特殊实例，传入的参数仅仅是url，data，timeout。</p>
+<p>如果我们需要用到Cookie，只用这个opener是不能达到目的的，所以我们需要创建更一般的opener来实现对Cookie的设置。</p>
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/2017/05/19/vim-基础教程/#more" rel="contents">
+            <a class="btn" href="/2016/10/08/python爬虫入门5-cookie的使用/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -464,7 +701,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://timilong.com/2017/05/01/leetcode-h-index2/">
+    <link itemprop="mainEntityOfPage" href="http://timilong.com/2016/10/08/python爬虫入门4-URLError异常处理/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="博主">
@@ -483,8 +720,8 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2017/05/01/leetcode-h-index2/" itemprop="url">
-                  leetcode-'h-index2'
+                <a class="post-title-link" href="/2016/10/08/python爬虫入门4-URLError异常处理/" itemprop="url">
+                  python爬虫入门4-URLError异常处理
                 </a>
               
             
@@ -510,7 +747,7 @@
                 
               
 
-              <time title="创建于：2017-04-30 21:37:54" itemprop="dateCreated datePublished" datetime="2017-04-30T21:37:54Z">2017-04-30</time>
+              <time title="创建于：2016-10-07 18:39:30" itemprop="dateCreated datePublished" datetime="2016-10-07T18:39:30Z">2016-10-07</time>
             
 
             
@@ -544,7 +781,7 @@
                 <span class="post-meta-item-text">分类于</span>
               
               
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/leetcode/" itemprop="url" rel="index"><span itemprop="name">leetcode</span></a></span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/python/" itemprop="url" rel="index"><span itemprop="name">python</span></a></span>
 
                 
                 
@@ -579,182 +816,16 @@
 
       
         
-          
-            <h2 id="Description"><a href="#Description" class="headerlink" title="Description"></a>Description</h2><figure class="highlight maxima"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">Description:</span><br><span class="line">    h-index ，又称为h指数或h因子（h-<span class="built_in">factor</span>），是一种评价学术成就的新方法。</span><br><span class="line">    h代表“高引用次数”（high citations），一名科研人员的h指数是指他至多有h篇论文分别被引用了至少h次。</span><br><span class="line">    要确定一个人的h指数非常容易，到SCI网站，查出某个人发表的所有SCI论文，让其按被引次数从高到低排列，</span><br><span class="line">    往下核对，直到某篇论文的序号大于该论文被引次数，那个序号减去<span class="number">1</span>就是h指数。</span><br><span class="line">    <span class="keyword">or</span></span><br><span class="line">    从低到高进行排列，如果(某篇论文的引用次数) &gt;= (总长度 - 当前论文序号)，则(总长度-当前序号)就是h指数</span><br><span class="line">    其中, citations是已升序排列的</span><br><span class="line">    总结: 目标 = 引用次数 &gt;= 序号 则<span class="built_in">length</span>-序号即为结果</span><br></pre></td></tr></table></figure>
-<h2 id="Example"><a href="#Example" class="headerlink" title="Example"></a>Example</h2><figure class="highlight livecodeserver"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">Example:</span><br><span class="line">    Given citations = [<span class="number">3</span>, <span class="number">0</span>, <span class="number">6</span>, <span class="number">1</span>, <span class="number">5</span>]</span><br><span class="line">    which means <span class="keyword">the</span> researcher has <span class="number">5</span> papers <span class="keyword">in</span> total </span><br><span class="line">        <span class="keyword">and</span> <span class="keyword">each</span> <span class="keyword">of</span> them had received <span class="number">3</span>, <span class="number">0</span>, <span class="number">6</span>, <span class="number">1</span>, <span class="number">5</span> citations respectively. </span><br><span class="line">    Since <span class="keyword">the</span> researcher has <span class="number">3</span> papers <span class="keyword">with</span> <span class="keyword">at</span> least <span class="number">3</span> citations <span class="keyword">each</span> </span><br><span class="line">        <span class="keyword">and</span> <span class="keyword">the</span> remaining <span class="literal">two</span> <span class="keyword">with</span> no more than <span class="number">3</span> citations <span class="keyword">each</span>, his h-index is <span class="number">3.</span></span><br></pre></td></tr></table></figure>
-<h2 id="Solution"><a href="#Solution" class="headerlink" title="Solution"></a>Solution</h2><figure class="highlight vim"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">class Solution(object):</span><br><span class="line">    def hIndex(self, citations):</span><br><span class="line">        <span class="string">""</span><span class="comment">"</span></span><br><span class="line">        :<span class="built_in">type</span> citation<span class="variable">s:</span> List[<span class="keyword">int</span>]</span><br><span class="line">        :rtype: <span class="keyword">int</span></span><br><span class="line">        二分法</span><br><span class="line">        <span class="string">""</span><span class="comment">"</span></span><br><span class="line">        length = <span class="built_in">len</span>(citations)</span><br><span class="line">        <span class="keyword">left</span>, <span class="keyword">right</span> = <span class="number">0</span>, length-<span class="number">1</span></span><br><span class="line">        <span class="keyword">while</span> <span class="keyword">left</span> &lt;= righ<span class="variable">t:</span></span><br><span class="line">            mid = <span class="keyword">int</span>((<span class="keyword">left</span>+<span class="keyword">right</span>)/<span class="number">2</span>)</span><br><span class="line">            <span class="keyword">if</span> citations[mid] &gt;= length - mid:</span><br><span class="line">                <span class="keyword">right</span> = mid - <span class="number">1</span></span><br><span class="line">            <span class="keyword">else</span>:</span><br><span class="line">                <span class="keyword">left</span> = mid + <span class="number">1</span></span><br><span class="line">        <span class="keyword">return</span> length - <span class="keyword">left</span></span><br></pre></td></tr></table></figure>
-
-          
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://timilong.com/2017/04/19/leetcode_search_a_2d_matrix_1_2/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="博主">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Timilong's blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2017/04/19/leetcode_search_a_2d_matrix_1_2/" itemprop="url">
-                  leetcode-'search_a_2d_matrix_1_2'
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-
-              
-                
-              
-
-              <time title="创建于：2017-04-18 21:37:54" itemprop="dateCreated datePublished" datetime="2017-04-18T21:37:54Z">2017-04-18</time>
-            
-
-            
-              
-
-              
-                
-                <span class="post-meta-divider">|</span>
-                
-
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">Edited on</span>
-                
-                <time title="更新于：2018-07-24 00:18:47" itemprop="dateModified" datetime="2018-07-24T00:18:47Z">2018-07-24</time>
-              
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/leetcode/" itemprop="url" rel="index"><span itemprop="name">leetcode</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <h2 id="search-a-2d-matrix-1"><a href="#search-a-2d-matrix-1" class="headerlink" title="search_a_2d_matrix_1"></a>search_a_2d_matrix_1</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="comment">#! /usr/bin/python3</span></span><br><span class="line"><span class="comment"># coding: utf-8</span></span><br><span class="line"></span><br><span class="line"><span class="string">"""</span></span><br><span class="line"><span class="string">Descript:</span></span><br><span class="line"><span class="string">    Write an efficient algorithm that searches for a value in an m * n matrix. This matrix has the following properties:</span></span><br><span class="line"><span class="string">    Integers in each row are sorted from left to right.</span></span><br><span class="line"><span class="string">    The first integer of each row is greater than the last integer of the previous row.</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">Example:</span></span><br><span class="line"><span class="string">    </span></span><br><span class="line"><span class="string">    Consider the following matrix:</span></span><br><span class="line"><span class="string">        [</span></span><br><span class="line"><span class="string">          [1,   3,  5,  7],</span></span><br><span class="line"><span class="string">          [10, 11, 16, 20],</span></span><br><span class="line"><span class="string">          [23, 30, 34, 50]</span></span><br><span class="line"><span class="string">        ]</span></span><br><span class="line"><span class="string">    Given target = 3, return true.</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">"""</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span><span class="params">(object)</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">searchMatrix</span><span class="params">(self, matrix, target)</span>:</span></span><br><span class="line">        <span class="string">"""</span></span><br><span class="line"><span class="string">        matrix: &lt;List[List[int]]&gt;</span></span><br><span class="line"><span class="string">        target: &lt;int&gt;</span></span><br><span class="line"><span class="string">        solution: 二分查找</span></span><br><span class="line"><span class="string">        """</span></span><br><span class="line">        <span class="keyword">if</span> <span class="keyword">not</span> matrix <span class="keyword">or</span> target <span class="keyword">is</span> <span class="keyword">None</span>:</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">False</span></span><br><span class="line"></span><br><span class="line">        m, n = len(matrix), len(matrix[<span class="number">0</span>])  <span class="comment"># m行n列</span></span><br><span class="line">        low, high = <span class="number">0</span>, m * n - <span class="number">1</span></span><br><span class="line">        </span><br><span class="line">        <span class="keyword">while</span> low &lt;= high:</span><br><span class="line">            mid = (low + high) / <span class="number">2</span>  </span><br><span class="line">            num = matrix[mid / n][mid % n]</span><br><span class="line"></span><br><span class="line">            <span class="keyword">if</span> num == target:</span><br><span class="line">                <span class="keyword">return</span> <span class="keyword">True</span></span><br><span class="line">            <span class="keyword">elif</span> num &lt; target:</span><br><span class="line">                low = mid + <span class="number">1</span></span><br><span class="line">            <span class="keyword">else</span>:</span><br><span class="line">                high = mid - <span class="number">1</span></span><br><span class="line">        </span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">False</span></span><br></pre></td></tr></table></figure>
+          <p>本节在这里主要说的是URLError还有HTTPError，以及对它们的一些处理。</p>
+<h3 id="URLError"><a href="#URLError" class="headerlink" title="URLError"></a>URLError</h3><p>首先解释下URLError可能产生的原因：</p>
+<p>网络无连接，即本机无法上网<br>连接不到特定的服务器<br>服务器不存在<br>在代码中，我们需要用try-except语句来包围并捕获相应的异常。下面是一个例子，先感受下它的风骚</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> urllib2</span><br><span class="line"> </span><br><span class="line">requset = urllib2.Request(<span class="string">'http://www.xxxxx.com'</span>)</span><br><span class="line"><span class="keyword">try</span>:</span><br><span class="line">    urllib2.urlopen(request)</span><br><span class="line"><span class="keyword">except</span> urllib2.URLError, e:</span><br><span class="line">    <span class="keyword">print</span> e.reason</span><br></pre></td></tr></table></figure>
+<p>我们利用了 urlopen方法访问了一个不存在的网址，运行结果如下：</p>
+<figure class="highlight accesslog"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">[Errno 11004]</span> getaddrinfo failed</span><br></pre></td></tr></table></figure>
+<p>它说明了错误代号是11004，错误原因是 getaddrinfo failed</p>
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/2017/04/19/leetcode_search_a_2d_matrix_1_2/#more" rel="contents">
+            <a class="btn" href="/2016/10/08/python爬虫入门4-URLError异常处理/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -810,7 +881,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://timilong.com/2017/04/11/leetcode-two-sum/">
+    <link itemprop="mainEntityOfPage" href="http://timilong.com/2016/10/07/python爬虫入门3-Urllib的高级使用/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="博主">
@@ -829,8 +900,8 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2017/04/11/leetcode-two-sum/" itemprop="url">
-                  leetcode-'two-sum'
+                <a class="post-title-link" href="/2016/10/07/python爬虫入门3-Urllib的高级使用/" itemprop="url">
+                  python爬虫入门3-Urllib的高级使用
                 </a>
               
             
@@ -856,7 +927,7 @@
                 
               
 
-              <time title="创建于：2017-04-10 21:37:54" itemprop="dateCreated datePublished" datetime="2017-04-10T21:37:54Z">2017-04-10</time>
+              <time title="创建于：2016-10-06 16:16:26" itemprop="dateCreated datePublished" datetime="2016-10-06T16:16:26Z">2016-10-06</time>
             
 
             
@@ -890,7 +961,1407 @@
                 <span class="post-meta-item-text">分类于</span>
               
               
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/leetcode/" itemprop="url" rel="index"><span itemprop="name">leetcode</span></a></span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/python/" itemprop="url" rel="index"><span itemprop="name">python</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <h3 id="设置Headers"><a href="#设置Headers" class="headerlink" title="设置Headers"></a>设置Headers</h3><p>有些网站不会同意程序直接用上面的方式进行访问，如果识别有问题，那么站点根本不会响应，所以为了完全模拟浏览器的工作，我们需要设置一些Headers 的属性。</p>
+<p>首先，打开我们的浏览器，调试浏览器F12，我用的是Chrome，打开网络监听，示意如下，比如知乎，点登录之后，我们会发现登陆之后界面都变化了，出现一个新的界面，实质上这个页面包含了许许多多的内容，这些内容也不是一次性就加载完成的，实质上是执行了好多次请求，一般是首先请求HTML文件，然后加载JS，CSS 等等，经过多次请求之后，网页的骨架和肌肉全了，整个网页的效果也就出来了。<br><img src="http://7xorah.com1.z0.glb.clouddn.com/%E6%B7%B1%E5%BA%A6%E6%88%AA%E5%9B%BE20161006161942.png" alt="headers"></p>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2016/10/07/python爬虫入门3-Urllib的高级使用/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://timilong.com/2016/10/05/python爬虫入门2-Urllib的基本使用/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="博主">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Timilong's blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2016/10/05/python爬虫入门2-Urllib的基本使用/" itemprop="url">
+                  python爬虫入门2-Urllib的基本使用
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建于：2016-10-04 16:40:34" itemprop="dateCreated datePublished" datetime="2016-10-04T16:40:34Z">2016-10-04</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Edited on</span>
+                
+                <time title="更新于：2018-07-24 00:18:47" itemprop="dateModified" datetime="2018-07-24T00:18:47Z">2018-07-24</time>
+              
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/python/" itemprop="url" rel="index"><span itemprop="name">python</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <h3 id="爬取网页"><a href="#爬取网页" class="headerlink" title="爬取网页"></a>爬取网页</h3><p>爬取网页其实就是根据URL来获取它的网页信息.<br>例子: test.py<br><figure class="highlight arduino"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"># -*- coding: utf<span class="number">-8</span> -*-</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> urllib2</span><br><span class="line"></span><br><span class="line">response = urllib2.urlopen(<span class="string">"http://www.baidu.com"</span>)</span><br><span class="line"><span class="built_in">print</span>(response.<span class="built_in">read</span>())</span><br></pre></td></tr></table></figure></p>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2016/10/05/python爬虫入门2-Urllib的基本使用/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://timilong.com/2016/10/04/python爬虫入门1-基础/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="博主">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Timilong's blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2016/10/04/python爬虫入门1-基础/" itemprop="url">
+                  python爬虫入门1-基础
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建于：2016-10-03 20:20:34" itemprop="dateCreated datePublished" datetime="2016-10-03T20:20:34Z">2016-10-03</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Edited on</span>
+                
+                <time title="更新于：2018-07-24 00:18:47" itemprop="dateModified" datetime="2018-07-24T00:18:47Z">2018-07-24</time>
+              
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/python/" itemprop="url" rel="index"><span itemprop="name">python</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <h3 id="什么是爬虫"><a href="#什么是爬虫" class="headerlink" title="什么是爬虫"></a>什么是爬虫</h3><figure class="highlight erlang"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">爬虫: 网络爬虫.</span><br><span class="line">爬虫抓取某个网页, 在这个网页中发现了一条道路, 其实就是指向网页的超链接, 那么它将到另外一个网页(该超链接)获取数据.</span><br></pre></td></tr></table></figure>
+<h3 id="用户浏览网页的过程"><a href="#用户浏览网页的过程" class="headerlink" title="用户浏览网页的过程"></a>用户浏览网页的过程</h3><figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">用户浏览网页过程中, 如: 访问www.baidu.com的过程.</span><br><span class="line"><span class="bullet">1. </span>用户输入网址</span><br><span class="line"><span class="bullet">2. </span>经过DNS服务器解析</span><br><span class="line"><span class="bullet">3. </span>找到对应的服务器主机</span><br><span class="line"><span class="bullet">4. </span>向服务器主机发出一个请求</span><br><span class="line"><span class="bullet">5. </span>服务器解析该请求并响应</span><br><span class="line"><span class="bullet">6. </span>服务器返回用户浏览器HTML, css, javacript等文件</span><br><span class="line"><span class="bullet">7. </span>浏览器解析, 呈现给用户</span><br></pre></td></tr></table></figure>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2016/10/04/python爬虫入门1-基础/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://timilong.com/2016/07/13/mysql-命令行操作/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="博主">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Timilong's blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2016/07/13/mysql-命令行操作/" itemprop="url">
+                  MySQL学习1-linux下基本操作
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建于：2016-07-13 00:08:18" itemprop="dateCreated datePublished" datetime="2016-07-13T00:08:18Z">2016-07-13</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Edited on</span>
+                
+                <time title="更新于：2018-07-24 00:18:47" itemprop="dateModified" datetime="2018-07-24T00:18:47Z">2018-07-24</time>
+              
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/MySQL/" itemprop="url" rel="index"><span itemprop="name">MySQL</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <h3 id="打开终端，进入root"><a href="#打开终端，进入root" class="headerlink" title="打开终端，进入root"></a>打开终端，进入root</h3><figure class="highlight stata"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">su</span> -<span class="built_in">i</span></span><br></pre></td></tr></table></figure>
+<p>输入密码：<br><figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="strong">*****</span>*</span><br></pre></td></tr></table></figure></p>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2016/07/13/mysql-命令行操作/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://timilong.com/2016/07/09/python-pymysql学习/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="博主">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Timilong's blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2016/07/09/python-pymysql学习/" itemprop="url">
+                  python-MySQL数据库操作
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建于：2016-07-09 07:25:40" itemprop="dateCreated datePublished" datetime="2016-07-09T07:25:40Z">2016-07-09</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Edited on</span>
+                
+                <time title="更新于：2018-07-24 00:18:47" itemprop="dateModified" datetime="2018-07-24T00:18:47Z">2018-07-24</time>
+              
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/python/" itemprop="url" rel="index"><span itemprop="name">python</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <h3 id="Python访问DB的官方接口规范"><a href="#Python访问DB的官方接口规范" class="headerlink" title="Python访问DB的官方接口规范"></a>Python访问DB的官方接口规范</h3><h4 id="Python-DB-API"><a href="#Python-DB-API" class="headerlink" title="Python DB API"></a>Python DB API</h4><p>Python访问数据库的统一接口规范。<br><a href="htttps://www.python.org/dev/peps/pep-0249" target="_blank" rel="noopener">官网</a></p>
+<p>Python应用程序通过Python DB API即可完成对不同数据库的访问，对应用程序来说，只需切换少量代码即可实现。</p>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2016/07/09/python-pymysql学习/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://timilong.com/2016/07/08/python-简单的爬虫/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="博主">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Timilong's blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2016/07/08/python-简单的爬虫/" itemprop="url">
+                  python-简单的爬虫
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建于：2016-07-08 09:55:35" itemprop="dateCreated datePublished" datetime="2016-07-08T09:55:35Z">2016-07-08</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Edited on</span>
+                
+                <time title="更新于：2018-07-24 00:18:47" itemprop="dateModified" datetime="2018-07-24T00:18:47Z">2018-07-24</time>
+              
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/python/" itemprop="url" rel="index"><span itemprop="name">python</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <h3 id="爬虫简介"><a href="#爬虫简介" class="headerlink" title="爬虫简介"></a>爬虫简介</h3><p>爬虫：一段自动抓取互联网信息的程序<br>爬虫可以从一个URL出发，访问所有它所关联的URL，并从每个页面中提取我们所需要的价值数据。<br>爬虫技术的价值：互联网数据为我所用</p>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2016/07/08/python-简单的爬虫/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://timilong.com/2016/07/08/python-函数/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="博主">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Timilong's blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2016/07/08/python-函数/" itemprop="url">
+                  python-函数作用域
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建于：2016-07-07 18:51:32" itemprop="dateCreated datePublished" datetime="2016-07-07T18:51:32Z">2016-07-07</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Edited on</span>
+                
+                <time title="更新于：2018-08-14 11:37:31" itemprop="dateModified" datetime="2018-08-14T11:37:31Z">2018-08-14</time>
+              
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/python/" itemprop="url" rel="index"><span itemprop="name">python</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <h3 id="函数的实质与属性"><a href="#函数的实质与属性" class="headerlink" title="函数的实质与属性"></a>函数的实质与属性</h3><ul>
+<li>函数是一个对象</li>
+<li>函数执行完成后内部变量回收（变量被返回，那么改变量的内存空间没有被回收，即该变量的引用计数不为0）</li>
+<li>函数属性</li>
+<li>函数的返回值
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2016/07/08/python-函数/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://timilong.com/2016/07/07/linux-杀死进程/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="博主">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Timilong's blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2016/07/07/linux-杀死进程/" itemprop="url">
+                  Linux-杀死进程
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建于：2016-07-06 22:06:39" itemprop="dateCreated datePublished" datetime="2016-07-06T22:06:39Z">2016-07-06</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Edited on</span>
+                
+                <time title="更新于：2018-07-24 00:18:47" itemprop="dateModified" datetime="2018-07-24T00:18:47Z">2018-07-24</time>
+              
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/linux/" itemprop="url" rel="index"><span itemprop="name">linux</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <h3 id="用ps命令查看进程"><a href="#用ps命令查看进程" class="headerlink" title="用ps命令查看进程"></a>用ps命令查看进程</h3><h3 id="ps-ef"><a href="#ps-ef" class="headerlink" title="ps -ef"></a>ps -ef</h3>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2016/07/07/linux-杀死进程/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://timilong.com/2016/07/05/python-网络服务器/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="博主">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Timilong's blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2016/07/05/python-网络服务器/" itemprop="url">
+                  python-网络服务器
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建于：2016-07-05 15:05:42" itemprop="dateCreated datePublished" datetime="2016-07-05T15:05:42Z">2016-07-05</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Edited on</span>
+                
+                <time title="更新于：2018-07-24 00:18:47" itemprop="dateModified" datetime="2018-07-24T00:18:47Z">2018-07-24</time>
+              
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/python/" itemprop="url" rel="index"><span itemprop="name">python</span></a></span>
 
                 
                 
@@ -926,9 +2397,19 @@
       
         
           
-            <h2 id="Description"><a href="#Description" class="headerlink" title="Description"></a>Description</h2><figure class="highlight livecodeserver"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Description:</span><br><span class="line">   Given <span class="keyword">an</span> array <span class="keyword">of</span> integers, <span class="literal">return</span> indices <span class="keyword">of</span> <span class="keyword">the</span> <span class="literal">two</span> numbers such that they <span class="built_in">add</span> up <span class="built_in">to</span> <span class="keyword">a</span> specific target.</span><br><span class="line">   You may assume that <span class="keyword">each</span> input would have exactly <span class="literal">one</span> solution, <span class="keyword">and</span> you may <span class="keyword">not</span> use <span class="keyword">the</span> same <span class="keyword">element</span> twice.</span><br></pre></td></tr></table></figure>
-<h2 id="Example"><a href="#Example" class="headerlink" title="Example"></a>Example</h2><figure class="highlight prolog"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="symbol">Example</span>:</span><br><span class="line">    <span class="symbol">Given</span> nums = [<span class="number">2</span>, <span class="number">7</span>, <span class="number">11</span>, <span class="number">15</span>], target = <span class="number">9</span>,</span><br><span class="line">    <span class="symbol">Because</span> nums[<span class="number">0</span>] + nums[<span class="number">1</span>] = <span class="number">2</span> + <span class="number">7</span> = <span class="number">9</span>,</span><br><span class="line">    return [<span class="number">0</span>, <span class="number">1</span>].</span><br></pre></td></tr></table></figure>
-<h2 id="Solution"><a href="#Solution" class="headerlink" title="Solution"></a>Solution</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span><span class="params">(object)</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">twoSum</span><span class="params">(self, nums, target)</span>:</span></span><br><span class="line">        <span class="string">"""</span></span><br><span class="line"><span class="string">        :type nums: List[int]</span></span><br><span class="line"><span class="string">        :type target: int</span></span><br><span class="line"><span class="string">        :rtype: List[int]</span></span><br><span class="line"><span class="string">            时间复杂度: O(n)</span></span><br><span class="line"><span class="string">            target - nums[i] = i</span></span><br><span class="line"><span class="string">            将当前target-num的差值作为key, 当前i作为value, 存储为字典</span></span><br><span class="line"><span class="string">            循环遍历一次</span></span><br><span class="line"><span class="string">            如果nums[i] in dict则返回[dict[nums[i]], i]</span></span><br><span class="line"><span class="string">            否则继续循环, 直到结束返回None</span></span><br><span class="line"><span class="string">        """</span></span><br><span class="line">        length = len(nums)</span><br><span class="line">        <span class="keyword">if</span> length &lt;=<span class="number">1</span>: </span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">False</span></span><br><span class="line">        buff_dict = &#123;&#125;</span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> range(length):</span><br><span class="line">            <span class="keyword">if</span> nums[i] <span class="keyword">in</span> buff_dict:</span><br><span class="line">                print(i, nums[i], buff_dict)</span><br><span class="line">                <span class="keyword">return</span> [buff_dict[nums[i]], i]</span><br><span class="line">            <span class="keyword">else</span>:</span><br><span class="line">                buff_dict[target - nums[i]] = i</span><br><span class="line">                print(i, nums[i], buff_dict)</span><br><span class="line"></span><br><span class="line">        <span class="keyword">pass</span></span><br><span class="line"></span><br><span class="line">solution = Solution()</span><br><span class="line">nums = [<span class="number">2</span>, <span class="number">7</span>, <span class="number">9</span>, <span class="number">11</span>]</span><br><span class="line">target = <span class="number">9</span></span><br><span class="line">print(solution.twoSum(nums, target))</span><br></pre></td></tr></table></figure>
+            <h3 id="Python网络服务器"><a href="#Python网络服务器" class="headerlink" title="Python网络服务器"></a>Python网络服务器</h3><p>Python 的网络服务器有</p>
+<ul>
+<li>TCPServer </li>
+<li>UDPServer</li>
+<li>UnixStreamServer</li>
+<li>UnixDatagramServer</li>
+</ul>
+<h3 id="服务器运行模式"><a href="#服务器运行模式" class="headerlink" title="服务器运行模式"></a>服务器运行模式</h3><ul>
+<li>多进程ForkingMixin</li>
+<li>多线程ThreadingMixin</li>
+</ul>
+<h3 id="创建多进程模式的TCPServer"><a href="#创建多进程模式的TCPServer" class="headerlink" title="创建多进程模式的TCPServer"></a>创建多进程模式的TCPServer</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">MyTCPServer</span><span class="params">(TCPServer, ForkingMixin)</span>:</span></span><br><span class="line">    <span class="keyword">pass</span></span><br></pre></td></tr></table></figure>
+<h3 id="创建多线程模式的UDPServer"><a href="#创建多线程模式的UDPServer" class="headerlink" title="创建多线程模式的UDPServer:"></a>创建多线程模式的UDPServer:</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">MyUDPServer</span><span class="params">(UDPServer, ThreadingMixin)</span>:</span></span><br><span class="line">    <span class="keyword">pass</span></span><br></pre></td></tr></table></figure>
 
           
         
@@ -982,7 +2463,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://timilong.com/2017/03/26/leetcode_add_digits/">
+    <link itemprop="mainEntityOfPage" href="http://timilong.com/2016/07/04/python-函数式编程/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="博主">
@@ -1001,8 +2482,8 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2017/03/26/leetcode_add_digits/" itemprop="url">
-                  leetcode-'add_digits'
+                <a class="post-title-link" href="/2016/07/04/python-函数式编程/" itemprop="url">
+                  python-函数式编程
                 </a>
               
             
@@ -1028,7 +2509,7 @@
                 
               
 
-              <time title="创建于：2017-03-25 21:37:54" itemprop="dateCreated datePublished" datetime="2017-03-25T21:37:54Z">2017-03-25</time>
+              <time title="创建于：2016-07-03 20:09:27" itemprop="dateCreated datePublished" datetime="2016-07-03T20:09:27Z">2016-07-03</time>
             
 
             
@@ -1062,7 +2543,188 @@
                 <span class="post-meta-item-text">分类于</span>
               
               
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/leetcode/" itemprop="url" rel="index"><span itemprop="name">leetcode</span></a></span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/python/" itemprop="url" rel="index"><span itemprop="name">python</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <h3 id="函数式编程综合概述"><a href="#函数式编程综合概述" class="headerlink" title="函数式编程综合概述"></a>函数式编程综合概述</h3><h4 id="什么是函数式编程？"><a href="#什么是函数式编程？" class="headerlink" title="什么是函数式编程？"></a>什么是函数式编程？</h4><p>函数式编程：使用一系列的函数解决实际问题。</p>
+<p>函数仅接受输入并产生输出，不包含任何能影响产生输出的内部状态。</p>
+<p>任何情况下，使用相同的参数调用函数始终恩那个产生同样的结果。</p>
+<p>在一个函数式的程序中，输入的数据“流过”一系列的函数，每一个函数根据它的输入产生输出。</p>
+<p>函数式风格避免编写有“边界效应”的函数： 修改内部状态，或者是其它无法反应在输出上的变化。</p>
+<p>完全没有边界效应的函数被称为“纯函数式的”。</p>
+<p>避免边界效应意味着不适用在程序运行时可变的数据结构， 输出只依赖输入。</p>
+<p>可以认为函数式编程站在了面向对象编程的对立面。</p>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2016/07/04/python-函数式编程/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://timilong.com/2016/07/03/python-汉诺塔/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="博主">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Timilong's blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2016/07/03/python-汉诺塔/" itemprop="url">
+                  python-汉诺塔
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建于：2016-07-02 20:18:33" itemprop="dateCreated datePublished" datetime="2016-07-02T20:18:33Z">2016-07-02</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Edited on</span>
+                
+                <time title="更新于：2018-07-24 00:18:47" itemprop="dateModified" datetime="2018-07-24T00:18:47Z">2018-07-24</time>
+              
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/python/" itemprop="url" rel="index"><span itemprop="name">python</span></a></span>
 
                 
                 
@@ -1098,9 +2760,7 @@
       
         
           
-            <h2 id="Description"><a href="#Description" class="headerlink" title="Description"></a>Description</h2><figure class="highlight livecodeserver"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Description:</span><br><span class="line">    Given <span class="keyword">a</span> non-negative <span class="keyword">integer</span> <span class="built_in">num</span>, repeatedly <span class="built_in">add</span> all its digits <span class="keyword">until</span> <span class="keyword">the</span> <span class="built_in">result</span> has only <span class="literal">one</span> digit.</span><br></pre></td></tr></table></figure>
-<h2 id="Example"><a href="#Example" class="headerlink" title="Example"></a>Example</h2><figure class="highlight livecodeserver"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Example:</span><br><span class="line">    Given <span class="built_in">num</span> = <span class="number">38</span>, <span class="keyword">the</span> <span class="built_in">process</span> is like: <span class="number">3</span> + <span class="number">8</span> = <span class="number">11</span>, <span class="number">1</span> + <span class="number">1</span> = <span class="number">2.</span> Since <span class="number">2</span> has only <span class="literal">one</span> digit, <span class="literal">return</span> <span class="keyword">it</span>.</span><br></pre></td></tr></table></figure>
-<h2 id="Solution"><a href="#Solution" class="headerlink" title="Solution"></a>Solution</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span><span class="params">(object)</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">addDigits</span><span class="params">(self, num)</span>:</span></span><br><span class="line">        <span class="string">"""</span></span><br><span class="line"><span class="string">        num: &lt;int&gt;</span></span><br><span class="line"><span class="string">        return: &lt;int&gt;</span></span><br><span class="line"><span class="string">        """</span></span><br><span class="line">        <span class="keyword">if</span> num == <span class="number">0</span>:</span><br><span class="line">            <span class="keyword">return</span> <span class="number">0</span></span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            <span class="keyword">return</span> (num<span class="number">-1</span>) % <span class="number">9</span> + <span class="number">1</span>  <span class="comment"># 9是区分最大的一位数</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">solution = Solution()</span><br><span class="line">print(solution.addDigits(<span class="number">38</span>))</span><br></pre></td></tr></table></figure>
+            <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">moveHanii</span><span class="params">(n, a, b, c)</span>:</span></span><br><span class="line">    <span class="keyword">if</span> n == <span class="number">1</span>:</span><br><span class="line">        <span class="keyword">print</span> a, <span class="string">"--&gt;"</span>, c</span><br><span class="line">        <span class="keyword">return</span></span><br><span class="line">    moveHanii(n<span class="number">-1</span>, a, c, b)</span><br><span class="line">    <span class="keyword">print</span> a, <span class="string">"--&gt;"</span>, c</span><br><span class="line">    moveHanii(n<span class="number">-1</span>, b, a, c)</span><br><span class="line"></span><br><span class="line">moveHanii(<span class="number">5</span>, <span class="string">'A'</span>, <span class="string">'B'</span>, <span class="string">'C'</span>)</span><br></pre></td></tr></table></figure>
 
           
         
@@ -1154,7 +2814,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://timilong.com/2017/03/21/leetcode-first-bad-version/">
+    <link itemprop="mainEntityOfPage" href="http://timilong.com/2016/06/23/算法-字符查找/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="博主">
@@ -1173,8 +2833,8 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2017/03/21/leetcode-first-bad-version/" itemprop="url">
-                  leetcode-'first-bad-version'
+                <a class="post-title-link" href="/2016/06/23/算法-字符查找/" itemprop="url">
+                  面试-字符查找
                 </a>
               
             
@@ -1200,7 +2860,7 @@
                 
               
 
-              <time title="创建于：2017-03-20 21:37:54" itemprop="dateCreated datePublished" datetime="2017-03-20T21:37:54Z">2017-03-20</time>
+              <time title="创建于：2016-06-23 10:08:03" itemprop="dateCreated datePublished" datetime="2016-06-23T10:08:03Z">2016-06-23</time>
             
 
             
@@ -1222,24 +2882,6 @@
             
           </span>
 
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/leetcode/" itemprop="url" rel="index"><span itemprop="name">leetcode</span></a></span>
-
-                
-                
-              
-            </span>
           
 
           
@@ -1270,696 +2912,7 @@
       
         
           
-            <h2 id="Description"><a href="#Description" class="headerlink" title="Description"></a>Description</h2><figure class="highlight armasm"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="symbol">Description</span>:</span><br><span class="line">    给定一个API: <span class="keyword">isBadVersion()</span></span><br><span class="line"><span class="keyword"> </span>   要求: 在需要编写的firstBadVersion()中最少次数调用该API得到第一个<span class="keyword">bad </span>version</span><br></pre></td></tr></table></figure>
-<h2 id="Example"><a href="#Example" class="headerlink" title="Example"></a>Example</h2><figure class="highlight vim"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Example:</span><br><span class="line">    Suppose you have n versions [<span class="number">1</span>, <span class="number">2</span>, ..., n] </span><br><span class="line">    <span class="built_in">and</span> you want <span class="keyword">to</span> <span class="keyword">find</span> out the <span class="keyword">first</span> <span class="keyword">bad</span> one, which causes <span class="keyword">all</span> the following ones <span class="keyword">to</span> <span class="keyword">be</span> <span class="keyword">bad</span>.</span><br></pre></td></tr></table></figure>
-<h2 id="Solution"><a href="#Solution" class="headerlink" title="Solution"></a>Solution</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">"""</span></span><br><span class="line"><span class="string">Solution:</span></span><br><span class="line"><span class="string">    时间复杂度: O(log(n))</span></span><br><span class="line"><span class="string">    空间复杂度: O(1)</span></span><br><span class="line"><span class="string">    二分查找到最先被坏掉的版本号</span></span><br><span class="line"><span class="string">"""</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="string">"""</span></span><br><span class="line"><span class="string"># The isBadVersion API is already defined for you.</span></span><br><span class="line"><span class="string"># @param version, an integer</span></span><br><span class="line"><span class="string"># @return a bool</span></span><br><span class="line"><span class="string"># def isBadVersion(version):</span></span><br><span class="line"><span class="string">"""</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span><span class="params">(object)</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">firstBadVersion</span><span class="params">(self, n)</span>:</span></span><br><span class="line">        <span class="string">"""</span></span><br><span class="line"><span class="string">        :type n: int</span></span><br><span class="line"><span class="string">        :rtype: int</span></span><br><span class="line"><span class="string">        """</span></span><br><span class="line">        left, right = n, <span class="number">1</span> </span><br><span class="line">        <span class="keyword">while</span> left &lt; right:</span><br><span class="line">            mid = int(left + (right - left)/<span class="number">2</span>)</span><br><span class="line">            <span class="keyword">if</span> isBadVersion(mid):</span><br><span class="line">                right = mid  <span class="comment"># mid是，表示目标值在mid左侧，则更新right=mid，继续</span></span><br><span class="line">            <span class="keyword">else</span>:</span><br><span class="line">                left = mid + <span class="number">1</span>  <span class="comment"># mid不是，表示目标值在mid右侧，更新left=mid+1，继续</span></span><br><span class="line">        <span class="keyword">return</span> left  <span class="comment"># 返回左侧较小值</span></span><br></pre></td></tr></table></figure>
-
-          
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://timilong.com/2017/03/19/leetcode_valid_anagram/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="博主">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Timilong's blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2017/03/19/leetcode_valid_anagram/" itemprop="url">
-                  leetcode-'valid_anagram'
-                </a>
-              
             
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-
-              
-                
-              
-
-              <time title="创建于：2017-03-18 21:37:54" itemprop="dateCreated datePublished" datetime="2017-03-18T21:37:54Z">2017-03-18</time>
-            
-
-            
-              
-
-              
-                
-                <span class="post-meta-divider">|</span>
-                
-
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">Edited on</span>
-                
-                <time title="更新于：2018-07-24 00:18:47" itemprop="dateModified" datetime="2018-07-24T00:18:47Z">2018-07-24</time>
-              
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/leetcode/" itemprop="url" rel="index"><span itemprop="name">leetcode</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h2 id="different-ways-to-add-parentheses"><a href="#different-ways-to-add-parentheses" class="headerlink" title="different_ways_to_add_parentheses"></a>different_ways_to_add_parentheses</h2><figure class="highlight vim"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">#! /usr/bin/<span class="keyword">python3</span></span><br><span class="line"># codin<span class="variable">g:</span> utf-<span class="number">8</span></span><br><span class="line"></span><br><span class="line"><span class="string">""</span><span class="comment">"</span></span><br><span class="line">Description<span class="variable">s:</span></span><br><span class="line">    Given two strings s <span class="built_in">and</span> t, <span class="keyword">write</span> <span class="keyword">a</span> <span class="function"><span class="keyword">function</span> <span class="title">to</span> <span class="title">determine</span> <span class="title">if</span> <span class="title">t</span> <span class="title">is</span> <span class="title">an</span> <span class="title">anagram</span> <span class="title">of</span> <span class="title">s</span>.  </span></span><br><span class="line"></span><br><span class="line">Example: </span><br><span class="line">    s = <span class="string">"anagram"</span>, t = <span class="string">"nagaram"</span>, <span class="keyword">return</span> true.  </span><br><span class="line">    s = <span class="string">"rat"</span>, t = <span class="string">"car"</span>, <span class="keyword">return</span> false.  </span><br><span class="line"></span><br><span class="line">Note: </span><br><span class="line">    You may assume the <span class="built_in">string</span> contains <span class="keyword">only</span> lowercase alphabets.</span><br><span class="line"></span><br><span class="line">Follow <span class="keyword">up</span>:</span><br><span class="line">    What <span class="keyword">if</span> the inputs contain unicode characters? How would you adapt your solution <span class="keyword">to</span> such case?</span><br><span class="line"></span><br><span class="line"><span class="string">""</span><span class="comment">"</span></span><br><span class="line"></span><br><span class="line">class Solution(object):</span><br><span class="line">    def isAnagram(self, s, t):</span><br><span class="line">        <span class="string">""</span><span class="comment">"</span></span><br><span class="line">        <span class="variable">s:</span> <span class="symbol">&lt;str&gt;</span></span><br><span class="line">        <span class="variable">t:</span> <span class="symbol">&lt;str&gt;</span></span><br><span class="line">        <span class="keyword">return</span>: <span class="symbol">&lt;bool&gt;</span></span><br><span class="line">        <span class="string">""</span><span class="comment">"</span></span><br><span class="line">        res_s = &#123;&#125;</span><br><span class="line">        res_t = &#123;&#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">for</span> item in <span class="variable">s:</span></span><br><span class="line">            res_s[item] = res_s.<span class="built_in">get</span>(item, <span class="number">0</span>) + <span class="number">1</span></span><br><span class="line"></span><br><span class="line">        <span class="keyword">for</span> item in <span class="variable">t:</span></span><br><span class="line">            res_t[item] = res_t.<span class="built_in">get</span>(item, <span class="number">0</span>) + <span class="number">1</span></span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> res_s == res_t</span><br><span class="line"></span><br><span class="line">    def isAnagram1(self, s, t):</span><br><span class="line">        <span class="keyword">return</span> sorted(s) == sorted(t)</span><br><span class="line"></span><br><span class="line">solution = Solution()</span><br><span class="line"></span><br><span class="line">s = <span class="string">"anagram"</span></span><br><span class="line"></span><br><span class="line">t = <span class="string">"ganaamr"</span></span><br><span class="line"><span class="keyword">print</span>(solution.isAnagram(s, t))</span><br></pre></td></tr></table></figure>
-
-          
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://timilong.com/2017/03/16/leetcode_binary_tree_paths/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="博主">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Timilong's blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2017/03/16/leetcode_binary_tree_paths/" itemprop="url">
-                  leetcode-'bianry_tree_paths'
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-
-              
-                
-              
-
-              <time title="创建于：2017-03-15 21:37:54" itemprop="dateCreated datePublished" datetime="2017-03-15T21:37:54Z">2017-03-15</time>
-            
-
-            
-              
-
-              
-                
-                <span class="post-meta-divider">|</span>
-                
-
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">Edited on</span>
-                
-                <time title="更新于：2018-07-24 00:18:47" itemprop="dateModified" datetime="2018-07-24T00:18:47Z">2018-07-24</time>
-              
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/leetcode/" itemprop="url" rel="index"><span itemprop="name">leetcode</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h2 id="Description"><a href="#Description" class="headerlink" title="Description"></a>Description</h2><figure class="highlight autoit"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Description:</span><br><span class="line">    Given a <span class="built_in">binary</span> tree, <span class="keyword">return</span> all root-<span class="keyword">to</span>-leaf paths.</span><br></pre></td></tr></table></figure>
-<h2 id="Example"><a href="#Example" class="headerlink" title="Example"></a>Example</h2><figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Example:</span><br><span class="line">    https:<span class="regexp">//</span>leetcode.com<span class="regexp">/problems/</span>binary-tree-paths<span class="regexp">/description/</span></span><br></pre></td></tr></table></figure>
-<h2 id="Solution"><a href="#Solution" class="headerlink" title="Solution"></a>Solution</h2><figure class="highlight vim"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br></pre></td><td class="code"><pre><span class="line"># Definition <span class="keyword">for</span> <span class="keyword">a</span> binary tree node.</span><br><span class="line"># class TreeNode(object):</span><br><span class="line">#     def __init__(self, <span class="keyword">x</span>):</span><br><span class="line">#         self.val = <span class="keyword">x</span></span><br><span class="line">#         self.<span class="keyword">left</span> = None</span><br><span class="line">#         self.<span class="keyword">right</span> = None</span><br><span class="line"></span><br><span class="line">class Solution(object):</span><br><span class="line">    def binaryTreePaths(self, root):</span><br><span class="line">        <span class="string">""</span><span class="comment">"</span></span><br><span class="line">        :<span class="built_in">type</span> roo<span class="variable">t:</span> TreeNode</span><br><span class="line">        :rtype: List[str]</span><br><span class="line">        <span class="string">""</span><span class="comment">"</span></span><br><span class="line">        # dfs + stack</span><br><span class="line">        <span class="keyword">if</span> not roo<span class="variable">t:</span></span><br><span class="line">            <span class="keyword">return</span> []</span><br><span class="line">        <span class="keyword">res</span>, stack = [], [(root, <span class="string">""</span>)]</span><br><span class="line">        <span class="keyword">while</span> stack:</span><br><span class="line">            node, <span class="keyword">ls</span> = stack.<span class="keyword">pop</span>()</span><br><span class="line">            <span class="keyword">if</span> not node.<span class="keyword">left</span> <span class="built_in">and</span> not node.righ<span class="variable">t:</span></span><br><span class="line">                <span class="keyword">res</span>.<span class="keyword">append</span>(<span class="keyword">ls</span>+str(node.val))</span><br><span class="line">            <span class="keyword">if</span> node.righ<span class="variable">t:</span></span><br><span class="line">                stack.<span class="keyword">append</span>((node.<span class="keyword">right</span>, <span class="keyword">ls</span>+str(node.val)+<span class="string">"-&gt;"</span>))</span><br><span class="line">            <span class="keyword">if</span> node.lef<span class="variable">t:</span></span><br><span class="line">                stack.<span class="keyword">append</span>((node.<span class="keyword">left</span>, <span class="keyword">ls</span>+str(node.val)+<span class="string">"-&gt;"</span>))</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">res</span></span><br><span class="line">    </span><br><span class="line">        # bfs + queue</span><br><span class="line">        def binaryTreePaths2(self, root):</span><br><span class="line">            <span class="keyword">if</span> not roo<span class="variable">t:</span></span><br><span class="line">                <span class="keyword">return</span> []</span><br><span class="line">            <span class="keyword">res</span>, queue = [], collections.deque([(root, <span class="string">""</span>)])</span><br><span class="line">            <span class="keyword">while</span> queue:</span><br><span class="line">                node, <span class="keyword">ls</span> = queue.popleft()</span><br><span class="line">                <span class="keyword">if</span> not node.<span class="keyword">left</span> <span class="built_in">and</span> not node.righ<span class="variable">t:</span></span><br><span class="line">                    <span class="keyword">res</span>.<span class="keyword">append</span>(<span class="keyword">ls</span>+str(node.val))</span><br><span class="line">                <span class="keyword">if</span> node.lef<span class="variable">t:</span></span><br><span class="line">                    queue.<span class="keyword">append</span>((node.<span class="keyword">left</span>, <span class="keyword">ls</span>+str(node.val)+<span class="string">"-&gt;"</span>))</span><br><span class="line">                <span class="keyword">if</span> node.righ<span class="variable">t:</span></span><br><span class="line">                    queue.<span class="keyword">append</span>((node.<span class="keyword">right</span>, <span class="keyword">ls</span>+str(node.val)+<span class="string">"-&gt;"</span>))</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">res</span></span><br><span class="line">            </span><br><span class="line">        # dfs recursively</span><br><span class="line">        def binaryTreePaths2(self, root):</span><br><span class="line">            <span class="keyword">if</span> not roo<span class="variable">t:</span></span><br><span class="line">                <span class="keyword">return</span> []</span><br><span class="line">            <span class="keyword">res</span> = []</span><br><span class="line">            self.dfs(root, <span class="string">""</span>, <span class="keyword">res</span>)</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">res</span></span><br><span class="line">        </span><br><span class="line">        def dfs(self, root, <span class="keyword">ls</span>, <span class="keyword">res</span>):</span><br><span class="line">            <span class="keyword">if</span> not root.<span class="keyword">left</span> <span class="built_in">and</span> not root.righ<span class="variable">t:</span></span><br><span class="line">                <span class="keyword">res</span>.<span class="keyword">append</span>(<span class="keyword">ls</span>+str(root.val))</span><br><span class="line">            <span class="keyword">if</span> root.lef<span class="variable">t:</span></span><br><span class="line">                self.dfs(root.<span class="keyword">left</span>, <span class="keyword">ls</span>+str(root.val)+<span class="string">"-&gt;"</span>, <span class="keyword">res</span>)</span><br><span class="line">            <span class="keyword">if</span> root.righ<span class="variable">t:</span></span><br><span class="line">                self.dfs(root.<span class="keyword">right</span>, <span class="keyword">ls</span>+str(root.val)+<span class="string">"-&gt;"</span>, <span class="keyword">res</span>)</span><br></pre></td></tr></table></figure>
-
-          
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://timilong.com/2017/03/11/leetcode-h-index1/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="博主">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Timilong's blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2017/03/11/leetcode-h-index1/" itemprop="url">
-                  leetcode-'h-index1'
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-
-              
-                
-              
-
-              <time title="创建于：2017-03-10 21:37:54" itemprop="dateCreated datePublished" datetime="2017-03-10T21:37:54Z">2017-03-10</time>
-            
-
-            
-              
-
-              
-                
-                <span class="post-meta-divider">|</span>
-                
-
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">Edited on</span>
-                
-                <time title="更新于：2018-07-24 00:18:47" itemprop="dateModified" datetime="2018-07-24T00:18:47Z">2018-07-24</time>
-              
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/leetcode/" itemprop="url" rel="index"><span itemprop="name">leetcode</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h2 id="Description"><a href="#Description" class="headerlink" title="Description"></a>Description</h2><figure class="highlight avrasm"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="symbol">Description:</span></span><br><span class="line">    h-index ，又称为h指数或h因子（h-factor），是一种评价学术成就的新方法。</span><br><span class="line">    h代表“高引用次数”（high citations），一名科研人员的h指数是指他至多有h篇论文分别被引用了至少h次。</span><br><span class="line">    要确定一个人的h指数非常容易，到SCI网站，查出某个人发表的所有SCI论文，让其按被引次数从高到低排列，</span><br><span class="line">    往下核对，直到某篇论文的序号大于该论文被引次数，那个序号减去<span class="number">1</span>就是h指数。</span><br><span class="line">    <span class="keyword">or</span></span><br><span class="line">    从低到高进行排列，如果(某篇论文的引用次数) &gt;= (论文总数 - 当前论文序号)，则(总长度-当前序号)就是h指数</span><br></pre></td></tr></table></figure>
-<h2 id="Example"><a href="#Example" class="headerlink" title="Example"></a>Example</h2><figure class="highlight livecodeserver"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">Example:</span><br><span class="line">    Given citations = [<span class="number">3</span>, <span class="number">0</span>, <span class="number">6</span>, <span class="number">1</span>, <span class="number">5</span>]</span><br><span class="line">    which means <span class="keyword">the</span> researcher has <span class="number">5</span> papers <span class="keyword">in</span> total </span><br><span class="line">        <span class="keyword">and</span> <span class="keyword">each</span> <span class="keyword">of</span> them had received <span class="number">3</span>, <span class="number">0</span>, <span class="number">6</span>, <span class="number">1</span>, <span class="number">5</span> citations respectively. </span><br><span class="line">    Since <span class="keyword">the</span> researcher has <span class="number">3</span> papers <span class="keyword">with</span> <span class="keyword">at</span> least <span class="number">3</span> citations <span class="keyword">each</span> </span><br><span class="line">        <span class="keyword">and</span> <span class="keyword">the</span> remaining <span class="literal">two</span> <span class="keyword">with</span> no more than <span class="number">3</span> citations <span class="keyword">each</span>, his h-index is <span class="number">3.</span></span><br></pre></td></tr></table></figure>
-<h2 id="Solution"><a href="#Solution" class="headerlink" title="Solution"></a>Solution</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span><span class="params">(object)</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">hIndex</span><span class="params">(self, citations)</span>:</span></span><br><span class="line">        <span class="string">"""</span></span><br><span class="line"><span class="string">        :type citations: List[int]</span></span><br><span class="line"><span class="string">        :rtype: int</span></span><br><span class="line"><span class="string">        """</span></span><br><span class="line">        citations.sort()</span><br><span class="line">        length = len(citations)</span><br><span class="line"></span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> range(length):</span><br><span class="line">            <span class="keyword">if</span> citations[i] &gt;= length - i:</span><br><span class="line">                <span class="keyword">return</span> length - i</span><br><span class="line">        <span class="keyword">return</span> <span class="number">0</span></span><br><span class="line">        <span class="string">""" 方法2</span></span><br><span class="line"><span class="string">        citations.sort(reverse=True)</span></span><br><span class="line"><span class="string">        for i in range(len(citations)):</span></span><br><span class="line"><span class="string">            if i &gt;= citations[i]:</span></span><br><span class="line"><span class="string">            return i</span></span><br><span class="line"><span class="string">        return len(citations)</span></span><br><span class="line"><span class="string">        """</span></span><br></pre></td></tr></table></figure>
-
-          
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://timilong.com/2017/03/02/leetcode_single_number_1_2_3/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="博主">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Timilong's blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2017/03/02/leetcode_single_number_1_2_3/" itemprop="url">
-                  leetcode-'single_number'
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-
-              
-                
-              
-
-              <time title="创建于：2017-03-01 21:37:54" itemprop="dateCreated datePublished" datetime="2017-03-01T21:37:54Z">2017-03-01</time>
-            
-
-            
-              
-
-              
-                
-                <span class="post-meta-divider">|</span>
-                
-
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">Edited on</span>
-                
-                <time title="更新于：2018-07-24 00:18:47" itemprop="dateModified" datetime="2018-07-24T00:18:47Z">2018-07-24</time>
-              
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/leetcode/" itemprop="url" rel="index"><span itemprop="name">leetcode</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h2 id="single-number-1"><a href="#single-number-1" class="headerlink" title="single_number_1"></a>single_number_1</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#! /usr/bin/python3</span></span><br><span class="line"><span class="comment"># coding: utf-8    </span></span><br><span class="line"><span class="string">"""</span></span><br><span class="line"><span class="string">Description:</span></span><br><span class="line"><span class="string">    Given an array of integers, every element appears twice except for one. Find that single one.</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">Note:</span></span><br><span class="line"><span class="string">    Your algorithm should have a linear runtime complexity. Could you implement it without using extra memory?</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">Solution:</span></span><br><span class="line"><span class="string">    异或运算 0^1 = 1  and 1^1 = 0 and 0^0 = 1</span></span><br><span class="line"><span class="string">"""</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span><span class="params">(object)</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">singleNumber</span><span class="params">(self, nums)</span>:</span></span><br><span class="line">        <span class="string">"""</span></span><br><span class="line"><span class="string">        type: nums-&gt;List[int]</span></span><br><span class="line"><span class="string">        rtype: int</span></span><br><span class="line"><span class="string">        """</span></span><br><span class="line">        res = <span class="number">0</span> </span><br><span class="line">        <span class="keyword">if</span> len(nums) == <span class="number">0</span> <span class="keyword">or</span> len(nums) == <span class="number">2</span>:</span><br><span class="line">            <span class="keyword">return</span> <span class="number">0</span></span><br><span class="line">        <span class="keyword">if</span> len(nums) == <span class="number">1</span>:</span><br><span class="line">            <span class="keyword">return</span> nums[<span class="number">0</span>]</span><br><span class="line">        <span class="keyword">for</span> item <span class="keyword">in</span> nums:</span><br><span class="line">            res ^= item</span><br><span class="line">        <span class="keyword">return</span> res</span><br></pre></td></tr></table></figure>
-<h2 id="single-number-2"><a href="#single-number-2" class="headerlink" title="single_number_2"></a>single_number_2</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#! /usr/bin/python3</span></span><br><span class="line"><span class="comment"># coding: utf-8</span></span><br><span class="line"></span><br><span class="line"><span class="string">"""</span></span><br><span class="line"><span class="string">Description:</span></span><br><span class="line"><span class="string">    Given an array of integers, every element appears three times except for one. Find that single one.</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">Note:</span></span><br><span class="line"><span class="string">    Your algorithm should have a linear runtime complexity. Could you implement it without using extra memory?</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">Solution:</span></span><br><span class="line"><span class="string">    # 方法1: 利用set之和*3 - list之和 = 2*res</span></span><br><span class="line"><span class="string">    # 方法2: 利用异或运算、或运算、与运算、非运算</span></span><br><span class="line"><span class="string">"""</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span><span class="params">(object)</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">singleNumber</span><span class="params">(self, nums)</span>:</span></span><br><span class="line">        <span class="comment"># 方法1: 利用</span></span><br><span class="line">        <span class="string">"""</span></span><br><span class="line"><span class="string">        type: nums-&gt;List[int]</span></span><br><span class="line"><span class="string">        rtype: int</span></span><br><span class="line"><span class="string">        """</span></span><br><span class="line">        res = <span class="number">0</span></span><br><span class="line">        <span class="keyword">if</span> len(nums) == <span class="number">0</span> <span class="keyword">or</span> len(nums) == <span class="number">2</span>:</span><br><span class="line">            <span class="keyword">return</span> <span class="number">0</span></span><br><span class="line">        <span class="keyword">if</span> len(nums) == <span class="number">1</span>:</span><br><span class="line">            <span class="keyword">return</span> nums[<span class="number">0</span>]</span><br><span class="line">        aset = set(nums)</span><br><span class="line">        sum_nums = sum(nums)</span><br><span class="line">        sum_aset = sum(aset)</span><br><span class="line">        res = (<span class="number">3</span>*sum_aset - sum_nums)//<span class="number">2</span></span><br><span class="line">        <span class="keyword">return</span> res</span><br><span class="line">        <span class="string">""" </span></span><br><span class="line"><span class="string">        # 方法2</span></span><br><span class="line"><span class="string">        one = 0</span></span><br><span class="line"><span class="string">        two = 0</span></span><br><span class="line"><span class="string">        three = 0</span></span><br><span class="line"><span class="string">        for i in range(0,len(nums)):</span></span><br><span class="line"><span class="string">            two |= one&amp;nums[i]</span></span><br><span class="line"><span class="string">            one ^= nums[i]</span></span><br><span class="line"><span class="string">            three = one&amp;two</span></span><br><span class="line"><span class="string">            one &amp;= ~three</span></span><br><span class="line"><span class="string">            two &amp;= ~three</span></span><br><span class="line"><span class="string">        return one</span></span><br><span class="line"><span class="string">        """</span></span><br></pre></td></tr></table></figure>
-<h2 id="single-number-3"><a href="#single-number-3" class="headerlink" title="single_number_3"></a>single_number_3</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#! /usr/bin/python3</span></span><br><span class="line"><span class="comment"># coding: utf-8</span></span><br><span class="line"></span><br><span class="line"><span class="string">"""</span></span><br><span class="line"><span class="string">Description:</span></span><br><span class="line"><span class="string">    Given an array of numbers nums, </span></span><br><span class="line"><span class="string">    in which exactly two elements appear only once and all the other elements appear exactly twice. </span></span><br><span class="line"><span class="string">    Find the two elements that appear only once.</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">Example:</span></span><br><span class="line"><span class="string">    Given nums = [1, 2, 1, 3, 2, 5], return [3, 5].</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">Note:</span></span><br><span class="line"><span class="string">    The order of the result is not important. So in the above example, [5, 3] is also correct.</span></span><br><span class="line"><span class="string">    Your algorithm should run in linear runtime complexity. Could you implement it using only constant space complexity?</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">Solution:</span></span><br><span class="line"><span class="string">    # 方法1:</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">"""</span></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span><span class="params">(object)</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">singleNumber</span><span class="params">(self, nums)</span>:</span></span><br><span class="line">        <span class="string">"""</span></span><br><span class="line"><span class="string">        :type nums: List[int]</span></span><br><span class="line"><span class="string">        :rtype: List[int]</span></span><br><span class="line"><span class="string">        """</span></span><br><span class="line">        xor, a, b = <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span></span><br><span class="line">        <span class="keyword">for</span> num <span class="keyword">in</span> nums:</span><br><span class="line">            xor ^= num</span><br><span class="line">        print(<span class="string">"xor"</span>, xor)</span><br><span class="line">        mask = <span class="number">1</span></span><br><span class="line">        <span class="keyword">while</span>(xor&amp;mask == <span class="number">0</span>):  <span class="comment"># </span></span><br><span class="line">            mask = mask &lt;&lt; <span class="number">1</span></span><br><span class="line">            print(<span class="string">"mask"</span>, mask)</span><br><span class="line">        <span class="keyword">for</span> num <span class="keyword">in</span> nums:</span><br><span class="line">            <span class="keyword">if</span> num &amp; mask:</span><br><span class="line">                a ^= num</span><br><span class="line">                print(<span class="string">"a"</span>, a)</span><br><span class="line">            <span class="keyword">else</span>:</span><br><span class="line">                b ^= num</span><br><span class="line">                print(<span class="string">"b"</span>, b)</span><br><span class="line">        <span class="keyword">return</span> [a, b]</span><br><span class="line">solution = Solution()</span><br><span class="line">nums = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">1</span>, <span class="number">3</span>, <span class="number">2</span>, <span class="number">5</span>]</span><br><span class="line">print(solution.singleNumber(nums))</span><br></pre></td></tr></table></figure>
-
           
         
       
@@ -2001,7 +2954,7 @@
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/page/4/"><i class="fa fa-angle-left" aria-label="Previous page"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/4/">4</a><span class="page-number current">5</span><a class="page-number" href="/page/6/">6</a><span class="space">&hellip;</span><a class="page-number" href="/page/11/">11</a><a class="extend next" rel="next" href="/page/6/"><i class="fa fa-angle-right" aria-label="Next page"></i></a>
+    <a class="extend prev" rel="prev" href="/page/4/"><i class="fa fa-angle-left" aria-label="Previous page"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/4/">4</a><span class="page-number current">5</span><a class="page-number" href="/page/6/">6</a><a class="page-number" href="/page/7/">7</a><a class="extend next" rel="next" href="/page/6/"><i class="fa fa-angle-right" aria-label="Next page"></i></a>
   </nav>
 
 
@@ -2044,7 +2997,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">102</span>
+                    <span class="site-state-item-count">103</span>
                     <span class="site-state-item-name">日志</span>
                   </a>
                 </div>
@@ -2054,7 +3007,7 @@
                 
                 
                 <div class="site-state-item site-state-categories">
-                  
+                  <a href="/categories/index.html">
                     
                     
                       
@@ -2091,7 +3044,7 @@
                     
                     <span class="site-state-item-count">16</span>
                     <span class="site-state-item-name">分类</span>
-                  
+                  </a>
                 </div>
               
 
@@ -2099,7 +3052,7 @@
                 
                 
                 <div class="site-state-item site-state-tags">
-                  
+                  <a href="/tags/index.html">
                     
                     
                       
@@ -2188,9 +3141,11 @@
                     
                       
                     
-                    <span class="site-state-item-count">43</span>
+                      
+                    
+                    <span class="site-state-item-count">44</span>
                     <span class="site-state-item-name">标签</span>
-                  
+                  </a>
                 </div>
               
             </nav>
@@ -2250,7 +3205,7 @@
 
 
 
-  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://theme-next.org">NexT.Muse</a> v6.3.0</div>
+  <div class="theme-info">主题 – <a class="theme-link" target="_blank" href="https://theme-next.org">NexT.Muse</a> v6.4.1</div>
 
 
 
@@ -2334,21 +3289,21 @@
   
 
 
-  <script type="text/javascript" src="/js/src/utils.js?v=6.3.0"></script>
+  <script type="text/javascript" src="/js/src/utils.js?v=6.4.1"></script>
 
-  <script type="text/javascript" src="/js/src/motion.js?v=6.3.0"></script>
+  <script type="text/javascript" src="/js/src/motion.js?v=6.4.1"></script>
 
 
 
   
-  
-
   
 
   
 
+  
 
-  <script type="text/javascript" src="/js/src/bootstrap.js?v=6.3.0"></script>
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=6.4.1"></script>
 
 
 
