@@ -305,6 +305,514 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://blog.timilong.com/2018/08/10/mysql-联合索引的命中规则/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="博主">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Timilong's blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/08/10/mysql-联合索引的命中规则/" itemprop="url">
+                  mysql-联合索引的命中规则
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建于：2018-08-10 11:23:37" itemprop="dateCreated datePublished" datetime="2018-08-10T11:23:37Z">2018-08-10</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Edited on</span>
+                
+                <time title="更新于：2018-09-07 05:06:23" itemprop="dateModified" datetime="2018-09-07T05:06:23Z">2018-09-07</time>
+              
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/MySql/" itemprop="url" rel="index"><span itemprop="name">MySql</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <h2 id="联合索引优点"><a href="#联合索引优点" class="headerlink" title="联合索引优点"></a>联合索引优点</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">查询语句 SELECT T.* FROM T WHERE T.c1=1 AND T.c3=2;  涉及到两列，这个时候我们一般采用一个联合索引(c1, c3); </span><br><span class="line">而不用两个单列索引，这是因为一条查询语句往往应为mysql优化器的关系只用一个索引</span><br><span class="line">就算有两个索引，也只用一个；</span><br><span class="line"></span><br><span class="line">在只用一个的基础之上，联合索引会比单列索引更快；</span><br></pre></td></tr></table></figure>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2018/08/10/mysql-联合索引的命中规则/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://blog.timilong.com/2018/08/09/python-hashids/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="博主">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Timilong's blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/08/09/python-hashids/" itemprop="url">
+                  python-三方开源库hashids
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建于：2018-08-09 15:05:16" itemprop="dateCreated datePublished" datetime="2018-08-09T15:05:16Z">2018-08-09</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Edited on</span>
+                
+                <time title="更新于：2018-08-21 04:44:19" itemprop="dateModified" datetime="2018-08-21T04:44:19Z">2018-08-21</time>
+              
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <p><a href="https://zhuanlan.zhihu.com/p/32671455" target="_blank" rel="noopener">转载自知乎专栏: 码洞</a></p>
+<h2 id="hashids介绍"><a href="#hashids介绍" class="headerlink" title="hashids介绍"></a>hashids介绍</h2><p>Hashids是一个非常小巧的开源库，它用来把数字编码成一个随机字符串。<br>不同于md5这种算法这种单向映射，Hashids除了编码还会解码。</p>
+<p>拿论坛来说，一般帖子在数据库里的id都是顺序递增的，但是你可能不想在url上直接把id暴露出来，以免爬虫直接遍历id爬取你的内容，给你带来损失。<br>那现在你就可以使用Hashids把这个id搞乱，让它失去顺序性，无法直接遍历，这样就可以直接提高了爬虫的门槛。</p>
+<p>著名的Youtube网站就是这么做的。</p>
+<h2 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pip install hashids</span><br></pre></td></tr></table></figure>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2018/08/09/python-hashids/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://blog.timilong.com/2018/08/08/mysql-8-04以上版本修改root密码/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="博主">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Timilong's blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/08/08/mysql-8-04以上版本修改root密码/" itemprop="url">
+                  mysql-8.04以上版本修改root密码
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建于：2018-08-08 12:16:24" itemprop="dateCreated datePublished" datetime="2018-08-08T12:16:24Z">2018-08-08</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Edited on</span>
+                
+                <time title="更新于：2018-09-07 05:37:48" itemprop="dateModified" datetime="2018-09-07T05:37:48Z">2018-09-07</time>
+              
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/MySql/" itemprop="url" rel="index"><span itemprop="name">MySql</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <h1 id="忘记root密码"><a href="#忘记root密码" class="headerlink" title="忘记root密码"></a>忘记root密码</h1><h2 id="用安全方式打开mysql服务，然后更新存密码的表"><a href="#用安全方式打开mysql服务，然后更新存密码的表" class="headerlink" title="用安全方式打开mysql服务，然后更新存密码的表"></a>用安全方式打开mysql服务，然后更新存密码的表</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&gt;&gt;&gt; sudo mysqld_safe --skip-grant-tables</span><br><span class="line"></span><br><span class="line">Logging to &apos;/usr/local/mysql-5.7.23-macos10.13-x86_64/data/localhost.err&apos;.</span><br><span class="line">2018-08-08T03:58:25.6NZ mysqld_safe Starting mysqld daemon with databases from /usr/local/mysql-5.7.23-macos10.13-x86_64/data</span><br><span class="line">2018-08-08T03:58:27.6NZ mysqld_safe mysqld from pid file /usr/local/mysql-5.7.23-macos10.13-x86_64/data/localhost.pid ended</span><br></pre></td></tr></table></figure>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2018/08/08/mysql-8-04以上版本修改root密码/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://blog.timilong.com/2018/08/08/docker-dockerbuild的用法/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -2237,497 +2745,11 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://blog.timilong.com/2018/04/24/linux-日常命令/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="博主">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Timilong's blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/04/24/linux-日常命令/" itemprop="url">
-                  linux-日常命令
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-
-              
-                
-              
-
-              <time title="创建于：2018-04-23 23:03:50" itemprop="dateCreated datePublished" datetime="2018-04-23T23:03:50Z">2018-04-23</time>
-            
-
-            
-              
-
-              
-                
-                <span class="post-meta-divider">|</span>
-                
-
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">Edited on</span>
-                
-                <time title="更新于：2018-09-07 05:47:09" itemprop="dateModified" datetime="2018-09-07T05:47:09Z">2018-09-07</time>
-              
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Linux/" itemprop="url" rel="index"><span itemprop="name">Linux</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <h3 id="tree"><a href="#tree" class="headerlink" title="tree"></a>tree</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">-a：显示所有文件和目录；</span><br><span class="line">-A：使用ASNI绘图字符显示树状图而非以ASCII字符组合；</span><br><span class="line">-C：在文件和目录清单加上色彩，便于区分各种类型；</span><br><span class="line">-d：先是目录名称而非内容；</span><br><span class="line">-D：列出文件或目录的更改时间；</span><br><span class="line">-f：在每个文件或目录之前，显示完整的相对路径名称；</span><br><span class="line">-F：在执行文件，目录，Socket，符号连接，管道名称名称，各自加上&quot;*&quot;，&quot;/&quot;，&quot;@&quot;，&quot;|&quot;号；</span><br><span class="line">-g：列出文件或目录的所属群组名称，没有对应的名称时，则显示群组识别码；</span><br><span class="line">-i：不以阶梯状列出文件和目录名称；</span><br><span class="line">-l：&lt;范本样式&gt; 不显示符号范本样式的文件或目录名称；</span><br><span class="line">-l：如遇到性质为符号连接的目录，直接列出该连接所指向的原始目录；</span><br><span class="line">-n：不在文件和目录清单加上色彩；</span><br><span class="line">-N：直接列出文件和目录名称，包括控制字符；</span><br><span class="line">-p：列出权限标示；</span><br><span class="line">-P：&lt;范本样式&gt; 只显示符合范本样式的文件和目录名称；</span><br><span class="line">-q：用“？”号取代控制字符，列出文件和目录名称；</span><br><span class="line">-s：列出文件和目录大小；</span><br><span class="line">-t：用文件和目录的更改时间排序；</span><br><span class="line">-u：列出文件或目录的拥有者名称，没有对应的名称时，则显示用户识别码；</span><br><span class="line">-x：将范围局限在现行的文件系统中，若指定目录下的某些子目录，其存放于另一个文件系统上，则将该目录予以排除在寻找范围外。</span><br></pre></td></tr></table></figure>
-<p>按照指定的层级列出目录文件…</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">tree -d -L 4  # 列出当前目录下的四层目录</span><br></pre></td></tr></table></figure>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2018/04/24/linux-日常命令/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://blog.timilong.com/2017/09/11/python-icourse163爬虫教程/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="博主">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Timilong's blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2017/09/11/python-icourse163爬虫教程/" itemprop="url">
-                  python网络爬虫与信息提取
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-
-              
-                
-              
-
-              <time title="创建于：2017-09-10 20:04:18" itemprop="dateCreated datePublished" datetime="2017-09-10T20:04:18Z">2017-09-10</time>
-            
-
-            
-              
-
-              
-                
-                <span class="post-meta-divider">|</span>
-                
-
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">Edited on</span>
-                
-                <time title="更新于：2018-07-24 00:18:47" itemprop="dateModified" datetime="2018-07-24T00:18:47Z">2018-07-24</time>
-              
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <h2 id="课程内容"><a href="#课程内容" class="headerlink" title="课程内容"></a>课程内容</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">1. Requests: 自动爬去HTML页面，自动网络请求提交</span><br><span class="line">2. robots.txt: 网络爬虫排除标准</span><br><span class="line">3. Beautiful Soup: 解析HTML页面</span><br><span class="line">4. Projects: 实战项目A/B</span><br><span class="line">5. Re: 正则表达式详解-提取页面关键信息</span><br><span class="line">6. Scrapy*: 专业网络爬虫框架介绍，网络爬虫原理介绍，</span><br></pre></td></tr></table></figure>
-<h2 id="课时介绍"><a href="#课时介绍" class="headerlink" title="课时介绍"></a>课时介绍</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">1. 8课时: 内容</span><br><span class="line">2. 4课时: 实践</span><br><span class="line">3. 四周: 每周三个课时，前三周必修，第四周必修。</span><br></pre></td></tr></table></figure>
-<h2 id="第0周-网络爬虫之前奏"><a href="#第0周-网络爬虫之前奏" class="headerlink" title="第0周 网络爬虫之前奏"></a>第0周 网络爬虫之前奏</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">1. 课程内容导学</span><br><span class="line">2. 工具介绍与选择</span><br></pre></td></tr></table></figure>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2017/09/11/python-icourse163爬虫教程/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://blog.timilong.com/2017/09/09/python-python爬虫_中国大学排名/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="博主">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Timilong's blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2017/09/09/python-python爬虫_中国大学排名/" itemprop="url">
-                  icourse163_org_python爬虫_中国大学排名
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-
-              
-                
-              
-
-              <time title="创建于：2017-09-09 11:55:39" itemprop="dateCreated datePublished" datetime="2017-09-09T11:55:39Z">2017-09-09</time>
-            
-
-            
-              
-
-              
-                
-                <span class="post-meta-divider">|</span>
-                
-
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">Edited on</span>
-                
-                <time title="更新于：2018-07-24 00:18:47" itemprop="dateModified" datetime="2018-07-24T00:18:47Z">2018-07-24</time>
-              
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br></pre></td><td class="code"><pre><span class="line">#! /usr/bin/python3</span><br><span class="line"># coding: utf-8</span><br><span class="line"></span><br><span class="line">import requests</span><br><span class="line"></span><br><span class="line">import bs4</span><br><span class="line">from bs4 import BeautifulSoup</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">def getHTMLText(url):</span><br><span class="line">    try:</span><br><span class="line">        r = requests.get(url, timeout=30)</span><br><span class="line">        r.raise_for_status()</span><br><span class="line">        r.encoding = r.apparent_encoding</span><br><span class="line">        return r.text</span><br><span class="line">    except:</span><br><span class="line">        return &quot;&quot;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">def fillUnivList(ulist, html):</span><br><span class="line">    soup = BeautifulSoup(html, &quot;html.parser&quot;)</span><br><span class="line">    for tr in soup.find(&apos;tbody&apos;).children:</span><br><span class="line">        if isinstance(tr, bs4.element.Tag):</span><br><span class="line">            tds = tr(&apos;td&apos;)</span><br><span class="line">            ulist.append([tds[0].string, tds[1].string, tds[2].string, tds[3].string])</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">def printUnivList(ulist, num):</span><br><span class="line">    tplt = &quot;&#123;0:^10&#125;\t&#123;1:&#123;4&#125;^10&#125;\t&#123;2:^10&#125;\t&#123;3:^10&#125;&quot;</span><br><span class="line">    print(tplt.format(&quot;排名&quot;, &quot;学校名称&quot;, &quot;地区&quot;, &quot;总分&quot;, chr(12288)))</span><br><span class="line">    for i in range(num):</span><br><span class="line">        u=ulist[i]</span><br><span class="line">        print(tplt.format(u[0], u[1], u[2], u[3], chr(12288)))</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">def main():</span><br><span class="line">    uinfo = []</span><br><span class="line">    url = &apos;http://www.zuihaodaxue.cn/zuihaodaxuepaiming2016.html&apos;</span><br><span class="line">    html = getHTMLText(url)</span><br><span class="line">    fillUnivList(uinfo, html)</span><br><span class="line">    printUnivList(uinfo, 20) # 20 univs</span><br><span class="line">main()</span><br></pre></td></tr></table></figure>
-
-          
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/"><i class="fa fa-angle-left" aria-label="Previous page"></i></a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/">3</a><span class="space">&hellip;</span><a class="page-number" href="/page/7/">7</a><a class="extend next" rel="next" href="/page/3/"><i class="fa fa-angle-right" aria-label="Next page"></i></a>
+    <a class="extend prev" rel="prev" href="/"><i class="fa fa-angle-left" aria-label="Previous page"></i></a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/">3</a><span class="space">&hellip;</span><a class="page-number" href="/page/8/">8</a><a class="extend next" rel="next" href="/page/3/"><i class="fa fa-angle-right" aria-label="Next page"></i></a>
   </nav>
 
 
@@ -2770,7 +2792,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">105</span>
+                    <span class="site-state-item-count">108</span>
                     <span class="site-state-item-name">日志</span>
                   </a>
                 </div>
@@ -2782,14 +2804,6 @@
                 <div class="site-state-item site-state-categories">
                   <a href="/categories/index.html">
                     
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
                     
                       
                     
@@ -2904,33 +2918,7 @@
                     
                       
                     
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                    <span class="site-state-item-count">33</span>
+                    <span class="site-state-item-count">35</span>
                     <span class="site-state-item-name">标签</span>
                   </a>
                 </div>
