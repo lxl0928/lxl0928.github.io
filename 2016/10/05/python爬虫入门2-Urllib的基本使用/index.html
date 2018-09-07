@@ -108,19 +108,19 @@
 
 
 
-  <meta name="description" content="爬取网页爬取网页其实就是根据URL来获取它的网页信息.例子: test.py123456# -*- coding: utf-8 -*-import urllib2response = urllib2.urlopen(&quot;http://www.baidu.com&quot;)print(response.read())">
+  <meta name="description" content="爬取网页爬取网页其实就是根据URL来获取它的网页信息.例子: test.py123456# -*- coding: utf-8 -*-import urllib2response = urllib2.urlopen(&amp;quot;http://www.baidu.com&amp;quot;)print(response.read())">
 <meta name="keywords" content="爬虫">
 <meta property="og:type" content="article">
 <meta property="og:title" content="python爬虫入门2-Urllib的基本使用">
 <meta property="og:url" content="http://blog.timilong.com/2016/10/05/python爬虫入门2-Urllib的基本使用/index.html">
 <meta property="og:site_name" content="Timilong&#39;s blog">
-<meta property="og:description" content="爬取网页爬取网页其实就是根据URL来获取它的网页信息.例子: test.py123456# -*- coding: utf-8 -*-import urllib2response = urllib2.urlopen(&quot;http://www.baidu.com&quot;)print(response.read())">
+<meta property="og:description" content="爬取网页爬取网页其实就是根据URL来获取它的网页信息.例子: test.py123456# -*- coding: utf-8 -*-import urllib2response = urllib2.urlopen(&amp;quot;http://www.baidu.com&amp;quot;)print(response.read())">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="http://7xorah.com1.z0.glb.clouddn.com/%E6%B7%B1%E5%BA%A6%E6%88%AA%E5%9B%BE20161004165509.png">
 <meta property="og:updated_time" content="2018-07-24T00:18:47.850Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="python爬虫入门2-Urllib的基本使用">
-<meta name="twitter:description" content="爬取网页爬取网页其实就是根据URL来获取它的网页信息.例子: test.py123456# -*- coding: utf-8 -*-import urllib2response = urllib2.urlopen(&quot;http://www.baidu.com&quot;)print(response.read())">
+<meta name="twitter:description" content="爬取网页爬取网页其实就是根据URL来获取它的网页信息.例子: test.py123456# -*- coding: utf-8 -*-import urllib2response = urllib2.urlopen(&amp;quot;http://www.baidu.com&amp;quot;)print(response.read())">
 <meta name="twitter:image" content="http://7xorah.com1.z0.glb.clouddn.com/%E6%B7%B1%E5%BA%A6%E6%88%AA%E5%9B%BE20161004165509.png">
 
 
@@ -421,7 +421,7 @@
       
 
       
-        <h3 id="爬取网页"><a href="#爬取网页" class="headerlink" title="爬取网页"></a>爬取网页</h3><p>爬取网页其实就是根据URL来获取它的网页信息.<br>例子: test.py<br><figure class="highlight arduino"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"># -*- coding: utf<span class="number">-8</span> -*-</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> urllib2</span><br><span class="line"></span><br><span class="line">response = urllib2.urlopen(<span class="string">"http://www.baidu.com"</span>)</span><br><span class="line"><span class="built_in">print</span>(response.<span class="built_in">read</span>())</span><br></pre></td></tr></table></figure></p>
+        <h3 id="爬取网页"><a href="#爬取网页" class="headerlink" title="爬取网页"></a>爬取网页</h3><p>爬取网页其实就是根据URL来获取它的网页信息.<br>例子: test.py<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"># -*- coding: utf-8 -*-</span><br><span class="line"></span><br><span class="line">import urllib2</span><br><span class="line"></span><br><span class="line">response = urllib2.urlopen(&quot;http://www.baidu.com&quot;)</span><br><span class="line">print(response.read())</span><br></pre></td></tr></table></figure></p>
 <a id="more"></a>
 <p>终端运行: <code>python test.py</code><br>结果如下:<br><img src="http://7xorah.com1.z0.glb.clouddn.com/%E6%B7%B1%E5%BA%A6%E6%88%AA%E5%9B%BE20161004165509.png" alt="test.py运行结果"></p>
 <h3 id="分析代码"><a href="#分析代码" class="headerlink" title="分析代码"></a>分析代码</h3><pre><code>import urllib2
@@ -437,20 +437,20 @@
 <pre><code>网页的内容为:  &lt;http.client.HTTPResponse object at 0x7f372d563668&gt;
 </code></pre><p>直接打印该对象的描述.</p>
 <h3 id="构造Request"><a href="#构造Request" class="headerlink" title="构造Request"></a>构造Request</h3><p>其实上面的urlopen参数可以传入一个request请求,它其实就是一个Request类的实例，构造时需要传入Url,Data等等的内容。比如上面的两行代码，我们可以这么改写:</p>
-<figure class="highlight makefile"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># -*- coding: utf-8 -*-</span></span><br><span class="line"></span><br><span class="line">import urllib2</span><br><span class="line"> </span><br><span class="line">request = urllib2.Request(<span class="string">"http://www.baidu.com"</span>)</span><br><span class="line">response = urllib2.urlopen(request)</span><br><span class="line">print(response.read())</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"># -*- coding: utf-8 -*-</span><br><span class="line"></span><br><span class="line">import urllib2</span><br><span class="line"> </span><br><span class="line">request = urllib2.Request(&quot;http://www.baidu.com&quot;)</span><br><span class="line">response = urllib2.urlopen(request)</span><br><span class="line">print(response.read())</span><br></pre></td></tr></table></figure>
 <p>运行结果是完全一样的，只不过中间多了一个request对象，推荐大家这么写，因为在构建请求时还需要加入好多内容，通过构建一个request，服务器响应请求得到应答，这样显得逻辑上清晰明确。</p>
 <h3 id="POST和GET数据传送"><a href="#POST和GET数据传送" class="headerlink" title="POST和GET数据传送"></a>POST和GET数据传送</h3><p>上面的程序演示了最基本的网页抓取，不过，现在大多数网站都是动态网页，需要你动态地传递参数给它，它做出对应的响应。所以，在访问时，我们需要传递数据给它。最常见的情况是什么？对了，就是登录注册的时候呀。</p>
 <p>把数据用户名和密码传送到一个URL，然后你得到服务器处理之后的响应，这个该怎么办？下面让我来为小伙伴们揭晓吧！</p>
 <p>数据传送分为POST和GET两种方式，两种方式有什么区别呢？</p>
 <p>最重要的区别是GET方式是直接以链接形式访问，链接中包含了所有的参数，当然如果包含了密码的话是一种不安全的选择，不过你可以直观地看到自己提交了什么内容。POST则不会在网址上显示所有的参数，不过如果你想直接查看提交了什么就不太方便了，大家可以酌情选择。</p>
 <h4 id="POST方式"><a href="#POST方式" class="headerlink" title="POST方式"></a>POST方式</h4><p>上面我们说了data参数是干嘛的？对了，它就是用在这里的，我们传送的数据就是这个参数data，下面演示一下POST方式。</p>
-<figure class="highlight makefile"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">import urllib</span><br><span class="line">import urllib2</span><br><span class="line"></span><br><span class="line">values = &#123;<span class="string">"username"</span>:<span class="string">"1016903103@qq.com"</span>,<span class="string">"password"</span>:<span class="string">"XXXX"</span>&#125;</span><br><span class="line">data = urllib.urlencode(values) </span><br><span class="line">url = <span class="string">"https://passport.csdn.net/account/login?from=http://my.csdn.net/my/mycsdn"</span></span><br><span class="line">request = urllib2.Request(url,data)</span><br><span class="line">response = urllib2.urlopen(request)</span><br><span class="line">print(response.read())</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">import urllib</span><br><span class="line">import urllib2</span><br><span class="line"></span><br><span class="line">values = &#123;&quot;username&quot;:&quot;1016903103@qq.com&quot;,&quot;password&quot;:&quot;XXXX&quot;&#125;</span><br><span class="line">data = urllib.urlencode(values) </span><br><span class="line">url = &quot;https://passport.csdn.net/account/login?from=http://my.csdn.net/my/mycsdn&quot;</span><br><span class="line">request = urllib2.Request(url,data)</span><br><span class="line">response = urllib2.urlopen(request)</span><br><span class="line">print(response.read())</span><br></pre></td></tr></table></figure>
 <p>我们引入了urllib库，现在我们模拟登陆CSDN，当然上述代码可能登陆不进去，因为还要做一些设置头部header的工作，或者还有一些参数没有设置全，还没有提及到在此就不写上去了，在此只是说明登录的原理。我们需要定义一个字典，名字为values，参数我设置了username和password，下面利用urllib的urlencode方法将字典编码，命名为data，构建request时传入两个参数，url和data，运行程序，即可实现登陆，返回的便是登陆后呈现的页面内容。当然你可以自己搭建一个服务器来测试一下。</p>
 <p>注意上面字典的定义方式还有一种，下面的写法是等价的:</p>
-<figure class="highlight makefile"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">import urllib</span><br><span class="line">import urllib2</span><br><span class="line"></span><br><span class="line">values = &#123;&#125;</span><br><span class="line">values['username'] = <span class="string">"1016903103@qq.com"</span></span><br><span class="line">values['password'] = <span class="string">"XXXX"</span></span><br><span class="line">data = urllib.urlencode(values) </span><br><span class="line">url = <span class="string">"http://passport.csdn.net/account/login?from=http://my.csdn.net/my/mycsdn"</span></span><br><span class="line">request = urllib2.Request(url,data)</span><br><span class="line">response = urllib2.urlopen(request)</span><br><span class="line">print(response.read())</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">import urllib</span><br><span class="line">import urllib2</span><br><span class="line"></span><br><span class="line">values = &#123;&#125;</span><br><span class="line">values[&apos;username&apos;] = &quot;1016903103@qq.com&quot;</span><br><span class="line">values[&apos;password&apos;] = &quot;XXXX&quot;</span><br><span class="line">data = urllib.urlencode(values) </span><br><span class="line">url = &quot;http://passport.csdn.net/account/login?from=http://my.csdn.net/my/mycsdn&quot;</span><br><span class="line">request = urllib2.Request(url,data)</span><br><span class="line">response = urllib2.urlopen(request)</span><br><span class="line">print(response.read())</span><br></pre></td></tr></table></figure>
 <p>以上方法便实现了POST方式的传送</p>
 <h4 id="GET方式"><a href="#GET方式" class="headerlink" title="GET方式"></a>GET方式</h4><p>至于GET方式我们可以直接把参数写到网址上面，直接构建一个带参数的URL出来即可。</p>
-<figure class="highlight makefile"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">import urllib</span><br><span class="line">import urllib2</span><br><span class="line"></span><br><span class="line">values=&#123;&#125;</span><br><span class="line">values['username'] = <span class="string">"1016903103@qq.com"</span></span><br><span class="line">values['password']=<span class="string">"XXXX"</span></span><br><span class="line">data = urllib.urlencode(values) </span><br><span class="line">url = <span class="string">"http://passport.csdn.net/account/login"</span></span><br><span class="line">geturl = url + <span class="string">"?"</span>+data</span><br><span class="line">request = urllib2.Request(geturl)</span><br><span class="line">response = urllib2.urlopen(request)</span><br><span class="line">print(response.read())</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">import urllib</span><br><span class="line">import urllib2</span><br><span class="line"></span><br><span class="line">values=&#123;&#125;</span><br><span class="line">values[&apos;username&apos;] = &quot;1016903103@qq.com&quot;</span><br><span class="line">values[&apos;password&apos;]=&quot;XXXX&quot;</span><br><span class="line">data = urllib.urlencode(values) </span><br><span class="line">url = &quot;http://passport.csdn.net/account/login&quot;</span><br><span class="line">geturl = url + &quot;?&quot;+data</span><br><span class="line">request = urllib2.Request(geturl)</span><br><span class="line">response = urllib2.urlopen(request)</span><br><span class="line">print(response.read())</span><br></pre></td></tr></table></figure>
 <p>你可以print geturl，打印输出一下url，发现其实就是原来的url加？然后加编码后的参数</p>
 <pre><code>http://passport.csdn.net/account/login?username=1016903103%40qq.com&amp;password=XXXX
 </code></pre><p>和我们平常GET访问方式一模一样，这样就实现了数据的GET方式传送。</p>
@@ -569,7 +569,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">104</span>
+                    <span class="site-state-item-count">105</span>
                     <span class="site-state-item-name">日志</span>
                   </a>
                 </div>
@@ -614,7 +614,13 @@
                     
                       
                     
-                    <span class="site-state-item-count">16</span>
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">15</span>
                     <span class="site-state-item-name">分类</span>
                   </a>
                 </div>
@@ -719,7 +725,11 @@
                     
                       
                     
-                    <span class="site-state-item-count">42</span>
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">33</span>
                     <span class="site-state-item-name">标签</span>
                   </a>
                 </div>

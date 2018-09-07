@@ -108,18 +108,18 @@
 
 
 
-  <meta name="description" content="题目1234567891011121314151617181920给定两个字符串 s 和 t，判断它们是否是同构的。如果 s 中的字符可以被替换得到 t ，那么这两个字符串是同构的。所有出现的字符都必须用另一个字符替换，同时保留字符的顺序。两个字符不能映射到同一个字符上，但字符可以映射自己本身。示例 1:    输入: s = &quot;egg&quot;, t = &quot;add&quot;    输出: true示例 2:">
+  <meta name="description" content="题目1234567891011121314151617181920给定两个字符串 s 和 t，判断它们是否是同构的。如果 s 中的字符可以被替换得到 t ，那么这两个字符串是同构的。所有出现的字符都必须用另一个字符替换，同时保留字符的顺序。两个字符不能映射到同一个字符上，但字符可以映射自己本身。示例 1:    输入: s = &amp;quot;egg&amp;quot;, t = &amp;quot;add&amp;quot">
 <meta name="keywords" content="字符串、数据结构">
 <meta property="og:type" content="article">
 <meta property="og:title" content="leetcode-205.同构字符串">
 <meta property="og:url" content="http://blog.timilong.com/2018/07/09/leetcode-判断两字符串是否同构/index.html">
 <meta property="og:site_name" content="Timilong&#39;s blog">
-<meta property="og:description" content="题目1234567891011121314151617181920给定两个字符串 s 和 t，判断它们是否是同构的。如果 s 中的字符可以被替换得到 t ，那么这两个字符串是同构的。所有出现的字符都必须用另一个字符替换，同时保留字符的顺序。两个字符不能映射到同一个字符上，但字符可以映射自己本身。示例 1:    输入: s = &quot;egg&quot;, t = &quot;add&quot;    输出: true示例 2:">
+<meta property="og:description" content="题目1234567891011121314151617181920给定两个字符串 s 和 t，判断它们是否是同构的。如果 s 中的字符可以被替换得到 t ，那么这两个字符串是同构的。所有出现的字符都必须用另一个字符替换，同时保留字符的顺序。两个字符不能映射到同一个字符上，但字符可以映射自己本身。示例 1:    输入: s = &amp;quot;egg&amp;quot;, t = &amp;quot;add&amp;quot">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:updated_time" content="2018-07-24T00:18:47.840Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="leetcode-205.同构字符串">
-<meta name="twitter:description" content="题目1234567891011121314151617181920给定两个字符串 s 和 t，判断它们是否是同构的。如果 s 中的字符可以被替换得到 t ，那么这两个字符串是同构的。所有出现的字符都必须用另一个字符替换，同时保留字符的顺序。两个字符不能映射到同一个字符上，但字符可以映射自己本身。示例 1:    输入: s = &quot;egg&quot;, t = &quot;add&quot;    输出: true示例 2:">
+<meta name="twitter:description" content="题目1234567891011121314151617181920给定两个字符串 s 和 t，判断它们是否是同构的。如果 s 中的字符可以被替换得到 t ，那么这两个字符串是同构的。所有出现的字符都必须用另一个字符替换，同时保留字符的顺序。两个字符不能映射到同一个字符上，但字符可以映射自己本身。示例 1:    输入: s = &amp;quot;egg&amp;quot;, t = &amp;quot;add&amp;quot">
 
 
 
@@ -401,9 +401,9 @@
       
 
       
-        <h1 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h1><figure class="highlight nix"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">给定两个字符串 s 和 t，判断它们是否是同构的。</span><br><span class="line"></span><br><span class="line">如果 s 中的字符可以被替换得到 t ，那么这两个字符串是同构的。</span><br><span class="line"></span><br><span class="line">所有出现的字符都必须用另一个字符替换，同时保留字符的顺序。两个字符不能映射到同一个字符上，但字符可以映射自己本身。</span><br><span class="line"></span><br><span class="line">示例 <span class="number">1</span>:</span><br><span class="line">    输入: <span class="attr">s</span> = <span class="string">"egg"</span>, <span class="attr">t</span> = <span class="string">"add"</span></span><br><span class="line">    输出: <span class="literal">true</span></span><br><span class="line"></span><br><span class="line">示例 <span class="number">2</span>:</span><br><span class="line">    输入: <span class="attr">s</span> = <span class="string">"foo"</span>, <span class="attr">t</span> = <span class="string">"bar"</span></span><br><span class="line">    输出: <span class="literal">false</span></span><br><span class="line"></span><br><span class="line">示例 <span class="number">3</span>:</span><br><span class="line">    输入: <span class="attr">s</span> = <span class="string">"paper"</span>, <span class="attr">t</span> = <span class="string">"title"</span></span><br><span class="line">    输出: <span class="literal">true</span></span><br><span class="line"></span><br><span class="line">说明:</span><br><span class="line">你可以假设 s 和 t 具有相同的长度。</span><br></pre></td></tr></table></figure>
-<h1 id="解题"><a href="#解题" class="headerlink" title="解题"></a>解题</h1><figure class="highlight excel"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">用字典(hashMap), 将字符串s与字符串<span class="built_in">t</span>简历映射关系</span><br></pre></td></tr></table></figure>
-<figure class="highlight livecodeserver"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#! /usr/bin/python3</span></span><br><span class="line"><span class="comment"># coding: utf-8</span></span><br><span class="line"></span><br><span class="line">def is_isomorphic(str_s, str_t):</span><br><span class="line">    print(str_s, str_t)</span><br><span class="line"></span><br><span class="line">    len_s, len_t = <span class="built_in">len</span>(str_s), <span class="built_in">len</span>(str_t)</span><br><span class="line">    <span class="keyword">if</span> len_s != len_t:</span><br><span class="line">        <span class="literal">return</span> False</span><br><span class="line"></span><br><span class="line">    tmp_dict = dict()</span><br><span class="line">    <span class="keyword">for</span> inx <span class="keyword">in</span> range(len_s):</span><br><span class="line">        <span class="keyword">if</span> str_s[inx] <span class="keyword">not</span> <span class="keyword">in</span> tmp_dict:</span><br><span class="line">            tmp_dict[str_s[inx]] = str_t[inx]</span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            <span class="keyword">if</span> tmp_dict[str_s[inx]] != str_t[inx]:</span><br><span class="line">                <span class="literal">return</span> False</span><br><span class="line">    <span class="literal">return</span> tmp_dict</span><br><span class="line"></span><br><span class="line">def check_str(<span class="built_in">result</span>, str_s, str_t):</span><br><span class="line">    <span class="literal">return</span> <span class="built_in">len</span>(<span class="built_in">result</span>) == <span class="built_in">len</span>(<span class="built_in">set</span>(str_s)) <span class="keyword">and</span> <span class="built_in">len</span>(<span class="built_in">result</span>) == <span class="built_in">len</span>(<span class="built_in">set</span>(str_t))</span><br><span class="line"></span><br><span class="line">str_s = <span class="string">"aabbcc"</span></span><br><span class="line">str_t = <span class="string">"ddeeff"</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">result</span> = is_isomorphic(str_s, str_t)</span><br><span class="line">print(check_str(<span class="built_in">result</span>, str_s, str_t))</span><br></pre></td></tr></table></figure>
+        <h1 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">给定两个字符串 s 和 t，判断它们是否是同构的。</span><br><span class="line"></span><br><span class="line">如果 s 中的字符可以被替换得到 t ，那么这两个字符串是同构的。</span><br><span class="line"></span><br><span class="line">所有出现的字符都必须用另一个字符替换，同时保留字符的顺序。两个字符不能映射到同一个字符上，但字符可以映射自己本身。</span><br><span class="line"></span><br><span class="line">示例 1:</span><br><span class="line">    输入: s = &quot;egg&quot;, t = &quot;add&quot;</span><br><span class="line">    输出: true</span><br><span class="line"></span><br><span class="line">示例 2:</span><br><span class="line">    输入: s = &quot;foo&quot;, t = &quot;bar&quot;</span><br><span class="line">    输出: false</span><br><span class="line"></span><br><span class="line">示例 3:</span><br><span class="line">    输入: s = &quot;paper&quot;, t = &quot;title&quot;</span><br><span class="line">    输出: true</span><br><span class="line"></span><br><span class="line">说明:</span><br><span class="line">你可以假设 s 和 t 具有相同的长度。</span><br></pre></td></tr></table></figure>
+<h1 id="解题"><a href="#解题" class="headerlink" title="解题"></a>解题</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">用字典(hashMap), 将字符串s与字符串t简历映射关系</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line">#! /usr/bin/python3</span><br><span class="line"># coding: utf-8</span><br><span class="line"></span><br><span class="line">def is_isomorphic(str_s, str_t):</span><br><span class="line">    print(str_s, str_t)</span><br><span class="line"></span><br><span class="line">    len_s, len_t = len(str_s), len(str_t)</span><br><span class="line">    if len_s != len_t:</span><br><span class="line">        return False</span><br><span class="line"></span><br><span class="line">    tmp_dict = dict()</span><br><span class="line">    for inx in range(len_s):</span><br><span class="line">        if str_s[inx] not in tmp_dict:</span><br><span class="line">            tmp_dict[str_s[inx]] = str_t[inx]</span><br><span class="line">        else:</span><br><span class="line">            if tmp_dict[str_s[inx]] != str_t[inx]:</span><br><span class="line">                return False</span><br><span class="line">    return tmp_dict</span><br><span class="line"></span><br><span class="line">def check_str(result, str_s, str_t):</span><br><span class="line">    return len(result) == len(set(str_s)) and len(result) == len(set(str_t))</span><br><span class="line"></span><br><span class="line">str_s = &quot;aabbcc&quot;</span><br><span class="line">str_t = &quot;ddeeff&quot;</span><br><span class="line"></span><br><span class="line">result = is_isomorphic(str_s, str_t)</span><br><span class="line">print(check_str(result, str_s, str_t))</span><br></pre></td></tr></table></figure>
 
       
     </div>
@@ -519,7 +519,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">104</span>
+                    <span class="site-state-item-count">105</span>
                     <span class="site-state-item-name">日志</span>
                   </a>
                 </div>
@@ -564,7 +564,13 @@
                     
                       
                     
-                    <span class="site-state-item-count">16</span>
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">15</span>
                     <span class="site-state-item-name">分类</span>
                   </a>
                 </div>
@@ -669,7 +675,11 @@
                     
                       
                     
-                    <span class="site-state-item-count">42</span>
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">33</span>
                     <span class="site-state-item-name">标签</span>
                   </a>
                 </div>

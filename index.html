@@ -305,6 +305,168 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://blog.timilong.com/2018/09/07/mysql-排它锁分析/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="博主">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Timilong's blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/09/07/mysql-排它锁分析/" itemprop="url">
+                  mysql-排它锁分析
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建于：2018-09-07 13:03:47 / 更新于：05:35:34" itemprop="dateCreated datePublished" datetime="2018-09-07T13:03:47Z">2018-09-07</time>
+            
+
+            
+              
+
+              
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/MySql/" itemprop="url" rel="index"><span itemprop="name">MySql</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          for update仅适用于InnoDB，且必须在事务块(BEGIN/COMMIT)中才能生效。在进行事务操作时，通过“for update”语句，MySQL会对查询结果集中每行数据都添加排他锁，其他线程对该记录的更新与删除操作都会阻塞。排他锁包含行锁、表锁。
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2018/09/07/mysql-排它锁分析/">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://blog.timilong.com/2018/09/07/RPC-04Redis文本协议结构/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -861,12 +1023,24 @@
                 
               
 
-              <time title="创建于：2018-09-04 09:32:43 / 更新于：12:50:53" itemprop="dateCreated datePublished" datetime="2018-09-04T09:32:43Z">2018-09-04</time>
+              <time title="创建于：2018-09-04 09:32:43" itemprop="dateCreated datePublished" datetime="2018-09-04T09:32:43Z">2018-09-04</time>
             
 
             
               
 
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Edited on</span>
+                
+                <time title="更新于：2018-09-07 05:43:09" itemprop="dateModified" datetime="2018-09-07T05:43:09Z">2018-09-07</time>
               
             
           </span>
@@ -1005,16 +1179,46 @@
                 
               
 
-              <time title="创建于：2018-09-04 09:32:25 / 更新于：13:08:11" itemprop="dateCreated datePublished" datetime="2018-09-04T09:32:25Z">2018-09-04</time>
+              <time title="创建于：2018-09-04 09:32:25" itemprop="dateCreated datePublished" datetime="2018-09-04T09:32:25Z">2018-09-04</time>
             
 
             
               
 
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Edited on</span>
+                
+                <time title="更新于：2018-09-07 05:43:36" itemprop="dateModified" datetime="2018-09-07T05:43:36Z">2018-09-07</time>
               
             
           </span>
 
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/读书笔记/" itemprop="url" rel="index"><span itemprop="name">读书笔记</span></a></span>
+
+                
+                
+              
+            </span>
           
 
           
@@ -1628,11 +1832,29 @@
                 
                   <span class="post-meta-item-text">Edited on</span>
                 
-                <time title="更新于：2018-09-04 01:30:11" itemprop="dateModified" datetime="2018-09-04T01:30:11Z">2018-09-04</time>
+                <time title="更新于：2018-09-07 05:47:35" itemprop="dateModified" datetime="2018-09-07T05:47:35Z">2018-09-07</time>
               
             
           </span>
 
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Linux/" itemprop="url" rel="index"><span itemprop="name">Linux</span></a></span>
+
+                
+                
+              
+            </span>
           
 
           
@@ -1664,14 +1886,14 @@
         
           <h3 id="设置自启动"><a href="#设置自启动" class="headerlink" title="设置自启动"></a>设置自启动</h3><p>给Ubuntu添加一个开机启动脚本，操作如下：</p>
 <p>1、新建个脚本文件new_service.sh</p>
-<figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#!/bin/bash</span></span><br><span class="line"><span class="comment"># command content</span></span><br><span class="line">  </span><br><span class="line"><span class="keyword">exit</span> <span class="number">0</span></span><br></pre></td></tr></table></figure>
-<p>2、设置权限<br><figure class="highlight haxe"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo chmod <span class="number">755</span> <span class="keyword">new</span><span class="type">_service</span>.sh</span><br></pre></td></tr></table></figure></p>
-<p>或者<br><figure class="highlight haxe"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo chmod +x <span class="keyword">new</span><span class="type">_service</span>.sh</span><br></pre></td></tr></table></figure></p>
-<p>3、把脚本放置到启动目录下<br><figure class="highlight haxe"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo mv <span class="keyword">new</span><span class="type">_service</span>.sh /etc/init.d/</span><br></pre></td></tr></table></figure></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">#!/bin/bash</span><br><span class="line"># command content</span><br><span class="line">  </span><br><span class="line">exit 0</span><br></pre></td></tr></table></figure>
+<p>2、设置权限<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo chmod 755 new_service.sh</span><br></pre></td></tr></table></figure></p>
+<p>或者<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo chmod +x new_service.sh</span><br></pre></td></tr></table></figure></p>
+<p>3、把脚本放置到启动目录下<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo mv new_service.sh /etc/init.d/</span><br></pre></td></tr></table></figure></p>
 <p>4、将脚本添加到启动脚本</p>
-<p>执行如下指令，在这里90表明一个优先级，越高表示执行的越晚<br><figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">cd /etc/init.d/</span><br><span class="line">sudo update-rc<span class="selector-class">.d</span> new_service<span class="selector-class">.sh</span> defaults <span class="number">90</span></span><br></pre></td></tr></table></figure></p>
-<p>5、移除Ubuntu开机脚本<br><figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo update-rc<span class="selector-class">.d</span> -f new_service<span class="selector-class">.sh</span> remove</span><br></pre></td></tr></table></figure></p>
-<p>6、通过sysv-rc-conf来管理上面启动服务的启动级别等，还是开机不启动<br><figure class="highlight ebnf"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">sudo sysv-rc-conf</span></span><br></pre></td></tr></table></figure></p>
+<p>执行如下指令，在这里90表明一个优先级，越高表示执行的越晚<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">cd /etc/init.d/</span><br><span class="line">sudo update-rc.d new_service.sh defaults 90</span><br></pre></td></tr></table></figure></p>
+<p>5、移除Ubuntu开机脚本<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo update-rc.d -f new_service.sh remove</span><br></pre></td></tr></table></figure></p>
+<p>6、通过sysv-rc-conf来管理上面启动服务的启动级别等，还是开机不启动<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo sysv-rc-conf</span><br></pre></td></tr></table></figure></p>
           <!--noindex-->
           <div class="post-button text-center">
             <a class="btn" href="/2018/08/17/linux-设置脚本开机自启动/#more" rel="contents">
@@ -1776,16 +1998,46 @@
                 
               
 
-              <time title="创建于：2018-08-14 19:40:33 / 更新于：11:42:34" itemprop="dateCreated datePublished" datetime="2018-08-14T19:40:33Z">2018-08-14</time>
+              <time title="创建于：2018-08-14 19:40:33" itemprop="dateCreated datePublished" datetime="2018-08-14T19:40:33Z">2018-08-14</time>
             
 
             
               
 
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Edited on</span>
+                
+                <time title="更新于：2018-09-07 05:48:28" itemprop="dateModified" datetime="2018-09-07T05:48:28Z">2018-09-07</time>
               
             
           </span>
 
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/面试/" itemprop="url" rel="index"><span itemprop="name">面试</span></a></span>
+
+                
+                
+              
+            </span>
           
 
           
@@ -1815,7 +2067,7 @@
 
       
         
-          <h2 id="题目描述"><a href="#题目描述" class="headerlink" title="题目描述"></a>题目描述</h2><figure class="highlight tp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line">我军:</span><br><span class="line">    关键高地坐标设定为: (x=<span class="number">0</span>, y=<span class="number">0</span>)</span><br><span class="line">    规定:</span><br><span class="line">        向东增加<span class="number">100</span>米， x += <span class="number">1</span></span><br><span class="line">        向北增加<span class="number">100</span>米, y += <span class="number">1</span></span><br><span class="line"></span><br><span class="line">敌军:</span><br><span class="line">    坦克运动: (L, <span class="keyword">R</span>, M)</span><br><span class="line">    说明:</span><br><span class="line">        L: 向左转向</span><br><span class="line">        <span class="keyword">R</span>: 向右转向</span><br><span class="line">        M: 直线前进<span class="number">100</span>米</span><br><span class="line">        T: 时间同步</span><br><span class="line">        <span class="keyword">P</span>: 位置校准</span><br><span class="line"></span><br><span class="line">侦查:</span><br><span class="line">    坦克坐标: (<span class="keyword">P</span>, Q)</span><br><span class="line">    坦克前进方向: <span class="keyword">W</span>, E, N, S</span><br><span class="line">    坦克接收信号实时同步</span><br><span class="line"></span><br><span class="line">实例:</span><br><span class="line">    坦克坐标: (<span class="number">11</span>, <span class="number">39</span>)</span><br><span class="line">    运行方向: <span class="keyword">W</span></span><br><span class="line">    接收信号: MTMPRPMTMLMRPRMTPLMMTLMRRMP</span><br><span class="line"></span><br><span class="line">实例输出:</span><br><span class="line">    坦克坐标: (<span class="number">9</span>, <span class="number">43</span>)</span><br><span class="line">    运行方向: E</span><br></pre></td></tr></table></figure>
+          <h2 id="题目描述"><a href="#题目描述" class="headerlink" title="题目描述"></a>题目描述</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line">我军:</span><br><span class="line">    关键高地坐标设定为: (x=0, y=0)</span><br><span class="line">    规定:</span><br><span class="line">        向东增加100米， x += 1</span><br><span class="line">        向北增加100米, y += 1</span><br><span class="line"></span><br><span class="line">敌军:</span><br><span class="line">    坦克运动: (L, R, M)</span><br><span class="line">    说明:</span><br><span class="line">        L: 向左转向</span><br><span class="line">        R: 向右转向</span><br><span class="line">        M: 直线前进100米</span><br><span class="line">        T: 时间同步</span><br><span class="line">        P: 位置校准</span><br><span class="line"></span><br><span class="line">侦查:</span><br><span class="line">    坦克坐标: (P, Q)</span><br><span class="line">    坦克前进方向: W, E, N, S</span><br><span class="line">    坦克接收信号实时同步</span><br><span class="line"></span><br><span class="line">实例:</span><br><span class="line">    坦克坐标: (11, 39)</span><br><span class="line">    运行方向: W</span><br><span class="line">    接收信号: MTMPRPMTMLMRPRMTPLMMTLMRRMP</span><br><span class="line"></span><br><span class="line">实例输出:</span><br><span class="line">    坦克坐标: (9, 43)</span><br><span class="line">    运行方向: E</span><br></pre></td></tr></table></figure>
 <h2 id="项目地址"><a href="#项目地址" class="headerlink" title="项目地址"></a>项目地址</h2><p><a href="https://www.github.com/lxl0928/tuo_tian_su_dai" target="_blank" rel="noopener">github项目地址</a></p>
           <!--noindex-->
           <div class="post-button text-center">
@@ -1921,16 +2173,46 @@
                 
               
 
-              <time title="创建于：2018-08-10 11:47:57 / 更新于：04:09:00" itemprop="dateCreated datePublished" datetime="2018-08-10T11:47:57Z">2018-08-10</time>
+              <time title="创建于：2018-08-10 11:47:57" itemprop="dateCreated datePublished" datetime="2018-08-10T11:47:57Z">2018-08-10</time>
             
 
             
               
 
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Edited on</span>
+                
+                <time title="更新于：2018-09-07 05:38:05" itemprop="dateModified" datetime="2018-09-07T05:38:05Z">2018-09-07</time>
               
             
           </span>
 
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/MySql/" itemprop="url" rel="index"><span itemprop="name">MySql</span></a></span>
+
+                
+                
+              
+            </span>
           
 
           
@@ -1962,7 +2244,7 @@
         
           <h2 id="索引分类"><a href="#索引分类" class="headerlink" title="索引分类"></a>索引分类</h2><p>MySQL索引分为普通索引、唯一性索引、全文索引、单列索引、多列索引等等。</p>
 <h2 id="MySQL-索引以B树格式保存"><a href="#MySQL-索引以B树格式保存" class="headerlink" title="MySQL: 索引以B树格式保存"></a>MySQL: 索引以B树格式保存</h2><p>Memory存储引擎可以选择Hash或BTree索引，Hash索引只能用于=或&lt;=&gt;的等式比较。 </p>
-<h2 id="普通索引"><a href="#普通索引" class="headerlink" title="普通索引"></a>普通索引</h2><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">create</span> <span class="keyword">index</span> <span class="keyword">on</span> Tablename (列的列表) </span><br><span class="line"><span class="keyword">alter</span> <span class="keyword">table</span> TableName <span class="keyword">add</span> <span class="keyword">index</span> (列的列表) </span><br><span class="line"><span class="keyword">create</span> <span class="keyword">table</span> TableName([...], <span class="keyword">index</span> [IndexName] (列的列表)</span><br></pre></td></tr></table></figure>
+<h2 id="普通索引"><a href="#普通索引" class="headerlink" title="普通索引"></a>普通索引</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">create index on Tablename (列的列表) </span><br><span class="line">alter table TableName add index (列的列表) </span><br><span class="line">create table TableName([...], index [IndexName] (列的列表)</span><br></pre></td></tr></table></figure>
           <!--noindex-->
           <div class="post-button text-center">
             <a class="btn" href="/2018/08/10/mysql-索引分类及用途/#more" rel="contents">
@@ -2067,16 +2349,46 @@
                 
               
 
-              <time title="创建于：2018-08-10 11:23:37 / 更新于：04:04:18" itemprop="dateCreated datePublished" datetime="2018-08-10T11:23:37Z">2018-08-10</time>
+              <time title="创建于：2018-08-10 11:23:37" itemprop="dateCreated datePublished" datetime="2018-08-10T11:23:37Z">2018-08-10</time>
             
 
             
               
 
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Edited on</span>
+                
+                <time title="更新于：2018-09-07 05:06:23" itemprop="dateModified" datetime="2018-09-07T05:06:23Z">2018-09-07</time>
               
             
           </span>
 
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/MySql/" itemprop="url" rel="index"><span itemprop="name">MySql</span></a></span>
+
+                
+                
+              
+            </span>
           
 
           
@@ -2106,7 +2418,7 @@
 
       
         
-          <h2 id="联合索引优点"><a href="#联合索引优点" class="headerlink" title="联合索引优点"></a>联合索引优点</h2><figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">查询语句 SELECT T.* <span class="keyword">FROM</span> T WHERE T.<span class="attribute">c1</span>=1 <span class="keyword">AND</span> T.<span class="attribute">c3</span>=2;  涉及到两列，这个时候我们一般采用一个联合索引(c1, c3); </span><br><span class="line">而不用两个单列索引，这是因为一条查询语句往往应为mysql优化器的关系只用一个索引</span><br><span class="line">就算有两个索引，也只用一个；</span><br><span class="line"></span><br><span class="line">在只用一个的基础之上，联合索引会比单列索引更快；</span><br></pre></td></tr></table></figure>
+          <h2 id="联合索引优点"><a href="#联合索引优点" class="headerlink" title="联合索引优点"></a>联合索引优点</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">查询语句 SELECT T.* FROM T WHERE T.c1=1 AND T.c3=2;  涉及到两列，这个时候我们一般采用一个联合索引(c1, c3); </span><br><span class="line">而不用两个单列索引，这是因为一条查询语句往往应为mysql优化器的关系只用一个索引</span><br><span class="line">就算有两个索引，也只用一个；</span><br><span class="line"></span><br><span class="line">在只用一个的基础之上，联合索引会比单列索引更快；</span><br></pre></td></tr></table></figure>
           <!--noindex-->
           <div class="post-button text-center">
             <a class="btn" href="/2018/08/10/mysql-联合索引的命中规则/#more" rel="contents">
@@ -2266,7 +2578,7 @@
 <h2 id="hashids介绍"><a href="#hashids介绍" class="headerlink" title="hashids介绍"></a>hashids介绍</h2><p>Hashids是一个非常小巧的开源库，它用来把数字编码成一个随机字符串。<br>不同于md5这种算法这种单向映射，Hashids除了编码还会解码。</p>
 <p>拿论坛来说，一般帖子在数据库里的id都是顺序递增的，但是你可能不想在url上直接把id暴露出来，以免爬虫直接遍历id爬取你的内容，给你带来损失。<br>那现在你就可以使用Hashids把这个id搞乱，让它失去顺序性，无法直接遍历，这样就可以直接提高了爬虫的门槛。</p>
 <p>著名的Youtube网站就是这么做的。</p>
-<h2 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h2><figure class="highlight cmake"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pip <span class="keyword">install</span> hashids</span><br></pre></td></tr></table></figure>
+<h2 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pip install hashids</span><br></pre></td></tr></table></figure>
           <!--noindex-->
           <div class="post-button text-center">
             <a class="btn" href="/2018/08/09/python-hashids/#more" rel="contents">
@@ -2371,16 +2683,46 @@
                 
               
 
-              <time title="创建于：2018-08-08 12:16:24 / 更新于：04:23:32" itemprop="dateCreated datePublished" datetime="2018-08-08T12:16:24Z">2018-08-08</time>
+              <time title="创建于：2018-08-08 12:16:24" itemprop="dateCreated datePublished" datetime="2018-08-08T12:16:24Z">2018-08-08</time>
             
 
             
               
 
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Edited on</span>
+                
+                <time title="更新于：2018-09-07 05:37:48" itemprop="dateModified" datetime="2018-09-07T05:37:48Z">2018-09-07</time>
               
             
           </span>
 
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/MySql/" itemprop="url" rel="index"><span itemprop="name">MySql</span></a></span>
+
+                
+                
+              
+            </span>
           
 
           
@@ -2410,154 +2752,10 @@
 
       
         
-          <h1 id="忘记root密码"><a href="#忘记root密码" class="headerlink" title="忘记root密码"></a>忘记root密码</h1><h2 id="用安全方式打开mysql服务，然后更新存密码的表"><a href="#用安全方式打开mysql服务，然后更新存密码的表" class="headerlink" title="用安全方式打开mysql服务，然后更新存密码的表"></a>用安全方式打开mysql服务，然后更新存密码的表</h2><figure class="highlight applescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&gt;&gt;&gt; sudo mysqld_safe <span class="comment">--skip-grant-tables</span></span><br><span class="line"></span><br><span class="line">Logging <span class="keyword">to</span> '/usr/<span class="keyword">local</span>/mysql<span class="number">-5.7</span><span class="number">.23</span>-macos10<span class="number">.13</span>-x86_64/data/localhost.err'.</span><br><span class="line"><span class="number">2018</span><span class="number">-08</span><span class="number">-08</span>T03:<span class="number">58</span>:<span class="number">25.6</span>NZ mysqld_safe Starting mysqld daemon <span class="keyword">with</span> databases <span class="keyword">from</span> /usr/<span class="keyword">local</span>/mysql<span class="number">-5.7</span><span class="number">.23</span>-macos10<span class="number">.13</span>-x86_64/data</span><br><span class="line"><span class="number">2018</span><span class="number">-08</span><span class="number">-08</span>T03:<span class="number">58</span>:<span class="number">27.6</span>NZ mysqld_safe mysqld <span class="keyword">from</span> pid <span class="built_in">file</span> /usr/<span class="keyword">local</span>/mysql<span class="number">-5.7</span><span class="number">.23</span>-macos10<span class="number">.13</span>-x86_64/data/localhost.pid ended</span><br></pre></td></tr></table></figure>
+          <h1 id="忘记root密码"><a href="#忘记root密码" class="headerlink" title="忘记root密码"></a>忘记root密码</h1><h2 id="用安全方式打开mysql服务，然后更新存密码的表"><a href="#用安全方式打开mysql服务，然后更新存密码的表" class="headerlink" title="用安全方式打开mysql服务，然后更新存密码的表"></a>用安全方式打开mysql服务，然后更新存密码的表</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&gt;&gt;&gt; sudo mysqld_safe --skip-grant-tables</span><br><span class="line"></span><br><span class="line">Logging to &apos;/usr/local/mysql-5.7.23-macos10.13-x86_64/data/localhost.err&apos;.</span><br><span class="line">2018-08-08T03:58:25.6NZ mysqld_safe Starting mysqld daemon with databases from /usr/local/mysql-5.7.23-macos10.13-x86_64/data</span><br><span class="line">2018-08-08T03:58:27.6NZ mysqld_safe mysqld from pid file /usr/local/mysql-5.7.23-macos10.13-x86_64/data/localhost.pid ended</span><br></pre></td></tr></table></figure>
           <!--noindex-->
           <div class="post-button text-center">
             <a class="btn" href="/2018/08/08/mysql-8-04以上版本修改root密码/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://blog.timilong.com/2018/08/08/docker-dockerbuild的用法/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="博主">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Timilong's blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/08/08/docker-dockerbuild的用法/" itemprop="url">
-                  docker-build简单实用
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-
-              
-                
-              
-
-              <time title="创建于：2018-08-08 11:34:46 / 更新于：03:38:47" itemprop="dateCreated datePublished" datetime="2018-08-08T11:34:46Z">2018-08-08</time>
-            
-
-            
-              
-
-              
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <h2 id="说明"><a href="#说明" class="headerlink" title="说明"></a>说明</h2><p>docker build 命令用于使用 Dockerfile 创建镜像。</p>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2018/08/08/docker-dockerbuild的用法/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -2645,7 +2843,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">104</span>
+                    <span class="site-state-item-count">105</span>
                     <span class="site-state-item-name">日志</span>
                   </a>
                 </div>
@@ -2690,7 +2888,13 @@
                     
                       
                     
-                    <span class="site-state-item-count">16</span>
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">15</span>
                     <span class="site-state-item-name">分类</span>
                   </a>
                 </div>
@@ -2795,7 +2999,11 @@
                     
                       
                     
-                    <span class="site-state-item-count">42</span>
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">33</span>
                     <span class="site-state-item-name">标签</span>
                   </a>
                 </div>

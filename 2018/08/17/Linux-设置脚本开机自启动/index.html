@@ -109,13 +109,14 @@
 
 
   <meta name="description" content="设置自启动给Ubuntu添加一个开机启动脚本，操作如下： 1、新建个脚本文件new_service.sh 1234#!/bin/bash# command content  exit 0 2、设置权限1sudo chmod 755 new_service.sh 或者1sudo chmod +x new_service.sh 3、把脚本放置到启动目录下1sudo mv new_service.sh">
+<meta name="keywords" content="Linux">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Linux-设置脚本开机自启动">
 <meta property="og:url" content="http://blog.timilong.com/2018/08/17/linux-设置脚本开机自启动/index.html">
 <meta property="og:site_name" content="Timilong&#39;s blog">
 <meta property="og:description" content="设置自启动给Ubuntu添加一个开机启动脚本，操作如下： 1、新建个脚本文件new_service.sh 1234#!/bin/bash# command content  exit 0 2、设置权限1sudo chmod 755 new_service.sh 或者1sudo chmod +x new_service.sh 3、把脚本放置到启动目录下1sudo mv new_service.sh">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-09-04T01:30:11.853Z">
+<meta property="og:updated_time" content="2018-09-07T05:47:35.784Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Linux-设置脚本开机自启动">
 <meta name="twitter:description" content="设置自启动给Ubuntu添加一个开机启动脚本，操作如下： 1、新建个脚本文件new_service.sh 1234#!/bin/bash# command content  exit 0 2、设置权限1sudo chmod 755 new_service.sh 或者1sudo chmod +x new_service.sh 3、把脚本放置到启动目录下1sudo mv new_service.sh">
@@ -367,11 +368,29 @@
                 
                   <span class="post-meta-item-text">Edited on</span>
                 
-                <time title="更新于：2018-09-04 01:30:11" itemprop="dateModified" datetime="2018-09-04T01:30:11Z">2018-09-04</time>
+                <time title="更新于：2018-09-07 05:47:35" itemprop="dateModified" datetime="2018-09-07T05:47:35Z">2018-09-07</time>
               
             
           </span>
 
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Linux/" itemprop="url" rel="index"><span itemprop="name">Linux</span></a></span>
+
+                
+                
+              
+            </span>
           
 
           
@@ -402,16 +421,16 @@
       
         <h3 id="设置自启动"><a href="#设置自启动" class="headerlink" title="设置自启动"></a>设置自启动</h3><p>给Ubuntu添加一个开机启动脚本，操作如下：</p>
 <p>1、新建个脚本文件new_service.sh</p>
-<figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#!/bin/bash</span></span><br><span class="line"><span class="comment"># command content</span></span><br><span class="line">  </span><br><span class="line"><span class="keyword">exit</span> <span class="number">0</span></span><br></pre></td></tr></table></figure>
-<p>2、设置权限<br><figure class="highlight haxe"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo chmod <span class="number">755</span> <span class="keyword">new</span><span class="type">_service</span>.sh</span><br></pre></td></tr></table></figure></p>
-<p>或者<br><figure class="highlight haxe"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo chmod +x <span class="keyword">new</span><span class="type">_service</span>.sh</span><br></pre></td></tr></table></figure></p>
-<p>3、把脚本放置到启动目录下<br><figure class="highlight haxe"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo mv <span class="keyword">new</span><span class="type">_service</span>.sh /etc/init.d/</span><br></pre></td></tr></table></figure></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">#!/bin/bash</span><br><span class="line"># command content</span><br><span class="line">  </span><br><span class="line">exit 0</span><br></pre></td></tr></table></figure>
+<p>2、设置权限<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo chmod 755 new_service.sh</span><br></pre></td></tr></table></figure></p>
+<p>或者<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo chmod +x new_service.sh</span><br></pre></td></tr></table></figure></p>
+<p>3、把脚本放置到启动目录下<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo mv new_service.sh /etc/init.d/</span><br></pre></td></tr></table></figure></p>
 <p>4、将脚本添加到启动脚本</p>
-<p>执行如下指令，在这里90表明一个优先级，越高表示执行的越晚<br><figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">cd /etc/init.d/</span><br><span class="line">sudo update-rc<span class="selector-class">.d</span> new_service<span class="selector-class">.sh</span> defaults <span class="number">90</span></span><br></pre></td></tr></table></figure></p>
-<p>5、移除Ubuntu开机脚本<br><figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo update-rc<span class="selector-class">.d</span> -f new_service<span class="selector-class">.sh</span> remove</span><br></pre></td></tr></table></figure></p>
-<p>6、通过sysv-rc-conf来管理上面启动服务的启动级别等，还是开机不启动<br><figure class="highlight ebnf"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">sudo sysv-rc-conf</span></span><br></pre></td></tr></table></figure></p>
+<p>执行如下指令，在这里90表明一个优先级，越高表示执行的越晚<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">cd /etc/init.d/</span><br><span class="line">sudo update-rc.d new_service.sh defaults 90</span><br></pre></td></tr></table></figure></p>
+<p>5、移除Ubuntu开机脚本<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo update-rc.d -f new_service.sh remove</span><br></pre></td></tr></table></figure></p>
+<p>6、通过sysv-rc-conf来管理上面启动服务的启动级别等，还是开机不启动<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo sysv-rc-conf</span><br></pre></td></tr></table></figure></p>
 <a id="more"></a>
-<h3 id="移除符号链接"><a href="#移除符号链接" class="headerlink" title="移除符号链接"></a>移除符号链接</h3><p>当你需要移除这个符号连接时，方法有三种：<br><figure class="highlight basic"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">1.</span> 直接到 /etc/rc2.d 下删掉相应的链接，当然不是最好的方法</span><br><span class="line"><span class="number">2.</span> $ update-rc.d -f s10 <span class="comment">remove //推荐做法</span></span><br><span class="line"><span class="number">3.</span> 如果 update-rc.d 命令你不熟悉，还可以试试看 rcconf 这个命令，也很方便。</span><br></pre></td></tr></table></figure></p>
+<h3 id="移除符号链接"><a href="#移除符号链接" class="headerlink" title="移除符号链接"></a>移除符号链接</h3><p>当你需要移除这个符号连接时，方法有三种：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">1. 直接到 /etc/rc2.d 下删掉相应的链接，当然不是最好的方法</span><br><span class="line">2. $ update-rc.d -f s10 remove //推荐做法</span><br><span class="line">3. 如果 update-rc.d 命令你不熟悉，还可以试试看 rcconf 这个命令，也很方便。</span><br></pre></td></tr></table></figure></p>
 
       
     </div>
@@ -429,6 +448,12 @@
     
 
     <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Linux/" rel="tag"># Linux</a>
+          
+        </div>
       
 
       
@@ -521,7 +546,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">104</span>
+                    <span class="site-state-item-count">105</span>
                     <span class="site-state-item-name">日志</span>
                   </a>
                 </div>
@@ -566,7 +591,13 @@
                     
                       
                     
-                    <span class="site-state-item-count">16</span>
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">15</span>
                     <span class="site-state-item-name">分类</span>
                   </a>
                 </div>
@@ -671,7 +702,11 @@
                     
                       
                     
-                    <span class="site-state-item-count">42</span>
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">33</span>
                     <span class="site-state-item-name">标签</span>
                   </a>
                 </div>

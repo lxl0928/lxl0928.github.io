@@ -117,7 +117,7 @@
 <meta property="og:description" content="在客户端生成秘钥1&amp;gt;&amp;gt;&amp;gt; ssh-keygen -t rsa  # 如果已经生成则直接查看cat .ssh/id_rsa.pub是否有内容 将客户端的公钥添加到server端的.ssh/authorized_keys中实现免密登录12&amp;gt;&amp;gt;&amp;gt; ssh-copy-id -i .ssh/id_rsa.pub root@47.xx.yy.zzz&amp;gt;&amp;gt;&amp;gt;">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="http://7xorah.com1.z0.glb.clouddn.com/ssh-copy-id.png">
-<meta property="og:updated_time" content="2018-08-06T03:35:26.984Z">
+<meta property="og:updated_time" content="2018-09-07T05:46:54.316Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="linux-上传公钥至服务器实现免密码登录">
 <meta name="twitter:description" content="在客户端生成秘钥1&amp;gt;&amp;gt;&amp;gt; ssh-keygen -t rsa  # 如果已经生成则直接查看cat .ssh/id_rsa.pub是否有内容 将客户端的公钥添加到server端的.ssh/authorized_keys中实现免密登录12&amp;gt;&amp;gt;&amp;gt; ssh-copy-id -i .ssh/id_rsa.pub root@47.xx.yy.zzz&amp;gt;&amp;gt;&amp;gt;">
@@ -353,16 +353,46 @@
                 
               
 
-              <time title="创建于：2018-08-06 11:14:41 / 更新于：03:35:26" itemprop="dateCreated datePublished" datetime="2018-08-06T11:14:41Z">2018-08-06</time>
+              <time title="创建于：2018-08-06 11:14:41" itemprop="dateCreated datePublished" datetime="2018-08-06T11:14:41Z">2018-08-06</time>
             
 
             
               
 
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Edited on</span>
+                
+                <time title="更新于：2018-09-07 05:46:54" itemprop="dateModified" datetime="2018-09-07T05:46:54Z">2018-09-07</time>
               
             
           </span>
 
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Linux/" itemprop="url" rel="index"><span itemprop="name">Linux</span></a></span>
+
+                
+                
+              
+            </span>
           
 
           
@@ -391,11 +421,11 @@
       
 
       
-        <h1 id="在客户端生成秘钥"><a href="#在客户端生成秘钥" class="headerlink" title="在客户端生成秘钥"></a>在客户端生成秘钥</h1><figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;</span>&gt; ssh-keygen -t rsa  <span class="comment"># 如果已经生成则直接查看cat .ssh/id_rsa.pub是否有内容</span></span><br></pre></td></tr></table></figure>
-<h1 id="将客户端的公钥添加到server端的-ssh-authorized-keys中实现免密登录"><a href="#将客户端的公钥添加到server端的-ssh-authorized-keys中实现免密登录" class="headerlink" title="将客户端的公钥添加到server端的.ssh/authorized_keys中实现免密登录"></a>将客户端的公钥添加到server端的.ssh/authorized_keys中实现免密登录</h1><figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&gt;&gt;&gt; ssh-copy-id -<span class="selector-tag">i</span> .ssh/id_rsa<span class="selector-class">.pub</span> root@<span class="number">47</span><span class="selector-class">.xx</span><span class="selector-class">.yy</span><span class="selector-class">.zzz</span></span><br><span class="line">&gt;&gt;&gt; 输入root的密码 &lt;enter&gt;</span><br></pre></td></tr></table></figure>
+        <h1 id="在客户端生成秘钥"><a href="#在客户端生成秘钥" class="headerlink" title="在客户端生成秘钥"></a>在客户端生成秘钥</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&gt;&gt;&gt; ssh-keygen -t rsa  # 如果已经生成则直接查看cat .ssh/id_rsa.pub是否有内容</span><br></pre></td></tr></table></figure>
+<h1 id="将客户端的公钥添加到server端的-ssh-authorized-keys中实现免密登录"><a href="#将客户端的公钥添加到server端的-ssh-authorized-keys中实现免密登录" class="headerlink" title="将客户端的公钥添加到server端的.ssh/authorized_keys中实现免密登录"></a>将客户端的公钥添加到server端的.ssh/authorized_keys中实现免密登录</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&gt;&gt;&gt; ssh-copy-id -i .ssh/id_rsa.pub root@47.xx.yy.zzz</span><br><span class="line">&gt;&gt;&gt; 输入root的密码 &lt;enter&gt;</span><br></pre></td></tr></table></figure>
 <a id="more"></a>
 <h1 id="上传成功可看到"><a href="#上传成功可看到" class="headerlink" title="上传成功可看到"></a>上传成功可看到</h1><p><img src="http://7xorah.com1.z0.glb.clouddn.com/ssh-copy-id.png" alt="上传成功"></p>
-<h1 id="免密登录"><a href="#免密登录" class="headerlink" title="免密登录"></a>免密登录</h1><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">ssh</span> <span class="selector-tag">root</span>@<span class="keyword">47</span>.<span class="keyword">xx</span>.<span class="keyword">yy</span>.<span class="keyword">zzz</span></span><br></pre></td></tr></table></figure>
+<h1 id="免密登录"><a href="#免密登录" class="headerlink" title="免密登录"></a>免密登录</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ssh root@47.xx.yy.zzz</span><br></pre></td></tr></table></figure>
 <p>后续如有需要、可在服务上关闭密码登录</p>
 
       
@@ -512,7 +542,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">104</span>
+                    <span class="site-state-item-count">105</span>
                     <span class="site-state-item-name">日志</span>
                   </a>
                 </div>
@@ -557,7 +587,13 @@
                     
                       
                     
-                    <span class="site-state-item-count">16</span>
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">15</span>
                     <span class="site-state-item-name">分类</span>
                   </a>
                 </div>
@@ -662,7 +698,11 @@
                     
                       
                     
-                    <span class="site-state-item-count">42</span>
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">33</span>
                     <span class="site-state-item-name">标签</span>
                   </a>
                 </div>

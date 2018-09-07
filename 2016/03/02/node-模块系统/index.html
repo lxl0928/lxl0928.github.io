@@ -425,21 +425,21 @@
 <p>模块是nodejs应用程序的基本组成部分，文件和模块是一一对应的。</p>
 <p>换言之，一个nodejs文件就是一个模块，这个文件可能是JavaScript代码，JSON或者是编译过的C/C++扩展</p>
 <a id="more"></a>
-<h3 id="创建模块"><a href="#创建模块" class="headerlink" title="创建模块"></a>创建模块</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="keyword">var</span> hello = <span class="built_in">require</span>(<span class="string">'./hello'</span>);</span><br><span class="line">hello.world();</span><br></pre></td></tr></table></figure>
+<h3 id="创建模块"><a href="#创建模块" class="headerlink" title="创建模块"></a>创建模块</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">var hello = require(&apos;./hello&apos;);</span><br><span class="line">hello.world();</span><br></pre></td></tr></table></figure>
 <p>以上实例中，代码require(‘./hello’)引入了当前目录下的hello.js文件(./为当前目录, node.js默认后缀是js).</p>
 <!--more-->
 <p>Node.js提供了exports和require两个对象，其中exports是模块公开的接口，require用于外部获取一个模块的接口，即所获取模块的exports对象。<br>接下来我们创建hello.js文件，代码如下:</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">exports.world = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">'Hello World'</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">exports.world = function()&#123;</span><br><span class="line">    console.log(&apos;Hello World&apos;);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>在以上的示例中，hello.js通过exports对象把world作为模块的访问接口，　在main.js中通过require(‘./hello’)加载这个模块，然后就可以直接访问hello.js中exports对象的成员函数了。<br>有时候我们只是想要把一个对象封装到模块中，格式如下:</p>
-<figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="built_in">module</span>.exports = <span class="function"><span class="keyword">function</span><span class="title">I</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    <span class="comment">//...</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">module.exports = functionI()&#123;</span><br><span class="line">    //...</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>例如:</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="comment">//hello.js</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Hello</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    <span class="keyword">var</span> name;</span><br><span class="line">    <span class="keyword">this</span>.setName = <span class="function"><span class="keyword">function</span>(<span class="params">thyName</span>)</span>&#123;</span><br><span class="line">        name = thyName;</span><br><span class="line">    &#125;;</span><br><span class="line">    <span class="keyword">this</span>.sayHello = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">        <span class="built_in">console</span>.log(<span class="string">'Hello'</span> + name);</span><br><span class="line">    &#125;;</span><br><span class="line">&#125;;</span><br><span class="line"><span class="built_in">module</span>.exports = Hello;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">//hello.js</span><br><span class="line">function Hello()&#123;</span><br><span class="line">    var name;</span><br><span class="line">    this.setName = function(thyName)&#123;</span><br><span class="line">        name = thyName;</span><br><span class="line">    &#125;;</span><br><span class="line">    this.sayHello = function()&#123;</span><br><span class="line">        console.log(&apos;Hello&apos; + name);</span><br><span class="line">    &#125;;</span><br><span class="line">&#125;;</span><br><span class="line">module.exports = Hello;</span><br></pre></td></tr></table></figure>
 <p>这样就可以直接获得这个这个对象了:</p>
-<figure class="highlight haxe"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="comment">//main.js</span></span><br><span class="line"><span class="keyword">var</span> Hello = require(<span class="string">'./hello'</span>);</span><br><span class="line">hello = <span class="keyword">new</span> <span class="type">Hello</span>();</span><br><span class="line">hello.setName(<span class="string">'BYVoid'</span>);</span><br><span class="line">hello.sayHello();</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">//main.js</span><br><span class="line">var Hello = require(&apos;./hello&apos;);</span><br><span class="line">hello = new Hello();</span><br><span class="line">hello.setName(&apos;BYVoid&apos;);</span><br><span class="line">hello.sayHello();</span><br></pre></td></tr></table></figure>
 <p>模块接口的唯一变化是使用module.exports　＝　Hello 代替了exports.world = function(){}。在外部引用该模块时候，其接口对象就是要输出的Hello对象本身，而不是原先的exports.</p>
 <hr>
 <h3 id="服务端的模块放在哪里"><a href="#服务端的模块放在哪里" class="headerlink" title="服务端的模块放在哪里?"></a>服务端的模块放在哪里?</h3><p>也许你已经注意到，我们已经在代码中使用了模块了。像这样:</p>
-<figure class="highlight lasso"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="built_in">var</span> http = <span class="keyword">require</span>(<span class="string">'http'</span>);</span><br><span class="line"><span class="params">...</span></span><br><span class="line">http.createServer(<span class="params">...</span>);</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">var http = require(&apos;http&apos;);</span><br><span class="line">...</span><br><span class="line">http.createServer(...);</span><br></pre></td></tr></table></figure>
 <p>Node.js中自带了一个叫做”http”的模块，　我们在我们的代码中请求它并把返回值赋值给一个本地的变量。<br>这把我们的本地变量变成了一个拥有所有的http模块所提供的公共方法的对象。<br>Node.js的require方法中的文件查找策略如下:<br>由于Node.js中存在四类模块(原生模块和三种文件模块), 尽管require方法及其简单，但是内部的加载确实十分复杂的，其加载优先级也各自不同。如下图所示:</p>
 <p><img src="http://www.runoob.com/wp-content/uploads/2014/03/nodejs-require.jpg" alt="require方法的内部加载"></p>
 <h4 id="从文件模块缓存中加载"><a href="#从文件模块缓存中加载" class="headerlink" title="从文件模块缓存中加载"></a>从文件模块缓存中加载</h4><p>尽管原生模块与文件模块的优先级不同，但是都不会优先于从文件模块的缓存中加载已经存在的模块。</p>
@@ -566,7 +566,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">104</span>
+                    <span class="site-state-item-count">105</span>
                     <span class="site-state-item-name">日志</span>
                   </a>
                 </div>
@@ -611,7 +611,13 @@
                     
                       
                     
-                    <span class="site-state-item-count">16</span>
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">15</span>
                     <span class="site-state-item-name">分类</span>
                   </a>
                 </div>
@@ -716,7 +722,11 @@
                     
                       
                     
-                    <span class="site-state-item-count">42</span>
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">33</span>
                     <span class="site-state-item-name">标签</span>
                   </a>
                 </div>

@@ -446,7 +446,7 @@
 <li>客户端接收到服务器发送过来的 world，马上打印出来。</li>
 <li>关闭连接，结束。</li>
 </ul>
-<figure class="highlight livecodeserver"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># coding: utf-8</span></span><br><span class="line"><span class="comment"># server</span></span><br><span class="line"></span><br><span class="line">import <span class="built_in">socket</span></span><br><span class="line"></span><br><span class="line">sock = <span class="built_in">socket</span>.<span class="built_in">socket</span>(<span class="built_in">socket</span>.AF_INET, <span class="built_in">socket</span>.SOCK_STREAM)</span><br><span class="line">sock.bind((<span class="string">"localhost"</span>, <span class="number">8080</span>))</span><br><span class="line">sock.listen(<span class="number">1</span>)  <span class="comment"># 监听客户端连接</span></span><br><span class="line"><span class="keyword">while</span> True:</span><br><span class="line">    conn, addr = sock.accept()  <span class="comment"># 接收一个客户端连接</span></span><br><span class="line">    print conn.recv(<span class="number">1024</span>)  <span class="comment"># 从接收缓冲读消息 recv buffer</span></span><br><span class="line">    conn.sendall(<span class="string">"world"</span>)  <span class="comment"># 将响应发送到发送缓冲 send buffer</span></span><br><span class="line">    conn.<span class="built_in">close</span>() <span class="comment"># 关闭连接</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># coding: utf-8</span></span><br><span class="line"><span class="comment"># client</span></span><br><span class="line"></span><br><span class="line">import <span class="built_in">socket</span></span><br><span class="line"></span><br><span class="line">sock = <span class="built_in">socket</span>.<span class="built_in">socket</span>(<span class="built_in">socket</span>.AF_INET, <span class="built_in">socket</span>.SOCK_STREAM)</span><br><span class="line">sock.connect((<span class="string">"localhost"</span>, <span class="number">8080</span>))  <span class="comment"># 连接服务器</span></span><br><span class="line">sock.sendall(<span class="string">"hello"</span>)  <span class="comment"># 将消息输出到发送缓冲 send buffer</span></span><br><span class="line">print sock.recv(<span class="number">1024</span>)  <span class="comment"># 从接收缓冲 recv buffer 中读响应</span></span><br><span class="line">sock.<span class="built_in">close</span>() <span class="comment"># 关闭套接字</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"># coding: utf-8</span><br><span class="line"># server</span><br><span class="line"></span><br><span class="line">import socket</span><br><span class="line"></span><br><span class="line">sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)</span><br><span class="line">sock.bind((&quot;localhost&quot;, 8080))</span><br><span class="line">sock.listen(1)  # 监听客户端连接</span><br><span class="line">while True:</span><br><span class="line">    conn, addr = sock.accept()  # 接收一个客户端连接</span><br><span class="line">    print conn.recv(1024)  # 从接收缓冲读消息 recv buffer</span><br><span class="line">    conn.sendall(&quot;world&quot;)  # 将响应发送到发送缓冲 send buffer</span><br><span class="line">    conn.close() # 关闭连接</span><br><span class="line"></span><br><span class="line"># coding: utf-8</span><br><span class="line"># client</span><br><span class="line"></span><br><span class="line">import socket</span><br><span class="line"></span><br><span class="line">sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)</span><br><span class="line">sock.connect((&quot;localhost&quot;, 8080))  # 连接服务器</span><br><span class="line">sock.sendall(&quot;hello&quot;)  # 将消息输出到发送缓冲 send buffer</span><br><span class="line">print sock.recv(1024)  # 从接收缓冲 recv buffer 中读响应</span><br><span class="line">sock.close() # 关闭套接字</span><br></pre></td></tr></table></figure>
 <p>如果从上面代码上观察，我们其实很难看出上图所示的复杂过程。浮现在多数人脑海中往往是下面的这幅简约模型图。相比之下它要简单很多，这也正是操作系统设计的魅力所在，让你时时刻刻都在使用它却感受不到它的存在。</p>
 <p><img src="https://user-gold-cdn.xitu.io/2018/5/31/163b4e36daa5cc79?imageView2/0/w/1280/h/960/format/webp/ignore-error/1" alt="RPC"></p>
 <h3 id="小结"><a href="#小结" class="headerlink" title="小结"></a>小结</h3><p>通过本节内容，读者们对 RPC 的交互流程应该有了大致了解，但是还并不知道 RPC 之间到底交互了什么。就好比你能看到远方有几个人在说话，但是不知道他们在说啥。</p>
@@ -579,7 +579,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">104</span>
+                    <span class="site-state-item-count">105</span>
                     <span class="site-state-item-name">日志</span>
                   </a>
                 </div>
@@ -624,7 +624,13 @@
                     
                       
                     
-                    <span class="site-state-item-count">16</span>
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">15</span>
                     <span class="site-state-item-name">分类</span>
                   </a>
                 </div>
@@ -729,7 +735,11 @@
                     
                       
                     
-                    <span class="site-state-item-count">42</span>
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">33</span>
                     <span class="site-state-item-name">标签</span>
                   </a>
                 </div>

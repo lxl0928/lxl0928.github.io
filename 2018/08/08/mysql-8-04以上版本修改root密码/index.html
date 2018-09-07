@@ -108,18 +108,18 @@
 
 
 
-  <meta name="description" content="忘记root密码用安全方式打开mysql服务，然后更新存密码的表12345&amp;gt;&amp;gt;&amp;gt; sudo mysqld_safe --skip-grant-tablesLogging to &apos;/usr/local/mysql-5.7.23-macos10.13-x86_64/data/localhost.err&apos;.2018-08-08T03:58:25.6NZ mysqld_safe Star">
-<meta name="keywords" content="MySQL">
+  <meta name="description" content="忘记root密码用安全方式打开mysql服务，然后更新存密码的表12345&amp;gt;&amp;gt;&amp;gt; sudo mysqld_safe --skip-grant-tablesLogging to &amp;apos;/usr/local/mysql-5.7.23-macos10.13-x86_64/data/localhost.err&amp;apos;.2018-08-08T03:58:25.6NZ mysqld">
+<meta name="keywords" content="MySql">
 <meta property="og:type" content="article">
 <meta property="og:title" content="mysql-8.04以上版本修改root密码">
 <meta property="og:url" content="http://blog.timilong.com/2018/08/08/mysql-8-04以上版本修改root密码/index.html">
 <meta property="og:site_name" content="Timilong&#39;s blog">
-<meta property="og:description" content="忘记root密码用安全方式打开mysql服务，然后更新存密码的表12345&amp;gt;&amp;gt;&amp;gt; sudo mysqld_safe --skip-grant-tablesLogging to &apos;/usr/local/mysql-5.7.23-macos10.13-x86_64/data/localhost.err&apos;.2018-08-08T03:58:25.6NZ mysqld_safe Star">
+<meta property="og:description" content="忘记root密码用安全方式打开mysql服务，然后更新存密码的表12345&amp;gt;&amp;gt;&amp;gt; sudo mysqld_safe --skip-grant-tablesLogging to &amp;apos;/usr/local/mysql-5.7.23-macos10.13-x86_64/data/localhost.err&amp;apos;.2018-08-08T03:58:25.6NZ mysqld">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-08-08T04:23:32.433Z">
+<meta property="og:updated_time" content="2018-09-07T05:37:48.333Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="mysql-8.04以上版本修改root密码">
-<meta name="twitter:description" content="忘记root密码用安全方式打开mysql服务，然后更新存密码的表12345&amp;gt;&amp;gt;&amp;gt; sudo mysqld_safe --skip-grant-tablesLogging to &apos;/usr/local/mysql-5.7.23-macos10.13-x86_64/data/localhost.err&apos;.2018-08-08T03:58:25.6NZ mysqld_safe Star">
+<meta name="twitter:description" content="忘记root密码用安全方式打开mysql服务，然后更新存密码的表12345&amp;gt;&amp;gt;&amp;gt; sudo mysqld_safe --skip-grant-tablesLogging to &amp;apos;/usr/local/mysql-5.7.23-macos10.13-x86_64/data/localhost.err&amp;apos;.2018-08-08T03:58:25.6NZ mysqld">
 
 
 
@@ -351,16 +351,46 @@
                 
               
 
-              <time title="创建于：2018-08-08 12:16:24 / 更新于：04:23:32" itemprop="dateCreated datePublished" datetime="2018-08-08T12:16:24Z">2018-08-08</time>
+              <time title="创建于：2018-08-08 12:16:24" itemprop="dateCreated datePublished" datetime="2018-08-08T12:16:24Z">2018-08-08</time>
             
 
             
               
 
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Edited on</span>
+                
+                <time title="更新于：2018-09-07 05:37:48" itemprop="dateModified" datetime="2018-09-07T05:37:48Z">2018-09-07</time>
               
             
           </span>
 
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/MySql/" itemprop="url" rel="index"><span itemprop="name">MySql</span></a></span>
+
+                
+                
+              
+            </span>
           
 
           
@@ -389,12 +419,12 @@
       
 
       
-        <h1 id="忘记root密码"><a href="#忘记root密码" class="headerlink" title="忘记root密码"></a>忘记root密码</h1><h2 id="用安全方式打开mysql服务，然后更新存密码的表"><a href="#用安全方式打开mysql服务，然后更新存密码的表" class="headerlink" title="用安全方式打开mysql服务，然后更新存密码的表"></a>用安全方式打开mysql服务，然后更新存密码的表</h2><figure class="highlight applescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&gt;&gt;&gt; sudo mysqld_safe <span class="comment">--skip-grant-tables</span></span><br><span class="line"></span><br><span class="line">Logging <span class="keyword">to</span> '/usr/<span class="keyword">local</span>/mysql<span class="number">-5.7</span><span class="number">.23</span>-macos10<span class="number">.13</span>-x86_64/data/localhost.err'.</span><br><span class="line"><span class="number">2018</span><span class="number">-08</span><span class="number">-08</span>T03:<span class="number">58</span>:<span class="number">25.6</span>NZ mysqld_safe Starting mysqld daemon <span class="keyword">with</span> databases <span class="keyword">from</span> /usr/<span class="keyword">local</span>/mysql<span class="number">-5.7</span><span class="number">.23</span>-macos10<span class="number">.13</span>-x86_64/data</span><br><span class="line"><span class="number">2018</span><span class="number">-08</span><span class="number">-08</span>T03:<span class="number">58</span>:<span class="number">27.6</span>NZ mysqld_safe mysqld <span class="keyword">from</span> pid <span class="built_in">file</span> /usr/<span class="keyword">local</span>/mysql<span class="number">-5.7</span><span class="number">.23</span>-macos10<span class="number">.13</span>-x86_64/data/localhost.pid ended</span><br></pre></td></tr></table></figure>
+        <h1 id="忘记root密码"><a href="#忘记root密码" class="headerlink" title="忘记root密码"></a>忘记root密码</h1><h2 id="用安全方式打开mysql服务，然后更新存密码的表"><a href="#用安全方式打开mysql服务，然后更新存密码的表" class="headerlink" title="用安全方式打开mysql服务，然后更新存密码的表"></a>用安全方式打开mysql服务，然后更新存密码的表</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&gt;&gt;&gt; sudo mysqld_safe --skip-grant-tables</span><br><span class="line"></span><br><span class="line">Logging to &apos;/usr/local/mysql-5.7.23-macos10.13-x86_64/data/localhost.err&apos;.</span><br><span class="line">2018-08-08T03:58:25.6NZ mysqld_safe Starting mysqld daemon with databases from /usr/local/mysql-5.7.23-macos10.13-x86_64/data</span><br><span class="line">2018-08-08T03:58:27.6NZ mysqld_safe mysqld from pid file /usr/local/mysql-5.7.23-macos10.13-x86_64/data/localhost.pid ended</span><br></pre></td></tr></table></figure>
 <a id="more"></a>
-<h2 id="新开终端、更新密码"><a href="#新开终端、更新密码" class="headerlink" title="新开终端、更新密码"></a>新开终端、更新密码</h2><p>登录, 不需要密码<br><figure class="highlight ebnf"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">mysql -u root</span></span><br></pre></td></tr></table></figure></p>
-<p>use mysql<br><figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">&gt;&gt;&gt; use mysql;</span><br><span class="line"></span><br><span class="line">&gt;&gt;&gt; ALTER USER <span class="string">'root'</span>@<span class="string">'localhost'</span> IDENTIFIED WITH mysql_native_password BY <span class="string">'123456'</span>;  <span class="comment"># 123456为新密码</span></span><br><span class="line"></span><br><span class="line">&gt;&gt;&gt; FLUSH PRIVILEGES;</span><br><span class="line"></span><br><span class="line">&gt;&gt;&gt; <span class="keyword">exit</span></span><br></pre></td></tr></table></figure></p>
-<p>重新登录, 需要密码<br><figure class="highlight nginx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">mysql</span> -uroot -p123456</span><br><span class="line"></span><br><span class="line"><span class="comment"># 成功进入</span></span><br></pre></td></tr></table></figure></p>
-<h1 id="没有忘记root密码，只是需要一个新密码"><a href="#没有忘记root密码，只是需要一个新密码" class="headerlink" title="没有忘记root密码，只是需要一个新密码"></a>没有忘记root密码，只是需要一个新密码</h1><figure class="highlight nginx"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">mysqladmin</span> -u用户名 -p旧密码 password 新密码</span><br></pre></td></tr></table></figure>
+<h2 id="新开终端、更新密码"><a href="#新开终端、更新密码" class="headerlink" title="新开终端、更新密码"></a>新开终端、更新密码</h2><p>登录, 不需要密码<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mysql -u root</span><br></pre></td></tr></table></figure></p>
+<p>use mysql<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">&gt;&gt;&gt; use mysql;</span><br><span class="line"></span><br><span class="line">&gt;&gt;&gt; ALTER USER &apos;root&apos;@&apos;localhost&apos; IDENTIFIED WITH mysql_native_password BY &apos;123456&apos;;  # 123456为新密码</span><br><span class="line"></span><br><span class="line">&gt;&gt;&gt; FLUSH PRIVILEGES;</span><br><span class="line"></span><br><span class="line">&gt;&gt;&gt; exit</span><br></pre></td></tr></table></figure></p>
+<p>重新登录, 需要密码<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">mysql -uroot -p123456</span><br><span class="line"></span><br><span class="line"># 成功进入</span><br></pre></td></tr></table></figure></p>
+<h1 id="没有忘记root密码，只是需要一个新密码"><a href="#没有忘记root密码，只是需要一个新密码" class="headerlink" title="没有忘记root密码，只是需要一个新密码"></a>没有忘记root密码，只是需要一个新密码</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mysqladmin -u用户名 -p旧密码 password 新密码</span><br></pre></td></tr></table></figure>
 
       
     </div>
@@ -415,7 +445,7 @@
       
         <div class="post-tags">
           
-            <a href="/tags/MySQL/" rel="tag"># MySQL</a>
+            <a href="/tags/MySql/" rel="tag"># MySql</a>
           
         </div>
       
@@ -510,7 +540,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">104</span>
+                    <span class="site-state-item-count">105</span>
                     <span class="site-state-item-name">日志</span>
                   </a>
                 </div>
@@ -555,7 +585,13 @@
                     
                       
                     
-                    <span class="site-state-item-count">16</span>
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">15</span>
                     <span class="site-state-item-name">分类</span>
                   </a>
                 </div>
@@ -660,7 +696,11 @@
                     
                       
                     
-                    <span class="site-state-item-count">42</span>
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">33</span>
                     <span class="site-state-item-name">标签</span>
                   </a>
                 </div>

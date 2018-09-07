@@ -391,7 +391,7 @@
       
         <h2 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h2><p>请手写归并排序，实现test_lit = [2, -1, 100, 0, 3, 4, 9, -11, 200, 1, 3] 按降序输出</p>
 <a id="more"></a>
-<h2 id="解答"><a href="#解答" class="headerlink" title="解答"></a>解答</h2><figure class="highlight vim"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"># codin<span class="variable">g:</span> utf-<span class="number">8</span></span><br><span class="line"></span><br><span class="line">def merge_sort(nums):</span><br><span class="line">    <span class="keyword">if</span> <span class="built_in">len</span>(nums) &lt;= <span class="number">1</span>:</span><br><span class="line">        <span class="keyword">return</span> nums</span><br><span class="line">    <span class="keyword">else</span>:</span><br><span class="line">        mid = <span class="built_in">len</span>(nums) / <span class="number">2</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">left</span> = merge_sort(nums[:mid])</span><br><span class="line">    <span class="keyword">right</span> = merge_sort(nums[mid:])</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> merge(<span class="keyword">left</span>, <span class="keyword">right</span>)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">def merge(<span class="keyword">left</span>, <span class="keyword">right</span>):</span><br><span class="line">    i, <span class="keyword">j</span>, <span class="keyword">res</span> = <span class="number">0</span>, <span class="number">0</span>, <span class="keyword">list</span>()</span><br><span class="line"></span><br><span class="line">    <span class="keyword">while</span> i &lt; <span class="built_in">len</span>(<span class="keyword">left</span>) <span class="built_in">and</span> <span class="keyword">j</span> &lt; <span class="built_in">len</span>(<span class="keyword">right</span>):</span><br><span class="line">        <span class="keyword">if</span> <span class="keyword">left</span>[i] &lt; <span class="keyword">right</span>[<span class="keyword">j</span>]:</span><br><span class="line">            <span class="keyword">res</span>.<span class="keyword">append</span>(<span class="keyword">left</span>[i])</span><br><span class="line">            i += <span class="number">1</span></span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            <span class="keyword">res</span>.<span class="keyword">append</span>(<span class="keyword">right</span>[<span class="keyword">j</span>])</span><br><span class="line">            <span class="keyword">j</span> += <span class="number">1</span></span><br><span class="line">    <span class="keyword">res</span> += <span class="keyword">left</span>[i:]</span><br><span class="line">    <span class="keyword">res</span> += <span class="keyword">right</span>[<span class="keyword">j</span>:]</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">res</span></span><br><span class="line"></span><br><span class="line">test_list = [<span class="number">2</span>, -<span class="number">1</span>, <span class="number">100</span>, <span class="number">0</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">9</span>, -<span class="number">11</span>, <span class="number">200</span>, <span class="number">1</span>, <span class="number">3</span>] </span><br><span class="line"><span class="keyword">res</span> = merge_sort(nums=test_list)</span><br><span class="line"><span class="keyword">print</span>(<span class="keyword">res</span>[::-<span class="number">1</span>])</span><br></pre></td></tr></table></figure>
+<h2 id="解答"><a href="#解答" class="headerlink" title="解答"></a>解答</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"># coding: utf-8</span><br><span class="line"></span><br><span class="line">def merge_sort(nums):</span><br><span class="line">    if len(nums) &lt;= 1:</span><br><span class="line">        return nums</span><br><span class="line">    else:</span><br><span class="line">        mid = len(nums) / 2</span><br><span class="line"></span><br><span class="line">    left = merge_sort(nums[:mid])</span><br><span class="line">    right = merge_sort(nums[mid:])</span><br><span class="line"></span><br><span class="line">    return merge(left, right)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">def merge(left, right):</span><br><span class="line">    i, j, res = 0, 0, list()</span><br><span class="line"></span><br><span class="line">    while i &lt; len(left) and j &lt; len(right):</span><br><span class="line">        if left[i] &lt; right[j]:</span><br><span class="line">            res.append(left[i])</span><br><span class="line">            i += 1</span><br><span class="line">        else:</span><br><span class="line">            res.append(right[j])</span><br><span class="line">            j += 1</span><br><span class="line">    res += left[i:]</span><br><span class="line">    res += right[j:]</span><br><span class="line">    return res</span><br><span class="line"></span><br><span class="line">test_list = [2, -1, 100, 0, 3, 4, 9, -11, 200, 1, 3] </span><br><span class="line">res = merge_sort(nums=test_list)</span><br><span class="line">print(res[::-1])</span><br></pre></td></tr></table></figure>
 
       
     </div>
@@ -507,7 +507,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">104</span>
+                    <span class="site-state-item-count">105</span>
                     <span class="site-state-item-name">日志</span>
                   </a>
                 </div>
@@ -552,7 +552,13 @@
                     
                       
                     
-                    <span class="site-state-item-count">16</span>
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">15</span>
                     <span class="site-state-item-name">分类</span>
                   </a>
                 </div>
@@ -657,7 +663,11 @@
                     
                       
                     
-                    <span class="site-state-item-count">42</span>
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">33</span>
                     <span class="site-state-item-name">标签</span>
                   </a>
                 </div>

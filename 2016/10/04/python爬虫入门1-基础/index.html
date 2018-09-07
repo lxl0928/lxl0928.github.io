@@ -419,10 +419,10 @@
       
 
       
-        <h3 id="什么是爬虫"><a href="#什么是爬虫" class="headerlink" title="什么是爬虫"></a>什么是爬虫</h3><figure class="highlight erlang"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">爬虫: 网络爬虫.</span><br><span class="line">爬虫抓取某个网页, 在这个网页中发现了一条道路, 其实就是指向网页的超链接, 那么它将到另外一个网页(该超链接)获取数据.</span><br></pre></td></tr></table></figure>
-<h3 id="用户浏览网页的过程"><a href="#用户浏览网页的过程" class="headerlink" title="用户浏览网页的过程"></a>用户浏览网页的过程</h3><figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">用户浏览网页过程中, 如: 访问www.baidu.com的过程.</span><br><span class="line"><span class="bullet">1. </span>用户输入网址</span><br><span class="line"><span class="bullet">2. </span>经过DNS服务器解析</span><br><span class="line"><span class="bullet">3. </span>找到对应的服务器主机</span><br><span class="line"><span class="bullet">4. </span>向服务器主机发出一个请求</span><br><span class="line"><span class="bullet">5. </span>服务器解析该请求并响应</span><br><span class="line"><span class="bullet">6. </span>服务器返回用户浏览器HTML, css, javacript等文件</span><br><span class="line"><span class="bullet">7. </span>浏览器解析, 呈现给用户</span><br></pre></td></tr></table></figure>
+        <h3 id="什么是爬虫"><a href="#什么是爬虫" class="headerlink" title="什么是爬虫"></a>什么是爬虫</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">爬虫: 网络爬虫.</span><br><span class="line">爬虫抓取某个网页, 在这个网页中发现了一条道路, 其实就是指向网页的超链接, 那么它将到另外一个网页(该超链接)获取数据.</span><br></pre></td></tr></table></figure>
+<h3 id="用户浏览网页的过程"><a href="#用户浏览网页的过程" class="headerlink" title="用户浏览网页的过程"></a>用户浏览网页的过程</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">用户浏览网页过程中, 如: 访问www.baidu.com的过程.</span><br><span class="line">1. 用户输入网址</span><br><span class="line">2. 经过DNS服务器解析</span><br><span class="line">3. 找到对应的服务器主机</span><br><span class="line">4. 向服务器主机发出一个请求</span><br><span class="line">5. 服务器解析该请求并响应</span><br><span class="line">6. 服务器返回用户浏览器HTML, css, javacript等文件</span><br><span class="line">7. 浏览器解析, 呈现给用户</span><br></pre></td></tr></table></figure>
 <a id="more"></a>
-<h3 id="URL的含义"><a href="#URL的含义" class="headerlink" title="URL的含义"></a>URL的含义</h3><figure class="highlight livecodeserver"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">URL</span>: 统一资源定位符, 我们通常所说的网址.</span><br><span class="line">统一资源定位符是是对可以从互联网上得到的资源的位置和访问方法的一种简洁的表示，是互联网上标准资源的地址。互联网上的每个文件都有一个唯一的<span class="built_in">URL</span>，它包含的信息指出文件的位置以及浏览器应该怎么处理它。</span><br><span class="line"></span><br><span class="line"><span class="built_in">URL</span>的格式由三部分组成：</span><br><span class="line">①第一部分是协议(或称为服务方式)。</span><br><span class="line">②第二部分是存有该资源的主机IP地址(有时也包括端口号)。</span><br><span class="line">③第三部分是主机资源的具体地址，如目录和文件名等。</span><br><span class="line">爬虫爬取数据时必须要有一个目标的<span class="built_in">URL</span>才可以获取数据，因此，它是爬虫获取数据的基本依据，准确理解它的含义对爬虫学习有很大帮助。</span><br></pre></td></tr></table></figure>
+<h3 id="URL的含义"><a href="#URL的含义" class="headerlink" title="URL的含义"></a>URL的含义</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">URL: 统一资源定位符, 我们通常所说的网址.</span><br><span class="line">统一资源定位符是是对可以从互联网上得到的资源的位置和访问方法的一种简洁的表示，是互联网上标准资源的地址。互联网上的每个文件都有一个唯一的URL，它包含的信息指出文件的位置以及浏览器应该怎么处理它。</span><br><span class="line"></span><br><span class="line">URL的格式由三部分组成：</span><br><span class="line">①第一部分是协议(或称为服务方式)。</span><br><span class="line">②第二部分是存有该资源的主机IP地址(有时也包括端口号)。</span><br><span class="line">③第三部分是主机资源的具体地址，如目录和文件名等。</span><br><span class="line">爬虫爬取数据时必须要有一个目标的URL才可以获取数据，因此，它是爬虫获取数据的基本依据，准确理解它的含义对爬虫学习有很大帮助。</span><br></pre></td></tr></table></figure>
 
       
     </div>
@@ -456,8 +456,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2016/07/13/mysql-命令行操作/" rel="next" title="MySQL学习1-linux下基本操作">
-                <i class="fa fa-chevron-left"></i> MySQL学习1-linux下基本操作
+              <a href="/2016/07/13/mysql-命令行操作/" rel="next" title="mysql-linux下基本操作">
+                <i class="fa fa-chevron-left"></i> mysql-linux下基本操作
               </a>
             
           </div>
@@ -538,7 +538,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">104</span>
+                    <span class="site-state-item-count">105</span>
                     <span class="site-state-item-name">日志</span>
                   </a>
                 </div>
@@ -583,7 +583,13 @@
                     
                       
                     
-                    <span class="site-state-item-count">16</span>
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">15</span>
                     <span class="site-state-item-name">分类</span>
                   </a>
                 </div>
@@ -688,7 +694,11 @@
                     
                       
                     
-                    <span class="site-state-item-count">42</span>
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">33</span>
                     <span class="site-state-item-name">标签</span>
                   </a>
                 </div>
