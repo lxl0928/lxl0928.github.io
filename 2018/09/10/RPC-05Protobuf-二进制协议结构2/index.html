@@ -123,7 +123,7 @@
 <meta property="og:image" content="https://user-gold-cdn.xitu.io/2018/5/31/163b4ff98c9e7aa9?imageView2/0/w/1280/h/960/format/webp/ignore-error/1">
 <meta property="og:image" content="https://user-gold-cdn.xitu.io/2018/5/12/163523f1ca7bd3bc?imageView2/0/w/1280/h/960/format/webp/ignore-error/1">
 <meta property="og:image" content="https://user-gold-cdn.xitu.io/2018/6/4/163c8b1ad93b2165?imageView2/0/w/1280/h/960/format/webp/ignore-error/1">
-<meta property="og:updated_time" content="2018-09-09T09:27:27.156Z">
+<meta property="og:updated_time" content="2018-09-09T09:29:19.967Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="RPC-05Protobuf-二进制协议结构">
 <meta name="twitter:description" content="Protobuf 协议是 Google 开源的二进制 RPC 通讯协议，它可能是互联网开源项目中使用最为广泛的 RPC 协议。 Protobuf 提供了一种描述通讯协议的接口描述语言 IDL，通过编写接口协议，Protobuf 可以自动生成多种语言的 RPC 通讯代码，目前官方已经支持了近 10 种语言。">
@@ -359,7 +359,7 @@
                 
               
 
-              <time title="创建于：2018-09-09 17:16:09 / 更新于：09:27:27" itemprop="dateCreated datePublished" datetime="2018-09-09T17:16:09Z">2018-09-09</time>
+              <time title="创建于：2018-09-09 17:16:09 / 更新于：09:29:19" itemprop="dateCreated datePublished" datetime="2018-09-09T17:16:09Z">2018-09-09</time>
             
 
             
@@ -436,7 +436,9 @@
 </ul>
 <p>Protobuf 将字段类型也和正数序列 (type) 对应起来，每一种原生的 java 类型都唯一对应一个正数，类型信息也非常节省。type 使用 3 个 bits 表示，最多支持 8 种类型。</p>
 <p>也许你会认为 8 种类型怎么够呢？放心，肯定够的！因为一个 zigzag 类型可以表示所有的类整数类型，byte/short/int/long/bool/enum/unsigned byte/unsigned short/unsigned int/unsigned long 这些类型都可以使用 zigzag 表示。而 Python 语言的整数更加特别，它根本就不区分整数的位数，甚至可以是一个 BigInteger。varint 的特长就在于此，它可以无限扩展位数大小，可以表示无限的整数值。而字节数组、字符串和嵌套对象都可以使用一种称之为 length 前缀 (length-delimited) 的类型来表示。另外 float 和 double 类型各占一个类型。最终你看，连 8 个类型都没有使用到。</p>
-<p><code>key = tag || type</code><br><img src="https://user-gold-cdn.xitu.io/2018/5/12/1635319e4749b89a?imageView2/0/w/1280/h/960/format/webp/ignore-error/1" alt="RPC"></p>
+<ul>
+<li>key = tag || type<br><img src="https://user-gold-cdn.xitu.io/2018/5/12/1635319e4749b89a?imageView2/0/w/1280/h/960/format/webp/ignore-error/1" alt="RPC"></li>
+</ul>
 <p>Protobuf 将字段名称对应的整数 (tag) 和字段类型对应的整数 (type) 合并在一起凑成一个字节。如果一个对象的字段比较多，对应的正数比较大，那么就使用两个字节，如果还不够，那就三个字节。无所谓已经说过了，这里使用的是 varint 编码，不管你字段有多少，都可以支持。最高位的 0 和 1 是标志是 1 个字节还是 2 个字节，它是 varint 编码的扩展位。</p>
 <p>下面我们看 value 部分，value 部分随着类型 type 的不同而具有不同的形式</p>
 <h4 id="整数"><a href="#整数" class="headerlink" title="整数"></a>整数</h4><p>Protobuf 的整数数值使用 zigzag 编码。zigzag 编码支持负数值，varint 编码的都是非负数。这个在第三节已经讲过了，它们都是变长整数。</p>
@@ -502,6 +504,10 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018/09/10/mysql-索引背后的数据结构及算法原理/" rel="prev" title="mysql-索引背后的数据结构及算法原理">
+                mysql-索引背后的数据结构及算法原理 <i class="fa fa-chevron-right"></i>
+              </a>
             
           </div>
         </div>
@@ -571,7 +577,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">110</span>
+                    <span class="site-state-item-count">111</span>
                     <span class="site-state-item-name">日志</span>
                   </a>
                 </div>
