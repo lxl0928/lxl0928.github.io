@@ -2510,7 +2510,7 @@
                 
                   <span class="post-meta-item-text">Edited on</span>
                 
-                <time title="更新于：2018-09-07 05:47:35" itemprop="dateModified" datetime="2018-09-07T05:47:35Z">2018-09-07</time>
+                <time title="更新于：2018-09-09 08:49:31" itemprop="dateModified" datetime="2018-09-09T08:49:31Z">2018-09-09</time>
               
             
           </span>
@@ -2562,19 +2562,10 @@
 
       
         
-          <h3 id="设置自启动"><a href="#设置自启动" class="headerlink" title="设置自启动"></a>设置自启动</h3><p>给Ubuntu添加一个开机启动脚本，操作如下：</p>
-<p>1、新建个脚本文件new_service.sh</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">#!/bin/bash</span><br><span class="line"># command content</span><br><span class="line">  </span><br><span class="line">exit 0</span><br></pre></td></tr></table></figure>
-<p>2、设置权限<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo chmod 755 new_service.sh</span><br></pre></td></tr></table></figure></p>
-<p>或者<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo chmod +x new_service.sh</span><br></pre></td></tr></table></figure></p>
-<p>3、把脚本放置到启动目录下<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo mv new_service.sh /etc/init.d/</span><br></pre></td></tr></table></figure></p>
-<p>4、将脚本添加到启动脚本</p>
-<p>执行如下指令，在这里90表明一个优先级，越高表示执行的越晚<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">cd /etc/init.d/</span><br><span class="line">sudo update-rc.d new_service.sh defaults 90</span><br></pre></td></tr></table></figure></p>
-<p>5、移除Ubuntu开机脚本<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo update-rc.d -f new_service.sh remove</span><br></pre></td></tr></table></figure></p>
-<p>6、通过sysv-rc-conf来管理上面启动服务的启动级别等，还是开机不启动<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo sysv-rc-conf</span><br></pre></td></tr></table></figure></p>
+          有些时候，我们希望Linux服务器在宕机重启后，能将我们自己搭建的一些服务自动启动起来，这里，通过简单的一篇博文，记录自己怎么实现的开机自启动的。
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/2018/08/17/linux-设置脚本开机自启动/#more" rel="contents">
+            <a class="btn" href="/2018/08/17/linux-设置脚本开机自启动/">
               阅读全文 &raquo;
             </a>
           </div>
@@ -2693,7 +2684,7 @@
                 
                   <span class="post-meta-item-text">Edited on</span>
                 
-                <time title="更新于：2018-09-07 05:48:28" itemprop="dateModified" datetime="2018-09-07T05:48:28Z">2018-09-07</time>
+                <time title="更新于：2018-09-09 08:50:53" itemprop="dateModified" datetime="2018-09-09T08:50:53Z">2018-09-09</time>
               
             
           </span>
@@ -2745,11 +2736,10 @@
 
       
         
-          <h2 id="题目描述"><a href="#题目描述" class="headerlink" title="题目描述"></a>题目描述</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line">我军:</span><br><span class="line">    关键高地坐标设定为: (x=0, y=0)</span><br><span class="line">    规定:</span><br><span class="line">        向东增加100米， x += 1</span><br><span class="line">        向北增加100米, y += 1</span><br><span class="line"></span><br><span class="line">敌军:</span><br><span class="line">    坦克运动: (L, R, M)</span><br><span class="line">    说明:</span><br><span class="line">        L: 向左转向</span><br><span class="line">        R: 向右转向</span><br><span class="line">        M: 直线前进100米</span><br><span class="line">        T: 时间同步</span><br><span class="line">        P: 位置校准</span><br><span class="line"></span><br><span class="line">侦查:</span><br><span class="line">    坦克坐标: (P, Q)</span><br><span class="line">    坦克前进方向: W, E, N, S</span><br><span class="line">    坦克接收信号实时同步</span><br><span class="line"></span><br><span class="line">实例:</span><br><span class="line">    坦克坐标: (11, 39)</span><br><span class="line">    运行方向: W</span><br><span class="line">    接收信号: MTMPRPMTMLMRPRMTPLMMTLMRRMP</span><br><span class="line"></span><br><span class="line">实例输出:</span><br><span class="line">    坦克坐标: (9, 43)</span><br><span class="line">    运行方向: E</span><br></pre></td></tr></table></figure>
-<h2 id="项目地址"><a href="#项目地址" class="headerlink" title="项目地址"></a>项目地址</h2><p><a href="https://www.github.com/lxl0928/tuo_tian_su_dai" target="_blank" rel="noopener">github项目地址</a></p>
+          记录拓天速贷远程面试时所做的一道简单的面试题.
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/2018/08/15/面试-拓天速贷面试题-坐标解析系统/#more" rel="contents">
+            <a class="btn" href="/2018/08/15/面试-拓天速贷面试题-坐标解析系统/">
               阅读全文 &raquo;
             </a>
           </div>
@@ -2894,12 +2884,6 @@
                 <div class="site-state-item site-state-tags">
                   <a href="/tags/index.html">
                     
-                    
-                      
-                    
-                      
-                    
-                      
                     
                       
                     
