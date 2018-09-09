@@ -108,25 +108,25 @@
 
 
 
-  <meta name="description" content="123456789def moveHanii(n, a, b, c):    if n == 1:        print a, &quot;--&amp;gt;&quot;, c        return    moveHanii(n-1, a, c, b)    print a, &quot;--&amp;gt;&quot;, c    moveHanii(n-1, b, a, c)moveHanii(5, &apos;A&apos;, &apos;B&apos;, &apos;C&apos;)">
-<meta name="keywords" content="python">
+  <meta name="description" content="事务(Transaction)，一般是指要做的或所做的事情。在计算机术语中是指访问并可能更新数据库中各种数据项的一个程序执行单元(unit)。在计算机术语中，事务通常就是指数据库事务。">
+<meta name="keywords" content="MySql">
 <meta property="og:type" content="article">
-<meta property="og:title" content="python-汉诺塔">
-<meta property="og:url" content="http://blog.timilong.com/2016/07/03/python-汉诺塔/index.html">
+<meta property="og:title" content="mysql-彻底理解数据库事务">
+<meta property="og:url" content="http://blog.timilong.com/2018/09/10/mysql-彻底理解数据库事务/index.html">
 <meta property="og:site_name" content="Timilong&#39;s blog">
-<meta property="og:description" content="123456789def moveHanii(n, a, b, c):    if n == 1:        print a, &quot;--&amp;gt;&quot;, c        return    moveHanii(n-1, a, c, b)    print a, &quot;--&amp;gt;&quot;, c    moveHanii(n-1, b, a, c)moveHanii(5, &apos;A&apos;, &apos;B&apos;, &apos;C&apos;)">
+<meta property="og:description" content="事务(Transaction)，一般是指要做的或所做的事情。在计算机术语中是指访问并可能更新数据库中各种数据项的一个程序执行单元(unit)。在计算机术语中，事务通常就是指数据库事务。">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-07-24T00:18:47.849Z">
+<meta property="og:updated_time" content="2018-09-09T10:31:39.673Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="python-汉诺塔">
-<meta name="twitter:description" content="123456789def moveHanii(n, a, b, c):    if n == 1:        print a, &quot;--&amp;gt;&quot;, c        return    moveHanii(n-1, a, c, b)    print a, &quot;--&amp;gt;&quot;, c    moveHanii(n-1, b, a, c)moveHanii(5, &apos;A&apos;, &apos;B&apos;, &apos;C&apos;)">
+<meta name="twitter:title" content="mysql-彻底理解数据库事务">
+<meta name="twitter:description" content="事务(Transaction)，一般是指要做的或所做的事情。在计算机术语中是指访问并可能更新数据库中各种数据项的一个程序执行单元(unit)。在计算机术语中，事务通常就是指数据库事务。">
 
 
 
 
 
 
-  <link rel="canonical" href="http://blog.timilong.com/2016/07/03/python-汉诺塔/"/>
+  <link rel="canonical" href="http://blog.timilong.com/2018/09/10/mysql-彻底理解数据库事务/"/>
 
 
 
@@ -136,7 +136,7 @@
   };
 </script>
 
-  <title>python-汉诺塔 | Timilong's blog</title>
+  <title>mysql-彻底理解数据库事务 | Timilong's blog</title>
   
 
 
@@ -309,7 +309,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://blog.timilong.com/2016/07/03/python-汉诺塔/">
+    <link itemprop="mainEntityOfPage" href="http://blog.timilong.com/2018/09/10/mysql-彻底理解数据库事务/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="博主">
@@ -326,7 +326,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">python-汉诺塔
+          <h1 class="post-title" itemprop="name headline">mysql-彻底理解数据库事务
               
             
           </h1>
@@ -351,24 +351,12 @@
                 
               
 
-              <time title="创建于：2016-07-02 20:18:33" itemprop="dateCreated datePublished" datetime="2016-07-02T20:18:33Z">2016-07-02</time>
+              <time title="创建于：2018-09-09 18:26:41 / 更新于：10:31:39" itemprop="dateCreated datePublished" datetime="2018-09-09T18:26:41Z">2018-09-09</time>
             
 
             
               
 
-              
-                
-                <span class="post-meta-divider">|</span>
-                
-
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">Edited on</span>
-                
-                <time title="更新于：2018-07-24 00:18:47" itemprop="dateModified" datetime="2018-07-24T00:18:47Z">2018-07-24</time>
               
             
           </span>
@@ -385,7 +373,7 @@
                 <span class="post-meta-item-text">分类于</span>
               
               
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/python/" itemprop="url" rel="index"><span itemprop="name">python</span></a></span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/MySql/" itemprop="url" rel="index"><span itemprop="name">MySql</span></a></span>
 
                 
                 
@@ -405,6 +393,8 @@
           
 
           
+              <div class="post-description">事务(Transaction)，一般是指要做的或所做的事情。在计算机术语中是指访问并可能更新数据库中各种数据项的一个程序执行单元(unit)。在计算机术语中，事务通常就是指数据库事务。</div>
+          
 
         </div>
       </header>
@@ -419,7 +409,26 @@
       
 
       
-        <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">moveHanii</span><span class="params">(n, a, b, c)</span>:</span></span><br><span class="line">    <span class="keyword">if</span> n == <span class="number">1</span>:</span><br><span class="line">        <span class="keyword">print</span> a, <span class="string">"--&gt;"</span>, c</span><br><span class="line">        <span class="keyword">return</span></span><br><span class="line">    moveHanii(n<span class="number">-1</span>, a, c, b)</span><br><span class="line">    <span class="keyword">print</span> a, <span class="string">"--&gt;"</span>, c</span><br><span class="line">    moveHanii(n<span class="number">-1</span>, b, a, c)</span><br><span class="line"></span><br><span class="line">moveHanii(<span class="number">5</span>, <span class="string">'A'</span>, <span class="string">'B'</span>, <span class="string">'C'</span>)</span><br></pre></td></tr></table></figure>
+        <blockquote>
+<p>转载自: Hollis，<a href="http://www.hollischuang.com/archives/898" target="_blank" rel="noopener">彻底理解数据库事务</a></p>
+</blockquote>
+<h3 id="概念"><a href="#概念" class="headerlink" title="概念"></a>概念</h3><p>一个数据库事务通常包含对数据库进行读或写的一个操作序列。它的存在包含有以下两个目的：</p>
+<blockquote>
+<p>1、为数据库操作提供了一个从失败中恢复到正常状态的方法，同时提供了数据库即使在异常状态下仍能保持一致性的方法。<br>2、当多个应用程序在并发访问数据库时，可以在这些应用程序之间提供一个隔离方法，以防止彼此的操作互相干扰。</p>
+</blockquote>
+<p>当一个事务被提交给了DBMS（数据库管理系统），则DBMS需要确保该事务中的所有操作都成功完成且其结果被永久保存在数据库中，如果事务中有的操作没有成功完成，则事务中的所有操作都需要被回滚，回到事务执行前的状态（要么全执行，要么全都不执行）;同时，该事务对数据库或者其他事务的执行无影响，所有的事务都好像在独立的运行。</p>
+<p>但在现实情况下，失败的风险很高。在一个数据库事务的执行过程中，有可能会遇上事务操作失败、数据库系统/操作系统失败，甚至是存储介质失败等情况。这便需要DBMS对一个执行失败的事务执行恢复操作，将其数据库状态恢复到一致状态（数据的一致性得到保证的状态）。为了实现将数据库状态恢复到一致状态的功能，DBMS通常需要维护事务日志以追踪事务中所有影响数据库数据的操作。</p>
+<h3 id="特性"><a href="#特性" class="headerlink" title="特性"></a>特性</h3><p>并非任意的对数据库的操作序列都是数据库事务。事务应该具有4个属性：原子性、一致性、隔离性、持久性。这四个属性通常称为ACID特性。</p>
+<blockquote>
+<p>原子性（Atomicity）：事务作为一个整体被执行，包含在其中的对数据库的操作要么全部被执行，要么都不执行。<br>一致性（Consistency）：事务应确保数据库的状态从一个一致状态转变为另一个一致状态。一致状态的含义是数据库中的数据应满足完整性约束。<br>隔离性（Isolation）：多个事务并发执行时，一个事务的执行不应影响其他事务的执行。<br>持久性（Durability）：一个事务一旦提交，他对数据库的修改应该永久保存在数据库中。</p>
+</blockquote>
+<h3 id="举例"><a href="#举例" class="headerlink" title="举例"></a>举例</h3><p>用一个常用的“A账户向B账号汇钱”的例子来说明如何通过数据库事务保证数据的准确性和完整性。熟悉关系型数据库事务的都知道从帐号A到帐号B需要6个操作：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">1、从A账号中把余额读出来（500）。</span><br><span class="line">2、对A账号做减法操作（500-100）。</span><br><span class="line">3、把结果写回A账号中（400）。</span><br><span class="line">4、从B账号中把余额读出来（500）。</span><br><span class="line">5、对B账号做加法操作（500+100）。</span><br><span class="line">6、把结果写回B账号中（600）。</span><br></pre></td></tr></table></figure></p>
+<h4 id="原子性"><a href="#原子性" class="headerlink" title="原子性"></a>原子性</h4><p>保证1-6所有过程要么都执行，要么都不执行。一旦在执行某一步骤的过程中发生问题，就需要执行回滚操作。 假如执行到第五步的时候，B账户突然不可用（比如被注销），那么之前的所有操作都应该回滚到执行事务之前的状态。</p>
+<h4 id="一致性"><a href="#一致性" class="headerlink" title="一致性"></a>一致性</h4><p>在转账之前，A和B的账户中共有500+500=1000元钱。在转账之后，A和B的账户中共有400+600=1000元。也就是说，数据的状态在执行该事务操作之后从一个状态改变到了另外一个状态。同时一致性还能保证账户余额不会变成负数等。</p>
+<h4 id="隔离性"><a href="#隔离性" class="headerlink" title="隔离性"></a>隔离性</h4><p>在A向B转账的整个过程中，只要事务还没有提交（commit），查询A账户和B账户的时候，两个账户里面的钱的数量都不会有变化。<br>如果在A给B转账的同时，有另外一个事务执行了C给B转账的操作，那么当两个事务都结束的时候，B账户里面的钱应该是A转给B的钱加上C转给B的钱再加上自己原有的钱。</p>
+<h4 id="持久性"><a href="#持久性" class="headerlink" title="持久性"></a>持久性</h4><p>一旦转账成功（事务提交），两个账户的里面的钱就会真的发生变化（会把数据写入数据库做持久化保存）！</p>
+<h3 id="原子性与隔离行"><a href="#原子性与隔离行" class="headerlink" title="原子性与隔离行"></a>原子性与隔离行</h3><p>一致性与原子性是密切相关的,原子性的破坏可能导致数据库的不一致，数据的一致性问题并不都和原子性有关。<br>比如刚刚的例子，在第五步的时候，对B账户做加法时只加了50元。那么该过程可以符合原子性，但是数据的一致性就出现了问题。</p>
+<p>因此，事务的原子性与一致性缺一不可。</p>
 
       
     </div>
@@ -440,7 +449,7 @@
       
         <div class="post-tags">
           
-            <a href="/tags/python/" rel="tag"># python</a>
+            <a href="/tags/MySql/" rel="tag"># MySql</a>
           
         </div>
       
@@ -453,8 +462,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2016/06/23/算法-在一个字符串中找到第一个没有重复元素的字符并返回/" rel="next" title="算法-在一个字符串中找到第一个没有重复元素的字符并返回">
-                <i class="fa fa-chevron-left"></i> 算法-在一个字符串中找到第一个没有重复元素的字符并返回
+              <a href="/2018/09/10/mysql-索引背后的数据结构及算法原理/" rel="next" title="mysql-索引背后的数据结构及算法原理">
+                <i class="fa fa-chevron-left"></i> mysql-索引背后的数据结构及算法原理
               </a>
             
           </div>
@@ -462,10 +471,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2016/07/04/python-函数式编程/" rel="prev" title="python-函数式编程">
-                python-函数式编程 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -510,8 +515,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -674,6 +688,22 @@
         </div>
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#概念"><span class="nav-number">1.</span> <span class="nav-text">概念</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#特性"><span class="nav-number">2.</span> <span class="nav-text">特性</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#举例"><span class="nav-number">3.</span> <span class="nav-text">举例</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#原子性"><span class="nav-number">3.1.</span> <span class="nav-text">原子性</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#一致性"><span class="nav-number">3.2.</span> <span class="nav-text">一致性</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#隔离性"><span class="nav-number">3.3.</span> <span class="nav-text">隔离性</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#持久性"><span class="nav-number">3.4.</span> <span class="nav-text">持久性</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#原子性与隔离行"><span class="nav-number">4.</span> <span class="nav-text">原子性与隔离行</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       
