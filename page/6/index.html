@@ -1190,7 +1190,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://blog.timilong.com/2016/06/23/算法-字符查找/">
+    <link itemprop="mainEntityOfPage" href="http://blog.timilong.com/2016/06/23/算法-在一个字符串中找到第一个没有重复元素的字符并返回/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="博主">
@@ -1209,8 +1209,8 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2016/06/23/算法-字符查找/" itemprop="url">
-                  面试-字符查找
+                <a class="post-title-link" href="/2016/06/23/算法-在一个字符串中找到第一个没有重复元素的字符并返回/" itemprop="url">
+                  算法-在一个字符串中找到第一个没有重复元素的字符并返回
                 </a>
               
             
@@ -1253,11 +1253,29 @@
                 
                   <span class="post-meta-item-text">Edited on</span>
                 
-                <time title="更新于：2018-07-24 00:18:47" itemprop="dateModified" datetime="2018-07-24T00:18:47Z">2018-07-24</time>
+                <time title="更新于：2018-09-09 08:44:07" itemprop="dateModified" datetime="2018-09-09T08:44:07Z">2018-09-09</time>
               
             
           </span>
 
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/算法/" itemprop="url" rel="index"><span itemprop="name">算法</span></a></span>
+
+                
+                
+              
+            </span>
           
 
           
@@ -1287,9 +1305,14 @@
 
       
         
-          
-            
-          
+          在一个字符串中找到第一个没有重复元素的字符并返回
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2016/06/23/算法-在一个字符串中找到第一个没有重复元素的字符并返回/">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
@@ -1361,7 +1384,7 @@
           <h1 class="post-title" itemprop="name headline">
                 
                 <a class="post-title-link" href="/2016/06/23/算法-快速排序/" itemprop="url">
-                  面试-快速排序
+                  算法-快速排序
                 </a>
               
             
@@ -1404,11 +1427,29 @@
                 
                   <span class="post-meta-item-text">Edited on</span>
                 
-                <time title="更新于：2018-07-24 00:18:47" itemprop="dateModified" datetime="2018-07-24T00:18:47Z">2018-07-24</time>
+                <time title="更新于：2018-09-09 08:26:17" itemprop="dateModified" datetime="2018-09-09T08:26:17Z">2018-09-09</time>
               
             
           </span>
 
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/算法/" itemprop="url" rel="index"><span itemprop="name">算法</span></a></span>
+
+                
+                
+              
+            </span>
           
 
           
@@ -1438,10 +1479,14 @@
 
       
         
-          
-            <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line">def q_sort(my_list, start, end):</span><br><span class="line">    # 判断start是否小于end, 如果为True, 则交换i, j值， 如果为False， 直接返回</span><br><span class="line">    if start &lt; end:</span><br><span class="line">        i, j = start, end</span><br><span class="line">        # 设置基准数，与基准数进行比较</span><br><span class="line">        base = my_list[i]</span><br><span class="line"></span><br><span class="line">        while i &lt; j:</span><br><span class="line">            while i &lt; j and my_list[j] &gt;= base:</span><br><span class="line">                # i &lt; j时， 且my_list最左边my_list[j]大于base时，继续循环j，直到j &lt;= i</span><br><span class="line">                # 或者找到my_list[j] &lt; base 退出循环</span><br><span class="line">                j -= 1</span><br><span class="line"></span><br><span class="line">            # 找到my_list[j] &lt; base-&gt;此时base = my_list[i]后，交换i、j位置的值</span><br><span class="line">            my_list[i] = my_list[j]</span><br><span class="line"></span><br><span class="line">            while i &lt; j and my_list[i] &lt;= base:</span><br><span class="line">                # i &lt; j时， 且my_list最左边my_list[j]大于base时，继续循环j，直到j &lt;= i</span><br><span class="line">                # 或者找到my_list[i] &gt; base 退出循环</span><br><span class="line">                i += 1</span><br><span class="line"></span><br><span class="line">            # 找到my_list[i] &gt; base-&gt;此时base = my_list[i]后，交换i、j位置的值</span><br><span class="line">            my_list[j] = my_list[i]</span><br><span class="line">        </span><br><span class="line">        # 做完第一轮比较后， my_list被分成两个半区，并且i = j, 此时需要将my_list[i]这个值设为base</span><br><span class="line">        my_list[i] = base</span><br><span class="line"></span><br><span class="line">        # 递归调用前后半区</span><br><span class="line">        q_sort(my_list, start, i - 1)</span><br><span class="line">        q_sort(my_list, j + 1, end)</span><br><span class="line">    return my_list</span><br><span class="line"></span><br><span class="line">test_list = [0, 3, 1, 2, -1, 100, 1000, 123, 321, 11, 8]</span><br><span class="line">print(q_sort(test_list, 0, len(test_list)-1))</span><br></pre></td></tr></table></figure>
-
-          
+          快速排序，python版本实现
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2016/06/23/算法-快速排序/">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
@@ -2939,7 +2984,9 @@
                     
                       
                     
-                    <span class="site-state-item-count">15</span>
+                      
+                    
+                    <span class="site-state-item-count">16</span>
                     <span class="site-state-item-name">分类</span>
                   </a>
                 </div>
@@ -3022,7 +3069,7 @@
                     
                       
                     
-                    <span class="site-state-item-count">35</span>
+                    <span class="site-state-item-count">32</span>
                     <span class="site-state-item-name">标签</span>
                   </a>
                 </div>

@@ -1802,7 +1802,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://blog.timilong.com/2017/06/23/算法-二分查找/">
+    <link itemprop="mainEntityOfPage" href="http://blog.timilong.com/2017/06/23/leetcode-4.两个排序数组的中位数/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="博主">
@@ -1821,7 +1821,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2017/06/23/算法-二分查找/" itemprop="url">
+                <a class="post-title-link" href="/2017/06/23/leetcode-4.两个排序数组的中位数/" itemprop="url">
                   leetcode-4. 两个排序数组的中位数
                 </a>
               
@@ -1865,11 +1865,29 @@
                 
                   <span class="post-meta-item-text">Edited on</span>
                 
-                <time title="更新于：2018-07-24 00:18:47" itemprop="dateModified" datetime="2018-07-24T00:18:47Z">2018-07-24</time>
+                <time title="更新于：2018-09-09 08:24:12" itemprop="dateModified" datetime="2018-09-09T08:24:12Z">2018-09-09</time>
               
             
           </span>
 
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/leetcode/" itemprop="url" rel="index"><span itemprop="name">leetcode</span></a></span>
+
+                
+                
+              
+            </span>
           
 
           
@@ -1899,11 +1917,14 @@
 
       
         
-          
-            <h1 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">给定两个大小为 m 和 n 的有序数组 nums1 和 nums2 。</span><br><span class="line"></span><br><span class="line">请找出这两个有序数组的中位数。要求算法的时间复杂度为 O(log (m+n)) 。</span><br><span class="line"></span><br><span class="line">示例 1:</span><br><span class="line"></span><br><span class="line">    nums1 = [1, 3]</span><br><span class="line">    nums2 = [2]</span><br><span class="line"></span><br><span class="line">    中位数是 2.0</span><br><span class="line"></span><br><span class="line">示例 2:</span><br><span class="line">    nums1 = [1, 2]</span><br><span class="line">    nums2 = [3, 4]</span><br><span class="line"></span><br><span class="line">    中位数是 (2 + 3)/2 = 2.5</span><br></pre></td></tr></table></figure>
-<h1 id="题解"><a href="#题解" class="headerlink" title="题解"></a>题解</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">class Solution(object):</span><br><span class="line">    def findMedianSortedArrays(self, nums1, nums2):</span><br><span class="line">        &quot;&quot;&quot;</span><br><span class="line">        :type nums1: List[int]</span><br><span class="line">        :type nums2: List[int]</span><br><span class="line">        :rtype: float</span><br><span class="line">        &quot;&quot;&quot;</span><br><span class="line">        nums = sorted(nums1 + nums2)</span><br><span class="line">        length = len(nums)</span><br><span class="line">        mid = length // 2</span><br><span class="line">        if length == 0:</span><br><span class="line">            return 0</span><br><span class="line">        if length % 2 != 0:</span><br><span class="line">            return nums[mid]</span><br><span class="line">        else:</span><br><span class="line">            return (nums[mid] + nums[mid-1]) / 2.0</span><br></pre></td></tr></table></figure>
-
-          
+          给定两个大小为 m 和 n 的有序数组 nums1 和 nums2 。 请找出这两个有序数组的中位数。要求算法的时间复杂度为 O(log (m+n)) 。
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2017/06/23/leetcode-4.两个排序数组的中位数/">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
@@ -2726,11 +2747,29 @@
                 
                   <span class="post-meta-item-text">Edited on</span>
                 
-                <time title="更新于：2018-07-24 00:18:47" itemprop="dateModified" datetime="2018-07-24T00:18:47Z">2018-07-24</time>
+                <time title="更新于：2018-09-09 08:23:07" itemprop="dateModified" datetime="2018-09-09T08:23:07Z">2018-09-09</time>
               
             
           </span>
 
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/算法/" itemprop="url" rel="index"><span itemprop="name">算法</span></a></span>
+
+                
+                
+              
+            </span>
           
 
           
@@ -2760,12 +2799,14 @@
 
       
         
-          
-            <h2 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">已知两个有序数组, 现在要求将两个有序数组合并为一个有序数组.</span><br></pre></td></tr></table></figure>
-<h2 id="信息"><a href="#信息" class="headerlink" title="信息"></a>信息</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">1. 两个有序数组是否都为升序 or 降序: 需要统一</span><br><span class="line">2. 目标数组是升序 or 降序</span><br></pre></td></tr></table></figure>
-<h2 id="代码实现"><a href="#代码实现" class="headerlink" title="代码实现"></a>代码实现</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">def merge_array(list_a, list_b):</span><br><span class="line">    &quot;&quot;&quot;</span><br><span class="line">    :param: list_a: 有序数组a, 默认为升序</span><br><span class="line">    :param: list_b: 有序数组b, 默认为升序</span><br><span class="line">    :return: res: 目标数组res, 默认为升序</span><br><span class="line">    &quot;&quot;&quot;</span><br><span class="line">    i, j, _res = 0, 0, list()</span><br><span class="line">    a_len, b_len = len(list_a), len(list_b)</span><br><span class="line"></span><br><span class="line">    while i &lt; a_len and j &lt; b_len:</span><br><span class="line">        if list_a[i] &lt; list_b[j]:</span><br><span class="line">            _res.append(list_a[i])</span><br><span class="line">            i += 1</span><br><span class="line">        else:</span><br><span class="line">            _res.append(list_b[j])</span><br><span class="line">            j += 1</span><br><span class="line"></span><br><span class="line">    if index_a == a_len:</span><br><span class="line">        _res.extend(list_b[j:])</span><br><span class="line">    else:</span><br><span class="line">        _res.extend(list_a[i:])</span><br><span class="line"></span><br><span class="line">    return _res</span><br></pre></td></tr></table></figure>
-
-          
+          已知两个有序数组, 现在要求将两个有序数组合并为一个有序数组.
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2017/06/03/算法-两个有序数组归并/">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
@@ -2892,7 +2933,9 @@
                     
                       
                     
-                    <span class="site-state-item-count">15</span>
+                      
+                    
+                    <span class="site-state-item-count">16</span>
                     <span class="site-state-item-name">分类</span>
                   </a>
                 </div>
@@ -2975,7 +3018,7 @@
                     
                       
                     
-                    <span class="site-state-item-count">35</span>
+                    <span class="site-state-item-count">32</span>
                     <span class="site-state-item-name">标签</span>
                   </a>
                 </div>
