@@ -117,7 +117,7 @@
 <meta property="og:description" content="RPC 客户端实现起来要比服务器简单，所以我们先讲客户端的实现原理和方法。当然，实现 RPC 客户端也具有一定的挑战性，其核心难点在于客户端往往并不是单线程的，我们需要考虑多线程下如何流畅使用客户端而不出现并发问题。">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="https://user-gold-cdn.xitu.io/2018/5/11/1634e1ec1502a924?imageView2/0/w/1280/h/960/format/webp/ignore-error/1">
-<meta property="og:updated_time" content="2018-09-11T07:08:28.930Z">
+<meta property="og:updated_time" content="2018-09-11T07:13:31.963Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="RPC-07客户端-深入RPC客户端设计">
 <meta name="twitter:description" content="RPC 客户端实现起来要比服务器简单，所以我们先讲客户端的实现原理和方法。当然，实现 RPC 客户端也具有一定的挑战性，其核心难点在于客户端往往并不是单线程的，我们需要考虑多线程下如何流畅使用客户端而不出现并发问题。">
@@ -353,7 +353,7 @@
                 
               
 
-              <time title="创建于：2018-09-11 14:40:35 / 更新于：07:08:28" itemprop="dateCreated datePublished" datetime="2018-09-11T14:40:35Z">2018-09-11</time>
+              <time title="创建于：2018-09-11 14:40:35 / 更新于：07:13:31" itemprop="dateCreated datePublished" datetime="2018-09-11T14:40:35Z">2018-09-11</time>
             
 
             
@@ -449,7 +449,7 @@
 <ol>
 <li>永不超时，等不到就接着等，这可能不是一种好的选择。</li>
 <li>一定的时间拿不到后，就向外部跑出超时异常，中断业务逻辑。</li>
-<li>如果发现连接池没有空闲连接，就去申请一个新的连接给调用方。调用方归还连接的时候，连接池计算当前缓存的连接数量，如果超过了最大空闲连接数，就将当前归还的连接直接销毁。也就是即用即走。…</li>
+<li>如果发现连接池没有空闲连接，就去申请一个新的连接给调用方。调用方归还连接的时候，连接池计算当前缓存的连接数量，如果超过了最大空闲连接数，就将当前归还的连接直接销毁。也就是即用即走。</li>
 </ol>
 </blockquote>
 <h3 id="性能追踪"><a href="#性能追踪" class="headerlink" title="性能追踪"></a>性能追踪</h3><p>好的连接池还应该考虑到性能的可追踪性，当用户通过线程池分配的连接去访问数据库时，它的消息执行时间应该是可以被追踪被统计的。所以往往连接池还需要对原生的连接进行一定程度的包装，在关键的函数调用前后增加性能统计代码。并对外提供监听接口，以便将统计信息传递给外部监控模块。</p>
@@ -458,8 +458,12 @@
 <p>多路复用的连接往往都是线程安全的，它支持多个线程同时写入请求而不会出现并发问题。但是实现多路复用的效果难度较大，实现一个同等功能的客户端，它的工作量往往是同步的好几倍。</p>
 <h3 id="单向请求"><a href="#单向请求" class="headerlink" title="单向请求"></a>单向请求</h3><p>为了提升交互的性能，有些不是特别重要的请求可以不需要服务器进行响应，客户端在发送完请求之后也不需要等待结果直接返回。这就是 oneway 单向请求，单向请求往往适用于允许少量丢失的请求，例如日志信息。因为客户端在发送完之后并不关心服务器有没有收到，有可能连接突然断开，就会导致消息丢失了。</p>
 <h3 id="心跳"><a href="#心跳" class="headerlink" title="心跳"></a>心跳</h3><p>当客户端长期空闲时，服务器往往会自动关闭连接已减轻资源消耗。当客户端再次请求时，就会遇到连接已断开的错误。为了避免这种错误，一般有两种方法，一种是通过请求遇到连接错误时进行重连重试，另一种就是通过心跳方式告知服务器不要关闭连接。</p>
-<h3 id="小结"><a href="#小结" class="headerlink" title="小结"></a>小结</h3><p>客户端的设计原理我们就讲到这里，读者们也许都开始感到不耐烦了，枯燥透了，眼皮子都要打架了。…<br>不捉急，激动人心的时刻马上就要到来，前方高能预警，会突然冒出大量代码实现，读者们，准备迎接挑战吧。</p>
-<h3 id="作业"><a href="#作业" class="headerlink" title="作业"></a>作业</h3><p>读者们还是去阅读一下 redis-py 的源代码吧，看看它的连接池是如何实现的。</p>
+<h3 id="小结"><a href="#小结" class="headerlink" title="小结"></a>小结</h3><p>客户端的设计原理我们就讲到这里，读者们也许都开始感到不耐烦了，枯燥透了，眼皮子都要打架了。<br>不捉急，激动人心的时刻马上就要到来，前方高能预警，会突然冒出大量代码实现，读者们，准备迎接挑战吧。</p>
+<h3 id="作业"><a href="#作业" class="headerlink" title="作业"></a>作业</h3><p>读者们还是去阅读一下 <a href="https://github.com/andymccurdy/redis-py" target="_blank" rel="noopener">redis-py</a> 的源代码吧，看看它的连接池是如何实现的。</p>
+<h3 id="解答"><a href="#解答" class="headerlink" title="解答"></a>解答</h3><p>redis-py的从连接池获取连接: <code>pool.get_connection(command_name, **options)</code><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">def get_connection(self, command_name, *keys, **options):</span><br><span class="line">        &quot;Get a connection from the pool&quot;</span><br><span class="line">        self._checkpid()</span><br><span class="line">        try:</span><br><span class="line">            connection = self._available_connections.pop()</span><br><span class="line">        except IndexError:</span><br><span class="line">            connection = self.make_connection()</span><br><span class="line">        self._in_use_connections.add(connection)</span><br><span class="line">        return connection</span><br></pre></td></tr></table></figure></p>
+<p>如果连接池中有可用连接，直接pop出一个连接，如果连接池为空，则创建一条连接池（值得一提的是整个连接池在初始化的时候可用连接池是一个空列表，所以在第一次调用该方法时才会有真正的连接）</p>
+<p>再看命令执行完成释放连接: <code>pool.release(connection)</code><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">def release(self, connection):</span><br><span class="line">       &quot;Releases the connection back to the pool&quot;</span><br><span class="line">       self._checkpid()</span><br><span class="line">       if connection.pid != self.pid:</span><br><span class="line">           return</span><br><span class="line">       self._in_use_connections.remove(connection)</span><br><span class="line">       self._available_connections.append(connection)</span><br></pre></td></tr></table></figure></p>
+<p>将在用连接从在用连接池中移除，但是连接不销毁，直接添加在可用连接池中…</p>
 
       
     </div>
@@ -729,7 +733,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#简介"><span class="nav-number">1.</span> <span class="nav-text">简介</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#安全锁"><span class="nav-number">2.</span> <span class="nav-text">安全锁</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#懒惰连接"><span class="nav-number">3.</span> <span class="nav-text">懒惰连接</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#健康检查"><span class="nav-number">4.</span> <span class="nav-text">健康检查</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#超时策略"><span class="nav-number">5.</span> <span class="nav-text">超时策略</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#性能追踪"><span class="nav-number">6.</span> <span class="nav-text">性能追踪</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#多路复用-multiplexing"><span class="nav-number">7.</span> <span class="nav-text">多路复用 (multiplexing)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#单向请求"><span class="nav-number">8.</span> <span class="nav-text">单向请求</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#心跳"><span class="nav-number">9.</span> <span class="nav-text">心跳</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#小结"><span class="nav-number">10.</span> <span class="nav-text">小结</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#作业"><span class="nav-number">11.</span> <span class="nav-text">作业</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#简介"><span class="nav-number">1.</span> <span class="nav-text">简介</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#安全锁"><span class="nav-number">2.</span> <span class="nav-text">安全锁</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#懒惰连接"><span class="nav-number">3.</span> <span class="nav-text">懒惰连接</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#健康检查"><span class="nav-number">4.</span> <span class="nav-text">健康检查</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#超时策略"><span class="nav-number">5.</span> <span class="nav-text">超时策略</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#性能追踪"><span class="nav-number">6.</span> <span class="nav-text">性能追踪</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#多路复用-multiplexing"><span class="nav-number">7.</span> <span class="nav-text">多路复用 (multiplexing)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#单向请求"><span class="nav-number">8.</span> <span class="nav-text">单向请求</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#心跳"><span class="nav-number">9.</span> <span class="nav-text">心跳</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#小结"><span class="nav-number">10.</span> <span class="nav-text">小结</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#作业"><span class="nav-number">11.</span> <span class="nav-text">作业</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#解答"><span class="nav-number">12.</span> <span class="nav-text">解答</span></a></li></ol></div>
             
 
           </div>
