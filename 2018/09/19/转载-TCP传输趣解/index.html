@@ -108,20 +108,31 @@
 
 
 
-  <meta property="og:type" content="website">
-<meta property="og:title" content="Timilong&#39;s blog">
-<meta property="og:url" content="http://blog.timilong.com/archives/2017/04/index.html">
+  <meta name="description" content="1，下载一个15K的文件，和下载一个28K的文件，时间其实几乎是一样的，但下载一个15K的文件和一个14K的文件，前者比后者耗时几乎多了一倍。这是因为一个TCP请求窗口在绝大部分情况下是1480 * 10/1024=14.45K。">
+<meta name="keywords" content="计算机网络">
+<meta property="og:type" content="article">
+<meta property="og:title" content="转载-TCP传输趣解">
+<meta property="og:url" content="http://blog.timilong.com/2018/09/19/转载-TCP传输趣解/index.html">
 <meta property="og:site_name" content="Timilong&#39;s blog">
+<meta property="og:description" content="1，下载一个15K的文件，和下载一个28K的文件，时间其实几乎是一样的，但下载一个15K的文件和一个14K的文件，前者比后者耗时几乎多了一倍。这是因为一个TCP请求窗口在绝大部分情况下是1480 * 10/1024=14.45K。">
 <meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="http://7xorah.com1.z0.glb.clouddn.com/tcp_bao_chaungkou01.png">
+<meta property="og:image" content="http://7xorah.com1.z0.glb.clouddn.com/tcp_bao_chuangkou02.png">
+<meta property="og:image" content="http://7xorah.com1.z0.glb.clouddn.com/tcp_bao_chuangkou_03.png">
+<meta property="og:image" content="http://7xorah.com1.z0.glb.clouddn.com/tcp_bao_chuangkou_04.png">
+<meta property="og:image" content="http://7xorah.com1.z0.glb.clouddn.com/tcp_bao_chuangkou_06.png">
+<meta property="og:updated_time" content="2018-09-19T05:45:59.316Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Timilong&#39;s blog">
+<meta name="twitter:title" content="转载-TCP传输趣解">
+<meta name="twitter:description" content="1，下载一个15K的文件，和下载一个28K的文件，时间其实几乎是一样的，但下载一个15K的文件和一个14K的文件，前者比后者耗时几乎多了一倍。这是因为一个TCP请求窗口在绝大部分情况下是1480 * 10/1024=14.45K。">
+<meta name="twitter:image" content="http://7xorah.com1.z0.glb.clouddn.com/tcp_bao_chaungkou01.png">
 
 
 
 
 
 
-  <link rel="canonical" href="http://blog.timilong.com/archives/2017/04/"/>
+  <link rel="canonical" href="http://blog.timilong.com/2018/09/19/转载-TCP传输趣解/"/>
 
 
 
@@ -131,7 +142,7 @@
   };
 </script>
 
-  <title>归档 | Timilong's blog</title>
+  <title>转载-TCP传输趣解 | Timilong's blog</title>
   
 
 
@@ -178,7 +189,7 @@
     
   
 
-  <div class="container sidebar-position-left page-archive">
+  <div class="container sidebar-position-left page-post-detail">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -243,7 +254,7 @@
         
         
           
-          <li class="menu-item menu-item-archives menu-item-active">
+          <li class="menu-item menu-item-archives">
     <a href="/archives/" rel="section">
       <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />归档</a>
   </li>
@@ -263,28 +274,6 @@
 
   
     
-
-    
-    
-      
-      
-    
-      
-      
-    
-      
-      
-    
-      
-      
-    
-      
-      
-    
-    
-
-  
-
 
   
 
@@ -310,116 +299,196 @@
           <div id="content" class="content">
             
 
+  <div id="posts" class="posts-expand">
+    
+
+  
+
   
   
   
-  <div class="post-block archive">
-    <div id="posts" class="posts-collapse">
-      <span class="archive-move-on"></span>
 
-      
-      <span class="archive-page-counter">
-        
-        
-         
-          
-        非常好! 目前共计 133 篇日志。 继续努力。
-      </span>
-      
-
-      
-
-        
-        
-        
-
-        
-          
-          <div class="collection-title">
-            <h1 class="archive-year" id="archive-year-2017">2017</h1>
-          </div>
-        
-        
-
-        
+  
 
   <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://blog.timilong.com/2018/09/19/转载-TCP传输趣解/">
 
-      <h2 class="post-title">
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="博主">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Timilong's blog">
+    </span>
+
+    
+      <header class="post-header">
+
         
-            <a class="post-title-link" href="/2017/04/19/leetcode_search_a_2d_matrix_1_2/" itemprop="url">
-              
-                <span itemprop="name">leetcode-'search_a_2d_matrix_1_2'</span>
-              
-            </a>
         
-      </h2>
+          <h1 class="post-title" itemprop="name headline">转载-TCP传输趣解
+              
+            
+          </h1>
+        
 
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2017-04-18T21:37:54Z"
-              content="2017-04-18" >
-          04-18
-        </time>
-      </div>
+        <div class="post-meta">
+          <span class="post-time">
 
-    </header>
-  </article>
+            
+            
+            
 
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
 
+              
+                
+              
+
+              <time title="创建于：2018-09-19 13:36:52 / 更新于：05:45:59" itemprop="dateCreated datePublished" datetime="2018-09-19T13:36:52Z">2018-09-19</time>
+            
+
+            
+              
+
+              
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/计算机网络/" itemprop="url" rel="index"><span itemprop="name">计算机网络</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+              <div class="post-description">1，下载一个15K的文件，和下载一个28K的文件，时间其实几乎是一样的，但下载一个15K的文件和一个14K的文件，前者比后者耗时几乎多了一倍。这是因为一个TCP请求窗口在绝大部分情况下是1480 * 10/1024=14.45K。</div>
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
 
       
-
-        
-        
-        
-
-        
-        
-
-        
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/2017/04/11/leetcode-two-sum/" itemprop="url">
-              
-                <span itemprop="name">leetcode-'two-sum'</span>
-              
-            </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2017-04-10T21:37:54Z"
-              content="2017-04-10" >
-          04-10
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
       
 
+      
+        <blockquote>
+<p>转载自:<a href="https://www.zhihu.com/question/288115796/answer/483284593" target="_blank" rel="noopener">有哪些计算机的事实，没有一定计算机知识的人不会相信？ - 猫爱吃鱼不吃耗子的回答 - 知乎</a></p>
+</blockquote>
+<h3 id="TCP传输大小"><a href="#TCP传输大小" class="headerlink" title="TCP传输大小"></a>TCP传输大小</h3><p><img src="http://7xorah.com1.z0.glb.clouddn.com/tcp_bao_chaungkou01.png" alt="TCP"></p>
+<h3 id="TCP慢启动"><a href="#TCP慢启动" class="headerlink" title="TCP慢启动"></a>TCP慢启动</h3><p><img src="http://7xorah.com1.z0.glb.clouddn.com/tcp_bao_chuangkou02.png" alt="TCP"></p>
+<p><img src="http://7xorah.com1.z0.glb.clouddn.com/tcp_bao_chuangkou_03.png" alt="TCP"></p>
+<h3 id="TCP包大小为1480字节"><a href="#TCP包大小为1480字节" class="headerlink" title="TCP包大小为1480字节"></a>TCP包大小为1480字节</h3><p><img src="http://7xorah.com1.z0.glb.clouddn.com/tcp_bao_chuangkou_04.png" alt="TCP"></p>
+<p><img src="http://7xorah.com1.z0.glb.clouddn.com/tcp_bao_chuangkou_06.png" alt="TCP"></p>
+
+      
     </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/计算机网络/" rel="tag"># 计算机网络</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/09/19/转载-天下无难试之Redis面试题刁难大全/" rel="next" title="转载-天下无难试之Redis面试题刁难大全">
+                <i class="fa fa-chevron-left"></i> 转载-天下无难试之Redis面试题刁难大全
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
   </div>
   
   
   
+  </article>
 
-  
 
+  </div>
 
 
           </div>
           
+
+  
+
+
 
         </div>
         
@@ -440,8 +509,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -621,6 +699,22 @@
       </section>
 
       
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#TCP传输大小"><span class="nav-number">1.</span> <span class="nav-text">TCP传输大小</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#TCP慢启动"><span class="nav-number">2.</span> <span class="nav-text">TCP慢启动</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#TCP包大小为1480字节"><span class="nav-number">3.</span> <span class="nav-text">TCP包大小为1480字节</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
 
       
 
@@ -749,6 +843,10 @@
   
 
   
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=6.4.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=6.4.1"></script>
+
+
 
   
 
