@@ -305,6 +305,205 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://blog.timilong.com/2016/02/02/前端-JavaScript-DOM获取元素的三种方法/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="博主">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Timilong's blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2016/02/02/前端-JavaScript-DOM获取元素的三种方法/" itemprop="url">
+                  JavaScript DOM获取元素的三种方法
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建于：2016-02-01 18:29:00" itemprop="dateCreated datePublished" datetime="2016-02-01T18:29:00Z">2016-02-01</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Edited on</span>
+                
+                <time title="更新于：2018-09-07 02:35:25" itemprop="dateModified" datetime="2018-09-07T02:35:25Z">2018-09-07</time>
+              
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/前端/" itemprop="url" rel="index"><span itemprop="name">前端</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <a id="more"></a>
+<h2 id="JavaScript-DOM获取元素的三种方法"><a href="#JavaScript-DOM获取元素的三种方法" class="headerlink" title="JavaScript DOM获取元素的三种方法"></a>JavaScript DOM获取元素的三种方法</h2><h3 id="通过id"><a href="#通过id" class="headerlink" title="通过id"></a>通过id</h3><p>DOM提供了一个名为: getElementById的方法, 这个方法将返回一个那个有着给定id属性的值的元素节点对应的对象。在这里强调: JavaScript语言严格区分字母的大小写!<br>它是document对象特有的函数。在脚本代码里, 函数名的后面必须跟有一对圆括号, 这对圆括号包含着函数的参数。getElementById方法只有一个参数: 想要获得的那个元素的id属性的值, 这个id值必须放在单引号或者双引号里面:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">document.getElementById(id)</span><br></pre></td></tr></table></figure>
+<p>例子：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">&lt;!DOCTYPE html&gt;</span><br><span class="line">&lt;head&gt;</span><br><span class="line">  &lt;meta charset=&quot;utf-8&quot;&gt;</span><br><span class="line">  &lt;title&gt;Shopping list&lt;/title&gt;</span><br><span class="line">&lt;/head&gt;</span><br><span class="line">&lt;body&gt;</span><br><span class="line">  &lt;h1&gt;What to buy&lt;/h1&gt;</span><br><span class="line">  &lt;p title=&quot;a gentle reminder&quot;&gt;Don&apos;t forget to buy this stuff.&lt;/p&gt;</span><br><span class="line">  &lt;ul id=&quot;purchases&quot;&gt;</span><br><span class="line">    &lt;li&gt;A tin of beanns&lt;/li&gt;</span><br><span class="line">    &lt;li class=&quot;sale&quot;&gt;Cheese&lt;/li&gt;</span><br><span class="line">    &lt;li class=&quot;sale important&quot;&gt;Milk&lt;/li&gt;</span><br><span class="line">  &lt;/ul&gt;</span><br><span class="line">  &lt;script&gt;</span><br><span class="line">    alert(typeof document.getElementById(&quot;purchases&quot;));</span><br><span class="line">  &lt;/script&gt;</span><br><span class="line">&lt;/body&gt;</span><br><span class="line">&lt;/html&gt;</span><br></pre></td></tr></table></figure></p>
+<p>文档中的每一个元素都是一个对象。利用DOM提供的方法能得到任何一个对象。<br>一般来说，用不着为文档里面每一个元素都定义一个独一无二的id值。DOM提供了另一个方法获取那些没有id属性的对象。</p>
+<hr>
+<h3 id="通过标签名字"><a href="#通过标签名字" class="headerlink" title="通过标签名字"></a>通过标签名字</h3><p>DOM提供了一个名为：getElementsByTagName的方法。<br>getElementsByTagName方法返回一个对象数组，每个对象分别对应着文档里有着给定标签的一个元素。类似于getElementById。该方法只有一个参数，它的参数是标签的名字。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">element.getElementsByTagName(tag);</span><br></pre></td></tr></table></figure>
+<p>该方法返回的是一个数组。<br>例子：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">document.getElementsByTagName(&quot;li&quot;);</span><br></pre></td></tr></table></figure>
+<p>这个调用将返回一个对象数组, 每个对象分别对应着document对象中的一个li项元素。与其他任何数组一样，我们可以通过length属性查出这个数组的长度。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">&lt;!DOCTYPE html&gt;</span><br><span class="line">&lt;head&gt;</span><br><span class="line">  &lt;meta charset=&quot;utf-8&quot;&gt;</span><br><span class="line">  &lt;title&gt;Shopping list&lt;/title&gt;</span><br><span class="line">&lt;/head&gt;</span><br><span class="line">&lt;body&gt;</span><br><span class="line">  &lt;h1&gt;What to buy&lt;/h1&gt;</span><br><span class="line">  &lt;p title=&quot;a gentle reminder&quot;&gt;Don&apos;t forget to buy this stuff.&lt;/p&gt;</span><br><span class="line">  &lt;ul id=&quot;purchases&quot;&gt;</span><br><span class="line">    &lt;li&gt;A tin of beanns&lt;/li&gt;</span><br><span class="line">    &lt;li class=&quot;sale&quot;&gt;Cheese&lt;/li&gt;</span><br><span class="line">    &lt;li class=&quot;sale important&quot;&gt;Milk&lt;/li&gt;</span><br><span class="line"> &lt;/ul&gt;</span><br><span class="line"> &lt;script&gt;</span><br><span class="line">   alert(typeof document.getElementsByTagName(&quot;li&quot;));</span><br><span class="line"> &lt;/script&gt;</span><br><span class="line">&lt;/body&gt;</span><br><span class="line">&lt;/html&gt;</span><br></pre></td></tr></table></figure>
+<p>浏览器显示：3<br>该数组中的每个元素都是一个对象。可以通过一个循环语句和typeof操作符去遍历该数组，得到三个对象:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">for(var i = 0; i&lt;document.getElementsByTagName(&quot;li&quot;).length; i++)&#123;</span><br><span class="line">    alert(typeof docement.getElementsByTagName(&quot;li&quot;));</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>减少不必要的代码重复，并使代码更简洁易读：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">var items = document.getElementsByTagName(&quot;li&quot;);</span><br><span class="line">for(var i = 0; i&lt;items.length; i++)</span><br><span class="line">&#123;</span><br><span class="line">    alert(typeof items[i]);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>getElementsByTagName允许把一个通配符”*”作为它的参数， 而这意味着文档里面的每个元素都将在所得到的这个数组中占有一个我位置，通配符必须放在引号里， 这样通配符就可以与乘法符号区别， 如果你想知道某分文档总共有多少元素节点：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">alert(document.getElementsByTagName(&quot;*&quot;).length;</span><br></pre></td></tr></table></figure>
+<p>将getElementById和getElementsByTagName结合起来。如果想知道id值为purchase的元素包含多少个列表项，必须通过一个更具体的方法去调用这个方法， 如下所示：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">var shopping = document.getElementById(&quot;purchases&quot;);</span><br><span class="line">var items = shopping.getElementsByTagName(&quot;*&quot;);</span><br></pre></td></tr></table></figure>
+<p>这两条语句执行完后, items数组将只包含id属性值是purchases的无序清单里的元素。</p>
+<hr>
+<h3 id="通过类名字"><a href="#通过类名字" class="headerlink" title="通过类名字"></a>通过类名字</h3><p>DOM提供getElementsByClassName的方法。<br>HTML5 DOM新增了getElementsByClassName的方法，能够通过class属性中的类名来访问元素。<br>getElementsByClassName方法只接受一个参数，就是类名：<br>document.getElementByClassName(class);<br>返回值是一个具有相同类名的数组。下面这行代码就是返回一个数组， 包含类名为”sale”的所有元素。<br>document.getElementsByClassName(“sale”);<br>使用这个方法还可以查找带有多个类的元素。要指定多个类名，只要在字符串参数中用空格分隔类名即可。<br>例如, 在<code>&lt;script&gt;</code>标签中添加下面alert代码：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">alert(document.getElementsByClassName(&quot;important sale&quot;).length);</span><br></pre></td></tr></table></figure>
+<p>类名的顺序无关。<br>组合使用getElementById和getElementsByClassName：<br>在id = purchases下寻找class = sale元素标签。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">var shopping = document.getElementById(&quot;purchases&quot;);</span><br><span class="line">var sales = shopping.getElementsByClassName(&quot;sale&quot;);</span><br></pre></td></tr></table></figure>
+<p>该方法只有支持html5 DOM的新浏览器才支持。<br>所以，通过以下代码兼容老浏览器；</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">function getElementsByClassName(node, classname)&#123;</span><br><span class="line">  if(node.getElementsByClassName)&#123;</span><br><span class="line">    return node.getElementsByClassName(class);</span><br><span class="line">  &#125;else&#123;</span><br><span class="line">     var results = new Array();</span><br><span class="line">     var elems = node.getElementsByTagName(&quot;*&quot;);</span><br><span class="line">     for(var i=0; i&lt;elems.length; i++)&#123;</span><br><span class="line">       if(elems[i].className.indexOf(classname) != -1)&#123;</span><br><span class="line">         results[results.length] = elems[i];</span><br><span class="line">       &#125;</span><br><span class="line">     &#125;return results;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>这个getElementsByClassName接受两个参数， 第一个node表示DOM树中的搜索起点， 第二个classname表示要搜索的类名。</p>
+<p>&lt;完&gt;</p>
+
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://blog.timilong.com/2015/12/09/计算机-操作系统进程调度/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -3203,7 +3402,7 @@ hexo d == hexo deploy
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">133</span>
+                    <span class="site-state-item-count">134</span>
                     <span class="site-state-item-name">日志</span>
                   </a>
                 </div>
