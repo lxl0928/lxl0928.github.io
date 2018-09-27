@@ -202,7 +202,7 @@
   </div>
 
   <div class="site-nav-toggle">
-    <button aria-label="ナビゲーションバーの切り替え">
+    <button aria-label="Toggle navigation bar">
       <span class="btn-bar"></span>
       <span class="btn-bar"></span>
       <span class="btn-bar"></span>
@@ -305,6 +305,188 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://blog.timilong.com/2016/07/05/python-网络服务器/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="博主">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Timilong's blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2016/07/05/python-网络服务器/" itemprop="url">
+                  python-网络服务器
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建于：2016-07-05 15:05:42" itemprop="dateCreated datePublished" datetime="2016-07-05T15:05:42Z">2016-07-05</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Edited on</span>
+                
+                <time title="更新于：2018-07-24 00:18:47" itemprop="dateModified" datetime="2018-07-24T00:18:47Z">2018-07-24</time>
+              
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/python/" itemprop="url" rel="index"><span itemprop="name">python</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h3 id="Python网络服务器"><a href="#Python网络服务器" class="headerlink" title="Python网络服务器"></a>Python网络服务器</h3><p>Python 的网络服务器有</p>
+<ul>
+<li>TCPServer </li>
+<li>UDPServer</li>
+<li>UnixStreamServer</li>
+<li>UnixDatagramServer</li>
+</ul>
+<h3 id="服务器运行模式"><a href="#服务器运行模式" class="headerlink" title="服务器运行模式"></a>服务器运行模式</h3><ul>
+<li>多进程ForkingMixin</li>
+<li>多线程ThreadingMixin</li>
+</ul>
+<h3 id="创建多进程模式的TCPServer"><a href="#创建多进程模式的TCPServer" class="headerlink" title="创建多进程模式的TCPServer"></a>创建多进程模式的TCPServer</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">MyTCPServer</span><span class="params">(TCPServer, ForkingMixin)</span>:</span></span><br><span class="line">    <span class="keyword">pass</span></span><br></pre></td></tr></table></figure>
+<h3 id="创建多线程模式的UDPServer"><a href="#创建多线程模式的UDPServer" class="headerlink" title="创建多线程模式的UDPServer:"></a>创建多线程模式的UDPServer:</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">MyUDPServer</span><span class="params">(UDPServer, ThreadingMixin)</span>:</span></span><br><span class="line">    <span class="keyword">pass</span></span><br></pre></td></tr></table></figure>
+
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://blog.timilong.com/2016/07/04/python-函数式编程/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -366,7 +548,7 @@
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 
-                  <span class="post-meta-item-text">に編集されました</span>
+                  <span class="post-meta-item-text">Edited on</span>
                 
                 <time title="更新于：2018-07-24 00:18:47" itemprop="dateModified" datetime="2018-07-24T00:18:47Z">2018-07-24</time>
               
@@ -547,7 +729,7 @@
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 
-                  <span class="post-meta-item-text">に編集されました</span>
+                  <span class="post-meta-item-text">Edited on</span>
                 
                 <time title="更新于：2018-07-24 00:18:47" itemprop="dateModified" datetime="2018-07-24T00:18:47Z">2018-07-24</time>
               
@@ -717,7 +899,7 @@
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 
-                  <span class="post-meta-item-text">に編集されました</span>
+                  <span class="post-meta-item-text">Edited on</span>
                 
                 <time title="更新于：2018-09-09 08:44:07" itemprop="dateModified" datetime="2018-09-09T08:44:07Z">2018-09-09</time>
               
@@ -891,7 +1073,7 @@
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 
-                  <span class="post-meta-item-text">に編集されました</span>
+                  <span class="post-meta-item-text">Edited on</span>
                 
                 <time title="更新于：2018-09-09 08:26:17" itemprop="dateModified" datetime="2018-09-09T08:26:17Z">2018-09-09</time>
               
@@ -1065,7 +1247,7 @@
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 
-                  <span class="post-meta-item-text">に編集されました</span>
+                  <span class="post-meta-item-text">Edited on</span>
                 
                 <time title="更新于：2018-09-07 05:44:42" itemprop="dateModified" datetime="2018-09-07T05:44:42Z">2018-09-07</time>
               
@@ -1240,7 +1422,7 @@
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 
-                  <span class="post-meta-item-text">に編集されました</span>
+                  <span class="post-meta-item-text">Edited on</span>
                 
                 <time title="更新于：2018-09-07 05:44:53" itemprop="dateModified" datetime="2018-09-07T05:44:53Z">2018-09-07</time>
               
@@ -1416,7 +1598,7 @@
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 
-                  <span class="post-meta-item-text">に編集されました</span>
+                  <span class="post-meta-item-text">Edited on</span>
                 
                 <time title="更新于：2018-09-07 05:43:40" itemprop="dateModified" datetime="2018-09-07T05:43:40Z">2018-09-07</time>
               
@@ -1591,7 +1773,7 @@
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 
-                  <span class="post-meta-item-text">に編集されました</span>
+                  <span class="post-meta-item-text">Edited on</span>
                 
                 <time title="更新于：2018-09-07 02:35:39" itemprop="dateModified" datetime="2018-09-07T02:35:39Z">2018-09-07</time>
               
@@ -1749,7 +1931,7 @@
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 
-                  <span class="post-meta-item-text">に編集されました</span>
+                  <span class="post-meta-item-text">Edited on</span>
                 
                 <time title="更新于：2018-09-26 15:45:45" itemprop="dateModified" datetime="2018-09-26T15:45:45Z">2018-09-26</time>
               
@@ -1923,7 +2105,7 @@
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 
-                  <span class="post-meta-item-text">に編集されました</span>
+                  <span class="post-meta-item-text">Edited on</span>
                 
                 <time title="更新于：2018-09-07 05:42:39" itemprop="dateModified" datetime="2018-09-07T05:42:39Z">2018-09-07</time>
               
@@ -2103,7 +2285,7 @@
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 
-                  <span class="post-meta-item-text">に編集されました</span>
+                  <span class="post-meta-item-text">Edited on</span>
                 
                 <time title="更新于：2018-09-07 02:34:33" itemprop="dateModified" datetime="2018-09-07T02:34:33Z">2018-09-07</time>
               
@@ -2280,7 +2462,7 @@
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 
-                  <span class="post-meta-item-text">に編集されました</span>
+                  <span class="post-meta-item-text">Edited on</span>
                 
                 <time title="更新于：2018-09-21 02:32:16" itemprop="dateModified" datetime="2018-09-21T02:32:16Z">2018-09-21</time>
               
@@ -2454,7 +2636,7 @@
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 
-                  <span class="post-meta-item-text">に編集されました</span>
+                  <span class="post-meta-item-text">Edited on</span>
                 
                 <time title="更新于：2018-09-20 12:20:12" itemprop="dateModified" datetime="2018-09-20T12:20:12Z">2018-09-20</time>
               
@@ -2628,7 +2810,7 @@
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 
-                  <span class="post-meta-item-text">に編集されました</span>
+                  <span class="post-meta-item-text">Edited on</span>
                 
                 <time title="更新于：2018-09-25 10:04:31" itemprop="dateModified" datetime="2018-09-25T10:04:31Z">2018-09-25</time>
               
@@ -2728,186 +2910,11 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://blog.timilong.com/2016/04/10/前端-JavaScript进阶-匿名函数/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="博主">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Timilong's blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2016/04/10/前端-JavaScript进阶-匿名函数/" itemprop="url">
-                  JavaScript进阶-匿名函数
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-
-              
-                
-              
-
-              <time title="创建于：2016-04-10 15:25:09" itemprop="dateCreated datePublished" datetime="2016-04-10T15:25:09Z">2016-04-10</time>
-            
-
-            
-              
-
-              
-                
-                <span class="post-meta-divider">|</span>
-                
-
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">に編集されました</span>
-                
-                <time title="更新于：2018-09-07 02:35:10" itemprop="dateModified" datetime="2018-09-07T02:35:10Z">2018-09-07</time>
-              
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/前端/" itemprop="url" rel="index"><span itemprop="name">前端</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h3 id="1-函数传递"><a href="#1-函数传递" class="headerlink" title="1.函数传递"></a>1.函数传递</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">say</span>(<span class="params">word</span>)</span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(word);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">execute</span>(<span class="params">someFunction, value</span>)</span>&#123;</span><br><span class="line">    someFunction(value);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">execute(say, <span class="string">"Hello, World"</span>);</span><br></pre></td></tr></table></figure>
-<p>在这段代码中， 我们把say函数作为execute函数的第一个变量进行了传递。<br>这里返回的并不是say的返回值，而是say的本身！<br>这样，say就变成了execute中的本地变量someFunction,execute可以通过调用someFunction()(带括号的形式)<br>来使用say函数。<br>当然， 因为say有一个变量， execute在调用someFunction时候可以传递这样一个变量。</p>
-<h3 id="2-匿名函数"><a href="#2-匿名函数" class="headerlink" title="2. 匿名函数"></a>2. 匿名函数</h3><p>另外，我们可以用直接传递函数作为变量传递。我们不一定要围绕着“先定义，再传递”这个圈子。<br>我们可以直接在另一个含糊的括号中是定义和传递这个函数</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">execute</span>(<span class="params">someFunction, value</span>)</span>&#123;</span><br><span class="line">    someFunction(value);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">execute(<span class="function"><span class="keyword">function</span>(<span class="params">word</span>)</span>&#123;<span class="built_in">console</span>(word)&#125;, <span class="string">"Hello, World"</span>);</span><br></pre></td></tr></table></figure>
-<p>我们在execute接受第一个参数的地方直接定义了我们准备传递给execute的函数。<br>用这种方式， 我们甚至不用给这个函数起一个函数名字， 这就是叫做匿名函数的原因。</p>
-<p>在JavaScript中, 一个函数可以作为另一个函数接收的一个参数。<br>可以先定义一个函数，然后传递函数名， 也可以在传递参数的地方直接定义函数。</p>
-
-          
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/page/7/"><i class="fa fa-angle-left" aria-label="前のページ"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/7/">7</a><span class="page-number current">8</span><a class="page-number" href="/page/9/">9</a><a class="page-number" href="/page/10/">10</a><a class="extend next" rel="next" href="/page/9/"><i class="fa fa-angle-right" aria-label="次のページ"></i></a>
+    <a class="extend prev" rel="prev" href="/page/7/"><i class="fa fa-angle-left" aria-label="Previous page"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/7/">7</a><span class="page-number current">8</span><a class="page-number" href="/page/9/">9</a><a class="page-number" href="/page/10/">10</a><a class="extend next" rel="next" href="/page/9/"><i class="fa fa-angle-right" aria-label="Next page"></i></a>
   </nav>
 
 
@@ -2950,7 +2957,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">136</span>
+                    <span class="site-state-item-count">137</span>
                     <span class="site-state-item-name">日志</span>
                   </a>
                 </div>
@@ -3005,7 +3012,9 @@
                     
                       
                     
-                    <span class="site-state-item-count">21</span>
+                      
+                    
+                    <span class="site-state-item-count">22</span>
                     <span class="site-state-item-name">分类</span>
                   </a>
                 </div>
@@ -3080,7 +3089,9 @@
                     
                       
                     
-                    <span class="site-state-item-count">31</span>
+                      
+                    
+                    <span class="site-state-item-count">32</span>
                     <span class="site-state-item-name">标签</span>
                   </a>
                 </div>
