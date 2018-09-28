@@ -305,6 +305,183 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://blog.timilong.com/2015/12/01/计算机-网络csAppLab4PerflabHandout优化方案/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="博主">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Timilong's blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2015/12/01/计算机-网络csAppLab4PerflabHandout优化方案/" itemprop="url">
+                  CSAPP-LAB4-perflab-handout优化方案
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建于：2015-11-30 19:37:00" itemprop="dateCreated datePublished" datetime="2015-11-30T19:37:00Z">2015-11-30</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Edited on</span>
+                
+                <time title="更新于：2018-09-25 09:53:51" itemprop="dateModified" datetime="2018-09-25T09:53:51Z">2018-09-25</time>
+              
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/操作系统/" itemprop="url" rel="index"><span itemprop="name">操作系统</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <h3 id="实验环境："><a href="#实验环境：" class="headerlink" title="实验环境："></a>实验环境：</h3><p>Linux 3.13.11-ckt27-终端</p>
+<hr>
+<h3 id="README："><a href="#README：" class="headerlink" title="README："></a>README：</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><span class="line">#####################################################################</span><br><span class="line"># CS:APP Performance Lab</span><br><span class="line">#</span><br><span class="line"># Student&apos;s Source Files</span><br><span class="line">#</span><br><span class="line"># Copyright (c) 2002, R. Bryant and D. O&apos;Hallaron, All rights reserved.</span><br><span class="line"># May not be used, modified, or copied without permission.</span><br><span class="line">#</span><br><span class="line">######################################################################</span><br><span class="line"></span><br><span class="line">This directory contains the files you will need for the CS:APP</span><br><span class="line">Performance Lab.</span><br><span class="line"></span><br><span class="line">kernels.c</span><br><span class="line">trueThis is the file you will be modifying and handing in. </span><br><span class="line"></span><br><span class="line">#########################################</span><br><span class="line"># You shouldn&apos;t modify any of these files</span><br><span class="line">#########################################</span><br><span class="line">driver.c</span><br><span class="line">trueThis is the driver that tests the performance of all </span><br><span class="line">trueof the versions of the rotate and smooth kernels </span><br><span class="line">truein your kernels.c file.</span><br><span class="line"></span><br><span class="line">config.h</span><br><span class="line">trueThis is a site-specific configuration file that was created by </span><br><span class="line">trueyour instructor	for your system.</span><br><span class="line"></span><br><span class="line">defs.h</span><br><span class="line">trueVarious definitions needed by kernels.c and driver.c</span><br><span class="line"></span><br><span class="line">clock.&#123;c,h&#125;</span><br><span class="line">fcyc.&#123;c,h&#125;</span><br><span class="line">trueThese contain timing routines that measure the performance of your</span><br><span class="line">truecode with our k-best measurement scheme using IA32 cycle counters.</span><br><span class="line"></span><br><span class="line">Makefile:</span><br><span class="line">trueThis is the makefile that builds the driver program.</span><br></pre></td></tr></table></figure>
+<p>优化的三个版本：rotate1、rotate2、rotate3与smooth1、smooth2、smooth3如下：</p>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2015/12/01/计算机-网络csAppLab4PerflabHandout优化方案/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://blog.timilong.com/2015/11/30/hexo-常用命令/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -691,7 +868,7 @@ hexo d == hexo deploy
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">137</span>
+                    <span class="site-state-item-count">138</span>
                     <span class="site-state-item-name">日志</span>
                   </a>
                 </div>
@@ -748,7 +925,9 @@ hexo d == hexo deploy
                     
                       
                     
-                    <span class="site-state-item-count">22</span>
+                      
+                    
+                    <span class="site-state-item-count">23</span>
                     <span class="site-state-item-name">分类</span>
                   </a>
                 </div>
@@ -825,7 +1004,9 @@ hexo d == hexo deploy
                     
                       
                     
-                    <span class="site-state-item-count">32</span>
+                      
+                    
+                    <span class="site-state-item-count">33</span>
                     <span class="site-state-item-name">标签</span>
                   </a>
                 </div>
