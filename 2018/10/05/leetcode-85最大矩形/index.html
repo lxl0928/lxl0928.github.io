@@ -108,24 +108,25 @@
 
 
 
-  <meta name="description" content="题目描述1234567891011121314151617给定一个包含 n 个整数的数组 nums 和一个目标值 target，判断 nums 中是否存在四个元素 a，b，c 和 d ，使得 a + b + c + d 的值与 target 相等？找出所有满足条件且不重复的四元组。注意：    答案中不可以包含重复的四元组。示例：    给定数组 nums = [1, 0, -1, 0, -2,">
+  <meta name="description" content="leetcode85最大矩形题解">
+<meta name="keywords" content="leetcode">
 <meta property="og:type" content="article">
-<meta property="og:title" content="leetcode-四数之和1">
-<meta property="og:url" content="http://blog.timilong.com/2018/07/06/leetcode-四数之和1/index.html">
+<meta property="og:title" content="leetcode-85最大矩形">
+<meta property="og:url" content="http://blog.timilong.com/2018/10/05/leetcode-85最大矩形/index.html">
 <meta property="og:site_name" content="Timilong&#39;s blog">
-<meta property="og:description" content="题目描述1234567891011121314151617给定一个包含 n 个整数的数组 nums 和一个目标值 target，判断 nums 中是否存在四个元素 a，b，c 和 d ，使得 a + b + c + d 的值与 target 相等？找出所有满足条件且不重复的四元组。注意：    答案中不可以包含重复的四元组。示例：    给定数组 nums = [1, 0, -1, 0, -2,">
+<meta property="og:description" content="leetcode85最大矩形题解">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-07-24T00:18:47.841Z">
+<meta property="og:updated_time" content="2018-10-04T13:50:55.536Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="leetcode-四数之和1">
-<meta name="twitter:description" content="题目描述1234567891011121314151617给定一个包含 n 个整数的数组 nums 和一个目标值 target，判断 nums 中是否存在四个元素 a，b，c 和 d ，使得 a + b + c + d 的值与 target 相等？找出所有满足条件且不重复的四元组。注意：    答案中不可以包含重复的四元组。示例：    给定数组 nums = [1, 0, -1, 0, -2,">
+<meta name="twitter:title" content="leetcode-85最大矩形">
+<meta name="twitter:description" content="leetcode85最大矩形题解">
 
 
 
 
 
 
-  <link rel="canonical" href="http://blog.timilong.com/2018/07/06/leetcode-四数之和1/"/>
+  <link rel="canonical" href="http://blog.timilong.com/2018/10/05/leetcode-85最大矩形/"/>
 
 
 
@@ -135,7 +136,7 @@
   };
 </script>
 
-  <title>leetcode-四数之和1 | Timilong's blog</title>
+  <title>leetcode-85最大矩形 | Timilong's blog</title>
   
 
 
@@ -308,7 +309,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://blog.timilong.com/2018/07/06/leetcode-四数之和1/">
+    <link itemprop="mainEntityOfPage" href="http://blog.timilong.com/2018/10/05/leetcode-85最大矩形/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="博主">
@@ -325,7 +326,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">leetcode-四数之和1
+          <h1 class="post-title" itemprop="name headline">leetcode-85最大矩形
               
             
           </h1>
@@ -350,29 +351,35 @@
                 
               
 
-              <time title="创建于：2018-07-06 08:05:31" itemprop="dateCreated datePublished" datetime="2018-07-06T08:05:31Z">2018-07-06</time>
+              <time title="创建于：2018-10-04 21:46:00 / 更新于：13:50:55" itemprop="dateCreated datePublished" datetime="2018-10-04T21:46:00Z">2018-10-04</time>
             
 
             
               
 
-              
-                
-                <span class="post-meta-divider">|</span>
-                
-
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">Edited on</span>
-                
-                <time title="更新于：2018-07-24 00:18:47" itemprop="dateModified" datetime="2018-07-24T00:18:47Z">2018-07-24</time>
               
             
           </span>
 
           
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/leetcode/" itemprop="url" rel="index"><span itemprop="name">leetcode</span></a></span>
+
+                
+                
+              
+            </span>
+          
 
           
             
@@ -385,6 +392,8 @@
 
           
 
+          
+              <div class="post-description">leetcode85最大矩形题解</div>
           
 
         </div>
@@ -400,9 +409,19 @@
       
 
       
-        <h1 id="题目描述"><a href="#题目描述" class="headerlink" title="题目描述"></a>题目描述</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">给定一个包含 n 个整数的数组 nums 和一个目标值 target，判断 nums 中是否存在四个元素 a，b，c 和 d ，</span><br><span class="line">使得 a + b + c + d 的值与 target 相等？找出所有满足条件且不重复的四元组。</span><br><span class="line"></span><br><span class="line">注意：</span><br><span class="line"></span><br><span class="line">    答案中不可以包含重复的四元组。</span><br><span class="line"></span><br><span class="line">示例：</span><br><span class="line"></span><br><span class="line">    给定数组 nums = [1, 0, -1, 0, -2, 2]，和 target = 0。</span><br><span class="line"></span><br><span class="line">满足要求的四元组集合为：</span><br><span class="line">    [</span><br><span class="line">      [-1,  0, 0, 1],</span><br><span class="line">      [-2, -1, 1, 2],</span><br><span class="line">      [-2,  0, 0, 2]</span><br><span class="line">    ]</span><br></pre></td></tr></table></figure>
-<a id="more"></a>
-<h1 id="解答"><a href="#解答" class="headerlink" title="解答"></a>解答</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line">class Solution(object):</span><br><span class="line">    def fourSum(self, num, target):</span><br><span class="line">        &quot;&quot;&quot;</span><br><span class="line">        :type nums: List[int]</span><br><span class="line">        :type target: int</span><br><span class="line">        :rtype: List[List[int]]</span><br><span class="line">        &quot;&quot;&quot;</span><br><span class="line">        numLen, res, d = len(num), set(), &#123;&#125;</span><br><span class="line">        if numLen &lt; 4: </span><br><span class="line">            return []</span><br><span class="line">        </span><br><span class="line">        num.sort()</span><br><span class="line">        for p in range(numLen):</span><br><span class="line">            for q in range(p+1, numLen): </span><br><span class="line">                if num[p]+num[q] not in d:</span><br><span class="line">                    d[num[p] + num[q]] = [(p,q)]</span><br><span class="line">                else:</span><br><span class="line">                    d[num[p] + num[q]].append((p, q))</span><br><span class="line">                    </span><br><span class="line">        for i in xrange(numLen):</span><br><span class="line">            for j in xrange(i+1, numLen - 2):</span><br><span class="line">                T = target - num[i] - num[j]</span><br><span class="line">                if T in d:</span><br><span class="line">                    for k in d[T]:</span><br><span class="line">                        if k[0] &gt; j: </span><br><span class="line">                            res.add((num[i], num[j], num[k[0]], num[k[1]]))</span><br><span class="line">        return [list(i) for i in res]</span><br></pre></td></tr></table></figure>
+        <h2 id="题目描述"><a href="#题目描述" class="headerlink" title="题目描述"></a>题目描述</h2><p>给定一个仅包含 0 和 1 的二维二进制矩阵，找出只包含 1 的最大矩形，并返回其面积。</p>
+<p>示例:</p>
+<p>输入:<br>[<br>  [“1”,”0”,”1”,”0”,”0”],<br>  [“1”,”0”,”1”,”1”,”1”],<br>  [“1”,”1”,”1”,”1”,”1”],<br>  [“1”,”0”,”0”,”1”,”0”]<br>]<br>输出: 6</p>
+<h2 id="解题代码"><a href="#解题代码" class="headerlink" title="解题代码"></a>解题代码</h2><blockquote>
+<p>思路 1</p>
+</blockquote>
+<p>参考大神<a href="https://leetcode.com/problems/maximal-rectangle/discuss/122456/Easiest-solution-build-on-top-of-leetcode84" target="_blank" rel="noopener">sikp</a>的解法</p>
+<p>首先我们可以看看 leetcode 第84题，然后你就会发现，这道题可以直接使用84题的解法来做。</p>
+<p>我们可以从matrix的第一行开始往下进行，然后每次都做出一个heights列表，找出当前的最大area，最终找到最后一行，可以得到最终的最大area。</p>
+<p>伪代码可以这样写：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">class Solution(object):</span><br><span class="line">    def maximalRectangle(self, matrix):</span><br><span class="line">        &quot;&quot;&quot;</span><br><span class="line">        :type matrix: List[List[str]]</span><br><span class="line">        :rtype: int</span><br><span class="line">        &quot;&quot;&quot;</span><br><span class="line">        if not matrix or not matrix[0]:</span><br><span class="line">            return 0</span><br><span class="line">        # for each cell with value=1, we look upward (north), the number of continuous &apos;1&apos; is the height of cell</span><br><span class="line">        heights = [0] * len(matrix[0])</span><br><span class="line">        res, cur_max_area = -1</span><br><span class="line">        for i in range(len(matrix)):</span><br><span class="line">            for j in range(len(matrix[0])):</span><br><span class="line">                if matrix[i][j] == 0:</span><br><span class="line">                    heights[j] = 0</span><br><span class="line">                else:</span><br><span class="line">                    heights[j] += 1</span><br><span class="line">            cur_max_area = yourLeetCode84Funtion(heights)</span><br><span class="line">            res = max(cur_max_area, res)</span><br><span class="line">        return res</span><br></pre></td></tr></table></figure>
+<p>最终代码就是：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span><span class="params">(object)</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">maximalRectangle</span><span class="params">(self, matrix)</span>:</span></span><br><span class="line">        <span class="string">"""</span></span><br><span class="line"><span class="string">        :type matrix: List[List[str]]</span></span><br><span class="line"><span class="string">        :rtype: int</span></span><br><span class="line"><span class="string">        """</span></span><br><span class="line">        <span class="keyword">if</span> <span class="keyword">not</span> matrix <span class="keyword">or</span> <span class="keyword">not</span> matrix[<span class="number">0</span>]:</span><br><span class="line">            <span class="keyword">return</span> <span class="number">0</span></span><br><span class="line">        heights = [<span class="number">0</span>] * len(matrix[<span class="number">0</span>])</span><br><span class="line">        area = <span class="number">0</span></span><br><span class="line">        <span class="keyword">for</span> row <span class="keyword">in</span> matrix:</span><br><span class="line">            <span class="keyword">for</span> col_num, item <span class="keyword">in</span> enumerate(row):</span><br><span class="line">                <span class="comment"># for each cell with value=1, we look upward (north), the number of continuous '1' is the height of cell</span></span><br><span class="line">                heights[col_num] = heights[col_num] + <span class="number">1</span> <span class="keyword">if</span> item == <span class="string">'1'</span> <span class="keyword">else</span> <span class="number">0</span></span><br><span class="line">            area = max(area, self.largestRectangleArea(heights))</span><br><span class="line">        print(heights)</span><br><span class="line">        <span class="keyword">return</span> area</span><br><span class="line">    </span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">largestRectangleArea</span><span class="params">(self, heights)</span>:</span></span><br><span class="line">        left_stack, right_stack = [], []</span><br><span class="line">        left_indexes, right_indexes = [<span class="number">-1</span>] * len(heights), [len(heights)] * len(heights)</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> range(len(heights)):</span><br><span class="line">            <span class="keyword">while</span> left_stack <span class="keyword">and</span> heights[i] &lt; heights[left_stack[<span class="number">-1</span>]]:</span><br><span class="line">                right_indexes[left_stack.pop()] = i </span><br><span class="line">            left_stack.append(i)</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> range(len(heights)<span class="number">-1</span>, <span class="number">-1</span>, <span class="number">-1</span>):</span><br><span class="line">            <span class="keyword">while</span> right_stack <span class="keyword">and</span> heights[i] &lt; heights[right_stack[<span class="number">-1</span>]]:</span><br><span class="line">                left_indexes[right_stack.pop()] = i</span><br><span class="line">            right_stack.append(i)</span><br><span class="line">            </span><br><span class="line">        res = <span class="number">0</span></span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> range(len(heights)):</span><br><span class="line">            area = heights[i] * (right_indexes[i] - left_indexes[i] - <span class="number">1</span>)</span><br><span class="line">            res = max(res, area)</span><br><span class="line">        <span class="keyword">return</span> res</span><br></pre></td></tr></table></figure>
 
       
     </div>
@@ -421,6 +440,12 @@
 
     <footer class="post-footer">
       
+        <div class="post-tags">
+          
+            <a href="/tags/leetcode/" rel="tag"># leetcode</a>
+          
+        </div>
+      
 
       
       
@@ -430,8 +455,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2018/06/23/计算机-计算机网络/" rel="next" title="计算机网络及对应的协议">
-                <i class="fa fa-chevron-left"></i> 计算机网络及对应的协议
+              <a href="/2018/10/03/leetcode-46全排列/" rel="next" title="leetcode-46全排列">
+                <i class="fa fa-chevron-left"></i> leetcode-46全排列
               </a>
             
           </div>
@@ -439,10 +464,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2018/07/09/leetcode-93.复原IP地址/" rel="prev" title="leetcode-复原IP地址">
-                leetcode-复原IP地址 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -688,7 +709,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#题目描述"><span class="nav-number">1.</span> <span class="nav-text">题目描述</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#解答"><span class="nav-number">2.</span> <span class="nav-text">解答</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#题目描述"><span class="nav-number">1.</span> <span class="nav-text">题目描述</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#解题代码"><span class="nav-number">2.</span> <span class="nav-text">解题代码</span></a></li></ol></div>
             
 
           </div>
