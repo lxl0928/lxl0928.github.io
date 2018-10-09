@@ -108,25 +108,25 @@
 
 
 
-  <meta name="description" content="描述123456789101112131415161718192021222324给定一个数组 nums，有一个大小为 k 的滑动窗口从数组的最左侧移动到数组的最右侧。你只可以看到在滑动窗口 k 内的数字。滑动窗口每次只向右移动一位。返回滑动窗口最大值。示例:输入: nums = [1, 3, -1, -3, 5, 3, 6, 7], 和 k = 3输出: [3, 3, 5, 5, 6, 7] 解">
+  <meta name="description" content="leetcode-71:给定一个文档 (Unix-style) 的完全路径，请进行路径简化。">
 <meta name="keywords" content="leetcode">
 <meta property="og:type" content="article">
-<meta property="og:title" content="leetcode-239.滑动窗口最大值">
-<meta property="og:url" content="http://blog.timilong.com/2017/06/23/leetcode-239.滑动窗口最大值/index.html">
+<meta property="og:title" content="leetcode-71简化路径">
+<meta property="og:url" content="http://blog.timilong.com/2018/10/09/leetcode-71简化路径/index.html">
 <meta property="og:site_name" content="Timilong&#39;s blog">
-<meta property="og:description" content="描述123456789101112131415161718192021222324给定一个数组 nums，有一个大小为 k 的滑动窗口从数组的最左侧移动到数组的最右侧。你只可以看到在滑动窗口 k 内的数字。滑动窗口每次只向右移动一位。返回滑动窗口最大值。示例:输入: nums = [1, 3, -1, -3, 5, 3, 6, 7], 和 k = 3输出: [3, 3, 5, 5, 6, 7] 解">
+<meta property="og:description" content="leetcode-71:给定一个文档 (Unix-style) 的完全路径，请进行路径简化。">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-09-07T05:49:54.123Z">
+<meta property="og:updated_time" content="2018-10-09T01:28:36.268Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="leetcode-239.滑动窗口最大值">
-<meta name="twitter:description" content="描述123456789101112131415161718192021222324给定一个数组 nums，有一个大小为 k 的滑动窗口从数组的最左侧移动到数组的最右侧。你只可以看到在滑动窗口 k 内的数字。滑动窗口每次只向右移动一位。返回滑动窗口最大值。示例:输入: nums = [1, 3, -1, -3, 5, 3, 6, 7], 和 k = 3输出: [3, 3, 5, 5, 6, 7] 解">
+<meta name="twitter:title" content="leetcode-71简化路径">
+<meta name="twitter:description" content="leetcode-71:给定一个文档 (Unix-style) 的完全路径，请进行路径简化。">
 
 
 
 
 
 
-  <link rel="canonical" href="http://blog.timilong.com/2017/06/23/leetcode-239.滑动窗口最大值/"/>
+  <link rel="canonical" href="http://blog.timilong.com/2018/10/09/leetcode-71简化路径/"/>
 
 
 
@@ -136,7 +136,7 @@
   };
 </script>
 
-  <title>leetcode-239.滑动窗口最大值 | Timilong's blog</title>
+  <title>leetcode-71简化路径 | Timilong's blog</title>
   
 
 
@@ -309,7 +309,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://blog.timilong.com/2017/06/23/leetcode-239.滑动窗口最大值/">
+    <link itemprop="mainEntityOfPage" href="http://blog.timilong.com/2018/10/09/leetcode-71简化路径/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="博主">
@@ -326,7 +326,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">leetcode-239.滑动窗口最大值
+          <h1 class="post-title" itemprop="name headline">leetcode-71简化路径
               
             
           </h1>
@@ -351,24 +351,12 @@
                 
               
 
-              <time title="创建于：2017-06-23 10:07:37" itemprop="dateCreated datePublished" datetime="2017-06-23T10:07:37Z">2017-06-23</time>
+              <time title="创建于：2018-10-09 09:26:21 / 更新于：01:28:36" itemprop="dateCreated datePublished" datetime="2018-10-09T09:26:21Z">2018-10-09</time>
             
 
             
               
 
-              
-                
-                <span class="post-meta-divider">|</span>
-                
-
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">Edited on</span>
-                
-                <time title="更新于：2018-09-07 05:49:54" itemprop="dateModified" datetime="2018-09-07T05:49:54Z">2018-09-07</time>
               
             
           </span>
@@ -405,6 +393,8 @@
           
 
           
+              <div class="post-description">leetcode-71:给定一个文档 (Unix-style) 的完全路径，请进行路径简化。</div>
+          
 
         </div>
       </header>
@@ -419,9 +409,11 @@
       
 
       
-        <h1 id="描述"><a href="#描述" class="headerlink" title="描述"></a>描述</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">给定一个数组 nums，有一个大小为 k 的滑动窗口从数组的最左侧移动到数组的最右侧。</span><br><span class="line">你只可以看到在滑动窗口 k 内的数字。滑动窗口每次只向右移动一位。</span><br><span class="line"></span><br><span class="line">返回滑动窗口最大值。</span><br><span class="line"></span><br><span class="line">示例:</span><br><span class="line"></span><br><span class="line">输入: nums = [1, 3, -1, -3, 5, 3, 6, 7], 和 k = 3</span><br><span class="line"></span><br><span class="line">输出: [3, 3, 5, 5, 6, 7] </span><br><span class="line"></span><br><span class="line">解释: </span><br><span class="line"></span><br><span class="line">  滑动窗口的位置                最大值</span><br><span class="line">---------------               -----</span><br><span class="line">[1  3  -1] -3  5  3  6  7       3</span><br><span class="line"> 1 [3  -1  -3] 5  3  6  7       3</span><br><span class="line"> 1  3 [-1  -3  5] 3  6  7       5</span><br><span class="line"> 1  3  -1 [-3  5  3] 6  7       5</span><br><span class="line"> 1  3  -1  -3 [5  3  6] 7       6</span><br><span class="line"> 1  3  -1  -3  5 [3  6  7]      7</span><br><span class="line"></span><br><span class="line">注意：</span><br><span class="line">    你可以假设 k 总是有效的，1 ≤ k ≤ 输入数组的大小，且输入数组不为空。</span><br></pre></td></tr></table></figure>
-<h1 id="解题"><a href="#解题" class="headerlink" title="解题"></a>解题</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">class Solution(object):</span><br><span class="line">    def maxSlidingWindow(self, nums, k):</span><br><span class="line">        &quot;&quot;&quot;</span><br><span class="line">        :type nums: List[int]</span><br><span class="line">        :type k: int</span><br><span class="line">        :rtype: List[int]</span><br><span class="line">        &quot;&quot;&quot;</span><br><span class="line">        nums_length = len(nums)</span><br><span class="line">        count = nums_length - k + 1</span><br><span class="line">        res = []</span><br><span class="line">        if nums_length == 0:</span><br><span class="line">            return res</span><br><span class="line">        </span><br><span class="line">        for i in range(count):</span><br><span class="line">            tmp_list = nums[i:i+k]</span><br><span class="line">            res.append(max(tmp_list))</span><br><span class="line">        return res</span><br></pre></td></tr></table></figure>
-<h1 id="时间较少的解法-参考"><a href="#时间较少的解法-参考" class="headerlink" title="时间较少的解法(参考)"></a>时间较少的解法(参考)</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br></pre></td><td class="code"><pre><span class="line">class Solution(object):</span><br><span class="line">truedef maxSlidingWindow(self, nums, k):</span><br><span class="line">truetrue&quot;&quot;&quot;</span><br><span class="line">truetrue:type nums: List[int]</span><br><span class="line">truetrue:type k: int</span><br><span class="line">truetrue:rtype: List[int]</span><br><span class="line">truetrue&quot;&quot;&quot;</span><br><span class="line">truetrueif not nums or len(nums) == 0:</span><br><span class="line">truetruetruereturn []</span><br><span class="line"></span><br><span class="line">truetrueif k == 1:</span><br><span class="line">truetruetruereturn nums</span><br><span class="line"></span><br><span class="line">truetrueresult = []</span><br><span class="line">truetruemax_idx = 0</span><br><span class="line">truetruemax_val = 0</span><br><span class="line">truetruefor start in xrange(0, len(nums)-k+1):</span><br><span class="line">truetruetrueif start == 0:</span><br><span class="line">truetruetruetruemax_idx, max_val = self.getMax(nums, start, k)</span><br><span class="line">truetruetruetrueresult.append(max_val)</span><br><span class="line">truetruetrueelse:</span><br><span class="line">truetruetruetrueif max_idx &lt; start:</span><br><span class="line">truetruetruetruetrue# 刚划出去的是最大的, 那就需要重新找</span><br><span class="line">truetruetruetruetruemax_idx, max_val = self.getMax(nums, start, k)</span><br><span class="line">truetruetruetrueelse:</span><br><span class="line">truetruetruetruetrue# 刚划出去的不是最大的，只需要对比划进来的就好</span><br><span class="line">truetruetruetruetrueif max_val &lt; nums[start+k-1]:</span><br><span class="line">truetruetruetruetruetruemax_val = nums[start+k-1]</span><br><span class="line">truetruetruetruetruetruemax_idx = start+k-1</span><br><span class="line"></span><br><span class="line">truetruetruetrueresult.append(max_val)</span><br><span class="line"></span><br><span class="line">truetruereturn result</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">truedef getMax(self, nums, start, k):</span><br><span class="line"></span><br><span class="line">truetruemax_idx = start</span><br><span class="line">truetruemax_val = nums[start]</span><br><span class="line">truetruefor i in xrange(start+1, start+k):</span><br><span class="line">truetruetrueif nums[i] &gt; max_val:</span><br><span class="line">truetruetruetruemax_val = nums[i]</span><br><span class="line">truetruetruetruemax_idx = i</span><br><span class="line">truetruereturn max_idx, max_val</span><br></pre></td></tr></table></figure>
+        <h2 id="题目描述"><a href="#题目描述" class="headerlink" title="题目描述"></a>题目描述</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">给定一个文档 (Unix-style) 的完全路径，请进行路径简化。</span><br><span class="line"></span><br><span class="line">例如，</span><br><span class="line">path = &quot;/home/&quot;, =&gt; &quot;/home&quot;</span><br><span class="line">path = &quot;/a/./b/../../c/&quot;, =&gt; &quot;/c&quot;</span><br><span class="line"></span><br><span class="line">边界情况:</span><br><span class="line"></span><br><span class="line">你是否考虑了 路径 = &quot;/../&quot; 的情况？</span><br><span class="line">在这种情况下，你需返回 &quot;/&quot; 。</span><br><span class="line">此外，路径中也可能包含多个斜杠 &apos;/&apos; ，如 &quot;/home//foo/&quot; 。</span><br><span class="line">在这种情况下，你可忽略多余的斜杠，返回 &quot;/home/foo&quot; 。</span><br></pre></td></tr></table></figure>
+<h2 id="解题方案"><a href="#解题方案" class="headerlink" title="解题方案"></a>解题方案</h2><p>时间复杂度: O(N^2)<br>空间复杂度: O(1)</p>
+<p>非常简单的模拟题，利用一个栈来储存当前的路径。</p>
+<p>用 “/“ 将输入的全路径分割成多个部分，对于每一个部分循环处理：<br>如果为空或者 “.” 则忽略，如果是 “..”, 则出栈顶部元素（如果栈为空则忽略），其他情况直接压入栈即可。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">class Solution(object):</span><br><span class="line">    def simplifyPath(self, path):</span><br><span class="line">        &quot;&quot;&quot;</span><br><span class="line">        :type path: str</span><br><span class="line">        :rtype: str</span><br><span class="line">        &quot;&quot;&quot;</span><br><span class="line">        stack = []</span><br><span class="line">        for part in path.split(&quot;/&quot;):</span><br><span class="line">            if part and part != &quot;.&quot;: # 如果为空或者 &quot;.&quot; 则忽略</span><br><span class="line">                if part == &quot;..&quot;:</span><br><span class="line">                    if stack:</span><br><span class="line">                        stack.pop()</span><br><span class="line">                else:</span><br><span class="line">                    stack.append(part)</span><br><span class="line">        if not stack:</span><br><span class="line">            return &quot;/&quot;</span><br><span class="line">        else:</span><br><span class="line">            return &quot;/&quot; + &quot;/&quot;.join(stack)</span><br></pre></td></tr></table></figure>
 
       
     </div>
@@ -455,8 +447,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2017/06/23/leetcode-4.两个排序数组的中位数/" rel="next" title="leetcode-4. 两个排序数组的中位数">
-                <i class="fa fa-chevron-left"></i> leetcode-4. 两个排序数组的中位数
+              <a href="/2018/10/05/leetcode-85最大矩形/" rel="next" title="leetcode-85最大矩形">
+                <i class="fa fa-chevron-left"></i> leetcode-85最大矩形
               </a>
             
           </div>
@@ -464,10 +456,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2017/07/17/linux-grep命令/" rel="prev" title="Linux-grep命令">
-                Linux-grep命令 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -713,7 +701,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#描述"><span class="nav-number">1.</span> <span class="nav-text">描述</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#解题"><span class="nav-number">2.</span> <span class="nav-text">解题</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#时间较少的解法-参考"><span class="nav-number">3.</span> <span class="nav-text">时间较少的解法(参考)</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#题目描述"><span class="nav-number">1.</span> <span class="nav-text">题目描述</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#解题方案"><span class="nav-number">2.</span> <span class="nav-text">解题方案</span></a></li></ol></div>
             
 
           </div>
