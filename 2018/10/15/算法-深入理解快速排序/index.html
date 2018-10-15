@@ -116,7 +116,7 @@
 <meta property="og:site_name" content="Timilong&#39;s blog">
 <meta property="og:description" content="从快速排序的简介、实现、性能分析、优化等角度来理解快速排序">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-10-15T04:13:49.579Z">
+<meta property="og:updated_time" content="2018-10-15T04:33:38.724Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="算法_深入理解快速排序">
 <meta name="twitter:description" content="从快速排序的简介、实现、性能分析、优化等角度来理解快速排序">
@@ -206,7 +206,7 @@
   </div>
 
   <div class="site-nav-toggle">
-    <button aria-label="ナビゲーションバーの切り替え">
+    <button aria-label="Toggle navigation bar">
       <span class="btn-bar"></span>
       <span class="btn-bar"></span>
       <span class="btn-bar"></span>
@@ -351,7 +351,7 @@
                 
               
 
-              <time title="创建于：2018-10-15 11:13:52 / 更新于：04:13:49" itemprop="dateCreated datePublished" datetime="2018-10-15T11:13:52Z">2018-10-15</time>
+              <time title="创建于：2018-10-15 11:13:52 / 更新于：04:33:38" itemprop="dateCreated datePublished" datetime="2018-10-15T11:13:52Z">2018-10-15</time>
             
 
             
@@ -443,8 +443,7 @@
 <li>大于主元就把这个数与gt指向的数交换，gt自减1，此时i还得不能自增，因为它不知道gt用一个什么样的元素跟它交换，所以留到下一次循环判断交换过来的这个元素的去留</li>
 <li>等于主元就不用跟谁进行交换，直接自增1就可以</li>
 </ul>
-<p>三向切分快速排序如下：<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure></p>
-<h2 id="注意："><a href="#注意：" class="headerlink" title="注意："></a>注意：</h2><p>目前所实现的三向切分并不完美，虽然它解决了大量重复元素的不必要排序，将排序时间从线性对数级别降到线性级别，但它在数组元素重复不多的情况下，它的交换次数比标准的二分法多很多。<br>不过在90年代J.Bently和D.Mcllroy找到一个聪明的办法解决了这个问题。接下来的快速三向切分就是解决办法。 快速的三向切分:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">*   left part         center part                  right part</span><br><span class="line">* +----------------------------------------------------------+</span><br><span class="line">* | == pivot |  &lt; pivot  |    ?    |  &gt; pivot    | == pivot |</span><br><span class="line">* +----------------------------------------------------------+</span><br><span class="line">*            ^           ^         ^             ^</span><br><span class="line">*            |           |         |             |  </span><br><span class="line">*            p           i         j             q</span><br></pre></td></tr></table></figure></p>
+<h2 id="注意"><a href="#注意" class="headerlink" title="注意"></a>注意</h2><p>目前所实现的三向切分并不完美，虽然它解决了大量重复元素的不必要排序，将排序时间从线性对数级别降到线性级别，但它在数组元素重复不多的情况下，它的交换次数比标准的二分法多很多。<br>不过在90年代J.Bently和D.Mcllroy找到一个聪明的办法解决了这个问题。接下来的快速三向切分就是解决办法。 快速的三向切分:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">*   left part         center part                  right part</span><br><span class="line">* +----------------------------------------------------------+</span><br><span class="line">* | == pivot |  &lt; pivot  |    ?    |  &gt; pivot    | == pivot |</span><br><span class="line">* +----------------------------------------------------------+</span><br><span class="line">*            ^           ^         ^             ^</span><br><span class="line">*            |           |         |             |  </span><br><span class="line">*            p           i         j             q</span><br></pre></td></tr></table></figure></p>
 <p>在这个算法中，[p, i)里面的元素小于主元，(j, q]里面的元素大于主元，而左右两端[left, p)和(q, right]等于主元。</p>
 <p>在算法一开始，p 和 i都指向left后面的第一个元素， j和q都指向right，先把i从左到右遍历时每遇到一个元素都会有三种情况：</p>
 <ul>
@@ -453,7 +452,7 @@
 <li>大于主元，这时就是j和q所要维护的元素，先退出循环等待与他们交换</li>
 </ul>
 <p>同理，对于j从right向左遍历也是一样。当 i &gt; j 时，切分也就结束，最后还要把数组调整为左边小右边大，中间等于主元的形式，再依次排序左边和右边。</p>
-<p>在这个算法中，既解决了重复元素排序的问题，又解决了少量元素重复时，交换次数过多的问题。 快速的三向切分的实现:<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure></p>
+<p>在这个算法中，既解决了重复元素排序的问题，又解决了少量元素重复时，交换次数过多的问题。</p>
 <h2 id="最后"><a href="#最后" class="headerlink" title="最后"></a>最后</h2><p>快速排序不是稳定的排序算法，所谓稳定就是当待排数组中存在重复元素的时候，排序后重复元素的相对顺序不会改变。</p>
 <p>在多关键字排序时，稳定的排序算法就很有用处。</p>
 <p>比如当一个学生按照学号先排序，然后再根据成绩进行排序，因为成绩存在重复的值，此时稳定的排序算法就会导致排序后具有相同成绩的学生按照学号排序，不会混乱。</p>
@@ -744,7 +743,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#简介"><span class="nav-number">1.</span> <span class="nav-text">简介</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#代码实现"><span class="nav-number">2.</span> <span class="nav-text">代码实现</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#快速排序性能与复杂度分析"><span class="nav-number">3.</span> <span class="nav-text">快速排序性能与复杂度分析</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#最坏情况"><span class="nav-number">3.1.</span> <span class="nav-text">最坏情况</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#最好情况"><span class="nav-number">3.2.</span> <span class="nav-text">最好情况</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#平均情况"><span class="nav-number">3.3.</span> <span class="nav-text">平均情况</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#算法优化"><span class="nav-number">4.</span> <span class="nav-text">算法优化</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#切换到插入排序"><span class="nav-number">4.1.</span> <span class="nav-text">切换到插入排序</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#选择合适的主元"><span class="nav-number">4.2.</span> <span class="nav-text">选择合适的主元</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#重复的元素不必排序"><span class="nav-number">4.3.</span> <span class="nav-text">重复的元素不必排序</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#注意："><span class="nav-number">5.</span> <span class="nav-text">注意：</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#最后"><span class="nav-number">6.</span> <span class="nav-text">最后</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#简介"><span class="nav-number">1.</span> <span class="nav-text">简介</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#代码实现"><span class="nav-number">2.</span> <span class="nav-text">代码实现</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#快速排序性能与复杂度分析"><span class="nav-number">3.</span> <span class="nav-text">快速排序性能与复杂度分析</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#最坏情况"><span class="nav-number">3.1.</span> <span class="nav-text">最坏情况</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#最好情况"><span class="nav-number">3.2.</span> <span class="nav-text">最好情况</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#平均情况"><span class="nav-number">3.3.</span> <span class="nav-text">平均情况</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#算法优化"><span class="nav-number">4.</span> <span class="nav-text">算法优化</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#切换到插入排序"><span class="nav-number">4.1.</span> <span class="nav-text">切换到插入排序</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#选择合适的主元"><span class="nav-number">4.2.</span> <span class="nav-text">选择合适的主元</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#重复的元素不必排序"><span class="nav-number">4.3.</span> <span class="nav-text">重复的元素不必排序</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#注意"><span class="nav-number">5.</span> <span class="nav-text">注意</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#最后"><span class="nav-number">6.</span> <span class="nav-text">最后</span></a></li></ol></div>
             
 
           </div>
