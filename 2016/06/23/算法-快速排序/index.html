@@ -116,7 +116,7 @@
 <meta property="og:site_name" content="Timilong&#39;s blog">
 <meta property="og:description" content="快速排序，python版本实现">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-09-09T08:26:17.937Z">
+<meta property="og:updated_time" content="2018-10-15T04:17:20.224Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="算法-快速排序">
 <meta name="twitter:description" content="快速排序，python版本实现">
@@ -206,7 +206,7 @@
   </div>
 
   <div class="site-nav-toggle">
-    <button aria-label="Toggle navigation bar">
+    <button aria-label="ナビゲーションバーの切り替え">
       <span class="btn-bar"></span>
       <span class="btn-bar"></span>
       <span class="btn-bar"></span>
@@ -366,9 +366,9 @@
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 
-                  <span class="post-meta-item-text">Edited on</span>
+                  <span class="post-meta-item-text">に編集されました</span>
                 
-                <time title="更新于：2018-09-09 08:26:17" itemprop="dateModified" datetime="2018-09-09T08:26:17Z">2018-09-09</time>
+                <time title="更新于：2018-10-15 04:17:20" itemprop="dateModified" datetime="2018-10-15T04:17:20Z">2018-10-15</time>
               
             
           </span>
@@ -421,7 +421,7 @@
       
 
       
-        <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line">def q_sort(my_list, start, end):</span><br><span class="line">    # 判断start是否小于end, 如果为True, 则交换i, j值， 如果为False， 直接返回</span><br><span class="line">    if start &lt; end:</span><br><span class="line">        i, j = start, end</span><br><span class="line">        # 设置基准数，与基准数进行比较</span><br><span class="line">        base = my_list[i]</span><br><span class="line"></span><br><span class="line">        while i &lt; j:</span><br><span class="line">            while i &lt; j and my_list[j] &gt;= base:</span><br><span class="line">                # i &lt; j时， 且my_list最左边my_list[j]大于base时，继续循环j，直到j &lt;= i</span><br><span class="line">                # 或者找到my_list[j] &lt; base 退出循环</span><br><span class="line">                j -= 1</span><br><span class="line"></span><br><span class="line">            # 找到my_list[j] &lt; base-&gt;此时base = my_list[i]后，交换i、j位置的值</span><br><span class="line">            my_list[i] = my_list[j]</span><br><span class="line"></span><br><span class="line">            while i &lt; j and my_list[i] &lt;= base:</span><br><span class="line">                # i &lt; j时， 且my_list最左边my_list[j]大于base时，继续循环j，直到j &lt;= i</span><br><span class="line">                # 或者找到my_list[i] &gt; base 退出循环</span><br><span class="line">                i += 1</span><br><span class="line"></span><br><span class="line">            # 找到my_list[i] &gt; base-&gt;此时base = my_list[i]后，交换i、j位置的值</span><br><span class="line">            my_list[j] = my_list[i]</span><br><span class="line">        </span><br><span class="line">        # 做完第一轮比较后， my_list被分成两个半区，并且i = j, 此时需要将my_list[i]这个值设为base</span><br><span class="line">        my_list[i] = base</span><br><span class="line"></span><br><span class="line">        # 递归调用前后半区</span><br><span class="line">        q_sort(my_list, start, i - 1)</span><br><span class="line">        q_sort(my_list, j + 1, end)</span><br><span class="line">    return my_list</span><br><span class="line"></span><br><span class="line">test_list = [0, 3, 1, 2, -1, 100, 1000, 123, 321, 11, 8]</span><br><span class="line">print(q_sort(test_list, 0, len(test_list)-1))</span><br></pre></td></tr></table></figure>
+        <h2 id="代码实现如下"><a href="#代码实现如下" class="headerlink" title="代码实现如下"></a>代码实现如下</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">q_sort</span><span class="params">(my_list, start, end)</span>:</span></span><br><span class="line">    <span class="comment"># 判断start是否小于end, 如果为True, 则交换i, j值， 如果为False， 直接返回</span></span><br><span class="line">    <span class="keyword">if</span> start &lt; end:</span><br><span class="line">        i, j = start, end</span><br><span class="line">        base = my_list[i]  <span class="comment"># 设置基准数，与基准数进行比较</span></span><br><span class="line"></span><br><span class="line">        <span class="keyword">while</span> i &lt; j:</span><br><span class="line">            <span class="keyword">while</span> i &lt; j <span class="keyword">and</span> my_list[j] &gt;= base:</span><br><span class="line">                j -= <span class="number">1</span>  <span class="comment"># i &lt; j时， 且my_list最右边my_list[j]大于base时，继续循环j，直到j &lt;= i 或者 找到my_list[j] &lt; base 退出循环</span></span><br><span class="line">            my_list[i] = my_list[j]  <span class="comment"># 找到my_list[j] &lt; base-&gt;此时base = my_list[i]后，交换i、j位置的值</span></span><br><span class="line"></span><br><span class="line">            <span class="keyword">while</span> i &lt; j <span class="keyword">and</span> my_list[i] &lt;= base:</span><br><span class="line">                i += <span class="number">1</span>  <span class="comment"># i &lt; j时， 且my_list最左边my_list[i]小于base时，继续循环i，直到i &gt;= j 或者 找到my_list[i] &gt; base 退出循环</span></span><br><span class="line">            my_list[j] = my_list[i]  <span class="comment"># 找到my_list[i] &gt; base -&gt; 此时base = my_list[i]后，交换i、j位置的值</span></span><br><span class="line"></span><br><span class="line">        my_list[i] = base  <span class="comment"># 做完第一轮比较后， my_list被分成两个半区，并且i = j, 此时需要将my_list[i]这个值设为base</span></span><br><span class="line"></span><br><span class="line">        <span class="comment"># 递归调用前后半区</span></span><br><span class="line">        q_sort(my_list, start, i - <span class="number">1</span>)</span><br><span class="line">        q_sort(my_list, j + <span class="number">1</span>, end)</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> my_list</span><br><span class="line"></span><br><span class="line"><span class="comment"># 测试</span></span><br><span class="line">test_list = [<span class="number">0</span>, <span class="number">3</span>, <span class="number">1</span>, <span class="number">2</span>, <span class="number">-1</span>, <span class="number">100</span>, <span class="number">1000</span>, <span class="number">123</span>, <span class="number">321</span>, <span class="number">11</span>, <span class="number">8</span>]</span><br><span class="line">print(q_sort(test_list, <span class="number">0</span>, len(test_list)<span class="number">-1</span>))</span><br></pre></td></tr></table></figure>
 
       
     </div>
@@ -512,8 +512,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -694,6 +703,22 @@
         </div>
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#代码实现如下"><span class="nav-number">1.</span> <span class="nav-text">代码实现如下</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       
