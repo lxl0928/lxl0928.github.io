@@ -116,7 +116,7 @@
 <meta property="og:site_name" content="Timilong&#39;s blog">
 <meta property="og:description" content="简单介绍下Thrift RPC的工作过程。">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-10-17T12:19:15.828Z">
+<meta property="og:updated_time" content="2018-10-18T03:14:45.283Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Thrift-工作流程">
 <meta name="twitter:description" content="简单介绍下Thrift RPC的工作过程。">
@@ -351,12 +351,24 @@
                 
               
 
-              <time title="创建于：2018-10-17 17:45:12 / 更新于：12:19:15" itemprop="dateCreated datePublished" datetime="2018-10-17T17:45:12Z">2018-10-17</time>
+              <time title="创建于：2018-10-17 17:45:12" itemprop="dateCreated datePublished" datetime="2018-10-17T17:45:12Z">2018-10-17</time>
             
 
             
               
 
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Edited on</span>
+                
+                <time title="更新于：2018-10-18 03:14:45" itemprop="dateModified" datetime="2018-10-18T03:14:45Z">2018-10-18</time>
               
             
           </span>
@@ -416,7 +428,7 @@
 <p>(4) 接口函数的存根实现将调用请求发送给thrift服务器端，然后thrift服务器根据调用的函数名和函数参数，调用实际的实现函数来完成具体的操作;</p>
 <p>(5) Thrift服务器在完成处理之后，将函数的返回值发送给调用的Client对象；</p>
 <p>(6) Thrift的Client对象将函数的返回值再交付给用户的调用函数。</p>
-<p>说明：<br>(1) 本地函数的调用方和被调方在同一进程的地址空间内部，因此在调用时cpu还是由当前的进程所持有，只是在调用期间，cpu去执行被调用函数，从而导致调用方被卡在那里，直到cpu执行完被调用函数之后，才能切换回来继续执行调用之后的代码；</p>
+<h2 id="说明"><a href="#说明" class="headerlink" title="说明"></a>说明</h2><p>(1) 本地函数的调用方和被调方在同一进程的地址空间内部，因此在调用时cpu还是由当前的进程所持有，只是在调用期间，cpu去执行被调用函数，从而导致调用方被卡在那里，直到cpu执行完被调用函数之后，才能切换回来继续执行调用之后的代码；</p>
 <p>(2) RPC在调用方和被调用方一般不在一台机子上，它们之间通过网络传输进行通信，一般的RPC都是采用tcp连接，如果同一条tcp连接同一时间段只能被一个调用所独占，这种情况与[1]中的本地过程更为相似，这种情况是同步调用，很显然，这种方式通信的效率比较低，因为服务函数执行期间，tcp连接上没有数据传输还依然被本次调用所霸占；另外，这种方式也有优点：实现简单。</p>
 <p>(3) 在一些的RPC服务框架中，为了提升网络通信的效率，客户端发起调用之后不被阻塞，这种情况是异步调用，它的通信效率比同步调用高，但是实现起来比较复杂。</p>
 
@@ -462,8 +474,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2018/10/18/经验-黑加手环CEO殷明君sensoro分享/" rel="prev" title="HeyPlus(黑加)手环CEO殷明君sensoro内部创业分享">
-                HeyPlus(黑加)手环CEO殷明君sensoro内部创业分享 <i class="fa fa-chevron-right"></i>
+              <a href="/2018/10/18/经验-黑加手环CEO殷明君sensoro分享/" rel="prev" title="HeyPlus(黑加)手环CEO殷明君创业分享">
+                HeyPlus(黑加)手环CEO殷明君创业分享 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -534,7 +546,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">144</span>
+                    <span class="site-state-item-count">145</span>
                     <span class="site-state-item-name">日志</span>
                   </a>
                 </div>
@@ -716,7 +728,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#工作流程"><span class="nav-number">1.</span> <span class="nav-text">工作流程</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#工作流程"><span class="nav-number">1.</span> <span class="nav-text">工作流程</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#说明"><span class="nav-number">2.</span> <span class="nav-text">说明</span></a></li></ol></div>
             
 
           </div>
