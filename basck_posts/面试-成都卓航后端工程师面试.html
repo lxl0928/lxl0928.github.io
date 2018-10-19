@@ -1,0 +1,892 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=6.4.1" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=6.4.1">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=6.4.1">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=6.4.1">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=6.4.1" color="#222">
+
+
+
+
+
+
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    version: '6.4.1',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: false,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  
+
+
+
+
+  <meta name="description" content="TCP三次握手过程，ACK，SYN的含义，TCP滑动窗口，超时重传 TCP报文格式  1）序号：Seq序号，占32位，用来标识从TCP源端向目的端发送的字节流，发起方发送数据时对此进行标记。2）确认序号：Ack序号，占32位，只有ACK标志位为1时，确认序号字段才有效，Ack=Seq+1。3）标志位：共6个，即URG、ACK、PSH、RST、SYN、FIN等，具体含义如下：  A）URG：紧急指针">
+<meta name="keywords" content="后端">
+<meta property="og:type" content="website">
+<meta property="og:title" content="成都卓航网络科技公司面试">
+<meta property="og:url" content="http://blog.timilong.com/basck_posts/面试-成都卓航后端工程师面试.html">
+<meta property="og:site_name" content="Timilong&#39;s blog">
+<meta property="og:description" content="TCP三次握手过程，ACK，SYN的含义，TCP滑动窗口，超时重传 TCP报文格式  1）序号：Seq序号，占32位，用来标识从TCP源端向目的端发送的字节流，发起方发送数据时对此进行标记。2）确认序号：Ack序号，占32位，只有ACK标志位为1时，确认序号字段才有效，Ack=Seq+1。3）标志位：共6个，即URG、ACK、PSH、RST、SYN、FIN等，具体含义如下：  A）URG：紧急指针">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="http://www.2cto.com/uploadfile/2013/1022/20131022025345890.png">
+<meta property="og:image" content="http://www.2cto.com/uploadfile/2013/1022/20131022025346218.png">
+<meta property="og:image" content="http://www.2cto.com/uploadfile/2013/1022/20131022025350523.png">
+<meta property="og:image" content="http://www.2cto.com/uploadfile/2013/1022/20131022025351387.png">
+<meta property="og:image" content="http://blog.chinaunix.net/attachment/201402/17/26275986_1392626885IL2q.png?_=3554182">
+<meta property="og:image" content="http://blog.chinaunix.net/attachment/201402/17/26275986_1392627107R2FQ.png?_=3554182">
+<meta property="og:image" content="http://blog.chinaunix.net/attachment/201402/17/26275986_1392627107R2FQ.png?_=3554182">
+<meta property="og:image" content="http://blog.chinaunix.net/attachment/201402/17/26275986_13926272726XTE.png?_=3554182">
+<meta property="og:image" content="http://blog.chinaunix.net/attachment/201402/17/26275986_13926272726XTE.png?_=3554182">
+<meta property="og:image" content="http://blog.chinaunix.net/attachment/201402/17/26275986_1392627535jeG5.png?_=3554182">
+<meta property="og:image" content="http://blog.chinaunix.net/attachment/201402/17/26275986_1392629245IG6b.png?_=3554182">
+<meta property="og:image" content="http://blog.chinaunix.net/attachment/201402/17/26275986_1392629231ue0O.png?_=3554182">
+<meta property="og:image" content="https://pic4.zhimg.com/6af17bf9a1a6eadb50d5545313c1db77_b.png">
+<meta property="og:updated_time" content="2018-10-19T02:42:16.252Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="成都卓航网络科技公司面试">
+<meta name="twitter:description" content="TCP三次握手过程，ACK，SYN的含义，TCP滑动窗口，超时重传 TCP报文格式  1）序号：Seq序号，占32位，用来标识从TCP源端向目的端发送的字节流，发起方发送数据时对此进行标记。2）确认序号：Ack序号，占32位，只有ACK标志位为1时，确认序号字段才有效，Ack=Seq+1。3）标志位：共6个，即URG、ACK、PSH、RST、SYN、FIN等，具体含义如下：  A）URG：紧急指针">
+<meta name="twitter:image" content="http://www.2cto.com/uploadfile/2013/1022/20131022025345890.png">
+
+
+
+
+
+
+  <link rel="canonical" href="http://blog.timilong.com/basck_posts/面试-成都卓航后端工程师面试.html"/>
+
+
+
+<script type="text/javascript" id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>成都卓航网络科技公司面试 | Timilong's blog</title>
+  
+
+
+
+
+
+
+
+
+
+  <noscript>
+  <style type="text/css">
+    .use-motion .motion-element,
+    .use-motion .brand,
+    .use-motion .menu-item,
+    .sidebar-inner,
+    .use-motion .post-block,
+    .use-motion .pagination,
+    .use-motion .comments,
+    .use-motion .post-header,
+    .use-motion .post-body,
+    .use-motion .collection-title { opacity: initial; }
+
+    .use-motion .logo,
+    .use-motion .site-title,
+    .use-motion .site-subtitle {
+      opacity: initial;
+      top: initial;
+    }
+
+    .use-motion {
+      .logo-line-before i { left: initial; }
+      .logo-line-after i { right: initial; }
+    }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Timilong's blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+    
+      
+        <p class="site-subtitle">Cease to struggle and you cease to live.--Thomas Carlyle</p>
+      
+    
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="Toggle navigation bar">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+          
+          <li class="menu-item menu-item-home">
+    <a href="/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-home"></i> <br />首页</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-tags">
+    <a href="/tags/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />标签</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-categories">
+    <a href="/categories/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-th"></i> <br />分类</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+    <a href="/archives/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />归档</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-about">
+    <a href="/about/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-user"></i> <br />关于</a>
+  </li>
+
+      
+      
+    </ul>
+  
+
+  
+    
+
+    
+    
+      
+      
+    
+      
+      
+    
+      
+      
+    
+      
+      
+    
+      
+      
+    
+    
+
+  
+
+
+  
+
+  
+</nav>
+
+
+
+  
+
+
+
+</div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+    
+    
+    <div class="post-block page">
+      <header class="post-header">
+
+<h1 class="post-title" itemprop="name headline">成都卓航网络科技公司面试</h1>
+
+<div class="post-meta">
+  
+  
+
+
+
+</div>
+
+</header>
+
+      
+      
+      
+      <div class="post-body">
+        
+        
+          <h3 id="TCP三次握手过程，ACK，SYN的含义，TCP滑动窗口，超时重传"><a href="#TCP三次握手过程，ACK，SYN的含义，TCP滑动窗口，超时重传" class="headerlink" title="TCP三次握手过程，ACK，SYN的含义，TCP滑动窗口，超时重传"></a>TCP三次握手过程，ACK，SYN的含义，TCP滑动窗口，超时重传</h3><ol>
+<li>TCP报文格式<br><img src="http://www.2cto.com/uploadfile/2013/1022/20131022025345890.png" alt="tcp报文格式"></li>
+</ol>
+<p>1）序号：Seq序号，占32位，用来标识从TCP源端向目的端发送的字节流，发起方发送数据时对此进行标记。<br>2）确认序号：Ack序号，占32位，只有ACK标志位为1时，确认序号字段才有效，Ack=Seq+1。<br>3）标志位：共6个，即URG、ACK、PSH、RST、SYN、FIN等，具体含义如下：<br>  A）URG：紧急指针（urgent pointer）有效。<br>  B）ACK：确认序号有效。<br>  C）PSH：接收方应该尽快将这个报文交给应用层。<br>  D）RST：重置连接。<br>  E）SYN：发起一个新连接。<br>  F）FIN：释放一个连接。</p>
+<p>需要注意的是：<br>  A）不要将确认序号Ack与标志位中的ACK搞混了。<br>  B）确认方Ack=发起方Req+1，两端配对。</p>
+<a id="more"></a>
+<ol start="2">
+<li>TCP三次握手<br>所谓三次握手（Three-Way Handshake）即建立TCP连接，就是指建立一个TCP连接时，需要客户端和服务端总共发送3个包以确认连接的建立。在socket编程中，这一过程由客户端执行connect来触发，整个流程如下图所示：<br><img src="http://www.2cto.com/uploadfile/2013/1022/20131022025346218.png" alt="tcp三次握手"></li>
+</ol>
+<p>1）第一次握手：Client将标志位SYN置为1，随机产生一个值seq=J，并将该数据包发送给Server，Client进入SYN_SENT状态，等待Server确认。<br>2）第二次握手：Server收到数据包后由标志位SYN=1知道Client请求建立连接，Server将标志位SYN和ACK都置为1，ack=J+1，随机产生一个值seq=K，并将该数据包发送给Client以确认连接请求，Server进入SYN_RCVD状态。<br>3）第三次握手：Client收到确认后，检查ack是否为J+1，ACK是否为1，如果正确则将标志位ACK置为1，ack=K+1，并将该数据包发送给Server，Server检查ack是否为K+1，ACK是否为1，如果正确则连接建立成功，Client和Server进入ESTABLISHED状态，完成三次握手，随后Client与Server之间可以开始传输数据了。</p>
+<p>SYN攻击：<br>  在三次握手过程中，Server发送SYN-ACK之后，收到Client的ACK之前的TCP连接称为半连接（half-open connect），此时Server处于SYN_RCVD状态，当收到ACK后，Server转入ESTABLISHED状态。SYN攻击就是Client在短时间内伪造大量不存在的IP地址，并向Server不断地发送SYN包，Server回复确认包，并等待Client的确认，由于源地址是不存在的，因此，Server需要不断重发直至超时，这些伪造的SYN包将产时间占用未连接队列，导致正常的SYN请求因为队列满而被丢弃，从而引起网络堵塞甚至系统瘫痪。SYN攻击时一种典型的DDOS攻击，检测SYN攻击的方式非常简单，即当Server上有大量半连接状态且源IP地址是随机的，则可以断定遭到SYN攻击了，使用如下命令可以让之现行：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">#netstat -nap | grep SYN_RECV</span><br></pre></td></tr></table></figure>
+<!--more-->
+<ol start="3">
+<li>四次挥手<br>四次挥手（Four-Way Wavehand）即终止TCP连接，就是指断开一个TCP连接时，需要客户端和服务端总共发送4个包以确认连接的断开。在socket编程中，这一过程由客户端或服务端任一方执行close来触发，整个流程如下图所示：<br><img src="http://www.2cto.com/uploadfile/2013/1022/20131022025350523.png" alt="四次挥手"></li>
+</ol>
+<p>由于TCP连接时全双工的，因此，每个方向都必须要单独进行关闭，这一原则是当一方完成数据发送任务后，发送一个FIN来终止这一方向的连接，收到一个FIN只是意味着这一方向上没有数据流动了，即不会再收到数据了，但是在这个TCP连接上仍然能够发送数据，直到这一方向也发送了FIN。首先进行关闭的一方将执行主动关闭，而另一方则执行被动关闭，上图描述的即是如此。<br>  1）第一次挥手：Client发送一个FIN，用来关闭Client到Server的数据传送，Client进入FIN_WAIT_1状态。<br>  2）第二次挥手：Server收到FIN后，发送一个ACK给Client，确认序号为收到序号+1（与SYN相同，一个FIN占用一个序号），Server进入CLOSE_WAIT状态。<br>  3）第三次挥手：Server发送一个FIN，用来关闭Server到Client的数据传送，Server进入LAST_ACK状态。<br>  4）第四次挥手：Client收到FIN后，Client进入TIME_WAIT状态，接着发送一个ACK给Server，确认序号为收到序号+1，Server进入CLOSED状态，完成四次挥手。<br>上面是一方主动关闭，另一方被动关闭的情况，实际中还会出现同时发起主动关闭的情况，具体流程如下图：<br><img src="http://www.2cto.com/uploadfile/2013/1022/20131022025351387.png" alt="主动关闭"></p>
+<p>为什么建立连接是三次握手，而关闭连接却是四次挥手呢？<br>  这是因为服务端在LISTEN状态下，收到建立连接请求的SYN报文后，把ACK和SYN放在一个报文里发送给客户端。而关闭连接时，当收到对方的FIN报文时，仅仅表示对方不再发送数据了但是还能接收数据，己方也未必全部数据都发送给对方了，所以己方可以立即close，也可以发送一些数据给对方后，再发送FIN报文给对方来表示同意现在关闭连接，因此，己方ACK和FIN一般都会分开发送。</p>
+<ol start="4">
+<li>什么是TCP滑动窗口<br>TCP协议作为一个可靠的面向流的传输协议，其可靠性和流量控制由滑动窗口协议保证，而拥塞控制则由控制窗口结合一系列的控制算法实现。</li>
+</ol>
+<p>1) 滑动窗口协议<br>关于这部分自己不晓得怎么叙述才好，因为理解的部分更多，下面就用自己的理解来介绍下TCP的精髓：滑动窗口协议。<br>所谓滑动窗口协议:</p>
+<ol>
+<li>“窗口”对应的是一段可以被发送者发送的字节序列，其连续的范围称之为“窗口”；</li>
+<li><p>“滑动”则是指这段“允许发送的范围”是可以随着发送的过程而变化的，方式就是按顺序“滑动”。<br>2.1. TCP协议的两端分别为发送者A和接收者B，由于是全双工协议，因此A和B应该分别维护着一个独立的发送缓冲区和接收缓冲区，由于对等性（A发B收和B发A收），我们以A发送B接收的情况作为例子；<br>2.2. 发送窗口是发送缓存中的一部分，是可以被TCP协议发送的那部分，其实应用层需要发送的所有数据都被放进了发送者的发送缓冲区；<br>2.3. 发送窗口中相关的有四个概念：已发送并收到确认的数据（不再发送窗口和发送缓冲区之内）、已发送但未收到确认的数据（位于发送窗口之中）、允许发送但尚未发送的数据以及发送窗口外发送缓冲区内暂时不允许发送的数据；<br>2.4. 每次成功发送数据之后，发送窗口就会在发送缓冲区中按顺序移动，将新的数据包含到窗口中准备发送；</p>
+<p>TCP建立连接的初始，B会告诉A自己的接收窗口大小，比如为‘20’：字节31-50为发送窗口<br><img src="http://blog.chinaunix.net/attachment/201402/17/26275986_1392626885IL2q.png?_=3554182" alt=""></p>
+<p>A发送11个字节后，发送窗口位置不变，B接收到了乱序的数据分组：<br><img src="http://blog.chinaunix.net/attachment/201402/17/26275986_1392627107R2FQ.png?_=3554182" alt=""></p>
+<p><img src="http://blog.chinaunix.net/attachment/201402/17/26275986_1392627107R2FQ.png?_=3554182" alt=""></p>
+<p>只有当A成功发送了数据，即发送的数据得到了B的确认之后，才会移动滑动窗口离开已发送的数据；同时B则确认连续的数据分组，对于乱序的分组则先接收下来，避免网络重复传递：<br><img src="http://blog.chinaunix.net/attachment/201402/17/26275986_13926272726XTE.png?_=3554182" alt=""></p>
+<p><img src="http://blog.chinaunix.net/attachment/201402/17/26275986_13926272726XTE.png?_=3554182" alt=""></p>
+</li>
+</ol>
+<p>2) 流量控制<br>流量控制方面主要有两个要点需要掌握。1. 是TCP利用滑动窗口实现流量控制的机制；2. 是如何考虑流量控制中的传输效率。</p>
+<ol>
+<li><p>流量控制<br>所谓流量控制，主要是接收方传递信息给发送方，使其不要发送数据太快，是一种端到端的控制。主要的方式就是返回的ACK中会包含自己的接收窗口的大小，并且利用大小来控制发送方的数据发送：<br><img src="http://blog.chinaunix.net/attachment/201402/17/26275986_1392627535jeG5.png?_=3554182" alt=""><br>这里面涉及到一种情况，如果B已经告诉A自己的缓冲区已满，于是A停止发送数据；等待一段时间后，B的缓冲区出现了富余，于是给A发送报文告诉A我的rwnd大小为400，但是这个报文不幸丢失了，于是就出现A等待B的通知||B等待A发送数据的死锁状态。为了处理这种问题，TCP引入了持续计时器（Persistence timer），当A收到对方的零窗口通知时，就启用该计时器，时间到则发送一个1字节的探测报文，对方会在此时回应自身的接收窗口大小，如果结果仍未0，则重设持续计时器，继续等待。</p>
+</li>
+<li><p>传递效率<br>一个显而易见的问题是：单个发送字节单个确认，和窗口有一个空余即通知发送方发送一个字节，无疑增加了网络中的许多不必要的报文（请想想为了一个字节数据而添加的40字节头部吧！），所以我们的原则是尽可能一次多发送几个字节，或者窗口空余较多的时候通知发送方一次发送多个字节。对于前者我们广泛使用Nagle算法，即：<br>   (1. 若发送应用进程要把发送的数据逐个字节地送到TCP的发送缓存，则发送方就把第一个数据字节先发送出去，把后面的字节先缓存起来；<br>   (2. 当发送方收到第一个字节的确认后（也得到了网络情况和对方的接收窗口大小），再把缓冲区的剩余字节组成合适大小的报文发送出去；<br>   (3. 当到达的数据已达到发送窗口大小的一半或以达到报文段的最大长度时，就立即发送一个报文段；<br>对于后者我们往往的做法是让接收方等待一段时间，或者接收方获得足够的空间容纳一个报文段或者等到接受缓存有一半空闲的时候，再通知发送方发送数据。</p>
+</li>
+</ol>
+<p>3) 拥塞控制<br>网络中的链路容量和交换结点中的缓存和处理机都有着工作的极限，当网络的需求超过它们的工作极限时，就出现了拥塞。拥塞控制就是防止过多的数据注入到网络中，这样可以使网络中的路由器或链路不致过载。常用的方法就是：</p>
+<ol>
+<li>慢开始、拥塞控制</li>
+<li>快重传、快恢复<br>一切的基础还是慢开始，这种方法的思路是这样的：<br>2.1. 发送方维持一个叫做“拥塞窗口”的变量，该变量和接收端口共同决定了发送者的发送窗口；<br>2.2. 当主机开始发送数据时，避免一下子将大量字节注入到网络，造成或者增加拥塞，选择发送一个1字节的试探报文；<br>2.3. 当收到第一个字节的数据的确认后，就发送2个字节的报文；<br>2.4. 若再次收到2个字节的确认，则发送4个字节，依次递增2的指数级；<br>2.5. 最后会达到一个提前预设的“慢开始门限”，比如24，即一次发送了24个分组，此时遵循下面的条件判定：<pre><code>1. cwnd &lt; ssthresh， 继续使用慢开始算法；
+2. cwnd &gt; ssthresh，停止使用慢开始算法，改用拥塞避免算法；
+3. cwnd = ssthresh，既可以使用慢开始算法，也可以使用拥塞避免算法；
+</code></pre>2.6. 所谓拥塞避免算法就是：每经过一个往返时间RTT就把发送方的拥塞窗口+1，即让拥塞窗口缓慢地增大，按照线性规律增长；<br>2.7. 当出现网络拥塞，比如丢包时，将慢开始门限设为原先的一半，然后将cwnd设为1，执行慢开始算法（较低的起点，指数级增长）；<br><img src="http://blog.chinaunix.net/attachment/201402/17/26275986_1392629245IG6b.png?_=3554182" alt=""><br>上述方法的目的是在拥塞发生时循序减少主机发送到网络中的分组数，使得发生拥塞的路由器有足够的时间把队列中积压的分组处理完毕。慢开始和拥塞控制算法常常作为一个整体使用，而快重传和快恢复则是为了减少因为拥塞导致的数据包丢失带来的重传时间，从而避免传递无用的数据到网络。快重传的机制是：<pre><code>1. 接收方建立这样的机制，如果一个包丢失，则对后续的包继续发送针对该包的重传请求；
+2. 一旦发送方接收到三个一样的确认，就知道该包之后出现了错误，立刻重传该包；
+3. 此时发送方开始执行“快恢复”算法：
+    1. 慢开始门限减半；
+    2. cwnd设为慢开始门限减半后的数值；
+    3. 执行拥塞避免算法（高起点，线性增长);
+</code></pre><img src="http://blog.chinaunix.net/attachment/201402/17/26275986_1392629231ue0O.png?_=3554182" alt=""></li>
+</ol>
+<ol start="5">
+<li>超时重传<br>与数据链路层的ARQ协议相类似， TCP使用超时重发的重传机制 。即： TCP每发送一个报文段，就对此报文段设置一个超时重传计时器 。此计时器设置的超时重传时间 RTO （Retransmission Time－Out）应当略大于TCP报文段的平均往返时延RTT，一般可取 RTO ＝2RTT。但是，也可以根据具体情况人为 调整RTO 的值，例如可以设置此超时重传时间 RTO ＝90秒。 当超过了规定的超时重传时间还未收到对此TCP报文段的预期确认信息，则必须重新传输此TCP报文段 。注意，TCP在使用滑动窗口时，可以等效为数据链路层讨论过的连续ARQ的情况。因此某TCP报文段超时，则只重传此报文段。而其后已经成功传送的报文段不在此重传的范围。</li>
+</ol>
+<p>TCP共使用以下四种计时器，即重传计时器、坚持计时器、保活计时器和时间等待计时器 。这几个计时器的主要特点如下：<br>  1、重传计时器<br>     当TCP发送报文段时，就创建该特定报文段的重传计时器 。可能发生两种情况：<br>    （1）、若在计时器截止时间到（ 通常是60秒 ）之前收到了对此特定报文段的确认，则撤销此计时器。<br>    （2）、若在收到了对此特定报文段的确认之前计时器截止期到，则重传此报文段，并将计时器复位。</p>
+<p>  2、坚持计时器<br>    为了对付零窗口大小通知，TCP需要另一个计时器。假定接收TCP宣布了窗口大小为零。发送TCP就停止传送报文段，直到接收TCP发送确认并宣布一个非零的窗口大小。但这个确认可能会丢失。我们知道在TCP中，对确认是不需要发送确认的。若确认丢失了，接收TCP并不知道，而是会认为它已经完成任务了，并等待着发送TCP接着会发送更多的报文段。但发送TCP由于没有收到确认，就等待对方发送确认来通知窗口的大小。双方的TCP都在永远地等待着对方。<br>    要打开这种死锁，TCP为每一个连接使用一个坚持计时器。 当发送TCP收到一个窗口大小为零的确认时，就启动坚持计时器 。 当坚持计时器期限到时，发送TCP就发送一个特殊的报文段， 叫做 探测报文段 。这个报文段只有一个字节的数据。它有一个序号，但它的序号永远不需要确认；甚至在计算对其他部分的数据的确认时该序号也被忽略。探测报文段提醒对端：确认已丢失，必须重传。<br>    坚持计时器的值设置为重传时间的数值。但是，若没有收到从接收端来的响应，则需发送另一个探测报文段，并将坚持计时器的值加倍和复位。发送端继续发送探测报文段，将坚持计时器设定的值加倍和复位，直到这个值增大到门限值（ 通常是60秒 ）为止。在这以后，发送端每隔60秒就发送一个探测报文段，直到窗口重新打开。</p>
+<p>  3、保活计时器<br>     保活计时器使用在某些实现中，用来防止在两个TCP之间的连接出现长时期的空闲 。假定客户打开了到服务器的连接，传送了一些数据，然后就保持静默了。也许这个客户出故障了。在这种情况下，这个连接将永远地处理打开状态。<br>     要解决这种问题，在大多数的实现中都是使服务器设置保活计时器。每当服务器收到客户的信息，就将计时器复位。保活计时器 通常设置为2小时 。若服务器过了2小时还没有收到客户的信息，它就发送探测报文段。若发送了10个探测报文段（每一个相隔75秒）还没有响应，就假定客户出了故障，因而就终止该连接。</p>
+<p>  4、时间等待计时器<br>    时间等待计时器是在连接终止期间使用的 。当TCP关闭一个连接时，它并不认为这个连接马上就真正地关闭了。在时间等待期间中，连接还处于一种中间过渡状态。这就可以使重复的FIN报文段（如果有的话）可以到达目的站因而可将其丢弃。这个计时器的值 通常设置为一个报文段的寿命期待值的两倍 。</p>
+<h3 id="django-Flask-Tornado异同，怎么选择"><a href="#django-Flask-Tornado异同，怎么选择" class="headerlink" title="django/Flask/Tornado异同，怎么选择"></a>django/Flask/Tornado异同，怎么选择</h3><ol>
+<li><p>Tornado</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">1、概念：</span><br><span class="line">    Tornado全称Tornado Web Server，是一个用Python语言写成的Web服务器兼Web应用框架，由FriendFeed公司在自己的网站FriendFeed中使用，被Facebook收购以后框架在2009年9月以开源软件形式开放给大众。</span><br><span class="line"></span><br><span class="line">2、特点：</span><br><span class="line">    1、作为Web框架，是一个轻量级的Web框架，类似于另一个Python web框架Web.py，其拥有异步非阻塞IO的处理方式。</span><br><span class="line">    2、作为Web服务器，Tornado有较为出色的抗负载能力，官方用nginx反向代理的方式部署Tornado和其它Python web应用框架进行对比，结果最大浏览量超过第二名近40%。</span><br><span class="line"></span><br><span class="line">3、性能：</span><br><span class="line">    1、Tornado有着优异的性能。它试图解决C10k问题，即处理大于或等于一万的并发</span><br><span class="line">    2、Tornado框架和服务器一起组成一个WSGI的全栈替代品。单独在WSGI容器中也可以使用</span><br><span class="line">    3、tornado网络框架或者tornaod http服务器，有一定的局限性，为了最大化的利用</span><br><span class="line"></span><br><span class="line">4、 特点</span><br><span class="line">    Tornado走的是少而精的方向，注重的是性能优越，它最出名的是异步非阻塞的设计方式。</span><br><span class="line">    1、HTTP服务器：Tornado框架和服务器一起组成一个WSGI的全栈替代品</span><br><span class="line">    2、异步编程</span><br><span class="line">    3、WebSockets</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>Django</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">1、Django是走大而全的方向，注重的是高效开发，它最出名的是其全自动化的管理后台：只需要使用起ORM，做简单的对象定义，它就能自动生成数据库结构、以及全功能的管理后台。</span><br><span class="line"></span><br><span class="line">2、Django提供的方便，也意味着Django内置的ORM跟框架内的其他模块耦合程度高，应用程序必须使用Django内置的ORM，否则就不能享受到框架内提供的种种基于其ORM的便利。</span><br><span class="line"></span><br><span class="line">3、特点：</span><br><span class="line">    1、session功能</span><br><span class="line">    2、后台管理</span><br><span class="line">    3、ORM</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>Flask</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">1、Flask 是一个 web 框架。也就是说 Flask 为你提供工具，库和技术来允许你构建一个 web 应用程序。这个 wdb 应用程序可以使一些 web 页面、博客、wiki、基于 web 的日历应用或商业网站。</span><br><span class="line"></span><br><span class="line">2、Flask 属于微框架（micro-framework）这一类别，微架构通常是很小的不依赖于外部库的框架。这既有优点也有缺点，优点是框架很轻量，更新时依赖少，并且专注安全方面的 bug，缺点是，你不得不自己做更多的工作，或通过添加插件增加自己的依赖列表。Flask 的依赖如下：</span><br><span class="line">  * Werkzeug 一个 WSGI 工具包</span><br><span class="line">  * jinja2 模板引擎</span><br><span class="line"></span><br><span class="line">3、维基百科 WSGI 的介绍：</span><br><span class="line">  Web服务器网关接口（Python Web Server Gateway Interface，缩写为WSGI）是为Python语言定义的Web服务器和Web应用程序或框架之间的一种简单而通用的接口)。自从WSGI被开发出来以后，许多其它语言中也出现了类似接口。</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<h3 id="react与vue使用场景和深度"><a href="#react与vue使用场景和深度" class="headerlink" title="react与vue使用场景和深度"></a>react与vue使用场景和深度</h3><p>1）开发风格的偏好：<br>  React 推荐的做法是 JSX + inline style，也就是把 HTML 和 CSS 全都整进 JavaScript 了。、<br>  Vue 的默认 API 是以简单易上手为目标，但是进阶之后推荐的是使用 webpack + vue-loader 的单文件组件格式：<br>  <img src="https://pic4.zhimg.com/6af17bf9a1a6eadb50d5545313c1db77_b.png" alt=""><br>  依然是熟悉的 HTML 和 CSS，但是可以放在一个文件里。而且你还可以使用你想要的预处理器，比如 LESS, Jade, Coffee, Babel，都可以。</p>
+<p>2) React 的社区/组件生态比 Vue 大很多</p>
+<p>3) 使用场景上：<br>  React 配合严格的 Flux 架构，适合超大规模多人协作的复杂项目。<br>  理论上 Vue 配合类似架构也可以胜任这样的用例，但缺少类似 Flux 这样的官方架构。小快灵的项目上，Vue 和 React 的选择更多是开发风格的偏好。对于需要对 DOM 进行很多自定义操作的项目，Vue 的灵活性优于 React。</p>
+<p>4) 在超大量数据的首屏渲染速度上<br>  React 有一定优势，因为 Vue 的渲染机制启动时候要做的工作比较多，而且 React 支持服务端渲染。</p>
+<p>5) 其它<br>如果你喜欢用（或希望能够用）模板搭建应用，请使用Vue<br>如果你喜欢简单和“能用就行”的东西，请使用Vue<br>如果你的应用需要尽可能的小和快，请使用Vue<br>如果你计划构建一个大型应用程序，请使用React<br>如果你想要一个同时适用于Web端和原生App的框架，请选择React<br>如果你想要最大的生态圈，请使用React</p>
+<h3 id="vue2-0相比vue1-0的新增的特性"><a href="#vue2-0相比vue1-0的新增的特性" class="headerlink" title="vue2.0相比vue1.0的新增的特性"></a>vue2.0相比vue1.0的新增的特性</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">1）渲染函数</span><br><span class="line"></span><br><span class="line">尽管渲染层全面更新，Vue 2.0 兼容了绝大部分的 1.0 模板语法，仅废弃掉了其中的一小部分。这些模板在背后被编译成了 Virtual DOM 渲染函数，但是如果用户需要更复杂的 JavaScript，也可以选择在其中直接撰写渲染函数。同时我们为喜欢 JSX 的同学提供了支持选项</span><br><span class="line">渲染函数使得这种基于组件的开发模式变得异常强大，并打开了各种可能性——比如现在新的 transition 系统就是完全基于组件的，内部由渲染函数实现。</span><br><span class="line"></span><br><span class="line">2）服务端渲染</span><br><span class="line"></span><br><span class="line">Vue 2.0 支持服务端渲染 (SSR)，并且是流式的，可以做组件级的缓存，这使得极速渲染成为可能。同时，vue-router 和 vuex 2.0 也都支持了可以通用路由和客户端状态“hydration”的服务端渲染。你可以通过 vue-hackernews-2.0 的 demo app 了解到它们是如何协同工作的。</span><br><span class="line"></span><br><span class="line">3）辅助库</span><br><span class="line"></span><br><span class="line">官方支持的库和工具——vue-router、vuex、vue-loader 和 vueify——都已经升级并支持 2.0 了。vue-cli 现在已经默认生成 2.0 的脚手架了。</span><br><span class="line"></span><br><span class="line">  3.1 vue-router</span><br><span class="line">    支持多命名的 &lt;router-view&gt;</span><br><span class="line">    通过 &lt;router-link&gt; 组件改进了导航功能</span><br><span class="line">    简化了导航的 hooks API</span><br><span class="line">    可定制的滚动行为控制</span><br><span class="line">    更多复杂示例</span><br><span class="line"></span><br><span class="line">  3.2 vuex</span><br><span class="line">  简化了组件内的用法</span><br><span class="line">  通过改进 modules API 提供更好的代码组织方式</span><br><span class="line">  可聚合的异步 actions</span><br></pre></td></tr></table></figure>
+<h3 id="python爬虫爬取单个页面的所有连接的去重处理和算法优化"><a href="#python爬虫爬取单个页面的所有连接的去重处理和算法优化" class="headerlink" title="python爬虫爬取单个页面的所有连接的去重处理和算法优化"></a>python爬虫爬取单个页面的所有连接的去重处理和算法优化</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">1） 哈希url，把哈希值存到一个set() 里面，抓之前哈希url之后，去判断一下set里面有没有有着url值。</span><br><span class="line">2） scrapy框架下可以在pipeline中写一个Duplicates filter</span><br><span class="line">from scrapy.exceptions import DropItem</span><br><span class="line"></span><br><span class="line">class DuplicatesPipeline(object):</span><br><span class="line"></span><br><span class="line">    def __init__(self):</span><br><span class="line">        self.ids_seen = set() #注意到set型数据的应用</span><br><span class="line"></span><br><span class="line">    def process_item(self, item, spider):</span><br><span class="line">        if item[&apos;id&apos;] in self.ids_seen:</span><br><span class="line">            raise DropItem(&quot;Duplicate item found: %s&quot; % item)</span><br><span class="line">        else:</span><br><span class="line">            self.ids_seen.add(item[&apos;id&apos;])</span><br><span class="line">            return item</span><br><span class="line"></span><br><span class="line">3） Bloom-Filter，即布隆过滤器</span><br><span class="line">4） 假设网络上有一亿个page，对应了一亿个url， 由于资源限制我不能直接存储所有的url，甚至hash之后存储都存不下，但是我可以发现，网络上总共只有1万个网站，平均每个网站有1万个page，换个方式。我只要维护两个hash表，一个用来记录我所有抓取过的host，一个用来记录正在抓取的网站的filename，这样只要两个hash表就可以对1亿个url去重了。然后你需要一个数据库，抓取到一个网页之后判断里面的链接，指向当前网站就继续抓，否则，这条url存到数据库里面，当前网站抓取结束，继续处理下一个网站...</span><br></pre></td></tr></table></figure>
+<h3 id="堆排序处理大量数中数值搜索问题-大数据处理堆实现N个数据找K个最大数据和堆排序"><a href="#堆排序处理大量数中数值搜索问题-大数据处理堆实现N个数据找K个最大数据和堆排序" class="headerlink" title="堆排序处理大量数中数值搜索问题(大数据处理堆实现N个数据找K个最大数据和堆排序)"></a>堆排序处理大量数中数值搜索问题(大数据处理堆实现N个数据找K个最大数据和堆排序)</h3><p>堆排序（Heapsort）是指利用堆这种数据结构所设计的一种排序算法。</p>
+<p>堆积是一个近似完全二叉树的结构，并同时满足堆积的性质：<br>  即子结点的键值或索引总是小于（或者大于）它的父节点。</p>
+<p>通常堆是通过一维数组来实现的。在起始数组为 0 的情形中：<br>  父节点i的左子节点在位置 (2<em>i+1);<br>  父节点i的右子节点在位置 (2</em>i+2);<br>  子节点i的父节点在位置 floor((i-1)/2);</p>
+<p>堆的操作<br>  在堆的数据结构中，堆中的最大值总是位于根节点。堆中定义以下几种操作：<br>    最大堆调整（Min_Heapify）：将堆的末端子结点作调整，使得子结点永远小于父结点<br>    创建最大堆（Build_Min_Heap）：将堆所有数据重新排序</p>
+<p>注：堆排序不是一种稳定排序。</p>
+<p>用小根堆得办法寻找最大的K个数<br>  用容量为K的最小堆来存储最大的K个数。最小堆的堆顶元素就是最大K个数中的最小的一个。<br>  每次扫描一个数据X，如果X比堆顶元素Y小，则不需要改变原来的堆。如果X比堆顶元素大，<br>  那么用X替换堆顶元素Y，在替换之后，X可能破坏了最小堆的结构，需要调整堆来维持堆的性质。<br>  调整过程时间复杂度为O(logK)。 全部的时间复杂度为O(N*logK)。<br>  这种方法当数据量比较大的时候，比较方便。因为对所有的数据只会遍历一次<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br></pre></td><td class="code"><pre><span class="line">#include &lt;iostream&gt;  </span><br><span class="line">#include &lt;cstdlib&gt;  </span><br><span class="line">#include &lt;assert.h&gt;  </span><br><span class="line">using namespace std;  </span><br><span class="line">void AdjustDown(int* a,size_t k,size_t i)  //向下调整  </span><br><span class="line">&#123;  </span><br><span class="line">    assert(a);  </span><br><span class="line">    size_t parent=i;  </span><br><span class="line">    size_t child=i*2+1;  </span><br><span class="line">    while(child&lt;k)  </span><br><span class="line">    &#123;  </span><br><span class="line">        if(child+1&lt;k&amp;&amp;a[child+1]&lt;a[child])  </span><br><span class="line">            ++child;  </span><br><span class="line">        if(a[child]&lt;a[parent])  </span><br><span class="line">        &#123;  </span><br><span class="line">            swap(a[child],a[parent]);  </span><br><span class="line">            parent=child;  </span><br><span class="line">            child=parent*2+1;  </span><br><span class="line">        &#125;  </span><br><span class="line">        else  </span><br><span class="line">            break;  </span><br><span class="line">    &#125;  </span><br><span class="line">&#125;  </span><br><span class="line"></span><br><span class="line">void GetTopK(int* a,int* TopK,size_t n,size_t k) //N个数据找最大的前K个  </span><br><span class="line">&#123;  </span><br><span class="line">    for(size_t i=0;i&lt;k;++i)  </span><br><span class="line">    &#123;  </span><br><span class="line">        TopK[i]=a[i];  </span><br><span class="line">    &#125;  </span><br><span class="line">    //先找第一个非叶子结点，依次向下调整建小堆  </span><br><span class="line">    for(int i=(k-2)/2;i&gt;=0;--i)  </span><br><span class="line">    &#123;  </span><br><span class="line">        AdjustDown(TopK,k,i);  </span><br><span class="line">    &#125;  </span><br><span class="line">    //选最大的前K个数据  </span><br><span class="line">    for(size_t i=k;i&lt;n;++i)  </span><br><span class="line">    &#123;  </span><br><span class="line">        if(a[i]&gt;TopK[0])  </span><br><span class="line">        &#123;  </span><br><span class="line">            TopK[0]=a[i];  </span><br><span class="line">            AdjustDown(TopK,k,0);  </span><br><span class="line">        &#125;  </span><br><span class="line">    &#125;  </span><br><span class="line">&#125;  </span><br><span class="line"></span><br><span class="line">void HeapSort(int a[],size_t n)  //堆排序:降序  </span><br><span class="line">&#123;  </span><br><span class="line">    //建小堆  </span><br><span class="line">    for(int i=(n-2)/2;i&gt;=0;--i)  </span><br><span class="line">    &#123;  </span><br><span class="line">        AdjustDown(a,n,i);  </span><br><span class="line">    &#125;  </span><br><span class="line">    //交换调整  </span><br><span class="line">    int end=n-1;  </span><br><span class="line">    while(end&gt;0)  </span><br><span class="line">    &#123;  </span><br><span class="line">        swap(a[0],a[end]);  </span><br><span class="line">        AdjustDown(a,end,0);  </span><br><span class="line">        --end;  </span><br><span class="line">    &#125;  </span><br><span class="line">&#125;  </span><br><span class="line">void TestNK()  </span><br><span class="line">&#123;  </span><br><span class="line">    const int N=1000;  </span><br><span class="line">    const int K=5;  </span><br><span class="line">    int a[N]=&#123;0&#125;;  //存储N个数据  </span><br><span class="line">    int TopK[K]=&#123;0&#125;;  //存储K个最大数据  </span><br><span class="line">    for(size_t i=0;i&lt;N;++i)  </span><br><span class="line">    &#123;  </span><br><span class="line">        a[i]=rand()%N;  </span><br><span class="line">    &#125;  </span><br><span class="line">    a[10]=1000;  </span><br><span class="line">    a[100]=2000;  </span><br><span class="line">    a[200]=3000;  </span><br><span class="line">    a[300]=4000;  </span><br><span class="line">    a[400]=5000;  </span><br><span class="line"></span><br><span class="line">    GetTopK(a,TopK,N,K);  </span><br><span class="line">    for(size_t i=0;i&lt;K;++i)  </span><br><span class="line">    &#123;  </span><br><span class="line">        cout&lt;&lt;TopK[i]&lt;&lt;&quot; &quot;;  </span><br><span class="line">    &#125;  </span><br><span class="line">    cout&lt;&lt;endl;  </span><br><span class="line">&#125;  </span><br><span class="line"></span><br><span class="line">void TestHeapSort()  </span><br><span class="line">&#123;  </span><br><span class="line">    int a[]=&#123;19,17,18,14,16,13,15,12,10,11&#125;;  </span><br><span class="line">    HeapSort(a,sizeof(a)/sizeof(a[0]));  </span><br><span class="line">&#125;  </span><br><span class="line"></span><br><span class="line">int main()  </span><br><span class="line">&#123;  </span><br><span class="line">    TestNK();  </span><br><span class="line">    TestHeapSort();  </span><br><span class="line">    system(&quot;pause&quot;);  </span><br><span class="line">    return 0;  </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h3 id="SEO-搜索引擎优化"><a href="#SEO-搜索引擎优化" class="headerlink" title="SEO(搜索引擎优化)"></a>SEO(搜索引擎优化)</h3><p>1) 语义化html标签<br>2) 合理的title, description, keywords;<br>3) 重要的html代码放前面<br>4) 少用iframe, 搜索引擎不会抓取iframe中的内容<br>5) 图片加上alt<br>6) 减少外链</p>
+<h3 id="Linux的20个命令及介绍"><a href="#Linux的20个命令及介绍" class="headerlink" title="Linux的20个命令及介绍"></a>Linux的20个命令及介绍</h3><p><a href="http://blog.csdn.net/ljianhui/article/details/11100625/" target="_blank" rel="noopener">http://blog.csdn.net/ljianhui/article/details/11100625/</a><br><a href="http://blog.csdn.net/ljianhui/article/details/11100625/" target="_blank" rel="noopener">http://blog.csdn.net/ljianhui/article/details/11100625/</a><br><a href="http://os.51cto.com/art/201308/406659.htm" target="_blank" rel="noopener">http://os.51cto.com/art/201308/406659.htm</a><br><a href="http://os.51cto.com/art/201308/406659.htm" target="_blank" rel="noopener">http://os.51cto.com/art/201308/406659.htm</a></p>
+<h3 id="vim的三个模式"><a href="#vim的三个模式" class="headerlink" title="vim的三个模式"></a>vim的三个模式</h3><p>1) 命令行模式 （command mode/一般模式）<br>　　任何时候，不管用户处于何种模式，只要按一下“ESC”键，即可使Vi进入命令行模式；我们在shell环境（提示符为$）下输入启动Vi命令，进入编辑器时，也是处于该模式下。<br>　　在该模式下，用户可以输入各种合法的Vi命令，用于管理自己的文档。此时从键盘上输入的任何字符都被当做编辑命令来解释，若输入的字符是合法的Vi命令，则Vi在接受用户命令之后完成相应的动作。但需注意的是，所输入的命令并不在屏幕上显示出来。若输入的字符不是Vi的合法命令，Vi会响铃报警。</p>
+<p>2) 文本输入模式 （input mode/编辑模式）<br>　　在命令模式下输入插入命令i（insert）、附加命令a （append）、打开命令o（open）、修改命令c（change）、取代命令r或替换命令s都可以进入文本输入模式。在该模式下，用户输入的任何字符都被Vi当做文件内容保存起来，并将其显示在屏幕上。在文本输入过程中，若想回到命令模式下，按”ESC”键即可。</p>
+<p>3) 末行模式 （last line mode/指令列命令模式）<br>　　末行模式也称ex转义模式。<br>　　Vi和Ex编辑器的功能是相同的，二者主要区别是用户界面。在Vi中，命令通常是单个键，例如i、a、o等；而在Ex中，命令是以按回车键结束的正文行。Vi有一个专门的“转义”命令，可访问很多面向行的Ex命令。在命令模式下，用户按“:”键即可进入末行模式下，此时Vi会在显示窗口的最后一行（通常也是屏幕的最后一行）显示一个“:”作为末行模式的提示符，等待用户输入命令。多数文件管理命令都是在此模式下执行的（如把编辑缓冲区的内容写到文件中等）。末行命令执行完后，Vi自动回到命令模式。</p>
+<p>4) 常用vim命令<br><a href="http://www.cnblogs.com/Nice-Boy/p/6124177.html" target="_blank" rel="noopener">常用vim命令</a><br><a href="http://www.cnblogs.com/Nice-Boy/p/6124177.html" target="_blank" rel="noopener">http://www.cnblogs.com/Nice-Boy/p/6124177.html</a></p>
+<h3 id="从浏览器输入一个URL到请求完成的详细过程"><a href="#从浏览器输入一个URL到请求完成的详细过程" class="headerlink" title="从浏览器输入一个URL到请求完成的详细过程"></a>从浏览器输入一个URL到请求完成的详细过程</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br><span class="line">151</span><br><span class="line">152</span><br><span class="line">153</span><br><span class="line">154</span><br><span class="line">155</span><br><span class="line">156</span><br><span class="line">157</span><br><span class="line">158</span><br><span class="line">159</span><br><span class="line">160</span><br><span class="line">161</span><br><span class="line">162</span><br><span class="line">163</span><br><span class="line">164</span><br><span class="line">165</span><br><span class="line">166</span><br></pre></td><td class="code"><pre><span class="line">(1. 输入一个url地址</span><br><span class="line">(2. 浏览器查找域名的ip地址</span><br><span class="line">  导航的第一步是通过访问的域名找出其IP地址。DNS查找过程如下：</span><br><span class="line">    1. 浏览器缓存 – 浏览器会缓存DNS记录一段时间。 有趣的是，操作系统没有告诉浏览器储存DNS记录的时间，这样不同浏览器会储存个自固定的一个时间（2分钟到30分钟不等）。</span><br><span class="line">    2. 系统缓存 – 如果在浏览器缓存里没有找到需要的记录，浏览器会做一个系统调用（windows里是gethostbyname）。这样便可获得系统缓存中的记录。</span><br><span class="line">    3. 路由器缓存 – 接着，前面的查询请求发向路由器，它一般会有自己的DNS缓存。</span><br><span class="line">    4. ISP DNS 缓存 – 接下来要check的就是ISP缓存DNS的服务器。在这一般都能找到相应的缓存记录。</span><br><span class="line">    5. 递归搜索 – 你的ISP的DNS服务器从跟域名服务器开始进行递归搜索，从.com顶级域名服务器到Facebook的域名服务器。一般DNS服务器的缓存中会有.com域名服务器中的域名，所以到顶级服务器的匹配过程不是那么必要了。</span><br><span class="line">    6. DNS递归查找如下图所示：</span><br><span class="line">    http://igoro.com/wordpress/wp-content/uploads/2010/02/500pxAn_example_of_theoretical_DNS_recursion_svg.png</span><br><span class="line"></span><br><span class="line">  DNS有一点令人担忧，这就是像wikipedia.org 或者 facebook.com这样的整个域名看上去只是对应一个单独的IP地址。还好，有几种方法可以消除这个瓶颈：</span><br><span class="line">    1. 循环DNS是DNS查找时返回多个IP时的解决方案。举例来说，Facebook.com实际上就对应了四个IP地址。</span><br><span class="line">    2. 负载平衡器是以一个特定IP地址进行侦听并将网络请求转发到集群服务器上的硬件设备。 一些大型的站点一般都会使用这种昂贵的高性能负载平衡器。</span><br><span class="line">    3. 地理 DNS 根据用户所处的地理位置，通过把域名映射到多个不同的IP地址提高可扩展性。这样不同的服务器不能够更新同步状态，但映射静态内容的话非常好。</span><br><span class="line">    4. Anycast是一个IP地址映射多个物理主机的路由技术。 美中不足，Anycast与TCP协议适应的不是很好，所以很少应用在那些方案中。</span><br><span class="line"></span><br><span class="line">  大多数DNS服务器使用Anycast来获得高效低延迟的DNS查找。</span><br><span class="line"></span><br><span class="line">3). 浏览器给web服务器发送一个HTTP GET请求</span><br><span class="line">  因为像Facebook主页这样的动态页面，打开后在浏览器缓存中很快甚至马上就会过期，毫无疑问他们不能从中读取。</span><br><span class="line">  所以，浏览器将把以下请求发送到Facebook所在的服务器：</span><br><span class="line">    GET http://facebook.com/ HTTP/1.1  </span><br><span class="line">    Accept: application/x-ms-application, image/jpeg, application/xaml+xml, [...]  </span><br><span class="line">    User-Agent: Mozilla/4.0 (compatible; MSIE 8.0; Windows NT 6.1; WOW64; [...]  </span><br><span class="line">    Accept-Encoding: gzip, deflate  </span><br><span class="line">    Connection: Keep-Alive  </span><br><span class="line">    Host: facebook.com  </span><br><span class="line">    Cookie: datr=1265876274-[...]; locale=en_US; lsd=WW[...]; c_user=2101[...]  </span><br><span class="line"></span><br><span class="line">  GET 这个请求定义了要读取的URL： “http://facebook.com/”。 浏览器自身定义 (User-Agent 头)， 和它希望接受什么类型的相应 (Acceptand Accept-Encoding 头). Connection头要求服务器为了后边的请求不要关闭TCP连接。</span><br><span class="line"></span><br><span class="line">  请求中也包含浏览器存储的该域名的cookies。可能你已经知道，在不同页面请求当中，cookies是与跟踪一个网站状态相匹配的键值。这样cookies会存储登录用户名，服务器分配的密码和一些用户设置等。Cookies会以文本文档形式存储在客户机里，每次请求时发送给服务器。</span><br><span class="line"></span><br><span class="line">  用来看原始HTTP请求及其相应的工具很多。作者比较喜欢使用fiddler，当然也有像FireBug这样其他的工具。这些软件在网站优化时会帮上很大忙。</span><br><span class="line"></span><br><span class="line">  除了获取请求，还有一种是发送请求，它常在提交表单用到。发送请求通过URL传递其参数(e.g.: http://robozzle.com/puzzle.aspx?id=85)。发送请求在请求正文头之后发送其参数。</span><br><span class="line"></span><br><span class="line">  像“http://facebook.com/”中的斜杠是至关重要的。这种情况下，浏览器能安全的添加斜杠。而像“http: //example.com/folderOrFile”这样的地址，因为浏览器不清楚folderOrFile到底是文件夹还是文件，所以不能自动添加 斜杠。这时，浏览器就不加斜杠直接访问地址，服务器会响应一个重定向，结果造成一次不必要的握手。</span><br><span class="line"></span><br><span class="line">(4. facebook服务的永久重定向响应</span><br><span class="line">  图中所示为Facebook服务器发回给浏览器的响应：  http://igoro.com/wordpress/wp-content/uploads/2010/02/image8.png</span><br><span class="line"></span><br><span class="line">    HTTP/1.1 301 Moved Permanently</span><br><span class="line">    Cache-Control: private, no-store, no-cache, must-revalidate, post-check=0,</span><br><span class="line">    pre-check=0</span><br><span class="line">    Expires: Sat, 01 Jan 2000 00:00:00 GMT</span><br><span class="line">    Location: http://www.facebook.com/</span><br><span class="line">    P3P: CP=&quot;DSP LAW&quot;</span><br><span class="line">    Pragma: no-cache</span><br><span class="line">    Set-Cookie: made_write_conn=deleted; expires=Thu, 12-Feb-2009 05:09:50 GMT;</span><br><span class="line">    path=/; domain=.facebook.com; httponly</span><br><span class="line">    Content-Type: text/html; charset=utf-8</span><br><span class="line">    X-Cnection: close</span><br><span class="line">    Date: Fri, 12 Feb 2010 05:09:51 GMT</span><br><span class="line">    Content-Length: 0</span><br><span class="line"></span><br><span class="line">  服务器给浏览器响应一个301永久重定向响应，这样浏览器就会访问“http://www.facebook.com/” 而非“http://facebook.com/”。</span><br><span class="line">  为什么服务器一定要重定向而不是直接发会用户想看的网页内容呢？这个问题有好多有意思的答案。</span><br><span class="line">  其中一个原因跟搜索引擎排名有 关。你看，如果一个页面有两个地址，就像http://www.igoro.com/ 和http://igoro.com/，搜索引擎会认为它们是两个网站，结果造成每一个的搜索链接都减少从而降低排名。而搜索引擎知道301永久重定向是 什么意思，这样就会把访问带www的和不带www的地址归到同一个网站排名下。</span><br><span class="line">  还有一个是用不同的地址会造成缓存友好性变差。当一个页面有好几个名字时，它可能会在缓存里出现好几次。   </span><br><span class="line"></span><br><span class="line">5) 浏览器跟踪重定向地址</span><br><span class="line">现在，浏览器知道了“http://www.facebook.com/”才是要访问的正确地址，所以它会发送另一个获取请求：</span><br><span class="line"></span><br><span class="line">  GET http://www.facebook.com/ HTTP/1.1</span><br><span class="line">  Accept: application/x-ms-application, image/jpeg, application/xaml+xml, [...]</span><br><span class="line">  Accept-Language: en-US</span><br><span class="line">  User-Agent: Mozilla/4.0 (compatible; MSIE 8.0; Windows NT 6.1; WOW64; [...]</span><br><span class="line">  Accept-Encoding: gzip, deflate</span><br><span class="line">  Connection: Keep-Alive</span><br><span class="line">  Cookie: lsd=XW[...]; c_user=21[...]; x-referer=[...]</span><br><span class="line">  Host: www.facebook.com</span><br><span class="line">头信息以之前请求中的意义相同。</span><br><span class="line"></span><br><span class="line">6) 服务器“处理”请求</span><br><span class="line">服务器接收到获取请求，然后处理并返回一个响应。</span><br><span class="line"></span><br><span class="line">这表面上看起来是一个顺向的任务，但其实这中间发生了很多有意思的东西- 就像作者博客这样简单的网站，何况像facebook那样访问量大的网站呢！</span><br><span class="line"></span><br><span class="line">  Web 服务器软件</span><br><span class="line">    web服务器软件（像IIS和阿帕奇）接收到HTTP请求，然后确定执行什么请求处理来处理它。请求处理就是一个能够读懂请求并且能生成HTML来进行响应的程序（像ASP.NET,PHP,RUBY...）。</span><br><span class="line">    举 个最简单的例子，需求处理可以以映射网站地址结构的文件层次存储。像http://example.com/folder1/page1.aspx这个地 址会映射/httpdocs/folder1/page1.aspx这个文件。web服务器软件可以设置成为地址人工的对应请求处理，这样 page1.aspx的发布地址就可以是http://example.com/folder1/page1。</span><br><span class="line"></span><br><span class="line">  请求处理</span><br><span class="line">    请求处理阅读请求及它的参数和cookies。它会读取也可能更新一些数据，并讲数据存储在服务器上。然后，需求处理会生成一个HTML响应。</span><br><span class="line">    所 有动态网站都面临一个有意思的难点 -如何存储数据。小网站一半都会有一个SQL数据库来存储数据，存储大量数据和/或访问量大的网站不得不找一些办法把数据库分配到多台机器上。解决方案 有：sharding （基于主键值讲数据表分散到多个数据库中），复制，利用弱语义一致性的简化数据库。</span><br><span class="line"></span><br><span class="line">委托工作给批处理是一个廉价保持数据更新的技术。举例来讲，Fackbook得及时更新新闻feed，但数据支持下的“你可能认识的人”功能只需要每晚更新 （作者猜测是这样的，改功能如何完善不得而知）。批处理作业更新会导致一些不太重要的数据陈旧，但能使数据更新耕作更快更简洁。</span><br><span class="line"></span><br><span class="line">7) 服务器发回一个HTML响应</span><br><span class="line">图中为服务器生成并返回的响应：[服务器生成并返回的响应](http://igoro.com/wordpress/wp-content/uploads/2010/02/image10.png)</span><br><span class="line"></span><br><span class="line">HTTP/1.1 200 OK</span><br><span class="line"> Cache-Control: private, no-store, no-cache, must-revalidate, post-check=0,</span><br><span class="line"> pre-check=0</span><br><span class="line"> Expires: Sat, 01 Jan 2000 00:00:00 GMT</span><br><span class="line"> P3P: CP=&quot;DSP LAW&quot;</span><br><span class="line"> Pragma: no-cache</span><br><span class="line"> Content-Encoding: gzip</span><br><span class="line"> Content-Type: text/html; charset=utf-8</span><br><span class="line"> X-Cnection: close</span><br><span class="line"> Transfer-Encoding: chunked</span><br><span class="line"> Date: Fri, 12 Feb 2010 09:05:55 GMT</span><br><span class="line"></span><br><span class="line"> 2b3Tn@[...]</span><br><span class="line">整个响应大小为35kB，其中大部分在整理后以blob类型传输。</span><br><span class="line"></span><br><span class="line">内容编码头告诉浏览器整个响应体用gzip算法进行压缩。解压blob块后，你可以看到如下期望的HTML：</span><br><span class="line"></span><br><span class="line">&lt;!DOCTYPE html PUBLIC &quot;-//W3C//DTD XHTML 1.0 Strict//EN&quot;    </span><br><span class="line"> &quot;http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd&quot;&gt;</span><br><span class="line"> &lt;html xmlns=&quot;http://www.w3.org/1999/xhtml&quot; xml:lang=&quot;en&quot;</span><br><span class="line"> lang=&quot;en&quot; id=&quot;facebook&quot; class=&quot; no_js&quot;&gt;</span><br><span class="line"> &lt;head&gt;</span><br><span class="line"> &lt;meta http-equiv=&quot;Content-type&quot; content=&quot;text/html; charset=utf-8&quot; /&gt;</span><br><span class="line"> &lt;meta http-equiv=&quot;Content-language&quot; content=&quot;en&quot; /&gt;</span><br><span class="line"> ...</span><br><span class="line">关于压缩，头信息说明了是否缓存这个页面，如果缓存的话如何去做，有什么cookies要去设置（前面这个响应里没有这点）和隐私信息等等。</span><br><span class="line"></span><br><span class="line">请注意报头中把Content-type设置为“text/html”。报头让浏览器将该响应内容以HTML形式呈现，而不是以文件形式下载它。浏览器会根据报头信息决定如何解释该响应，不过同时也会考虑像URL扩展内容等其他因素。</span><br><span class="line"></span><br><span class="line">8) 浏览器开始显示HTML</span><br><span class="line">在浏览器没有完整接受全部HTML文档时，它就已经开始显示这个页面了：http://igoro.com/wordpress/wp-content/uploads/2010/02/image6.png</span><br><span class="line"></span><br><span class="line">9) 浏览器发送获取嵌入在HTML中的对象</span><br><span class="line">http://igoro.com/wordpress/wp-content/uploads/2010/02/image6.png</span><br><span class="line">在浏览器显示HTML时，它会注意到需要获取其他地址内容的标签。这时，浏览器会发送一个获取请求来重新获得这些文件。</span><br><span class="line"></span><br><span class="line">下面是几个我们访问facebook.com时需要重获取的几个URL：</span><br><span class="line"></span><br><span class="line">图片</span><br><span class="line">http://static.ak.fbcdn.net/rsrc.php/z12E0/hash/8q2anwu7.gif</span><br><span class="line">http://static.ak.fbcdn.net/rsrc.php/zBS5C/hash/7hwy7at6.gif</span><br><span class="line">…</span><br><span class="line">CSS 式样表</span><br><span class="line">http://static.ak.fbcdn.net/rsrc.php/z448Z/hash/2plh8s4n.css</span><br><span class="line">http://static.ak.fbcdn.net/rsrc.php/zANE1/hash/cvtutcee.css</span><br><span class="line">…</span><br><span class="line">JavaScript 文件</span><br><span class="line">http://static.ak.fbcdn.net/rsrc.php/zEMOA/hash/c8yzb6ub.js</span><br><span class="line">http://static.ak.fbcdn.net/rsrc.php/z6R9L/hash/cq2lgbs8.js</span><br><span class="line">…</span><br><span class="line">这些地址都要经历一个和HTML读取类似的过程。所以浏览器会在DNS中查找这些域名，发送请求，重定向等等...</span><br><span class="line"></span><br><span class="line">但 不像动态页面那样，静态文件会允许浏览器对其进行缓存。有的文件可能会不需要与服务器通讯，而从缓存中直接读取。服务器的响应中包含了静态文件保存的期限 信息，所以浏览器知道要把它们缓存多长时间。还有，每个响应都可能包含像版本号一样工作的ETag头（被请求变量的实体值），如果浏览器观察到文件的版本 ETag信息已经存在，就马上停止这个文件的传输。</span><br><span class="line"></span><br><span class="line">试着猜猜看“fbcdn.NET”在地址中代表什么？聪明的答案是&quot;Facebook内容分发网络&quot;。Facebook利用内容分发网络（CDN）分发像图片，CSS表和JavaScript文件这些静态文件。所以，这些文件会在全球很多CDN的数据中心中留下备份。</span><br><span class="line"></span><br><span class="line">静态内容往往代表站点的带宽大小，也能通过CDN轻松的复制。通常网站会使用第三方的CDN。例如，Facebook的静态文件由最大的CDN提供商Akamai来托管。</span><br><span class="line"></span><br><span class="line">举例来讲，当你试着ping static.ak.fbcdn.Net的时候，可能会从某个akamai.net服务器上获得响应。有意思的是，当你同样再ping一次的时候，响应的服务器可能就不一样，这说明幕后的负载平衡开始起作用了。</span><br><span class="line"></span><br><span class="line">10) 浏览器发送异步（AJAX）请求</span><br><span class="line">http://igoro.com/wordpress/wp-content/uploads/2010/02/image12.png</span><br><span class="line">在Web 2.0伟大精神的指引下，页面显示完成后客户端仍与服务器端保持着联系。</span><br><span class="line"></span><br><span class="line">以 Facebook聊天功能为例，它会持续与服务器保持联系来及时更新你那些亮亮灰灰的好友状态。为了更新这些头像亮着的好友状态，在浏览器中执行的 JavaScript代码会给服务器发送异步请求。这个异步请求发送给特定的地址，它是一个按照程式构造的获取或发送请求。还是在Facebook这个例 子中，客户端发送给http://www.facebook.com/ajax/chat/buddy_list.PHP一个发布请求来获取你好友里哪个 在线的状态信息。</span><br><span class="line"></span><br><span class="line">提起这个模式，就必须要讲讲&quot;AJAX&quot;-- “异步JavaScript 和 XML”，虽然服务器为什么用XML格式来进行响应也没有个一清二白的原因。再举个例子吧，对于异步请求，Facebook会返回一些JavaScript的代码片段。</span><br><span class="line"></span><br><span class="line">除了其他，fiddler这个工具能够让你看到浏览器发送的异步请求。事实上，你不仅可以被动的做为这些请求的看客，还能主动出击修改和重新发送它们。AJAX请求这么容易被蒙，可着实让那些计分的在线游戏开发者们郁闷的了。（当然，可别那样骗人家~）</span><br><span class="line"></span><br><span class="line">Facebook聊天功能提供了关于AJAX一个有意思的问题案例：把数据从服务器端推送到客户端。因为HTTP是一个请求-响应协议，所以聊天服务器不能把新消息发给客户。取而代之的是客户端不得不隔几秒就轮询下服务器端看自己有没有新消息。</span><br><span class="line"></span><br><span class="line">这些情况发生时长轮询是个减轻服务器负载挺有趣的技术。如果当被轮询时服务器没有新消息，它就不理这个客户端。而当尚未超时的情况下收到了该客户的新消息，服务器就会找到未完成的请求，把新消息做为响应返回给客户端。</span><br></pre></td></tr></table></figure>
+
+        
+      </div>
+      
+      
+      
+    </div>
+    
+
+
+
+    
+    
+    
+  </div>
+
+
+          </div>
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">博主</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/">
+                
+                    <span class="site-state-item-count">175</span>
+                    <span class="site-state-item-name">日志</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-categories">
+                  <a href="/categories/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">26</span>
+                    <span class="site-state-item-name">分类</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  <a href="/tags/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">36</span>
+                    <span class="site-state-item-name">标签</span>
+                  </a>
+                </div>
+              
+            </nav>
+          
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+            
+          
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#TCP三次握手过程，ACK，SYN的含义，TCP滑动窗口，超时重传"><span class="nav-number">1.</span> <span class="nav-text">TCP三次握手过程，ACK，SYN的含义，TCP滑动窗口，超时重传</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#django-Flask-Tornado异同，怎么选择"><span class="nav-number">2.</span> <span class="nav-text">django/Flask/Tornado异同，怎么选择</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#react与vue使用场景和深度"><span class="nav-number">3.</span> <span class="nav-text">react与vue使用场景和深度</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#vue2-0相比vue1-0的新增的特性"><span class="nav-number">4.</span> <span class="nav-text">vue2.0相比vue1.0的新增的特性</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#python爬虫爬取单个页面的所有连接的去重处理和算法优化"><span class="nav-number">5.</span> <span class="nav-text">python爬虫爬取单个页面的所有连接的去重处理和算法优化</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#堆排序处理大量数中数值搜索问题-大数据处理堆实现N个数据找K个最大数据和堆排序"><span class="nav-number">6.</span> <span class="nav-text">堆排序处理大量数中数值搜索问题(大数据处理堆实现N个数据找K个最大数据和堆排序)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#SEO-搜索引擎优化"><span class="nav-number">7.</span> <span class="nav-text">SEO(搜索引擎优化)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Linux的20个命令及介绍"><span class="nav-number">8.</span> <span class="nav-text">Linux的20个命令及介绍</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#vim的三个模式"><span class="nav-number">9.</span> <span class="nav-text">vim的三个模式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#从浏览器输入一个URL到请求完成的详细过程"><span class="nav-number">10.</span> <span class="nav-text">从浏览器输入一个URL到请求完成的详细过程</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder"><a href="http://blog.timilong.com/about" target="_blank"> Timi.long </a></span>
+  
+
+  
+</div>
+
+
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动 v3.7.1</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 – <a class="theme-link" target="_blank" href="https://theme-next.org">NexT.Muse</a> v6.4.1</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+	
+    
+
+    
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=6.4.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=6.4.1"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=6.4.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=6.4.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=6.4.1"></script>
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

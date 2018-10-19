@@ -1,0 +1,846 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=6.4.1" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=6.4.1">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=6.4.1">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=6.4.1">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=6.4.1" color="#222">
+
+
+
+
+
+
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    version: '6.4.1',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: false,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  
+
+
+
+
+  <meta name="description" content="MySQL的InnoDB的细粒度行锁，是它最吸引人的特性之一。 但是，如果查询没有命中索引，也将退化为表锁。 InnoDB的细粒度锁，是实现在索引记录上的。">
+<meta name="keywords" content="mysql, Innodb">
+<meta property="og:type" content="website">
+<meta property="og:title" content="mysql-InnoDB-select为啥会阻塞insert">
+<meta property="og:url" content="http://blog.timilong.com/basck_posts/mysql-InnoDB-select为啥会阻塞insert.html">
+<meta property="og:site_name" content="Timilong&#39;s blog">
+<meta property="og:description" content="MySQL的InnoDB的细粒度行锁，是它最吸引人的特性之一。 但是，如果查询没有命中索引，也将退化为表锁。 InnoDB的细粒度锁，是实现在索引记录上的。">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="http://7xorah.com1.z0.glb.clouddn.com/1536302724407.jpg">
+<meta property="og:updated_time" content="2018-10-19T02:42:16.258Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="mysql-InnoDB-select为啥会阻塞insert">
+<meta name="twitter:description" content="MySQL的InnoDB的细粒度行锁，是它最吸引人的特性之一。 但是，如果查询没有命中索引，也将退化为表锁。 InnoDB的细粒度锁，是实现在索引记录上的。">
+<meta name="twitter:image" content="http://7xorah.com1.z0.glb.clouddn.com/1536302724407.jpg">
+
+
+
+
+
+
+  <link rel="canonical" href="http://blog.timilong.com/basck_posts/mysql-InnoDB-select为啥会阻塞insert.html"/>
+
+
+
+<script type="text/javascript" id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>mysql-InnoDB-select为啥会阻塞insert | Timilong's blog</title>
+  
+
+
+
+
+
+
+
+
+
+  <noscript>
+  <style type="text/css">
+    .use-motion .motion-element,
+    .use-motion .brand,
+    .use-motion .menu-item,
+    .sidebar-inner,
+    .use-motion .post-block,
+    .use-motion .pagination,
+    .use-motion .comments,
+    .use-motion .post-header,
+    .use-motion .post-body,
+    .use-motion .collection-title { opacity: initial; }
+
+    .use-motion .logo,
+    .use-motion .site-title,
+    .use-motion .site-subtitle {
+      opacity: initial;
+      top: initial;
+    }
+
+    .use-motion {
+      .logo-line-before i { left: initial; }
+      .logo-line-after i { right: initial; }
+    }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Timilong's blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+    
+      
+        <p class="site-subtitle">Cease to struggle and you cease to live.--Thomas Carlyle</p>
+      
+    
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="Toggle navigation bar">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+          
+          <li class="menu-item menu-item-home">
+    <a href="/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-home"></i> <br />首页</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-tags">
+    <a href="/tags/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />标签</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-categories">
+    <a href="/categories/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-th"></i> <br />分类</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+    <a href="/archives/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />归档</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-about">
+    <a href="/about/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-user"></i> <br />关于</a>
+  </li>
+
+      
+      
+    </ul>
+  
+
+  
+    
+
+    
+    
+      
+      
+    
+      
+      
+    
+      
+      
+    
+      
+      
+    
+      
+      
+    
+    
+
+  
+
+
+  
+
+  
+</nav>
+
+
+
+  
+
+
+
+</div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+    
+    
+    <div class="post-block page">
+      <header class="post-header">
+
+<h1 class="post-title" itemprop="name headline">mysql-InnoDB-select为啥会阻塞insert</h1>
+
+<div class="post-meta">
+  
+    <div class="post-description">MySQL的InnoDB的细粒度行锁，是它最吸引人的特性之一。 但是，如果查询没有命中索引，也将退化为表锁。 InnoDB的细粒度锁，是实现在索引记录上的。</div>
+  
+  
+
+
+
+</div>
+
+</header>
+
+      
+      
+      
+      <div class="post-body">
+        
+        
+          <blockquote>
+<p>转载自: 架构师之路，<a href="https://mp.weixin.qq.com/s/y_f2qrZvZe_F4_HPnwVjOw" target="_blank" rel="noopener">InnoDB，select为啥会阻塞insert？</a><br>推荐阅读: 架构师之路，<a href="https://mp.weixin.qq.com/s/4J3oM1j5hcLq4w4TdSEMPg" target="_blank" rel="noopener">缓存架构, 一篇足够</a><br>推荐阅读: 架构师之路，<a href="https://mp.weixin.qq.com/s/JEJcgD36dpKgbUi7xo6DzA" target="_blank" rel="noopener">InnoDB, 5项最佳实践，知其所以然?</a></p>
+</blockquote>
+<h3 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h3><p>MySQL的InnoDB的细粒度行锁，是它最吸引人的特性之一。</p>
+<p>但是，如<a href="https://mp.weixin.qq.com/s/JEJcgD36dpKgbUi7xo6DzA" target="_blank" rel="noopener">《InnoDB，5项最佳实践》</a>所述，如果查询没有命中索引，也将退化为表锁。</p>
+<p>InnoDB的细粒度锁，是实现在索引记录上的。</p>
+<h3 id="InnoDB的索引"><a href="#InnoDB的索引" class="headerlink" title="InnoDB的索引"></a>InnoDB的索引</h3><p>InnoDB的索引有两类索引，<code>聚集索引(Clustered Index)</code>与<code>普通索引(Secondary Index)</code>。</p>
+<p>InnoDB的<b>每一个表都会有聚集索引</b>：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">(1)如果表定义了PK，则PK就是聚集索引；</span><br><span class="line"></span><br><span class="line">(2)如果表没有定义PK，则第一个非空unique列是聚集索引；</span><br><span class="line"></span><br><span class="line">(3)否则，InnoDB会创建一个隐藏的row-id作为聚集索引；</span><br></pre></td></tr></table></figure></p>
+<p>为了方便说明，后文都将以<code>PK</code>说明。</p>
+<p>索引的结构是<b>B+树</b>，这里不展开<b>B+树</b>的细节，说几个结论：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">(1)在索引结构中，非叶子节点存储key，叶子节点存储value；</span><br><span class="line"></span><br><span class="line">(2)聚集索引，叶子节点存储行记录(row)；</span><br><span class="line">画外音：所以，InnoDB索引和记录是存储在一起的，而MyISAM的索引和记录是分开存储的。</span><br><span class="line"></span><br><span class="line">(3)普通索引，叶子节点存储了PK的值；</span><br><span class="line">画外音： 所以，InnoDB的普通索引，实际上会扫描两遍：</span><br><span class="line">第一遍，由普通索引找到PK；</span><br><span class="line">第二遍，由PK找到行记录；</span><br><span class="line">索引结构，InnoDB/MyISAM的索引结构，如果大家感兴趣，未来撰文详述。</span><br></pre></td></tr></table></figure></p>
+<p>举个例子，假设有InnoDB表：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">t(id PK, name KEY, sex, flag);</span><br></pre></td></tr></table></figure></p>
+<p>表中有四条记录：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">1, shenjian, m, A</span><br><span class="line">3, zhangsan, m, A</span><br><span class="line">5, lisi, m, A</span><br><span class="line">9, wangwu, f, B</span><br></pre></td></tr></table></figure></p>
+<p><img src="http://7xorah.com1.z0.glb.clouddn.com/1536302724407.jpg" alt="索引存储"></p>
+<p>可以看到：<br>(1)第一幅图，id <code>PK</code>的聚集索引，叶子存储了所有的行记录；</p>
+<p>(2)第二幅图，name上的普通索引，叶子存储了<code>PK</code>的值；</p>
+<p>对于：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">select * from t where name=’shenjian’;</span><br></pre></td></tr></table></figure></p>
+<p>(1)会先在name普通索引上查询到<code>PK=1</code>；</p>
+<p>(2)再在聚集索引衫查询到<code>(1, shenjian, m, A)</code>的行记录；</p>
+<p>下文简单介绍InnoDB七种锁中的剩下三种：</p>
+<ul>
+<li><p>记录锁(Record Locks)</p>
+</li>
+<li><p>间隙锁(Gap Locks)</p>
+</li>
+<li><p>临键锁(Next-Key Locks)<br>为了方便讲述，如无特殊说明，后文中，默认的事务隔离级别为<b>可重复读(Repeated Read, RR)</b>。</p>
+</li>
+</ul>
+<h3 id="记录锁-Record-Locks"><a href="#记录锁-Record-Locks" class="headerlink" title="记录锁(Record Locks)"></a>记录锁(Record Locks)</h3><p>记录锁，它封锁索引记录，例如：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">select * from t where id=1 for update;</span><br></pre></td></tr></table></figure></p>
+<p>它会在<code>id=1</code>的索引记录上加锁，以阻止其他事务插入，更新，删除<code>id=1</code>的这一行。</p>
+<p>需要说明的是：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">select * from t where id=1;</span><br><span class="line">则是快照读(SnapShot Read)，它并不加锁，具体在[《InnoDB为什么并发高，读取快？》](https://mp.weixin.qq.com/s/R3yuitWpHHGWxsUcE0qIRQ)中做了详细阐述。</span><br></pre></td></tr></table></figure></p>
+<h3 id="间隙锁-Gap-Locks"><a href="#间隙锁-Gap-Locks" class="headerlink" title="间隙锁(Gap Locks)"></a>间隙锁(Gap Locks)</h3><p>间隙锁，它封锁索引记录中的间隔，或者第一条索引记录之前的范围，又或者最后一条索引记录之后的范围。</p>
+<p>依然是上面的例子，InnoDB，RR：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">t(id PK, name KEY, sex, flag);</span><br></pre></td></tr></table></figure></p>
+<p>表中有四条记录：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">1, shenjian, m, A</span><br><span class="line">3, zhangsan, m, A</span><br><span class="line">5, lisi, m, A</span><br><span class="line">9, wangwu, f, B</span><br></pre></td></tr></table></figure></p>
+<p>这个SQL语句<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">select * from t </span><br><span class="line">    where id between 8 and 15 </span><br><span class="line">    for update;</span><br></pre></td></tr></table></figure></p>
+<p>会封锁区间，以阻止其他事务<code>id=10</code>的记录插入。 画外音： 为什么要阻止<code>id=10</code>的记录插入？</p>
+<p>如果能够插入成功，头一个事务执行相同的SQL语句，会发现结果集多出了一条记录，即幻影数据。</p>
+<p>间隙锁的主要目的，就是为了防止其他事务在间隔中插入数据，以导致“不可重复读”。</p>
+<p>如果把事务的隔离级别降级为<b>读提交(Read Committed, RC)</b>，间隙锁则会自动失效。</p>
+<h3 id="临键锁-Next-Key-Locks"><a href="#临键锁-Next-Key-Locks" class="headerlink" title="临键锁(Next-Key Locks)"></a>临键锁(Next-Key Locks)</h3><p>临键锁，是记录锁与间隙锁的组合，它的封锁范围，既包含索引记录，又包含索引区间。</p>
+<p>更具体的，临键锁会封锁索引记录本身，以及索引记录之前的区间。</p>
+<p>如果<b>一个会话占有了索引记录R的共享/排他锁，其他会话不能立刻在R之前的区间插入新的索引记录</b>。<br>画外音：原文是说</p>
+<blockquote>
+<p>If one session has a shared or exclusive lock on record R in an index, another session cannot insert a new index record in the gap immediately before R in the index order.</p>
+</blockquote>
+<p>依然是上面的例子，InnoDB，RR：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">t(id PK, name KEY, sex, flag);</span><br></pre></td></tr></table></figure></p>
+<p>表中有四条记录：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">1, shenjian, m, A</span><br><span class="line">3, zhangsan, m, A</span><br><span class="line">5, lisi, m, A</span><br><span class="line">9, wangwu, f, B</span><br></pre></td></tr></table></figure></p>
+<p>PK上潜在的临键锁为：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">(-infinity, 1]</span><br><span class="line">(1, 3]</span><br><span class="line">(3, 5]</span><br><span class="line">(5, 9]</span><br><span class="line">(9, +infinity]</span><br></pre></td></tr></table></figure></p>
+<p>临键锁的主要目的，也是为了<b>避免幻读(Phantom Read)</b>。如果把事务的隔离级别降级为RC，临键锁则也会失效。<br>画外音：关于事务的隔离级别，以及幻读，之前的文章一直没有展开说明，如果大家感兴趣，后文详述。</p>
+<p>今天的内容，主要对InnoDB的索引，以及三种锁的概念做了介绍。场景与例子，也都是最简单的场景与最简单的例子。</p>
+<p>InnoDB的锁，与索引类型，事务的隔离级别相关，更多更复杂更有趣的案例，后续和大家介绍。</p>
+<h3 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h3><p>(1)InnoDB的<b>索引与行记录存储在一起</b>，这一点和MyISAM(分开存储的)不一样；</p>
+<p>(2)InnoDB的<b>聚集索引存储行记录，普通索引存储PK，所以普通索引要查询两次</b>；</p>
+<p>(3)记录锁锁定索引记录；</p>
+<p>(4)间隙锁锁定间隔，防止间隔中被其他事务插入；</p>
+<p>(5)临键锁锁定索引记录+间隔，防止幻读；</p>
+
+        
+      </div>
+      
+      
+      
+    </div>
+    
+
+
+
+    
+    
+    
+  </div>
+
+
+          </div>
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">博主</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/">
+                
+                    <span class="site-state-item-count">175</span>
+                    <span class="site-state-item-name">日志</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-categories">
+                  <a href="/categories/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">26</span>
+                    <span class="site-state-item-name">分类</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  <a href="/tags/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">36</span>
+                    <span class="site-state-item-name">标签</span>
+                  </a>
+                </div>
+              
+            </nav>
+          
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+            
+          
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#简介"><span class="nav-number">1.</span> <span class="nav-text">简介</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#InnoDB的索引"><span class="nav-number">2.</span> <span class="nav-text">InnoDB的索引</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#记录锁-Record-Locks"><span class="nav-number">3.</span> <span class="nav-text">记录锁(Record Locks)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#间隙锁-Gap-Locks"><span class="nav-number">4.</span> <span class="nav-text">间隙锁(Gap Locks)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#临键锁-Next-Key-Locks"><span class="nav-number">5.</span> <span class="nav-text">临键锁(Next-Key Locks)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#总结"><span class="nav-number">6.</span> <span class="nav-text">总结</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder"><a href="http://blog.timilong.com/about" target="_blank"> Timi.long </a></span>
+  
+
+  
+</div>
+
+
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动 v3.7.1</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 – <a class="theme-link" target="_blank" href="https://theme-next.org">NexT.Muse</a> v6.4.1</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+	
+    
+
+    
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=6.4.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=6.4.1"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=6.4.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=6.4.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=6.4.1"></script>
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
