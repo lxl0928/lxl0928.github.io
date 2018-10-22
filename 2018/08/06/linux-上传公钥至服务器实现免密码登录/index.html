@@ -108,20 +108,18 @@
 
 
 
-  <meta name="description" content="在客户端生成秘钥1&amp;gt;&amp;gt;&amp;gt; ssh-keygen -t rsa  # 如果已经生成则直接查看cat .ssh/id_rsa.pub是否有内容 将客户端的公钥添加到server端的.ssh/authorized_keys中实现免密登录12&amp;gt;&amp;gt;&amp;gt; ssh-copy-id -i .ssh/id_rsa.pub root@47.xx.yy.zzz&amp;gt;&amp;gt;&amp;gt;">
+  <meta name="description" content="生成秘钥使用linux有一段时间了，最近在服务器上假设了一个git仓库，每次提交时都使用密码实在是比较反人类，因此就特意研究了一下如何使用ssh密钥来登录服务器。 公钥和私钥的生成ssh-keygen命令专门是用来生成密钥的。该命令有很多选项，这里列出了最基本的四个：  -t 用来指定密钥类型（dsa | ecdsa | ed25519 | rsa | rsa1）;-P 用来指定密语-f 用来指定">
 <meta name="keywords" content="Linux">
 <meta property="og:type" content="article">
 <meta property="og:title" content="linux-上传公钥至服务器实现免密码登录">
 <meta property="og:url" content="http://blog.timilong.com/2018/08/06/linux-上传公钥至服务器实现免密码登录/index.html">
 <meta property="og:site_name" content="Timilong&#39;s blog">
-<meta property="og:description" content="在客户端生成秘钥1&amp;gt;&amp;gt;&amp;gt; ssh-keygen -t rsa  # 如果已经生成则直接查看cat .ssh/id_rsa.pub是否有内容 将客户端的公钥添加到server端的.ssh/authorized_keys中实现免密登录12&amp;gt;&amp;gt;&amp;gt; ssh-copy-id -i .ssh/id_rsa.pub root@47.xx.yy.zzz&amp;gt;&amp;gt;&amp;gt;">
+<meta property="og:description" content="生成秘钥使用linux有一段时间了，最近在服务器上假设了一个git仓库，每次提交时都使用密码实在是比较反人类，因此就特意研究了一下如何使用ssh密钥来登录服务器。 公钥和私钥的生成ssh-keygen命令专门是用来生成密钥的。该命令有很多选项，这里列出了最基本的四个：  -t 用来指定密钥类型（dsa | ecdsa | ed25519 | rsa | rsa1）;-P 用来指定密语-f 用来指定">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="http://timilong.com/ssh-copy-id.png">
-<meta property="og:updated_time" content="2018-10-19T02:46:54.984Z">
+<meta property="og:updated_time" content="2018-10-22T09:50:54.667Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="linux-上传公钥至服务器实现免密码登录">
-<meta name="twitter:description" content="在客户端生成秘钥1&amp;gt;&amp;gt;&amp;gt; ssh-keygen -t rsa  # 如果已经生成则直接查看cat .ssh/id_rsa.pub是否有内容 将客户端的公钥添加到server端的.ssh/authorized_keys中实现免密登录12&amp;gt;&amp;gt;&amp;gt; ssh-copy-id -i .ssh/id_rsa.pub root@47.xx.yy.zzz&amp;gt;&amp;gt;&amp;gt;">
-<meta name="twitter:image" content="http://timilong.com/ssh-copy-id.png">
+<meta name="twitter:description" content="生成秘钥使用linux有一段时间了，最近在服务器上假设了一个git仓库，每次提交时都使用密码实在是比较反人类，因此就特意研究了一下如何使用ssh密钥来登录服务器。 公钥和私钥的生成ssh-keygen命令专门是用来生成密钥的。该命令有很多选项，这里列出了最基本的四个：  -t 用来指定密钥类型（dsa | ecdsa | ed25519 | rsa | rsa1）;-P 用来指定密语-f 用来指定">
 
 
 
@@ -208,7 +206,7 @@
   </div>
 
   <div class="site-nav-toggle">
-    <button aria-label="Toggle navigation bar">
+    <button aria-label="ナビゲーションバーの切り替え">
       <span class="btn-bar"></span>
       <span class="btn-bar"></span>
       <span class="btn-bar"></span>
@@ -368,9 +366,9 @@
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 
-                  <span class="post-meta-item-text">Edited on</span>
+                  <span class="post-meta-item-text">に編集されました</span>
                 
-                <time title="更新于：2018-10-19 02:46:54" itemprop="dateModified" datetime="2018-10-19T02:46:54Z">2018-10-19</time>
+                <time title="更新于：2018-10-22 09:50:54" itemprop="dateModified" datetime="2018-10-22T09:50:54Z">2018-10-22</time>
               
             
           </span>
@@ -421,12 +419,20 @@
       
 
       
-        <h1 id="在客户端生成秘钥"><a href="#在客户端生成秘钥" class="headerlink" title="在客户端生成秘钥"></a>在客户端生成秘钥</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&gt;&gt;&gt; ssh-keygen -t rsa  # 如果已经生成则直接查看cat .ssh/id_rsa.pub是否有内容</span><br></pre></td></tr></table></figure>
-<h1 id="将客户端的公钥添加到server端的-ssh-authorized-keys中实现免密登录"><a href="#将客户端的公钥添加到server端的-ssh-authorized-keys中实现免密登录" class="headerlink" title="将客户端的公钥添加到server端的.ssh/authorized_keys中实现免密登录"></a>将客户端的公钥添加到server端的.ssh/authorized_keys中实现免密登录</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&gt;&gt;&gt; ssh-copy-id -i .ssh/id_rsa.pub root@47.xx.yy.zzz</span><br><span class="line">&gt;&gt;&gt; 输入root的密码 &lt;enter&gt;</span><br></pre></td></tr></table></figure>
-<a id="more"></a>
-<h1 id="上传成功可看到"><a href="#上传成功可看到" class="headerlink" title="上传成功可看到"></a>上传成功可看到</h1><p><img src="http://timilong.com/ssh-copy-id.png" alt="上传成功"></p>
-<h1 id="免密登录"><a href="#免密登录" class="headerlink" title="免密登录"></a>免密登录</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ssh root@47.xx.yy.zzz</span><br></pre></td></tr></table></figure>
-<p>后续如有需要、可在服务上关闭密码登录</p>
+        <h1 id="生成秘钥"><a href="#生成秘钥" class="headerlink" title="生成秘钥"></a>生成秘钥</h1><p>使用linux有一段时间了，最近在服务器上假设了一个git仓库，每次提交时都使用密码实在是比较反人类，因此就特意研究了一下如何使用ssh密钥来登录服务器。</p>
+<p>公钥和私钥的生成<br><code>ssh-keygen</code>命令专门是用来生成密钥的。该命令有很多选项，这里列出了最基本的四个：</p>
+<blockquote>
+<p>-t 用来指定密钥类型（dsa | ecdsa | ed25519 | rsa | rsa1）;<br>-P 用来指定密语<br>-f 用来指定生成的密钥文件名<br>-C 用来添加注释</p>
+</blockquote>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">ssh-keygen -t rsa -P 123456 -f host -C 'my host key'</span><br><span class="line"><span class="meta">#</span> 意思就是新建了密语为123456注释为my host key文件名为host的密钥。此命令会生成host和host.pub两个文件，前者为私钥文件，后者为公钥文件。如果你想免密登录的话，请将密语设置为空。</span><br></pre></td></tr></table></figure>
+<h1 id="将公钥部署到服务器"><a href="#将公钥部署到服务器" class="headerlink" title="将公钥部署到服务器"></a>将公钥部署到服务器</h1><p>上一步生成了公钥和私钥后，需要将公钥部署到服务器并用私钥登录。因此首先需要将创建的公钥上传到服务器。<br>使用scp或者你的工具将公钥上传到服务器并将文件内容追加到<code>~/.ssh/authorized_keys</code>中。例如：</p>
+<h1 id="在本机上执行此命令，上传公钥"><a href="#在本机上执行此命令，上传公钥" class="headerlink" title="在本机上执行此命令，上传公钥"></a>在本机上执行此命令，上传公钥</h1><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">scp -P your_port host.pub user@hostname:/tmp</span><br></pre></td></tr></table></figure>
+<h1 id="在服务器上执行此命令，追加到authorized-keys"><a href="#在服务器上执行此命令，追加到authorized-keys" class="headerlink" title="在服务器上执行此命令，追加到authorized_keys"></a>在服务器上执行此命令，追加到authorized_keys</h1><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cd /tmp &amp;&amp; cat host.pub &gt;&gt; ~/.ssh/authorized_keys</span><br></pre></td></tr></table></figure>
+<h1 id="更改权限"><a href="#更改权限" class="headerlink" title="更改权限"></a>更改权限</h1><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">chmod 600 ~/.ssh/authorized_keys</span><br></pre></td></tr></table></figure>
+<p>更改服务器配置<br>打开<code>/etc/ssh/sshd_config</code>文件，将如下的配置打开：<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">RSAAuthentication yes</span><br><span class="line">PubkeyAuthentication yes</span><br><span class="line">AuthorizedKeysFile  .ssh/authorized_keys</span><br></pre></td></tr></table></figure></p>
+<p>重启sshd，<code>service sshd restart</code>或者<code>systemctl restart sshd.service。</code>重启之后，服务器已经支持远程ssh连接了</p>
+<h1 id="连接服务器"><a href="#连接服务器" class="headerlink" title="连接服务器"></a>连接服务器</h1><p>本人是通过ssh命令来远程连接服务器的，通过<code>ssh -p your_port username@domain -i your_private_certification</code>命令，就可以连接到服务器了。如果你是通过xshell或者putty来连接的话，导入你的私钥并连接就可以了。</p>
+<h1 id="其他"><a href="#其他" class="headerlink" title="其他"></a>其他</h1><p>如果你想只允许服务器通过公钥和私钥的方式来连接服务器的话，可以将服务器配置文件<code>/etc/ssh/sshd_config</code>中的<code>PasswordAuthentication yes</code>改为<code>PasswordAuthentication No</code>，不过在重启sshd时不要关闭当前的连接，确认通过私钥能连接到服务器才可以关闭。否则，一旦私钥连不上，密码连接方式又被禁用了，恐怕你就要告别你的服务器了。</p>
 
       
     </div>
@@ -728,7 +734,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#在客户端生成秘钥"><span class="nav-number">1.</span> <span class="nav-text">在客户端生成秘钥</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#将客户端的公钥添加到server端的-ssh-authorized-keys中实现免密登录"><span class="nav-number">2.</span> <span class="nav-text">将客户端的公钥添加到server端的.ssh/authorized_keys中实现免密登录</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#上传成功可看到"><span class="nav-number">3.</span> <span class="nav-text">上传成功可看到</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#免密登录"><span class="nav-number">4.</span> <span class="nav-text">免密登录</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#生成秘钥"><span class="nav-number">1.</span> <span class="nav-text">生成秘钥</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#将公钥部署到服务器"><span class="nav-number">2.</span> <span class="nav-text">将公钥部署到服务器</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#在本机上执行此命令，上传公钥"><span class="nav-number">3.</span> <span class="nav-text">在本机上执行此命令，上传公钥</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#在服务器上执行此命令，追加到authorized-keys"><span class="nav-number">4.</span> <span class="nav-text">在服务器上执行此命令，追加到authorized_keys</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#更改权限"><span class="nav-number">5.</span> <span class="nav-text">更改权限</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#连接服务器"><span class="nav-number">6.</span> <span class="nav-text">连接服务器</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#其他"><span class="nav-number">7.</span> <span class="nav-text">其他</span></a></li></ol></div>
             
 
           </div>
