@@ -108,18 +108,18 @@
 
 
 
-  <meta name="description" content="题目请实现装饰器log，可以计算test函数的运行时间123@log(&amp;apos;excute&amp;apos;)def test():    pass">
+  <meta name="description" content="装饰器本质上是一个 Python 函数或类，它可以让其他函数或类在不需要做任何代码修改的前提下增加额外功能，装饰器的返回值也是一个函数/类对象。它经常用于有切面需求的场景，比如：插入日志、性能测试、事务处理、缓存、权限校验等场景，装饰器是解决这类问题的绝佳设计。有了装饰器，我们就可以抽离出大量与函数功能本身无关的雷同代码到装饰器中并继续重用。概括的讲，装饰器的作用就是为已经存在的对象添加额外的功能">
 <meta name="keywords" content="python">
 <meta property="og:type" content="article">
 <meta property="og:title" content="python-装饰器的典型实现">
 <meta property="og:url" content="http://blog.timilong.com/2018/06/23/python-装饰器的两个版本/index.html">
 <meta property="og:site_name" content="Timilong&#39;s blog">
-<meta property="og:description" content="题目请实现装饰器log，可以计算test函数的运行时间123@log(&amp;apos;excute&amp;apos;)def test():    pass">
+<meta property="og:description" content="装饰器本质上是一个 Python 函数或类，它可以让其他函数或类在不需要做任何代码修改的前提下增加额外功能，装饰器的返回值也是一个函数/类对象。它经常用于有切面需求的场景，比如：插入日志、性能测试、事务处理、缓存、权限校验等场景，装饰器是解决这类问题的绝佳设计。有了装饰器，我们就可以抽离出大量与函数功能本身无关的雷同代码到装饰器中并继续重用。概括的讲，装饰器的作用就是为已经存在的对象添加额外的功能">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-10-19T02:40:57.265Z">
+<meta property="og:updated_time" content="2018-10-26T03:11:35.519Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="python-装饰器的典型实现">
-<meta name="twitter:description" content="题目请实现装饰器log，可以计算test函数的运行时间123@log(&amp;apos;excute&amp;apos;)def test():    pass">
+<meta name="twitter:description" content="装饰器本质上是一个 Python 函数或类，它可以让其他函数或类在不需要做任何代码修改的前提下增加额外功能，装饰器的返回值也是一个函数/类对象。它经常用于有切面需求的场景，比如：插入日志、性能测试、事务处理、缓存、权限校验等场景，装饰器是解决这类问题的绝佳设计。有了装饰器，我们就可以抽离出大量与函数功能本身无关的雷同代码到装饰器中并继续重用。概括的讲，装饰器的作用就是为已经存在的对象添加额外的功能">
 
 
 
@@ -368,7 +368,7 @@
                 
                   <span class="post-meta-item-text">Edited on</span>
                 
-                <time title="更新于：2018-10-19 02:40:57" itemprop="dateModified" datetime="2018-10-19T02:40:57Z">2018-10-19</time>
+                <time title="更新于：2018-10-26 03:11:35" itemprop="dateModified" datetime="2018-10-26T03:11:35Z">2018-10-26</time>
               
             
           </span>
@@ -405,6 +405,8 @@
           
 
           
+              <div class="post-description">装饰器本质上是一个 Python 函数或类，它可以让其他函数或类在不需要做任何代码修改的前提下增加额外功能，装饰器的返回值也是一个函数/类对象。它经常用于有切面需求的场景，比如：插入日志、性能测试、事务处理、缓存、权限校验等场景，装饰器是解决这类问题的绝佳设计。有了装饰器，我们就可以抽离出大量与函数功能本身无关的雷同代码到装饰器中并继续重用。概括的讲，装饰器的作用就是为已经存在的对象添加额外的功能。</div>
+          
 
         </div>
       </header>
@@ -420,7 +422,6 @@
 
       
         <h2 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h2><p>请实现装饰器log，可以计算test函数的运行时间<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">@log(&apos;excute&apos;)</span><br><span class="line">def test():</span><br><span class="line">    pass</span><br></pre></td></tr></table></figure></p>
-<a id="more"></a>
 <h2 id="解答"><a href="#解答" class="headerlink" title="解答"></a>解答</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">import time</span><br><span class="line">import functools</span><br><span class="line"></span><br><span class="line"># 可接受参数的高阶函数</span><br><span class="line">def log(test):</span><br><span class="line">    def decorator(func):</span><br><span class="line">        @functools.wraps(func)</span><br><span class="line">        def wrapper(*args, **kwargs):</span><br><span class="line">            start = time.time()</span><br><span class="line">            _res = func(*args, **kwargs)</span><br><span class="line">            end = time.time()</span><br><span class="line"></span><br><span class="line">            print(func.__name__, text, &quot;: &quot;, end - start, &quot; ms&quot;)</span><br><span class="line">            return _res</span><br><span class="line">        return wrapper</span><br><span class="line">    return decorator</span><br></pre></td></tr></table></figure>
 <p>这里一般会考察 <code>functools.wraps</code> 的作用<br>(如果没有 <code>@functools.wraps(func)</code> , 则 <code>print(func.<strong>name</strong>)</code> 输出 <code>‘wrapper’</code> 而非 <code>‘test’</code>)</p>
 <h2 id="题目-1"><a href="#题目-1" class="headerlink" title="题目"></a>题目</h2><p>设计一个decorator，它可作用于任何函数上，并打印该函数的执行时间</p>
