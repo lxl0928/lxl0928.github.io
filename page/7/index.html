@@ -202,7 +202,7 @@
   </div>
 
   <div class="site-nav-toggle">
-    <button aria-label="Toggle navigation bar">
+    <button aria-label="ナビゲーションバーの切り替え">
       <span class="btn-bar"></span>
       <span class="btn-bar"></span>
       <span class="btn-bar"></span>
@@ -366,7 +366,7 @@
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 
-                  <span class="post-meta-item-text">Edited on</span>
+                  <span class="post-meta-item-text">に編集されました</span>
                 
                 <time title="更新于：2018-10-19 02:40:57" itemprop="dateModified" datetime="2018-10-19T02:40:57Z">2018-10-19</time>
               
@@ -540,7 +540,7 @@
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 
-                  <span class="post-meta-item-text">Edited on</span>
+                  <span class="post-meta-item-text">に編集されました</span>
                 
                 <time title="更新于：2018-10-19 02:40:57" itemprop="dateModified" datetime="2018-10-19T02:40:57Z">2018-10-19</time>
               
@@ -722,7 +722,7 @@
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 
-                  <span class="post-meta-item-text">Edited on</span>
+                  <span class="post-meta-item-text">に編集されました</span>
                 
                 <time title="更新于：2018-10-19 02:40:57" itemprop="dateModified" datetime="2018-10-19T02:40:57Z">2018-10-19</time>
               
@@ -897,7 +897,7 @@
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 
-                  <span class="post-meta-item-text">Edited on</span>
+                  <span class="post-meta-item-text">に編集されました</span>
                 
                 <time title="更新于：2018-10-19 02:40:57" itemprop="dateModified" datetime="2018-10-19T02:40:57Z">2018-10-19</time>
               
@@ -1072,7 +1072,7 @@
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 
-                  <span class="post-meta-item-text">Edited on</span>
+                  <span class="post-meta-item-text">に編集されました</span>
                 
                 <time title="更新于：2018-10-19 02:40:57" itemprop="dateModified" datetime="2018-10-19T02:40:57Z">2018-10-19</time>
               
@@ -1246,9 +1246,9 @@
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 
-                  <span class="post-meta-item-text">Edited on</span>
+                  <span class="post-meta-item-text">に編集されました</span>
                 
-                <time title="更新于：2018-10-19 02:40:57" itemprop="dateModified" datetime="2018-10-19T02:40:57Z">2018-10-19</time>
+                <time title="更新于：2018-10-29 03:29:22" itemprop="dateModified" datetime="2018-10-29T03:29:22Z">2018-10-29</time>
               
             
           </span>
@@ -1300,13 +1300,10 @@
 
       
         
-          <h2 id="语法"><a href="#语法" class="headerlink" title="语法"></a>语法</h2><ol>
-<li>语法如下<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">sed命令行格式为：</span><br><span class="line">         sed [-nefri]  ‘command’  输入文本/文件</span><br><span class="line">常用选项：</span><br><span class="line">        -n: 取消默认的输出,使用安静(silent)模式。在一般 sed 的用法中，所有来自 STDIN的资料一般都会被列出到屏幕上。</span><br><span class="line">            但如果加上 -n 参数后，则只有经过sed 特殊处理的那一行(或者动作)才会被列出来</span><br><span class="line">        -e: 进行多项编辑，即对输入行应用多条sed命令时使用. 直接在指令列模式上进行 sed 的动作编辑</span><br><span class="line">        -f: 指定sed脚本的文件名. 直接将 sed 的动作写在一个档案内， -f filename 则可以执行 filename 内的sed 动作</span><br><span class="line">        -r: sed 的动作支援的是延伸型正则表达式的语法。(预设是基础正则表达式语法)</span><br><span class="line">        -i: 直接修改读取的文件内容，而不是由屏幕输出      </span><br><span class="line"></span><br><span class="line">常用命令：</span><br><span class="line">        a: 新增， a 的后面可以接字串，而这些字串会在新的一行出现(目前的下一行)</span><br><span class="line">        c: 取代， c 的后面可以接字串，这些字串可以取代 n1,n2 之间的行</span><br><span class="line">        d: 删除，因为是删除，所以 d 后面通常不接任何内容</span><br><span class="line">        i: 插入， i 的后面可以接字串，而这些字串会在新的一行出现(目前的上一行)</span><br><span class="line">        p: 列印，亦即将某个选择的资料印出。通常 p 会与参数 sed -n 一起用</span><br><span class="line">        s: 取代，可以直接进行替换的工作。通常这个 s 的动作可以搭配正则表达式。例如 1,20s/old/new/g</span><br></pre></td></tr></table></figure>
-</li>
-</ol>
+          sed 是一种在线编辑器，它一次处理一行内容。处理时，把当前处理的行存储在临时缓冲区中，称为“模式空间”（pattern space），接着用sed命令处理缓冲区中的内容，处理完成后，把缓冲区的内容送往屏幕。接着处理下一行，这样不断重复，直到文件末尾。文件内容并没有 改变，除非你使用重定向存储输出。Sed主要用来自动编辑一个或多个文件；简化对文件的反复操作；编写转换程序等。
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/2017/06/07/linux-sed命令/#more" rel="contents">
+            <a class="btn" href="/2017/06/07/linux-sed命令/">
               阅读全文 &raquo;
             </a>
           </div>
@@ -1423,7 +1420,7 @@
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 
-                  <span class="post-meta-item-text">Edited on</span>
+                  <span class="post-meta-item-text">に編集されました</span>
                 
                 <time title="更新于：2018-10-19 02:40:57" itemprop="dateModified" datetime="2018-10-19T02:40:57Z">2018-10-19</time>
               
@@ -1597,7 +1594,7 @@
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 
-                  <span class="post-meta-item-text">Edited on</span>
+                  <span class="post-meta-item-text">に編集されました</span>
                 
                 <time title="更新于：2018-10-19 02:40:57" itemprop="dateModified" datetime="2018-10-19T02:40:57Z">2018-10-19</time>
               
@@ -1769,7 +1766,7 @@
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 
-                  <span class="post-meta-item-text">Edited on</span>
+                  <span class="post-meta-item-text">に編集されました</span>
                 
                 <time title="更新于：2018-10-19 02:40:57" itemprop="dateModified" datetime="2018-10-19T02:40:57Z">2018-10-19</time>
               
@@ -1941,7 +1938,7 @@
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 
-                  <span class="post-meta-item-text">Edited on</span>
+                  <span class="post-meta-item-text">に編集されました</span>
                 
                 <time title="更新于：2018-10-19 02:40:57" itemprop="dateModified" datetime="2018-10-19T02:40:57Z">2018-10-19</time>
               
@@ -2118,7 +2115,7 @@
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 
-                  <span class="post-meta-item-text">Edited on</span>
+                  <span class="post-meta-item-text">に編集されました</span>
                 
                 <time title="更新于：2018-10-19 02:40:57" itemprop="dateModified" datetime="2018-10-19T02:40:57Z">2018-10-19</time>
               
@@ -2293,7 +2290,7 @@
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 
-                  <span class="post-meta-item-text">Edited on</span>
+                  <span class="post-meta-item-text">に編集されました</span>
                 
                 <time title="更新于：2018-10-19 02:40:57" itemprop="dateModified" datetime="2018-10-19T02:40:57Z">2018-10-19</time>
               
@@ -2465,7 +2462,7 @@
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 
-                  <span class="post-meta-item-text">Edited on</span>
+                  <span class="post-meta-item-text">に編集されました</span>
                 
                 <time title="更新于：2018-10-19 02:40:57" itemprop="dateModified" datetime="2018-10-19T02:40:57Z">2018-10-19</time>
               
@@ -2637,7 +2634,7 @@
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 
-                  <span class="post-meta-item-text">Edited on</span>
+                  <span class="post-meta-item-text">に編集されました</span>
                 
                 <time title="更新于：2018-10-19 02:40:57" itemprop="dateModified" datetime="2018-10-19T02:40:57Z">2018-10-19</time>
               
@@ -2811,7 +2808,7 @@
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 
-                  <span class="post-meta-item-text">Edited on</span>
+                  <span class="post-meta-item-text">に編集されました</span>
                 
                 <time title="更新于：2018-10-19 02:40:57" itemprop="dateModified" datetime="2018-10-19T02:40:57Z">2018-10-19</time>
               
@@ -2913,7 +2910,7 @@
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/page/6/"><i class="fa fa-angle-left" aria-label="Previous page"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/6/">6</a><span class="page-number current">7</span><a class="page-number" href="/page/8/">8</a><span class="space">&hellip;</span><a class="page-number" href="/page/12/">12</a><a class="extend next" rel="next" href="/page/8/"><i class="fa fa-angle-right" aria-label="Next page"></i></a>
+    <a class="extend prev" rel="prev" href="/page/6/"><i class="fa fa-angle-left" aria-label="前のページ"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/6/">6</a><span class="page-number current">7</span><a class="page-number" href="/page/8/">8</a><span class="space">&hellip;</span><a class="page-number" href="/page/12/">12</a><a class="extend next" rel="next" href="/page/8/"><i class="fa fa-angle-right" aria-label="次のページ"></i></a>
   </nav>
 
 
