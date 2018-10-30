@@ -1,0 +1,832 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=6.4.1" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=6.4.1">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=6.4.1">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=6.4.1">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=6.4.1" color="#222">
+
+
+
+
+
+
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    version: '6.4.1',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: false,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  
+
+
+
+
+  <meta name="description" content="单线程同步模型的服务器是最简单的服务器模型，每次只能处理一个客户端连接，其它连接必须等到前面的连接关闭了才能得到服务器的处理。否则发送过来的请求会悬挂住，没有任何响应，直到前面的连接处理完了才能继续。">
+<meta name="keywords" content="RPC">
+<meta property="og:type" content="website">
+<meta property="og:title" content="RPC-08单线程同步模型">
+<meta property="og:url" content="http://blog.timilong.com/backup_posts/RPC-08单线程同步模型.html">
+<meta property="og:site_name" content="Timilong&#39;s blog">
+<meta property="og:description" content="单线程同步模型的服务器是最简单的服务器模型，每次只能处理一个客户端连接，其它连接必须等到前面的连接关闭了才能得到服务器的处理。否则发送过来的请求会悬挂住，没有任何响应，直到前面的连接处理完了才能继续。">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="https://user-gold-cdn.xitu.io/2018/6/11/163ef471eb6eaeba?imageView2/0/w/1280/h/960/format/webp/ignore-error/1">
+<meta property="og:image" content="https://user-gold-cdn.xitu.io/2018/6/3/163c484ed0ee0367?imageView2/0/w/1280/h/960/format/webp/ignore-error/1">
+<meta property="og:image" content="https://user-gold-cdn.xitu.io/2018/5/16/163680245ad03253?imageView2/0/w/1280/h/960/format/webp/ignore-error/1">
+<meta property="og:updated_time" content="2018-10-30T03:33:08.176Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="RPC-08单线程同步模型">
+<meta name="twitter:description" content="单线程同步模型的服务器是最简单的服务器模型，每次只能处理一个客户端连接，其它连接必须等到前面的连接关闭了才能得到服务器的处理。否则发送过来的请求会悬挂住，没有任何响应，直到前面的连接处理完了才能继续。">
+<meta name="twitter:image" content="https://user-gold-cdn.xitu.io/2018/6/11/163ef471eb6eaeba?imageView2/0/w/1280/h/960/format/webp/ignore-error/1">
+
+
+
+
+
+
+  <link rel="canonical" href="http://blog.timilong.com/backup_posts/RPC-08单线程同步模型.html"/>
+
+
+
+<script type="text/javascript" id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>RPC-08单线程同步模型 | Timilong's blog</title>
+  
+
+
+
+
+
+
+
+
+
+  <noscript>
+  <style type="text/css">
+    .use-motion .motion-element,
+    .use-motion .brand,
+    .use-motion .menu-item,
+    .sidebar-inner,
+    .use-motion .post-block,
+    .use-motion .pagination,
+    .use-motion .comments,
+    .use-motion .post-header,
+    .use-motion .post-body,
+    .use-motion .collection-title { opacity: initial; }
+
+    .use-motion .logo,
+    .use-motion .site-title,
+    .use-motion .site-subtitle {
+      opacity: initial;
+      top: initial;
+    }
+
+    .use-motion {
+      .logo-line-before i { left: initial; }
+      .logo-line-after i { right: initial; }
+    }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Timilong's blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+    
+      
+        <p class="site-subtitle">Cease to struggle and you cease to live.--Thomas Carlyle</p>
+      
+    
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="Toggle navigation bar">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+          
+          <li class="menu-item menu-item-home">
+    <a href="/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-home"></i> <br />首页</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-tags">
+    <a href="/tags/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />标签</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-categories">
+    <a href="/categories/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-th"></i> <br />分类</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+    <a href="/archives/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />归档</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-about">
+    <a href="/about/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-user"></i> <br />关于</a>
+  </li>
+
+      
+      
+    </ul>
+  
+
+  
+    
+
+    
+    
+      
+      
+    
+      
+      
+    
+      
+      
+    
+      
+      
+    
+      
+      
+    
+    
+
+  
+
+
+  
+
+  
+</nav>
+
+
+
+  
+
+
+
+</div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+    
+    
+    <div class="post-block page">
+      <header class="post-header">
+
+<h1 class="post-title" itemprop="name headline">RPC-08单线程同步模型</h1>
+
+<div class="post-meta">
+  
+    <div class="post-description">单线程同步模型的服务器是最简单的服务器模型，每次只能处理一个客户端连接，其它连接必须等到前面的连接关闭了才能得到服务器的处理。否则发送过来的请求会悬挂住，没有任何响应，直到前面的连接处理完了才能继续。</div>
+  
+  
+
+
+
+</div>
+
+</header>
+
+      
+      
+      
+      <div class="post-body">
+        
+        
+          <blockquote>
+<p>转载自: 掘金，<a href="https://juejin.im/book/5af56a3c518825426642e004" target="_blank" rel="noopener">深入理解RPC: 基于Python自建分布式高并发RPC服务</a></p>
+</blockquote>
+<h3 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h3><p><img src="https://user-gold-cdn.xitu.io/2018/6/11/163ef471eb6eaeba?imageView2/0/w/1280/h/960/format/webp/ignore-error/1" alt="RPC"></p>
+<p>如上图所示，现在我们开始使用代码来描述 RPC 的服务器模型，从简单变化到复杂，从经典变化到现代。考虑到教学上的简单性，我们使用 Python 语言进行描述，同时为了方便读者理解核心理念，代码不宜过长，对其中不少细节之处做了简化处理，还请读者理解。</p>
+<p>另，如果读者缺少网络编程的基础知识，阅读后续代码可能会有障碍。建议读者先寻找相关的文章补充一下基础知识。</p>
+<h3 id="项目源代码地址"><a href="#项目源代码地址" class="headerlink" title="项目源代码地址"></a>项目源代码地址</h3><p>本小册的所有实战代码可以在 <a href="https://link.juejin.im/?target=https%3A%2F%2Fgithub.com%2Fpyloque%2Fjuejin_rpc_py" target="_blank" rel="noopener">Github</a> 上直接下载运行使用。运行代码需要 Linux 或者 Mac 运行环境，如果读者使用的是 Windows，可以考虑使用虚拟机或者安装 Docker。</p>
+<p><img src="https://user-gold-cdn.xitu.io/2018/6/3/163c484ed0ee0367?imageView2/0/w/1280/h/960/format/webp/ignore-error/1" alt="RPC"></p>
+<p>本节我们会主要讲解以下内容：</p>
+<blockquote>
+<p>使用三个非常重要的 Python 内置的库，它们分别是 socket、struct 和 json，分别承担 RPC 服务的网络通信功能、字节转换功能和消息序列化功能。<br>网络通信的内容是字节序列，消息序列化的目标是将 Python 的数据结构转换成字节序列，而用于界定消息边界的消息长度也是消息的一部分，它需要将 Python 的整形转换成字节数组，这部分工作是由 struct 库来完成。</p>
+</blockquote>
+<h3 id="socket"><a href="#socket" class="headerlink" title="socket"></a>socket</h3><p>Python 有内置的网络编程类库，方便用户编写 tcp/udp 相关的代码。两个不同机器的进程需要通信时，可以通过 socket 来传输数据。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"># 套接字客户端大致 API，参数略</span><br><span class="line">sock = socket.socket()  # 创建一个套接字</span><br><span class="line">sock.connect()  # 连接远程服务器</span><br><span class="line">sock.recv() # 读</span><br><span class="line">sock.send()  # 尽可能地写</span><br><span class="line">sock.sendall()  # 完全写</span><br><span class="line">sock.close()  # 关闭</span><br></pre></td></tr></table></figure></p>
+<p>注意send和sendall方法的区别，在网络状况良好的情况下，这两个方法几乎没有区别。但是需要特别注意的是send方法有可能只会发送了部分内容，它通过返回值来指示实际发出去了多少内容。而sendall方法是对send方法的封装，它考虑了这个情况，如果第一次send方法发送不完全，就会尝试第二次第三次循环发送直到全部内容都发送出去了或者中间出了错误才会返回。后续所有调用我们都会使用sendall方法。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"># 套接字服务器大致 API，参数略</span><br><span class="line">sock = socket.socket()  # 创建一个服务器套接字</span><br><span class="line">sock.bind()  # 绑定端口</span><br><span class="line">sock.listen()  # 监听连接</span><br><span class="line">sock.accept()  # 接受新连接</span><br><span class="line">sock.close()  # 关闭服务器套接字</span><br></pre></td></tr></table></figure>
+<h3 id="struct"><a href="#struct" class="headerlink" title="struct"></a>struct</h3><p>Python 内置的二进制解码编码库，用于将各种不同的类型的字段编码成二进制字节串。类似于 java 语言的 bytebuffer 可以将各种不同类型的字段内容编码成 byte 数组。我们通过 struct 包将消息的长度整数编码成 byte 数组。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">value_in_bytes = struct.pack(&quot;I&quot;, 1024)  # 将一个整数编码成 4 个字节的字符串</span><br><span class="line">value, = struct.unpack(&quot;I&quot;, value_in_bytes)  # 将一个 4 字节的字符串解码成一个整数</span><br><span class="line"># 注意等号前面有个逗号，这个非常重要，它不是笔误。</span><br><span class="line"># 因为 unpack 返回的是一个列表，它可以将一个很长的字节串解码成一系列的对象。</span><br><span class="line"># value 取这个列表的第一个对象。</span><br></pre></td></tr></table></figure></p>
+<h3 id="json"><a href="#json" class="headerlink" title="json"></a>json</h3><p>Python 内置的 json 序列化库。它可以将内存的对象序列化成 json 字符串，也可以将字符串反序列化成 Python 对象。它的序列化性能不高，但是使用方便直观。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">raw = json.dumps(&#123;&quot;hello&quot;: &quot;world&quot;&#125;)  # 序列化</span><br><span class="line">po = json.loads(raw)  # 反序列化</span><br></pre></td></tr></table></figure></p>
+<h3 id="消息协议"><a href="#消息协议" class="headerlink" title="消息协议"></a>消息协议</h3><p>我们将使用长度前缀法来确定消息边界，消息体使用 json 序列化。</p>
+<p>每个消息都有相应的名称，请求的名称使用 in 字段表示，请求的参数使用 params 字段表示，响应的名称是 out 字段表示，响应的结果用 result 字段表示。</p>
+<p>我们将请求和响应使用 json 序列化成字符串作为消息体，然后通过 Python 内置的 struct 包将消息体的长度整数转成 4 个字节的长度前缀字符串。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">// 输入</span><br><span class="line">&#123;</span><br><span class="line">    in: &quot;ping&quot;,</span><br><span class="line">    params: &quot;ireader 0&quot;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">// 输出</span><br><span class="line">&#123;</span><br><span class="line">    out: &quot;pong&quot;,</span><br><span class="line">    result: &quot;ireader 0&quot;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h3 id="客户端代码"><a href="#客户端代码" class="headerlink" title="客户端代码"></a>客户端代码</h3><p>后续使用的客户端代码是通用的，它适用于演示所有服务器模型。它的过程就是向服务器连续发送 10 个 RPC 请求，并输出服务器的响应结果。它使用约定的长度前缀法对请求消息进行编码，对响应消息进行解码。如果要演示多个并发客户端进行 RPC 请求，那就启动多个客户端进程。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"># coding: utf-8</span><br><span class="line"># client.py</span><br><span class="line"></span><br><span class="line">import json</span><br><span class="line">import time</span><br><span class="line">import struct</span><br><span class="line">import socket</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">def rpc(sock, in_, params):</span><br><span class="line">    request = json.dumps(&#123;&quot;in&quot;: in_, &quot;params&quot;: params&#125;)  # 请求消息体</span><br><span class="line">    length_prefix = struct.pack(&quot;I&quot;, len(request)) # 请求长度前缀</span><br><span class="line">    sock.sendall(length_prefix)</span><br><span class="line">    sock.sendall(request)</span><br><span class="line">    length_prefix = sock.recv(4)  # 响应长度前缀</span><br><span class="line">    length, = struct.unpack(&quot;I&quot;, length_prefix)</span><br><span class="line">    body = sock.recv(length) # 响应消息体</span><br><span class="line">    response = json.loads(body)</span><br><span class="line">    return response[&quot;out&quot;], response[&quot;result&quot;]  # 返回响应类型和结果</span><br><span class="line"></span><br><span class="line">if __name__ == &apos;__main__&apos;:</span><br><span class="line">    s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)</span><br><span class="line">    s.connect((&quot;localhost&quot;, 8080))</span><br><span class="line">    for i in range(10): # 连续发送 10 个 rpc 请求</span><br><span class="line">        out, result = rpc(s, &quot;ping&quot;, &quot;ireader %d&quot; % i)</span><br><span class="line">        print out, result</span><br><span class="line">        time.sleep(1)  # 休眠 1s，便于观察</span><br><span class="line">    s.close() # 关闭连接</span><br></pre></td></tr></table></figure>
+<p><img src="https://user-gold-cdn.xitu.io/2018/5/16/163680245ad03253?imageView2/0/w/1280/h/960/format/webp/ignore-error/1" alt="RPC"></p>
+<p>值得注意的是代码中有两个地方调用了socket.recv方法来读取期望的消息，通过传入一个长度值来获取想要的字节数组。实际上这样使用是不严谨的，甚至根本就是错误的。</p>
+<p>socket.recv(int)默认是阻塞调用，不过这个阻塞也是有条件的。如果内核的套接字接收缓存是空的，它才会阻塞。只要里面有哪怕只有一个字节，这个方法就不会阻塞，它会尽可能将接受缓存中的内容带走指定的字节数，然后就立即返回，而不是非要等待期望的字节数全满足了才返回。这意味着我们需要尝试循环读取才能正确地读取到期望的字节数。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">def receive(sock, n):</span><br><span class="line">    rs = []  # 读取的结果</span><br><span class="line">    while n &gt; 0:</span><br><span class="line">        r = sock.recv(n)</span><br><span class="line">        if not r:  # EOF</span><br><span class="line">            return rs</span><br><span class="line">        rs.append(r)</span><br><span class="line">        n -= len(r)</span><br><span class="line">    return &apos;&apos;.join(rs)</span><br></pre></td></tr></table></figure></p>
+<p>但是为了简单起见，我们后面的章节代码都直接使用socket.recv，在开发环境中网络延迟的情况较少发生，一般来说很少会遇到recv方法一次读不全的情况发生。</p>
+<h3 id="单线程同步模型服务器代码"><a href="#单线程同步模型服务器代码" class="headerlink" title="单线程同步模型服务器代码"></a>单线程同步模型服务器代码</h3><p>单线程同步模型的服务器是最简单的服务器模型，每次只能处理一个客户端连接，其它连接必须等到前面的连接关闭了才能得到服务器的处理。否则发送过来的请求会悬挂住，没有任何响应，直到前面的连接处理完了才能继续。</p>
+<p>服务器根据 RPC 请求的 in 字段来查找相应的 RPC Handler 进行处理。例子中只展示了 ping 消息的处理器。如果你想支持多种消息，可以在代码中增加更多的处理器函数，并将处理器函数注册到全局的 handlers 字典中。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br></pre></td><td class="code"><pre><span class="line"># coding: utf8</span><br><span class="line"># blocking_single.py</span><br><span class="line"></span><br><span class="line">import json</span><br><span class="line">import struct</span><br><span class="line">import socket</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">def handle_conn(conn, addr, handlers):</span><br><span class="line">    print addr, &quot;comes&quot;</span><br><span class="line">    while True:  # 循环读写</span><br><span class="line">        length_prefix = conn.recv(4)  # 请求长度前缀</span><br><span class="line">        if not length_prefix:  # 连接关闭了</span><br><span class="line">            print addr, &quot;bye&quot;</span><br><span class="line">            conn.close()</span><br><span class="line">            break  # 退出循环，处理下一个连接</span><br><span class="line">        length, = struct.unpack(&quot;I&quot;, length_prefix)</span><br><span class="line">        body = conn.recv(length)  # 请求消息体  </span><br><span class="line">        request = json.loads(body)</span><br><span class="line">        in_ = request[&apos;in&apos;]</span><br><span class="line">        params = request[&apos;params&apos;]</span><br><span class="line">        print in_, params</span><br><span class="line">        handler = handlers[in_]  # 查找请求处理器</span><br><span class="line">        handler(conn, params)  # 处理请求</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">def loop(sock, handlers):</span><br><span class="line">    while True:</span><br><span class="line">        conn, addr = sock.accept()  # 接收连接</span><br><span class="line">        handle_conn(conn, addr, handlers)  # 处理连接</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">def ping(conn, params):</span><br><span class="line">    send_result(conn, &quot;pong&quot;, params)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">def send_result(conn, out, result):</span><br><span class="line">    response = json.dumps(&#123;&quot;out&quot;: out, &quot;result&quot;: result&#125;)  # 响应消息体</span><br><span class="line">    length_prefix = struct.pack(&quot;I&quot;, len(response))  # 响应长度前缀</span><br><span class="line">conn.sendall(length_prefix)</span><br><span class="line">    conn.sendall(response)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">if __name__ == &apos;__main__&apos;:</span><br><span class="line">    sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)  # 创建一个 TCP 套接字</span><br><span class="line">    sock.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)  # 打开 reuse addr 选项</span><br><span class="line">    sock.bind((&quot;localhost&quot;, 8080)) # 绑定端口</span><br><span class="line">    sock.listen(1)  # 监听客户端连接</span><br><span class="line">    handlers = &#123;  # 注册请求处理器</span><br><span class="line">        &quot;ping&quot;: ping</span><br><span class="line">    &#125;</span><br><span class="line">    loop(sock, handlers)  # 进入服务循环</span><br></pre></td></tr></table></figure></p>
+<p>服务器运行效果:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">bash&gt;  Python blocking_single.py</span><br><span class="line">(&apos;127.0.0.1&apos;, 58417) comes</span><br><span class="line">ping ireader 0</span><br><span class="line">ping ireader 1</span><br><span class="line">ping ireader 2</span><br><span class="line">ping ireader 3</span><br><span class="line">ping ireader 4</span><br><span class="line">ping ireader 5</span><br><span class="line">ping ireader 6</span><br><span class="line">ping ireader 7</span><br><span class="line">ping ireader 8</span><br><span class="line">ping ireader 9</span><br><span class="line">(&apos;127.0.0.1&apos;, 58417) bye</span><br></pre></td></tr></table></figure></p>
+<p>客户端运行效果<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">bash&gt; Python client.py</span><br><span class="line">pong ireader 0</span><br><span class="line">pong ireader 1</span><br><span class="line">pong ireader 2</span><br><span class="line">pong ireader 3</span><br><span class="line">pong ireader 4</span><br><span class="line">pong ireader 5</span><br><span class="line">pong ireader 6</span><br><span class="line">pong ireader 7</span><br><span class="line">pong ireader 8</span><br><span class="line">pong ireader 9</span><br></pre></td></tr></table></figure></p>
+<p>如果在上一个客户端运行期间，再开一个新的客户端，会看到新的客户端没有任何输出。直到前一个客户端运行结束，输出才开始显示出来。因为服务器是串行地处理客户端连接。</p>
+<p>这样的服务器毫无疑问肯定是不会有人用的，如果你家的服务器只能服务一个客户，其它人都得排队，这不是要把人家活活急死么。</p>
+<p>所以，下一节我们将介绍服务器神奇的并发能力。</p>
+<h3 id="作业"><a href="#作业" class="headerlink" title="作业"></a>作业</h3><p>本节布置一个难度系数较高的作业，请读者实现 Redis 协议的编码和解码。为了完成这个作业，建议读者先去温习一下前面章节学习的 Redis 协议格式。</p>
+<p>不必惧怕困难，越是困难的事情，完成了就越有成就感。</p>
+
+        
+      </div>
+      
+      
+      
+    </div>
+    
+
+
+
+    
+    
+    
+  </div>
+
+
+          </div>
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">博主</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/">
+                
+                    <span class="site-state-item-count">176</span>
+                    <span class="site-state-item-name">日志</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-categories">
+                  <a href="/categories/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">27</span>
+                    <span class="site-state-item-name">分类</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  <a href="/tags/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">37</span>
+                    <span class="site-state-item-name">标签</span>
+                  </a>
+                </div>
+              
+            </nav>
+          
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+            
+          
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#简介"><span class="nav-number">1.</span> <span class="nav-text">简介</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#项目源代码地址"><span class="nav-number">2.</span> <span class="nav-text">项目源代码地址</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#socket"><span class="nav-number">3.</span> <span class="nav-text">socket</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#struct"><span class="nav-number">4.</span> <span class="nav-text">struct</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#json"><span class="nav-number">5.</span> <span class="nav-text">json</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#消息协议"><span class="nav-number">6.</span> <span class="nav-text">消息协议</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#客户端代码"><span class="nav-number">7.</span> <span class="nav-text">客户端代码</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#单线程同步模型服务器代码"><span class="nav-number">8.</span> <span class="nav-text">单线程同步模型服务器代码</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#作业"><span class="nav-number">9.</span> <span class="nav-text">作业</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder"><a href="http://blog.timilong.com/about" target="_blank"> Timi.long </a></span>
+  
+
+  
+</div>
+
+
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动 v3.7.1</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 – <a class="theme-link" target="_blank" href="https://theme-next.org">NexT.Muse</a> v6.4.1</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+	
+    
+
+    
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=6.4.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=6.4.1"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=6.4.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=6.4.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=6.4.1"></script>
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

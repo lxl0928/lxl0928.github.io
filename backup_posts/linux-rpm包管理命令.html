@@ -1,0 +1,805 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=6.4.1" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=6.4.1">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=6.4.1">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=6.4.1">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=6.4.1" color="#222">
+
+
+
+
+
+
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    version: '6.4.1',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: false,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  
+
+
+
+
+  <meta name="description" content="简介RPM的全名为“RedHat Package Manager”:    是由RedHat公司开发的。Rpm是以一种数据库记录的方式将所需要的套件安装到linux主机的一套管理程序 RPM主要优点:   由于已经编译完成并且打包, 所以安装方便 由于套件信息已经记录在linux主机的数据库中, 方便查询、升级、卸载。  RPM数据库: /var/lib/rpmRPM数据库建立可以利用: rpm">
+<meta name="keywords" content="Linux">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Linux-rpm包管理命令">
+<meta property="og:url" content="http://blog.timilong.com/backup_posts/linux-rpm包管理命令.html">
+<meta property="og:site_name" content="Timilong&#39;s blog">
+<meta property="og:description" content="简介RPM的全名为“RedHat Package Manager”:    是由RedHat公司开发的。Rpm是以一种数据库记录的方式将所需要的套件安装到linux主机的一套管理程序 RPM主要优点:   由于已经编译完成并且打包, 所以安装方便 由于套件信息已经记录在linux主机的数据库中, 方便查询、升级、卸载。  RPM数据库: /var/lib/rpmRPM数据库建立可以利用: rpm">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2018-10-30T03:33:08.185Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Linux-rpm包管理命令">
+<meta name="twitter:description" content="简介RPM的全名为“RedHat Package Manager”:    是由RedHat公司开发的。Rpm是以一种数据库记录的方式将所需要的套件安装到linux主机的一套管理程序 RPM主要优点:   由于已经编译完成并且打包, 所以安装方便 由于套件信息已经记录在linux主机的数据库中, 方便查询、升级、卸载。  RPM数据库: /var/lib/rpmRPM数据库建立可以利用: rpm">
+
+
+
+
+
+
+  <link rel="canonical" href="http://blog.timilong.com/backup_posts/linux-rpm包管理命令.html"/>
+
+
+
+<script type="text/javascript" id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>Linux-rpm包管理命令 | Timilong's blog</title>
+  
+
+
+
+
+
+
+
+
+
+  <noscript>
+  <style type="text/css">
+    .use-motion .motion-element,
+    .use-motion .brand,
+    .use-motion .menu-item,
+    .sidebar-inner,
+    .use-motion .post-block,
+    .use-motion .pagination,
+    .use-motion .comments,
+    .use-motion .post-header,
+    .use-motion .post-body,
+    .use-motion .collection-title { opacity: initial; }
+
+    .use-motion .logo,
+    .use-motion .site-title,
+    .use-motion .site-subtitle {
+      opacity: initial;
+      top: initial;
+    }
+
+    .use-motion {
+      .logo-line-before i { left: initial; }
+      .logo-line-after i { right: initial; }
+    }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Timilong's blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+    
+      
+        <p class="site-subtitle">Cease to struggle and you cease to live.--Thomas Carlyle</p>
+      
+    
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="Toggle navigation bar">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+          
+          <li class="menu-item menu-item-home">
+    <a href="/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-home"></i> <br />首页</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-tags">
+    <a href="/tags/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />标签</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-categories">
+    <a href="/categories/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-th"></i> <br />分类</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+    <a href="/archives/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />归档</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-about">
+    <a href="/about/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-user"></i> <br />关于</a>
+  </li>
+
+      
+      
+    </ul>
+  
+
+  
+    
+
+    
+    
+      
+      
+    
+      
+      
+    
+      
+      
+    
+      
+      
+    
+      
+      
+    
+    
+
+  
+
+
+  
+
+  
+</nav>
+
+
+
+  
+
+
+
+</div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+    
+    
+    <div class="post-block page">
+      <header class="post-header">
+
+<h1 class="post-title" itemprop="name headline">Linux-rpm包管理命令</h1>
+
+<div class="post-meta">
+  
+  
+
+
+
+</div>
+
+</header>
+
+      
+      
+      
+      <div class="post-body">
+        
+        
+          <h2 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h2><p>RPM的全名为“RedHat Package Manager”:<br>    是由RedHat公司开发的。Rpm是以一种数据库记录的方式将所需要的套件安装到linux主机的一套管理程序</p>
+<p>RPM主要优点: </p>
+<ol>
+<li>由于已经编译完成并且打包, 所以安装方便</li>
+<li>由于套件信息已经记录在linux主机的数据库中, 方便查询、升级、卸载。</li>
+</ol>
+<p>RPM数据库: /var/lib/rpm<br>RPM数据库建立可以利用: rpm –rebuilddb<br>RPM包名格式:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">name-version-release.arch.rpm</span><br><span class="line">name-version-release-release.arch.rpm</span><br></pre></td></tr></table></figure></p>
+<pre><code>version: 主版本号.此版本号.发行版本号.平台.rpm
+</code></pre><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">主版本号改变: 重大改进</span><br><span class="line">次版本号改变: 某个子功能发生重大变化</span><br><span class="line">发行号: 修正了部分bug, 调整了一点功能</span><br></pre></td></tr></table></figure>
+<a id="more"></a>
+<h2 id="rpm命令的详细用法"><a href="#rpm命令的详细用法" class="headerlink" title="rpm命令的详细用法"></a>rpm命令的详细用法</h2><ol>
+<li>语法如下<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br></pre></td><td class="code"><pre><span class="line">1) RPM软件安装命令:</span><br><span class="line">    rpm -i /PATH/TO/PACKAGE_FILE: 安装软件包</span><br><span class="line">    rpm -h: 以#显示安装进度, 每个#表示2%</span><br><span class="line">    rpm -v: 显示安装详细信息</span><br><span class="line">    rpm -vv: 更详细的信息</span><br><span class="line">    rpm -ivh: 一般都是组合使用</span><br><span class="line">    rpm --nodeps: 忽略依赖关系。</span><br><span class="line">    rpm --replacepkgs|repackage: 重新安装、替换原来安装。</span><br><span class="line">    rpm -ivh --oldpackage: 降级安装。</span><br><span class="line">    rpm -ivh --force: 强行安装, 可以实现重装或降级</span><br><span class="line">    rpm --test: 仅测试有没有依赖关系</span><br><span class="line"></span><br><span class="line">2) rpm软件查询命令: </span><br><span class="line">    rpm -q PACKAGE_NAME: 查询指定的包是否安装</span><br><span class="line">    rpm -qa: 查询以安装的所有包</span><br><span class="line">    rpm -qi PACKAGE_NAME: 查询指定包的说明信息</span><br><span class="line">    rpm -ql PACKAGE_NAME: 查询指定包安装后生成的文件列表</span><br><span class="line">    rpm -qc PACKAGE_NAME: 查询制定包安装的配置文件</span><br><span class="line">    rpm -qd PACKAGE_NAME: 查询指定包安装的帮助文件</span><br><span class="line">    rpm -q --scripts PACKAGE_NAME: 查询指定包中包含的脚本</span><br><span class="line">    rpm -qf /path/to/somefile: 查询指定的文件时由那个rpm包安装生成的</span><br><span class="line"></span><br><span class="line">    如果某个rpm包尚未安装, 我们需要查询其说明信息, 安装后会生成的文件</span><br><span class="line">    rpm -qpi /PATH/TO/PACKAGE_FILE</span><br><span class="line">        i: 软件说明信息</span><br><span class="line">    rpm -qpl /PATH/TO/PACKAGE_FILE</span><br><span class="line">        l: 软件安装生成文件列表</span><br><span class="line"> </span><br><span class="line"> 3) rpm软件升级命令:</span><br><span class="line">    rpm -Uvh /PATH/TO/NEW_PACKAGE_FILE: 如果装有老版本的, 则升级; 否则, 则安装</span><br><span class="line">    rpm -Fvh /PATH/TO/NEW_PACKAGE_FILE: 如果装有老版本的, 则升级; 否则, 则退出</span><br><span class="line">    rpm -Uvh --oldpackage 低版本的包:降级</span><br><span class="line">    </span><br><span class="line"> 4) rpm软件卸载命令:</span><br><span class="line">    卸载的时候此包不能被其他软件包依赖</span><br><span class="line">    rpm -e PACKAGE_NAME</span><br><span class="line">    rpm --nodeps: 忽略依赖, 可能会造成其他依赖此包的软件无法正常运行。</span><br><span class="line"></span><br><span class="line">5) rpm软件校验命令: </span><br><span class="line">    rpm -V PACKAGE_NAME: 无输出信息就是正常。</span><br><span class="line">    Fh: 在zsh安装以后修改一下配置文件 </span><br><span class="line"></span><br><span class="line">6) rpm重建数据库:</span><br><span class="line">    数据库位置: /var/lib/rpm</span><br><span class="line">    rpm --rebuilddb: 重建数据库, 一定会重新建立。</span><br><span class="line">    rpm --initdb: 初始化数据库, 没有才建立, 有就不用建立。</span><br><span class="line">7) 检验来源合法性及软件完整性: </span><br><span class="line">    红帽公钥: ls /etc/pki/rpm-gpg/RPM-GPG-KEY-redhat-release</span><br><span class="line">    rpm --import /etc/pki/rpm-gpg/RPM-GPG-KEY-redhat-release: 导入秘钥文件 </span><br><span class="line">    rpm -K /PATH/TO/PACKAGE_FILE</span><br><span class="line">    dsa, gpg: 验证来源合法性, 也即验证签名; 可以使用--nosignature,略过此项</span><br><span class="line">    sha1,md5: 验证软件包完整性; 可以使用--nodigest,略过此项</span><br><span class="line">    rpm -K --nodigest /PACKAGE_NAME: 只验证签名。</span><br><span class="line">    Fg: 检验zsh文件包的完整性</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+
+        
+      </div>
+      
+      
+      
+    </div>
+    
+
+
+
+    
+    
+    
+  </div>
+
+
+          </div>
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">博主</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/">
+                
+                    <span class="site-state-item-count">176</span>
+                    <span class="site-state-item-name">日志</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-categories">
+                  <a href="/categories/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">27</span>
+                    <span class="site-state-item-name">分类</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  <a href="/tags/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">37</span>
+                    <span class="site-state-item-name">标签</span>
+                  </a>
+                </div>
+              
+            </nav>
+          
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+            
+          
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#简介"><span class="nav-number">1.</span> <span class="nav-text">简介</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#rpm命令的详细用法"><span class="nav-number">2.</span> <span class="nav-text">rpm命令的详细用法</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder"><a href="http://blog.timilong.com/about" target="_blank"> Timi.long </a></span>
+  
+
+  
+</div>
+
+
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动 v3.7.1</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 – <a class="theme-link" target="_blank" href="https://theme-next.org">NexT.Muse</a> v6.4.1</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+	
+    
+
+    
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=6.4.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=6.4.1"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=6.4.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=6.4.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=6.4.1"></script>
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

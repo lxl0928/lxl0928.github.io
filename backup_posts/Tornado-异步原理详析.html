@@ -1,0 +1,867 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=6.4.1" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=6.4.1">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=6.4.1">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=6.4.1">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=6.4.1" color="#222">
+
+
+
+
+
+
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    version: '6.4.1',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: false,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  
+
+
+
+
+  <meta name="description" content="Tornado是一个用Python编写的异步HTTP服务器，同时也是一个web开发框架。 Tornado 优秀的大并发处理能力得益于它的 web server 从底层开始就自己实现了一整套基于 epoll 的单线程异步架构。">
+<meta name="keywords" content="Tornado">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Tornado-异步原理详析">
+<meta property="og:url" content="http://blog.timilong.com/backup_posts/Tornado-异步原理详析.html">
+<meta property="og:site_name" content="Timilong&#39;s blog">
+<meta property="og:description" content="Tornado是一个用Python编写的异步HTTP服务器，同时也是一个web开发框架。 Tornado 优秀的大并发处理能力得益于它的 web server 从底层开始就自己实现了一整套基于 epoll 的单线程异步架构。">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/1446087-70a2fac40573eee3.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/802/format/webp">
+<meta property="og:updated_time" content="2018-10-30T03:33:08.133Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Tornado-异步原理详析">
+<meta name="twitter:description" content="Tornado是一个用Python编写的异步HTTP服务器，同时也是一个web开发框架。 Tornado 优秀的大并发处理能力得益于它的 web server 从底层开始就自己实现了一整套基于 epoll 的单线程异步架构。">
+<meta name="twitter:image" content="https://upload-images.jianshu.io/upload_images/1446087-70a2fac40573eee3.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/802/format/webp">
+
+
+
+
+
+
+  <link rel="canonical" href="http://blog.timilong.com/backup_posts/Tornado-异步原理详析.html"/>
+
+
+
+<script type="text/javascript" id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>Tornado-异步原理详析 | Timilong's blog</title>
+  
+
+
+
+
+
+
+
+
+
+  <noscript>
+  <style type="text/css">
+    .use-motion .motion-element,
+    .use-motion .brand,
+    .use-motion .menu-item,
+    .sidebar-inner,
+    .use-motion .post-block,
+    .use-motion .pagination,
+    .use-motion .comments,
+    .use-motion .post-header,
+    .use-motion .post-body,
+    .use-motion .collection-title { opacity: initial; }
+
+    .use-motion .logo,
+    .use-motion .site-title,
+    .use-motion .site-subtitle {
+      opacity: initial;
+      top: initial;
+    }
+
+    .use-motion {
+      .logo-line-before i { left: initial; }
+      .logo-line-after i { right: initial; }
+    }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Timilong's blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+    
+      
+        <p class="site-subtitle">Cease to struggle and you cease to live.--Thomas Carlyle</p>
+      
+    
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="Toggle navigation bar">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+          
+          <li class="menu-item menu-item-home">
+    <a href="/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-home"></i> <br />首页</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-tags">
+    <a href="/tags/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />标签</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-categories">
+    <a href="/categories/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-th"></i> <br />分类</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+    <a href="/archives/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />归档</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-about">
+    <a href="/about/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-user"></i> <br />关于</a>
+  </li>
+
+      
+      
+    </ul>
+  
+
+  
+    
+
+    
+    
+      
+      
+    
+      
+      
+    
+      
+      
+    
+      
+      
+    
+      
+      
+    
+    
+
+  
+
+
+  
+
+  
+</nav>
+
+
+
+  
+
+
+
+</div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+    
+    
+    <div class="post-block page">
+      <header class="post-header">
+
+<h1 class="post-title" itemprop="name headline">Tornado-异步原理详析</h1>
+
+<div class="post-meta">
+  
+    <div class="post-description">Tornado是一个用Python编写的异步HTTP服务器，同时也是一个web开发框架。 Tornado 优秀的大并发处理能力得益于它的 web server 从底层开始就自己实现了一整套基于 epoll 的单线程异步架构。</div>
+  
+  
+
+
+
+</div>
+
+</header>
+
+      
+      
+      
+      <div class="post-body">
+        
+        
+          <blockquote>
+<p>转载自: 简书，<a href="https://www.jianshu.com/p/de7f04e65618" target="_blank" rel="noopener">Tornado-异步原理详析</a></p>
+</blockquote>
+<h3 id="Tornado是什么？"><a href="#Tornado是什么？" class="headerlink" title="Tornado是什么？"></a>Tornado是什么？</h3><p>Tornado是一个用Python编写的异步HTTP服务器，同时也是一个web开发框架。<br>Tornado 优秀的大并发处理能力得益于它的 web server 从底层开始就自己实现了一整套基于 epoll 的单线程异步架构。</p>
+<h3 id="同步、异步编程差异"><a href="#同步、异步编程差异" class="headerlink" title="同步、异步编程差异"></a>同步、异步编程差异</h3><blockquote>
+<ol>
+<li>对于同步阻塞型Web服务器，我们来打个比方，将它比作一间饭馆，而Web请求就是来这家饭馆里吃饭的客人。假设饭馆店里只有20个座位，那么同时能够就餐的客人数也就是20，剩下的客人被迫就在店门外等，如果客人们吃的太慢了，那么外面的客人等得不耐烦了，就会走掉（timeout）。</li>
+</ol>
+</blockquote>
+<blockquote>
+<ol start="2">
+<li>对于异步非阻塞型服务器，我们打另一个比方，将它比作一家超市，客人们想进就能进，前往货架拿他们想要的货物，然后再去收银台结账（callback），假设，这家超市只有20个收银台，却可以同时满足成百上千人的购物需求。和购物的时间长度比起来，结账的时间基本可以忽略不计。</li>
+</ol>
+</blockquote>
+<p>大部分Web应用都是阻塞性质的，也就是说当一个请求被处理时，这个进程就会被挂起直至请求完成。</p>
+<p>假设你正在写一个需要请求一些来自其他服务器上的数据（比如数据库服务，调用其他http 接口获取数据）的应用程序，这几个请求假设需要花费5秒钟，大多数的web开发框架中处理请求的代码：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">def handler_request(self, request):</span><br><span class="line">    answ = self.remote_server.query(request) # 耗时5秒</span><br><span class="line">    request.write_response(answ)</span><br></pre></td></tr></table></figure></p>
+<p>如果这些代码运行在单个线程中，你的服务器只能每5秒接收一个客户端的请求。在这5秒钟的时间里，服务器不能干其他任何事情，所以，你的服务效率是每秒0.2个请求， 这样的效率时不能接受。</p>
+<p>大部分服务器会使用多线程技术来让服务器一次接收多个客户端的请求，我们假设你有20个线程，你将在性能上获得20倍的提高，所以现在你的服务器效率是每秒接受4个请求，但这还是太低了。<br>当然，你可以通过不断地提高线程的数量来解决这个问题，但是，线程在内存和调度方面的开销是昂贵的，大多数Linux发布版中都是默认线程堆大小为8MB。为每个打开的连接维护一个大的线程池等待数据极易迅速耗光服务器的内存资源。可能这种提高线程数量的方式将永远不可能达到每秒100个请求的效率。</p>
+<p>如果使用异步IO(asynchronous IO AIO)，达到每秒上千个请求的效率是非常轻松的事情。服务器请求处理的代码将被改成这样：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">def handler_request(self, request):</span><br><span class="line">   self.remote_server.query_async(request, self.response_received)     </span><br><span class="line">def response_received(self, request, answ):    #回调函数 耗时5秒</span><br><span class="line">   request.write(answ)</span><br></pre></td></tr></table></figure></p>
+<p>AIO的思想是当我们在等待结果的时候不阻塞，转而我们给框架一个回调函数作为参数，让框架在收到结果的时候通过回调函数继续操作。这样，服务器就可以被解放去接受其他客户端的请求了。</p>
+<h3 id="IO复用-Epoll"><a href="#IO复用-Epoll" class="headerlink" title="IO复用 Epoll"></a>IO复用 Epoll</h3><p>tornado.ioloop 就是 tornado web server 异步最底层的实现。<br>看 ioloop 之前，我们需要了解一些预备知识，有助于我们理解 ioloop。</p>
+<p>ioloop 的实现基于 epoll ，那么什么是 epoll？ epoll 是Linux内核为处理大批量文件描述符而作了改进的 poll 。<br>那么什么又是 poll ？ 首先，我们回顾一下， socket 通信时的服务端，当它接受（ accept ）一个连接并建立通信后（ connection ）就进行通信，而此时我们并不知道连接的客户端有没有信息发完。 这时候我们有两种选择：</p>
+<blockquote>
+<ol>
+<li>一直在这里等着直到收发数据结束；</li>
+<li>每隔一定时间来看看这里有没有数据；</li>
+</ol>
+</blockquote>
+<p>第一种办法虽然可以解决问题，但我们要注意的是对于一个线程\进程同时只能处理一个 socket 通信，其他连接只能被阻塞，显然这种方式在单进程情况下不现实。</p>
+<p>第二种办法要比第一种好一些，多个连接可以统一在一定时间内轮流看一遍里面有没有数据要读写，看上去我们可以处理多个连接了，这个方式就是 poll / select 的解决方案。 看起来似乎解决了问题，但实际上，随着连接越来越多，轮询所花费的时间将越来越长，而服务器连接的 socket 大多不是活跃的，所以轮询所花费的大部分时间将是无用的。</p>
+<p>为了解决这个问题， epoll 被创造出来，它的概念和 poll 类似，不过每次轮询时，他只会把有数据活跃的 socket 挑出来轮询，这样在有大量连接时轮询就节省了大量时间。</p>
+<p>对于 epoll 的操作，其实也很简单，只要 4 个 API 就可以完全操作它。</p>
+<h4 id="epoll-create"><a href="#epoll-create" class="headerlink" title="epoll_create"></a>epoll_create</h4><p>用来创建一个 epoll 描述符（ 就是创建了一个 epoll ）</p>
+<h4 id="epoll-ctl"><a href="#epoll-ctl" class="headerlink" title="epoll_ctl"></a>epoll_ctl</h4><p>对epoll 事件操作，包括以下操作：<br>EPOLL_CTL_ADD 添加一个新的epoll事件<br>EPOLL_CTL_DEL 删除一个epoll事件<br>EPOLL_CTL_MOD 改变一个事件的监听方式</p>
+<p>epoll监听的事件七种，而我们只需要关心其中的三种：<br>EPOLLIN 缓冲区满，有数据可读（read）<br>EPOLLOUT 缓冲区空，可写数据 （write）<br>EPOLLERR 发生错误 （error）</p>
+<h4 id="epoll-wait"><a href="#epoll-wait" class="headerlink" title="epoll_wait"></a>epoll_wait</h4><p>就是让 epoll 开始工作，里面有个参数 timeout，当设置为非 0 正整数时，会监听（阻塞） timeout 秒；设置为 0 时立即返回，设置为 -1 时一直监听。<br>在监听时有数据活跃的连接时其返回活跃的文件句柄列表（此处为 socket 文件句柄）。</p>
+<h4 id="close"><a href="#close" class="headerlink" title="close"></a>close</h4><p>关闭 epoll</p>
+<h3 id="IOLoop模块"><a href="#IOLoop模块" class="headerlink" title="IOLoop模块"></a>IOLoop模块</h3><p>让我们通过查看ioloop.py文件直接进入服务器的核心。这个模块是异步机制的核心。它包含了一系列已经打开的文件描述符（文件指针）和每个描述符的处理器（handlers）。它的功能是选择那些已经准备好读写的文件描述符，然后调用它们各自的处理器（一种IO多路复用的实现，select / epoll）。</p>
+<p>可以通过调用add_handler()方法将一个socket加入IO循环中：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&quot;&quot;&quot;为文件描述符注册指定处理器(callback)，当文件描述指定的事件发生&quot;&quot;&quot;    </span><br><span class="line">def add_handler(self, fd, handler, events):    </span><br><span class="line">   self._handlers[fd] = handler   </span><br><span class="line">   self._impl.register(fd, events | self.ERROR)</span><br></pre></td></tr></table></figure></p>
+<p>_handlers这个字典类型的变量保存着文件描述符（其实就是socket）到当该文件描述符准备好时需要调用的方法的映射（在Tornado中，该方法被称为处理器）。然后，文件描述符被注册到epoll列表中。Tornado关心三种类型的事件（指发生在文件描述上的事件）：READ，WRITE 和 ERROR。正如你所见，ERROR是默认为你自动添加的。</p>
+<p>self._impl是select.epoll()和selet.select()两者中的一个</p>
+<p>现在让我们来看看实际的主循环，这段代码被放在了start()方法中：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br></pre></td><td class="code"><pre><span class="line">def start(self):</span><br><span class="line">    &quot;&quot;&quot;Starts the I/O loop.</span><br><span class="line">    The loop will run until one of the I/O handlers calls stop(), which</span><br><span class="line">    will make the loop stop after the current event iteration completes.</span><br><span class="line">    &quot;&quot;&quot;</span><br><span class="line">    self._running = True</span><br><span class="line">    while True: # 开始事件循环 Event Loop </span><br><span class="line">        [ ... ]</span><br><span class="line">        if not self._running:</span><br><span class="line">            break</span><br><span class="line">        [ ... ]</span><br><span class="line">        try:</span><br><span class="line">            event_pairs = self._impl.poll(poll_timeout)  # 通过epoll/select机制返回有事件返回的(fd: events)的键值对</span><br><span class="line">        except Exception, e:</span><br><span class="line">            if e.args == (4, &quot;Interrupted system call&quot;):</span><br><span class="line">                logging.warning(&quot;Interrupted system call&quot;, exc_info=1)</span><br><span class="line">                continue</span><br><span class="line">            else:</span><br><span class="line">                raise</span><br><span class="line">        # Pop one fd at a time from the set of pending fds and run</span><br><span class="line">        # its handler. Since that handler may perform actions on</span><br><span class="line">        # other file descriptors, there may be reentrant calls to</span><br><span class="line">        # this IOLoop that update self._events</span><br><span class="line">        self._events.update(event_pairs) # 更新所有准备好的事件列表</span><br><span class="line">        while self._events:</span><br><span class="line">            fd, events = self._events.popitem() # 循环逐个弹出可以待执行的socket和事件</span><br><span class="line">            try:</span><br><span class="line">                self._handlers[fd](fd, events) # 之前通过add_handler注册的fd和回调函数， 到这里就可以执行相对应的回调函数了</span><br><span class="line">            except KeyboardInterrupt:</span><br><span class="line">                raise</span><br><span class="line">            except OSError, e:</span><br><span class="line">                if e[0] == errno.EPIPE:</span><br><span class="line">                    # Happens when the client closes the connection</span><br><span class="line">                    pass</span><br><span class="line">                else:</span><br><span class="line">                    logging.error(&quot;Exception in I/O handler for fd %d&quot;,</span><br><span class="line">                                  fd, exc_info=True)</span><br><span class="line">            except:</span><br><span class="line">                logging.error(&quot;Exception in I/O handler for fd %d&quot;,</span><br><span class="line">                              fd, exc_info=True)</span><br></pre></td></tr></table></figure></p>
+<p>这就是异步的核心组件IOLoop 的核心工作，我们来看看它的工作流程：</p>
+<blockquote>
+<ol>
+<li>开始一个事件循环 Event Loop ，用于监测被注册到这里的fd（非阻塞socket）, 如果有执行事件发生，就执行相应回调函数</li>
+<li>event_pairs = self._impl.poll(poll_timeout) 通过epoll/select机制返回有事件返回的(fd: events)的键值对</li>
+<li>self._events.update(event_pairs) # 更新所有准备好的事件列表</li>
+<li>while self._events: 循环这个事件列表，循环逐个弹出可以待执行的socket和事件</li>
+<li>self._handlers<a href="fd, events">fd</a> 之前通过add_handler注册的fd和回调函数， 到这里就可以执行相对应的回调函数了</li>
+</ol>
+</blockquote>
+<p>通过上面介绍的add_handler注册socket-&gt;callback，这个start()功能就是tornado开启的一个单线程事件IO循环，用于监测所有非阻塞socket的事件，只要被注册的socket事件发生了，就执行注册时的回调函数。<br>具体到实际就是可以分为这两种情况：</p>
+<p>监听连接: </p>
+<blockquote>
+<p>一开始创建的一个服务器端socket监听端口，等待客户端连接，这时通过setblocking(0)设置这个socket 非阻塞，然后add_handler(socket, handler_connection, READ) 注册这个socket的可读事件，只有要新连接过来，就会触发读事件，handler_connection这个回调函数就执行。</p>
+</blockquote>
+<p>请求其他数据时: </p>
+<blockquote>
+<p>比如http_client.fetch()的connected，recvfrom的socket都会设置成nonblocking非阻塞，同时add_hanndler注册，等待事件发生，并调用回调函数。</p>
+</blockquote>
+<p>例子：一个建议的服务器监听：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">def connection_ready(sock, fd, events):</span><br><span class="line">    while True:</span><br><span class="line">        try:</span><br><span class="line">            connection, address = sock.accept()</span><br><span class="line">        except socket.error as e:</span><br><span class="line">            if e.args[0] not in (errno.EWOULDBLOCK, errno.EAGAIN):</span><br><span class="line">                raise</span><br><span class="line">            return</span><br><span class="line">        connection.setblocking(0)</span><br><span class="line">        handle_connection(connection, address)</span><br><span class="line"></span><br><span class="line">if __name__ == &apos;__main__&apos;:</span><br><span class="line">    sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM, 0)</span><br><span class="line">    sock.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)</span><br><span class="line">    sock.setblocking(0) # 把监听的socket设置成非阻塞</span><br><span class="line">    sock.bind((&quot;&quot;, port))</span><br><span class="line">    sock.listen(128)</span><br><span class="line"></span><br><span class="line">    io_loop = tornado.ioloop.IOLoop.current()</span><br><span class="line">    callback = functools.partial(connection_ready, sock)</span><br><span class="line">    io_loop.add_handler(sock.fileno(), callback, io_loop.READ) # 注册这个服务器端监听socket可读事件，同时注册这个回调函数</span><br><span class="line">    io_loop.start()</span><br></pre></td></tr></table></figure></p>
+<p><img src="https://upload-images.jianshu.io/upload_images/1446087-70a2fac40573eee3.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/802/format/webp" alt="Tornado"></p>
+<h3 id="效率对比实例代码"><a href="#效率对比实例代码" class="headerlink" title="效率对比实例代码"></a>效率对比实例代码</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">&quot;&quot;&quot;异步抓取网页&quot;&quot;&quot;</span><br><span class="line">class AsyncHandler(RequestHandler):</span><br><span class="line">    @asynchronous</span><br><span class="line">    def get(self):</span><br><span class="line">        http_client = AsyncHTTPClient()</span><br><span class="line">        http_client.fetch(&quot;http://www.163.com&quot;,</span><br><span class="line">                          callback=self.on_fetch)</span><br><span class="line"></span><br><span class="line">    def on_fetch(self, response):</span><br><span class="line">        print response</span><br><span class="line">        self.write(&apos;done&apos;)</span><br><span class="line">        self.finish()</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">&quot;&quot;&quot;同步抓取网页&quot;&quot;&quot;</span><br><span class="line">class SyncHandler(RequestHandler):</span><br><span class="line">    def get(self):</span><br><span class="line">        http_client = HTTPClient()</span><br><span class="line">        response = http_client.fetch(&quot;http://www.163.com&quot;)</span><br><span class="line">        print response</span><br><span class="line">        self.write(&apos;done&apos;)</span><br></pre></td></tr></table></figure>
+<h3 id="进行压测测试"><a href="#进行压测测试" class="headerlink" title="进行压测测试"></a>进行压测测试</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"># 异步代码压测结果</span><br><span class="line">Document Path:          /async_fetch/</span><br><span class="line">Document Length:        4 bytes</span><br><span class="line"></span><br><span class="line">Concurrency Level:      5</span><br><span class="line">Time taken for tests:   1.945 seconds</span><br><span class="line">Complete requests:      50</span><br><span class="line">Requests per second:    25.71 [#/sec] (mean)</span><br><span class="line">Time per request:       194.488 [ms] (mean)</span><br><span class="line">Time per request:       38.898 [ms] (mean, across all concurrent requests)</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"># 同步代码压测结果</span><br><span class="line">Document Path:          /sync_fetch/</span><br><span class="line">Concurrency Level:      5</span><br><span class="line">Time taken for tests:   5.423 seconds</span><br><span class="line">Complete requests:      50</span><br><span class="line">Requests per second:    9.22 [#/sec] (mean)</span><br><span class="line">Time per request:       542.251 [ms] (mean)</span><br><span class="line">Time per request:       108.450 [ms] (mean, across all concurrent requests)</span><br></pre></td></tr></table></figure>
+<p>可以看出异步比同步的性能高很多</p>
+<h3 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h3><p>Tornado的异步条件：要使用到异步，就必须把IO操作变成非阻塞的IO。<br>Tornado的异步原理：单线程的tornado打开一个IO事件循环， 当碰到IO请求（新链接进来 或者 调用api获取数据），由于这些IO请求都是非阻塞的IO，都会把这些非阻塞的IO socket 扔到一个socket管理器，所以，这里单线程的CPU只要发起一个网络IO请求，就不用挂起线程等待IO结果，这个单线程的事件继续循环，接受其他请求或者IO操作，如此循环。</p>
+<h3 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h3><blockquote>
+<p><a href="http://www.cnblogs.com/yiwenshengmei/archive/2011/06/08/understanding_tornado.html" target="_blank" rel="noopener">http://www.cnblogs.com/yiwenshengmei/archive/2011/06/08/understanding_tornado.html</a><br><a href="https://github.com/tornadoweb/tornado/blob/master/tornado/ioloop.py#L928" target="_blank" rel="noopener">https://github.com/tornadoweb/tornado/blob/master/tornado/ioloop.py#L928</a><br><a href="http://blog.csdn.net/wyx819/article/details/45420017" target="_blank" rel="noopener">http://blog.csdn.net/wyx819/article/details/45420017</a><br><a href="https://www.rapospectre.com/blog/34" target="_blank" rel="noopener">https://www.rapospectre.com/blog/34</a><br><a href="http://golubenco.org/understanding-the-code-inside-tornado-the-asynchronous-web-server-powering-friendfeed.html" target="_blank" rel="noopener">http://golubenco.org/understanding-the-code-inside-tornado-the-asynchronous-web-server-powering-friendfeed.html</a><br><a href="https://www.futures.moe/writings/introduction-for-tornado-async-programming.htm" target="_blank" rel="noopener">https://www.futures.moe/writings/introduction-for-tornado-async-programming.htm</a></p>
+</blockquote>
+
+        
+      </div>
+      
+      
+      
+    </div>
+    
+
+
+
+    
+    
+    
+  </div>
+
+
+          </div>
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">博主</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/">
+                
+                    <span class="site-state-item-count">176</span>
+                    <span class="site-state-item-name">日志</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-categories">
+                  <a href="/categories/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">27</span>
+                    <span class="site-state-item-name">分类</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  <a href="/tags/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">37</span>
+                    <span class="site-state-item-name">标签</span>
+                  </a>
+                </div>
+              
+            </nav>
+          
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+            
+          
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#Tornado是什么？"><span class="nav-number">1.</span> <span class="nav-text">Tornado是什么？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#同步、异步编程差异"><span class="nav-number">2.</span> <span class="nav-text">同步、异步编程差异</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#IO复用-Epoll"><span class="nav-number">3.</span> <span class="nav-text">IO复用 Epoll</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#epoll-create"><span class="nav-number">3.1.</span> <span class="nav-text">epoll_create</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#epoll-ctl"><span class="nav-number">3.2.</span> <span class="nav-text">epoll_ctl</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#epoll-wait"><span class="nav-number">3.3.</span> <span class="nav-text">epoll_wait</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#close"><span class="nav-number">3.4.</span> <span class="nav-text">close</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#IOLoop模块"><span class="nav-number">4.</span> <span class="nav-text">IOLoop模块</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#效率对比实例代码"><span class="nav-number">5.</span> <span class="nav-text">效率对比实例代码</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#进行压测测试"><span class="nav-number">6.</span> <span class="nav-text">进行压测测试</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#总结"><span class="nav-number">7.</span> <span class="nav-text">总结</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#参考"><span class="nav-number">8.</span> <span class="nav-text">参考</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder"><a href="http://blog.timilong.com/about" target="_blank"> Timi.long </a></span>
+  
+
+  
+</div>
+
+
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动 v3.7.1</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 – <a class="theme-link" target="_blank" href="https://theme-next.org">NexT.Muse</a> v6.4.1</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+	
+    
+
+    
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=6.4.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=6.4.1"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=6.4.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=6.4.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=6.4.1"></script>
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

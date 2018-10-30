@@ -116,12 +116,12 @@
 <meta property="og:site_name" content="Timilong&#39;s blog">
 <meta property="og:description" content="MySQL的InnoDB的细粒度行锁，是它最吸引人的特性之一。 但是，如果查询没有命中索引，也将退化为表锁。 InnoDB的细粒度锁，是实现在索引记录上的。">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="http://timilong.com/1536302724407.jpg">
-<meta property="og:updated_time" content="2018-10-19T02:46:54.980Z">
+<meta property="og:image" content="http://qiniucdn.timilong.com/1536302724407.jpg">
+<meta property="og:updated_time" content="2018-10-30T03:39:34.859Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="mysql-InnoDB-select为啥会阻塞insert">
 <meta name="twitter:description" content="MySQL的InnoDB的细粒度行锁，是它最吸引人的特性之一。 但是，如果查询没有命中索引，也将退化为表锁。 InnoDB的细粒度锁，是实现在索引记录上的。">
-<meta name="twitter:image" content="http://timilong.com/1536302724407.jpg">
+<meta name="twitter:image" content="http://qiniucdn.timilong.com/1536302724407.jpg">
 
 
 
@@ -208,7 +208,7 @@
   </div>
 
   <div class="site-nav-toggle">
-    <button aria-label="ナビゲーションバーの切り替え">
+    <button aria-label="Toggle navigation bar">
       <span class="btn-bar"></span>
       <span class="btn-bar"></span>
       <span class="btn-bar"></span>
@@ -368,9 +368,9 @@
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 
-                  <span class="post-meta-item-text">に編集されました</span>
+                  <span class="post-meta-item-text">Edited on</span>
                 
-                <time title="更新于：2018-10-19 02:46:54" itemprop="dateModified" datetime="2018-10-19T02:46:54Z">2018-10-19</time>
+                <time title="更新于：2018-10-30 03:39:34" itemprop="dateModified" datetime="2018-10-30T03:39:34Z">2018-10-30</time>
               
             
           </span>
@@ -435,7 +435,7 @@
 <p>索引的结构是<b>B+树</b>，这里不展开<b>B+树</b>的细节，说几个结论：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">(1)在索引结构中，非叶子节点存储key，叶子节点存储value；</span><br><span class="line"></span><br><span class="line">(2)聚集索引，叶子节点存储行记录(row)；</span><br><span class="line">画外音：所以，InnoDB索引和记录是存储在一起的，而MyISAM的索引和记录是分开存储的。</span><br><span class="line"></span><br><span class="line">(3)普通索引，叶子节点存储了PK的值；</span><br><span class="line">画外音： 所以，InnoDB的普通索引，实际上会扫描两遍：</span><br><span class="line">第一遍，由普通索引找到PK；</span><br><span class="line">第二遍，由PK找到行记录；</span><br><span class="line">索引结构，InnoDB/MyISAM的索引结构，如果大家感兴趣，未来撰文详述。</span><br></pre></td></tr></table></figure></p>
 <p>举个例子，假设有InnoDB表：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">t(id PK, name KEY, sex, flag);</span><br></pre></td></tr></table></figure></p>
 <p>表中有四条记录：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">1, shenjian, m, A</span><br><span class="line">3, zhangsan, m, A</span><br><span class="line">5, lisi, m, A</span><br><span class="line">9, wangwu, f, B</span><br></pre></td></tr></table></figure></p>
-<p><img src="http://timilong.com/1536302724407.jpg" alt="索引存储"></p>
+<p><img src="http://qiniucdn.timilong.com/1536302724407.jpg" alt="索引存储"></p>
 <p>可以看到：<br>(1)第一幅图，id <code>PK</code>的聚集索引，叶子存储了所有的行记录；</p>
 <p>(2)第二幅图，name上的普通索引，叶子存储了<code>PK</code>的值；</p>
 <p>对于：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">select * from t where name=’shenjian’;</span><br></pre></td></tr></table></figure></p>

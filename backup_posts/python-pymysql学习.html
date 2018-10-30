@@ -1,0 +1,836 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=6.4.1" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=6.4.1">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=6.4.1">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=6.4.1">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=6.4.1" color="#222">
+
+
+
+
+
+
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    version: '6.4.1',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: false,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  
+
+
+
+
+  <meta name="description" content="Python访问DB的官方接口规范Python DB APIPython访问数据库的统一接口规范。官网 Python应用程序通过Python DB API即可完成对不同数据库的访问，对应用程序来说，只需切换少量代码即可实现。">
+<meta name="keywords" content="python">
+<meta property="og:type" content="website">
+<meta property="og:title" content="python-MySQL数据库操作">
+<meta property="og:url" content="http://blog.timilong.com/backup_posts/python-pymysql学习.html">
+<meta property="og:site_name" content="Timilong&#39;s blog">
+<meta property="og:description" content="Python访问DB的官方接口规范Python DB APIPython访问数据库的统一接口规范。官网 Python应用程序通过Python DB API即可完成对不同数据库的访问，对应用程序来说，只需切换少量代码即可实现。">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="http://timilong.com/%E6%B7%B1%E5%BA%A6%E6%88%AA%E5%9B%BE20160709073935.png">
+<meta property="og:image" content="http://timilong.com/%E6%B7%B1%E5%BA%A6%E6%88%AA%E5%9B%BE20160709075539.png">
+<meta property="og:image" content="http://timilong.com/%E6%B7%B1%E5%BA%A6%E6%88%AA%E5%9B%BE20160709074444.png">
+<meta property="og:image" content="http://timilong.com/%E6%B7%B1%E5%BA%A6%E6%88%AA%E5%9B%BE20160712114529.png">
+<meta property="og:image" content="http://timilong.com/%E6%B7%B1%E5%BA%A6%E6%88%AA%E5%9B%BE20160712124117.png">
+<meta property="og:updated_time" content="2018-10-30T03:33:08.137Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="python-MySQL数据库操作">
+<meta name="twitter:description" content="Python访问DB的官方接口规范Python DB APIPython访问数据库的统一接口规范。官网 Python应用程序通过Python DB API即可完成对不同数据库的访问，对应用程序来说，只需切换少量代码即可实现。">
+<meta name="twitter:image" content="http://timilong.com/%E6%B7%B1%E5%BA%A6%E6%88%AA%E5%9B%BE20160709073935.png">
+
+
+
+
+
+
+  <link rel="canonical" href="http://blog.timilong.com/backup_posts/python-pymysql学习.html"/>
+
+
+
+<script type="text/javascript" id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>python-MySQL数据库操作 | Timilong's blog</title>
+  
+
+
+
+
+
+
+
+
+
+  <noscript>
+  <style type="text/css">
+    .use-motion .motion-element,
+    .use-motion .brand,
+    .use-motion .menu-item,
+    .sidebar-inner,
+    .use-motion .post-block,
+    .use-motion .pagination,
+    .use-motion .comments,
+    .use-motion .post-header,
+    .use-motion .post-body,
+    .use-motion .collection-title { opacity: initial; }
+
+    .use-motion .logo,
+    .use-motion .site-title,
+    .use-motion .site-subtitle {
+      opacity: initial;
+      top: initial;
+    }
+
+    .use-motion {
+      .logo-line-before i { left: initial; }
+      .logo-line-after i { right: initial; }
+    }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Timilong's blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+    
+      
+        <p class="site-subtitle">Cease to struggle and you cease to live.--Thomas Carlyle</p>
+      
+    
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="Toggle navigation bar">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+          
+          <li class="menu-item menu-item-home">
+    <a href="/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-home"></i> <br />首页</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-tags">
+    <a href="/tags/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />标签</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-categories">
+    <a href="/categories/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-th"></i> <br />分类</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+    <a href="/archives/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />归档</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-about">
+    <a href="/about/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-user"></i> <br />关于</a>
+  </li>
+
+      
+      
+    </ul>
+  
+
+  
+    
+
+    
+    
+      
+      
+    
+      
+      
+    
+      
+      
+    
+      
+      
+    
+      
+      
+    
+    
+
+  
+
+
+  
+
+  
+</nav>
+
+
+
+  
+
+
+
+</div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+    
+    
+    <div class="post-block page">
+      <header class="post-header">
+
+<h1 class="post-title" itemprop="name headline">python-MySQL数据库操作</h1>
+
+<div class="post-meta">
+  
+  
+
+
+
+</div>
+
+</header>
+
+      
+      
+      
+      <div class="post-body">
+        
+        
+          <h3 id="Python访问DB的官方接口规范"><a href="#Python访问DB的官方接口规范" class="headerlink" title="Python访问DB的官方接口规范"></a>Python访问DB的官方接口规范</h3><h4 id="Python-DB-API"><a href="#Python-DB-API" class="headerlink" title="Python DB API"></a>Python DB API</h4><p>Python访问数据库的统一接口规范。<br><a href="htttps://www.python.org/dev/peps/pep-0249" target="_blank" rel="noopener">官网</a></p>
+<p>Python应用程序通过Python DB API即可完成对不同数据库的访问，对应用程序来说，只需切换少量代码即可实现。</p>
+<a id="more"></a>
+<h4 id="Python-DB-API包含的内容："><a href="#Python-DB-API包含的内容：" class="headerlink" title="Python DB API包含的内容："></a>Python DB API包含的内容：</h4><p>Python程序———————————–&gt;数据库服务器<br>-数据库连接对象connection.(建立连接)<br>-数据库交互对象cursor(交互数据)<br>-数据库异常类exceptions(处理数据库操作过程中的事故)<br><img src="http://timilong.com/%E6%B7%B1%E5%BA%A6%E6%88%AA%E5%9B%BE20160709073935.png" alt="python db api"></p>
+<h4 id="Python-DB-API访问数据库流程"><a href="#Python-DB-API访问数据库流程" class="headerlink" title="Python DB API访问数据库流程"></a>Python DB API访问数据库流程</h4><p>-开始<br>-创建connection<br>-获取cursor<br>-执行查询、执行命令、获取数据、处理数据<br>-关闭cursor<br>-关闭connection(网络资源，一直没有关闭会浪费应用程序和数据库服务器的资源)<br>-结束<br><img src="http://timilong.com/%E6%B7%B1%E5%BA%A6%E6%88%AA%E5%9B%BE20160709075539.png" alt="访问流程"></p>
+<h3 id="Python开发DB程序的开发环境"><a href="#Python开发DB程序的开发环境" class="headerlink" title="Python开发DB程序的开发环境"></a>Python开发DB程序的开发环境</h3><p><img src="http://timilong.com/%E6%B7%B1%E5%BA%A6%E6%88%AA%E5%9B%BE20160709074444.png" alt="windows 下的python开发环境"></p>
+<h3 id="Python访问DB的connection、cursor两大对象"><a href="#Python访问DB的connection、cursor两大对象" class="headerlink" title="Python访问DB的connection、cursor两大对象"></a>Python访问DB的connection、cursor两大对象</h3><h4 id="连接对象：建立Python客户端与数据库的网络连接"><a href="#连接对象：建立Python客户端与数据库的网络连接" class="headerlink" title="连接对象：建立Python客户端与数据库的网络连接"></a>连接对象：建立Python客户端与数据库的网络连接</h4><p>创建方法：MySQLdb.Connect(参数):</p>
+<p>参数名   | 类型   | 说明<br>host     | 字符串 | MySQL服务器地址<br>port     | 数字   | MySQL服务器端口号<br>user     | 字符串 | 用户名<br>password | 字符串 | 密码<br>db       | 字符串 | 数据库名称<br>charset  | 字符串 | 连接编码 </p>
+<h4 id="connection对象支持的方法"><a href="#connection对象支持的方法" class="headerlink" title="connection对象支持的方法:"></a>connection对象支持的方法:</h4><p>方法名     | 说明<br>cursor()   | 使用该连接创建并返回游标<br>commit()   | 提交当前事物<br>rollback() | 回滚当前事物<br>close()    | 关闭连接</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">import MySQLdb</span><br><span class="line">conn = MySQLdb.Connect(</span><br><span class="line">                host = &apos;127.0.0.1&apos;,</span><br><span class="line">                port = 3306,</span><br><span class="line">                user = &apos;root&apos;,</span><br><span class="line">                passwd = &apos;123456&apos;,</span><br><span class="line">                db = &apos;test_db&apos;,</span><br><span class="line">                charset = &apos;utf-8&apos;</span><br><span class="line">)</span><br><span class="line">cursor = conn.cursor()</span><br><span class="line"></span><br><span class="line">print conn</span><br><span class="line">print cursor</span><br><span class="line"></span><br><span class="line">cursor.close()</span><br><span class="line">conn.close()</span><br></pre></td></tr></table></figure>
+<h4 id="数据库游标对象cursor"><a href="#数据库游标对象cursor" class="headerlink" title="数据库游标对象cursor"></a>数据库游标对象cursor</h4><p>游标对象:用于执行查询和获取结果<br>cursor对象支持的方法：</p>
+<p>参数名              | 说明<br>execute(op[, args]) | 执行一个数据库查询和命令<br>fetchone()          | 取的结果集的下一行<br>fetchmany(size)     | 获取结果集的下几行<br>fetchall()          | 获取结果集中剩下的所有行<br>rowcount            | 最近一次execute返回数据的行数或者影响行数<br>close()             | 关闭游标对象</p>
+<p>其中:<br>execute方法：执行SQL、将结果从数据库获取到客户端<br>客户端———————-MySQL服务器<br>execute(sql语句)———–&gt;执行SQL语句<br>                               |<br>                               |<br>本地缓冲区&lt;—————– 结果</p>
+<p>fetch*()方法：移动rownumber, 返回缓冲区的数据</p>
+<h3 id="Python执行增、删、改、查操作的实例讲解"><a href="#Python执行增、删、改、查操作的实例讲解" class="headerlink" title="Python执行增、删、改、查操作的实例讲解"></a>Python执行增、删、改、查操作的实例讲解</h3><h4 id="select查询数据"><a href="#select查询数据" class="headerlink" title="select查询数据"></a>select查询数据</h4><p>流程图：<br><img src="http://timilong.com/%E6%B7%B1%E5%BA%A6%E6%88%AA%E5%9B%BE20160712114529.png" alt="流程图"></p>
+<p>首先，在test_db数据库中创建一个user表格:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">CREATE TABLE &apos;user&apos; (</span><br><span class="line">    &apos;userid&apos; INT(11) NOT NULL AUTO_INCREMENT,</span><br><span class="line">    &apos;username&apos; VARCHAR(100) DEFAULT NULL,</span><br><span class="line">    PRIMARY KEY (&apos;userid&apos;)</span><br><span class="line">)ENGINE = INNODB AUTO_INCREMENT=9 DEFAULT CHARSET = utf8</span><br></pre></td></tr></table></figure>
+<p>测试cursor方法：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">import MySQLdb</span><br><span class="line">conn = MySQLdb.Connect(</span><br><span class="line">                host = &apos;127.0.0.1&apos;,</span><br><span class="line">                port = 3306,</span><br><span class="line">                user = &apos;root&apos;,</span><br><span class="line">                passwd = &apos;123456&apos;,</span><br><span class="line">                db = &apos;test_db&apos;,</span><br><span class="line">                charset = &apos;utf8&apos;</span><br><span class="line">                )</span><br><span class="line"></span><br><span class="line">cursor = conn.cursor()</span><br><span class="line"></span><br><span class="line">sql = &quot;select * from user&quot;</span><br><span class="line">cursor.execute(sql)</span><br><span class="line"></span><br><span class="line">rs = cursor.fetchall()</span><br><span class="line"></span><br><span class="line">for row in rs:</span><br><span class="line">    print &quot;userid = %s, username = %s&quot; % row</span><br><span class="line"></span><br><span class="line">cursor.close()</span><br><span class="line"></span><br><span class="line">conn.close()</span><br></pre></td></tr></table></figure>
+<h4 id="insert-update-delete更新数据库"><a href="#insert-update-delete更新数据库" class="headerlink" title="insert/update/delete更新数据库"></a>insert/update/delete更新数据库</h4><p>流程图：<br><img src="http://timilong.com/%E6%B7%B1%E5%BA%A6%E6%88%AA%E5%9B%BE20160712124117.png" alt="流程图"></p>
+<p>事物：访问和更新数据库的一个程序执行单元</p>
+<ul>
+<li>原子性：事物中包括的诸操作要么都做，要么都不做</li>
+<li>一致性：事物必需使数据库从一致性状态变到另一个一致性状态</li>
+<li>隔离性：一个事物的执行不能被其它事物干扰</li>
+<li>持久性：事物一旦提交，它对数据库的改变就是永久性的</li>
+</ul>
+<p>开发中如何使用事物？</p>
+<ul>
+<li>关闭自动commit：设置conn.autocommit(False)</li>
+<li>正常结束事物：conn.commit()</li>
+<li>异常结束事物：conn.rollback()</li>
+</ul>
+<p>针对select中test_db数据库的user表格继续进行insert/update/delete:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line">import MySQLdb</span><br><span class="line"></span><br><span class="line">conn = MySQLdb.Connect(</span><br><span class="line">                host = &apos;127.0.0.1&apos;,</span><br><span class="line">                port = 3306,</span><br><span class="line">                user = &apos;root&apos;,</span><br><span class="line">                password = &apos;123456&apos;,</span><br><span class="line">                db = &apos;test_db&apos;,</span><br><span class="line">                charset = &apos;utf8&apos;</span><br><span class="line">                )</span><br><span class="line"></span><br><span class="line">cursor = conn.cursor()</span><br><span class="line"></span><br><span class="line">sql_select = &quot;select * from user&quot;</span><br><span class="line">sql_insert = &quot;insert into user(userid, username) values(10, &apos;name10&apos;)&quot;</span><br><span class="line">sql_update = &quot;update user set username=&apos;name91&apos; where userid=9&quot;</span><br><span class="line">sql_delete = &quot;delete from user where userid &lt; 3&quot;</span><br><span class="line"></span><br><span class="line">cursor.excute(sql_select)</span><br><span class="line">print cursor.rowcount</span><br><span class="line"></span><br><span class="line">cursor.excute(sql_insert)</span><br><span class="line">print cursor.rowcount</span><br><span class="line"></span><br><span class="line">cursor.excute(sql_update)</span><br><span class="line">print cursor.rowcount</span><br><span class="line"></span><br><span class="line">cursor.excute(sql_delete)</span><br><span class="line">print cursor.rowcount</span><br><span class="line"></span><br><span class="line">conn.commit()</span><br><span class="line"></span><br><span class="line">cursor.close()</span><br><span class="line"></span><br><span class="line">conn.close()</span><br></pre></td></tr></table></figure>
+<p>测试conn.rollback():<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line">import MySQLdb</span><br><span class="line"></span><br><span class="line">conn = MySQLdb.Connect(</span><br><span class="line">               host = &apos;127.0.0.1&apos;,</span><br><span class="line">               port = &apos;3368&apos;,</span><br><span class="line">               user = &apos;root&apos;,</span><br><span class="line">               password = &apos;123456&apos;,</span><br><span class="line">               db = &apos;test_db&apos;,</span><br><span class="line">               charset = &apos;utf8&apos;</span><br><span class="line">)</span><br><span class="line"></span><br><span class="line">cursor = conn.cursor()</span><br><span class="line"></span><br><span class="line">sql_select = &quot;select * from user&quot;</span><br><span class="line">sql_insert = &quot;insert into user(userid, username) values(10, name10)&quot;</span><br><span class="line">sql_update = &quot;update user set username = &apos;name91&apos; where userid = 9&quot; #修改此处的userid为userd,造成异常调用conn.rollback()</span><br><span class="line">sql_delete = &quot;delete from user where useris &lt; 3&quot;</span><br><span class="line"></span><br><span class="line">try:</span><br><span class="line">    cursor.execute(sql_select)</span><br><span class="line">    print cursor.rowcount</span><br><span class="line"></span><br><span class="line">    cursor.execute(sql_insert)</span><br><span class="line">    print cursor.rowcount</span><br><span class="line"></span><br><span class="line">    cursor.execute(sql_update)</span><br><span class="line">    print cursor.rowcount</span><br><span class="line"></span><br><span class="line">    cursor.execute(sql_delete)</span><br><span class="line">    print cursor.rowcount</span><br><span class="line">except Exception as e:</span><br><span class="line">    print e</span><br><span class="line">    conn.rollback()</span><br><span class="line"></span><br><span class="line">cursor.close()</span><br><span class="line">conn.close()</span><br></pre></td></tr></table></figure></p>
+<h3 id="完整实例：银行转账实现账户A给账户B转账100元"><a href="#完整实例：银行转账实现账户A给账户B转账100元" class="headerlink" title="完整实例：银行转账实现账户A给账户B转账100元"></a>完整实例：银行转账实现账户A给账户B转账100元</h3><p>开始事务–&gt;检查账户A和账户是否可用–&gt;检查账户A是否有100元–&gt;账户A减去100元、账户B加上100元–&gt;提交事务<br>(出现异常–&gt;回滚事务)</p>
+<h4 id="代码实现"><a href="#代码实现" class="headerlink" title="代码实现"></a>代码实现</h4><p>数据库部分：<br>在名为bank的数据库中创建account表格：账户的id和账户的金额<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">CREATE TABLE &apos;ACCOUNT&apos; (</span><br><span class="line">  `acctid` INT(11) DEFAULT NULL COMMENT &apos;账户ID&apos;,</span><br><span class="line">  `money` INT(11) DEFAULT NULL COMMENT &apos;余额&apos;</span><br><span class="line">) ENGINE = INNODB DEFAULT CHARSET = utf8;</span><br></pre></td></tr></table></figure></p>
+<p>python代码部分：transfer_money.py<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br></pre></td><td class="code"><pre><span class="line"># coding: utf8</span><br><span class="line"></span><br><span class="line">import sys</span><br><span class="line">import MySQLdb</span><br><span class="line"></span><br><span class="line">class TransferMoney(object):</span><br><span class="line">    def __init__(self, conn):</span><br><span class="line">        self.conn = conn</span><br><span class="line"></span><br><span class="line">    def transfer(self, source_acctid, target_acctid, money):</span><br><span class="line">        try:</span><br><span class="line">            self.check_acct_available(source_acctid)</span><br><span class="line">            self.check_acct_available(target_acctid)</span><br><span class="line">            self.has_enough_money(source_acctid, money)</span><br><span class="line">            self.reduce_money(source_acctid, money)</span><br><span class="line">            self.add_money(target_acctid, money)</span><br><span class="line">            self.conn.commit()</span><br><span class="line">        except Exception as e:</span><br><span class="line">            self.conn.rollback()</span><br><span class="line">            raise e</span><br><span class="line"></span><br><span class="line">    def check_acct_available(self, acctid):</span><br><span class="line">        cursor = self.conn.cursor()</span><br><span class="line">        try:</span><br><span class="line">            sql = &quot;select * from account where acctid = %s&quot; % acctid</span><br><span class="line">            cursor.execute(sql)</span><br><span class="line">            print &quot;check_acct_available:&quot; + sql</span><br><span class="line">            rs = cursor.fetchall()</span><br><span class="line">            if len(rs) != 1:</span><br><span class="line">                raise Exception(&quot;账号%s不存在&quot; % acctid)</span><br><span class="line">        finally:</span><br><span class="line">            cursor.close()</span><br><span class="line"></span><br><span class="line">    def has_enough_money(self, acctid, money):</span><br><span class="line">        cursor = self.conn.cursor()</span><br><span class="line">        try:</span><br><span class="line">            sql = &quot;select * from account where acctid=%s and money&gt;%s&quot; % (acctid, money)</span><br><span class="line">            cursor.execute(sql)</span><br><span class="line">            print &quot;has_enough_money:&quot;  + sql  </span><br><span class="line">            rs = cursor.fetchall()</span><br><span class="line">            if len(rs) != 1:</span><br><span class="line">                raise Exception(&quot;账户%s的钱不足%s&quot; % (acctid, money))</span><br><span class="line">        finally:</span><br><span class="line">            cursor.close()</span><br><span class="line"></span><br><span class="line">    def reduce_money(self, acctid, money):</span><br><span class="line">        cursor = self.conn.cursor()</span><br><span class="line">        try:</span><br><span class="line">            sql = &quot;update account set money=money-%s where acctid=%s&quot; % (money, acctid)</span><br><span class="line">            cursor.execute(sql)</span><br><span class="line">            print &quot;reduce_money:&quot; + sql</span><br><span class="line">            if cursor.rowcount != 1:</span><br><span class="line">                raise Exception(&quot;账户%s减钱失败&quot; % (acctid))</span><br><span class="line">        finally:</span><br><span class="line">            cursor.close()</span><br><span class="line"></span><br><span class="line">    def add_money(self, acctid, money):</span><br><span class="line">        cursor = self.conn.cursor()</span><br><span class="line">        try:</span><br><span class="line">            sql = &quot;update account set money=money+%s where acctid=%s&quot; % (money, acctid)</span><br><span class="line">            cursor.execute(sql)</span><br><span class="line">            print &quot;add_money:&quot; + sql</span><br><span class="line">            if cursor.rowcount != 1:</span><br><span class="line">                raise Exception(&quot;账户%s加钱失败&quot; % (acctid))</span><br><span class="line">        finally:</span><br><span class="line">            cursor.close()</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">if __name__ == &quot;__main__&quot;:</span><br><span class="line">    source_acctid = sys.argv[1]</span><br><span class="line">    target_acctid = sys.argv[2]</span><br><span class="line">    money = sys.argv[3]</span><br><span class="line"></span><br><span class="line">    conn = MySQLdb.Connect(host=&quot;127.0.0.1&quot;, user=&quot;root&quot;, passwd=&quot;jiajin@123&quot;, port=3306, db=&quot;test_aaa&quot;, charset=&quot;utf8&quot;)</span><br><span class="line"></span><br><span class="line">    tr_money = TransferMoney(conn)</span><br><span class="line"></span><br><span class="line">    try:</span><br><span class="line">        tr_money.transfer(source_acctid, target_acctid, money)</span><br><span class="line">    except Exception as e:</span><br><span class="line">        print &quot;出现问题&quot; + str(e)</span><br><span class="line">    finally:</span><br><span class="line">        conn.close()</span><br></pre></td></tr></table></figure></p>
+
+        
+      </div>
+      
+      
+      
+    </div>
+    
+
+
+
+    
+    
+    
+  </div>
+
+
+          </div>
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">博主</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/">
+                
+                    <span class="site-state-item-count">176</span>
+                    <span class="site-state-item-name">日志</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-categories">
+                  <a href="/categories/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">27</span>
+                    <span class="site-state-item-name">分类</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  <a href="/tags/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">37</span>
+                    <span class="site-state-item-name">标签</span>
+                  </a>
+                </div>
+              
+            </nav>
+          
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+            
+          
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#Python访问DB的官方接口规范"><span class="nav-number">1.</span> <span class="nav-text">Python访问DB的官方接口规范</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Python-DB-API"><span class="nav-number">1.1.</span> <span class="nav-text">Python DB API</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Python-DB-API包含的内容："><span class="nav-number">1.2.</span> <span class="nav-text">Python DB API包含的内容：</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Python-DB-API访问数据库流程"><span class="nav-number">1.3.</span> <span class="nav-text">Python DB API访问数据库流程</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Python开发DB程序的开发环境"><span class="nav-number">2.</span> <span class="nav-text">Python开发DB程序的开发环境</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Python访问DB的connection、cursor两大对象"><span class="nav-number">3.</span> <span class="nav-text">Python访问DB的connection、cursor两大对象</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#连接对象：建立Python客户端与数据库的网络连接"><span class="nav-number">3.1.</span> <span class="nav-text">连接对象：建立Python客户端与数据库的网络连接</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#connection对象支持的方法"><span class="nav-number">3.2.</span> <span class="nav-text">connection对象支持的方法:</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#数据库游标对象cursor"><span class="nav-number">3.3.</span> <span class="nav-text">数据库游标对象cursor</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Python执行增、删、改、查操作的实例讲解"><span class="nav-number">4.</span> <span class="nav-text">Python执行增、删、改、查操作的实例讲解</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#select查询数据"><span class="nav-number">4.1.</span> <span class="nav-text">select查询数据</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#insert-update-delete更新数据库"><span class="nav-number">4.2.</span> <span class="nav-text">insert/update/delete更新数据库</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#完整实例：银行转账实现账户A给账户B转账100元"><span class="nav-number">5.</span> <span class="nav-text">完整实例：银行转账实现账户A给账户B转账100元</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#代码实现"><span class="nav-number">5.1.</span> <span class="nav-text">代码实现</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder"><a href="http://blog.timilong.com/about" target="_blank"> Timi.long </a></span>
+  
+
+  
+</div>
+
+
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动 v3.7.1</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 – <a class="theme-link" target="_blank" href="https://theme-next.org">NexT.Muse</a> v6.4.1</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+	
+    
+
+    
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=6.4.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=6.4.1"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=6.4.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=6.4.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=6.4.1"></script>
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

@@ -1,0 +1,818 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=6.4.1" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=6.4.1">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=6.4.1">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=6.4.1">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=6.4.1" color="#222">
+
+
+
+
+
+
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    version: '6.4.1',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: false,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  
+
+
+
+
+  <meta name="description" content="索引分类MySQL索引分为普通索引、唯一性索引、全文索引、单列索引、多列索引等等。 MySQL: 索引以B树格式保存Memory存储引擎可以选择Hash或BTree索引，Hash索引只能用于=或&amp;lt;=&amp;gt;的等式比较。  普通索引123create index on Tablename (列的列表) alter table TableName add index (列的列表) create">
+<meta name="keywords" content="MySQL">
+<meta property="og:type" content="website">
+<meta property="og:title" content="mysql-索引分类及用途">
+<meta property="og:url" content="http://blog.timilong.com/backup_posts/mysql-索引分类及用途.html">
+<meta property="og:site_name" content="Timilong&#39;s blog">
+<meta property="og:description" content="索引分类MySQL索引分为普通索引、唯一性索引、全文索引、单列索引、多列索引等等。 MySQL: 索引以B树格式保存Memory存储引擎可以选择Hash或BTree索引，Hash索引只能用于=或&amp;lt;=&amp;gt;的等式比较。  普通索引123create index on Tablename (列的列表) alter table TableName add index (列的列表) create">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2018-10-30T03:33:08.143Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="mysql-索引分类及用途">
+<meta name="twitter:description" content="索引分类MySQL索引分为普通索引、唯一性索引、全文索引、单列索引、多列索引等等。 MySQL: 索引以B树格式保存Memory存储引擎可以选择Hash或BTree索引，Hash索引只能用于=或&amp;lt;=&amp;gt;的等式比较。  普通索引123create index on Tablename (列的列表) alter table TableName add index (列的列表) create">
+
+
+
+
+
+
+  <link rel="canonical" href="http://blog.timilong.com/backup_posts/mysql-索引分类及用途.html"/>
+
+
+
+<script type="text/javascript" id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>mysql-索引分类及用途 | Timilong's blog</title>
+  
+
+
+
+
+
+
+
+
+
+  <noscript>
+  <style type="text/css">
+    .use-motion .motion-element,
+    .use-motion .brand,
+    .use-motion .menu-item,
+    .sidebar-inner,
+    .use-motion .post-block,
+    .use-motion .pagination,
+    .use-motion .comments,
+    .use-motion .post-header,
+    .use-motion .post-body,
+    .use-motion .collection-title { opacity: initial; }
+
+    .use-motion .logo,
+    .use-motion .site-title,
+    .use-motion .site-subtitle {
+      opacity: initial;
+      top: initial;
+    }
+
+    .use-motion {
+      .logo-line-before i { left: initial; }
+      .logo-line-after i { right: initial; }
+    }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Timilong's blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+    
+      
+        <p class="site-subtitle">Cease to struggle and you cease to live.--Thomas Carlyle</p>
+      
+    
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="Toggle navigation bar">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+          
+          <li class="menu-item menu-item-home">
+    <a href="/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-home"></i> <br />首页</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-tags">
+    <a href="/tags/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />标签</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-categories">
+    <a href="/categories/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-th"></i> <br />分类</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+    <a href="/archives/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />归档</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-about">
+    <a href="/about/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-user"></i> <br />关于</a>
+  </li>
+
+      
+      
+    </ul>
+  
+
+  
+    
+
+    
+    
+      
+      
+    
+      
+      
+    
+      
+      
+    
+      
+      
+    
+      
+      
+    
+    
+
+  
+
+
+  
+
+  
+</nav>
+
+
+
+  
+
+
+
+</div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+    
+    
+    <div class="post-block page">
+      <header class="post-header">
+
+<h1 class="post-title" itemprop="name headline">mysql-索引分类及用途</h1>
+
+<div class="post-meta">
+  
+  
+
+
+
+</div>
+
+</header>
+
+      
+      
+      
+      <div class="post-body">
+        
+        
+          <h2 id="索引分类"><a href="#索引分类" class="headerlink" title="索引分类"></a>索引分类</h2><p>MySQL索引分为普通索引、唯一性索引、全文索引、单列索引、多列索引等等。</p>
+<h2 id="MySQL-索引以B树格式保存"><a href="#MySQL-索引以B树格式保存" class="headerlink" title="MySQL: 索引以B树格式保存"></a>MySQL: 索引以B树格式保存</h2><p>Memory存储引擎可以选择Hash或BTree索引，Hash索引只能用于=或&lt;=&gt;的等式比较。 </p>
+<h2 id="普通索引"><a href="#普通索引" class="headerlink" title="普通索引"></a>普通索引</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">create index on Tablename (列的列表) </span><br><span class="line">alter table TableName add index (列的列表) </span><br><span class="line">create table TableName([...], index [IndexName] (列的列表)</span><br></pre></td></tr></table></figure>
+<a id="more"></a>
+<h2 id="唯一性索引：create-unique-index"><a href="#唯一性索引：create-unique-index" class="headerlink" title="唯一性索引：create unique index"></a>唯一性索引：create unique index</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">alter ... add unique</span><br></pre></td></tr></table></figure>
+<p>主键：一种唯一性索引，必须指定为primary key </p>
+<h2 id="全文索引：从3-23-23版开始支持全文索引和全文检索，FULLTEXT"><a href="#全文索引：从3-23-23版开始支持全文索引和全文检索，FULLTEXT" class="headerlink" title="全文索引：从3.23.23版开始支持全文索引和全文检索，FULLTEXT"></a>全文索引：从3.23.23版开始支持全文索引和全文检索，FULLTEXT</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">可以在char、varchar或text类型的列上创建。</span><br></pre></td></tr></table></figure>
+<h2 id="单列索引、多列索引"><a href="#单列索引、多列索引" class="headerlink" title="单列索引、多列索引"></a>单列索引、多列索引</h2><p>多个单列索引与单个多列索引的查询效果不同，因为：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">执行查询时，MySQL只能使用一个索引，会从多个索引中选择一个限制最为严格的索引。</span><br></pre></td></tr></table></figure></p>
+<h2 id="最左前缀-Leftmost-Prefixing-：多列索引"><a href="#最左前缀-Leftmost-Prefixing-：多列索引" class="headerlink" title="最左前缀(Leftmost Prefixing)：多列索引"></a>最左前缀(Leftmost Prefixing)：多列索引</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">例如：fname_lname_age索引，以下的搜索条件MySQL都将使用 </span><br><span class="line"></span><br><span class="line">fname_lname_age索引: firstname, lastname, age;</span><br><span class="line">                     firstname, lastname;</span><br><span class="line">                     firstname; 其他情况将不使用。</span><br></pre></td></tr></table></figure>
+<h2 id="根据sql查询语句确定创建哪种类型的索引，如何优化查询"><a href="#根据sql查询语句确定创建哪种类型的索引，如何优化查询" class="headerlink" title="根据sql查询语句确定创建哪种类型的索引，如何优化查询"></a>根据sql查询语句确定创建哪种类型的索引，如何优化查询</h2><p>选择索引列：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">a.性能优化过程中，选择在哪个列上创建索引是最重要的步骤之一, 可以考虑使用索引的主要有</span><br><span class="line">  两种类型的列：在where子句中出现的列，在join子句中出现的列。 </span><br><span class="line"></span><br><span class="line">b.考虑列中值的分布，索引的列的基数越大，索引的效果越好。 </span><br><span class="line"></span><br><span class="line">c.使用短索引，如果对字符串列进行索引，应该指定一个前缀长度，可节省大量索引空间，提升查询速度。 </span><br><span class="line"></span><br><span class="line">d.利用最左前缀 </span><br><span class="line"></span><br><span class="line">e.不要过度索引，只保持所需的索引。每个额外的索引都要占用额外的磁盘空间，并降低写操作的性能。</span><br></pre></td></tr></table></figure></p>
+<p>在修改表的内容时，索引必须进行更新，有时可能需要重构，因此，索引越多，所花的时间越长。 </p>
+<h2 id="MySQL只对以下操作符才使用索引"><a href="#MySQL只对以下操作符才使用索引" class="headerlink" title="MySQL只对以下操作符才使用索引"></a>MySQL只对以下操作符才使用索引</h2><p><code> &lt;, &lt;=, =, &gt;, &gt;=, between, in </code></p>
+<p>以及某些时候的 <code> like(不以通配符%或_开头的情形) </code></p>
+<h2 id="mysql-索引分类"><a href="#mysql-索引分类" class="headerlink" title="mysql 索引分类"></a>mysql 索引分类</h2><p>在数据库表中，对字段建立索引可以大大提高查询速度。<br>通过善用这些索引，可以令 MySQL的查询和运行更加高效。<br>索引是快速搜索的关键。MySQL索引的建立对于MySQL的高效运行是很重要的。<br>下面介绍几种常见的MySQL索引类型。 </p>
+<h3 id="1、普通型索引"><a href="#1、普通型索引" class="headerlink" title="1、普通型索引"></a>1、普通型索引</h3><p>这是最基本的索引类型，而且它没有唯一性之类的限制。普通索引可以通过以下几种方式创建：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">（1）创建索引，例如CREATE INDEX 索引的名字 ON tablename (列名1，列名2,...); </span><br><span class="line">（2）修改表，例如ALTER TABLE tablename ADD INDEX 索引的名字 (列名1，列名2,...); </span><br><span class="line">（3）创建表的时候指定索引，例如CREATE TABLE tablename ( [...], INDEX 索引的名字 (列名1，列名 2,...) );</span><br></pre></td></tr></table></figure></p>
+<h3 id="2、唯一索引"><a href="#2、唯一索引" class="headerlink" title="2、唯一索引"></a>2、唯一索引</h3><p>这种索引和前面的“普通索引”基本相同，但有一个区别：<br><code>索引列的所有值都只能出现一次，即必须唯一。</code></p>
+<p>唯一性索引可以用以下几种方式创建：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">（1）创建索引，例如CREATE UNIQUE INDEX 索引的名字 ON tablename (列的列表); </span><br><span class="line">（2）修改表，例如ALTER TABLE tablename ADD UNIQUE 索引的名字 (列的列表); </span><br><span class="line">（3）创建表的时候指定索引，例如CREATE TABLE tablename ( [...], UNIQUE 索引的名字 (列的列表) );</span><br></pre></td></tr></table></figure></p>
+<h3 id="3、主键"><a href="#3、主键" class="headerlink" title="3、主键"></a>3、主键</h3><p>主键是一种唯一性索引，但它必须指定为“PRIMARY KEY”。<br>如果你曾经用过<code>AUTO_INCREMENT</code>类型的列，你可能已经熟悉主键之类的概念了。</p>
+<p>主键一般在创建表的时候指定，例如:</p>
+<p><code>CREATE TABLE tablename ( […], PRIMARY KEY (列的列表) );</code></p>
+<p>但是，我们也可以通过修改表的方式加入主键，例如:</p>
+<p><code>ALTER TABLE tablename ADD PRIMARY KEY (列的列表);</code><br>每个表只能有一个主键(主键相当于聚合索引，是查找最快的索引)</p>
+<h3 id="4、单列索引和多列索引"><a href="#4、单列索引和多列索引" class="headerlink" title="4、单列索引和多列索引"></a>4、单列索引和多列索引</h3><p>索引可以是单列索引，也可以是多列索引。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">（1）单列索引就是常用的一个列字段的索引，常见的索引。 </span><br><span class="line">（2）多列索引就是含有多个列字段的索引</span><br></pre></td></tr></table></figure></p>
+<p>创建表格:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">alter table student add index sy(name,age，score);</span><br></pre></td></tr></table></figure></p>
+<p>其中, 索引sy就为多列索引，多列索引在以下几中情况下才能有效：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">select * from student where name=&apos;jia&apos; and age&gt;=&apos;12&apos;;</span><br><span class="line"># where条件中含有索引的首列字段和第二个字段 </span><br><span class="line"></span><br><span class="line">select * from student where name=&apos;jia&apos;;</span><br><span class="line"># where条件中只含有首列字段 </span><br><span class="line"></span><br><span class="line">select * from student where name=&apos;jia&apos; and score&lt;60;</span><br><span class="line"># where条件中含有首列字段和第三个字段</span><br></pre></td></tr></table></figure></p>
+<p>总结：多列索引只有在where条件中含有索引中的首列字段时才有效 </p>
+<h3 id="5、选择索引列"><a href="#5、选择索引列" class="headerlink" title="5、选择索引列"></a>5、选择索引列</h3><p>应该怎样选择索引列，首先要看查询条件，一般将查询条件中的列作为索引 </p>
+
+        
+      </div>
+      
+      
+      
+    </div>
+    
+
+
+
+    
+    
+    
+  </div>
+
+
+          </div>
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">博主</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/">
+                
+                    <span class="site-state-item-count">176</span>
+                    <span class="site-state-item-name">日志</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-categories">
+                  <a href="/categories/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">27</span>
+                    <span class="site-state-item-name">分类</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  <a href="/tags/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">37</span>
+                    <span class="site-state-item-name">标签</span>
+                  </a>
+                </div>
+              
+            </nav>
+          
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+            
+          
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#索引分类"><span class="nav-number">1.</span> <span class="nav-text">索引分类</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#MySQL-索引以B树格式保存"><span class="nav-number">2.</span> <span class="nav-text">MySQL: 索引以B树格式保存</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#普通索引"><span class="nav-number">3.</span> <span class="nav-text">普通索引</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#唯一性索引：create-unique-index"><span class="nav-number">4.</span> <span class="nav-text">唯一性索引：create unique index</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#全文索引：从3-23-23版开始支持全文索引和全文检索，FULLTEXT"><span class="nav-number">5.</span> <span class="nav-text">全文索引：从3.23.23版开始支持全文索引和全文检索，FULLTEXT</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#单列索引、多列索引"><span class="nav-number">6.</span> <span class="nav-text">单列索引、多列索引</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#最左前缀-Leftmost-Prefixing-：多列索引"><span class="nav-number">7.</span> <span class="nav-text">最左前缀(Leftmost Prefixing)：多列索引</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#根据sql查询语句确定创建哪种类型的索引，如何优化查询"><span class="nav-number">8.</span> <span class="nav-text">根据sql查询语句确定创建哪种类型的索引，如何优化查询</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#MySQL只对以下操作符才使用索引"><span class="nav-number">9.</span> <span class="nav-text">MySQL只对以下操作符才使用索引</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#mysql-索引分类"><span class="nav-number">10.</span> <span class="nav-text">mysql 索引分类</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1、普通型索引"><span class="nav-number">10.1.</span> <span class="nav-text">1、普通型索引</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2、唯一索引"><span class="nav-number">10.2.</span> <span class="nav-text">2、唯一索引</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3、主键"><span class="nav-number">10.3.</span> <span class="nav-text">3、主键</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4、单列索引和多列索引"><span class="nav-number">10.4.</span> <span class="nav-text">4、单列索引和多列索引</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5、选择索引列"><span class="nav-number">10.5.</span> <span class="nav-text">5、选择索引列</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder"><a href="http://blog.timilong.com/about" target="_blank"> Timi.long </a></span>
+  
+
+  
+</div>
+
+
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动 v3.7.1</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 – <a class="theme-link" target="_blank" href="https://theme-next.org">NexT.Muse</a> v6.4.1</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+	
+    
+
+    
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=6.4.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=6.4.1"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=6.4.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=6.4.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=6.4.1"></script>
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

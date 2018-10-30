@@ -1,0 +1,819 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=6.4.1" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=6.4.1">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=6.4.1">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=6.4.1">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=6.4.1" color="#222">
+
+
+
+
+
+
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    version: '6.4.1',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: false,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  
+
+
+
+
+  <meta name="description" content="Node Cluster 为了解决负载均衡问题，它采用了不同的策略。它也是多进程并发模型，Master 进程会 fork 出多个子进程来处理客户端套接字。但是不存在竞争问题，因为负责 accept 套接字的只能是 Master 进程，Slave 进程只负责处理客户端套接字请求。那就存在一个问题，Master 进程拿到的客户端套接字如何传递给 Slave 进程。">
+<meta name="keywords" content="RPC">
+<meta property="og:type" content="website">
+<meta property="og:title" content="RPC-14多进程描述符传递模型">
+<meta property="og:url" content="http://blog.timilong.com/backup_posts/RPC-14多进程描述符传递模型.html">
+<meta property="og:site_name" content="Timilong&#39;s blog">
+<meta property="og:description" content="Node Cluster 为了解决负载均衡问题，它采用了不同的策略。它也是多进程并发模型，Master 进程会 fork 出多个子进程来处理客户端套接字。但是不存在竞争问题，因为负责 accept 套接字的只能是 Master 进程，Slave 进程只负责处理客户端套接字请求。那就存在一个问题，Master 进程拿到的客户端套接字如何传递给 Slave 进程。">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="https://user-gold-cdn.xitu.io/2018/9/2/16599c91138fd139?imageView2/0/w/1280/h/960/format/webp/ignore-error/1">
+<meta property="og:image" content="https://user-gold-cdn.xitu.io/2018/9/2/16599caa54c9cf6a?imageView2/0/w/1280/h/960/format/webp/ignore-error/1">
+<meta property="og:image" content="https://user-gold-cdn.xitu.io/2018/9/2/16599c93d60337bf?imageView2/0/w/1280/h/960/format/webp/ignore-error/1">
+<meta property="og:image" content="https://user-gold-cdn.xitu.io/2018/9/2/16599c9ecb300f2d?imageView2/0/w/1280/h/960/format/webp/ignore-error/1">
+<meta property="og:updated_time" content="2018-10-30T03:33:08.135Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="RPC-14多进程描述符传递模型">
+<meta name="twitter:description" content="Node Cluster 为了解决负载均衡问题，它采用了不同的策略。它也是多进程并发模型，Master 进程会 fork 出多个子进程来处理客户端套接字。但是不存在竞争问题，因为负责 accept 套接字的只能是 Master 进程，Slave 进程只负责处理客户端套接字请求。那就存在一个问题，Master 进程拿到的客户端套接字如何传递给 Slave 进程。">
+<meta name="twitter:image" content="https://user-gold-cdn.xitu.io/2018/9/2/16599c91138fd139?imageView2/0/w/1280/h/960/format/webp/ignore-error/1">
+
+
+
+
+
+
+  <link rel="canonical" href="http://blog.timilong.com/backup_posts/RPC-14多进程描述符传递模型.html"/>
+
+
+
+<script type="text/javascript" id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>RPC-14多进程描述符传递模型 | Timilong's blog</title>
+  
+
+
+
+
+
+
+
+
+
+  <noscript>
+  <style type="text/css">
+    .use-motion .motion-element,
+    .use-motion .brand,
+    .use-motion .menu-item,
+    .sidebar-inner,
+    .use-motion .post-block,
+    .use-motion .pagination,
+    .use-motion .comments,
+    .use-motion .post-header,
+    .use-motion .post-body,
+    .use-motion .collection-title { opacity: initial; }
+
+    .use-motion .logo,
+    .use-motion .site-title,
+    .use-motion .site-subtitle {
+      opacity: initial;
+      top: initial;
+    }
+
+    .use-motion {
+      .logo-line-before i { left: initial; }
+      .logo-line-after i { right: initial; }
+    }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Timilong's blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+    
+      
+        <p class="site-subtitle">Cease to struggle and you cease to live.--Thomas Carlyle</p>
+      
+    
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="Toggle navigation bar">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+          
+          <li class="menu-item menu-item-home">
+    <a href="/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-home"></i> <br />首页</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-tags">
+    <a href="/tags/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />标签</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-categories">
+    <a href="/categories/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-th"></i> <br />分类</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+    <a href="/archives/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />归档</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-about">
+    <a href="/about/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-user"></i> <br />关于</a>
+  </li>
+
+      
+      
+    </ul>
+  
+
+  
+    
+
+    
+    
+      
+      
+    
+      
+      
+    
+      
+      
+    
+      
+      
+    
+      
+      
+    
+    
+
+  
+
+
+  
+
+  
+</nav>
+
+
+
+  
+
+
+
+</div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+    
+    
+    <div class="post-block page">
+      <header class="post-header">
+
+<h1 class="post-title" itemprop="name headline">RPC-14多进程描述符传递模型</h1>
+
+<div class="post-meta">
+  
+    <div class="post-description">Node Cluster 为了解决负载均衡问题，它采用了不同的策略。它也是多进程并发模型，Master 进程会 fork 出多个子进程来处理客户端套接字。但是不存在竞争问题，因为负责 accept 套接字的只能是 Master 进程，Slave 进程只负责处理客户端套接字请求。那就存在一个问题，Master 进程拿到的客户端套接字如何传递给 Slave 进程。</div>
+  
+  
+
+
+
+</div>
+
+</header>
+
+      
+      
+      
+      <div class="post-body">
+        
+        
+          <blockquote>
+<p>转载自: 掘金，<a href="https://juejin.im/book/5af56a3c518825426642e004" target="_blank" rel="noopener">深入理解RPC: 基于Python自建分布式高并发RPC服务</a></p>
+</blockquote>
+<h3 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h3><p>本节是补充内容，老师要给大家介绍一个比较特别的 RPC 服务器模型，这个模型不同于 Nginx、不同于 Redis、不同于 Apache、不同于 Tornado、不同于 Netty，它的原型是 Node Cluster 的多进程并发模型。</p>
+<h3 id="Nginx-并发模型"><a href="#Nginx-并发模型" class="headerlink" title="Nginx 并发模型"></a>Nginx 并发模型</h3><p>我们知道 Nginx 的并发模型是一个多进程并发模型，它的 Master 进程在绑定监听地址端口后 fork 出了多个 Slave 进程共同竞争处理这个服务端套接字接收到的很多客户端连接。<br><img src="https://user-gold-cdn.xitu.io/2018/9/2/16599c91138fd139?imageView2/0/w/1280/h/960/format/webp/ignore-error/1" alt="RPC"></p>
+<p>这多个 Slave 进程会共享同一个处于操作系统内核态的套接字队列，操作系统的网络模块在处理完三次握手后就会将套接字塞进这个队列。这是一个生产者消费者模型，生产者是操作系统的网络模块，消费者是多个 Slave 进程，队列中的对象是客户端套接字。</p>
+<p>这种模型在负载均衡上有一个缺点，那就是套接字分配不均匀，形成了类似于贫富分化的局面，也就是「闲者愈闲，忙者愈忙」的状态。这是因为当多个进程竞争同一个套接字队列时，操作系统采用了 LIFO 的策略，最后一个来 accept 的进程最优先拿到 套接字。越是繁忙的进程越是有更多的机会调用 accept，它能拿到的套接字也就越多。<br><img src="https://user-gold-cdn.xitu.io/2018/9/2/16599caa54c9cf6a?imageView2/0/w/1280/h/960/format/webp/ignore-error/1" alt="RPC"></p>
+<h3 id="Node-Cluster-并发模型"><a href="#Node-Cluster-并发模型" class="headerlink" title="Node Cluster 并发模型"></a>Node Cluster 并发模型</h3><p>Node Cluster 为了解决负载均衡问题，它采用了不同的策略。它也是多进程并发模型，Master 进程会 fork 出多个子进程来处理客户端套接字。但是不存在竞争问题，因为负责 accept 套接字的只能是 Master 进程，Slave 进程只负责处理客户端套接字请求。那就存在一个问题，Master 进程拿到的客户端套接字如何传递给 Slave 进程。<br><img src="https://user-gold-cdn.xitu.io/2018/9/2/16599c93d60337bf?imageView2/0/w/1280/h/960/format/webp/ignore-error/1" alt="RPC"></p>
+<p>这时，神奇的 sendmsg 登场了。它是操作系统提供的系统调用，可以在不同的进程之间传递文件描述符。sendmsg 会搭乘一个特殊的「管道」将 Master 进程的套接字描述符传递到 Slave 进程，Slave 进程通过 recvmsg 系统调用从这个「管道」中将描述符取出来。这个「管道」比较特殊，它是 Unix 域套接字。普通的套接字可以跨机器传输消息，Unix 域套接字只能在同一个机器的不同进程之间传递消息。同管道一样，Unix 域套接字也分为有名套接字和无名套接字，有名套接字会在文件系统指定一个路径名，无关进程之间都可以通过这个路径来访问 Unix 域套接字。而无名套接字一般用于父子进程之间，父进程会通过 socketpair 调用来创建套接字，然后 fork 出来子进程，这样子进程也会同时持有这个套接字的引用。后续父子进程就可以通过这个套接字互相通信。</p>
+<p><img src="https://user-gold-cdn.xitu.io/2018/9/2/16599c9ecb300f2d?imageView2/0/w/1280/h/960/format/webp/ignore-error/1" alt="RPC"></p>
+<p>注意这里的传递描述符，本质上不是传递，而是复制。父进程的描述符并不会在 sendmsg 自动关闭自动消失，子进程收到的描述符和父进程的描述符也不是同一个整数值。但是父子进程的描述符都会指向同一个内核套接字对象。</p>
+<p>有了描述符的传递能力，父进程就可以将 accept 到的客户端套接字轮流传递给多个 Slave 进程，负载均衡的目标就可以顺利实现了。</p>
+<p>接下来我们就是用 Python 代码来撸一遍 Node Cluster 的并发模型。因为 sendmsg 和 recvmsg 方法到了 Python3.5 才内置进来，所以下面的代码需要使用 Python3.5+才可以运行。</p>
+<p>我们看 sendmsg 方法的定义：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">socket.sendmsg(buffers[, ancdata[, flags[, address]]])</span><br></pre></td></tr></table></figure></p>
+<p>我们只需要关心第二个参数 ancdata，描述符是通过ancdata 参数传递的，它的意思是 「辅助数据」，而 buffers 表示需要传递的消息内容，因为消息内容这里没有意义，所以这个字段可以任意填写，但是必须要有内容，如果没有内容，sendmsg 方法就是一个空调用。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">import socket, struct</span><br><span class="line"></span><br><span class="line">def send_fds(sock, fd):</span><br><span class="line">    return sock.sendmsg([b&apos;x&apos;], [(socket.SOL_SOCKET, socket.SCM_RIGHTS, struct.pack(&quot;i&quot;, fd))])</span><br><span class="line">    </span><br><span class="line"># ancdata 参数是一个三元组的列表，三元组的第一个参数表示网络协议栈级别 level，第二个参数表示辅助数据的类型 type，第三个参数才是携带的数据，level=SOL_SOCKET 表示传递的数据处于 TCP 协议层级，type=SCM_RIGHTS 就表示携带的数据是文件描述符。我们传递的描述符 fd 是一个整数，需要使用 struct 包将它序列化成二进制。</span><br></pre></td></tr></table></figure>
+<p>再看 recvmsg 方法的定义：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">msg, ancdata, flags, addr = socket.recvmsg(bufsize[, ancbufsize[, flags]])...</span><br></pre></td></tr></table></figure></p>
+<p>同样，我们只需要关心返回的 ancdata 数据，它里面包含了我们需要的文件描述符。但是需要提供消息体的长度和辅助数据的长度参数。辅助数据的长度比较特殊，需要使用 CMSG_LEN 方法来计算，因为辅助数据里面还有我们看不到的额外的头部信息。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">bufsize = 1  # 消息内容的长度</span><br><span class="line">ancbufsize = socket.CMSG_LEN(struct.calcsize(&apos;i&apos;))  # 辅助数据的长度</span><br><span class="line">msg, ancdata, flags, addr = socket.recvmsg(bufsize, ancbufsize) # 收取消息</span><br><span class="line">level, type, fd_bytes = ancdata[0] # 取第一个元祖，注意发送消息时我们传递的是一个三元组的列表</span><br><span class="line">fd = struct.unpack(&apos;i&apos;, fd_bytes) # 反序列化...</span><br></pre></td></tr></table></figure></p>
+<h3 id="代码实现"><a href="#代码实现" class="headerlink" title="代码实现"></a>代码实现</h3><p>下面我来献上完整的服务器代码，为了简单起见，我们在 Slave 进程中处理 RPC 请求使用同步模型。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br></pre></td><td class="code"><pre><span class="line"># coding: utf</span><br><span class="line"># sendmsg recvmsg python3.5+才可以支持</span><br><span class="line"></span><br><span class="line">import os</span><br><span class="line">import json</span><br><span class="line">import struct</span><br><span class="line">import socket</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">def handle_conn(conn, addr, handlers):</span><br><span class="line">    print(addr, &quot;comes&quot;)</span><br><span class="line">    while True:</span><br><span class="line">        # 简单起见，这里就没有使用循环读取了</span><br><span class="line">        length_prefix = conn.recv(4)</span><br><span class="line">        if not length_prefix:</span><br><span class="line">            print(addr, &quot;bye&quot;)</span><br><span class="line">            conn.close()</span><br><span class="line">            break  # 关闭连接，继续处理下一个连接</span><br><span class="line">        length, = struct.unpack(&quot;I&quot;, length_prefix)</span><br><span class="line">        body = conn.recv(length)</span><br><span class="line">        request = json.loads(body)</span><br><span class="line">        in_ = request[&apos;in&apos;]</span><br><span class="line">        params = request[&apos;params&apos;]</span><br><span class="line">        print(in_, params)</span><br><span class="line">        handler = handlers[in_]</span><br><span class="line">        handler(conn, params)</span><br><span class="line"></span><br><span class="line">def loop_slave(pr, handlers):</span><br><span class="line">    while True:</span><br><span class="line">        bufsize = 1</span><br><span class="line">        ancsize = socket.CMSG_LEN(struct.calcsize(&apos;i&apos;))</span><br><span class="line">        msg, ancdata, flags, addr = pr.recvmsg(bufsize, ancsize)</span><br><span class="line">        cmsg_level, cmsg_type, cmsg_data = ancdata[0]</span><br><span class="line">        fd = struct.unpack(&apos;i&apos;, cmsg_data)[0]</span><br><span class="line">        sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM, fileno=fd)</span><br><span class="line">        handle_conn(sock, sock.getpeername(), handlers)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">def ping(conn, params):</span><br><span class="line">    send_result(conn, &quot;pong&quot;, params)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">def send_result(conn, out, result):</span><br><span class="line">    response = json.dumps(&#123;&quot;out&quot;: out, &quot;result&quot;: result&#125;).encode(&apos;utf-8&apos;)</span><br><span class="line">    length_prefix = struct.pack(&quot;I&quot;, len(response))</span><br><span class="line">    conn.sendall(length_prefix)</span><br><span class="line">    conn.sendall(response)</span><br><span class="line"></span><br><span class="line">def loop_master(serv_sock, pws):</span><br><span class="line">    idx = 0</span><br><span class="line">    while True:</span><br><span class="line">        sock, addr = serv_sock.accept()</span><br><span class="line">        pw = pws[idx % len(pws)]</span><br><span class="line">        # 消息数据，whatever</span><br><span class="line">        msg = [b&apos;x&apos;]</span><br><span class="line">        # 辅助数据，携带描述符</span><br><span class="line">        ancdata = [(</span><br><span class="line">            socket.SOL_SOCKET,</span><br><span class="line">            socket.SCM_RIGHTS,</span><br><span class="line">            struct.pack(&apos;i&apos;, sock.fileno()))]</span><br><span class="line">        pw.sendmsg(msg, ancdata)</span><br><span class="line">        sock.close()  # 关闭引用</span><br><span class="line">        idx += 1</span><br><span class="line"></span><br><span class="line">def prefork(serv_sock, n):</span><br><span class="line">    pws = []</span><br><span class="line">    for i in range(n):</span><br><span class="line">        # 开辟父子进程通信「管道」</span><br><span class="line">        pr, pw = socket.socketpair()</span><br><span class="line">        pid = os.fork()</span><br><span class="line">        if pid &lt; 0:  # fork error</span><br><span class="line">            return pws</span><br><span class="line">        if pid &gt; 0:</span><br><span class="line">            # 父进程</span><br><span class="line">            pr.close()  # 父进程不用读</span><br><span class="line">            pws.append(pw)</span><br><span class="line">            continue</span><br><span class="line">        if pid == 0:</span><br><span class="line">            # 子进程</span><br><span class="line">            serv_sock.close()  # 关闭引用</span><br><span class="line">            pw.close()  # 子进程不用写</span><br><span class="line">            return pr</span><br><span class="line">    return pws</span><br><span class="line"></span><br><span class="line">if __name__ == &apos;__main__&apos;:</span><br><span class="line">    serv_sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)</span><br><span class="line">    serv_sock.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)</span><br><span class="line">    serv_sock.bind((&quot;localhost&quot;, 8080))</span><br><span class="line">    serv_sock.listen(1)</span><br><span class="line">    pws_or_pr = prefork(serv_sock, 10)</span><br><span class="line">    if hasattr(pws_or_pr, &apos;__len__&apos;):</span><br><span class="line">        if pws_or_pr:</span><br><span class="line">            loop_master(serv_sock, pws_or_pr)</span><br><span class="line">        else:</span><br><span class="line">            # fork 全部失败，没有子进程，Game Over</span><br><span class="line">            serv_sock.close()</span><br><span class="line">    else:</span><br><span class="line">        handlers = &#123;</span><br><span class="line">            &quot;ping&quot;: ping</span><br><span class="line">        &#125;</span><br><span class="line">        loop_slave(pws_or_pr, handlers)</span><br></pre></td></tr></table></figure></p>
+<p>父进程使用 fork 调用创建了多个子进程，然后又使用 socketpair 调用为每一个子进程都创建一个无名套接字用来传递描述符。父进程使用 roundrobin 策略平均分配接收到的客户端套接字。子进程接收到的是一个描述符整数，需要将描述符包装成套接字对象后方可读写。打印对比发送和接收到的描述符，你会发现它们俩的值并不相同，这是因为 sendmsg 将描述符发送到内核后，内核给描述符指向的内核套接字又重新分配了一个新的描述符对象。</p>
+<h3 id="思考题"><a href="#思考题" class="headerlink" title="思考题"></a>思考题</h3><p>sendmsg/recvmsg 除了可以发送描述符外还可以用来干什么？<br>sendmsg/recvmsg 发送接收描述符在内核态具体是如何工作的?</p>
+
+        
+      </div>
+      
+      
+      
+    </div>
+    
+
+
+
+    
+    
+    
+  </div>
+
+
+          </div>
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">博主</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/">
+                
+                    <span class="site-state-item-count">176</span>
+                    <span class="site-state-item-name">日志</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-categories">
+                  <a href="/categories/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">27</span>
+                    <span class="site-state-item-name">分类</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  <a href="/tags/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">37</span>
+                    <span class="site-state-item-name">标签</span>
+                  </a>
+                </div>
+              
+            </nav>
+          
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+            
+          
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#简介"><span class="nav-number">1.</span> <span class="nav-text">简介</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Nginx-并发模型"><span class="nav-number">2.</span> <span class="nav-text">Nginx 并发模型</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Node-Cluster-并发模型"><span class="nav-number">3.</span> <span class="nav-text">Node Cluster 并发模型</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#代码实现"><span class="nav-number">4.</span> <span class="nav-text">代码实现</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#思考题"><span class="nav-number">5.</span> <span class="nav-text">思考题</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder"><a href="http://blog.timilong.com/about" target="_blank"> Timi.long </a></span>
+  
+
+  
+</div>
+
+
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动 v3.7.1</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 – <a class="theme-link" target="_blank" href="https://theme-next.org">NexT.Muse</a> v6.4.1</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+	
+    
+
+    
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=6.4.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=6.4.1"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=6.4.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=6.4.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=6.4.1"></script>
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

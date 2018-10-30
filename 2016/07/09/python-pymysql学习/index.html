@@ -116,16 +116,16 @@
 <meta property="og:site_name" content="Timilong&#39;s blog">
 <meta property="og:description" content="Python访问DB的官方接口规范Python DB APIPython访问数据库的统一接口规范。官网 Python应用程序通过Python DB API即可完成对不同数据库的访问，对应用程序来说，只需切换少量代码即可实现。">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="http://timilong.com/%E6%B7%B1%E5%BA%A6%E6%88%AA%E5%9B%BE20160709073935.png">
-<meta property="og:image" content="http://timilong.com/%E6%B7%B1%E5%BA%A6%E6%88%AA%E5%9B%BE20160709075539.png">
-<meta property="og:image" content="http://timilong.com/%E6%B7%B1%E5%BA%A6%E6%88%AA%E5%9B%BE20160709074444.png">
-<meta property="og:image" content="http://timilong.com/%E6%B7%B1%E5%BA%A6%E6%88%AA%E5%9B%BE20160712114529.png">
-<meta property="og:image" content="http://timilong.com/%E6%B7%B1%E5%BA%A6%E6%88%AA%E5%9B%BE20160712124117.png">
-<meta property="og:updated_time" content="2018-10-19T02:46:54.968Z">
+<meta property="og:image" content="http://qiniucdn.timilong.com/%E6%B7%B1%E5%BA%A6%E6%88%AA%E5%9B%BE20160709073935.png">
+<meta property="og:image" content="http://qiniucdn.timilong.com/%E6%B7%B1%E5%BA%A6%E6%88%AA%E5%9B%BE20160709075539.png">
+<meta property="og:image" content="http://qiniucdn.timilong.com/%E6%B7%B1%E5%BA%A6%E6%88%AA%E5%9B%BE20160709074444.png">
+<meta property="og:image" content="http://qiniucdn.timilong.com/%E6%B7%B1%E5%BA%A6%E6%88%AA%E5%9B%BE20160712114529.png">
+<meta property="og:image" content="http://qiniucdn.timilong.com/%E6%B7%B1%E5%BA%A6%E6%88%AA%E5%9B%BE20160712124117.png">
+<meta property="og:updated_time" content="2018-10-30T03:39:34.799Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="python-MySQL数据库操作">
 <meta name="twitter:description" content="Python访问DB的官方接口规范Python DB APIPython访问数据库的统一接口规范。官网 Python应用程序通过Python DB API即可完成对不同数据库的访问，对应用程序来说，只需切换少量代码即可实现。">
-<meta name="twitter:image" content="http://timilong.com/%E6%B7%B1%E5%BA%A6%E6%88%AA%E5%9B%BE20160709073935.png">
+<meta name="twitter:image" content="http://qiniucdn.timilong.com/%E6%B7%B1%E5%BA%A6%E6%88%AA%E5%9B%BE20160709073935.png">
 
 
 
@@ -212,7 +212,7 @@
   </div>
 
   <div class="site-nav-toggle">
-    <button aria-label="ナビゲーションバーの切り替え">
+    <button aria-label="Toggle navigation bar">
       <span class="btn-bar"></span>
       <span class="btn-bar"></span>
       <span class="btn-bar"></span>
@@ -372,9 +372,9 @@
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 
-                  <span class="post-meta-item-text">に編集されました</span>
+                  <span class="post-meta-item-text">Edited on</span>
                 
-                <time title="更新于：2018-10-19 02:46:54" itemprop="dateModified" datetime="2018-10-19T02:46:54Z">2018-10-19</time>
+                <time title="更新于：2018-10-30 03:39:34" itemprop="dateModified" datetime="2018-10-30T03:39:34Z">2018-10-30</time>
               
             
           </span>
@@ -428,9 +428,9 @@
         <h3 id="Python访问DB的官方接口规范"><a href="#Python访问DB的官方接口规范" class="headerlink" title="Python访问DB的官方接口规范"></a>Python访问DB的官方接口规范</h3><h4 id="Python-DB-API"><a href="#Python-DB-API" class="headerlink" title="Python DB API"></a>Python DB API</h4><p>Python访问数据库的统一接口规范。<br><a href="htttps://www.python.org/dev/peps/pep-0249" target="_blank" rel="noopener">官网</a></p>
 <p>Python应用程序通过Python DB API即可完成对不同数据库的访问，对应用程序来说，只需切换少量代码即可实现。</p>
 <a id="more"></a>
-<h4 id="Python-DB-API包含的内容："><a href="#Python-DB-API包含的内容：" class="headerlink" title="Python DB API包含的内容："></a>Python DB API包含的内容：</h4><p>Python程序———————————–&gt;数据库服务器<br>-数据库连接对象connection.(建立连接)<br>-数据库交互对象cursor(交互数据)<br>-数据库异常类exceptions(处理数据库操作过程中的事故)<br><img src="http://timilong.com/%E6%B7%B1%E5%BA%A6%E6%88%AA%E5%9B%BE20160709073935.png" alt="python db api"></p>
-<h4 id="Python-DB-API访问数据库流程"><a href="#Python-DB-API访问数据库流程" class="headerlink" title="Python DB API访问数据库流程"></a>Python DB API访问数据库流程</h4><p>-开始<br>-创建connection<br>-获取cursor<br>-执行查询、执行命令、获取数据、处理数据<br>-关闭cursor<br>-关闭connection(网络资源，一直没有关闭会浪费应用程序和数据库服务器的资源)<br>-结束<br><img src="http://timilong.com/%E6%B7%B1%E5%BA%A6%E6%88%AA%E5%9B%BE20160709075539.png" alt="访问流程"></p>
-<h3 id="Python开发DB程序的开发环境"><a href="#Python开发DB程序的开发环境" class="headerlink" title="Python开发DB程序的开发环境"></a>Python开发DB程序的开发环境</h3><p><img src="http://timilong.com/%E6%B7%B1%E5%BA%A6%E6%88%AA%E5%9B%BE20160709074444.png" alt="windows 下的python开发环境"></p>
+<h4 id="Python-DB-API包含的内容："><a href="#Python-DB-API包含的内容：" class="headerlink" title="Python DB API包含的内容："></a>Python DB API包含的内容：</h4><p>Python程序———————————–&gt;数据库服务器<br>-数据库连接对象connection.(建立连接)<br>-数据库交互对象cursor(交互数据)<br>-数据库异常类exceptions(处理数据库操作过程中的事故)<br><img src="http://qiniucdn.timilong.com/%E6%B7%B1%E5%BA%A6%E6%88%AA%E5%9B%BE20160709073935.png" alt="python db api"></p>
+<h4 id="Python-DB-API访问数据库流程"><a href="#Python-DB-API访问数据库流程" class="headerlink" title="Python DB API访问数据库流程"></a>Python DB API访问数据库流程</h4><p>-开始<br>-创建connection<br>-获取cursor<br>-执行查询、执行命令、获取数据、处理数据<br>-关闭cursor<br>-关闭connection(网络资源，一直没有关闭会浪费应用程序和数据库服务器的资源)<br>-结束<br><img src="http://qiniucdn.timilong.com/%E6%B7%B1%E5%BA%A6%E6%88%AA%E5%9B%BE20160709075539.png" alt="访问流程"></p>
+<h3 id="Python开发DB程序的开发环境"><a href="#Python开发DB程序的开发环境" class="headerlink" title="Python开发DB程序的开发环境"></a>Python开发DB程序的开发环境</h3><p><img src="http://qiniucdn.timilong.com/%E6%B7%B1%E5%BA%A6%E6%88%AA%E5%9B%BE20160709074444.png" alt="windows 下的python开发环境"></p>
 <h3 id="Python访问DB的connection、cursor两大对象"><a href="#Python访问DB的connection、cursor两大对象" class="headerlink" title="Python访问DB的connection、cursor两大对象"></a>Python访问DB的connection、cursor两大对象</h3><h4 id="连接对象：建立Python客户端与数据库的网络连接"><a href="#连接对象：建立Python客户端与数据库的网络连接" class="headerlink" title="连接对象：建立Python客户端与数据库的网络连接"></a>连接对象：建立Python客户端与数据库的网络连接</h4><p>创建方法：MySQLdb.Connect(参数):</p>
 <p>参数名   | 类型   | 说明<br>host     | 字符串 | MySQL服务器地址<br>port     | 数字   | MySQL服务器端口号<br>user     | 字符串 | 用户名<br>password | 字符串 | 密码<br>db       | 字符串 | 数据库名称<br>charset  | 字符串 | 连接编码 </p>
 <h4 id="connection对象支持的方法"><a href="#connection对象支持的方法" class="headerlink" title="connection对象支持的方法:"></a>connection对象支持的方法:</h4><p>方法名     | 说明<br>cursor()   | 使用该连接创建并返回游标<br>commit()   | 提交当前事物<br>rollback() | 回滚当前事物<br>close()    | 关闭连接</p>
@@ -439,12 +439,12 @@
 <p>参数名              | 说明<br>execute(op[, args]) | 执行一个数据库查询和命令<br>fetchone()          | 取的结果集的下一行<br>fetchmany(size)     | 获取结果集的下几行<br>fetchall()          | 获取结果集中剩下的所有行<br>rowcount            | 最近一次execute返回数据的行数或者影响行数<br>close()             | 关闭游标对象</p>
 <p>其中:<br>execute方法：执行SQL、将结果从数据库获取到客户端<br>客户端———————-MySQL服务器<br>execute(sql语句)———–&gt;执行SQL语句<br>                               |<br>                               |<br>本地缓冲区&lt;—————– 结果</p>
 <p>fetch*()方法：移动rownumber, 返回缓冲区的数据</p>
-<h3 id="Python执行增、删、改、查操作的实例讲解"><a href="#Python执行增、删、改、查操作的实例讲解" class="headerlink" title="Python执行增、删、改、查操作的实例讲解"></a>Python执行增、删、改、查操作的实例讲解</h3><h4 id="select查询数据"><a href="#select查询数据" class="headerlink" title="select查询数据"></a>select查询数据</h4><p>流程图：<br><img src="http://timilong.com/%E6%B7%B1%E5%BA%A6%E6%88%AA%E5%9B%BE20160712114529.png" alt="流程图"></p>
+<h3 id="Python执行增、删、改、查操作的实例讲解"><a href="#Python执行增、删、改、查操作的实例讲解" class="headerlink" title="Python执行增、删、改、查操作的实例讲解"></a>Python执行增、删、改、查操作的实例讲解</h3><h4 id="select查询数据"><a href="#select查询数据" class="headerlink" title="select查询数据"></a>select查询数据</h4><p>流程图：<br><img src="http://qiniucdn.timilong.com/%E6%B7%B1%E5%BA%A6%E6%88%AA%E5%9B%BE20160712114529.png" alt="流程图"></p>
 <p>首先，在test_db数据库中创建一个user表格:</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">CREATE TABLE &apos;user&apos; (</span><br><span class="line">    &apos;userid&apos; INT(11) NOT NULL AUTO_INCREMENT,</span><br><span class="line">    &apos;username&apos; VARCHAR(100) DEFAULT NULL,</span><br><span class="line">    PRIMARY KEY (&apos;userid&apos;)</span><br><span class="line">)ENGINE = INNODB AUTO_INCREMENT=9 DEFAULT CHARSET = utf8</span><br></pre></td></tr></table></figure>
 <p>测试cursor方法：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">import MySQLdb</span><br><span class="line">conn = MySQLdb.Connect(</span><br><span class="line">                host = &apos;127.0.0.1&apos;,</span><br><span class="line">                port = 3306,</span><br><span class="line">                user = &apos;root&apos;,</span><br><span class="line">                passwd = &apos;123456&apos;,</span><br><span class="line">                db = &apos;test_db&apos;,</span><br><span class="line">                charset = &apos;utf8&apos;</span><br><span class="line">                )</span><br><span class="line"></span><br><span class="line">cursor = conn.cursor()</span><br><span class="line"></span><br><span class="line">sql = &quot;select * from user&quot;</span><br><span class="line">cursor.execute(sql)</span><br><span class="line"></span><br><span class="line">rs = cursor.fetchall()</span><br><span class="line"></span><br><span class="line">for row in rs:</span><br><span class="line">    print &quot;userid = %s, username = %s&quot; % row</span><br><span class="line"></span><br><span class="line">cursor.close()</span><br><span class="line"></span><br><span class="line">conn.close()</span><br></pre></td></tr></table></figure>
-<h4 id="insert-update-delete更新数据库"><a href="#insert-update-delete更新数据库" class="headerlink" title="insert/update/delete更新数据库"></a>insert/update/delete更新数据库</h4><p>流程图：<br><img src="http://timilong.com/%E6%B7%B1%E5%BA%A6%E6%88%AA%E5%9B%BE20160712124117.png" alt="流程图"></p>
+<h4 id="insert-update-delete更新数据库"><a href="#insert-update-delete更新数据库" class="headerlink" title="insert/update/delete更新数据库"></a>insert/update/delete更新数据库</h4><p>流程图：<br><img src="http://qiniucdn.timilong.com/%E6%B7%B1%E5%BA%A6%E6%88%AA%E5%9B%BE20160712124117.png" alt="流程图"></p>
 <p>事物：访问和更新数据库的一个程序执行单元</p>
 <ul>
 <li>原子性：事物中包括的诸操作要么都做，要么都不做</li>

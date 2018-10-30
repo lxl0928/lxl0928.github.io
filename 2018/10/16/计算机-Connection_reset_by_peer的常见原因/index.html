@@ -116,12 +116,12 @@
 <meta property="og:site_name" content="Timilong&#39;s blog">
 <meta property="og:description" content="我在用Thrift进行Python后端服务开发时，在客户端并发量并不大的情况下，日志报警Connection reset by peer错误很频繁，经过大量google后，对此错误可能情况进行一个记录。">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="http://timilong.com/20140314151927578.jpeg">
-<meta property="og:updated_time" content="2018-10-19T02:40:57.318Z">
+<meta property="og:image" content="http://qiniucdn.timilong.com/20140314151927578.jpeg">
+<meta property="og:updated_time" content="2018-10-30T03:39:34.876Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Connection reset by peer的错误分析">
 <meta name="twitter:description" content="我在用Thrift进行Python后端服务开发时，在客户端并发量并不大的情况下，日志报警Connection reset by peer错误很频繁，经过大量google后，对此错误可能情况进行一个记录。">
-<meta name="twitter:image" content="http://timilong.com/20140314151927578.jpeg">
+<meta name="twitter:image" content="http://qiniucdn.timilong.com/20140314151927578.jpeg">
 
 
 
@@ -208,7 +208,7 @@
   </div>
 
   <div class="site-nav-toggle">
-    <button aria-label="ナビゲーションバーの切り替え">
+    <button aria-label="Toggle navigation bar">
       <span class="btn-bar"></span>
       <span class="btn-bar"></span>
       <span class="btn-bar"></span>
@@ -368,9 +368,9 @@
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 
-                  <span class="post-meta-item-text">に編集されました</span>
+                  <span class="post-meta-item-text">Edited on</span>
                 
-                <time title="更新于：2018-10-19 02:40:57" itemprop="dateModified" datetime="2018-10-19T02:40:57Z">2018-10-19</time>
+                <time title="更新于：2018-10-30 03:39:34" itemprop="dateModified" datetime="2018-10-30T03:39:34Z">2018-10-30</time>
               
             
           </span>
@@ -433,7 +433,7 @@
 </blockquote>
 <p>errno = 104错误表明你在对一个对端socket已经关闭的的连接调用write或send方法，在这种情况下，调用write或send方法后，对端socket便会向本端socket发送一个RESET信号，在此之后如果继续执行write或send操作，就会得到errno为104，错误描述为connection reset by peer。</p>
 <p>出现这种问题的很大一部分原因，至少我遇到的几次全都是，发送端和接收端事先约定好的数据长度不一致导致的，接收端被通知要收的数据长度小于发送端实际要发送的数据长度。</p>
-<p>比如接收端被通知要收1024个字节，但发送端却发了1025（可以是字符串末尾隐含的结束符），这样一来，接收端收完1024就执行了close操作，如果发送端再继续发送，接收端协议就会向发送端返回一个RESET信号，RESET信号可以抓包看到，如下所示：<br><img src="http://timilong.com/20140314151927578.jpeg" alt="图"></p>
+<p>比如接收端被通知要收1024个字节，但发送端却发了1025（可以是字符串末尾隐含的结束符），这样一来，接收端收完1024就执行了close操作，如果发送端再继续发送，接收端协议就会向发送端返回一个RESET信号，RESET信号可以抓包看到，如下所示：<br><img src="http://qiniucdn.timilong.com/20140314151927578.jpeg" alt="图"></p>
 <p>具体的分析可以结合TCP的”四次握手”关闭. TCP是全双工的信道, 可以看作两条单工信道, TCP连接两端的两个端点各负责一条。 </p>
 <p>当对端调用close时, 虽然本意是关闭整个两条信道, 但本端只是收到FIN包. 按照TCP协议的语义, 表示对端只是关闭了其所负责的那一条单工信道, 仍然可以继续接收数据。</p>
 <p>也就是说, 因为TCP协议的限制, 一个端点无法获知对端的socket是调用了close还是shutdown.</p>
