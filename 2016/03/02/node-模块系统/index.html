@@ -108,19 +108,19 @@
 
 
 
-  <meta name="description" content="为了让nodejs的文件可以相互调用，nodejs提供了一个简单的模块系统 模块是nodejs应用程序的基本组成部分，文件和模块是一一对应的。 换言之，一个nodejs文件就是一个模块，这个文件可能是JavaScript代码，JSON或者是编译过的C/C++扩展">
-<meta name="keywords" content="Node">
+  <meta name="description" content="为了让nodejs的文件可以相互调用，nodejs提供了一个简单的模块系统。">
+<meta name="keywords" content="Nodejs">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Node.js模块系统">
 <meta property="og:url" content="http://blog.timilong.com/2016/03/02/node-模块系统/index.html">
 <meta property="og:site_name" content="Timilong&#39;s blog">
-<meta property="og:description" content="为了让nodejs的文件可以相互调用，nodejs提供了一个简单的模块系统 模块是nodejs应用程序的基本组成部分，文件和模块是一一对应的。 换言之，一个nodejs文件就是一个模块，这个文件可能是JavaScript代码，JSON或者是编译过的C/C++扩展">
+<meta property="og:description" content="为了让nodejs的文件可以相互调用，nodejs提供了一个简单的模块系统。">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="http://www.runoob.com/wp-content/uploads/2014/03/nodejs-require.jpg">
-<meta property="og:updated_time" content="2018-10-19T02:40:57.294Z">
+<meta property="og:updated_time" content="2018-11-07T02:19:43.277Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Node.js模块系统">
-<meta name="twitter:description" content="为了让nodejs的文件可以相互调用，nodejs提供了一个简单的模块系统 模块是nodejs应用程序的基本组成部分，文件和模块是一一对应的。 换言之，一个nodejs文件就是一个模块，这个文件可能是JavaScript代码，JSON或者是编译过的C/C++扩展">
+<meta name="twitter:description" content="为了让nodejs的文件可以相互调用，nodejs提供了一个简单的模块系统。">
 <meta name="twitter:image" content="http://www.runoob.com/wp-content/uploads/2014/03/nodejs-require.jpg">
 
 
@@ -208,7 +208,7 @@
   </div>
 
   <div class="site-nav-toggle">
-    <button aria-label="ナビゲーションバーの切り替え">
+    <button aria-label="Toggle navigation bar">
       <span class="btn-bar"></span>
       <span class="btn-bar"></span>
       <span class="btn-bar"></span>
@@ -368,9 +368,9 @@
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 
-                  <span class="post-meta-item-text">に編集されました</span>
+                  <span class="post-meta-item-text">Edited on</span>
                 
-                <time title="更新于：2018-10-19 02:40:57" itemprop="dateModified" datetime="2018-10-19T02:40:57Z">2018-10-19</time>
+                <time title="更新于：2018-11-07 02:19:43" itemprop="dateModified" datetime="2018-11-07T02:19:43Z">2018-11-07</time>
               
             
           </span>
@@ -387,7 +387,7 @@
                 <span class="post-meta-item-text">分类于</span>
               
               
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Node/" itemprop="url" rel="index"><span itemprop="name">Node</span></a></span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Nodejs/" itemprop="url" rel="index"><span itemprop="name">Nodejs</span></a></span>
 
                 
                 
@@ -407,6 +407,8 @@
           
 
           
+              <div class="post-description">为了让nodejs的文件可以相互调用，nodejs提供了一个简单的模块系统。</div>
+          
 
         </div>
       </header>
@@ -421,13 +423,10 @@
       
 
       
-        <p>为了让nodejs的文件可以相互调用，nodejs提供了一个简单的模块系统</p>
-<p>模块是nodejs应用程序的基本组成部分，文件和模块是一一对应的。</p>
+        <p>模块是nodejs应用程序的基本组成部分，文件和模块是一一对应的。</p>
 <p>换言之，一个nodejs文件就是一个模块，这个文件可能是JavaScript代码，JSON或者是编译过的C/C++扩展</p>
-<a id="more"></a>
 <h3 id="创建模块"><a href="#创建模块" class="headerlink" title="创建模块"></a>创建模块</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">var hello = require(&apos;./hello&apos;);</span><br><span class="line">hello.world();</span><br></pre></td></tr></table></figure>
 <p>以上实例中，代码require(‘./hello’)引入了当前目录下的hello.js文件(./为当前目录, node.js默认后缀是js).</p>
-<!--more-->
 <p>Node.js提供了exports和require两个对象，其中exports是模块公开的接口，require用于外部获取一个模块的接口，即所获取模块的exports对象。<br>接下来我们创建hello.js文件，代码如下:</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">exports.world = function()&#123;</span><br><span class="line">    console.log(&apos;Hello World&apos;);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>在以上的示例中，hello.js通过exports对象把world作为模块的访问接口，　在main.js中通过require(‘./hello’)加载这个模块，然后就可以直接访问hello.js中exports对象的成员函数了。<br>有时候我们只是想要把一个对象封装到模块中，格式如下:</p>
@@ -471,7 +470,7 @@
       
         <div class="post-tags">
           
-            <a href="/tags/Node/" rel="tag"># Node</a>
+            <a href="/tags/Nodejs/" rel="tag"># Nodejs</a>
           
         </div>
       
@@ -633,9 +632,7 @@
                     
                       
                     
-                      
-                    
-                    <span class="site-state-item-count">28</span>
+                    <span class="site-state-item-count">27</span>
                     <span class="site-state-item-name">分类</span>
                   </a>
                 </div>
@@ -722,9 +719,7 @@
                     
                       
                     
-                      
-                    
-                    <span class="site-state-item-count">38</span>
+                    <span class="site-state-item-count">37</span>
                     <span class="site-state-item-name">标签</span>
                   </a>
                 </div>
