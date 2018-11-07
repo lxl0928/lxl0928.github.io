@@ -305,7 +305,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://blog.timilong.com/2017/06/23/leetcode-4两个排序数组的中位数/">
+    <link itemprop="mainEntityOfPage" href="http://blog.timilong.com/2017/06/23/leetcode-4.两个排序数组的中位数/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="博主">
@@ -324,8 +324,8 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2017/06/23/leetcode-4两个排序数组的中位数/" itemprop="url">
-                  leetcode-04两个排序数组的中位数
+                <a class="post-title-link" href="/2017/06/23/leetcode-4.两个排序数组的中位数/" itemprop="url">
+                  leetcode-4. 两个排序数组的中位数
                 </a>
               
             
@@ -423,7 +423,7 @@
           给定两个大小为 m 和 n 的有序数组 nums1 和 nums2 。 请找出这两个有序数组的中位数。要求算法的时间复杂度为 O(log (m+n)) 。
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/2017/06/23/leetcode-4两个排序数组的中位数/">
+            <a class="btn" href="/2017/06/23/leetcode-4.两个排序数组的中位数/">
               阅读全文 &raquo;
             </a>
           </div>
@@ -2747,7 +2747,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://blog.timilong.com/2017/04/19/leetcode_search_a_2d_matrix_1_2/">
+    <link itemprop="mainEntityOfPage" href="http://blog.timilong.com/2017/04/19/leetcode-240搜索二维矩阵2/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="博主">
@@ -2766,8 +2766,8 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2017/04/19/leetcode_search_a_2d_matrix_1_2/" itemprop="url">
-                  leetcode-'search_a_2d_matrix_1_2'
+                <a class="post-title-link" href="/2017/04/19/leetcode-240搜索二维矩阵2/" itemprop="url">
+                  leetcode-240搜索二维矩阵2
                 </a>
               
             
@@ -2865,7 +2865,7 @@
           <h2 id="search-a-2d-matrix-1"><a href="#search-a-2d-matrix-1" class="headerlink" title="search_a_2d_matrix_1"></a>search_a_2d_matrix_1</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">#! /usr/bin/python3</span><br><span class="line"># coding: utf-8</span><br><span class="line"></span><br><span class="line">&quot;&quot;&quot;</span><br><span class="line">Descript:</span><br><span class="line">    Write an efficient algorithm that searches for a value in an m * n matrix. This matrix has the following properties:</span><br><span class="line">    Integers in each row are sorted from left to right.</span><br><span class="line">    The first integer of each row is greater than the last integer of the previous row.</span><br><span class="line"></span><br><span class="line">Example:</span><br><span class="line">    </span><br><span class="line">    Consider the following matrix:</span><br><span class="line">        [</span><br><span class="line">          [1,   3,  5,  7],</span><br><span class="line">          [10, 11, 16, 20],</span><br><span class="line">          [23, 30, 34, 50]</span><br><span class="line">        ]</span><br><span class="line">    Given target = 3, return true.</span><br><span class="line"></span><br><span class="line">&quot;&quot;&quot;</span><br><span class="line">class Solution(object):</span><br><span class="line">    def searchMatrix(self, matrix, target):</span><br><span class="line">        &quot;&quot;&quot;</span><br><span class="line">        matrix: &lt;List[List[int]]&gt;</span><br><span class="line">        target: &lt;int&gt;</span><br><span class="line">        solution: 二分查找</span><br><span class="line">        &quot;&quot;&quot;</span><br><span class="line">        if not matrix or target is None:</span><br><span class="line">            return False</span><br><span class="line"></span><br><span class="line">        m, n = len(matrix), len(matrix[0])  # m行n列</span><br><span class="line">        low, high = 0, m * n - 1</span><br><span class="line">        </span><br><span class="line">        while low &lt;= high:</span><br><span class="line">            mid = (low + high) / 2  </span><br><span class="line">            num = matrix[mid / n][mid % n]</span><br><span class="line"></span><br><span class="line">            if num == target:</span><br><span class="line">                return True</span><br><span class="line">            elif num &lt; target:</span><br><span class="line">                low = mid + 1</span><br><span class="line">            else:</span><br><span class="line">                high = mid - 1</span><br><span class="line">        </span><br><span class="line">        return False</span><br></pre></td></tr></table></figure>
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/2017/04/19/leetcode_search_a_2d_matrix_1_2/#more" rel="contents">
+            <a class="btn" href="/2017/04/19/leetcode-240搜索二维矩阵2/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
