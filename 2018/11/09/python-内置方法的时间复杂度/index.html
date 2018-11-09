@@ -108,25 +108,25 @@
 
 
 
-  <meta name="description" content="不用再单独学习一门陌生的语言，从而降低了学习的门槛。同时，JavaScript语言在Web前端开发中至关重要, 特别HTML5的应用必须要使用。">
-<meta name="keywords" content="Nodejs">
+  <meta name="description" content="本文介绍Python内置list, set, dict, collections.deque等方法的时间复杂度.">
+<meta name="keywords" content="python">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Nodejs-四大优势">
-<meta property="og:url" content="http://blog.timilong.com/2016/04/18/node-四大优势/index.html">
+<meta property="og:title" content="python-内置方法的时间复杂度">
+<meta property="og:url" content="http://blog.timilong.com/2018/11/09/python-内置方法的时间复杂度/index.html">
 <meta property="og:site_name" content="Timilong&#39;s blog">
-<meta property="og:description" content="不用再单独学习一门陌生的语言，从而降低了学习的门槛。同时，JavaScript语言在Web前端开发中至关重要, 特别HTML5的应用必须要使用。">
+<meta property="og:description" content="本文介绍Python内置list, set, dict, collections.deque等方法的时间复杂度.">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-11-09T02:26:21.723Z">
+<meta property="og:updated_time" content="2018-11-09T07:36:23.813Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Nodejs-四大优势">
-<meta name="twitter:description" content="不用再单独学习一门陌生的语言，从而降低了学习的门槛。同时，JavaScript语言在Web前端开发中至关重要, 特别HTML5的应用必须要使用。">
+<meta name="twitter:title" content="python-内置方法的时间复杂度">
+<meta name="twitter:description" content="本文介绍Python内置list, set, dict, collections.deque等方法的时间复杂度.">
 
 
 
 
 
 
-  <link rel="canonical" href="http://blog.timilong.com/2016/04/18/node-四大优势/"/>
+  <link rel="canonical" href="http://blog.timilong.com/2018/11/09/python-内置方法的时间复杂度/"/>
 
 
 
@@ -136,7 +136,7 @@
   };
 </script>
 
-  <title>Nodejs-四大优势 | Timilong's blog</title>
+  <title>python-内置方法的时间复杂度 | Timilong's blog</title>
   
 
 
@@ -309,7 +309,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://blog.timilong.com/2016/04/18/node-四大优势/">
+    <link itemprop="mainEntityOfPage" href="http://blog.timilong.com/2018/11/09/python-内置方法的时间复杂度/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="博主">
@@ -326,7 +326,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">Nodejs-四大优势
+          <h1 class="post-title" itemprop="name headline">python-内置方法的时间复杂度
               
             
           </h1>
@@ -351,24 +351,12 @@
                 
               
 
-              <time title="创建于：2016-04-17 16:14:42" itemprop="dateCreated datePublished" datetime="2016-04-17T16:14:42Z">2016-04-17</time>
+              <time title="创建于：2018-11-09 15:26:21 / 更新于：07:36:23" itemprop="dateCreated datePublished" datetime="2018-11-09T15:26:21Z">2018-11-09</time>
             
 
             
               
 
-              
-                
-                <span class="post-meta-divider">|</span>
-                
-
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">Edited on</span>
-                
-                <time title="更新于：2018-11-09 02:26:21" itemprop="dateModified" datetime="2018-11-09T02:26:21Z">2018-11-09</time>
               
             
           </span>
@@ -385,7 +373,7 @@
                 <span class="post-meta-item-text">分类于</span>
               
               
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Nodejs/" itemprop="url" rel="index"><span itemprop="name">Nodejs</span></a></span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/python/" itemprop="url" rel="index"><span itemprop="name">python</span></a></span>
 
                 
                 
@@ -405,7 +393,7 @@
           
 
           
-              <div class="post-description">不用再单独学习一门陌生的语言，从而降低了学习的门槛。同时，JavaScript语言在Web前端开发中至关重要, 特别HTML5的应用必须要使用。</div>
+              <div class="post-description">本文介绍Python内置list, set, dict, collections.deque等方法的时间复杂度.</div>
           
 
         </div>
@@ -421,16 +409,25 @@
       
 
       
-        <h3 id="1-Nodejs基于JavaScript语言"><a href="#1-Nodejs基于JavaScript语言" class="headerlink" title="1.Nodejs基于JavaScript语言"></a>1.Nodejs基于JavaScript语言</h3><p>不用再单独学习一门陌生的语言，从而降低了学习的门槛。同时，JavaScript语言在Web前端开发中至关重要， 特别HTML5的应用必须要使用。<br>所以前台统一语言， 不仅可以实现程序员的全栈开发， 还可以统一公共类库， 代码标准化。</p>
-<h3 id="2-Nodejs没有重新开发-运行时的环境"><a href="#2-Nodejs没有重新开发-运行时的环境" class="headerlink" title="2.Nodejs没有重新开发-运行时的环境"></a>2.Nodejs没有重新开发-运行时的环境</h3><p>而是选择了目前最快的浏览器内核V8做为执行引擎，保证了Nodejs的性能和稳定性。</p>
-<h3 id="3-Nodejs开发非常高效，而且代码简单，得益于Nodejs的单线程机制"><a href="#3-Nodejs开发非常高效，而且代码简单，得益于Nodejs的单线程机制" class="headerlink" title="3.Nodejs开发非常高效，而且代码简单，得益于Nodejs的单线程机制"></a>3.Nodejs开发非常高效，而且代码简单，得益于Nodejs的单线程机制</h3><p>而Nodejs的另一个特点异步编程，让Nodejs处理IO密集型应用有了明显的优势。个人感觉，用Nodejs比Java做Web开发要高效10倍，比PHP的代码还要简单。</p>
-<h3 id="4-Nodejs的社区在壮大"><a href="#4-Nodejs的社区在壮大" class="headerlink" title="4.Nodejs的社区在壮大"></a>4.Nodejs的社区在壮大</h3><p>不仅包的数量在快速增加，而且包的质量也要明显好于其他语言的。很多明星级的包，都是简单而灵巧的，为了开发者的使用习惯而设计。</p>
-<h3 id="ebay选择Nodejs的理由，可以归纳为以下4点："><a href="#ebay选择Nodejs的理由，可以归纳为以下4点：" class="headerlink" title="ebay选择Nodejs的理由，可以归纳为以下4点："></a>ebay选择Nodejs的理由，可以归纳为以下4点：</h3><ol>
-<li>动态语言：开发效率非常高，并有能力构建复杂系统，如ql.io。</li>
-<li>性能和I/O负载：Nodejs非常好的解决了IO密集的问题，通过异步IO来实现。</li>
-<li>连接的内存开销：每个Node.js进程可以支持超过12万活跃的连接，每个连接消耗大约2K的内存。</li>
-<li>操作性：实现了Nodejs对于内存堆栈的监控系统。</li>
+        <blockquote>
+<p>转载自: <a href="http://www.orangecube.net/python-time-complexity" target="_blank" rel="noopener">Python内置方法的时间复杂度</a></p>
+</blockquote>
+<h2 id="介绍"><a href="#介绍" class="headerlink" title="介绍"></a>介绍</h2><p>本页面涵盖了Python中若干方法的时间复杂度（或者叫“大欧”，“Big O”）。该时间复杂度的计算基于当前（译注：至少是2011年之前）的CPython实现。其他Python的实现（包括老版本或者尚在开发的CPython实现）可能会在性能表现上有些许小小的差异，但一般不超过一个O(log n)项。</p>
+<p>本文中，’n’代表容器中元素的数量，’k’代表参数的值，或者参数的数量。</p>
+<h2 id="列表（list）"><a href="#列表（list）" class="headerlink" title="列表（list）"></a>列表（list）</h2><p>以完全随机的列表考虑平均情况。</p>
+<p>列表是以数组（Array）实现的。最大的开销发生在超过当前分配大小的增长，这种情况下所有元素都需要移动；或者是在起始位置附近插入或者删除元素，这种情况下所有在该位置后面的元素都需要移动。如果你需要在一个队列的两端进行增删的操作，应当使用collections.deque（双向队列）<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">操作	        平均情况	最坏情况</span><br><span class="line">复制	          O(n)	         O(n)</span><br><span class="line">append[注1]	  O(1)	         O(1)</span><br><span class="line">插入	          O(n)	         O(n)</span><br><span class="line">取元素	          O(1)	         O(1)</span><br><span class="line">更改元素	  O(1)	         O(1)</span><br><span class="line">删除元素	  O(n)	         O(n)</span><br><span class="line">遍历	          O(n)	         O(n)</span><br><span class="line">取切片	          O(k)	         O(k)</span><br><span class="line">删除切片	  O(n)	         O(n)</span><br><span class="line">更改切片	  O(k+n)   	 O(k+n)</span><br><span class="line">extend[注1]	  O(k)	         O(k)</span><br><span class="line">排序	          O(n log n)	 O(n log n)</span><br><span class="line">列表乘法	  O(nk)	         O(nk)</span><br><span class="line">x in s	          O(n)	</span><br><span class="line">min(s), max(s)	  O(n)	</span><br><span class="line">计算长度	  O(1)	         O(1)</span><br></pre></td></tr></table></figure></p>
+<h2 id="双向队列（collections-deque）"><a href="#双向队列（collections-deque）" class="headerlink" title="双向队列（collections.deque）"></a>双向队列（collections.deque）</h2><p>deque （double-ended queue，双向队列）是以双向链表的形式实现的 (Well, a list of arrays rather than objects, for greater efficiency)。双向队列的两端都是可达的，但从查找队列中间的元素较为缓慢，增删元素就更慢了。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">操作	       平均情况	      最坏情况</span><br><span class="line">复制	       O(n)	        O(n)</span><br><span class="line">append	       O(1)	        O(1)</span><br><span class="line">appendleft     O(1)	        O(1)</span><br><span class="line">pop	       O(1)	        O(1)</span><br><span class="line">popleft	       O(1)	        O(1)</span><br><span class="line">extend	       O(k)	        O(k)</span><br><span class="line">extendleft     O(k)	        O(k)</span><br><span class="line">rotate	       O(k)	        O(k)</span><br><span class="line">remove	       O(n)	        O(n)</span><br></pre></td></tr></table></figure></p>
+<h1 id="集合（set）"><a href="#集合（set）" class="headerlink" title="集合（set）"></a>集合（set）</h1><p>未列出的操作可参考 dict —— 二者的实现非常相似。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">操作	                               平均情况	                最坏情况</span><br><span class="line">x in s	                               O(1)	                O(n)</span><br><span class="line">并集 s|t	                       O(len(s)+len(t))	</span><br><span class="line">交集 s&amp;t	                       O(min(len(s), len(t))	O(len(s) * len(t))</span><br><span class="line">差集 s-t	                       O(len(s))	</span><br><span class="line">s.difference_update(t)	               O(len(t))	</span><br><span class="line">对称差集 s^t	                       O(len(s))	        O(len(s) * len(t))</span><br><span class="line">s.symmetric_difference_update(t)	O(len(t))	        O(len(t) * len(s))</span><br></pre></td></tr></table></figure></p>
+<p>由源码得知，求差集（s-t，或s.difference(t)）运算与更新为差集（s.difference_uptate(t)）运算的时间复杂度并不相同！前者是将在s中，但不在t中的元素添加到新的集合中，因此时间复杂度为O(len(s))；后者是将在t中的元素从s中移除，因此时间复杂度为O(len(t))。因此，使用时请留心，根据两个集合的大小以及是否需要新集合来选择合适的方法。</p>
+<p>集合的s-t运算中，并不要求t也一定是集合。只要t是可遍历的对象即可。</p>
+<h2 id="字典（dict）"><a href="#字典（dict）" class="headerlink" title="字典（dict）"></a>字典（dict）</h2><p>下列字典的平均情况基于以下假设：</p>
+<ol>
+<li>对象的散列函数足够撸棒（robust），不会发生冲突。</li>
+<li>字典的键是从所有可能的键的集合中随机选择的。</li>
 </ol>
+<p>小窍门：只使用字符串作为字典的键。这么做虽然不会影响算法的时间复杂度，但会对常数项产生显著的影响，这决定了你的一段程序能多快跑完。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">操作	          平均情况	最坏情况</span><br><span class="line">复制[注2]	    O(n)	O(n)</span><br><span class="line">取元素	            O(1)	O(n)</span><br><span class="line">更改元素[注1]	    O(1)	O(n)</span><br><span class="line">删除元素	    O(1)	O(n)</span><br><span class="line">遍历[注2]	    O(n)	O(n)</span><br></pre></td></tr></table></figure></p>
+<p>注：<br>[1] = These operations rely on the “Amortized” part of “Amortized Worst Case”. Individual actions may take surprisingly long, depending on the history of the container.</p>
+<p>[2] = For these operations, the worst case n is the maximum size the container ever achieved, rather than just the current size. For example, if N objects are added to a dictionary, then N-1 are deleted, the dictionary will still be sized for N objects (at least) until another insertion is made.</p>
 
       
     </div>
@@ -451,7 +448,7 @@
       
         <div class="post-tags">
           
-            <a href="/tags/Nodejs/" rel="tag"># Nodejs</a>
+            <a href="/tags/python/" rel="tag"># python</a>
           
         </div>
       
@@ -464,8 +461,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2016/04/16/前端-初探Ajax/" rel="next" title="初探Ajax">
-                <i class="fa fa-chevron-left"></i> 初探Ajax
+              <a href="/2018/11/07/Kafka-常见面试题1/" rel="next" title="Kafka-常见面试题1">
+                <i class="fa fa-chevron-left"></i> Kafka-常见面试题1
               </a>
             
           </div>
@@ -473,10 +470,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2016/05/10/计算机-deepin系统-deepin2015加载windows7启动项/" rel="prev" title="deepin 2015加载windows 7启动项">
-                deepin 2015加载windows 7启动项 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -736,7 +729,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-Nodejs基于JavaScript语言"><span class="nav-number">1.</span> <span class="nav-text">1.Nodejs基于JavaScript语言</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-Nodejs没有重新开发-运行时的环境"><span class="nav-number">2.</span> <span class="nav-text">2.Nodejs没有重新开发-运行时的环境</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-Nodejs开发非常高效，而且代码简单，得益于Nodejs的单线程机制"><span class="nav-number">3.</span> <span class="nav-text">3.Nodejs开发非常高效，而且代码简单，得益于Nodejs的单线程机制</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-Nodejs的社区在壮大"><span class="nav-number">4.</span> <span class="nav-text">4.Nodejs的社区在壮大</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#ebay选择Nodejs的理由，可以归纳为以下4点："><span class="nav-number">5.</span> <span class="nav-text">ebay选择Nodejs的理由，可以归纳为以下4点：</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#介绍"><span class="nav-number">1.</span> <span class="nav-text">介绍</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#列表（list）"><span class="nav-number">2.</span> <span class="nav-text">列表（list）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#双向队列（collections-deque）"><span class="nav-number">3.</span> <span class="nav-text">双向队列（collections.deque）</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#集合（set）"><span class="nav-number"></span> <span class="nav-text">集合（set）</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#字典（dict）"><span class="nav-number">1.</span> <span class="nav-text">字典（dict）</span></a></li></ol></div>
             
 
           </div>
