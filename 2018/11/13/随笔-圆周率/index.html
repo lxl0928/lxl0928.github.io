@@ -108,25 +108,25 @@
 
 
 
-  <meta name="description" content="Python里面的延迟加载用得非常多，其主要思想是延迟所要引入类的实例化，节省一些初始化所需要的时间和空间。">
-<meta name="keywords" content="python">
+  <meta name="description" content="圆周率小数点后1600余位...">
+<meta name="keywords" content="随笔">
 <meta property="og:type" content="article">
-<meta property="og:title" content="python-关于匿名函数的延迟加载">
-<meta property="og:url" content="http://blog.timilong.com/2018/09/18/python-关于匿名函数的延迟加载/index.html">
+<meta property="og:title" content="随笔-圆周率">
+<meta property="og:url" content="http://blog.timilong.com/2018/11/13/随笔-圆周率/index.html">
 <meta property="og:site_name" content="Timilong&#39;s blog">
-<meta property="og:description" content="Python里面的延迟加载用得非常多，其主要思想是延迟所要引入类的实例化，节省一些初始化所需要的时间和空间。">
+<meta property="og:description" content="圆周率小数点后1600余位...">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-10-19T02:40:57.311Z">
+<meta property="og:updated_time" content="2018-11-13T05:30:36.869Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="python-关于匿名函数的延迟加载">
-<meta name="twitter:description" content="Python里面的延迟加载用得非常多，其主要思想是延迟所要引入类的实例化，节省一些初始化所需要的时间和空间。">
+<meta name="twitter:title" content="随笔-圆周率">
+<meta name="twitter:description" content="圆周率小数点后1600余位...">
 
 
 
 
 
 
-  <link rel="canonical" href="http://blog.timilong.com/2018/09/18/python-关于匿名函数的延迟加载/"/>
+  <link rel="canonical" href="http://blog.timilong.com/2018/11/13/随笔-圆周率/"/>
 
 
 
@@ -136,7 +136,7 @@
   };
 </script>
 
-  <title>python-关于匿名函数的延迟加载 | Timilong's blog</title>
+  <title>随笔-圆周率 | Timilong's blog</title>
   
 
 
@@ -309,7 +309,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://blog.timilong.com/2018/09/18/python-关于匿名函数的延迟加载/">
+    <link itemprop="mainEntityOfPage" href="http://blog.timilong.com/2018/11/13/随笔-圆周率/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="博主">
@@ -326,7 +326,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">python-关于匿名函数的延迟加载
+          <h1 class="post-title" itemprop="name headline">随笔-圆周率
               
             
           </h1>
@@ -351,24 +351,12 @@
                 
               
 
-              <time title="创建于：2018-09-18 11:35:19" itemprop="dateCreated datePublished" datetime="2018-09-18T11:35:19Z">2018-09-18</time>
+              <time title="创建于：2018-11-13 13:28:53 / 更新于：05:30:36" itemprop="dateCreated datePublished" datetime="2018-11-13T13:28:53Z">2018-11-13</time>
             
 
             
               
 
-              
-                
-                <span class="post-meta-divider">|</span>
-                
-
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">Edited on</span>
-                
-                <time title="更新于：2018-10-19 02:40:57" itemprop="dateModified" datetime="2018-10-19T02:40:57Z">2018-10-19</time>
               
             
           </span>
@@ -385,7 +373,7 @@
                 <span class="post-meta-item-text">分类于</span>
               
               
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/python/" itemprop="url" rel="index"><span itemprop="name">python</span></a></span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/随笔/" itemprop="url" rel="index"><span itemprop="name">随笔</span></a></span>
 
                 
                 
@@ -405,7 +393,7 @@
           
 
           
-              <div class="post-description">Python里面的延迟加载用得非常多，其主要思想是延迟所要引入类的实例化，节省一些初始化所需要的时间和空间。</div>
+              <div class="post-description">圆周率小数点后1600余位...</div>
           
 
         </div>
@@ -424,20 +412,7 @@
         <blockquote>
 <p>本文系原创, 转载请联系作者 <a href="http://blog.timilong.com/about">Timilong</a></p>
 </blockquote>
-<h3 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h3><p>执行下面一段代码，输出结果是什么?</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">f = [lambda x: x * i for i in range(7)]</span><br><span class="line"></span><br><span class="line">for item in f[:-1]:</span><br><span class="line">    print(item(1), end=&quot; &quot;)</span><br></pre></td></tr></table></figure>
-<h3 id="输出结果"><a href="#输出结果" class="headerlink" title="输出结果"></a>输出结果</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">6 6 6 6 6 6</span><br></pre></td></tr></table></figure>
-<h3 id="解析f"><a href="#解析f" class="headerlink" title="解析f"></a>解析f</h3><p>当我们打印f时，我们在打印什么?<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&gt;&gt;&gt; f</span><br><span class="line">[&lt;function &lt;listcomp&gt;.&lt;lambda&gt; at 0x10176d048&gt;, &lt;function &lt;listcomp&gt;.&lt;lambda&gt; at 0x10176d0d0&gt;, &lt;function &lt;listcomp&gt;.&lt;lambda&gt; at 0x10176d158&gt;, &lt;function &lt;listcomp&gt;.&lt;lambda&gt; at 0x10176d1e0&gt;, &lt;function &lt;listcomp&gt;.&lt;lambda&gt; at 0x10176d268&gt;, &lt;function &lt;listcomp&gt;.&lt;lambda&gt; at 0x10176d2f0&gt;, &lt;function &lt;listcomp&gt;.&lt;lambda&gt; at 0x10176d378&gt;]</span><br><span class="line"></span><br><span class="line">&gt;&gt;&gt; len(f)</span><br><span class="line">7</span><br></pre></td></tr></table></figure></p>
-<p>可以看到，返回的是长度为7，元素为匿名函数的list , 到这里没什么问题（通过列表生成式[x for x in range(n)], 只不过这里的x换成了一个lambda匿名函数，n=7）。</p>
-<h3 id="解析结果"><a href="#解析结果" class="headerlink" title="解析结果"></a>解析结果</h3><p>lambda表达式当中绑定的i变量是外层的i变量，循环结束之后，这个变量变成了6([i for i in range(7)] i的最后一个取值是6)，所以所有的lambda表达式当中都引用的是这个6，而不是创建lambda表达式时当时的值。</p>
-<p>单从实现的结果看, <code>f = [lambda x: x * i for i in range(7)]</code>的结果是和<code>f = [lambda x: x * 6] * 7</code>产生的结果是等同的。但是在内存地址引用上，完成不是一回事情，这点需要注意.<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">&gt;&gt;&gt; f = [lambda x: x * 6] * 7</span><br><span class="line">&gt;&gt;&gt; f</span><br><span class="line">[&lt;function &lt;lambda&gt; at 0x10c88e578&gt;, &lt;function &lt;lambda&gt; at 0x10c88e578&gt;, &lt;function &lt;lambda&gt; at 0x10c88e578&gt;, &lt;function &lt;lambda&gt; at 0x10c88e578&gt;, &lt;function &lt;lambda&gt; at 0x10c88e578&gt;, &lt;function &lt;lambda&gt; at 0x10c88e578&gt;, &lt;function &lt;lambda&gt; at 0x10c88e578&gt;]</span><br><span class="line"></span><br><span class="line">&gt;&gt;&gt; for item in f[:-1]:</span><br><span class="line">...     print(item(1))</span><br><span class="line">...</span><br><span class="line">6</span><br><span class="line">6</span><br><span class="line">6</span><br><span class="line">6</span><br><span class="line">6</span><br><span class="line">6</span><br><span class="line">&gt;&gt;&gt;</span><br></pre></td></tr></table></figure></p>
-<p>可见是同一个内存地址，引用了7次。</p>
-<h3 id="拓展"><a href="#拓展" class="headerlink" title="拓展"></a>拓展</h3><p>下面一段代码会输出什么?<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&gt;&gt;&gt; f = [lambda x, i = i: x * i for i in range(7)]</span><br><span class="line">&gt;&gt;&gt; for item in f:</span><br><span class="line">...     print(item(0), item(1), item(2), item(3), item(4), item(5), item(6), item(7), item(8))</span><br><span class="line">...</span><br></pre></td></tr></table></figure></p>
-<p>结果输出:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">&gt;&gt;&gt; f</span><br><span class="line">[&lt;function &lt;listcomp&gt;.&lt;lambda&gt; at 0x101a0c048&gt;, &lt;function &lt;listcomp&gt;.&lt;lambda&gt; at 0x101a0c0d0&gt;, &lt;function &lt;listcomp&gt;.&lt;lambda&gt; at 0x101a0c158&gt;, &lt;function &lt;listcomp&gt;.&lt;lambda&gt; at 0x101a0c1e0&gt;, &lt;function &lt;listcomp&gt;.&lt;lambda&gt; at 0x101a0c268&gt;, &lt;function &lt;listcomp&gt;.&lt;lambda&gt; at 0x101a0c2f0&gt;, &lt;function &lt;listcomp&gt;.&lt;lambda&gt; at 0x101a0c378&gt;]</span><br><span class="line"></span><br><span class="line">&gt;&gt;&gt; for item in f:</span><br><span class="line">...     print(item(0), item(1), item(2), item(3), item(4), item(5), item(6), item(7), item(8))</span><br><span class="line">...</span><br><span class="line">0 0 0 0 0 0 0 0 0</span><br><span class="line">0 1 2 3 4 5 6 7 8</span><br><span class="line">0 2 4 6 8 10 12 14 16</span><br><span class="line">0 3 6 9 12 15 18 21 24</span><br><span class="line">0 4 8 12 16 20 24 28 32</span><br><span class="line">0 5 10 15 20 25 30 35 40</span><br><span class="line">0 6 12 18 24 30 36 42 48</span><br><span class="line">&gt;&gt;&gt;</span><br></pre></td></tr></table></figure></p>
-<p>可以看到，使用此方法，可以有效解决延迟绑定的问题。</p>
-<blockquote>
-<p>参考: CSDN: <a href="https://blog.csdn.net/LeVoleurDombres/article/details/69681063" target="_blank" rel="noopener">浅析Python的闭包和延迟绑定</a></p>
-</blockquote>
+<h2 id="圆周率"><a href="#圆周率" class="headerlink" title="圆周率"></a>圆周率</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">&gt;&gt;&gt; pi = &quot;&quot;&quot;3.1415926535897932384626433832795028841971693993</span><br><span class="line">... 751058209794459230781640628620899862803482534211706798214808</span><br><span class="line">... 651328230676470938446095505822317253594081284811174502841027</span><br><span class="line">... 019385211095559644622948954930381964428810975665933446128475</span><br><span class="line">... 648233786783165271201909145648566923460348610454326648213393</span><br><span class="line">... 607260249141273724587006606315588174881520920962829254091715</span><br><span class="line">... 364367892590360011330530548820466521384146951941511609433057</span><br><span class="line">... 270365759591953092186117381932611793105118548074462379962749</span><br><span class="line">... 567351885752724891227938183011949129833673362440656643086021</span><br><span class="line">... 394946395224737190702179860943702770539217176293176752384674</span><br><span class="line">... 818467669405132000568127145263560827785771342757789609173637</span><br><span class="line">... 178721468440901224953430146549585371050792279689258923542019</span><br><span class="line">... 956112129021960864034418159813629774771309960518707211349999</span><br><span class="line">... 998372978049951059731732816096318595024459455346908302642522</span><br><span class="line">... 308253344685035261931188171010003137838752886587533208381420</span><br><span class="line">... 617177669147303598253490428755468731159562863882353782016673</span><br><span class="line">... 156423156323187423187323128423128323658323697323647223923101</span><br><span class="line">... 167323156423156323287323187423128323128323158423158323197423</span><br><span class="line">... 197323147723923101167323656323187123187223187423528323158421</span><br><span class="line">... 583231974231973231477239231011673231564231563231872231812318</span><br><span class="line">... 732312842312832315842315832319742319732314772392310117423456</span><br><span class="line">... 423187323287323628323158423158323697323147723923301723923101</span><br><span class="line">... 667323128423128323696823108823101167423128323128823196823108</span><br><span class="line">... 823101167423528623396423508823101167323128423128823196323108</span><br><span class="line">... 423108823101167323628323696323608823401696323127423127623142</span><br><span class="line">... 231011963231274231276231482231019233963236276231482231011963</span><br><span class="line">... 23127423127623148223101696323127423127423548101&quot;&quot;&quot;</span><br><span class="line"></span><br><span class="line">&gt;&gt;&gt; len(pi)</span><br><span class="line">1621</span><br></pre></td></tr></table></figure>
 
       
     </div>
@@ -458,7 +433,7 @@
       
         <div class="post-tags">
           
-            <a href="/tags/python/" rel="tag"># python</a>
+            <a href="/tags/随笔/" rel="tag"># 随笔</a>
           
         </div>
       
@@ -471,8 +446,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2018/09/16/RPC-20推荐学习资源/" rel="next" title="RPC-20推荐学习资源">
-                <i class="fa fa-chevron-left"></i> RPC-20推荐学习资源
+              <a href="/2018/11/09/python-内置方法的时间复杂度/" rel="next" title="python-内置方法的时间复杂度">
+                <i class="fa fa-chevron-left"></i> python-内置方法的时间复杂度
               </a>
             
           </div>
@@ -480,10 +455,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2018/09/19/转载-天下无难试之Redis面试题刁难大全/" rel="prev" title="转载-天下无难试之Redis面试题刁难大全">
-                转载-天下无难试之Redis面试题刁难大全 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -743,7 +714,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#题目"><span class="nav-number">1.</span> <span class="nav-text">题目</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#输出结果"><span class="nav-number">2.</span> <span class="nav-text">输出结果</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#解析f"><span class="nav-number">3.</span> <span class="nav-text">解析f</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#解析结果"><span class="nav-number">4.</span> <span class="nav-text">解析结果</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#拓展"><span class="nav-number">5.</span> <span class="nav-text">拓展</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#圆周率"><span class="nav-number">1.</span> <span class="nav-text">圆周率</span></a></li></ol></div>
             
 
           </div>

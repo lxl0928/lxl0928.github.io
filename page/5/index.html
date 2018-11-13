@@ -305,6 +305,177 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://blog.timilong.com/2018/08/21/算法-归并排序/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="博主">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Timilong's blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/08/21/算法-归并排序/" itemprop="url">
+                  归并排序
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建于：2018-08-21 14:25:29" itemprop="dateCreated datePublished" datetime="2018-08-21T14:25:29Z">2018-08-21</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Edited on</span>
+                
+                <time title="更新于：2018-10-19 02:40:57" itemprop="dateModified" datetime="2018-10-19T02:40:57Z">2018-10-19</time>
+              
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/算法/" itemprop="url" rel="index"><span itemprop="name">算法</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h2><p>请手写归并排序，实现test_lit = [2, -1, 100, 0, 3, 4, 9, -11, 200, 1, 3] 按降序输出</p>
+<h2 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># coding: utf-8</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">merge_sort</span><span class="params">(nums)</span>:</span></span><br><span class="line">    <span class="keyword">if</span> len(nums) &lt;= <span class="number">1</span>:</span><br><span class="line">        <span class="keyword">return</span> nums</span><br><span class="line">    <span class="keyword">else</span>:</span><br><span class="line">        mid = len(nums) / <span class="number">2</span></span><br><span class="line"></span><br><span class="line">    left = merge_sort(nums[:mid])</span><br><span class="line">    right = merge_sort(nums[mid:])</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> merge(left, right)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">merge</span><span class="params">(left, right)</span>:</span></span><br><span class="line">    i, j, res = <span class="number">0</span>, <span class="number">0</span>, list()</span><br><span class="line"></span><br><span class="line">    <span class="keyword">while</span> i &lt; len(left) <span class="keyword">and</span> j &lt; len(right):</span><br><span class="line">        <span class="keyword">if</span> left[i] &lt; right[j]:</span><br><span class="line">            res.append(left[i])</span><br><span class="line">            i += <span class="number">1</span></span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            res.append(right[j])</span><br><span class="line">            j += <span class="number">1</span></span><br><span class="line">    res += left[i:]</span><br><span class="line">    res += right[j:]</span><br><span class="line">    <span class="keyword">return</span> res</span><br><span class="line"></span><br><span class="line">test_list = [<span class="number">2</span>, <span class="number">-1</span>, <span class="number">100</span>, <span class="number">0</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">9</span>, <span class="number">-11</span>, <span class="number">200</span>, <span class="number">1</span>, <span class="number">3</span>] </span><br><span class="line">res = merge_sort(nums=test_list)</span><br><span class="line">print(res[::<span class="number">-1</span>])</span><br></pre></td></tr></table></figure>
+
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://blog.timilong.com/2018/08/17/linux-设置脚本开机自启动/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -2461,7 +2632,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://blog.timilong.com/2018/07/09/leetcode-205判断两字符串是否同构/">
+    <link itemprop="mainEntityOfPage" href="http://blog.timilong.com/2018/07/09/leetcode-205.判断两字符串是否同构/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="博主">
@@ -2480,7 +2651,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2018/07/09/leetcode-205判断两字符串是否同构/" itemprop="url">
+                <a class="post-title-link" href="/2018/07/09/leetcode-205.判断两字符串是否同构/" itemprop="url">
                   leetcode-205.同构字符串
                 </a>
               
@@ -2579,165 +2750,11 @@
           给定两个字符串 s 和 t，判断它们是否是同构的。
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/2018/07/09/leetcode-205判断两字符串是否同构/">
+            <a class="btn" href="/2018/07/09/leetcode-205.判断两字符串是否同构/">
               阅读全文 &raquo;
             </a>
           </div>
           <!--/noindex-->
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://blog.timilong.com/2018/07/09/leetcode-判断两字符串是否同构/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="博主">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Timilong's blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/07/09/leetcode-判断两字符串是否同构/" itemprop="url">
-                  leetcode-205.同构字符串
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-
-              
-                
-              
-
-              <time title="创建于：2018-07-09 11:26:35" itemprop="dateCreated datePublished" datetime="2018-07-09T11:26:35Z">2018-07-09</time>
-            
-
-            
-              
-
-              
-                
-                <span class="post-meta-divider">|</span>
-                
-
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">Edited on</span>
-                
-                <time title="更新于：2018-10-19 02:40:57" itemprop="dateModified" datetime="2018-10-19T02:40:57Z">2018-10-19</time>
-              
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h1 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">给定两个字符串 s 和 t，判断它们是否是同构的。</span><br><span class="line"></span><br><span class="line">如果 s 中的字符可以被替换得到 t ，那么这两个字符串是同构的。</span><br><span class="line"></span><br><span class="line">所有出现的字符都必须用另一个字符替换，同时保留字符的顺序。两个字符不能映射到同一个字符上，但字符可以映射自己本身。</span><br><span class="line"></span><br><span class="line">示例 1:</span><br><span class="line">    输入: s = &quot;egg&quot;, t = &quot;add&quot;</span><br><span class="line">    输出: true</span><br><span class="line"></span><br><span class="line">示例 2:</span><br><span class="line">    输入: s = &quot;foo&quot;, t = &quot;bar&quot;</span><br><span class="line">    输出: false</span><br><span class="line"></span><br><span class="line">示例 3:</span><br><span class="line">    输入: s = &quot;paper&quot;, t = &quot;title&quot;</span><br><span class="line">    输出: true</span><br><span class="line"></span><br><span class="line">说明:</span><br><span class="line">你可以假设 s 和 t 具有相同的长度。</span><br></pre></td></tr></table></figure>
-<h1 id="解题"><a href="#解题" class="headerlink" title="解题"></a>解题</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">用字典(hashMap), 将字符串s与字符串t简历映射关系</span><br></pre></td></tr></table></figure>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line">#! /usr/bin/python3</span><br><span class="line"># coding: utf-8</span><br><span class="line"></span><br><span class="line">def is_isomorphic(str_s, str_t):</span><br><span class="line">    print(str_s, str_t)</span><br><span class="line"></span><br><span class="line">    len_s, len_t = len(str_s), len(str_t)</span><br><span class="line">    if len_s != len_t:</span><br><span class="line">        return False</span><br><span class="line"></span><br><span class="line">    tmp_dict = dict()</span><br><span class="line">    for inx in range(len_s):</span><br><span class="line">        if str_s[inx] not in tmp_dict:</span><br><span class="line">            tmp_dict[str_s[inx]] = str_t[inx]</span><br><span class="line">        else:</span><br><span class="line">            if tmp_dict[str_s[inx]] != str_t[inx]:</span><br><span class="line">                return False</span><br><span class="line">    return tmp_dict</span><br><span class="line"></span><br><span class="line">def check_str(result, str_s, str_t):</span><br><span class="line">    return len(result) == len(set(str_s)) and len(result) == len(set(str_t))</span><br><span class="line"></span><br><span class="line">str_s = &quot;aabbcc&quot;</span><br><span class="line">str_t = &quot;ddeeff&quot;</span><br><span class="line"></span><br><span class="line">result = is_isomorphic(str_s, str_t)</span><br><span class="line">print(check_str(result, str_s, str_t))</span><br></pre></td></tr></table></figure>
-
-          
         
       
     </div>
@@ -2821,7 +2838,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">177</span>
+                    <span class="site-state-item-count">178</span>
                     <span class="site-state-item-name">日志</span>
                   </a>
                 </div>
