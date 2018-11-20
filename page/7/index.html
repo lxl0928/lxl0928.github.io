@@ -305,6 +305,181 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://blog.timilong.com/2017/06/23/leetcode-4.两个排序数组的中位数/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="博主">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Timilong's blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2017/06/23/leetcode-4.两个排序数组的中位数/" itemprop="url">
+                  leetcode-4. 两个排序数组的中位数
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建于：2017-06-23 10:07:11" itemprop="dateCreated datePublished" datetime="2017-06-23T10:07:11Z">2017-06-23</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Edited on</span>
+                
+                <time title="更新于：2018-10-19 02:40:57" itemprop="dateModified" datetime="2018-10-19T02:40:57Z">2018-10-19</time>
+              
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/leetcode/" itemprop="url" rel="index"><span itemprop="name">leetcode</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+	
+        
+          给定两个大小为 m 和 n 的有序数组 nums1 和 nums2 。 请找出这两个有序数组的中位数。要求算法的时间复杂度为 O(log (m+n)) 。
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2017/06/23/leetcode-4.两个排序数组的中位数/">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://blog.timilong.com/2017/06/23/leetcode-4两个排序数组的中位数/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -419,6 +594,7 @@
       
 
       
+	
         
           给定两个大小为 m 和 n 的有序数组 nums1 和 nums2 。 请找出这两个有序数组的中位数。要求算法的时间复杂度为 O(log (m+n)) 。
           <!--noindex-->
@@ -575,186 +751,13 @@
       
 
       
+	
         
           
             <h1 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">给定两个大小为 m 和 n 的有序数组 nums1 和 nums2 。</span><br><span class="line"></span><br><span class="line">请找出这两个有序数组的中位数。要求算法的时间复杂度为 O(log (m+n)) 。</span><br><span class="line"></span><br><span class="line">示例 1:</span><br><span class="line"></span><br><span class="line">    nums1 = [1, 3]</span><br><span class="line">    nums2 = [2]</span><br><span class="line"></span><br><span class="line">    中位数是 2.0</span><br><span class="line"></span><br><span class="line">示例 2:</span><br><span class="line">    nums1 = [1, 2]</span><br><span class="line">    nums2 = [3, 4]</span><br><span class="line"></span><br><span class="line">    中位数是 (2 + 3)/2 = 2.5</span><br></pre></td></tr></table></figure>
 <h1 id="题解"><a href="#题解" class="headerlink" title="题解"></a>题解</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">class Solution(object):</span><br><span class="line">    def findMedianSortedArrays(self, nums1, nums2):</span><br><span class="line">        &quot;&quot;&quot;</span><br><span class="line">        :type nums1: List[int]</span><br><span class="line">        :type nums2: List[int]</span><br><span class="line">        :rtype: float</span><br><span class="line">        &quot;&quot;&quot;</span><br><span class="line">        nums = sorted(nums1 + nums2)</span><br><span class="line">        length = len(nums)</span><br><span class="line">        mid = length // 2</span><br><span class="line">        if length == 0:</span><br><span class="line">            return 0</span><br><span class="line">        if length % 2 != 0:</span><br><span class="line">            return nums[mid]</span><br><span class="line">        else:</span><br><span class="line">            return (nums[mid] + nums[mid-1]) / 2.0</span><br></pre></td></tr></table></figure>
 
           
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://blog.timilong.com/2017/06/23/leetcode-4.两个排序数组的中位数/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="博主">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Timilong's blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2017/06/23/leetcode-4.两个排序数组的中位数/" itemprop="url">
-                  leetcode-4. 两个排序数组的中位数
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-
-              
-                
-              
-
-              <time title="创建于：2017-06-23 10:07:11" itemprop="dateCreated datePublished" datetime="2017-06-23T10:07:11Z">2017-06-23</time>
-            
-
-            
-              
-
-              
-                
-                <span class="post-meta-divider">|</span>
-                
-
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">Edited on</span>
-                
-                <time title="更新于：2018-10-19 02:40:57" itemprop="dateModified" datetime="2018-10-19T02:40:57Z">2018-10-19</time>
-              
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/leetcode/" itemprop="url" rel="index"><span itemprop="name">leetcode</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          给定两个大小为 m 和 n 的有序数组 nums1 和 nums2 。 请找出这两个有序数组的中位数。要求算法的时间复杂度为 O(log (m+n)) 。
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2017/06/23/leetcode-4.两个排序数组的中位数/">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
         
       
     </div>
@@ -920,6 +923,7 @@
       
 
       
+	
         
           <h2 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h2><p>浏览器缓存是浏览器端保存数据用于快速读取或避免重复资源请求的优化机制，<br>有效的缓存使用可以避免重复的网络请求和浏览器快速地读取本地数据，整体上加速网页展示给用户。</p>
           <!--noindex-->
@@ -1094,186 +1098,12 @@
       
 
       
+	
         
           RPM的全名为“RedHat Package Manager”, 是由RedHat公司开发的。Rpm是以一种数据库记录的方式将所需要的套件安装到linux主机的一套管理程序
           <!--noindex-->
           <div class="post-button text-center">
             <a class="btn" href="/2017/06/17/linux-rpm包管理命令/">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://blog.timilong.com/2017/06/13/leetcode-264丑数2/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="博主">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Timilong's blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2017/06/13/leetcode-264丑数2/" itemprop="url">
-                  leetcode-264丑数2
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-
-              
-                
-              
-
-              <time title="创建于：2017-06-12 21:37:54" itemprop="dateCreated datePublished" datetime="2017-06-12T21:37:54Z">2017-06-12</time>
-            
-
-            
-              
-
-              
-                
-                <span class="post-meta-divider">|</span>
-                
-
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">Edited on</span>
-                
-                <time title="更新于：2018-10-19 02:40:57" itemprop="dateModified" datetime="2018-10-19T02:40:57Z">2018-10-19</time>
-              
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/leetcode/" itemprop="url" rel="index"><span itemprop="name">leetcode</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <h2 id="Description"><a href="#Description" class="headerlink" title="Description"></a>Description</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Description:</span><br><span class="line">    Write a program to find the n-th ugly number.</span><br></pre></td></tr></table></figure>
-<h2 id="Example"><a href="#Example" class="headerlink" title="Example"></a>Example</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">Example:</span><br><span class="line">    Ugly numbers are positive numbers whose prime factors only include 2, 3, 5. </span><br><span class="line">    For example, 1, 2, 3, 4, 5, 6, 8, 9, 10, 12 is the sequence of the first 10 ugly numbers.</span><br><span class="line">    Note that 1 is typically treated as an ugly number, and n does not exceed 1690.</span><br></pre></td></tr></table></figure>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2017/06/13/leetcode-264丑数2/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -1443,12 +1273,189 @@
       
 
       
+	
         
           <h2 id="Description"><a href="#Description" class="headerlink" title="Description"></a>Description</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Description:</span><br><span class="line">    Write a program to find the n-th ugly number.</span><br></pre></td></tr></table></figure>
 <h2 id="Example"><a href="#Example" class="headerlink" title="Example"></a>Example</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">Example:</span><br><span class="line">    Ugly numbers are positive numbers whose prime factors only include 2, 3, 5. </span><br><span class="line">    For example, 1, 2, 3, 4, 5, 6, 8, 9, 10, 12 is the sequence of the first 10 ugly numbers.</span><br><span class="line">    Note that 1 is typically treated as an ugly number, and n does not exceed 1690.</span><br></pre></td></tr></table></figure>
           <!--noindex-->
           <div class="post-button text-center">
             <a class="btn" href="/2017/06/13/leetcode-ugly_number_2/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://blog.timilong.com/2017/06/13/leetcode-264丑数2/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="博主">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Timilong's blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2017/06/13/leetcode-264丑数2/" itemprop="url">
+                  leetcode-264丑数2
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建于：2017-06-12 21:37:54" itemprop="dateCreated datePublished" datetime="2017-06-12T21:37:54Z">2017-06-12</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Edited on</span>
+                
+                <time title="更新于：2018-10-19 02:40:57" itemprop="dateModified" datetime="2018-10-19T02:40:57Z">2018-10-19</time>
+              
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/leetcode/" itemprop="url" rel="index"><span itemprop="name">leetcode</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+	
+        
+          <h2 id="Description"><a href="#Description" class="headerlink" title="Description"></a>Description</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Description:</span><br><span class="line">    Write a program to find the n-th ugly number.</span><br></pre></td></tr></table></figure>
+<h2 id="Example"><a href="#Example" class="headerlink" title="Example"></a>Example</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">Example:</span><br><span class="line">    Ugly numbers are positive numbers whose prime factors only include 2, 3, 5. </span><br><span class="line">    For example, 1, 2, 3, 4, 5, 6, 8, 9, 10, 12 is the sequence of the first 10 ugly numbers.</span><br><span class="line">    Note that 1 is typically treated as an ugly number, and n does not exceed 1690.</span><br></pre></td></tr></table></figure>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2017/06/13/leetcode-264丑数2/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -1618,6 +1625,7 @@
       
 
       
+	
         
           59ca2a45938d69002054a607 这个24位的字符串，虽然看起来很长，也很难理解，但实际上它是由一组十六进制的字符构成，每个字节两位的十六进制数字，总共用了12字节的存储空间。相比MYSQL int类型的4个字节，MongoDB确实多出了很多字节。不过按照现在的存储设备，多出来的字节应该不会成为什么瓶颈。不过MongoDB的这种设计，体现着空间换时间的思想.
           <!--noindex-->
@@ -1792,6 +1800,7 @@
       
 
       
+	
         
           sed 是一种在线编辑器，它一次处理一行内容。处理时，把当前处理的行存储在临时缓冲区中，称为“模式空间”（pattern space），接着用sed命令处理缓冲区中的内容，处理完成后，把缓冲区的内容送往屏幕。接着处理下一行，这样不断重复，直到文件末尾。文件内容并没有 改变，除非你使用重定向存储输出。Sed主要用来自动编辑一个或多个文件；简化对文件的反复操作；编写转换程序等。
           <!--noindex-->
@@ -1966,6 +1975,7 @@
       
 
       
+	
         
           已知两个有序数组, 现在要求将两个有序数组合并为一个有序数组.
           <!--noindex-->
@@ -2140,6 +2150,7 @@
       
 
       
+	
         
           
             <h2 id="Description"><a href="#Description" class="headerlink" title="Description"></a>Description</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Description:</span><br><span class="line">    Write a program to check whether a given number is an ugly number.</span><br><span class="line">    Ugly numbers are positive numbers whose prime factors only include 2, 3, 5</span><br></pre></td></tr></table></figure>
@@ -2312,6 +2323,7 @@
       
 
       
+	
         
           
             <h2 id="Description"><a href="#Description" class="headerlink" title="Description"></a>Description</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Description:</span><br><span class="line">    Write a program to check whether a given number is an ugly number.</span><br><span class="line">    Ugly numbers are positive numbers whose prime factors only include 2, 3, 5</span><br></pre></td></tr></table></figure>
@@ -2484,6 +2496,7 @@
       
 
       
+	
         
           <h2 id="Linux系统的网络配置基本"><a href="#Linux系统的网络配置基本" class="headerlink" title="Linux系统的网络配置基本"></a>Linux系统的网络配置基本</h2><pre><code>包括：网络IP的配置、网关路由的配置、主机DNS的配置、主机名的配置等，本篇注重介绍网络IP的配置。
 </code></pre><h2 id="Linux系统的网络地址配置分为两种方式"><a href="#Linux系统的网络地址配置分为两种方式" class="headerlink" title="Linux系统的网络地址配置分为两种方式"></a>Linux系统的网络地址配置分为两种方式</h2><pre><code>暂时的网络配置：利用ifconfig等命令配置的网络信息，会立即生效，但重启网络服务和系统会失效。
@@ -2661,6 +2674,7 @@
       
 
       
+	
         
           <h3 id="1-简介"><a href="#1-简介" class="headerlink" title="1. 简介"></a>1. 简介</h3><p>Vim（Vi[Improved]）编辑器是功能强大的跨平台文本文件编辑工具，继承自Unix系统的Vi编辑器，支持Linux/Mac OS X/Windows系统，利用它可以建立、修改文本文件。进入Vim编辑程序，可以在终端输入下面的命令：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$vim [filename]</span><br></pre></td></tr></table></figure></p>
 <p>其中filename是要编辑器的文件的路径名。如果文件不存在，它将为你建立一个新文件。Vim编辑程序有三种操作模式，分别称为 编辑模式、插入模式 和 命令模式，当运行Vim时，首先进入编辑模式。<br>
@@ -2722,7 +2736,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://blog.timilong.com/2017/05/01/leetcode-275H指数2/">
+    <link itemprop="mainEntityOfPage" href="http://blog.timilong.com/2017/05/01/leetcode-h-index2/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="博主">
@@ -2741,8 +2755,8 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2017/05/01/leetcode-275H指数2/" itemprop="url">
-                  leetcode-275H指数2
+                <a class="post-title-link" href="/2017/05/01/leetcode-h-index2/" itemprop="url">
+                  leetcode-'h-index2'
                 </a>
               
             
@@ -2836,6 +2850,7 @@
       
 
       
+	
         
           
             <h2 id="Description"><a href="#Description" class="headerlink" title="Description"></a>Description</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">Description:</span><br><span class="line">    h-index ，又称为h指数或h因子（h-factor），是一种评价学术成就的新方法。</span><br><span class="line">    h代表“高引用次数”（high citations），一名科研人员的h指数是指他至多有h篇论文分别被引用了至少h次。</span><br><span class="line">    要确定一个人的h指数非常容易，到SCI网站，查出某个人发表的所有SCI论文，让其按被引次数从高到低排列，</span><br><span class="line">    往下核对，直到某篇论文的序号大于该论文被引次数，那个序号减去1就是h指数。</span><br><span class="line">    or</span><br><span class="line">    从低到高进行排列，如果(某篇论文的引用次数) &gt;= (总长度 - 当前论文序号)，则(总长度-当前序号)就是h指数</span><br><span class="line">    其中, citations是已升序排列的</span><br><span class="line">    总结: 目标 = 引用次数 &gt;= 序号 则length-序号即为结果</span><br></pre></td></tr></table></figure>

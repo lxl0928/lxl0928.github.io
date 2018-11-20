@@ -419,6 +419,7 @@
       
 
       
+	
         
           <p>为什么要使用Cookie呢？</p>
 <p>Cookie，指某些网站为了辨别用户身份、进行session跟踪而储存在用户本地终端上的数据（通常经过加密）</p>
@@ -598,6 +599,7 @@
       
 
       
+	
         
           <p>本节在这里主要说的是URLError还有HTTPError，以及对它们的一些处理。</p>
 <h3 id="URLError"><a href="#URLError" class="headerlink" title="URLError"></a>URLError</h3><p>首先解释下URLError可能产生的原因：</p>
@@ -778,6 +780,7 @@
       
 
       
+	
         
           <h3 id="设置Headers"><a href="#设置Headers" class="headerlink" title="设置Headers"></a>设置Headers</h3><p>有些网站不会同意程序直接用上面的方式进行访问，如果识别有问题，那么站点根本不会响应，所以为了完全模拟浏览器的工作，我们需要设置一些Headers 的属性。</p>
 <p>首先，打开我们的浏览器，调试浏览器F12，我用的是Chrome，打开网络监听，示意如下，比如知乎，点登录之后，我们会发现登陆之后界面都变化了，出现一个新的界面，实质上这个页面包含了许许多多的内容，这些内容也不是一次性就加载完成的，实质上是执行了好多次请求，一般是首先请求HTML文件，然后加载JS，CSS 等等，经过多次请求之后，网页的骨架和肌肉全了，整个网页的效果也就出来了。<br><img src="http://qiniucdn.timilong.com/%E6%B7%B1%E5%BA%A6%E6%88%AA%E5%9B%BE20161006161942.png" alt="headers"></p>
@@ -953,6 +956,7 @@
       
 
       
+	
         
           <h3 id="爬取网页"><a href="#爬取网页" class="headerlink" title="爬取网页"></a>爬取网页</h3><p>爬取网页其实就是根据URL来获取它的网页信息.<br>例子: test.py<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"># -*- coding: utf-8 -*-</span><br><span class="line"></span><br><span class="line">import urllib2</span><br><span class="line"></span><br><span class="line">response = urllib2.urlopen(&quot;http://www.baidu.com&quot;)</span><br><span class="line">print(response.read())</span><br></pre></td></tr></table></figure></p>
           <!--noindex-->
@@ -1127,6 +1131,7 @@
       
 
       
+	
         
           简单介绍爬虫、浏览网页的流程、URL的含义。
           <!--noindex-->
@@ -1301,6 +1306,7 @@
       
 
       
+	
         
           <h3 id="打开终端，进入root"><a href="#打开终端，进入root" class="headerlink" title="打开终端，进入root"></a>打开终端，进入root</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">su -i</span><br></pre></td></tr></table></figure>
 <p>输入密码：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">******</span><br></pre></td></tr></table></figure></p>
@@ -1476,6 +1482,7 @@
       
 
       
+	
         
           <h3 id="Python访问DB的官方接口规范"><a href="#Python访问DB的官方接口规范" class="headerlink" title="Python访问DB的官方接口规范"></a>Python访问DB的官方接口规范</h3><h4 id="Python-DB-API"><a href="#Python-DB-API" class="headerlink" title="Python DB API"></a>Python DB API</h4><p>Python访问数据库的统一接口规范。<br><a href="htttps://www.python.org/dev/peps/pep-0249" target="_blank" rel="noopener">官网</a></p>
 <p>Python应用程序通过Python DB API即可完成对不同数据库的访问，对应用程序来说，只需切换少量代码即可实现。</p>
@@ -1651,6 +1658,7 @@
       
 
       
+	
         
           <h3 id="爬虫简介"><a href="#爬虫简介" class="headerlink" title="爬虫简介"></a>爬虫简介</h3><p>爬虫：一段自动抓取互联网信息的程序<br>爬虫可以从一个URL出发，访问所有它所关联的URL，并从每个页面中提取我们所需要的价值数据。<br>爬虫技术的价值：互联网数据为我所用</p>
           <!--noindex-->
@@ -1825,6 +1833,7 @@
       
 
       
+	
         
           <h3 id="函数的实质与属性"><a href="#函数的实质与属性" class="headerlink" title="函数的实质与属性"></a>函数的实质与属性</h3><ul>
 <li>函数是一个对象</li>
@@ -2003,6 +2012,7 @@
       
 
       
+	
         
           Linux杀死一个进程的方式.
           <!--noindex-->
@@ -2177,6 +2187,7 @@
       
 
       
+	
         
           
             <h3 id="Python网络服务器"><a href="#Python网络服务器" class="headerlink" title="Python网络服务器"></a>Python网络服务器</h3><p>Python 的网络服务器有</p>
@@ -2359,6 +2370,7 @@
       
 
       
+	
         
           <h3 id="函数式编程综合概述"><a href="#函数式编程综合概述" class="headerlink" title="函数式编程综合概述"></a>函数式编程综合概述</h3><h4 id="什么是函数式编程？"><a href="#什么是函数式编程？" class="headerlink" title="什么是函数式编程？"></a>什么是函数式编程？</h4><p>函数式编程：使用一系列的函数解决实际问题。</p>
 <p>函数仅接受输入并产生输出，不包含任何能影响产生输出的内部状态。</p>
@@ -2540,10 +2552,163 @@
       
 
       
+	
         
           
             <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">moveHanii</span><span class="params">(n, a, b, c)</span>:</span></span><br><span class="line">    <span class="keyword">if</span> n == <span class="number">1</span>:</span><br><span class="line">        <span class="keyword">print</span> a, <span class="string">"--&gt;"</span>, c</span><br><span class="line">        <span class="keyword">return</span></span><br><span class="line">    moveHanii(n<span class="number">-1</span>, a, c, b)</span><br><span class="line">    <span class="keyword">print</span> a, <span class="string">"--&gt;"</span>, c</span><br><span class="line">    moveHanii(n<span class="number">-1</span>, b, a, c)</span><br><span class="line"></span><br><span class="line">moveHanii(<span class="number">5</span>, <span class="string">'A'</span>, <span class="string">'B'</span>, <span class="string">'C'</span>)</span><br></pre></td></tr></table></figure>
 
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://blog.timilong.com/2016/06/23/算法-字符查找/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="博主">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Timilong's blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2016/06/23/算法-字符查找/" itemprop="url">
+                  面试-字符查找
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建于：2016-06-23 10:08:03" itemprop="dateCreated datePublished" datetime="2016-06-23T10:08:03Z">2016-06-23</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Edited on</span>
+                
+                <time title="更新于：2018-10-19 02:40:57" itemprop="dateModified" datetime="2018-10-19T02:40:57Z">2018-10-19</time>
+              
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+	
+        
+          
+            
           
         
       
@@ -2710,6 +2875,7 @@
       
 
       
+	
         
           在一个字符串中找到第一个没有重复元素的字符并返回
           <!--noindex-->
@@ -2719,157 +2885,6 @@
             </a>
           </div>
           <!--/noindex-->
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://blog.timilong.com/2016/06/23/算法-字符查找/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="博主">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Timilong's blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2016/06/23/算法-字符查找/" itemprop="url">
-                  面试-字符查找
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-
-              
-                
-              
-
-              <time title="创建于：2016-06-23 10:08:03" itemprop="dateCreated datePublished" datetime="2016-06-23T10:08:03Z">2016-06-23</time>
-            
-
-            
-              
-
-              
-                
-                <span class="post-meta-divider">|</span>
-                
-
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">Edited on</span>
-                
-                <time title="更新于：2018-10-19 02:40:57" itemprop="dateModified" datetime="2018-10-19T02:40:57Z">2018-10-19</time>
-              
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            
-          
         
       
     </div>
