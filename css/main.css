@@ -1838,7 +1838,7 @@ pre .javascript .function {
   width: 4px;
   height: 4px;
   border-radius: 50%;
-  background: #7a78b3;
+  background: #ff343c;
 }
 .links-of-blogroll {
   font-size: 13px;
@@ -2577,31 +2577,36 @@ embed {
   display: inline-block;
 }
 .post {
-  margin-top: 60px;
-  margin-bottom: 60px;
+  margin-top: 40px;
+  margin-bottom: 40px;
   padding: 25px;
   -webkit-box-shadow: 0 0 5px rgba(202,203,203,0.5);
   -moz-box-shadow: 0 0 5px rgba(202,203,204,0.5);
 }
 .out-img-topic {
-  padding-bottom: 50%;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  padding: 5px;
+  -webkit-box-shadow: 0 0 5px rgba(202,203,204,0.5);
+  -moz-box-shadow: 0 0 5px rgba(202,203,204,0.5);
+}
+.posts-expand .post-body img {
+  margin: auto;
 }
 .out-img-topic img {
-/* top: 5px; */
-/* bottom: 5px; */
-/* left: 0; */
-/* right:0; */
-  position: absolute;
-  box-sizing: border-box;
   margin: auto;
-  padding: 3px;
-  border: 1px solid #ddd;
-  width: 100%;
-}
-img {
-  border: 0;
-  display: block;
-  margin: auto;
-  width: 100%;
   height: auto;
+  box-sizing: border-box !important;
+  padding: 3px !important;
+  border: 1px solid #ddd !important;
+  width: 100%;
+  display: block;
+}
+.posts-expand .post-eof {
+  display: block;
+  margin: 0px auto 0px;
+  width: 8%;
+  height: 0px;
+  background: #ccc;
+  text-align: center;
 }
