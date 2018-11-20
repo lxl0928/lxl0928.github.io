@@ -1838,7 +1838,7 @@ pre .javascript .function {
   width: 4px;
   height: 4px;
   border-radius: 50%;
-  background: #132d2a;
+  background: #5b4108;
 }
 .links-of-blogroll {
   font-size: 13px;
@@ -2580,6 +2580,13 @@ embed {
   margin-top: 60px;
   margin-bottom: 60px;
   padding: 25px;
+  -webkit-box-shadow: 0 0 5px rgba(202,203,203,0.5);
+  -moz-box-shadow: 0 0 5px rgba(202,203,204,0.5);
+}
+.out-img-topic {
+  margin-top: 10px;
+  margin-bottom: 10px;
+  padding: 5px;
   -webkit-box-shadow: 0 0 5px rgba(202,203,203,0.5);
   -moz-box-shadow: 0 0 5px rgba(202,203,204,0.5);
 }
