@@ -108,30 +108,29 @@
 
 
 
-  <meta name="description" content="RPC 是两个子系统之间进行的直接消息交互，它使用操作系统提供的套接字来作为消息的载体，以特定的消息格式来定义消息内容和边界。 RPC 的客户端通过文件描述符的读写 API (read &amp; write) 来访问操作系统内核中的网络模块为当前套接字分配的发送 (send buffer) 和接收 (recv buffer) 缓存。">
-<meta name="keywords" content="RPC">
+  <meta name="description" content="MySQL索引底层的实现.">
+<meta name="keywords" content="MySQL">
 <meta property="og:type" content="article">
-<meta property="og:title" content="RPC_02深入理解RPC交互流程">
-<meta property="og:url" content="http://blog.timilong.com/2018/09/05/RPC-02深入理解RPC交互流程/index.html">
+<meta property="og:title" content="数据库索引-到底是怎么做的-转载">
+<meta property="og:url" content="http://blog.timilong.com/2018/11/22/数据库索引-到底是怎么做的-转载/index.html">
 <meta property="og:site_name" content="Timilong&#39;s blog">
-<meta property="og:description" content="RPC 是两个子系统之间进行的直接消息交互，它使用操作系统提供的套接字来作为消息的载体，以特定的消息格式来定义消息内容和边界。 RPC 的客户端通过文件描述符的读写 API (read &amp; write) 来访问操作系统内核中的网络模块为当前套接字分配的发送 (send buffer) 和接收 (recv buffer) 缓存。">
+<meta property="og:description" content="MySQL索引底层的实现.">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="https://user-gold-cdn.xitu.io/2018/6/5/163cf789da84cb53?imageView2/0/w/1280/h/960/format/webp/ignore-error/1">
-<meta property="og:image" content="https://user-gold-cdn.xitu.io/2018/5/31/163b4dcf06e0a780?imageView2/0/w/1280/h/960/format/webp/ignore-error/1">
-<meta property="og:image" content="https://user-gold-cdn.xitu.io/2018/5/31/163b4e1f464cbdc2?imageView2/0/w/1280/h/960/format/webp/ignore-error/1">
-<meta property="og:image" content="https://user-gold-cdn.xitu.io/2018/5/31/163b4e36daa5cc79?imageView2/0/w/1280/h/960/format/webp/ignore-error/1">
-<meta property="og:updated_time" content="2018-10-19T02:40:57.297Z">
+<meta property="og:image" content="http://qiniucdn.timilong.com/mysql_%E7%B4%A2%E5%BC%95_001.png">
+<meta property="og:image" content="http://qiniucdn.timilong.com/mysql_%E7%B4%A2%E5%BC%95_002.png">
+<meta property="og:image" content="http://qiniucdn.timilong.com/mysql_%E7%B4%A2%E5%BC%95_003.png">
+<meta property="og:updated_time" content="2018-11-22T08:04:32.920Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="RPC_02深入理解RPC交互流程">
-<meta name="twitter:description" content="RPC 是两个子系统之间进行的直接消息交互，它使用操作系统提供的套接字来作为消息的载体，以特定的消息格式来定义消息内容和边界。 RPC 的客户端通过文件描述符的读写 API (read &amp; write) 来访问操作系统内核中的网络模块为当前套接字分配的发送 (send buffer) 和接收 (recv buffer) 缓存。">
-<meta name="twitter:image" content="https://user-gold-cdn.xitu.io/2018/6/5/163cf789da84cb53?imageView2/0/w/1280/h/960/format/webp/ignore-error/1">
+<meta name="twitter:title" content="数据库索引-到底是怎么做的-转载">
+<meta name="twitter:description" content="MySQL索引底层的实现.">
+<meta name="twitter:image" content="http://qiniucdn.timilong.com/mysql_%E7%B4%A2%E5%BC%95_001.png">
 
 
 
 
 
 
-  <link rel="canonical" href="http://blog.timilong.com/2018/09/05/RPC-02深入理解RPC交互流程/"/>
+  <link rel="canonical" href="http://blog.timilong.com/2018/11/22/数据库索引-到底是怎么做的-转载/"/>
 
 
 
@@ -141,7 +140,7 @@
   };
 </script>
 
-  <title>RPC_02深入理解RPC交互流程 | Timilong's blog</title>
+  <title>数据库索引-到底是怎么做的-转载 | Timilong's blog</title>
   
 
 
@@ -314,7 +313,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://blog.timilong.com/2018/09/05/RPC-02深入理解RPC交互流程/">
+    <link itemprop="mainEntityOfPage" href="http://blog.timilong.com/2018/11/22/数据库索引-到底是怎么做的-转载/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="博主">
@@ -331,7 +330,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">RPC_02深入理解RPC交互流程
+          <h1 class="post-title" itemprop="name headline">数据库索引-到底是怎么做的-转载
               
             
           </h1>
@@ -356,24 +355,12 @@
                 
               
 
-              <time title="创建于：2018-09-05 09:48:04" itemprop="dateCreated datePublished" datetime="2018-09-05T09:48:04Z">2018-09-05</time>
+              <time title="创建于：2018-11-22 14:33:33 / 更新于：08:04:32" itemprop="dateCreated datePublished" datetime="2018-11-22T14:33:33Z">2018-11-22</time>
             
 
             
               
 
-              
-                
-                <span class="post-meta-divider">|</span>
-                
-
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">Edited on</span>
-                
-                <time title="更新于：2018-10-19 02:40:57" itemprop="dateModified" datetime="2018-10-19T02:40:57Z">2018-10-19</time>
               
             
           </span>
@@ -390,7 +377,7 @@
                 <span class="post-meta-item-text">分类于</span>
               
               
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/RPC/" itemprop="url" rel="index"><span itemprop="name">RPC</span></a></span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/MySQL/" itemprop="url" rel="index"><span itemprop="name">MySQL</span></a></span>
 
                 
                 
@@ -410,7 +397,7 @@
           
 
           
-              <div class="post-description">RPC 是两个子系统之间进行的直接消息交互，它使用操作系统提供的套接字来作为消息的载体，以特定的消息格式来定义消息内容和边界。 RPC 的客户端通过文件描述符的读写 API (read & write) 来访问操作系统内核中的网络模块为当前套接字分配的发送 (send buffer) 和接收 (recv buffer) 缓存。</div>
+              <div class="post-description">MySQL索引底层的实现.</div>
           
 
         </div>
@@ -427,43 +414,88 @@
 
       
         <blockquote>
-<p>转载自: 掘金，<a href="https://juejin.im/book/5af56a3c518825426642e004" target="_blank" rel="noopener">深入理解RPC: 基于Python自建分布式高并发RPC服务</a></p>
+<p>转载自: 微信公众号 <a href="https://mp.weixin.qq.com/s/YMbRJwyjutGMD1KpI_fS0A" target="_blank" rel="noopener">架构师之路</a></p>
 </blockquote>
-<h3 id="RPC本质"><a href="#RPC本质" class="headerlink" title="RPC本质"></a>RPC本质</h3><p>本节我们开始讲解 RPC 的消息交互流程，目的是搞清楚一个简单的 RPC 方法调用背后究竟发生了怎样复杂曲折的故事，以看透 RPC 的本质。</p>
-<p><img src="https://user-gold-cdn.xitu.io/2018/6/5/163cf789da84cb53?imageView2/0/w/1280/h/960/format/webp/ignore-error/1" alt="RPC"><br>上图是信息系统交互模型宏观示意图，RPC 的消息交互则会深入到底层。</p>
-<p>RPC 是两个子系统之间进行的直接消息交互，它使用操作系统提供的套接字来作为消息的载体，以特定的消息格式来定义消息内容和边界。</p>
-<p>RPC 的客户端通过文件描述符的读写 API (read &amp; write) 来访问操作系统内核中的网络模块为当前套接字分配的发送 (send buffer) 和接收 (recv buffer) 缓存。</p>
-<h3 id="RPC消息流程"><a href="#RPC消息流程" class="headerlink" title="RPC消息流程"></a>RPC消息流程</h3><p><img src="https://user-gold-cdn.xitu.io/2018/5/31/163b4dcf06e0a780?imageView2/0/w/1280/h/960/format/webp/ignore-error/1" alt="RPC"></p>
-<p>如上图所示，左边的客户端进程写 RPC 指令消息到内核的发送缓存中，内核将发送缓存中的数据传送到物理硬件 NIC，也就是网络接口芯片 (Network Interface Circuit)。NIC 负责将翻译出来的模拟信号通过网络硬件传递到服务器硬件的 NIC。服务器的 NIC 再将模拟信号转成字节数据存放到内核为套接字分配的接收缓存中，最终服务器进程从接收缓存中读取数据即为源客户端进程传递过来的 RPC 指令消息。</p>
-<p>消息从用户进程流向物理硬件，又从物理硬件流向用户进程，中间还经过了一系列的路由网关节点。</p>
-<p>上图呈现的只是 RPC 一次消息交互的上半场，下半场是一个逆向的过程，从服务器进程向客户端进程返回响应数据。完整的一次 RPC 过程如下图所示：</p>
-<p><img src="https://user-gold-cdn.xitu.io/2018/5/31/163b4e1f464cbdc2?imageView2/0/w/1280/h/960/format/webp/ignore-error/1" alt="RPC"></p>
-<h3 id="Python-代码描述"><a href="#Python-代码描述" class="headerlink" title="Python 代码描述"></a>Python 代码描述</h3><p>下面用 Python 代码来描述上述过程。</p>
-<ul>
-<li>Server 端死循环监听本地 8080 端口，等待客户端的连接。</li>
-<li>客户端启动时连接本地 8080 端口，紧接着发送词一个字符串 hello，然后等待服务器响应。</li>
-<li>服务器接收到客户端连接后立即收取客户端发送过来的字符串，也就是 hello，打印出来。然后立即给对方回复一个字符串 world。</li>
-<li>客户端接收到服务器发送过来的 world，马上打印出来。</li>
-<li>关闭连接，结束。</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"># coding: utf-8</span><br><span class="line"># server</span><br><span class="line"></span><br><span class="line">import socket</span><br><span class="line"></span><br><span class="line">sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)</span><br><span class="line">sock.bind((&quot;localhost&quot;, 8080))</span><br><span class="line">sock.listen(1)  # 监听客户端连接</span><br><span class="line">while True:</span><br><span class="line">    conn, addr = sock.accept()  # 接收一个客户端连接</span><br><span class="line">    print conn.recv(1024)  # 从接收缓冲读消息 recv buffer</span><br><span class="line">    conn.sendall(&quot;world&quot;)  # 将响应发送到发送缓冲 send buffer</span><br><span class="line">    conn.close() # 关闭连接</span><br><span class="line"></span><br><span class="line"># coding: utf-8</span><br><span class="line"># client</span><br><span class="line"></span><br><span class="line">import socket</span><br><span class="line"></span><br><span class="line">sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)</span><br><span class="line">sock.connect((&quot;localhost&quot;, 8080))  # 连接服务器</span><br><span class="line">sock.sendall(&quot;hello&quot;)  # 将消息输出到发送缓冲 send buffer</span><br><span class="line">print sock.recv(1024)  # 从接收缓冲 recv buffer 中读响应</span><br><span class="line">sock.close() # 关闭套接字</span><br></pre></td></tr></table></figure>
-<p>如果从上面代码上观察，我们其实很难看出上图所示的复杂过程。浮现在多数人脑海中往往是下面的这幅简约模型图。相比之下它要简单很多，这也正是操作系统设计的魅力所在，让你时时刻刻都在使用它却感受不到它的存在。</p>
-<p><img src="https://user-gold-cdn.xitu.io/2018/5/31/163b4e36daa5cc79?imageView2/0/w/1280/h/960/format/webp/ignore-error/1" alt="RPC"></p>
-<h3 id="小结"><a href="#小结" class="headerlink" title="小结"></a>小结</h3><p>通过本节内容，读者们对 RPC 的交互流程应该有了大致了解，但是还并不知道 RPC 之间到底交互了什么。就好比你能看到远方有几个人在说话，但是不知道他们在说啥。</p>
-<p>下一节我们将放大细节，仔细观察 RPC 客户端服务器之间窃窃私语了什么，它们究竟是在用什么外星语言交流。</p>
-<h3 id="练习题"><a href="#练习题" class="headerlink" title="练习题"></a>练习题</h3><p>一个很有趣的小测试实验 , 请读者编写代码实现以下情景:</p>
-<p>客户端疯狂发送请求，但是服务器不读不处理，会发生什么？</p>
+<h2 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h2><p>近期写数据库，不少朋友留言问MySQL索引底层的实现，今天简单聊一聊，少讲“是怎么样”，更多说说“为什么设计成这样”。</p>
+<h2 id="问题1-数据库为什么要设计索引？"><a href="#问题1-数据库为什么要设计索引？" class="headerlink" title="问题1. 数据库为什么要设计索引？"></a>问题1. 数据库为什么要设计索引？</h2><p>图书馆存了1000W本图书，要从中找到《架构师之路》，一本本查，要查到什么时候去？<br>于是，图书管理员设计了一套规则：</p>
 <blockquote>
-<p>BrokenPipeError: [Errno 32] Broken pipe 这个错误不是表示客户端阻塞了。这个是因为服务器调用了conn.close()然后，服务器返回了reset，但是客户端没有去做处理（关闭连接），而是继续往服务器写入数据，导致了Broken pipe这个异常</p>
+<p>(1)一楼放历史类，二楼放文学类，三楼放IT类…<br>(2)IT类，又分软件类，硬件类…<br>(3)软件类，又按照书名音序排序…</p>
 </blockquote>
+<p>以便快速找到一本书。</p>
+<p>与之类比，数据库存储了1000W条数据，要从中找到name=”shenjian”的记录，一条条查，要查到什么时候去？</p>
+<p>于是，要有索引，用于提升数据库的查找速度。</p>
+<h2 id="问题2-哈希-hash-比树-tree-更快，索引结构为什么要设计成树型？"><a href="#问题2-哈希-hash-比树-tree-更快，索引结构为什么要设计成树型？" class="headerlink" title="问题2. 哈希(hash)比树(tree)更快，索引结构为什么要设计成树型？"></a>问题2. 哈希(hash)比树(tree)更快，索引结构为什么要设计成树型？</h2><p>加速查找速度的数据结构，常见的有两类：</p>
 <blockquote>
-<p>答案: socket缓冲区堆满 一直阻塞下去</p>
+<p>(1)哈希，例如HashMap，查询/插入/修改/删除的平均时间复杂度都是O(1)；<br>(2)树，例如平衡二叉搜索树，查询/插入/修改/删除的平均时间复杂度都是O(lg(n))；</p>
 </blockquote>
+<p>可以看到，不管是读请求，还是写请求，哈希类型的索引，都要比树型的索引更快一些，那为什么，索引结构要设计成树型呢？</p>
+<p>画外音：80%的同学，面试都答不出来。</p>
+<p>索引设计成树形，和SQL的需求相关。</p>
+<p>对于这样一个单行查询的SQL需求：</p>
 <blockquote>
-<ol>
-<li>如果接收和发送队列没有设置大小，服务器处理能力弱，tcp会动态调整直至耗尽整个内存。2. 设置了大小，那么socket会出现阻塞，不接受发送端的消息。3. 如果发送的请求size大于发送和接收队列之和，那么会一直阻塞下去</li>
+<p>select * from t where name=”shenjian”;</p>
+</blockquote>
+<p>确实是哈希索引更快，因为每次都只查询一条记录。</p>
+<p>画外音：所以，如果业务需求都是单行访问，例如passport，确实可以使用哈希索引。</p>
+<p>但是对于排序查询的SQL需求：</p>
+<blockquote>
+<p>分组：group by<br>排序：order by<br>比较：&lt;、&gt;<br>…</p>
+</blockquote>
+<p>哈希型的索引，时间复杂度会退化为O(n)，而树型的“有序”特性，依然能够保持O(log(n)) 的高效率。</p>
+<p>任何脱离需求的设计都是耍流氓。</p>
+<p>多说一句，InnoDB并不支持哈希索引。</p>
+<h2 id="问题3-数据库索引为什么使用B-树？"><a href="#问题3-数据库索引为什么使用B-树？" class="headerlink" title="问题3. 数据库索引为什么使用B+树？"></a>问题3. 数据库索引为什么使用B+树？</h2><p>为了保持知识体系的完整性，简单介绍下几种树。</p>
+<h3 id="第一种：二叉搜索树"><a href="#第一种：二叉搜索树" class="headerlink" title="第一种：二叉搜索树"></a>第一种：二叉搜索树</h3><p><img src="http://qiniucdn.timilong.com/mysql_%E7%B4%A2%E5%BC%95_001.png" alt="test"></p>
+<p>二叉搜索树，如上图，是最为大家所熟知的一种数据结构，就不展开介绍了，它为什么不适合用作数据库索引？</p>
+<blockquote>
+<p>(1)当数据量大的时候，树的高度会比较高，数据量大的时候，查询会比较慢；<br>(2)每个节点只存储一个记录，可能导致一次查询有很多次磁盘IO；</p>
+</blockquote>
+<p>画外音：这个树经常出现在大学课本里，所以最为大家所熟知。</p>
+<h3 id="第二种：B树"><a href="#第二种：B树" class="headerlink" title="第二种：B树"></a>第二种：B树</h3><p><img src="http://qiniucdn.timilong.com/mysql_%E7%B4%A2%E5%BC%95_002.png" alt="test"></p>
+<p>B树，如上图，它的特点是：</p>
+<blockquote>
+<p>(1)不再是二叉搜索，而是m叉搜索；<br>(2)叶子节点，非叶子节点，都存储数据；<br>(3)中序遍历，可以获得所有节点；</p>
+</blockquote>
+<p>画外音，实在不想介绍这个特性：非根节点包含的关键字个数j满足，<code>(┌m/2┐)-1 &lt;= j &lt;= m-1</code>，节点分裂时要满足这个条件。</p>
+<p>B树被作为实现索引的数据结构被创造出来，是因为它能够完美的利用“局部性原理”。</p>
+<p>什么是局部性原理？</p>
+<p>局部性原理的逻辑是这样的：</p>
+<blockquote>
+<p>(1)内存读写块，磁盘读写慢，而且慢很多；<br>(2)磁盘预读：磁盘读写并不是按需读取，而是按页预读，一次会读一页的数据，每次加载更多的数据，如果未来要读取的数据就在这一页中，可以避免未来的磁盘IO，提高效率；<br>画外音：通常，一页数据是4K。<br>(3)局部性原理：软件设计要尽量遵循“数据读取集中”与“使用到一个数据，大概率会使用其附近的数据”，这样磁盘预读能充分提高磁盘IO；</p>
+</blockquote>
+<p>B树为何适合做索引？</p>
+<blockquote>
+<p>(1)由于是m分叉的，高度能够大大降低；<br>(2)每个节点可以存储j个记录，如果将节点大小设置为页大小，例如4K，能够充分的利用预读的特性，极大减少磁盘IO；</p>
+</blockquote>
+<h3 id="第三种：B-树"><a href="#第三种：B-树" class="headerlink" title="第三种：B+树"></a>第三种：B+树</h3><p><img src="http://qiniucdn.timilong.com/mysql_%E7%B4%A2%E5%BC%95_003.png" alt="test"></p>
+<p>B+树，如上图，仍是m叉搜索树，在B树的基础上，做了一些改进：</p>
+<blockquote>
+<p>(1)非叶子节点不再存储数据，数据只存储在同一层的叶子节点上；<br>画外音：B+树中根到每一个节点的路径长度一样，而B树不是这样。<br>(2)叶子之间，增加了链表，获取所有节点，不再需要中序遍历；</p>
+</blockquote>
+<p>这些改进让B+树比B树有更优的特性：</p>
+<blockquote>
+<p>(1)范围查找，定位min与max之后，中间叶子节点，就是结果集，不用中序回溯；<br>画外音：范围查询在SQL中用得很多，这是B+树比B树最大的优势。<br>(2)叶子节点存储实际记录行，记录行相对比较紧密的存储，适合大数据量磁盘存储；非叶子节点存储记录的PK，用于查询加速，适合内存存储；<br>(3)非叶子节点，不存储实际记录，而只存储记录的KEY的话，那么在相同内存的情况下，B+树能够存储更多索引；</p>
+</blockquote>
+<p>最后，量化说下，为什么m叉的B+树比二叉搜索树的高度大大大大降低？</p>
+<p>大概计算一下：</p>
+<blockquote>
+<p>(1)局部性原理，将一个节点的大小设为一页，一页4K，假设一个KEY有8字节，一个节点可以存储500个KEY，即j=500<br>(2)m叉树，大概m/2&lt;= j &lt;=m，即可以差不多是1000叉树<br>(3)那么： 一层树：1个节点，1<em>500个KEY，大小4K 二层树：1000个节点，1000</em>500=50W个KEY，大小1000<em>4K=4M 三层树：1000</em>1000个节点，1000<em>1000</em>500=5亿个KEY，大小1000<em>1000</em>4K=4G<br>画外音：额，帮忙看下有没有算错。</p>
+</blockquote>
+<p>可以看到，存储大量的数据（5亿），并不需要太高树的深度（高度3），索引也不是太占内存（4G）。</p>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><ol>
+<li><p>数据库索引用于加速查询</p>
+</li>
+<li><p>虽然哈希索引是O(1)，树索引是O(log(n))，但SQL有很多“有序”需求，故数据库使用树型索引</p>
+</li>
+<li><p>InnoDB不支持哈希索引</p>
+</li>
+<li><p>数据预读的思路是：磁盘读写并不是按需读取，而是按页预读，一次会读一页的数据，每次加载更多的数据，以便未来减少磁盘IO</p>
+</li>
+<li><p>局部性原理：软件设计要尽量遵循“数据读取集中”与“使用到一个数据，大概率会使用其附近的数据”，这样磁盘预读能充分提高磁盘IO</p>
+</li>
+<li><p>数据库的索引最常用B+树：<br>(1)很适合磁盘存储，能够充分利用局部性原理，磁盘预读；<br>(2)很低的树高度，能够存储大量数据；<br>(3)索引本身占用的内存很小；<br>(4)能够很好的支持单点查询，范围查询，有序性查询；</p>
+</li>
 </ol>
-</blockquote>
 
       
     </div>
@@ -484,7 +516,7 @@
       
         <div class="post-tags">
           
-            <a href="/tags/RPC/" rel="tag"># RPC</a>
+            <a href="/tags/MySQL/" rel="tag"># MySQL</a>
           
         </div>
       
@@ -497,8 +529,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2018/09/04/读书-安德鲁-卡内基传/" rel="next" title="读书-安德鲁.卡内基传">
-                <i class="fa fa-chevron-left"></i> 读书-安德鲁.卡内基传
+              <a href="/2018/11/20/计算机-关于负载均衡的一切-转载/" rel="next" title="计算机-关于负载均衡的一切-转载">
+                <i class="fa fa-chevron-left"></i> 计算机-关于负载均衡的一切-转载
               </a>
             
           </div>
@@ -506,10 +538,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2018/09/07/RPC-03深入RPC消息协议/" rel="prev" title="RPC_03深入RPC消息协议">
-                RPC_03深入RPC消息协议 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -773,7 +801,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#RPC本质"><span class="nav-number">1.</span> <span class="nav-text">RPC本质</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#RPC消息流程"><span class="nav-number">2.</span> <span class="nav-text">RPC消息流程</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Python-代码描述"><span class="nav-number">3.</span> <span class="nav-text">Python 代码描述</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#小结"><span class="nav-number">4.</span> <span class="nav-text">小结</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#练习题"><span class="nav-number">5.</span> <span class="nav-text">练习题</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#简介"><span class="nav-number">1.</span> <span class="nav-text">简介</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#问题1-数据库为什么要设计索引？"><span class="nav-number">2.</span> <span class="nav-text">问题1. 数据库为什么要设计索引？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#问题2-哈希-hash-比树-tree-更快，索引结构为什么要设计成树型？"><span class="nav-number">3.</span> <span class="nav-text">问题2. 哈希(hash)比树(tree)更快，索引结构为什么要设计成树型？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#问题3-数据库索引为什么使用B-树？"><span class="nav-number">4.</span> <span class="nav-text">问题3. 数据库索引为什么使用B+树？</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#第一种：二叉搜索树"><span class="nav-number">4.1.</span> <span class="nav-text">第一种：二叉搜索树</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#第二种：B树"><span class="nav-number">4.2.</span> <span class="nav-text">第二种：B树</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#第三种：B-树"><span class="nav-number">4.3.</span> <span class="nav-text">第三种：B+树</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#总结"><span class="nav-number">5.</span> <span class="nav-text">总结</span></a></li></ol></div>
             
 
           </div>
