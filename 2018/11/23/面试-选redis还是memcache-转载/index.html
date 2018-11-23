@@ -1,0 +1,981 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=6.4.1" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=6.4.1">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=6.4.1">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=6.4.1">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=6.4.1" color="#222">
+
+
+
+
+
+
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    version: '6.4.1',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: false,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  
+
+
+
+
+  <meta name="description" content="选redis还是memcache, 看看面试官怎么说?">
+<meta name="keywords" content="Redis">
+<meta property="og:type" content="article">
+<meta property="og:title" content="选redis还是memcache">
+<meta property="og:url" content="http://blog.timilong.com/2018/11/23/面试-选redis还是memcache-转载/index.html">
+<meta property="og:site_name" content="Timilong&#39;s blog">
+<meta property="og:description" content="选redis还是memcache, 看看面试官怎么说?">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2018-11-23T02:33:11.076Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="选redis还是memcache">
+<meta name="twitter:description" content="选redis还是memcache, 看看面试官怎么说?">
+
+
+
+
+
+
+  <link rel="canonical" href="http://blog.timilong.com/2018/11/23/面试-选redis还是memcache-转载/"/>
+
+
+
+<script type="text/javascript" id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>选redis还是memcache | Timilong's blog</title>
+  
+
+
+
+
+
+
+
+
+
+  <noscript>
+  <style type="text/css">
+    .use-motion .motion-element,
+    .use-motion .brand,
+    .use-motion .menu-item,
+    .sidebar-inner,
+    .use-motion .post-block,
+    .use-motion .pagination,
+    .use-motion .comments,
+    .use-motion .post-header,
+    .use-motion .post-body,
+    .use-motion .collection-title { opacity: initial; }
+
+    .use-motion .logo,
+    .use-motion .site-title,
+    .use-motion .site-subtitle {
+      opacity: initial;
+      top: initial;
+    }
+
+    .use-motion {
+      .logo-line-before i { left: initial; }
+      .logo-line-after i { right: initial; }
+    }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Timilong's blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+    
+      
+        <p class="site-subtitle">Cease to struggle and you cease to live.--Thomas Carlyle</p>
+      
+    
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="Toggle navigation bar">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+          
+          <li class="menu-item menu-item-home">
+    <a href="/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-home"></i> <br />首页</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-tags">
+    <a href="/tags/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />标签</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-categories">
+    <a href="/categories/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-th"></i> <br />分类</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+    <a href="/archives/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />归档</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-about">
+    <a href="/about/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-user"></i> <br />关于</a>
+  </li>
+
+      
+      
+    </ul>
+  
+
+  
+    
+
+  
+
+  
+</nav>
+
+
+
+  
+
+
+
+</div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://blog.timilong.com/2018/11/23/面试-选redis还是memcache-转载/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="博主">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Timilong's blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">选redis还是memcache
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建于：2018-11-23 10:14:50 / 更新于：02:33:11" itemprop="dateCreated datePublished" datetime="2018-11-23T10:14:50Z">2018-11-23</time>
+            
+
+            
+              
+
+              
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Redis/" itemprop="url" rel="index"><span itemprop="name">Redis</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+              <div class="post-description">选redis还是memcache, 看看面试官怎么说?</div>
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <blockquote>
+<p>转载自: 微信公众号，<a href="https://mp.weixin.qq.com/s?__biz=MjM5ODYxMDA5OQ==&amp;mid=2651961269&amp;idx=1&amp;sn=ea447397423a2ad9d9f44ad51f0bed5e&amp;chksm=bd2d02698a5a8b7f966f77c0283124e7d7dee42cc604b418b57ba4ff15e583fe2873a356dc31&amp;scene=21#wechat_redirect" target="_blank" rel="noopener">架构师之路</a></p>
+</blockquote>
+<h1 id="选redis还是memcache-面试官会问什么"><a href="#选redis还是memcache-面试官会问什么" class="headerlink" title="选redis还是memcache, 面试官会问什么?"></a>选redis还是memcache, 面试官会问什么?</h1><p>我在面试中，会如何向候选人提问？</p>
+<p>一般，我不会预设任何问题，更不会问我擅长的领域。</p>
+<p>我会先看简历上写了什么，比如“在项目中使用redis作为缓存存储”，我可能就会问，使用redis存储了什么，key是什么，value是什么，为什么选择redis而不是其他缓存。</p>
+<p>所以，是不是问redis并不是重点，重点是简历写了什么。如果在简历上写，“在项目中使用hash作为内存存储结构”，我可能就会问，</p>
+<h2 id="使用hash存储了什么，key是什么，values是什么，为什么选择hash而不是其他数据结构。"><a href="#使用hash存储了什么，key是什么，values是什么，为什么选择hash而不是其他数据结构。" class="headerlink" title="使用hash存储了什么，key是什么，values是什么，为什么选择hash而不是其他数据结构。"></a>使用hash存储了什么，key是什么，values是什么，为什么选择hash而不是其他数据结构。</h2><p>不少听到我这么问的候选人，先是一愣，然后思索，不同的候选人给出的答案完全不一样。</p>
+<p>有一些候选人，会说：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">“架构师设计的，我只是使用”</span><br><span class="line"></span><br><span class="line">或者</span><br><span class="line"></span><br><span class="line">“公司要求统一使用redis作为缓存存储”</span><br><span class="line"></span><br><span class="line">又或者</span><br><span class="line"></span><br><span class="line">“我比较熟悉redis”</span><br></pre></td></tr></table></figure></p>
+<p>这类回答，是比较减分的，作为技术人，自己千万不能把自己当做“码农”，而要把自己当做“设计师”，日常工作中不能只是为了“完成交代下来的任务”。</p>
+<p>还有一些候选人，他会进一步解释，例如：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">“因为redis支持集群高可用，redis集群支持固化，所以选择了redis”</span><br></pre></td></tr></table></figure></p>
+<p>这类回答，说明候选人对redis进行过专门的学习，应该会非常好学。但是，ta们未必经得起后续的系列问题：</p>
+<h2 id="“既然缓存的是用户信息，需要高可用么？”"><a href="#“既然缓存的是用户信息，需要高可用么？”" class="headerlink" title="“既然缓存的是用户信息，需要高可用么？”"></a>“既然缓存的是用户信息，需要高可用么？”</h2><p>回复：貌似不需要。</p>
+<h2 id="“既然缓存的是订单信息，需要固化么？”"><a href="#“既然缓存的是订单信息，需要固化么？”" class="headerlink" title="“既然缓存的是订单信息，需要固化么？”"></a>“既然缓存的是订单信息，需要固化么？”</h2><p>回复：貌似不需要。</p>
+<h2 id="“那为什么还要选型redis呢？"><a href="#“那为什么还要选型redis呢？" class="headerlink" title="“那为什么还要选型redis呢？"></a>“那为什么还要选型redis呢？</h2><p>回复：额…</p>
+<p>能看到，这里，redis的一些特性，不能充分的作为，选型redis的理由。</p>
+<h2 id="任何脱离业务的架构设计，方案设计，技术选型都是耍流氓。"><a href="#任何脱离业务的架构设计，方案设计，技术选型都是耍流氓。" class="headerlink" title="任何脱离业务的架构设计，方案设计，技术选型都是耍流氓。"></a>任何脱离业务的架构设计，方案设计，技术选型都是耍流氓。</h2><p>这不是一句空话。<br>做技术方案，技术选型的时候，一定是针对业务需求来折衷的。</p>
+<blockquote>
+<p>假如存储的是用户信息，key是uid，value是User实体，当缓存挂了的时候，如果不会因为流量压到数据库而导致雪崩，此时缓存未必需要redis的集群功能。<br>假如存储的是订单信息，key是oid，value是Order实体，只作为缓存使用，允许cache miss读取数据库，此时未必需要redis的固化功能。</p>
+</blockquote>
+<p>选择，因为在某个场景下，ta适合。<br>其实，我并没有对自己的提问，预设任何答案，只要候选人的思路是清晰的，逻辑是自洽的，即使给出的未必是最优的方案，也是能让人眼前一亮。<br>我们，因为项目的压力，历史的包袱，做出妥协性设计方案的次数还少么？技术人，清楚用什么，清楚怎么用还不够，更重要的是明白为什么。</p>
+<h2 id="技术人，需要一些情怀，多问自己一句为什么，对自己有好处。"><a href="#技术人，需要一些情怀，多问自己一句为什么，对自己有好处。" class="headerlink" title="技术人，需要一些情怀，多问自己一句为什么，对自己有好处。"></a>技术人，需要一些情怀，多问自己一句为什么，对自己有好处。</h2><p>你，真的理解面试官问题的用意了么？</p>
+<h1 id="选redis还是memcache，源码怎么说？"><a href="#选redis还是memcache，源码怎么说？" class="headerlink" title="选redis还是memcache，源码怎么说？"></a>选redis还是memcache，源码怎么说？</h1><p>memcache和redis是互联网分层架构中，最常用的KV缓存。不少同学在选型的时候会纠结，到底是选择memcache还是redis。<br>画外音：不鼓励粗暴的实践，例如“memcache提供的功能是redis提供的功能的子集，不用想太多，选redis准没错”。</p>
+<p>虽然redis比memcache更晚出来，且功能确实也更丰富，但对于一个技术人，了解“所以然”恐怕比“选择谁”更重要一些。</p>
+<h2 id="什么时候倾向于选择redis？"><a href="#什么时候倾向于选择redis？" class="headerlink" title="什么时候倾向于选择redis？"></a>什么时候倾向于选择redis？</h2><p>业务需求决定技术选型，当业务有这样一些特点的时候，选择redis会更加适合。</p>
+<h3 id="复杂数据结构"><a href="#复杂数据结构" class="headerlink" title="复杂数据结构"></a>复杂数据结构</h3><p>value是哈希，列表，集合，有序集合这类复杂的数据结构时，会选择redis，因为mc无法满足这些需求。<br>最典型的场景，用户订单列表，用户消息，帖子评论列表等。</p>
+<h3 id="持久化"><a href="#持久化" class="headerlink" title="持久化"></a>持久化</h3><p>mc无法满足持久化的需求，只得选择redis。<br>但是，这里要提醒的是，真的使用对了redis的持久化功能么？</p>
+<p>千万不要把redis当作数据库用：</p>
+<blockquote>
+<p>（1）redis的定期快照不能保证数据不丢失<br>（2）redis的AOF会降低效率，并且不能支持太大的数据量</p>
+</blockquote>
+<p>不要期望redis做固化存储会比mysql做得好，不同的工具做各自擅长的事情，把redis当作数据库用，这样的设计八成是错误的。</p>
+<h3 id="缓存场景，开启固化功能，有什么利弊？"><a href="#缓存场景，开启固化功能，有什么利弊？" class="headerlink" title="缓存场景，开启固化功能，有什么利弊？"></a>缓存场景，开启固化功能，有什么利弊？</h3><p>如果只是缓存场景，数据存放在数据库，缓存在redis，此时如果开启固化功能： </p>
+<blockquote>
+<p>优点是，redis挂了再重启，内存里能够快速恢复热数据，不会瞬时将压力压到数据库上，没有一个cache预热的过程。<br>缺点是，在redis挂了的过程中，如果数据库中有数据的修改，可能导致redis重启后，数据库与redis的数据不一致。</p>
+</blockquote>
+<p>因此，只读场景，或者允许一些不一致的业务场景，可以尝试开启redis的固化功能。</p>
+<h3 id="天然高可用"><a href="#天然高可用" class="headerlink" title="天然高可用"></a>天然高可用</h3><p>redis天然支持集群功能，可以实现主动复制，读写分离。<br>redis官方也提供了sentinel集群管理工具，能够实现主从服务监控，故障自动转移，这一切，对于客户端都是透明的，无需程序改动，也无需人工介入。<br>而memcache，要想要实现高可用，需要进行二次开发，例如客户端的双读双写，或者服务端的集群同步。</p>
+<p>但是，这里要提醒的是，大部分业务场景，缓存真的需要高可用么？</p>
+<blockquote>
+<p>（1）缓存场景，很多时候，是允许cache miss<br>（2）缓存挂了，很多时候可以通过DB读取数据</p>
+</blockquote>
+<p>所以，需要认真剖析业务场景，高可用，是否真的是对缓存的主要需求？<br>画外音：即时通讯业务中，用户的在线状态，就有高可用需求。</p>
+<h3 id="存储的内容比较大"><a href="#存储的内容比较大" class="headerlink" title="存储的内容比较大"></a>存储的内容比较大</h3><p>memcache的value存储，最大为1M，如果存储的value很大，只能使用redis。</p>
+<h2 id="什么时候倾向于memcache？"><a href="#什么时候倾向于memcache？" class="headerlink" title="什么时候倾向于memcache？"></a>什么时候倾向于memcache？</h2><p>纯KV，数据量非常大，并发量非常大的业务，使用memcache或许更适合。</p>
+<p>这要从mc与redis的底层实现机制差异说起。</p>
+<h3 id="内存分配"><a href="#内存分配" class="headerlink" title="内存分配"></a>内存分配</h3><p>memcache使用预分配内存池的方式管理内存，能够省去内存分配时间。<br>redis则是临时申请空间，可能导致碎片。<br>从这一点上，mc会更快一些。</p>
+<h3 id="虚拟内存使用"><a href="#虚拟内存使用" class="headerlink" title="虚拟内存使用"></a>虚拟内存使用</h3><p>memcache把所有的数据存储在物理内存里。<br>redis有自己的VM机制，理论上能够存储比物理内存更多的数据，当数据超量时，会引发swap，把冷数据刷到磁盘上。<br>从这一点上，数据量大时，mc会更快一些。</p>
+<h3 id="网络模型"><a href="#网络模型" class="headerlink" title="网络模型"></a>网络模型</h3><p>memcache使用非阻塞IO复用模型，redis也是使用非阻塞IO复用模型。<br>但由于redis还提供一些非KV存储之外的排序，聚合功能，在执行这些功能时，复杂的CPU计算，会阻塞整个IO调度。<br>从这一点上，由于redis提供的功能较多，mc会更快一些。</p>
+<h3 id="线程模型"><a href="#线程模型" class="headerlink" title="线程模型"></a>线程模型</h3><p>memcache使用多线程，主线程监听，worker子线程接受请求，执行读写，这个过程中，可能存在锁冲突。<br>redis使用单线程，虽无锁冲突，但难以利用多核的特性提升整体吞吐量。<br>从这一点上，mc会快一些。</p>
+<h2 id="最后说两点"><a href="#最后说两点" class="headerlink" title="最后说两点"></a>最后说两点</h2><h3 id="代码可读性，代码质量"><a href="#代码可读性，代码质量" class="headerlink" title="代码可读性，代码质量"></a>代码可读性，代码质量</h3><p>看过mc和redis的代码，从可读性上说，redis是我见过代码最清爽的软件，甚至没有之一，或许简单是redis设计的初衷，编译redis甚至不需要configure，不需要依赖第三方库，一个make就搞定了。<br>而memcache，可能是考虑了太多的扩展性，多系统的兼容性，代码不清爽，看起来费劲。</p>
+<p>例如网络IO的部分，redis源码1-2个文件就搞定了，mc使用了libevent，一个fd传过来传过去，又pipe又线程传递的，特别容易把人绕晕。<br>画外音：理论上，mc只支持kv，而redis支持了这么多功能，mc性能应该高非常多非常多，但实际并非如此，真的可能和代码质量有关。</p>
+<h3 id="水平扩展的支持"><a href="#水平扩展的支持" class="headerlink" title="水平扩展的支持"></a>水平扩展的支持</h3><p>不管是mc和redis，服务端集群没有天然支持水平扩展，需要在客户端进行分片，这其实对调用方并不友好。如果能服务端集群能够支持水平扩展，会更完美一些。</p>
+
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Redis/" rel="tag"># Redis</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/11/22/数据库索引-到底是怎么做的-转载/" rel="next" title="数据库索引-到底是怎么做的-转载">
+                <i class="fa fa-chevron-left"></i> 数据库索引-到底是怎么做的-转载
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+  </div>
+
+
+          </div>
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">博主</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/">
+                
+                    <span class="site-state-item-count">180</span>
+                    <span class="site-state-item-name">日志</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-categories">
+                  <a href="/categories/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">28</span>
+                    <span class="site-state-item-name">分类</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  <a href="/tags/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">38</span>
+                    <span class="site-state-item-name">标签</span>
+                  </a>
+                </div>
+              
+            </nav>
+          
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+            
+          
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#选redis还是memcache-面试官会问什么"><span class="nav-number">1.</span> <span class="nav-text">选redis还是memcache, 面试官会问什么?</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#使用hash存储了什么，key是什么，values是什么，为什么选择hash而不是其他数据结构。"><span class="nav-number">1.1.</span> <span class="nav-text">使用hash存储了什么，key是什么，values是什么，为什么选择hash而不是其他数据结构。</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#“既然缓存的是用户信息，需要高可用么？”"><span class="nav-number">1.2.</span> <span class="nav-text">“既然缓存的是用户信息，需要高可用么？”</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#“既然缓存的是订单信息，需要固化么？”"><span class="nav-number">1.3.</span> <span class="nav-text">“既然缓存的是订单信息，需要固化么？”</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#“那为什么还要选型redis呢？"><span class="nav-number">1.4.</span> <span class="nav-text">“那为什么还要选型redis呢？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#任何脱离业务的架构设计，方案设计，技术选型都是耍流氓。"><span class="nav-number">1.5.</span> <span class="nav-text">任何脱离业务的架构设计，方案设计，技术选型都是耍流氓。</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#技术人，需要一些情怀，多问自己一句为什么，对自己有好处。"><span class="nav-number">1.6.</span> <span class="nav-text">技术人，需要一些情怀，多问自己一句为什么，对自己有好处。</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#选redis还是memcache，源码怎么说？"><span class="nav-number">2.</span> <span class="nav-text">选redis还是memcache，源码怎么说？</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#什么时候倾向于选择redis？"><span class="nav-number">2.1.</span> <span class="nav-text">什么时候倾向于选择redis？</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#复杂数据结构"><span class="nav-number">2.1.1.</span> <span class="nav-text">复杂数据结构</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#持久化"><span class="nav-number">2.1.2.</span> <span class="nav-text">持久化</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#缓存场景，开启固化功能，有什么利弊？"><span class="nav-number">2.1.3.</span> <span class="nav-text">缓存场景，开启固化功能，有什么利弊？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#天然高可用"><span class="nav-number">2.1.4.</span> <span class="nav-text">天然高可用</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#存储的内容比较大"><span class="nav-number">2.1.5.</span> <span class="nav-text">存储的内容比较大</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#什么时候倾向于memcache？"><span class="nav-number">2.2.</span> <span class="nav-text">什么时候倾向于memcache？</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#内存分配"><span class="nav-number">2.2.1.</span> <span class="nav-text">内存分配</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#虚拟内存使用"><span class="nav-number">2.2.2.</span> <span class="nav-text">虚拟内存使用</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#网络模型"><span class="nav-number">2.2.3.</span> <span class="nav-text">网络模型</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#线程模型"><span class="nav-number">2.2.4.</span> <span class="nav-text">线程模型</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#最后说两点"><span class="nav-number">2.3.</span> <span class="nav-text">最后说两点</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#代码可读性，代码质量"><span class="nav-number">2.3.1.</span> <span class="nav-text">代码可读性，代码质量</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#水平扩展的支持"><span class="nav-number">2.3.2.</span> <span class="nav-text">水平扩展的支持</span></a></li></ol></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder"><a href="http://blog.timilong.com/about" target="_blank"> Timi.long </a></span>
+  
+
+  
+</div>
+
+
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动 v3.7.1</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 – <a class="theme-link" target="_blank" href="https://theme-next.org">NexT.Muse</a> v6.4.1</div>
+
+
+
+
+<!-- 新增访客统计代码 -->
+
+<div class="busuanzi-count">
+    <script async="" src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>  
+    <span class="site-uv">
+      <i class="fa fa-user"></i>
+      访问用户： <span class="busuanzi-value" id="busuanzi_value_site_uv"></span> 人
+    </span>
+    <div class="powered-by"></div>
+    <span class="site-uv">
+      <i class="fa fa-eye"></i>
+      访问次数： <span class="busuanzi-value" id="busuanzi_value_site_pv"></span> 次
+    </span>
+    <!-- 博客字数统计
+    <span class="site-pv">
+      <i class="fa fa-pencil"></i>
+      博客全站共： <span class="post-count"> </span> 字
+    </span> -->
+</div>
+<!-- 新增访客统计代码 END-->
+
+        
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+	
+    
+
+    
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=6.4.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=6.4.1"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=6.4.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=6.4.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=6.4.1"></script>
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

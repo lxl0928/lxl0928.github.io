@@ -305,6 +305,179 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://blog.timilong.com/2017/05/01/leetcode-h-index2/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="博主">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Timilong's blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2017/05/01/leetcode-h-index2/" itemprop="url">
+                  leetcode-'h-index2'
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建于：2017-04-30 21:37:54" itemprop="dateCreated datePublished" datetime="2017-04-30T21:37:54Z">2017-04-30</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Edited on</span>
+                
+                <time title="更新于：2018-10-19 02:40:57" itemprop="dateModified" datetime="2018-10-19T02:40:57Z">2018-10-19</time>
+              
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/leetcode/" itemprop="url" rel="index"><span itemprop="name">leetcode</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+	
+        
+          
+            <h2 id="Description"><a href="#Description" class="headerlink" title="Description"></a>Description</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">Description:</span><br><span class="line">    h-index ，又称为h指数或h因子（h-factor），是一种评价学术成就的新方法。</span><br><span class="line">    h代表“高引用次数”（high citations），一名科研人员的h指数是指他至多有h篇论文分别被引用了至少h次。</span><br><span class="line">    要确定一个人的h指数非常容易，到SCI网站，查出某个人发表的所有SCI论文，让其按被引次数从高到低排列，</span><br><span class="line">    往下核对，直到某篇论文的序号大于该论文被引次数，那个序号减去1就是h指数。</span><br><span class="line">    or</span><br><span class="line">    从低到高进行排列，如果(某篇论文的引用次数) &gt;= (总长度 - 当前论文序号)，则(总长度-当前序号)就是h指数</span><br><span class="line">    其中, citations是已升序排列的</span><br><span class="line">    总结: 目标 = 引用次数 &gt;= 序号 则length-序号即为结果</span><br></pre></td></tr></table></figure>
+<h2 id="Example"><a href="#Example" class="headerlink" title="Example"></a>Example</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">Example:</span><br><span class="line">    Given citations = [3, 0, 6, 1, 5]</span><br><span class="line">    which means the researcher has 5 papers in total </span><br><span class="line">        and each of them had received 3, 0, 6, 1, 5 citations respectively. </span><br><span class="line">    Since the researcher has 3 papers with at least 3 citations each </span><br><span class="line">        and the remaining two with no more than 3 citations each, his h-index is 3.</span><br></pre></td></tr></table></figure>
+<h2 id="Solution"><a href="#Solution" class="headerlink" title="Solution"></a>Solution</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">class Solution(object):</span><br><span class="line">    def hIndex(self, citations):</span><br><span class="line">        &quot;&quot;&quot;</span><br><span class="line">        :type citations: List[int]</span><br><span class="line">        :rtype: int</span><br><span class="line">        二分法</span><br><span class="line">        &quot;&quot;&quot;</span><br><span class="line">        length = len(citations)</span><br><span class="line">        left, right = 0, length-1</span><br><span class="line">        while left &lt;= right:</span><br><span class="line">            mid = int((left+right)/2)</span><br><span class="line">            if citations[mid] &gt;= length - mid:</span><br><span class="line">                right = mid - 1</span><br><span class="line">            else:</span><br><span class="line">                left = mid + 1</span><br><span class="line">        return length - left</span><br></pre></td></tr></table></figure>
+
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://blog.timilong.com/2017/05/01/leetcode-275H指数2/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1347,6 +1520,179 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://blog.timilong.com/2017/03/21/leetcode-first-bad-version/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="博主">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Timilong's blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2017/03/21/leetcode-first-bad-version/" itemprop="url">
+                  leetcode-'first-bad-version'
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建于：2017-03-20 21:37:54" itemprop="dateCreated datePublished" datetime="2017-03-20T21:37:54Z">2017-03-20</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Edited on</span>
+                
+                <time title="更新于：2018-10-19 02:40:57" itemprop="dateModified" datetime="2018-10-19T02:40:57Z">2018-10-19</time>
+              
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/leetcode/" itemprop="url" rel="index"><span itemprop="name">leetcode</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+	
+        
+          
+            <h2 id="Description"><a href="#Description" class="headerlink" title="Description"></a>Description</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Description:</span><br><span class="line">    给定一个API: isBadVersion()</span><br><span class="line">    要求: 在需要编写的firstBadVersion()中最少次数调用该API得到第一个bad version</span><br></pre></td></tr></table></figure>
+<h2 id="Example"><a href="#Example" class="headerlink" title="Example"></a>Example</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Example:</span><br><span class="line">    Suppose you have n versions [1, 2, ..., n] </span><br><span class="line">    and you want to find out the first bad one, which causes all the following ones to be bad.</span><br></pre></td></tr></table></figure>
+<h2 id="Solution"><a href="#Solution" class="headerlink" title="Solution"></a>Solution</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line">&quot;&quot;&quot;</span><br><span class="line">Solution:</span><br><span class="line">    时间复杂度: O(log(n))</span><br><span class="line">    空间复杂度: O(1)</span><br><span class="line">    二分查找到最先被坏掉的版本号</span><br><span class="line">&quot;&quot;&quot;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">&quot;&quot;&quot;</span><br><span class="line"># The isBadVersion API is already defined for you.</span><br><span class="line"># @param version, an integer</span><br><span class="line"># @return a bool</span><br><span class="line"># def isBadVersion(version):</span><br><span class="line">&quot;&quot;&quot;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">class Solution(object):</span><br><span class="line">    def firstBadVersion(self, n):</span><br><span class="line">        &quot;&quot;&quot;</span><br><span class="line">        :type n: int</span><br><span class="line">        :rtype: int</span><br><span class="line">        &quot;&quot;&quot;</span><br><span class="line">        left, right = n, 1 </span><br><span class="line">        while left &lt; right:</span><br><span class="line">            mid = int(left + (right - left)/2)</span><br><span class="line">            if isBadVersion(mid):</span><br><span class="line">                right = mid  # mid是，表示目标值在mid左侧，则更新right=mid，继续</span><br><span class="line">            else:</span><br><span class="line">                left = mid + 1  # mid不是，表示目标值在mid右侧，更新left=mid+1，继续</span><br><span class="line">        return left  # 返回左侧较小值</span><br></pre></td></tr></table></figure>
+
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://blog.timilong.com/2017/03/21/leetcode-278第一个错误的版本/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1471,179 +1817,6 @@
             </a>
           </div>
           <!--/noindex-->
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://blog.timilong.com/2017/03/21/leetcode-first-bad-version/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="博主">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Timilong's blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2017/03/21/leetcode-first-bad-version/" itemprop="url">
-                  leetcode-'first-bad-version'
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-
-              
-                
-              
-
-              <time title="创建于：2017-03-20 21:37:54" itemprop="dateCreated datePublished" datetime="2017-03-20T21:37:54Z">2017-03-20</time>
-            
-
-            
-              
-
-              
-                
-                <span class="post-meta-divider">|</span>
-                
-
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">Edited on</span>
-                
-                <time title="更新于：2018-10-19 02:40:57" itemprop="dateModified" datetime="2018-10-19T02:40:57Z">2018-10-19</time>
-              
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/leetcode/" itemprop="url" rel="index"><span itemprop="name">leetcode</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-	
-        
-          
-            <h2 id="Description"><a href="#Description" class="headerlink" title="Description"></a>Description</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Description:</span><br><span class="line">    给定一个API: isBadVersion()</span><br><span class="line">    要求: 在需要编写的firstBadVersion()中最少次数调用该API得到第一个bad version</span><br></pre></td></tr></table></figure>
-<h2 id="Example"><a href="#Example" class="headerlink" title="Example"></a>Example</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Example:</span><br><span class="line">    Suppose you have n versions [1, 2, ..., n] </span><br><span class="line">    and you want to find out the first bad one, which causes all the following ones to be bad.</span><br></pre></td></tr></table></figure>
-<h2 id="Solution"><a href="#Solution" class="headerlink" title="Solution"></a>Solution</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line">&quot;&quot;&quot;</span><br><span class="line">Solution:</span><br><span class="line">    时间复杂度: O(log(n))</span><br><span class="line">    空间复杂度: O(1)</span><br><span class="line">    二分查找到最先被坏掉的版本号</span><br><span class="line">&quot;&quot;&quot;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">&quot;&quot;&quot;</span><br><span class="line"># The isBadVersion API is already defined for you.</span><br><span class="line"># @param version, an integer</span><br><span class="line"># @return a bool</span><br><span class="line"># def isBadVersion(version):</span><br><span class="line">&quot;&quot;&quot;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">class Solution(object):</span><br><span class="line">    def firstBadVersion(self, n):</span><br><span class="line">        &quot;&quot;&quot;</span><br><span class="line">        :type n: int</span><br><span class="line">        :rtype: int</span><br><span class="line">        &quot;&quot;&quot;</span><br><span class="line">        left, right = n, 1 </span><br><span class="line">        while left &lt; right:</span><br><span class="line">            mid = int(left + (right - left)/2)</span><br><span class="line">            if isBadVersion(mid):</span><br><span class="line">                right = mid  # mid是，表示目标值在mid左侧，则更新right=mid，继续</span><br><span class="line">            else:</span><br><span class="line">                left = mid + 1  # mid不是，表示目标值在mid右侧，更新left=mid+1，继续</span><br><span class="line">        return left  # 返回左侧较小值</span><br></pre></td></tr></table></figure>
-
-          
         
       
     </div>
@@ -2384,179 +2557,6 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://blog.timilong.com/2017/03/11/leetcode-274H指数1/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="博主">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Timilong's blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2017/03/11/leetcode-274H指数1/" itemprop="url">
-                  leetcode-274H指数1
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-
-              
-                
-              
-
-              <time title="创建于：2017-03-10 21:37:54" itemprop="dateCreated datePublished" datetime="2017-03-10T21:37:54Z">2017-03-10</time>
-            
-
-            
-              
-
-              
-                
-                <span class="post-meta-divider">|</span>
-                
-
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">Edited on</span>
-                
-                <time title="更新于：2018-10-19 02:40:57" itemprop="dateModified" datetime="2018-10-19T02:40:57Z">2018-10-19</time>
-              
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/leetcode/" itemprop="url" rel="index"><span itemprop="name">leetcode</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-	
-        
-          
-            <h2 id="Description"><a href="#Description" class="headerlink" title="Description"></a>Description</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">Description:</span><br><span class="line">    h-index ，又称为h指数或h因子（h-factor），是一种评价学术成就的新方法。</span><br><span class="line">    h代表“高引用次数”（high citations），一名科研人员的h指数是指他至多有h篇论文分别被引用了至少h次。</span><br><span class="line">    要确定一个人的h指数非常容易，到SCI网站，查出某个人发表的所有SCI论文，让其按被引次数从高到低排列，</span><br><span class="line">    往下核对，直到某篇论文的序号大于该论文被引次数，那个序号减去1就是h指数。</span><br><span class="line">    or</span><br><span class="line">    从低到高进行排列，如果(某篇论文的引用次数) &gt;= (论文总数 - 当前论文序号)，则(总长度-当前序号)就是h指数</span><br></pre></td></tr></table></figure>
-<h2 id="Example"><a href="#Example" class="headerlink" title="Example"></a>Example</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">Example:</span><br><span class="line">    Given citations = [3, 0, 6, 1, 5]</span><br><span class="line">    which means the researcher has 5 papers in total </span><br><span class="line">        and each of them had received 3, 0, 6, 1, 5 citations respectively. </span><br><span class="line">    Since the researcher has 3 papers with at least 3 citations each </span><br><span class="line">        and the remaining two with no more than 3 citations each, his h-index is 3.</span><br></pre></td></tr></table></figure>
-<h2 id="Solution"><a href="#Solution" class="headerlink" title="Solution"></a>Solution</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">class Solution(object):</span><br><span class="line">    def hIndex(self, citations):</span><br><span class="line">        &quot;&quot;&quot;</span><br><span class="line">        :type citations: List[int]</span><br><span class="line">        :rtype: int</span><br><span class="line">        &quot;&quot;&quot;</span><br><span class="line">        citations.sort()</span><br><span class="line">        length = len(citations)</span><br><span class="line"></span><br><span class="line">        for i in range(length):</span><br><span class="line">            if citations[i] &gt;= length - i:</span><br><span class="line">                return length - i</span><br><span class="line">        return 0</span><br><span class="line">        &quot;&quot;&quot; 方法2</span><br><span class="line">        citations.sort(reverse=True)</span><br><span class="line">        for i in range(len(citations)):</span><br><span class="line">            if i &gt;= citations[i]:</span><br><span class="line">            return i</span><br><span class="line">        return len(citations)</span><br><span class="line">        &quot;&quot;&quot;</span><br></pre></td></tr></table></figure>
-
-          
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://blog.timilong.com/2017/03/11/leetcode-h-index1/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -2732,7 +2732,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://blog.timilong.com/2017/03/02/leetcode-136-137-260只出现一次的数字/">
+    <link itemprop="mainEntityOfPage" href="http://blog.timilong.com/2017/03/11/leetcode-274H指数1/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="博主">
@@ -2751,8 +2751,8 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2017/03/02/leetcode-136-137-260只出现一次的数字/" itemprop="url">
-                  leetcode-136、137、260只出现一次的数字
+                <a class="post-title-link" href="/2017/03/11/leetcode-274H指数1/" itemprop="url">
+                  leetcode-274H指数1
                 </a>
               
             
@@ -2778,7 +2778,7 @@
                 
               
 
-              <time title="创建于：2017-03-01 21:37:54" itemprop="dateCreated datePublished" datetime="2017-03-01T21:37:54Z">2017-03-01</time>
+              <time title="创建于：2017-03-10 21:37:54" itemprop="dateCreated datePublished" datetime="2017-03-10T21:37:54Z">2017-03-10</time>
             
 
             
@@ -2849,9 +2849,9 @@
 	
         
           
-            <h2 id="single-number-1"><a href="#single-number-1" class="headerlink" title="single_number_1"></a>single_number_1</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line">#! /usr/bin/python3</span><br><span class="line"># coding: utf-8    </span><br><span class="line">&quot;&quot;&quot;</span><br><span class="line">Description:</span><br><span class="line">    Given an array of integers, every element appears twice except for one. Find that single one.</span><br><span class="line"></span><br><span class="line">Note:</span><br><span class="line">    Your algorithm should have a linear runtime complexity. Could you implement it without using extra memory?</span><br><span class="line"></span><br><span class="line">Solution:</span><br><span class="line">    异或运算 0^1 = 1  and 1^1 = 0 and 0^0 = 1</span><br><span class="line">&quot;&quot;&quot;</span><br><span class="line">class Solution(object):</span><br><span class="line">    def singleNumber(self, nums):</span><br><span class="line">        &quot;&quot;&quot;</span><br><span class="line">        type: nums-&gt;List[int]</span><br><span class="line">        rtype: int</span><br><span class="line">        &quot;&quot;&quot;</span><br><span class="line">        res = 0 </span><br><span class="line">        if len(nums) == 0 or len(nums) == 2:</span><br><span class="line">            return 0</span><br><span class="line">        if len(nums) == 1:</span><br><span class="line">            return nums[0]</span><br><span class="line">        for item in nums:</span><br><span class="line">            res ^= item</span><br><span class="line">        return res</span><br></pre></td></tr></table></figure>
-<h2 id="single-number-2"><a href="#single-number-2" class="headerlink" title="single_number_2"></a>single_number_2</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br></pre></td><td class="code"><pre><span class="line">#! /usr/bin/python3</span><br><span class="line"># coding: utf-8</span><br><span class="line"></span><br><span class="line">&quot;&quot;&quot;</span><br><span class="line">Description:</span><br><span class="line">    Given an array of integers, every element appears three times except for one. Find that single one.</span><br><span class="line"></span><br><span class="line">Note:</span><br><span class="line">    Your algorithm should have a linear runtime complexity. Could you implement it without using extra memory?</span><br><span class="line"></span><br><span class="line">Solution:</span><br><span class="line">    # 方法1: 利用set之和*3 - list之和 = 2*res</span><br><span class="line">    # 方法2: 利用异或运算、或运算、与运算、非运算</span><br><span class="line">&quot;&quot;&quot;</span><br><span class="line">class Solution(object):</span><br><span class="line">    def singleNumber(self, nums):</span><br><span class="line">        # 方法1: 利用</span><br><span class="line">        &quot;&quot;&quot;</span><br><span class="line">        type: nums-&gt;List[int]</span><br><span class="line">        rtype: int</span><br><span class="line">        &quot;&quot;&quot;</span><br><span class="line">        res = 0</span><br><span class="line">        if len(nums) == 0 or len(nums) == 2:</span><br><span class="line">            return 0</span><br><span class="line">        if len(nums) == 1:</span><br><span class="line">            return nums[0]</span><br><span class="line">        aset = set(nums)</span><br><span class="line">        sum_nums = sum(nums)</span><br><span class="line">        sum_aset = sum(aset)</span><br><span class="line">        res = (3*sum_aset - sum_nums)//2</span><br><span class="line">        return res</span><br><span class="line">        &quot;&quot;&quot; </span><br><span class="line">        # 方法2</span><br><span class="line">        one = 0</span><br><span class="line">        two = 0</span><br><span class="line">        three = 0</span><br><span class="line">        for i in range(0,len(nums)):</span><br><span class="line">            two |= one&amp;nums[i]</span><br><span class="line">            one ^= nums[i]</span><br><span class="line">            three = one&amp;two</span><br><span class="line">            one &amp;= ~three</span><br><span class="line">            two &amp;= ~three</span><br><span class="line">        return one</span><br><span class="line">        &quot;&quot;&quot;</span><br></pre></td></tr></table></figure>
-<h2 id="single-number-3"><a href="#single-number-3" class="headerlink" title="single_number_3"></a>single_number_3</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br></pre></td><td class="code"><pre><span class="line">#! /usr/bin/python3</span><br><span class="line"># coding: utf-8</span><br><span class="line"></span><br><span class="line">&quot;&quot;&quot;</span><br><span class="line">Description:</span><br><span class="line">    Given an array of numbers nums, </span><br><span class="line">    in which exactly two elements appear only once and all the other elements appear exactly twice. </span><br><span class="line">    Find the two elements that appear only once.</span><br><span class="line"></span><br><span class="line">Example:</span><br><span class="line">    Given nums = [1, 2, 1, 3, 2, 5], return [3, 5].</span><br><span class="line"></span><br><span class="line">Note:</span><br><span class="line">    The order of the result is not important. So in the above example, [5, 3] is also correct.</span><br><span class="line">    Your algorithm should run in linear runtime complexity. Could you implement it using only constant space complexity?</span><br><span class="line"></span><br><span class="line">Solution:</span><br><span class="line">    # 方法1:</span><br><span class="line"></span><br><span class="line">&quot;&quot;&quot;</span><br><span class="line"></span><br><span class="line">class Solution(object):</span><br><span class="line">    def singleNumber(self, nums):</span><br><span class="line">        &quot;&quot;&quot;</span><br><span class="line">        :type nums: List[int]</span><br><span class="line">        :rtype: List[int]</span><br><span class="line">        &quot;&quot;&quot;</span><br><span class="line">        xor, a, b = 0, 0, 0</span><br><span class="line">        for num in nums:</span><br><span class="line">            xor ^= num</span><br><span class="line">        print(&quot;xor&quot;, xor)</span><br><span class="line">        mask = 1</span><br><span class="line">        while(xor&amp;mask == 0):  # </span><br><span class="line">            mask = mask &lt;&lt; 1</span><br><span class="line">            print(&quot;mask&quot;, mask)</span><br><span class="line">        for num in nums:</span><br><span class="line">            if num &amp; mask:</span><br><span class="line">                a ^= num</span><br><span class="line">                print(&quot;a&quot;, a)</span><br><span class="line">            else:</span><br><span class="line">                b ^= num</span><br><span class="line">                print(&quot;b&quot;, b)</span><br><span class="line">        return [a, b]</span><br><span class="line">solution = Solution()</span><br><span class="line">nums = [1, 2, 1, 3, 2, 5]</span><br><span class="line">print(solution.singleNumber(nums))</span><br></pre></td></tr></table></figure>
+            <h2 id="Description"><a href="#Description" class="headerlink" title="Description"></a>Description</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">Description:</span><br><span class="line">    h-index ，又称为h指数或h因子（h-factor），是一种评价学术成就的新方法。</span><br><span class="line">    h代表“高引用次数”（high citations），一名科研人员的h指数是指他至多有h篇论文分别被引用了至少h次。</span><br><span class="line">    要确定一个人的h指数非常容易，到SCI网站，查出某个人发表的所有SCI论文，让其按被引次数从高到低排列，</span><br><span class="line">    往下核对，直到某篇论文的序号大于该论文被引次数，那个序号减去1就是h指数。</span><br><span class="line">    or</span><br><span class="line">    从低到高进行排列，如果(某篇论文的引用次数) &gt;= (论文总数 - 当前论文序号)，则(总长度-当前序号)就是h指数</span><br></pre></td></tr></table></figure>
+<h2 id="Example"><a href="#Example" class="headerlink" title="Example"></a>Example</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">Example:</span><br><span class="line">    Given citations = [3, 0, 6, 1, 5]</span><br><span class="line">    which means the researcher has 5 papers in total </span><br><span class="line">        and each of them had received 3, 0, 6, 1, 5 citations respectively. </span><br><span class="line">    Since the researcher has 3 papers with at least 3 citations each </span><br><span class="line">        and the remaining two with no more than 3 citations each, his h-index is 3.</span><br></pre></td></tr></table></figure>
+<h2 id="Solution"><a href="#Solution" class="headerlink" title="Solution"></a>Solution</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">class Solution(object):</span><br><span class="line">    def hIndex(self, citations):</span><br><span class="line">        &quot;&quot;&quot;</span><br><span class="line">        :type citations: List[int]</span><br><span class="line">        :rtype: int</span><br><span class="line">        &quot;&quot;&quot;</span><br><span class="line">        citations.sort()</span><br><span class="line">        length = len(citations)</span><br><span class="line"></span><br><span class="line">        for i in range(length):</span><br><span class="line">            if citations[i] &gt;= length - i:</span><br><span class="line">                return length - i</span><br><span class="line">        return 0</span><br><span class="line">        &quot;&quot;&quot; 方法2</span><br><span class="line">        citations.sort(reverse=True)</span><br><span class="line">        for i in range(len(citations)):</span><br><span class="line">            if i &gt;= citations[i]:</span><br><span class="line">            return i</span><br><span class="line">        return len(citations)</span><br><span class="line">        &quot;&quot;&quot;</span><br></pre></td></tr></table></figure>
 
           
         
@@ -2937,7 +2937,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">179</span>
+                    <span class="site-state-item-count">180</span>
                     <span class="site-state-item-name">日志</span>
                   </a>
                 </div>
