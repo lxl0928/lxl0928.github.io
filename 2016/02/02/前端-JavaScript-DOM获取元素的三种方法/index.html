@@ -108,18 +108,18 @@
 
 
 
-  <meta name="description" content="JavaScript DOM获取元素的三种方法通过idDOM提供了一个名为: getElementById的方法, 这个方法将返回一个那个有着给定id属性的值的元素节点对应的对象。在这里强调: JavaScript语言严格区分字母的大小写!它是document对象特有的函数。在脚本代码里, 函数名的后面必须跟有一对圆括号, 这对圆括号包含着函数的参数。getElementById方法只有一个参数">
+  <meta name="description" content="JavaScript Dom获取元素的几种方法介绍。">
 <meta name="keywords" content="JavaScript">
 <meta property="og:type" content="article">
 <meta property="og:title" content="JavaScript DOM获取元素的三种方法">
 <meta property="og:url" content="http://blog.timilong.com/2016/02/02/前端-JavaScript-DOM获取元素的三种方法/index.html">
 <meta property="og:site_name" content="Timilong&#39;s blog">
-<meta property="og:description" content="JavaScript DOM获取元素的三种方法通过idDOM提供了一个名为: getElementById的方法, 这个方法将返回一个那个有着给定id属性的值的元素节点对应的对象。在这里强调: JavaScript语言严格区分字母的大小写!它是document对象特有的函数。在脚本代码里, 函数名的后面必须跟有一对圆括号, 这对圆括号包含着函数的参数。getElementById方法只有一个参数">
+<meta property="og:description" content="JavaScript Dom获取元素的几种方法介绍。">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-10-19T02:40:57.315Z">
+<meta property="og:updated_time" content="2018-11-28T07:54:42.258Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="JavaScript DOM获取元素的三种方法">
-<meta name="twitter:description" content="JavaScript DOM获取元素的三种方法通过idDOM提供了一个名为: getElementById的方法, 这个方法将返回一个那个有着给定id属性的值的元素节点对应的对象。在这里强调: JavaScript语言严格区分字母的大小写!它是document对象特有的函数。在脚本代码里, 函数名的后面必须跟有一对圆括号, 这对圆括号包含着函数的参数。getElementById方法只有一个参数">
+<meta name="twitter:description" content="JavaScript Dom获取元素的几种方法介绍。">
 
 
 
@@ -368,7 +368,7 @@
                 
                   <span class="post-meta-item-text">に編集されました</span>
                 
-                <time title="更新于：2018-10-19 02:40:57" itemprop="dateModified" datetime="2018-10-19T02:40:57Z">2018-10-19</time>
+                <time title="更新于：2018-11-28 07:54:42" itemprop="dateModified" datetime="2018-11-28T07:54:42Z">2018-11-28</time>
               
             
           </span>
@@ -405,6 +405,8 @@
           
 
           
+              <div class="post-description">JavaScript Dom获取元素的几种方法介绍。</div>
+          
 
         </div>
       </header>
@@ -419,8 +421,7 @@
       
 
       
-        <a id="more"></a>
-<h2 id="JavaScript-DOM获取元素的三种方法"><a href="#JavaScript-DOM获取元素的三种方法" class="headerlink" title="JavaScript DOM获取元素的三种方法"></a>JavaScript DOM获取元素的三种方法</h2><h3 id="通过id"><a href="#通过id" class="headerlink" title="通过id"></a>通过id</h3><p>DOM提供了一个名为: getElementById的方法, 这个方法将返回一个那个有着给定id属性的值的元素节点对应的对象。在这里强调: JavaScript语言严格区分字母的大小写!<br>它是document对象特有的函数。在脚本代码里, 函数名的后面必须跟有一对圆括号, 这对圆括号包含着函数的参数。getElementById方法只有一个参数: 想要获得的那个元素的id属性的值, 这个id值必须放在单引号或者双引号里面:</p>
+        <h2 id="JavaScript-DOM获取元素的三种方法"><a href="#JavaScript-DOM获取元素的三种方法" class="headerlink" title="JavaScript DOM获取元素的三种方法"></a>JavaScript DOM获取元素的三种方法</h2><h3 id="通过id"><a href="#通过id" class="headerlink" title="通过id"></a>通过id</h3><p>DOM提供了一个名为: getElementById的方法, 这个方法将返回一个那个有着给定id属性的值的元素节点对应的对象。在这里强调: JavaScript语言严格区分字母的大小写!<br>它是document对象特有的函数。在脚本代码里, 函数名的后面必须跟有一对圆括号, 这对圆括号包含着函数的参数。getElementById方法只有一个参数: 想要获得的那个元素的id属性的值, 这个id值必须放在单引号或者双引号里面:</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">document.getElementById(id)</span><br></pre></td></tr></table></figure>
 <p>例子：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">&lt;!DOCTYPE html&gt;</span><br><span class="line">&lt;head&gt;</span><br><span class="line">  &lt;meta charset=&quot;utf-8&quot;&gt;</span><br><span class="line">  &lt;title&gt;Shopping list&lt;/title&gt;</span><br><span class="line">&lt;/head&gt;</span><br><span class="line">&lt;body&gt;</span><br><span class="line">  &lt;h1&gt;What to buy&lt;/h1&gt;</span><br><span class="line">  &lt;p title=&quot;a gentle reminder&quot;&gt;Don&apos;t forget to buy this stuff.&lt;/p&gt;</span><br><span class="line">  &lt;ul id=&quot;purchases&quot;&gt;</span><br><span class="line">    &lt;li&gt;A tin of beanns&lt;/li&gt;</span><br><span class="line">    &lt;li class=&quot;sale&quot;&gt;Cheese&lt;/li&gt;</span><br><span class="line">    &lt;li class=&quot;sale important&quot;&gt;Milk&lt;/li&gt;</span><br><span class="line">  &lt;/ul&gt;</span><br><span class="line">  &lt;script&gt;</span><br><span class="line">    alert(typeof document.getElementById(&quot;purchases&quot;));</span><br><span class="line">  &lt;/script&gt;</span><br><span class="line">&lt;/body&gt;</span><br><span class="line">&lt;/html&gt;</span><br></pre></td></tr></table></figure></p>
 <p>文档中的每一个元素都是一个对象。利用DOM提供的方法能得到任何一个对象。<br>一般来说，用不着为文档里面每一个元素都定义一个独一无二的id值。DOM提供了另一个方法获取那些没有id属性的对象。</p>
