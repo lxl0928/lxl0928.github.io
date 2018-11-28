@@ -108,18 +108,18 @@
 
 
 
-  <meta name="description" content="leetcode-43字符串相乘题解">
+  <meta name="description" content="leetcode-43字符串相乘的题解.">
 <meta name="keywords" content="leetcode">
 <meta property="og:type" content="article">
 <meta property="og:title" content="leetcode-43字符串相乘">
 <meta property="og:url" content="http://blog.timilong.com/2018/10/02/leetcode-43字符串相乘/index.html">
 <meta property="og:site_name" content="Timilong&#39;s blog">
-<meta property="og:description" content="leetcode-43字符串相乘题解">
+<meta property="og:description" content="leetcode-43字符串相乘的题解.">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-10-19T02:40:57.307Z">
+<meta property="og:updated_time" content="2018-11-28T07:17:49.444Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="leetcode-43字符串相乘">
-<meta name="twitter:description" content="leetcode-43字符串相乘题解">
+<meta name="twitter:description" content="leetcode-43字符串相乘的题解.">
 
 
 
@@ -206,7 +206,7 @@
   </div>
 
   <div class="site-nav-toggle">
-    <button aria-label="Toggle navigation bar">
+    <button aria-label="ナビゲーションバーの切り替え">
       <span class="btn-bar"></span>
       <span class="btn-bar"></span>
       <span class="btn-bar"></span>
@@ -366,9 +366,9 @@
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 
-                  <span class="post-meta-item-text">Edited on</span>
+                  <span class="post-meta-item-text">に編集されました</span>
                 
-                <time title="更新于：2018-10-19 02:40:57" itemprop="dateModified" datetime="2018-10-19T02:40:57Z">2018-10-19</time>
+                <time title="更新于：2018-11-28 07:17:49" itemprop="dateModified" datetime="2018-11-28T07:17:49Z">2018-11-28</time>
               
             
           </span>
@@ -405,7 +405,7 @@
           
 
           
-              <div class="post-description">leetcode-43字符串相乘题解</div>
+              <div class="post-description">leetcode-43字符串相乘的题解.</div>
           
 
         </div>
@@ -435,7 +435,7 @@
 <li>先将字符串逆序便于从最低位开始计算。</li>
 </ol>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span><span class="params">(object)</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">multiply</span><span class="params">(self, num1, num2)</span>:</span></span><br><span class="line">        <span class="string">"""</span></span><br><span class="line"><span class="string">        :type num1: str</span></span><br><span class="line"><span class="string">        :type num2: str</span></span><br><span class="line"><span class="string">        :rtype: str</span></span><br><span class="line"><span class="string">        """</span></span><br><span class="line">        lookup = &#123;<span class="string">"0"</span>:<span class="number">0</span>,<span class="string">"1"</span>:<span class="number">1</span>,<span class="string">"2"</span>:<span class="number">2</span>,<span class="string">"3"</span>:<span class="number">3</span>,<span class="string">"4"</span>:<span class="number">4</span>,<span class="string">"5"</span>:<span class="number">5</span>,<span class="string">"6"</span>:<span class="number">6</span>,<span class="string">"7"</span>:<span class="number">7</span>,<span class="string">"8"</span>:<span class="number">8</span>,<span class="string">"9"</span>:<span class="number">9</span>&#125; <span class="comment"># 节省查找时间，避免无休止使用ord函数来得到数字</span></span><br><span class="line">        <span class="keyword">if</span> num1 == <span class="string">'0'</span> <span class="keyword">or</span> num2 == <span class="string">'0'</span>:</span><br><span class="line">            <span class="keyword">return</span> <span class="string">'0'</span></span><br><span class="line">        num1, num2 = num1[::<span class="number">-1</span>], num2[::<span class="number">-1</span>]</span><br><span class="line">        </span><br><span class="line">        tmp_res = [<span class="number">0</span> <span class="keyword">for</span> i <span class="keyword">in</span> range(len(num1)+len(num2))]</span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> range(len(num1)):</span><br><span class="line">            <span class="keyword">for</span> j <span class="keyword">in</span> range(len(num2)):</span><br><span class="line">                tmp_res[i+j] += lookup[num1[i]] * lookup[num2[j]]</span><br><span class="line"></span><br><span class="line">        res = [<span class="number">0</span> <span class="keyword">for</span> i <span class="keyword">in</span> range(len(num1)+len(num2))]</span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> range(len(num1)+len(num2)):</span><br><span class="line">            res[i] = tmp_res[i] % <span class="number">10</span></span><br><span class="line">            <span class="keyword">if</span> i &lt; len(num1)+len(num2)<span class="number">-1</span>:</span><br><span class="line">                tmp_res[i+<span class="number">1</span>] += tmp_res[i]/<span class="number">10</span> </span><br><span class="line">        <span class="keyword">return</span> <span class="string">''</span>.join(str(i) <span class="keyword">for</span> i <span class="keyword">in</span> res[::<span class="number">-1</span>]).lstrip(<span class="string">'0'</span>)  <span class="comment"># 去掉最终结果头部可能存在的‘0’</span></span><br></pre></td></tr></table></figure>
-<p>觉得这样写才是最容易理解的，看一个具体的🌰:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">input: num1, num2 = &apos;91&apos;, &apos;91&apos;</span><br><span class="line">tmp_res = [1,18,81,0]</span><br><span class="line">res = [1,8,2,8]</span><br><span class="line"></span><br><span class="line">最终返回 &quot;8281&quot;</span><br><span class="line"></span><br><span class="line">要注意最终返回头部可能会有‘0’，所以我们用lstrip去除一下</span><br></pre></td></tr></table></figure></p>
+<p>觉得这样写才是最容易理解的，看一个具体的例子:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">input: num1, num2 = &apos;91&apos;, &apos;91&apos;</span><br><span class="line">tmp_res = [1,18,81,0]</span><br><span class="line">res = [1,8,2,8]</span><br><span class="line"></span><br><span class="line">最终返回 &quot;8281&quot;</span><br><span class="line"></span><br><span class="line">要注意最终返回头部可能会有‘0’，所以我们用lstrip去除一下</span><br></pre></td></tr></table></figure></p>
 
       
     </div>
@@ -551,7 +551,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">160</span>
+                    <span class="site-state-item-count">159</span>
                     <span class="site-state-item-name">日志</span>
                   </a>
                 </div>
@@ -620,7 +620,9 @@
                     
                       
                     
-                    <span class="site-state-item-count">28</span>
+                      
+                    
+                    <span class="site-state-item-count">29</span>
                     <span class="site-state-item-name">分类</span>
                   </a>
                 </div>

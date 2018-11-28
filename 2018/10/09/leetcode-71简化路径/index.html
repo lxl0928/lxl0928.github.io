@@ -116,7 +116,7 @@
 <meta property="og:site_name" content="Timilong&#39;s blog">
 <meta property="og:description" content="给定一个文档 (Unix-style) 的完全路径，请进行路径简化。">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-11-27T03:30:00.891Z">
+<meta property="og:updated_time" content="2018-11-28T07:19:17.413Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="leetcode-71简化路径">
 <meta name="twitter:description" content="给定一个文档 (Unix-style) 的完全路径，请进行路径简化。">
@@ -206,7 +206,7 @@
   </div>
 
   <div class="site-nav-toggle">
-    <button aria-label="Toggle navigation bar">
+    <button aria-label="ナビゲーションバーの切り替え">
       <span class="btn-bar"></span>
       <span class="btn-bar"></span>
       <span class="btn-bar"></span>
@@ -366,9 +366,9 @@
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 
-                  <span class="post-meta-item-text">Edited on</span>
+                  <span class="post-meta-item-text">に編集されました</span>
                 
-                <time title="更新于：2018-11-27 03:30:00" itemprop="dateModified" datetime="2018-11-27T03:30:00Z">2018-11-27</time>
+                <time title="更新于：2018-11-28 07:19:17" itemprop="dateModified" datetime="2018-11-28T07:19:17Z">2018-11-28</time>
               
             
           </span>
@@ -422,10 +422,9 @@
 
       
         <h2 id="题目描述"><a href="#题目描述" class="headerlink" title="题目描述"></a>题目描述</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">给定一个文档 (Unix-style) 的完全路径，请进行路径简化。</span><br><span class="line"></span><br><span class="line">例如，</span><br><span class="line">path = &quot;/home/&quot;, =&gt; &quot;/home&quot;</span><br><span class="line">path = &quot;/a/./b/../../c/&quot;, =&gt; &quot;/c&quot;</span><br><span class="line"></span><br><span class="line">边界情况:</span><br><span class="line"></span><br><span class="line">你是否考虑了 路径 = &quot;/../&quot; 的情况？</span><br><span class="line">在这种情况下，你需返回 &quot;/&quot; 。</span><br><span class="line">此外，路径中也可能包含多个斜杠 &apos;/&apos; ，如 &quot;/home//foo/&quot; 。</span><br><span class="line">在这种情况下，你可忽略多余的斜杠，返回 &quot;/home/foo&quot; 。</span><br></pre></td></tr></table></figure>
-<h2 id="解题方案"><a href="#解题方案" class="headerlink" title="解题方案"></a>解题方案</h2><p>时间复杂度: O(N^2)<br>空间复杂度: O(1)</p>
-<p>非常简单的模拟题，利用一个栈来储存当前的路径。</p>
+<h2 id="解题方案"><a href="#解题方案" class="headerlink" title="解题方案"></a>解题方案</h2><p>时间复杂度: O(N^2)  空间复杂度: O(1)<br>非常简单的模拟题，利用一个栈来储存当前的路径。</p>
 <p>用 “/“ 将输入的全路径分割成多个部分，对于每一个部分循环处理：<br>如果为空或者 “.” 则忽略，如果是 “..”, 则出栈顶部元素（如果栈为空则忽略），其他情况直接压入栈即可。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">class Solution(object):</span><br><span class="line">    def simplifyPath(self, path):</span><br><span class="line">        &quot;&quot;&quot;</span><br><span class="line">        :type path: str</span><br><span class="line">        :rtype: str</span><br><span class="line">        &quot;&quot;&quot;</span><br><span class="line">        stack = []</span><br><span class="line">        for part in path.split(&quot;/&quot;):</span><br><span class="line">            if part and part != &quot;.&quot;: # 如果为空或者 &quot;.&quot; 则忽略</span><br><span class="line">                if part == &quot;..&quot;:</span><br><span class="line">                    if stack:</span><br><span class="line">                        stack.pop()</span><br><span class="line">                else:</span><br><span class="line">                    stack.append(part)</span><br><span class="line">        if not stack:</span><br><span class="line">            return &quot;/&quot;</span><br><span class="line">        else:</span><br><span class="line">            return &quot;/&quot; + &quot;/&quot;.join(stack)</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span><span class="params">(object)</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">simplifyPath</span><span class="params">(self, path)</span>:</span></span><br><span class="line">        <span class="string">"""</span></span><br><span class="line"><span class="string">        :type path: str</span></span><br><span class="line"><span class="string">        :rtype: str</span></span><br><span class="line"><span class="string">        """</span></span><br><span class="line">        stack = []</span><br><span class="line">        <span class="keyword">for</span> part <span class="keyword">in</span> path.split(<span class="string">"/"</span>):</span><br><span class="line">            <span class="keyword">if</span> part <span class="keyword">and</span> part != <span class="string">"."</span>: <span class="comment"># 如果为空或者 "." 则忽略</span></span><br><span class="line">                <span class="keyword">if</span> part == <span class="string">".."</span>:</span><br><span class="line">                    <span class="keyword">if</span> stack:</span><br><span class="line">                        stack.pop()</span><br><span class="line">                <span class="keyword">else</span>:</span><br><span class="line">                    stack.append(part)</span><br><span class="line">        <span class="keyword">if</span> <span class="keyword">not</span> stack:</span><br><span class="line">            <span class="keyword">return</span> <span class="string">"/"</span></span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            <span class="keyword">return</span> <span class="string">"/"</span> + <span class="string">"/"</span>.join(stack)</span><br></pre></td></tr></table></figure>
 
       
     </div>
@@ -541,7 +540,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">160</span>
+                    <span class="site-state-item-count">159</span>
                     <span class="site-state-item-name">日志</span>
                   </a>
                 </div>
@@ -610,7 +609,9 @@
                     
                       
                     
-                    <span class="site-state-item-count">28</span>
+                      
+                    
+                    <span class="site-state-item-count">29</span>
                     <span class="site-state-item-name">分类</span>
                   </a>
                 </div>

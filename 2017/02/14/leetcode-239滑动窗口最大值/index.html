@@ -108,18 +108,18 @@
 
 
 
-  <meta name="description" content="Description12345Description:    Given an array nums,     there is a sliding window of size k which is moving from the very left of the array to the very right.     You can only see the k numbers in th">
+  <meta name="description" content="leetcode上第239题，求滑动窗口最大值的题解。">
 <meta name="keywords" content="leetcode">
 <meta property="og:type" content="article">
 <meta property="og:title" content="leetcode-239滑动窗口最大值">
 <meta property="og:url" content="http://blog.timilong.com/2017/02/14/leetcode-239滑动窗口最大值/index.html">
 <meta property="og:site_name" content="Timilong&#39;s blog">
-<meta property="og:description" content="Description12345Description:    Given an array nums,     there is a sliding window of size k which is moving from the very left of the array to the very right.     You can only see the k numbers in th">
+<meta property="og:description" content="leetcode上第239题，求滑动窗口最大值的题解。">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-11-27T03:26:38.333Z">
+<meta property="og:updated_time" content="2018-11-28T07:23:28.379Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="leetcode-239滑动窗口最大值">
-<meta name="twitter:description" content="Description12345Description:    Given an array nums,     there is a sliding window of size k which is moving from the very left of the array to the very right.     You can only see the k numbers in th">
+<meta name="twitter:description" content="leetcode上第239题，求滑动窗口最大值的题解。">
 
 
 
@@ -206,7 +206,7 @@
   </div>
 
   <div class="site-nav-toggle">
-    <button aria-label="Toggle navigation bar">
+    <button aria-label="ナビゲーションバーの切り替え">
       <span class="btn-bar"></span>
       <span class="btn-bar"></span>
       <span class="btn-bar"></span>
@@ -366,9 +366,9 @@
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 
-                  <span class="post-meta-item-text">Edited on</span>
+                  <span class="post-meta-item-text">に編集されました</span>
                 
-                <time title="更新于：2018-11-27 03:26:38" itemprop="dateModified" datetime="2018-11-27T03:26:38Z">2018-11-27</time>
+                <time title="更新于：2018-11-28 07:23:28" itemprop="dateModified" datetime="2018-11-28T07:23:28Z">2018-11-28</time>
               
             
           </span>
@@ -405,6 +405,8 @@
           
 
           
+              <div class="post-description">leetcode上第239题，求滑动窗口最大值的题解。</div>
+          
 
         </div>
       </header>
@@ -421,7 +423,7 @@
       
         <h2 id="Description"><a href="#Description" class="headerlink" title="Description"></a>Description</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">Description:</span><br><span class="line">    Given an array nums, </span><br><span class="line">    there is a sliding window of size k which is moving from the very left of the array to the very right. </span><br><span class="line">    You can only see the k numbers in the window. </span><br><span class="line">    Each time the sliding window moves right by one position.</span><br></pre></td></tr></table></figure>
 <h2 id="Example"><a href="#Example" class="headerlink" title="Example"></a>Example</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">Example:</span><br><span class="line">    Given nums = [1,3,-1,-3,5,3,6,7], and k = 3.</span><br><span class="line"></span><br><span class="line">        Window position                Max</span><br><span class="line">        ---------------               -----</span><br><span class="line">        [1  3  -1] -3  5  3  6  7       3</span><br><span class="line">         1 [3  -1  -3] 5  3  6  7       3</span><br><span class="line">         1  3 [-1  -3  5] 3  6  7       5</span><br><span class="line">         1  3  -1 [-3  5  3] 6  7       5</span><br><span class="line">         1  3  -1  -3 [5  3  6] 7       6</span><br><span class="line">         1  3  -1  -3  5 [3  6  7]      7</span><br><span class="line"></span><br><span class="line">    Therefore, return the max sliding window as [3,3,5,5,6,7].</span><br></pre></td></tr></table></figure>
-<h2 id="Solution"><a href="#Solution" class="headerlink" title="Solution"></a>Solution</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">class Solution(object):</span><br><span class="line">    def maxSlidingWindow(self, nums, k):</span><br><span class="line">        &quot;&quot;&quot;</span><br><span class="line">        nums: &lt;List[int]&gt;</span><br><span class="line">        k: &lt;int&gt;</span><br><span class="line">        return: &lt;List[int]&gt;</span><br><span class="line">        &quot;&quot;&quot;</span><br><span class="line">        nums_length = len(nums)</span><br><span class="line">        count = nums_length - k + 1</span><br><span class="line">        res = []</span><br><span class="line">        if nums_length == 0:</span><br><span class="line">            return res</span><br><span class="line">        </span><br><span class="line">        for i in range(count):</span><br><span class="line">            tmp_list = nums[i:i+k]</span><br><span class="line">            res.append(max(tmp_list))</span><br><span class="line">        return res</span><br><span class="line"></span><br><span class="line">solution = Solution()</span><br><span class="line">nums = [1, 3, -1, -3, 5, 3, 6, 7]</span><br><span class="line">print(solution.maxSlidingWindow(nums, k=3))</span><br><span class="line">nums = [1, 2]</span><br><span class="line">print(solution.maxSlidingWindow(nums, k=1))</span><br></pre></td></tr></table></figure>
+<h2 id="Solution"><a href="#Solution" class="headerlink" title="Solution"></a>Solution</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span><span class="params">(object)</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">maxSlidingWindow</span><span class="params">(self, nums, k)</span>:</span></span><br><span class="line">        <span class="string">"""</span></span><br><span class="line"><span class="string">        nums: &lt;List[int]&gt;</span></span><br><span class="line"><span class="string">        k: &lt;int&gt;</span></span><br><span class="line"><span class="string">        return: &lt;List[int]&gt;</span></span><br><span class="line"><span class="string">        """</span></span><br><span class="line">        nums_length = len(nums)</span><br><span class="line">        count = nums_length - k + <span class="number">1</span></span><br><span class="line">        res = []</span><br><span class="line">        <span class="keyword">if</span> nums_length == <span class="number">0</span>:</span><br><span class="line">            <span class="keyword">return</span> res</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> range(count):</span><br><span class="line">            tmp_list = nums[i:i+k]</span><br><span class="line">            res.append(max(tmp_list))</span><br><span class="line">        <span class="keyword">return</span> res</span><br><span class="line"></span><br><span class="line">solution = Solution()</span><br><span class="line">nums = [<span class="number">1</span>, <span class="number">3</span>, <span class="number">-1</span>, <span class="number">-3</span>, <span class="number">5</span>, <span class="number">3</span>, <span class="number">6</span>, <span class="number">7</span>]</span><br><span class="line">print(solution.maxSlidingWindow(nums, k=<span class="number">3</span>))</span><br><span class="line">nums = [<span class="number">1</span>, <span class="number">2</span>]</span><br><span class="line">print(solution.maxSlidingWindow(nums, k=<span class="number">1</span>))</span><br></pre></td></tr></table></figure>
 
       
     </div>
@@ -537,7 +539,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">160</span>
+                    <span class="site-state-item-count">159</span>
                     <span class="site-state-item-name">日志</span>
                   </a>
                 </div>
@@ -606,7 +608,9 @@
                     
                       
                     
-                    <span class="site-state-item-count">28</span>
+                      
+                    
+                    <span class="site-state-item-count">29</span>
                     <span class="site-state-item-name">分类</span>
                   </a>
                 </div>
