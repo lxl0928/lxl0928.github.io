@@ -108,23 +108,23 @@
 
 
 
-  <meta name="description" content="Python访问DB的官方接口规范Python DB APIPython访问数据库的统一接口规范。官网 Python应用程序通过Python DB API即可完成对不同数据库的访问，对应用程序来说，只需切换少量代码即可实现。">
+  <meta name="description" content="python-MySQL数据库操作.">
 <meta name="keywords" content="python">
 <meta property="og:type" content="article">
 <meta property="og:title" content="python-MySQL数据库操作">
 <meta property="og:url" content="http://blog.timilong.com/2016/07/09/python-pymysql学习/index.html">
 <meta property="og:site_name" content="Timilong&#39;s blog">
-<meta property="og:description" content="Python访问DB的官方接口规范Python DB APIPython访问数据库的统一接口规范。官网 Python应用程序通过Python DB API即可完成对不同数据库的访问，对应用程序来说，只需切换少量代码即可实现。">
+<meta property="og:description" content="python-MySQL数据库操作.">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="http://qiniucdn.timilong.com/%E6%B7%B1%E5%BA%A6%E6%88%AA%E5%9B%BE20160709073935.png">
 <meta property="og:image" content="http://qiniucdn.timilong.com/%E6%B7%B1%E5%BA%A6%E6%88%AA%E5%9B%BE20160709075539.png">
 <meta property="og:image" content="http://qiniucdn.timilong.com/%E6%B7%B1%E5%BA%A6%E6%88%AA%E5%9B%BE20160709074444.png">
 <meta property="og:image" content="http://qiniucdn.timilong.com/%E6%B7%B1%E5%BA%A6%E6%88%AA%E5%9B%BE20160712114529.png">
 <meta property="og:image" content="http://qiniucdn.timilong.com/%E6%B7%B1%E5%BA%A6%E6%88%AA%E5%9B%BE20160712124117.png">
-<meta property="og:updated_time" content="2018-10-30T03:39:34.799Z">
+<meta property="og:updated_time" content="2018-12-02T08:35:58.806Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="python-MySQL数据库操作">
-<meta name="twitter:description" content="Python访问DB的官方接口规范Python DB APIPython访问数据库的统一接口规范。官网 Python应用程序通过Python DB API即可完成对不同数据库的访问，对应用程序来说，只需切换少量代码即可实现。">
+<meta name="twitter:description" content="python-MySQL数据库操作.">
 <meta name="twitter:image" content="http://qiniucdn.timilong.com/%E6%B7%B1%E5%BA%A6%E6%88%AA%E5%9B%BE20160709073935.png">
 
 
@@ -374,7 +374,7 @@
                 
                   <span class="post-meta-item-text">Edited on</span>
                 
-                <time title="更新于：2018-10-30 03:39:34" itemprop="dateModified" datetime="2018-10-30T03:39:34Z">2018-10-30</time>
+                <time title="更新于：2018-12-02 08:35:58" itemprop="dateModified" datetime="2018-12-02T08:35:58Z">2018-12-02</time>
               
             
           </span>
@@ -411,6 +411,8 @@
           
 
           
+              <div class="post-description">python-MySQL数据库操作.</div>
+          
 
         </div>
       </header>
@@ -427,7 +429,6 @@
       
         <h3 id="Python访问DB的官方接口规范"><a href="#Python访问DB的官方接口规范" class="headerlink" title="Python访问DB的官方接口规范"></a>Python访问DB的官方接口规范</h3><h4 id="Python-DB-API"><a href="#Python-DB-API" class="headerlink" title="Python DB API"></a>Python DB API</h4><p>Python访问数据库的统一接口规范。<br><a href="htttps://www.python.org/dev/peps/pep-0249" target="_blank" rel="noopener">官网</a></p>
 <p>Python应用程序通过Python DB API即可完成对不同数据库的访问，对应用程序来说，只需切换少量代码即可实现。</p>
-<a id="more"></a>
 <h4 id="Python-DB-API包含的内容："><a href="#Python-DB-API包含的内容：" class="headerlink" title="Python DB API包含的内容："></a>Python DB API包含的内容：</h4><p>Python程序———————————–&gt;数据库服务器<br>-数据库连接对象connection.(建立连接)<br>-数据库交互对象cursor(交互数据)<br>-数据库异常类exceptions(处理数据库操作过程中的事故)<br><img src="http://qiniucdn.timilong.com/%E6%B7%B1%E5%BA%A6%E6%88%AA%E5%9B%BE20160709073935.png" alt="python db api"></p>
 <h4 id="Python-DB-API访问数据库流程"><a href="#Python-DB-API访问数据库流程" class="headerlink" title="Python DB API访问数据库流程"></a>Python DB API访问数据库流程</h4><p>-开始<br>-创建connection<br>-获取cursor<br>-执行查询、执行命令、获取数据、处理数据<br>-关闭cursor<br>-关闭connection(网络资源，一直没有关闭会浪费应用程序和数据库服务器的资源)<br>-结束<br><img src="http://qiniucdn.timilong.com/%E6%B7%B1%E5%BA%A6%E6%88%AA%E5%9B%BE20160709075539.png" alt="访问流程"></p>
 <h3 id="Python开发DB程序的开发环境"><a href="#Python开发DB程序的开发环境" class="headerlink" title="Python开发DB程序的开发环境"></a>Python开发DB程序的开发环境</h3><p><img src="http://qiniucdn.timilong.com/%E6%B7%B1%E5%BA%A6%E6%88%AA%E5%9B%BE20160709074444.png" alt="windows 下的python开发环境"></p>
@@ -579,7 +580,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">159</span>
+                    <span class="site-state-item-count">154</span>
                     <span class="site-state-item-name">日志</span>
                   </a>
                 </div>
@@ -648,9 +649,7 @@
                     
                       
                     
-                      
-                    
-                    <span class="site-state-item-count">29</span>
+                    <span class="site-state-item-count">28</span>
                     <span class="site-state-item-name">分类</span>
                   </a>
                 </div>
@@ -731,13 +730,7 @@
                     
                       
                     
-                      
-                    
-                      
-                    
-                      
-                    
-                    <span class="site-state-item-count">37</span>
+                    <span class="site-state-item-count">34</span>
                     <span class="site-state-item-name">标签</span>
                   </a>
                 </div>

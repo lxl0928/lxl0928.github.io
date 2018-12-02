@@ -108,18 +108,18 @@
 
 
 
-  <meta name="description" content="测试环境： Windows 7 使用前请关闭电脑管家、安全卫士等安全软件 loadRunner使用入门loadRunner是一种预测行为和性能的负载测试工具。可适用于各种体系架构的自动负责测试，能预测系统行为并评估系统性能。 本篇教程以测试loadRunner自带的webTours网站为例。">
+  <meta name="description" content="loadRunner使用入门介绍.">
 <meta name="keywords" content="LoadRunner">
 <meta property="og:type" content="article">
 <meta property="og:title" content="loadRunner入门教程">
 <meta property="og:url" content="http://blog.timilong.com/2016/06/01/测试-loadRunner入门教程/index.html">
 <meta property="og:site_name" content="Timilong&#39;s blog">
-<meta property="og:description" content="测试环境： Windows 7 使用前请关闭电脑管家、安全卫士等安全软件 loadRunner使用入门loadRunner是一种预测行为和性能的负载测试工具。可适用于各种体系架构的自动负责测试，能预测系统行为并评估系统性能。 本篇教程以测试loadRunner自带的webTours网站为例。">
+<meta property="og:description" content="loadRunner使用入门介绍.">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-10-19T02:40:57.293Z">
+<meta property="og:updated_time" content="2018-12-02T08:06:48.683Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="loadRunner入门教程">
-<meta name="twitter:description" content="测试环境： Windows 7 使用前请关闭电脑管家、安全卫士等安全软件 loadRunner使用入门loadRunner是一种预测行为和性能的负载测试工具。可适用于各种体系架构的自动负责测试，能预测系统行为并评估系统性能。 本篇教程以测试loadRunner自带的webTours网站为例。">
+<meta name="twitter:description" content="loadRunner使用入门介绍.">
 
 
 
@@ -368,7 +368,7 @@
                 
                   <span class="post-meta-item-text">Edited on</span>
                 
-                <time title="更新于：2018-10-19 02:40:57" itemprop="dateModified" datetime="2018-10-19T02:40:57Z">2018-10-19</time>
+                <time title="更新于：2018-12-02 08:06:48" itemprop="dateModified" datetime="2018-12-02T08:06:48Z">2018-12-02</time>
               
             
           </span>
@@ -387,6 +387,8 @@
           
 
           
+              <div class="post-description">loadRunner使用入门介绍.</div>
+          
 
         </div>
       </header>
@@ -403,7 +405,7 @@
       
         <p>测试环境： Windows 7 使用前请关闭电脑管家、安全卫士等安全软件</p>
 <h3 id="loadRunner使用入门"><a href="#loadRunner使用入门" class="headerlink" title="loadRunner使用入门"></a>loadRunner使用入门</h3><p>loadRunner是一种预测行为和性能的负载测试工具。<br>可适用于各种体系架构的自动负责测试，能预测系统行为并评估系统性能。</p>
-<p>本篇教程以测试loadRunner自带的webTours网站为例。<br><a id="more"></a></p>
+<p>本篇教程以测试loadRunner自带的webTours网站为例。</p>
 <h3 id="1-启动loadRunner自带的webTours网站。"><a href="#1-启动loadRunner自带的webTours网站。" class="headerlink" title="1. 启动loadRunner自带的webTours网站。"></a>1. 启动loadRunner自带的webTours网站。</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">开始菜单-&gt;所有程序-&gt;HP-&gt;Samples-&gt;start the web tour server</span><br></pre></td></tr></table></figure>
 <p>启动后，在浏览器(默认是ie浏览器，google浏览器亲测有效，其它没有测过)输入以下网址访问:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">http://localhost:1080\webTours</span><br></pre></td></tr></table></figure></p>
 <h3 id="2-访问成功后，关闭浏览器，然后打开loadRunner-Virtual-UserGene-Generator"><a href="#2-访问成功后，关闭浏览器，然后打开loadRunner-Virtual-UserGene-Generator" class="headerlink" title="2. 访问成功后，关闭浏览器，然后打开loadRunner Virtual UserGene Generator:"></a>2. 访问成功后，关闭浏览器，然后打开loadRunner Virtual UserGene Generator:</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">1. 新建一个录制脚本，使用&quot;Web（http/html）&quot;进行创建，此时相当于选择的录制协议就是http协议，</span><br><span class="line">这个协议适合录制web的应用程序。</span><br><span class="line">2. 开始录制，点击开始录制按钮，点击后在弹出框“Url Address”中键入要录制网页的地址</span><br><span class="line">“http://localhost:1080\webTours”，点击确定。浏览器使用默认的IE浏览器。</span><br><span class="line">3. 接着，loadRunner会自动打开浏览器，跳转到你指定的网页。</span><br><span class="line">4. 进行录制脚本的工作，可以选择sign up注册用户然后自动登录订票，</span><br><span class="line">也可以使用默认账户:jojo, 密码:bean登录，开始订票，一步一步操作。</span><br><span class="line">5. 订票完成后，退出登录，然后点击loadRunner控制台的停止按钮。</span><br><span class="line">6. 等待loadRunner自动生成脚本语言。</span><br></pre></td></tr></table></figure>
@@ -525,7 +527,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">159</span>
+                    <span class="site-state-item-count">154</span>
                     <span class="site-state-item-name">日志</span>
                   </a>
                 </div>
@@ -594,9 +596,7 @@
                     
                       
                     
-                      
-                    
-                    <span class="site-state-item-count">29</span>
+                    <span class="site-state-item-count">28</span>
                     <span class="site-state-item-name">分类</span>
                   </a>
                 </div>
@@ -677,13 +677,7 @@
                     
                       
                     
-                      
-                    
-                      
-                    
-                      
-                    
-                    <span class="site-state-item-count">37</span>
+                    <span class="site-state-item-count">34</span>
                     <span class="site-state-item-name">标签</span>
                   </a>
                 </div>

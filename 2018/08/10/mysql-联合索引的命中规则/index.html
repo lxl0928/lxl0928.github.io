@@ -108,18 +108,18 @@
 
 
 
-  <meta name="description" content="联合索引优点12345查询语句 SELECT T.* FROM T WHERE T.c1=1 AND T.c3=2;  涉及到两列，这个时候我们一般采用一个联合索引(c1, c3); 而不用两个单列索引，这是因为一条查询语句往往应为mysql优化器的关系只用一个索引就算有两个索引，也只用一个；在只用一个的基础之上，联合索引会比单列索引更快；">
+  <meta name="description" content="mysql-联合索引的命中规则.">
 <meta name="keywords" content="MySQL">
 <meta property="og:type" content="article">
 <meta property="og:title" content="mysql-联合索引的命中规则">
 <meta property="og:url" content="http://blog.timilong.com/2018/08/10/mysql-联合索引的命中规则/index.html">
 <meta property="og:site_name" content="Timilong&#39;s blog">
-<meta property="og:description" content="联合索引优点12345查询语句 SELECT T.* FROM T WHERE T.c1=1 AND T.c3=2;  涉及到两列，这个时候我们一般采用一个联合索引(c1, c3); 而不用两个单列索引，这是因为一条查询语句往往应为mysql优化器的关系只用一个索引就算有两个索引，也只用一个；在只用一个的基础之上，联合索引会比单列索引更快；">
+<meta property="og:description" content="mysql-联合索引的命中规则.">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-10-19T02:40:57.288Z">
+<meta property="og:updated_time" content="2018-12-02T08:23:49.842Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="mysql-联合索引的命中规则">
-<meta name="twitter:description" content="联合索引优点12345查询语句 SELECT T.* FROM T WHERE T.c1=1 AND T.c3=2;  涉及到两列，这个时候我们一般采用一个联合索引(c1, c3); 而不用两个单列索引，这是因为一条查询语句往往应为mysql优化器的关系只用一个索引就算有两个索引，也只用一个；在只用一个的基础之上，联合索引会比单列索引更快；">
+<meta name="twitter:description" content="mysql-联合索引的命中规则.">
 
 
 
@@ -368,7 +368,7 @@
                 
                   <span class="post-meta-item-text">Edited on</span>
                 
-                <time title="更新于：2018-10-19 02:40:57" itemprop="dateModified" datetime="2018-10-19T02:40:57Z">2018-10-19</time>
+                <time title="更新于：2018-12-02 08:23:49" itemprop="dateModified" datetime="2018-12-02T08:23:49Z">2018-12-02</time>
               
             
           </span>
@@ -404,6 +404,8 @@
 
           
 
+          
+              <div class="post-description">mysql-联合索引的命中规则.</div>
           
 
         </div>
@@ -541,7 +543,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">159</span>
+                    <span class="site-state-item-count">154</span>
                     <span class="site-state-item-name">日志</span>
                   </a>
                 </div>
@@ -610,9 +612,7 @@
                     
                       
                     
-                      
-                    
-                    <span class="site-state-item-count">29</span>
+                    <span class="site-state-item-count">28</span>
                     <span class="site-state-item-name">分类</span>
                   </a>
                 </div>
@@ -693,13 +693,7 @@
                     
                       
                     
-                      
-                    
-                      
-                    
-                      
-                    
-                    <span class="site-state-item-count">37</span>
+                    <span class="site-state-item-count">34</span>
                     <span class="site-state-item-name">标签</span>
                   </a>
                 </div>
