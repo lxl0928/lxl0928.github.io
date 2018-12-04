@@ -108,25 +108,25 @@
 
 
 
-  <meta name="description" content="59ca2a45938d69002054a607 这个24位的字符串，虽然看起来很长，也很难理解，但实际上它是由一组十六进制的字符构成，每个字节两位的十六进制数字，总共用了12字节的存储空间。相比MYSQL int类型的4个字节，MongoDB确实多出了很多字节。不过按照现在的存储设备，多出来的字节应该不会成为什么瓶颈。不过MongoDB的这种设计，体现着空间换时间的思想.">
-<meta name="keywords" content="MongoDB">
+  <meta name="description" content="MySQL技术内核相关文章收集.">
+<meta name="keywords" content="MySQL">
 <meta property="og:type" content="article">
-<meta property="og:title" content="mongodb-ObjectID浅析">
-<meta property="og:url" content="http://blog.timilong.com/2017/06/12/mongodb-ObjectID浅析/index.html">
+<meta property="og:title" content="mysql-关于MySQL内核-一定要知道的-转载">
+<meta property="og:url" content="http://blog.timilong.com/2018/12/04/mysql-关于MySQL内核-一定要知道的-转载/index.html">
 <meta property="og:site_name" content="Timilong&#39;s blog">
-<meta property="og:description" content="59ca2a45938d69002054a607 这个24位的字符串，虽然看起来很长，也很难理解，但实际上它是由一组十六进制的字符构成，每个字节两位的十六进制数字，总共用了12字节的存储空间。相比MYSQL int类型的4个字节，MongoDB确实多出了很多字节。不过按照现在的存储设备，多出来的字节应该不会成为什么瓶颈。不过MongoDB的这种设计，体现着空间换时间的思想.">
+<meta property="og:description" content="MySQL技术内核相关文章收集.">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-12-02T08:26:24.078Z">
+<meta property="og:updated_time" content="2018-12-04T03:11:45.302Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="mongodb-ObjectID浅析">
-<meta name="twitter:description" content="59ca2a45938d69002054a607 这个24位的字符串，虽然看起来很长，也很难理解，但实际上它是由一组十六进制的字符构成，每个字节两位的十六进制数字，总共用了12字节的存储空间。相比MYSQL int类型的4个字节，MongoDB确实多出了很多字节。不过按照现在的存储设备，多出来的字节应该不会成为什么瓶颈。不过MongoDB的这种设计，体现着空间换时间的思想.">
+<meta name="twitter:title" content="mysql-关于MySQL内核-一定要知道的-转载">
+<meta name="twitter:description" content="MySQL技术内核相关文章收集.">
 
 
 
 
 
 
-  <link rel="canonical" href="http://blog.timilong.com/2017/06/12/mongodb-ObjectID浅析/"/>
+  <link rel="canonical" href="http://blog.timilong.com/2018/12/04/mysql-关于MySQL内核-一定要知道的-转载/"/>
 
 
 
@@ -136,7 +136,7 @@
   };
 </script>
 
-  <title>mongodb-ObjectID浅析 | Timilong's blog</title>
+  <title>mysql-关于MySQL内核-一定要知道的-转载 | Timilong's blog</title>
   
 
 
@@ -309,7 +309,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://blog.timilong.com/2017/06/12/mongodb-ObjectID浅析/">
+    <link itemprop="mainEntityOfPage" href="http://blog.timilong.com/2018/12/04/mysql-关于MySQL内核-一定要知道的-转载/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="博主">
@@ -326,7 +326,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">mongodb-ObjectID浅析
+          <h1 class="post-title" itemprop="name headline">mysql-关于MySQL内核-一定要知道的-转载
               
             
           </h1>
@@ -351,24 +351,12 @@
                 
               
 
-              <time title="创建于：2017-06-12 11:57:10" itemprop="dateCreated datePublished" datetime="2017-06-12T11:57:10Z">2017-06-12</time>
+              <time title="创建于：2018-12-04 10:56:46 / 更新于：03:11:45" itemprop="dateCreated datePublished" datetime="2018-12-04T10:56:46Z">2018-12-04</time>
             
 
             
               
 
-              
-                
-                <span class="post-meta-divider">|</span>
-                
-
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">Edited on</span>
-                
-                <time title="更新于：2018-12-02 08:26:24" itemprop="dateModified" datetime="2018-12-02T08:26:24Z">2018-12-02</time>
               
             
           </span>
@@ -385,7 +373,7 @@
                 <span class="post-meta-item-text">分类于</span>
               
               
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/MongoDB/" itemprop="url" rel="index"><span itemprop="name">MongoDB</span></a></span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/MySQL/" itemprop="url" rel="index"><span itemprop="name">MySQL</span></a></span>
 
                 
                 
@@ -405,7 +393,7 @@
           
 
           
-              <div class="post-description">59ca2a45938d69002054a607 这个24位的字符串，虽然看起来很长，也很难理解，但实际上它是由一组十六进制的字符构成，每个字节两位的十六进制数字，总共用了12字节的存储空间。相比MYSQL int类型的4个字节，MongoDB确实多出了很多字节。不过按照现在的存储设备，多出来的字节应该不会成为什么瓶颈。不过MongoDB的这种设计，体现着空间换时间的思想.</div>
+              <div class="post-description">MySQL技术内核相关文章收集.</div>
           
 
         </div>
@@ -422,19 +410,73 @@
 
       
         <blockquote>
-<p>参考: <a href="https://docs.mongodb.com/manual/reference/bson-types/#objectid" target="_blank" rel="noopener">https://docs.mongodb.com/manual/reference/bson-types/#objectid</a></p>
+<p>转载自: 微信公众号，<a href="https://mp.weixin.qq.com/s/tmkRAmc1M_Y23ynduBeP3Q" target="_blank" rel="noopener">架构师之路</a></p>
 </blockquote>
-<h3 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h3><p>“59ca2a45938d69002054a607”这个24位的字符串，虽然看起来很长，也很难理解，但实际上它是由一组十六进制的字符构成，每个字节两位的十六进制数字，总共用了12字节的存储空间。相比MYSQL int类型的4个字节，MongoDB确实多出了很多字节。不过按照现在的存储设备，多出来的字节应该不会成为什么瓶颈。不过MongoDB的这种设计，体现着空间换时间的思想。</p>
-<p>其实，这24位字符串可以拆分成四个部分:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&quot;59ca2a45938d69002054a607&quot;</span><br><span class="line"></span><br><span class="line">Time: &quot;59ca2a45&quot;</span><br><span class="line">Mac: &quot;938d69&quot;</span><br><span class="line">Pid: &quot;0020&quot;</span><br><span class="line">Inc: &quot;54a607&quot;</span><br></pre></td></tr></table></figure></p>
-<h3 id="Time"><a href="#Time" class="headerlink" title="Time"></a>Time</h3><p>时间戳。将刚才生成的objectid的前4位进行提取”59ca2a45”，然后按照十六进制转为十进制，变为”1506421317”，这个数字就是一个时间戳。通过时间戳的转换，就成了易看清的时间格式。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">&gt;&gt;&gt; int(&quot;59ca2a45&quot;, 16)</span><br><span class="line">1506421317</span><br><span class="line"></span><br><span class="line">&gt;&gt;&gt; import time</span><br><span class="line">&gt;&gt;&gt; time.localtime(1506421317)</span><br><span class="line">time.struct_time(tm_year=2017, tm_mon=9, tm_mday=26, tm_hour=18, tm_min=21, tm_sec=57, tm_wday=1, tm_yday=269, tm_isdst=0)</span><br><span class="line"></span><br><span class="line">&gt;&gt;&gt;</span><br></pre></td></tr></table></figure></p>
-<h3 id="Machine"><a href="#Machine" class="headerlink" title="Machine"></a>Machine</h3><p>机器。接下来的三个字节就是”938d69”，这三个字节是所在主机的唯一标识符，一般是机器主机名的散列值，这样就确保了不同主机生成不同的机器hash值，确保在分布式中不造成冲突，这也就是在同一台机器生成的objectId中间的字符串都是一模一样的原因。</p>
-<h3 id="Pid"><a href="#Pid" class="headerlink" title="Pid"></a>Pid</h3><p>进程ID。上面的Machine是为确保在不同机器产生的objectId不冲突，而pid就是为了在同一台机器不同的mongodb进程产生了objectId不冲突，接下来的”0020”两位就是产生objectId的进程标识符。</p>
-<h3 id="Inc"><a href="#Inc" class="headerlink" title="Inc"></a>Inc</h3><p>自增计数器。前面的九个字节是保证了一秒内不同机器不同进程生成objectId不冲突，这后面的三个字节”54a607”是一个自动增加的计数器。<br>用来确保在同一秒内产生的objectId也不会发现冲突，允许256的3次方等于16777216条记录的唯一性。</p>
-<h3 id="小结"><a href="#小结" class="headerlink" title="小结"></a>小结</h3><p>总的来看，objectId的前4个字节时间戳，记录了文档创建的时间；</p>
-<p>接下来3个字节代表了所在主机的唯一标识符，确定了不同主机间产生不同的objectId；</p>
-<p>后2个字节的进程id，决定了在同一台机器下，不同mongodb进程产生不同的objectId；</p>
-<p>最后通过3个字节的自增计数器，确保同一秒内产生objectId的唯一性。</p>
-<p>ObjectId的这个主键生成策略，很好地解决了在分布式环境下高并发情况主键唯一性问题，值得学习借鉴。</p>
+<h2 id="《InnoDB，为何并发如此之高？》"><a href="#《InnoDB，为何并发如此之高？》" class="headerlink" title="《InnoDB，为何并发如此之高？》"></a><a href="http://mp.weixin.qq.com/s?__biz=MjM5ODYxMDA5OQ==&amp;mid=2651961444&amp;idx=1&amp;sn=830a93eb74ca484cbcedb06e485f611e&amp;chksm=bd2d0db88a5a84ae5865cd05f8c7899153d16ec7e7976f06033f4fbfbecc2fdee6e8b89bb17b&amp;scene=21#wechat_redirect" target="_blank" rel="noopener">《InnoDB，为何并发如此之高？》</a></h2><p>文章介绍了：<br>（1）什么是并发控制；</p>
+<p>（2）并发控制的常见方法：锁，数据多版本；</p>
+<p>（3）redo，undo，回滚段的实践；</p>
+<p>（4）InnoDB如何利用回滚段实现MVCC，实现快照读。</p>
+<p>结论是，<b>快照读(Snapshot Read)</b>，这种不加锁的读，是InnoDB高并发的核心原因之一。</p>
+<p>番外篇：<a href="http://mp.weixin.qq.com/s?__biz=MjM5ODYxMDA5OQ==&amp;mid=2651961513&amp;idx=1&amp;sn=e955133cbd87c652d9bcbccad608190e&amp;chksm=bd2d0d758a5a84632046e7c692064b415621ae329426adf77ae03e4a0cc55d662d6d4c543019&amp;scene=21#wechat_redirect" target="_blank" rel="noopener">《快照读，在RR和RC下的差异》</a></p>
+<p>快照读，在可重复读与读提交两种事务隔离级别下，有微小的差异，文章通过案例做了简单叙述。</p>
+<h2 id="InnoDB的七种锁"><a href="#InnoDB的七种锁" class="headerlink" title="InnoDB的七种锁"></a>InnoDB的七种锁</h2><p>先从一个有意思的案例，引出了锁的话题。</p>
+<p>假设有数据表：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">t(id int PK, name);</span><br></pre></td></tr></table></figure></p>
+<p>目前的记录是：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">10, shenjian</span><br><span class="line"></span><br><span class="line">20, zhangsan</span><br><span class="line"></span><br><span class="line">30, lisi</span><br></pre></td></tr></table></figure></p>
+<p>事务A先执行，并且处于未提交状态：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">delete from t where id=40;</span><br></pre></td></tr></table></figure></p>
+<p>事务A想要<b>删除一条不存在的记录</b>。</p>
+<p>事务B后执行：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">insert into t values(40, ‘c’);</span><br></pre></td></tr></table></figure></p>
+<p>事务B想要插入一条主键不冲突的记录。</p>
+<p><b>问题1</b>：事务B是否阻塞？</p>
+<p><b>问题2</b>：如果事务B阻塞，锁如何加在一条不存在的记录上呢？</p>
+<p><b>问题3</b>：事务的隔离级别，索引类型，是否对问题1和问题2有影响呢？</p>
+<p>接下来的几篇文章详细的介绍了InnoDB内核中的七种锁。</p>
+<p><a href="http://mp.weixin.qq.com/s?__biz=MjM5ODYxMDA5OQ==&amp;mid=2651961455&amp;idx=1&amp;sn=4c26a836cff889ff749a1756df010e0e&amp;chksm=bd2d0db38a5a84a53db91e97c7be6295185abffa5d7d1e88fd6b8e1abb3716ee9748b88858e2&amp;scene=21#wechat_redirect" target="_blank" rel="noopener">《InnoDB插入自增列，是表锁吗？》</a></p>
+<p>这一篇，介绍了InnoDB内核的第一种锁，自增锁（Auto-inc Locks）。</p>
+<p><a href="http://mp.weixin.qq.com/s?__biz=MjM5ODYxMDA5OQ==&amp;mid=2651961461&amp;idx=1&amp;sn=b73293c71d8718256e162be6240797ef&amp;chksm=bd2d0da98a5a84bfe23f0327694dbda2f96677aa91fcfc1c8a5b96c8a6701bccf2995725899a&amp;scene=21#wechat_redirect" target="_blank" rel="noopener">《InnoDB并发插入，会不会互斥？》</a></p>
+<p>这一篇，介绍了InnoDB内核的三种锁：</p>
+<ul>
+<li><p>共享/排他锁（Shared and Exclusive Locks）</p>
+</li>
+<li><p>意向锁（Intention Locks）</p>
+</li>
+<li><p>插入意向锁（Insert Intention Locks）</p>
+</li>
+</ul>
+<p><a href="http://mp.weixin.qq.com/s?__biz=MjM5ODYxMDA5OQ==&amp;mid=2651961471&amp;idx=1&amp;sn=da257b4f77ac464d5119b915b409ba9c&amp;chksm=bd2d0da38a5a84b5fc1417667fe123f2fbd2d7610b89ace8e97e3b9f28b794ad147c1290ceea&amp;scene=21#wechat_redirect" target="_blank" rel="noopener">《InnoDB，select为何会阻塞insert？》</a></p>
+<p>这一篇，介绍了InnoDB内核最有意思的三种锁：</p>
+<ul>
+<li><p>记录锁（Record Locks）</p>
+</li>
+<li><p>间隙锁（Gap Locks）</p>
+</li>
+<li><p>临键锁（Next-Key Locks）</p>
+</li>
+</ul>
+<p>这几篇文章，有大量的案例，相信大家会有收获。</p>
+<h2 id="索引到底是怎么实现的？"><a href="#索引到底是怎么实现的？" class="headerlink" title="索引到底是怎么实现的？"></a>索引到底是怎么实现的？</h2><p>这两篇文章很重要，讲解MySQL索引底层实现，也是阅读量最高的几篇之一。</p>
+<p><a href="http://mp.weixin.qq.com/s?__biz=MjM5ODYxMDA5OQ==&amp;mid=2651961486&amp;idx=1&amp;sn=b319a87f87797d5d662ab4715666657f&amp;chksm=bd2d0d528a5a84446fb88da7590e6d4e5ad06cfebb5cb57a83cf75056007ba29515c85b9a24c&amp;scene=21#wechat_redirect" target="_blank" rel="noopener">《数据库索引，到底是什么做的？》</a></p>
+<p>这一篇，介绍了哈希索引，树索引，数据预读/局部性原理，B+树的优化思路。</p>
+<p><a href="http://mp.weixin.qq.com/s?__biz=MjM5ODYxMDA5OQ==&amp;mid=2651961494&amp;idx=1&amp;sn=34f1874c1e36c2bc8ab9f74af6546ec5&amp;chksm=bd2d0d4a8a5a845c566006efce0831e610604a43279aab03e0a6dde9422b63944e908fcc6c05&amp;scene=21#wechat_redirect" target="_blank" rel="noopener">《MyISAM与InnoDB的索引差异究竟是啥？》</a></p>
+<p>在上一篇基础之上，用图例讲述了MyISAM与InnoDB的索引差异与实践。</p>
+<h2 id="《InnoDB如何巧妙实现，事务的4种隔离级别？》"><a href="#《InnoDB如何巧妙实现，事务的4种隔离级别？》" class="headerlink" title="《InnoDB如何巧妙实现，事务的4种隔离级别？》"></a><a href="http://mp.weixin.qq.com/s?__biz=MjM5ODYxMDA5OQ==&amp;mid=2651961498&amp;idx=1&amp;sn=058097f882ff9d32f5cdf7922644d083&amp;chksm=bd2d0d468a5a845026b7d2c211330a6bc7e9ebdaa92f8060265f60ca0b166f8957cbf3b0182c&amp;scene=21#wechat_redirect" target="_blank" rel="noopener">《InnoDB如何巧妙实现，事务的4种隔离级别？》</a></h2><p>聊MySQL，聊锁，聊事务，一定逃不开<b>事务的隔离级别</b>，本文简述了读未提交，读提交，可重复读，串行化的巧妙实现。</p>
+<h2 id="《别废话，各种SQL到底加了什么锁？》"><a href="#《别废话，各种SQL到底加了什么锁？》" class="headerlink" title="《别废话，各种SQL到底加了什么锁？》"></a><a href="http://mp.weixin.qq.com/s?__biz=MjM5ODYxMDA5OQ==&amp;mid=2651961508&amp;idx=1&amp;sn=9f31a95e5b8ec16fa0edc7de6087d2a1&amp;chksm=bd2d0d788a5a846e3bf16d300fb9723047bd109fd22682c39bdf7ed4e77b167e333460f6987c&amp;scene=21#wechat_redirect" target="_blank" rel="noopener">《别废话，各种SQL到底加了什么锁？》</a></h2><p>这是一篇直接给结论的文章：</p>
+<ul>
+<li><p>普通select</p>
+</li>
+<li><p>加锁select</p>
+</li>
+<li><p>update与delete</p>
+</li>
+<li><p>insert</p>
+</li>
+</ul>
+<p>各类SQL语句分别加了什么锁？</p>
+<h2 id="《超赞，InnoDB调试死锁的方法！》"><a href="#《超赞，InnoDB调试死锁的方法！》" class="headerlink" title="《超赞，InnoDB调试死锁的方法！》"></a><a href="http://mp.weixin.qq.com/s?__biz=MjM5ODYxMDA5OQ==&amp;mid=2651961535&amp;idx=1&amp;sn=b62e9d71836ac5cf2d3cedf69e1ef395&amp;chksm=bd2d0d638a5a84750adfc39d7e177a63330d6bde0f56600764b2d79e0fb9d96ad69e26e19ff1&amp;scene=21#wechat_redirect" target="_blank" rel="noopener">《超赞，InnoDB调试死锁的方法！》</a></h2><p>死锁的复现和调试都是很困难的，本文通过几个案例，分享了复现与调试并发事务+死锁的方法，大家一定要动起手来，这样印象才会更加深刻。</p>
+<h2 id="《MySQL不为人知的主键与唯一索引》"><a href="#《MySQL不为人知的主键与唯一索引》" class="headerlink" title="《MySQL不为人知的主键与唯一索引》"></a><a href="http://mp.weixin.qq.com/s?__biz=MjM5ODYxMDA5OQ==&amp;mid=2651961550&amp;idx=1&amp;sn=8c6de40ae8ac8a52095071fe0ff0fe03&amp;chksm=bd2d0d128a5a8404733b0d6835c38c8c89a292af6dfdcb77da6b73cc2a2122f0f2571bc32428&amp;scene=21#wechat_redirect" target="_blank" rel="noopener">《MySQL不为人知的主键与唯一索引》</a></h2><p>本文分享了MySQL中最常见的两类约束：主键与唯一索引约束，并细聊了这两类约束在InnoDB与MyISAM上的差异，有个MyISAM大坑，一定要注意绕过。</p>
+<h2 id="其他"><a href="#其他" class="headerlink" title="其他"></a>其他</h2><p><a href="http://mp.weixin.qq.com/s?__biz=MjM5ODYxMDA5OQ==&amp;mid=2651961428&amp;idx=1&amp;sn=31a9eb967941d888fbd4bb2112e9602b&amp;chksm=bd2d0d888a5a849e7ebaa7756a8bc1b3d4e2f493f3a76383fc80f7e9ce7657e4ed2f6c01777d&amp;scene=21#wechat_redirect" target="_blank" rel="noopener">《InnoDB的五项最佳实践，知其所以然》</a><br>这是一篇聊InnoDB实践的文章：关于count(*)，关于全文索引，关于事务，关于外键，关于行锁与表锁，不仅会使用，还要知其所以然。</p>
+<p><a href="http://mp.weixin.qq.com/s?__biz=MjM5ODYxMDA5OQ==&amp;mid=2651961448&amp;idx=1&amp;sn=b1be68798cfcb4511d62853d51b1ad12&amp;chksm=bd2d0db48a5a84a27d098e3387d60c277f635d4d5ea6c3e0ad70b94a2151a6cc62ae65ddc365&amp;scene=21#wechat_redirect" target="_blank" rel="noopener">《MySQL5.6，InnoDB的一些新特性》</a></p>
+<p>MySQL5.6，介绍了InnoDB的一些新特性，例如：居然能够支持memcached插件了，居然能把InnoDB表放在DVD或者CD里，是不是有点意思？</p>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p><a href="http://mp.weixin.qq.com/s?__biz=MjM5ODYxMDA5OQ==&amp;mid=2651960945&amp;idx=1&amp;sn=d08f33c5f317fee8956252da8e0236b6&amp;chksm=bd2d03ad8a5a8abb0370b826b7384a4095a5ed36238f0911d102b0ceee8e5d2fbe3bc80c56d9&amp;scene=21#wechat_redirect" target="_blank" rel="noopener">《架构师之路17年精选80篇》</a></p>
 
       
     </div>
@@ -455,7 +497,7 @@
       
         <div class="post-tags">
           
-            <a href="/tags/MongoDB/" rel="tag"># MongoDB</a>
+            <a href="/tags/MySQL/" rel="tag"># MySQL</a>
           
         </div>
       
@@ -468,8 +510,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2017/06/07/linux-sed命令/" rel="next" title="Linux-sed命令">
-                <i class="fa fa-chevron-left"></i> Linux-sed命令
+              <a href="/2018/12/04/mysql-InnoDB并发如此高-原因竟然在这-转载/" rel="next" title="mysql-InnoDB并发如此高-原因竟然在这-转载">
+                <i class="fa fa-chevron-left"></i> mysql-InnoDB并发如此高-原因竟然在这-转载
               </a>
             
           </div>
@@ -477,10 +519,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2017/06/13/leetcode-264丑数2/" rel="prev" title="leetcode-264丑数2">
-                leetcode-264丑数2 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -736,7 +774,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#简介"><span class="nav-number">1.</span> <span class="nav-text">简介</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Time"><span class="nav-number">2.</span> <span class="nav-text">Time</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Machine"><span class="nav-number">3.</span> <span class="nav-text">Machine</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Pid"><span class="nav-number">4.</span> <span class="nav-text">Pid</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Inc"><span class="nav-number">5.</span> <span class="nav-text">Inc</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#小结"><span class="nav-number">6.</span> <span class="nav-text">小结</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#《InnoDB，为何并发如此之高？》"><span class="nav-number">1.</span> <span class="nav-text">《InnoDB，为何并发如此之高？》</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#InnoDB的七种锁"><span class="nav-number">2.</span> <span class="nav-text">InnoDB的七种锁</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#索引到底是怎么实现的？"><span class="nav-number">3.</span> <span class="nav-text">索引到底是怎么实现的？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#《InnoDB如何巧妙实现，事务的4种隔离级别？》"><span class="nav-number">4.</span> <span class="nav-text">《InnoDB如何巧妙实现，事务的4种隔离级别？》</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#《别废话，各种SQL到底加了什么锁？》"><span class="nav-number">5.</span> <span class="nav-text">《别废话，各种SQL到底加了什么锁？》</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#《超赞，InnoDB调试死锁的方法！》"><span class="nav-number">6.</span> <span class="nav-text">《超赞，InnoDB调试死锁的方法！》</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#《MySQL不为人知的主键与唯一索引》"><span class="nav-number">7.</span> <span class="nav-text">《MySQL不为人知的主键与唯一索引》</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#其他"><span class="nav-number">8.</span> <span class="nav-text">其他</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#总结"><span class="nav-number">9.</span> <span class="nav-text">总结</span></a></li></ol></div>
             
 
           </div>
