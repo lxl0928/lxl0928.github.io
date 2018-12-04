@@ -116,14 +116,15 @@
 <meta property="og:site_name" content="Timilong&#39;s blog">
 <meta property="og:description" content="fork 调用将生成一个子进程，所以这个函数会在父子进程同时返回。在父进程的返回结果是一个整数值，这个值是子进程的进程号，父进程可以使用该进程号来控制子进程的运行。fork 在子进程的返回结果是零。如果 fork 返回值小于零，一般意味着操作系统资源不足，无法创建进程。">
 <meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="http://qiniucdn.timilong.com/1543735454132.jpg">
 <meta property="og:image" content="https://user-gold-cdn.xitu.io/2018/5/16/163686aa96c93a39?imageView2/0/w/1280/h/960/format/webp/ignore-error/1">
 <meta property="og:image" content="https://user-gold-cdn.xitu.io/2018/7/10/16482e1557af155e?imageView2/0/w/1280/h/960/format/webp/ignore-error/1">
 <meta property="og:image" content="https://user-gold-cdn.xitu.io/2018/7/10/16482e6f7ae7ce4e?imageView2/0/w/1280/h/960/format/webp/ignore-error/1">
-<meta property="og:updated_time" content="2018-12-02T08:12:59.510Z">
+<meta property="og:updated_time" content="2018-12-04T06:42:41.553Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="RPC-10多进程同步模型">
 <meta name="twitter:description" content="fork 调用将生成一个子进程，所以这个函数会在父子进程同时返回。在父进程的返回结果是一个整数值，这个值是子进程的进程号，父进程可以使用该进程号来控制子进程的运行。fork 在子进程的返回结果是零。如果 fork 返回值小于零，一般意味着操作系统资源不足，无法创建进程。">
-<meta name="twitter:image" content="https://user-gold-cdn.xitu.io/2018/5/16/163686aa96c93a39?imageView2/0/w/1280/h/960/format/webp/ignore-error/1">
+<meta name="twitter:image" content="http://qiniucdn.timilong.com/1543735454132.jpg">
 
 
 
@@ -372,7 +373,7 @@
                 
                   <span class="post-meta-item-text">Edited on</span>
                 
-                <time title="更新于：2018-12-02 08:12:59" itemprop="dateModified" datetime="2018-12-02T08:12:59Z">2018-12-02</time>
+                <time title="更新于：2018-12-04 06:42:41" itemprop="dateModified" datetime="2018-12-04T06:42:41Z">2018-12-04</time>
               
             
           </span>
@@ -425,7 +426,8 @@
       
 
       
-        <blockquote>
+        <p><img src="http://qiniucdn.timilong.com/1543735454132.jpg" alt="tu"></p>
+<blockquote>
 <p>转载自: 掘金，<a href="https://juejin.im/book/5af56a3c518825426642e004" target="_blank" rel="noopener">深入理解RPC: 基于Python自建分布式高并发RPC服务</a></p>
 </blockquote>
 <h3 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h3><p>上节我们完成了一个简单的多线程服务器，可以并发处理多个客户端连接。但是 Python 里多线程使用的并不常见，因为 Python 的 GIL 致使单个进程只能占满一个 CPU 核心，多线程并不能充分利用多核的优势。所以多数 Python 服务器推荐使用多进程模型。我们将使用 Python 内置的 os.fork() 创建子进程。</p>
@@ -559,7 +561,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">155</span>
+                    <span class="site-state-item-count">151</span>
                     <span class="site-state-item-name">日志</span>
                   </a>
                 </div>
@@ -628,7 +630,7 @@
                     
                       
                     
-                    <span class="site-state-item-count">28</span>
+                    <span class="site-state-item-count">26</span>
                     <span class="site-state-item-name">分类</span>
                   </a>
                 </div>
@@ -709,7 +711,7 @@
                     
                       
                     
-                    <span class="site-state-item-count">34</span>
+                    <span class="site-state-item-count">33</span>
                     <span class="site-state-item-name">标签</span>
                   </a>
                 </div>

@@ -116,10 +116,12 @@
 <meta property="og:site_name" content="Timilong&#39;s blog">
 <meta property="og:description" content="leetcode第257题，二叉树的所有路径，题解。">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-11-28T07:25:23.442Z">
+<meta property="og:image" content="http://qiniucdn.timilong.com/1543288434710.jpg">
+<meta property="og:updated_time" content="2018-12-04T06:52:04.219Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="leetcode-257二叉树的所有路径">
 <meta name="twitter:description" content="leetcode第257题，二叉树的所有路径，题解。">
+<meta name="twitter:image" content="http://qiniucdn.timilong.com/1543288434710.jpg">
 
 
 
@@ -368,7 +370,7 @@
                 
                   <span class="post-meta-item-text">Edited on</span>
                 
-                <time title="更新于：2018-11-28 07:25:23" itemprop="dateModified" datetime="2018-11-28T07:25:23Z">2018-11-28</time>
+                <time title="更新于：2018-12-04 06:52:04" itemprop="dateModified" datetime="2018-12-04T06:52:04Z">2018-12-04</time>
               
             
           </span>
@@ -421,7 +423,8 @@
       
 
       
-        <h2 id="Description"><a href="#Description" class="headerlink" title="Description"></a>Description</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Description:</span><br><span class="line">    Given a binary tree, return all root-to-leaf paths.</span><br></pre></td></tr></table></figure>
+        <p><img src="http://qiniucdn.timilong.com/1543288434710.jpg" alt="tu"></p>
+<h2 id="Description"><a href="#Description" class="headerlink" title="Description"></a>Description</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Description:</span><br><span class="line">    Given a binary tree, return all root-to-leaf paths.</span><br></pre></td></tr></table></figure>
 <h2 id="Example"><a href="#Example" class="headerlink" title="Example"></a>Example</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Example:</span><br><span class="line">    https://leetcode.com/problems/binary-tree-paths/description/</span><br></pre></td></tr></table></figure>
 <h2 id="Solution"><a href="#Solution" class="headerlink" title="Solution"></a>Solution</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Definition for a binary tree node.</span></span><br><span class="line"><span class="comment"># class TreeNode(object):</span></span><br><span class="line"><span class="comment">#     def __init__(self, x):</span></span><br><span class="line"><span class="comment">#         self.val = x</span></span><br><span class="line"><span class="comment">#         self.left = None</span></span><br><span class="line"><span class="comment">#         self.right = None</span></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span><span class="params">(object)</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">binaryTreePaths</span><span class="params">(self, root)</span>:</span></span><br><span class="line">        <span class="string">"""</span></span><br><span class="line"><span class="string">        :type root: TreeNode</span></span><br><span class="line"><span class="string">        :rtype: List[str]</span></span><br><span class="line"><span class="string">        """</span></span><br><span class="line">        <span class="comment"># dfs + stack</span></span><br><span class="line">        <span class="keyword">if</span> <span class="keyword">not</span> root:</span><br><span class="line">            <span class="keyword">return</span> []</span><br><span class="line">        res, stack = [], [(root, <span class="string">""</span>)]</span><br><span class="line">        <span class="keyword">while</span> stack:</span><br><span class="line">            node, ls = stack.pop()</span><br><span class="line">            <span class="keyword">if</span> <span class="keyword">not</span> node.left <span class="keyword">and</span> <span class="keyword">not</span> node.right:</span><br><span class="line">                res.append(ls+str(node.val))</span><br><span class="line">            <span class="keyword">if</span> node.right:</span><br><span class="line">                stack.append((node.right, ls+str(node.val)+<span class="string">"-&gt;"</span>))</span><br><span class="line">            <span class="keyword">if</span> node.left:</span><br><span class="line">                stack.append((node.left, ls+str(node.val)+<span class="string">"-&gt;"</span>))</span><br><span class="line">        <span class="keyword">return</span> res</span><br><span class="line">    </span><br><span class="line">        <span class="comment"># bfs + queue</span></span><br><span class="line">        <span class="function"><span class="keyword">def</span> <span class="title">binaryTreePaths2</span><span class="params">(self, root)</span>:</span></span><br><span class="line">            <span class="keyword">if</span> <span class="keyword">not</span> root:</span><br><span class="line">                <span class="keyword">return</span> []</span><br><span class="line">            res, queue = [], collections.deque([(root, <span class="string">""</span>)])</span><br><span class="line">            <span class="keyword">while</span> queue:</span><br><span class="line">                node, ls = queue.popleft()</span><br><span class="line">                <span class="keyword">if</span> <span class="keyword">not</span> node.left <span class="keyword">and</span> <span class="keyword">not</span> node.right:</span><br><span class="line">                    res.append(ls+str(node.val))</span><br><span class="line">                <span class="keyword">if</span> node.left:</span><br><span class="line">                    queue.append((node.left, ls+str(node.val)+<span class="string">"-&gt;"</span>))</span><br><span class="line">                <span class="keyword">if</span> node.right:</span><br><span class="line">                    queue.append((node.right, ls+str(node.val)+<span class="string">"-&gt;"</span>))</span><br><span class="line">            <span class="keyword">return</span> res</span><br><span class="line">            </span><br><span class="line">        <span class="comment"># dfs recursively</span></span><br><span class="line">        <span class="function"><span class="keyword">def</span> <span class="title">binaryTreePaths2</span><span class="params">(self, root)</span>:</span></span><br><span class="line">            <span class="keyword">if</span> <span class="keyword">not</span> root:</span><br><span class="line">                <span class="keyword">return</span> []</span><br><span class="line">            res = []</span><br><span class="line">            self.dfs(root, <span class="string">""</span>, res)</span><br><span class="line">            <span class="keyword">return</span> res</span><br><span class="line">        </span><br><span class="line">        <span class="function"><span class="keyword">def</span> <span class="title">dfs</span><span class="params">(self, root, ls, res)</span>:</span></span><br><span class="line">            <span class="keyword">if</span> <span class="keyword">not</span> root.left <span class="keyword">and</span> <span class="keyword">not</span> root.right:</span><br><span class="line">                res.append(ls+str(root.val))</span><br><span class="line">            <span class="keyword">if</span> root.left:</span><br><span class="line">                self.dfs(root.left, ls+str(root.val)+<span class="string">"-&gt;"</span>, res)</span><br><span class="line">            <span class="keyword">if</span> root.right:</span><br><span class="line">                self.dfs(root.right, ls+str(root.val)+<span class="string">"-&gt;"</span>, res)</span><br></pre></td></tr></table></figure>
 
@@ -539,7 +542,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">155</span>
+                    <span class="site-state-item-count">151</span>
                     <span class="site-state-item-name">日志</span>
                   </a>
                 </div>
@@ -608,7 +611,7 @@
                     
                       
                     
-                    <span class="site-state-item-count">28</span>
+                    <span class="site-state-item-count">26</span>
                     <span class="site-state-item-name">分类</span>
                   </a>
                 </div>
@@ -689,7 +692,7 @@
                     
                       
                     
-                    <span class="site-state-item-count">34</span>
+                    <span class="site-state-item-count">33</span>
                     <span class="site-state-item-name">标签</span>
                   </a>
                 </div>

@@ -116,10 +116,12 @@
 <meta property="og:site_name" content="Timilong&#39;s blog">
 <meta property="og:description" content="手动构建docker images时，需要使用到本文介绍的docker build命令.">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-11-28T07:08:16.067Z">
+<meta property="og:image" content="http://qiniucdn.timilong.com/1543387754757.jpg">
+<meta property="og:updated_time" content="2018-12-04T03:52:12.241Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="docker-build简单实用">
 <meta name="twitter:description" content="手动构建docker images时，需要使用到本文介绍的docker build命令.">
+<meta name="twitter:image" content="http://qiniucdn.timilong.com/1543387754757.jpg">
 
 
 
@@ -368,7 +370,7 @@
                 
                   <span class="post-meta-item-text">Edited on</span>
                 
-                <time title="更新于：2018-11-28 07:08:16" itemprop="dateModified" datetime="2018-11-28T07:08:16Z">2018-11-28</time>
+                <time title="更新于：2018-12-04 03:52:12" itemprop="dateModified" datetime="2018-12-04T03:52:12Z">2018-12-04</time>
               
             
           </span>
@@ -421,7 +423,8 @@
       
 
       
-        <h2 id="说明"><a href="#说明" class="headerlink" title="说明"></a>说明</h2><p>docker build 命令用于使用 Dockerfile 创建镜像。</p>
+        <p><img src="http://qiniucdn.timilong.com/1543387754757.jpg" alt="tu"></p>
+<h2 id="说明"><a href="#说明" class="headerlink" title="说明"></a>说明</h2><p>docker build 命令用于使用 Dockerfile 创建镜像。</p>
 <h2 id="语法"><a href="#语法" class="headerlink" title="语法"></a>语法</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker build [OPTIONS] PATH | URL | -</span><br></pre></td></tr></table></figure>
 <p>OPTIONS说明:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br></pre></td><td class="code"><pre><span class="line">--build-arg=[] :设置镜像创建时的变量；</span><br><span class="line"></span><br><span class="line">--cpu-shares :设置 cpu 使用权重；</span><br><span class="line"></span><br><span class="line">--cpu-period :限制 CPU CFS周期；</span><br><span class="line"></span><br><span class="line">--cpu-quota :限制 CPU CFS配额；</span><br><span class="line"></span><br><span class="line">--cpuset-cpus :指定使用的CPU id；</span><br><span class="line"></span><br><span class="line">--cpuset-mems :指定使用的内存 id；</span><br><span class="line"></span><br><span class="line">--disable-content-trust :忽略校验，默认开启；</span><br><span class="line"></span><br><span class="line">-f :指定要使用的Dockerfile路径；</span><br><span class="line"></span><br><span class="line">--force-rm :设置镜像过程中删除中间容器；</span><br><span class="line"></span><br><span class="line">--isolation :使用容器隔离技术；</span><br><span class="line"></span><br><span class="line">--label=[] :设置镜像使用的元数据；</span><br><span class="line"></span><br><span class="line">-m :设置内存最大值；</span><br><span class="line"></span><br><span class="line">--memory-swap :设置Swap的最大值为内存+swap，&quot;-1&quot;表示不限swap；</span><br><span class="line"></span><br><span class="line">--no-cache :创建镜像的过程不使用缓存；</span><br><span class="line"></span><br><span class="line">--pull :尝试去更新镜像的新版本；</span><br><span class="line"></span><br><span class="line">--quiet, -q :安静模式，成功后只输出镜像 ID；</span><br><span class="line"></span><br><span class="line">--rm :设置镜像成功后删除中间容器；</span><br><span class="line"></span><br><span class="line">--shm-size :设置/dev/shm的大小，默认值是64M；</span><br><span class="line"></span><br><span class="line">--ulimit :Ulimit配置。</span><br><span class="line"></span><br><span class="line">--tag, -t: 镜像的名字及标签，通常 name:tag 或者 name 格式；可以在一次构建中为一个镜像设置多个标签。</span><br><span class="line"></span><br><span class="line">--network: 默认 default。在构建期间设置RUN指令的网络模式</span><br></pre></td></tr></table></figure></p>
 <h2 id="例子"><a href="#例子" class="headerlink" title="例子"></a>例子</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">docker build -t &quot;test_docker/mle_platform_api_v0.1&quot; . --no-cache</span><br><span class="line">    * -t 是指明到哪个repository下的哪个tag</span><br><span class="line">    * . 表示当前目录下的dockerfile</span><br><span class="line">    * --no-cache: 表示不使用缓存功能，在没有结束提交之前的镜像层，都看作缓存层，比如我们yum update后，再次执行dockefile是不会在yum update了，所以使用--no-cache后才会执行yum update。</span><br><span class="line"></span><br><span class="line">注意 . 目录表示当前目录， 需要在当前目录下编写: Dockerfile文件。</span><br></pre></td></tr></table></figure>
@@ -541,7 +544,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">155</span>
+                    <span class="site-state-item-count">151</span>
                     <span class="site-state-item-name">日志</span>
                   </a>
                 </div>
@@ -610,7 +613,7 @@
                     
                       
                     
-                    <span class="site-state-item-count">28</span>
+                    <span class="site-state-item-count">26</span>
                     <span class="site-state-item-name">分类</span>
                   </a>
                 </div>
@@ -691,7 +694,7 @@
                     
                       
                     
-                    <span class="site-state-item-count">34</span>
+                    <span class="site-state-item-count">33</span>
                     <span class="site-state-item-name">标签</span>
                   </a>
                 </div>

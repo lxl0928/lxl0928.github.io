@@ -116,10 +116,12 @@
 <meta property="og:site_name" content="Timilong&#39;s blog">
 <meta property="og:description" content="给定两个大小为 m 和 n 的有序数组 nums1 和 nums2 。 请找出这两个有序数组的中位数。要求算法的时间复杂度为 O(log (m+n)) 。">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-11-28T07:15:08.053Z">
+<meta property="og:image" content="http://qiniucdn.timilong.com/1543387765563.jpg">
+<meta property="og:updated_time" content="2018-12-04T06:52:04.005Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="leetcode-04两个排序数组的中位数">
 <meta name="twitter:description" content="给定两个大小为 m 和 n 的有序数组 nums1 和 nums2 。 请找出这两个有序数组的中位数。要求算法的时间复杂度为 O(log (m+n)) 。">
+<meta name="twitter:image" content="http://qiniucdn.timilong.com/1543387765563.jpg">
 
 
 
@@ -368,7 +370,7 @@
                 
                   <span class="post-meta-item-text">Edited on</span>
                 
-                <time title="更新于：2018-11-28 07:15:08" itemprop="dateModified" datetime="2018-11-28T07:15:08Z">2018-11-28</time>
+                <time title="更新于：2018-12-04 06:52:04" itemprop="dateModified" datetime="2018-12-04T06:52:04Z">2018-12-04</time>
               
             
           </span>
@@ -421,7 +423,8 @@
       
 
       
-        <h2 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">给定两个大小为 m 和 n 的有序数组 nums1 和 nums2 。</span><br><span class="line"></span><br><span class="line">请找出这两个有序数组的中位数。要求算法的时间复杂度为 O(log (m+n)) 。</span><br><span class="line"></span><br><span class="line">示例 1:</span><br><span class="line"></span><br><span class="line">    nums1 = [1, 3]</span><br><span class="line">    nums2 = [2]</span><br><span class="line"></span><br><span class="line">    中位数是 2.0</span><br><span class="line"></span><br><span class="line">示例 2:</span><br><span class="line">    nums1 = [1, 2]</span><br><span class="line">    nums2 = [3, 4]</span><br><span class="line"></span><br><span class="line">    中位数是 (2 + 3)/2 = 2.5</span><br></pre></td></tr></table></figure>
+        <p><img src="http://qiniucdn.timilong.com/1543387765563.jpg" alt="tu"></p>
+<h2 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">给定两个大小为 m 和 n 的有序数组 nums1 和 nums2 。</span><br><span class="line"></span><br><span class="line">请找出这两个有序数组的中位数。要求算法的时间复杂度为 O(log (m+n)) 。</span><br><span class="line"></span><br><span class="line">示例 1:</span><br><span class="line"></span><br><span class="line">    nums1 = [1, 3]</span><br><span class="line">    nums2 = [2]</span><br><span class="line"></span><br><span class="line">    中位数是 2.0</span><br><span class="line"></span><br><span class="line">示例 2:</span><br><span class="line">    nums1 = [1, 2]</span><br><span class="line">    nums2 = [3, 4]</span><br><span class="line"></span><br><span class="line">    中位数是 (2 + 3)/2 = 2.5</span><br></pre></td></tr></table></figure>
 <h2 id="题解"><a href="#题解" class="headerlink" title="题解"></a>题解</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span><span class="params">(object)</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">findMedianSortedArrays</span><span class="params">(self, nums1, nums2)</span>:</span></span><br><span class="line">        <span class="string">"""</span></span><br><span class="line"><span class="string">        :type nums1: List[int]</span></span><br><span class="line"><span class="string">        :type nums2: List[int]</span></span><br><span class="line"><span class="string">        :rtype: float</span></span><br><span class="line"><span class="string">        """</span></span><br><span class="line">        nums = sorted(nums1 + nums2)</span><br><span class="line">        length = len(nums)</span><br><span class="line">        mid = length // <span class="number">2</span></span><br><span class="line">        <span class="keyword">if</span> length == <span class="number">0</span>:</span><br><span class="line">            <span class="keyword">return</span> <span class="number">0</span></span><br><span class="line">        <span class="keyword">if</span> length % <span class="number">2</span> != <span class="number">0</span>:</span><br><span class="line">            <span class="keyword">return</span> nums[mid]</span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            <span class="keyword">return</span> (nums[mid] + nums[mid<span class="number">-1</span>]) / <span class="number">2.0</span></span><br></pre></td></tr></table></figure>
 
       
@@ -538,7 +541,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">155</span>
+                    <span class="site-state-item-count">151</span>
                     <span class="site-state-item-name">日志</span>
                   </a>
                 </div>
@@ -607,7 +610,7 @@
                     
                       
                     
-                    <span class="site-state-item-count">28</span>
+                    <span class="site-state-item-count">26</span>
                     <span class="site-state-item-name">分类</span>
                   </a>
                 </div>
@@ -688,7 +691,7 @@
                     
                       
                     
-                    <span class="site-state-item-count">34</span>
+                    <span class="site-state-item-count">33</span>
                     <span class="site-state-item-name">标签</span>
                   </a>
                 </div>

@@ -116,10 +116,12 @@
 <meta property="og:site_name" content="Timilong&#39;s blog">
 <meta property="og:description" content="记录一次更改myql root用户密码的经历.">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-12-02T08:26:13.311Z">
+<meta property="og:image" content="http://qiniucdn.timilong.com/1543736741455.jpg">
+<meta property="og:updated_time" content="2018-12-04T06:52:03.941Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="mysql-8.04以上版本修改root密码">
 <meta name="twitter:description" content="记录一次更改myql root用户密码的经历.">
+<meta name="twitter:image" content="http://qiniucdn.timilong.com/1543736741455.jpg">
 
 
 
@@ -368,7 +370,7 @@
                 
                   <span class="post-meta-item-text">Edited on</span>
                 
-                <time title="更新于：2018-12-02 08:26:13" itemprop="dateModified" datetime="2018-12-02T08:26:13Z">2018-12-02</time>
+                <time title="更新于：2018-12-04 06:52:03" itemprop="dateModified" datetime="2018-12-04T06:52:03Z">2018-12-04</time>
               
             
           </span>
@@ -421,8 +423,8 @@
       
 
       
-        <h1 id="忘记root密码"><a href="#忘记root密码" class="headerlink" title="忘记root密码"></a>忘记root密码</h1><h2 id="用安全方式打开mysql服务，然后更新存密码的表"><a href="#用安全方式打开mysql服务，然后更新存密码的表" class="headerlink" title="用安全方式打开mysql服务，然后更新存密码的表"></a>用安全方式打开mysql服务，然后更新存密码的表</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&gt;&gt;&gt; sudo mysqld_safe --skip-grant-tables</span><br><span class="line"></span><br><span class="line">Logging to &apos;/usr/local/mysql-5.7.23-macos10.13-x86_64/data/localhost.err&apos;.</span><br><span class="line">2018-08-08T03:58:25.6NZ mysqld_safe Starting mysqld daemon with databases from /usr/local/mysql-5.7.23-macos10.13-x86_64/data</span><br><span class="line">2018-08-08T03:58:27.6NZ mysqld_safe mysqld from pid file /usr/local/mysql-5.7.23-macos10.13-x86_64/data/localhost.pid ended</span><br></pre></td></tr></table></figure>
-<a id="more"></a>
+        <p><img src="http://qiniucdn.timilong.com/1543736741455.jpg" alt="tu"></p>
+<h1 id="忘记root密码"><a href="#忘记root密码" class="headerlink" title="忘记root密码"></a>忘记root密码</h1><h2 id="用安全方式打开mysql服务，然后更新存密码的表"><a href="#用安全方式打开mysql服务，然后更新存密码的表" class="headerlink" title="用安全方式打开mysql服务，然后更新存密码的表"></a>用安全方式打开mysql服务，然后更新存密码的表</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&gt;&gt;&gt; sudo mysqld_safe --skip-grant-tables</span><br><span class="line"></span><br><span class="line">Logging to &apos;/usr/local/mysql-5.7.23-macos10.13-x86_64/data/localhost.err&apos;.</span><br><span class="line">2018-08-08T03:58:25.6NZ mysqld_safe Starting mysqld daemon with databases from /usr/local/mysql-5.7.23-macos10.13-x86_64/data</span><br><span class="line">2018-08-08T03:58:27.6NZ mysqld_safe mysqld from pid file /usr/local/mysql-5.7.23-macos10.13-x86_64/data/localhost.pid ended</span><br></pre></td></tr></table></figure>
 <h2 id="新开终端、更新密码"><a href="#新开终端、更新密码" class="headerlink" title="新开终端、更新密码"></a>新开终端、更新密码</h2><p>登录, 不需要密码<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mysql -u root</span><br></pre></td></tr></table></figure></p>
 <p>use mysql<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">&gt;&gt;&gt; use mysql;</span><br><span class="line"></span><br><span class="line">&gt;&gt;&gt; ALTER USER &apos;root&apos;@&apos;localhost&apos; IDENTIFIED WITH mysql_native_password BY &apos;123456&apos;;  # 123456为新密码</span><br><span class="line"></span><br><span class="line">&gt;&gt;&gt; FLUSH PRIVILEGES;</span><br><span class="line"></span><br><span class="line">&gt;&gt;&gt; exit</span><br></pre></td></tr></table></figure></p>
 <p>重新登录, 需要密码<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">mysql -uroot -p123456</span><br><span class="line"></span><br><span class="line"># 成功进入</span><br></pre></td></tr></table></figure></p>
@@ -542,7 +544,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">155</span>
+                    <span class="site-state-item-count">151</span>
                     <span class="site-state-item-name">日志</span>
                   </a>
                 </div>
@@ -611,7 +613,7 @@
                     
                       
                     
-                    <span class="site-state-item-count">28</span>
+                    <span class="site-state-item-count">26</span>
                     <span class="site-state-item-name">分类</span>
                   </a>
                 </div>
@@ -692,7 +694,7 @@
                     
                       
                     
-                    <span class="site-state-item-count">34</span>
+                    <span class="site-state-item-count">33</span>
                     <span class="site-state-item-name">标签</span>
                   </a>
                 </div>

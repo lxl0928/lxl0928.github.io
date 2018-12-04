@@ -116,10 +116,12 @@
 <meta property="og:site_name" content="Timilong&#39;s blog">
 <meta property="og:description" content="给定一个包含 n 个整数的数组 nums 和一个目标值 target，判断 nums 中是否存在四个元素 a，b，c 和 d ，">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-11-28T07:15:40.813Z">
+<meta property="og:image" content="http://qiniucdn.timilong.com/1543288400281.jpg">
+<meta property="og:updated_time" content="2018-12-04T06:52:04.305Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="leetcode-18四数之和1">
 <meta name="twitter:description" content="给定一个包含 n 个整数的数组 nums 和一个目标值 target，判断 nums 中是否存在四个元素 a，b，c 和 d ，">
+<meta name="twitter:image" content="http://qiniucdn.timilong.com/1543288400281.jpg">
 
 
 
@@ -368,7 +370,7 @@
                 
                   <span class="post-meta-item-text">Edited on</span>
                 
-                <time title="更新于：2018-11-28 07:15:40" itemprop="dateModified" datetime="2018-11-28T07:15:40Z">2018-11-28</time>
+                <time title="更新于：2018-12-04 06:52:04" itemprop="dateModified" datetime="2018-12-04T06:52:04Z">2018-12-04</time>
               
             
           </span>
@@ -421,7 +423,8 @@
       
 
       
-        <h1 id="题目描述"><a href="#题目描述" class="headerlink" title="题目描述"></a>题目描述</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">给定一个包含 n 个整数的数组 nums 和一个目标值 target，判断 nums 中是否存在四个元素 a，b，c 和 d ，</span><br><span class="line">使得 a + b + c + d 的值与 target 相等？找出所有满足条件且不重复的四元组。</span><br><span class="line"></span><br><span class="line">注意：</span><br><span class="line"></span><br><span class="line">    答案中不可以包含重复的四元组。</span><br><span class="line"></span><br><span class="line">示例：</span><br><span class="line"></span><br><span class="line">    给定数组 nums = [1, 0, -1, 0, -2, 2]，和 target = 0。</span><br><span class="line"></span><br><span class="line">满足要求的四元组集合为：</span><br><span class="line">    [</span><br><span class="line">      [-1,  0, 0, 1],</span><br><span class="line">      [-2, -1, 1, 2],</span><br><span class="line">      [-2,  0, 0, 2]</span><br><span class="line">    ]</span><br></pre></td></tr></table></figure>
+        <p><img src="http://qiniucdn.timilong.com/1543288400281.jpg" alt="tu"></p>
+<h1 id="题目描述"><a href="#题目描述" class="headerlink" title="题目描述"></a>题目描述</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">给定一个包含 n 个整数的数组 nums 和一个目标值 target，判断 nums 中是否存在四个元素 a，b，c 和 d ，</span><br><span class="line">使得 a + b + c + d 的值与 target 相等？找出所有满足条件且不重复的四元组。</span><br><span class="line"></span><br><span class="line">注意：</span><br><span class="line"></span><br><span class="line">    答案中不可以包含重复的四元组。</span><br><span class="line"></span><br><span class="line">示例：</span><br><span class="line"></span><br><span class="line">    给定数组 nums = [1, 0, -1, 0, -2, 2]，和 target = 0。</span><br><span class="line"></span><br><span class="line">满足要求的四元组集合为：</span><br><span class="line">    [</span><br><span class="line">      [-1,  0, 0, 1],</span><br><span class="line">      [-2, -1, 1, 2],</span><br><span class="line">      [-2,  0, 0, 2]</span><br><span class="line">    ]</span><br></pre></td></tr></table></figure>
 <h1 id="解答"><a href="#解答" class="headerlink" title="解答"></a>解答</h1><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span><span class="params">(object)</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">fourSum</span><span class="params">(self, num, target)</span>:</span></span><br><span class="line">        <span class="string">"""</span></span><br><span class="line"><span class="string">        :type nums: List[int]</span></span><br><span class="line"><span class="string">        :type target: int</span></span><br><span class="line"><span class="string">        :rtype: List[List[int]]</span></span><br><span class="line"><span class="string">        """</span></span><br><span class="line">        numLen, res, d = len(num), set(), &#123;&#125;</span><br><span class="line">        <span class="keyword">if</span> numLen &lt; <span class="number">4</span>: </span><br><span class="line">            <span class="keyword">return</span> []</span><br><span class="line">        </span><br><span class="line">        num.sort()</span><br><span class="line">        <span class="keyword">for</span> p <span class="keyword">in</span> range(numLen):</span><br><span class="line">            <span class="keyword">for</span> q <span class="keyword">in</span> range(p+<span class="number">1</span>, numLen): </span><br><span class="line">                <span class="keyword">if</span> num[p]+num[q] <span class="keyword">not</span> <span class="keyword">in</span> d:</span><br><span class="line">                    d[num[p] + num[q]] = [(p,q)]</span><br><span class="line">                <span class="keyword">else</span>:</span><br><span class="line">                    d[num[p] + num[q]].append((p, q))</span><br><span class="line">                    </span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> xrange(numLen):</span><br><span class="line">            <span class="keyword">for</span> j <span class="keyword">in</span> xrange(i+<span class="number">1</span>, numLen - <span class="number">2</span>):</span><br><span class="line">                T = target - num[i] - num[j]</span><br><span class="line">                <span class="keyword">if</span> T <span class="keyword">in</span> d:</span><br><span class="line">                    <span class="keyword">for</span> k <span class="keyword">in</span> d[T]:</span><br><span class="line">                        <span class="keyword">if</span> k[<span class="number">0</span>] &gt; j: </span><br><span class="line">                            res.add((num[i], num[j], num[k[<span class="number">0</span>]], num[k[<span class="number">1</span>]]))</span><br><span class="line">        <span class="keyword">return</span> [list(i) <span class="keyword">for</span> i <span class="keyword">in</span> res]</span><br></pre></td></tr></table></figure>
 
       
@@ -538,7 +541,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">155</span>
+                    <span class="site-state-item-count">151</span>
                     <span class="site-state-item-name">日志</span>
                   </a>
                 </div>
@@ -607,7 +610,7 @@
                     
                       
                     
-                    <span class="site-state-item-count">28</span>
+                    <span class="site-state-item-count">26</span>
                     <span class="site-state-item-name">分类</span>
                   </a>
                 </div>
@@ -688,7 +691,7 @@
                     
                       
                     
-                    <span class="site-state-item-count">34</span>
+                    <span class="site-state-item-count">33</span>
                     <span class="site-state-item-name">标签</span>
                   </a>
                 </div>

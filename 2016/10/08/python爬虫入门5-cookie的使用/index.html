@@ -116,12 +116,13 @@
 <meta property="og:site_name" content="Timilong&#39;s blog">
 <meta property="og:description" content="python爬虫入门5-cookie的使用.">
 <meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="http://qiniucdn.timilong.com/154373545046.jpg">
 <meta property="og:image" content="http://qiniucdn.timilong.com/%E6%B7%B1%E5%BA%A6%E6%88%AA%E5%9B%BE20161007194328.png">
-<meta property="og:updated_time" content="2018-12-02T08:16:19.765Z">
+<meta property="og:updated_time" content="2018-12-04T06:52:04.313Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="python爬虫入门5-cookie的使用">
 <meta name="twitter:description" content="python爬虫入门5-cookie的使用.">
-<meta name="twitter:image" content="http://qiniucdn.timilong.com/%E6%B7%B1%E5%BA%A6%E6%88%AA%E5%9B%BE20161007194328.png">
+<meta name="twitter:image" content="http://qiniucdn.timilong.com/154373545046.jpg">
 
 
 
@@ -370,7 +371,7 @@
                 
                   <span class="post-meta-item-text">Edited on</span>
                 
-                <time title="更新于：2018-12-02 08:16:19" itemprop="dateModified" datetime="2018-12-02T08:16:19Z">2018-12-02</time>
+                <time title="更新于：2018-12-04 06:52:04" itemprop="dateModified" datetime="2018-12-04T06:52:04Z">2018-12-04</time>
               
             
           </span>
@@ -423,13 +424,12 @@
       
 
       
-        <p>为什么要使用Cookie呢？</p>
-<p>Cookie，指某些网站为了辨别用户身份、进行session跟踪而储存在用户本地终端上的数据（通常经过加密）</p>
+        <p><img src="http://qiniucdn.timilong.com/154373545046.jpg" alt="tu"></p>
+<h3 id="为什么要使用Cookie呢？"><a href="#为什么要使用Cookie呢？" class="headerlink" title="为什么要使用Cookie呢？"></a>为什么要使用Cookie呢？</h3><p>Cookie，指某些网站为了辨别用户身份、进行session跟踪而储存在用户本地终端上的数据（通常经过加密）</p>
 <p>比如说有些网站需要登录后才能访问某个页面，在登录之前，你想抓取某个页面内容是不允许的。那么我们可以利用Urllib2库保存我们登录的Cookie，然后再抓取其他页面就达到目的了。</p>
 <p>在此之前呢，我们必须先介绍一个opener的概念。</p>
 <h3 id="Opener"><a href="#Opener" class="headerlink" title="Opener"></a>Opener</h3><p>当你获取一个URL你使用一个opener(一个urllib2.OpenerDirector的实例)。在前面，我们都是使用的默认的opener，也就是urlopen。它是一个特殊的opener，可以理解成opener的一个特殊实例，传入的参数仅仅是url，data，timeout。</p>
 <p>如果我们需要用到Cookie，只用这个opener是不能达到目的的，所以我们需要创建更一般的opener来实现对Cookie的设置。</p>
-<a id="more"></a>
 <h3 id="Cookielib"><a href="#Cookielib" class="headerlink" title="Cookielib"></a>Cookielib</h3><p>cookielib模块的主要作用是提供可存储cookie的对象，以便于与urllib2模块配合使用来访问Internet资源。Cookielib模块非常强大，我们可以利用本模块的CookieJar类的对象来捕获cookie并在后续连接请求时重新发送，比如可以实现模拟登录功能。该模块主要的对象有CookieJar、FileCookieJar、MozillaCookieJar、LWPCookieJar。</p>
 <p>它们的关系：CookieJar —-派生—-&gt;FileCookieJar  —-派生—–&gt;MozillaCookieJar和LWPCookieJar</p>
 <h4 id="获取Cookie保存到变量"><a href="#获取Cookie保存到变量" class="headerlink" title="获取Cookie保存到变量"></a>获取Cookie保存到变量</h4><p>首先，我们先利用CookieJar对象实现获取cookie的功能，存储到变量中，先来感受一下</p>
@@ -565,7 +565,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">155</span>
+                    <span class="site-state-item-count">151</span>
                     <span class="site-state-item-name">日志</span>
                   </a>
                 </div>
@@ -634,7 +634,7 @@
                     
                       
                     
-                    <span class="site-state-item-count">28</span>
+                    <span class="site-state-item-count">26</span>
                     <span class="site-state-item-name">分类</span>
                   </a>
                 </div>
@@ -715,7 +715,7 @@
                     
                       
                     
-                    <span class="site-state-item-count">34</span>
+                    <span class="site-state-item-count">33</span>
                     <span class="site-state-item-name">标签</span>
                   </a>
                 </div>
@@ -751,7 +751,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#Opener"><span class="nav-number">1.</span> <span class="nav-text">Opener</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Cookielib"><span class="nav-number">2.</span> <span class="nav-text">Cookielib</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#获取Cookie保存到变量"><span class="nav-number">2.1.</span> <span class="nav-text">获取Cookie保存到变量</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#保存Cookie到文件"><span class="nav-number">2.2.</span> <span class="nav-text">保存Cookie到文件</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#从文件中获取Cookie并访问"><span class="nav-number">2.3.</span> <span class="nav-text">从文件中获取Cookie并访问</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#利用cookie模拟网站登录"><span class="nav-number">2.4.</span> <span class="nav-text">利用cookie模拟网站登录</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#为什么要使用Cookie呢？"><span class="nav-number">1.</span> <span class="nav-text">为什么要使用Cookie呢？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Opener"><span class="nav-number">2.</span> <span class="nav-text">Opener</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Cookielib"><span class="nav-number">3.</span> <span class="nav-text">Cookielib</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#获取Cookie保存到变量"><span class="nav-number">3.1.</span> <span class="nav-text">获取Cookie保存到变量</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#保存Cookie到文件"><span class="nav-number">3.2.</span> <span class="nav-text">保存Cookie到文件</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#从文件中获取Cookie并访问"><span class="nav-number">3.3.</span> <span class="nav-text">从文件中获取Cookie并访问</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#利用cookie模拟网站登录"><span class="nav-number">3.4.</span> <span class="nav-text">利用cookie模拟网站登录</span></a></li></ol></li></ol></div>
             
 
           </div>

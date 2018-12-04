@@ -116,10 +116,12 @@
 <meta property="og:site_name" content="Timilong&#39;s blog">
 <meta property="og:description" content="本文介绍JavaScript中的匿名函数用法。">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-12-02T08:08:27.715Z">
+<meta property="og:image" content="http://qiniucdn.timilong.com/1543736929827.jpg">
+<meta property="og:updated_time" content="2018-12-04T06:42:41.579Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="JavaScript进阶-匿名函数">
 <meta name="twitter:description" content="本文介绍JavaScript中的匿名函数用法。">
+<meta name="twitter:image" content="http://qiniucdn.timilong.com/1543736929827.jpg">
 
 
 
@@ -368,7 +370,7 @@
                 
                   <span class="post-meta-item-text">Edited on</span>
                 
-                <time title="更新于：2018-12-02 08:08:27" itemprop="dateModified" datetime="2018-12-02T08:08:27Z">2018-12-02</time>
+                <time title="更新于：2018-12-04 06:42:41" itemprop="dateModified" datetime="2018-12-04T06:42:41Z">2018-12-04</time>
               
             
           </span>
@@ -421,9 +423,10 @@
       
 
       
-        <h3 id="1-函数传递"><a href="#1-函数传递" class="headerlink" title="1.函数传递"></a>1.函数传递</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">say</span>(<span class="params">word</span>)</span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(word);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">execute</span>(<span class="params">someFunction, value</span>)</span>&#123;</span><br><span class="line">    someFunction(value);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">execute(say, <span class="string">"Hello, World"</span>);</span><br></pre></td></tr></table></figure>
+        <p><img src="http://qiniucdn.timilong.com/1543736929827.jpg" alt="tu"></p>
+<h3 id="函数传递"><a href="#函数传递" class="headerlink" title="函数传递"></a>函数传递</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">say</span>(<span class="params">word</span>)</span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(word);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">execute</span>(<span class="params">someFunction, value</span>)</span>&#123;</span><br><span class="line">    someFunction(value);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">execute(say, <span class="string">"Hello, World"</span>);</span><br></pre></td></tr></table></figure>
 <p>在这段代码中， 我们把say函数作为execute函数的第一个变量进行了传递。<br>这里返回的并不是say的返回值，而是say的本身！<br>这样，say就变成了execute中的本地变量someFunction,execute可以通过调用someFunction()(带括号的形式)<br>来使用say函数。<br>当然， 因为say有一个变量， execute在调用someFunction时候可以传递这样一个变量。</p>
-<h3 id="2-匿名函数"><a href="#2-匿名函数" class="headerlink" title="2. 匿名函数"></a>2. 匿名函数</h3><p>另外，我们可以用直接传递函数作为变量传递。我们不一定要围绕着“先定义，再传递”这个圈子。<br>我们可以直接在另一个含糊的括号中是定义和传递这个函数</p>
+<h3 id="匿名函数"><a href="#匿名函数" class="headerlink" title="匿名函数"></a>匿名函数</h3><p>另外，我们可以用直接传递函数作为变量传递。我们不一定要围绕着“先定义，再传递”这个圈子。<br>我们可以直接在另一个含糊的括号中是定义和传递这个函数</p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">execute</span>(<span class="params">someFunction, value</span>)</span>&#123;</span><br><span class="line">    someFunction(value);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">execute(<span class="function"><span class="keyword">function</span>(<span class="params">word</span>)</span>&#123;<span class="built_in">console</span>(word)&#125;, <span class="string">"Hello, World"</span>);</span><br></pre></td></tr></table></figure>
 <p>我们在execute接受第一个参数的地方直接定义了我们准备传递给execute的函数。<br>用这种方式， 我们甚至不用给这个函数起一个函数名字， 这就是叫做匿名函数的原因。</p>
 <p>在JavaScript中, 一个函数可以作为另一个函数接收的一个参数。<br>可以先定义一个函数，然后传递函数名， 也可以在传递参数的地方直接定义函数。</p>
@@ -542,7 +545,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">155</span>
+                    <span class="site-state-item-count">151</span>
                     <span class="site-state-item-name">日志</span>
                   </a>
                 </div>
@@ -611,7 +614,7 @@
                     
                       
                     
-                    <span class="site-state-item-count">28</span>
+                    <span class="site-state-item-count">26</span>
                     <span class="site-state-item-name">分类</span>
                   </a>
                 </div>
@@ -692,7 +695,7 @@
                     
                       
                     
-                    <span class="site-state-item-count">34</span>
+                    <span class="site-state-item-count">33</span>
                     <span class="site-state-item-name">标签</span>
                   </a>
                 </div>
@@ -728,7 +731,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-函数传递"><span class="nav-number">1.</span> <span class="nav-text">1.函数传递</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-匿名函数"><span class="nav-number">2.</span> <span class="nav-text">2. 匿名函数</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#函数传递"><span class="nav-number">1.</span> <span class="nav-text">函数传递</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#匿名函数"><span class="nav-number">2.</span> <span class="nav-text">匿名函数</span></a></li></ol></div>
             
 
           </div>

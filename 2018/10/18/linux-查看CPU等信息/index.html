@@ -116,10 +116,12 @@
 <meta property="og:site_name" content="Timilong&#39;s blog">
 <meta property="og:description" content="通过Linux自身的一些命令查看CPU、内存、磁盘、主机名、ip配置等信息。">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-11-23T10:29:32.666Z">
+<meta property="og:image" content="http://qiniucdn.timilong.com/1542968653498.jpg">
+<meta property="og:updated_time" content="2018-12-04T06:52:04.301Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="linux-查看CPU等信息">
 <meta name="twitter:description" content="通过Linux自身的一些命令查看CPU、内存、磁盘、主机名、ip配置等信息。">
+<meta name="twitter:image" content="http://qiniucdn.timilong.com/1542968653498.jpg">
 
 
 
@@ -368,7 +370,7 @@
                 
                   <span class="post-meta-item-text">Edited on</span>
                 
-                <time title="更新于：2018-11-23 10:29:32" itemprop="dateModified" datetime="2018-11-23T10:29:32Z">2018-11-23</time>
+                <time title="更新于：2018-12-04 06:52:04" itemprop="dateModified" datetime="2018-12-04T06:52:04Z">2018-12-04</time>
               
             
           </span>
@@ -421,7 +423,8 @@
       
 
       
-        <blockquote>
+        <p><img src="http://qiniucdn.timilong.com/1542968653498.jpg" alt="tu"></p>
+<blockquote>
 <p>本文系原创, 转载请联系作者 <a href="http://blog.timilong.com/about">Timilong</a></p>
 </blockquote>
 <h2 id="CPU信息"><a href="#CPU信息" class="headerlink" title="CPU信息"></a>CPU信息</h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span> cat /proc/cpuinfo                                       # 查看CPU信息</span><br><span class="line"><span class="meta">$</span> cat /proc/cpuinfo | grep name | cut -f2 -d: | uniq -c   # 查看CPU的型号</span><br><span class="line"><span class="meta">$</span> cat /proc/cpuinfo | grep physical | uniq -c             # 查看CPU的核心数 </span><br><span class="line"><span class="meta">$</span> getconf LONG_BIT                                        # 64  表示当前CPU运行在64bit模式下</span><br><span class="line"><span class="meta">$</span> cat /proc/cpuinfo | grep flags | grep ' lm ' | wc -l    # 8 (结果大于0, 说明支持64bit计算. lm指long mode, 支持lm则是64bit)</span><br></pre></td></tr></table></figure>
@@ -466,8 +469,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2018/10/18/经验-黑加手环CEO殷明君sensoro分享/" rel="next" title="HeyPlus(黑加)手环CEO殷明君创业分享">
-                <i class="fa fa-chevron-left"></i> HeyPlus(黑加)手环CEO殷明君创业分享
+              <a href="/2018/10/18/Thrift-工作流程/" rel="next" title="Thrift-工作流程">
+                <i class="fa fa-chevron-left"></i> Thrift-工作流程
               </a>
             
           </div>
@@ -548,7 +551,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">155</span>
+                    <span class="site-state-item-count">151</span>
                     <span class="site-state-item-name">日志</span>
                   </a>
                 </div>
@@ -617,7 +620,7 @@
                     
                       
                     
-                    <span class="site-state-item-count">28</span>
+                    <span class="site-state-item-count">26</span>
                     <span class="site-state-item-name">分类</span>
                   </a>
                 </div>
@@ -698,7 +701,7 @@
                     
                       
                     
-                    <span class="site-state-item-count">34</span>
+                    <span class="site-state-item-count">33</span>
                     <span class="site-state-item-name">标签</span>
                   </a>
                 </div>

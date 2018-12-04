@@ -116,10 +116,12 @@
 <meta property="og:site_name" content="Timilong&#39;s blog">
 <meta property="og:description" content="python爬虫入门4-URLError异常处理.">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-12-02T08:16:48.651Z">
+<meta property="og:image" content="http://qiniucdn.timilong.com/1543736721880.jpg">
+<meta property="og:updated_time" content="2018-12-04T06:52:04.275Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="python爬虫入门4-URLError异常处理">
 <meta name="twitter:description" content="python爬虫入门4-URLError异常处理.">
+<meta name="twitter:image" content="http://qiniucdn.timilong.com/1543736721880.jpg">
 
 
 
@@ -368,7 +370,7 @@
                 
                   <span class="post-meta-item-text">Edited on</span>
                 
-                <time title="更新于：2018-12-02 08:16:48" itemprop="dateModified" datetime="2018-12-02T08:16:48Z">2018-12-02</time>
+                <time title="更新于：2018-12-04 06:52:04" itemprop="dateModified" datetime="2018-12-04T06:52:04Z">2018-12-04</time>
               
             
           </span>
@@ -421,14 +423,14 @@
       
 
       
-        <p>本节在这里主要说的是URLError还有HTTPError，以及对它们的一些处理。</p>
+        <p><img src="http://qiniucdn.timilong.com/1543736721880.jpg" alt="tu"></p>
+<p>本节在这里主要说的是URLError还有HTTPError，以及对它们的一些处理。</p>
 <h3 id="URLError"><a href="#URLError" class="headerlink" title="URLError"></a>URLError</h3><p>首先解释下URLError可能产生的原因：</p>
 <p>网络无连接，即本机无法上网<br>连接不到特定的服务器<br>服务器不存在<br>在代码中，我们需要用try-except语句来包围并捕获相应的异常。下面是一个例子，先感受下它的风骚</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">import urllib2</span><br><span class="line"> </span><br><span class="line">requset = urllib2.Request(&apos;http://www.xxxxx.com&apos;)</span><br><span class="line">try:</span><br><span class="line">    urllib2.urlopen(request)</span><br><span class="line">except urllib2.URLError, e:</span><br><span class="line">    print e.reason</span><br></pre></td></tr></table></figure>
 <p>我们利用了 urlopen方法访问了一个不存在的网址，运行结果如下：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[Errno 11004] getaddrinfo failed</span><br></pre></td></tr></table></figure>
 <p>它说明了错误代号是11004，错误原因是 getaddrinfo failed</p>
-<a id="more"></a>
 <h3 id="HTTPError"><a href="#HTTPError" class="headerlink" title="HTTPError"></a>HTTPError</h3><p>HTTPError是URLError的子类，在你利用urlopen方法发出一个请求时，服务器上都会对应一个应答对象response，其中它包含一个数字”状态码”。举个例子，假如response是一个”重定向”，需定位到别的地址获取文档，urllib2将对此进行处理。</p>
 <p>其他不能处理的，urlopen会产生一个HTTPError，对应相应的状态吗，HTTP状态码表示HTTP协议所返回的响应的状态。下面将状态码归结如下：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">100：继续  客户端应当继续发送请求。客户端应当继续发送请求的剩余部分，或者如果请求已经完成，忽略这个响应。</span><br><span class="line">101： 转换协议  在发送完这个响应最后的空行后，服务器将会切换到在Upgrade 消息头中定义的那些协议。只有在切换新的协议更有好处的时候才应该采取类似措施。</span><br><span class="line">102：继续处理   由WebDAV（RFC 2518）扩展的状态码，代表处理将被继续执行。</span><br><span class="line">200：请求成功      处理方式：获得响应的内容，进行处理</span><br><span class="line">201：请求完成，结果是创建了新资源。新创建资源的URI可在响应的实体中得到    处理方式：爬虫中不会遇到</span><br><span class="line">202：请求被接受，但处理尚未完成    处理方式：阻塞等待</span><br><span class="line">204：服务器端已经实现了请求，但是没有返回新的信 息。如果客户是用户代理，则无须为此更新自身的文档视图。    处理方式：丢弃</span><br><span class="line">300：该状态码不被HTTP/1.0的应用程序直接使用， 只是作为3XX类型回应的默认解释。存在多个可用的被请求资源。    处理方式：若程序中能够处理，则进行进一步处理，如果程序中不能处理，则丢弃</span><br><span class="line">301：请求到的资源都会分配一个永久的URL，这样就可以在将来通过该URL来访问此资源    处理方式：重定向到分配的URL</span><br><span class="line">302：请求到的资源在一个不同的URL处临时保存     处理方式：重定向到临时的URL</span><br><span class="line">304：请求的资源未更新     处理方式：丢弃</span><br><span class="line">400：非法请求     处理方式：丢弃</span><br><span class="line">401：未授权     处理方式：丢弃</span><br><span class="line">403：禁止     处理方式：丢弃</span><br><span class="line">404：没有找到     处理方式：丢弃</span><br><span class="line">500：服务器内部错误  服务器遇到了一个未曾预料的状况，导致了它无法完成对请求的处理。一般来说，这个问题都会在服务器端的源代码出现错误时出现。</span><br><span class="line">501：服务器无法识别  服务器不支持当前请求所需要的某个功能。当服务器无法识别请求的方法，并且无法支持其对任何资源的请求。</span><br><span class="line">502：错误网关  作为网关或者代理工作的服务器尝试执行请求时，从上游服务器接收到无效的响应。</span><br><span class="line">503：服务出错</span><br></pre></td></tr></table></figure>
@@ -560,7 +562,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">155</span>
+                    <span class="site-state-item-count">151</span>
                     <span class="site-state-item-name">日志</span>
                   </a>
                 </div>
@@ -629,7 +631,7 @@
                     
                       
                     
-                    <span class="site-state-item-count">28</span>
+                    <span class="site-state-item-count">26</span>
                     <span class="site-state-item-name">分类</span>
                   </a>
                 </div>
@@ -710,7 +712,7 @@
                     
                       
                     
-                    <span class="site-state-item-count">34</span>
+                    <span class="site-state-item-count">33</span>
                     <span class="site-state-item-name">标签</span>
                   </a>
                 </div>

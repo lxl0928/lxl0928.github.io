@@ -116,10 +116,12 @@
 <meta property="og:site_name" content="Timilong&#39;s blog">
 <meta property="og:description" content="mysql-联合索引的命中规则.">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-12-02T08:23:49.842Z">
+<meta property="og:image" content="http://qiniucdn.timilong.com/1543735300518.jpg">
+<meta property="og:updated_time" content="2018-12-04T06:52:04.131Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="mysql-联合索引的命中规则">
 <meta name="twitter:description" content="mysql-联合索引的命中规则.">
+<meta name="twitter:image" content="http://qiniucdn.timilong.com/1543735300518.jpg">
 
 
 
@@ -368,7 +370,7 @@
                 
                   <span class="post-meta-item-text">Edited on</span>
                 
-                <time title="更新于：2018-12-02 08:23:49" itemprop="dateModified" datetime="2018-12-02T08:23:49Z">2018-12-02</time>
+                <time title="更新于：2018-12-04 06:52:04" itemprop="dateModified" datetime="2018-12-04T06:52:04Z">2018-12-04</time>
               
             
           </span>
@@ -421,8 +423,8 @@
       
 
       
-        <h2 id="联合索引优点"><a href="#联合索引优点" class="headerlink" title="联合索引优点"></a>联合索引优点</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">查询语句 SELECT T.* FROM T WHERE T.c1=1 AND T.c3=2;  涉及到两列，这个时候我们一般采用一个联合索引(c1, c3); </span><br><span class="line">而不用两个单列索引，这是因为一条查询语句往往应为mysql优化器的关系只用一个索引</span><br><span class="line">就算有两个索引，也只用一个；</span><br><span class="line"></span><br><span class="line">在只用一个的基础之上，联合索引会比单列索引更快；</span><br></pre></td></tr></table></figure>
-<a id="more"></a>
+        <p><img src="http://qiniucdn.timilong.com/1543735300518.jpg" alt="tu"></p>
+<h2 id="联合索引优点"><a href="#联合索引优点" class="headerlink" title="联合索引优点"></a>联合索引优点</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">查询语句 SELECT T.* FROM T WHERE T.c1=1 AND T.c3=2;  涉及到两列，这个时候我们一般采用一个联合索引(c1, c3); </span><br><span class="line">而不用两个单列索引，这是因为一条查询语句往往应为mysql优化器的关系只用一个索引</span><br><span class="line">就算有两个索引，也只用一个；</span><br><span class="line"></span><br><span class="line">在只用一个的基础之上，联合索引会比单列索引更快；</span><br></pre></td></tr></table></figure>
 <h2 id="联合索引命中规则"><a href="#联合索引命中规则" class="headerlink" title="联合索引命中规则"></a>联合索引命中规则</h2><p>示例如下<br>1) 首先创建表：<code>CREATE TABLE T (c1 INT, c2 VARCHAR(9), c3 INT, PRIMARY KEY(c1, c3));</code><br>这样就建立了一个联合索引：c1,c3</p>
 <p>2) 触发联合索引规则:<br>  1、使用联合索引的全部索引键，可触发索引的使用.<br>  例如: <code>SELECT T.* FROM T WHERE T.c1=1 AND T.c3=2;</code></p>
 <p>  2、使用联合索引的前缀部分索引键，如“key_part_1 <op>常量”，可触发索引的使用.<br>  例如：<code>SELECT T.* FROM T WHERE T.c1=1; </code></op></p>
@@ -543,7 +545,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">155</span>
+                    <span class="site-state-item-count">151</span>
                     <span class="site-state-item-name">日志</span>
                   </a>
                 </div>
@@ -612,7 +614,7 @@
                     
                       
                     
-                    <span class="site-state-item-count">28</span>
+                    <span class="site-state-item-count">26</span>
                     <span class="site-state-item-name">分类</span>
                   </a>
                 </div>
@@ -693,7 +695,7 @@
                     
                       
                     
-                    <span class="site-state-item-count">34</span>
+                    <span class="site-state-item-count">33</span>
                     <span class="site-state-item-name">标签</span>
                   </a>
                 </div>

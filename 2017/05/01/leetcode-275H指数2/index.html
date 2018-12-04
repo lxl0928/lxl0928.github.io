@@ -116,10 +116,12 @@
 <meta property="og:site_name" content="Timilong&#39;s blog">
 <meta property="og:description" content="leetcode第275题, H指数2, 题解。">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-11-28T07:30:49.349Z">
+<meta property="og:image" content="http://qiniucdn.timilong.com/1543387778232.png">
+<meta property="og:updated_time" content="2018-12-04T06:52:04.209Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="leetcode-275H指数2">
 <meta name="twitter:description" content="leetcode第275题, H指数2, 题解。">
+<meta name="twitter:image" content="http://qiniucdn.timilong.com/1543387778232.png">
 
 
 
@@ -368,7 +370,7 @@
                 
                   <span class="post-meta-item-text">Edited on</span>
                 
-                <time title="更新于：2018-11-28 07:30:49" itemprop="dateModified" datetime="2018-11-28T07:30:49Z">2018-11-28</time>
+                <time title="更新于：2018-12-04 06:52:04" itemprop="dateModified" datetime="2018-12-04T06:52:04Z">2018-12-04</time>
               
             
           </span>
@@ -421,7 +423,8 @@
       
 
       
-        <h2 id="Description"><a href="#Description" class="headerlink" title="Description"></a>Description</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">Description:</span><br><span class="line">    h-index ，又称为h指数或h因子（h-factor），是一种评价学术成就的新方法。</span><br><span class="line">    h代表“高引用次数”（high citations），一名科研人员的h指数是指他至多有h篇论文分别被引用了至少h次。</span><br><span class="line">    要确定一个人的h指数非常容易，到SCI网站，查出某个人发表的所有SCI论文，让其按被引次数从高到低排列，</span><br><span class="line">    往下核对，直到某篇论文的序号大于该论文被引次数，那个序号减去1就是h指数。</span><br><span class="line">    or</span><br><span class="line">    从低到高进行排列，如果(某篇论文的引用次数) &gt;= (总长度 - 当前论文序号)，则(总长度-当前序号)就是h指数</span><br><span class="line">    其中, citations是已升序排列的</span><br><span class="line">    总结: 目标 = 引用次数 &gt;= 序号 则length-序号即为结果</span><br></pre></td></tr></table></figure>
+        <p><img src="http://qiniucdn.timilong.com/1543387778232.png" alt="tu"></p>
+<h2 id="Description"><a href="#Description" class="headerlink" title="Description"></a>Description</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">Description:</span><br><span class="line">    h-index ，又称为h指数或h因子（h-factor），是一种评价学术成就的新方法。</span><br><span class="line">    h代表“高引用次数”（high citations），一名科研人员的h指数是指他至多有h篇论文分别被引用了至少h次。</span><br><span class="line">    要确定一个人的h指数非常容易，到SCI网站，查出某个人发表的所有SCI论文，让其按被引次数从高到低排列，</span><br><span class="line">    往下核对，直到某篇论文的序号大于该论文被引次数，那个序号减去1就是h指数。</span><br><span class="line">    or</span><br><span class="line">    从低到高进行排列，如果(某篇论文的引用次数) &gt;= (总长度 - 当前论文序号)，则(总长度-当前序号)就是h指数</span><br><span class="line">    其中, citations是已升序排列的</span><br><span class="line">    总结: 目标 = 引用次数 &gt;= 序号 则length-序号即为结果</span><br></pre></td></tr></table></figure>
 <h2 id="Example"><a href="#Example" class="headerlink" title="Example"></a>Example</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">Example:</span><br><span class="line">    Given citations = [3, 0, 6, 1, 5]</span><br><span class="line">    which means the researcher has 5 papers in total </span><br><span class="line">        and each of them had received 3, 0, 6, 1, 5 citations respectively. </span><br><span class="line">    Since the researcher has 3 papers with at least 3 citations each </span><br><span class="line">        and the remaining two with no more than 3 citations each, his h-index is 3.</span><br></pre></td></tr></table></figure>
 <h2 id="Solution"><a href="#Solution" class="headerlink" title="Solution"></a>Solution</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span><span class="params">(object)</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">hIndex</span><span class="params">(self, citations)</span>:</span></span><br><span class="line">        <span class="string">"""</span></span><br><span class="line"><span class="string">        :type citations: List[int]</span></span><br><span class="line"><span class="string">        :rtype: int</span></span><br><span class="line"><span class="string">        二分法</span></span><br><span class="line"><span class="string">        """</span></span><br><span class="line">        length = len(citations)</span><br><span class="line">        left, right = <span class="number">0</span>, length<span class="number">-1</span></span><br><span class="line">        <span class="keyword">while</span> left &lt;= right:</span><br><span class="line">            mid = int((left+right)/<span class="number">2</span>)</span><br><span class="line">            <span class="keyword">if</span> citations[mid] &gt;= length - mid:</span><br><span class="line">                right = mid - <span class="number">1</span></span><br><span class="line">            <span class="keyword">else</span>:</span><br><span class="line">                left = mid + <span class="number">1</span></span><br><span class="line">        <span class="keyword">return</span> length - left</span><br></pre></td></tr></table></figure>
 
@@ -539,7 +542,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">155</span>
+                    <span class="site-state-item-count">151</span>
                     <span class="site-state-item-name">日志</span>
                   </a>
                 </div>
@@ -608,7 +611,7 @@
                     
                       
                     
-                    <span class="site-state-item-count">28</span>
+                    <span class="site-state-item-count">26</span>
                     <span class="site-state-item-name">分类</span>
                   </a>
                 </div>
@@ -689,7 +692,7 @@
                     
                       
                     
-                    <span class="site-state-item-count">34</span>
+                    <span class="site-state-item-count">33</span>
                     <span class="site-state-item-name">标签</span>
                   </a>
                 </div>

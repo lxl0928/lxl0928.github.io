@@ -116,12 +116,13 @@
 <meta property="og:site_name" content="Timilong&#39;s blog">
 <meta property="og:description" content="python爬虫入门3-Urllib的高级使用.">
 <meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="http://qiniucdn.timilong.com/1543735259252.jpg">
 <meta property="og:image" content="http://qiniucdn.timilong.com/%E6%B7%B1%E5%BA%A6%E6%88%AA%E5%9B%BE20161006161942.png">
-<meta property="og:updated_time" content="2018-12-02T08:17:08.501Z">
+<meta property="og:updated_time" content="2018-12-04T06:52:03.912Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="python爬虫入门3-Urllib的高级使用">
 <meta name="twitter:description" content="python爬虫入门3-Urllib的高级使用.">
-<meta name="twitter:image" content="http://qiniucdn.timilong.com/%E6%B7%B1%E5%BA%A6%E6%88%AA%E5%9B%BE20161006161942.png">
+<meta name="twitter:image" content="http://qiniucdn.timilong.com/1543735259252.jpg">
 
 
 
@@ -370,7 +371,7 @@
                 
                   <span class="post-meta-item-text">Edited on</span>
                 
-                <time title="更新于：2018-12-02 08:17:08" itemprop="dateModified" datetime="2018-12-02T08:17:08Z">2018-12-02</time>
+                <time title="更新于：2018-12-04 06:52:03" itemprop="dateModified" datetime="2018-12-04T06:52:03Z">2018-12-04</time>
               
             
           </span>
@@ -423,9 +424,9 @@
       
 
       
-        <h3 id="设置Headers"><a href="#设置Headers" class="headerlink" title="设置Headers"></a>设置Headers</h3><p>有些网站不会同意程序直接用上面的方式进行访问，如果识别有问题，那么站点根本不会响应，所以为了完全模拟浏览器的工作，我们需要设置一些Headers 的属性。</p>
+        <p><img src="http://qiniucdn.timilong.com/1543735259252.jpg" alt="tu"></p>
+<h3 id="设置Headers"><a href="#设置Headers" class="headerlink" title="设置Headers"></a>设置Headers</h3><p>有些网站不会同意程序直接用上面的方式进行访问，如果识别有问题，那么站点根本不会响应，所以为了完全模拟浏览器的工作，我们需要设置一些Headers 的属性。</p>
 <p>首先，打开我们的浏览器，调试浏览器F12，我用的是Chrome，打开网络监听，示意如下，比如知乎，点登录之后，我们会发现登陆之后界面都变化了，出现一个新的界面，实质上这个页面包含了许许多多的内容，这些内容也不是一次性就加载完成的，实质上是执行了好多次请求，一般是首先请求HTML文件，然后加载JS，CSS 等等，经过多次请求之后，网页的骨架和肌肉全了，整个网页的效果也就出来了。<br><img src="http://qiniucdn.timilong.com/%E6%B7%B1%E5%BA%A6%E6%88%AA%E5%9B%BE20161006161942.png" alt="headers"></p>
-<a id="more"></a>
 <p>拆分这些请求，我们只看一第一个请求，你可以看到，有个Request URL，还有headers，下面便是response，图片显示得不全，小伙伴们可以亲身实验一下。那么这个头中包含了许许多多是信息，有文件编码啦，压缩方式啦，请求的agent啦等等。</p>
 <p>其中，agent就是请求的身份，如果没有写入请求身份，那么服务器不一定会响应，所以可以在headers中设置agent,例如下面的例子，这个例子只是说明了怎样设置的headers，小伙伴们看一下设置格式就好。</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">import urllib2  </span><br><span class="line"> </span><br><span class="line">url = &apos;http://www.server.com/login&apos;</span><br><span class="line">user_agent = &apos;Mozilla/4.0 (compatible; MSIE 5.5; Windows NT)&apos;  </span><br><span class="line">values = &#123;&apos;username&apos; : &apos;cqc&apos;,  &apos;password&apos; : &apos;XXXX&apos; &#125;  </span><br><span class="line">headers = &#123; &apos;User-Agent&apos; : user_agent &#125;  </span><br><span class="line">data = urllib.urlencode(values)  </span><br><span class="line">request = urllib2.Request(url, data, headers)  </span><br><span class="line">response = urllib2.urlopen(request)  </span><br><span class="line">page = response.read()</span><br></pre></td></tr></table></figure>
@@ -567,7 +568,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">155</span>
+                    <span class="site-state-item-count">151</span>
                     <span class="site-state-item-name">日志</span>
                   </a>
                 </div>
@@ -636,7 +637,7 @@
                     
                       
                     
-                    <span class="site-state-item-count">28</span>
+                    <span class="site-state-item-count">26</span>
                     <span class="site-state-item-name">分类</span>
                   </a>
                 </div>
@@ -717,7 +718,7 @@
                     
                       
                     
-                    <span class="site-state-item-count">34</span>
+                    <span class="site-state-item-count">33</span>
                     <span class="site-state-item-name">标签</span>
                   </a>
                 </div>

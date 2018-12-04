@@ -116,12 +116,13 @@
 <meta property="og:site_name" content="Timilong&#39;s blog">
 <meta property="og:description" content="我在用Thrift进行Python后端服务开发时，在客户端并发量并不大的情况下，日志报警Connection reset by peer错误很频繁，经过大量google后，对此错误可能情况进行一个记录。">
 <meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="http://qiniucdn.timilong.com/1543736774757.jpg">
 <meta property="og:image" content="http://qiniucdn.timilong.com/20140314151927578.jpeg">
-<meta property="og:updated_time" content="2018-12-02T08:05:07.738Z">
+<meta property="og:updated_time" content="2018-12-04T06:42:41.478Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Connection reset by peer的错误分析">
 <meta name="twitter:description" content="我在用Thrift进行Python后端服务开发时，在客户端并发量并不大的情况下，日志报警Connection reset by peer错误很频繁，经过大量google后，对此错误可能情况进行一个记录。">
-<meta name="twitter:image" content="http://qiniucdn.timilong.com/20140314151927578.jpeg">
+<meta name="twitter:image" content="http://qiniucdn.timilong.com/1543736774757.jpg">
 
 
 
@@ -370,7 +371,7 @@
                 
                   <span class="post-meta-item-text">Edited on</span>
                 
-                <time title="更新于：2018-12-02 08:05:07" itemprop="dateModified" datetime="2018-12-02T08:05:07Z">2018-12-02</time>
+                <time title="更新于：2018-12-04 06:42:41" itemprop="dateModified" datetime="2018-12-04T06:42:41Z">2018-12-04</time>
               
             
           </span>
@@ -423,7 +424,8 @@
       
 
       
-        <h2 id="Connection-reset-by-peer出现的原因"><a href="#Connection-reset-by-peer出现的原因" class="headerlink" title="Connection reset by peer出现的原因"></a>Connection reset by peer出现的原因</h2><p>该异常在客户端和服务器端均有可能发生，引起该异常的原因有两个，第一个就是如果一端的Socket被关闭（或主动关闭或者因为异常退出而引起的关闭），另一端仍发送数据，发送的第一个数据包引发该异常 (Connect reset by peer)。</p>
+        <p><img src="http://qiniucdn.timilong.com/1543736774757.jpg" alt="tu"></p>
+<h2 id="Connection-reset-by-peer出现的原因"><a href="#Connection-reset-by-peer出现的原因" class="headerlink" title="Connection reset by peer出现的原因"></a>Connection reset by peer出现的原因</h2><p>该异常在客户端和服务器端均有可能发生，引起该异常的原因有两个，第一个就是如果一端的Socket被关闭（或主动关闭或者因为异常退出而引起的关闭），另一端仍发送数据，发送的第一个数据包引发该异常 (Connect reset by peer)。</p>
 <p>另一个是一端退出，但退出时并未关闭该连接，另一端如果在从连接中读数据则抛出该异常（Connection reset）。简单的说就是在连接断开后的读和写操作引起的。 </p>
 <h3 id="服务器并发链接数超过其承载量"><a href="#服务器并发链接数超过其承载量" class="headerlink" title="服务器并发链接数超过其承载量"></a>服务器并发链接数超过其承载量</h3><p>服务器的并发连接数超过了其承载量，服务器会将其中一些连接关闭； 如果知道实际连接服务器的并发客户数没有超过服务器的承载量，看下有没有网络流量异常。可以使用netstat -an查看网络连接情况。 </p>
 <h3 id="客户端关闭socket-而服务端还在给客户端发送数据"><a href="#客户端关闭socket-而服务端还在给客户端发送数据" class="headerlink" title="客户端关闭socket, 而服务端还在给客户端发送数据"></a>客户端关闭socket, 而服务端还在给客户端发送数据</h3><p>由于某些原因，比如客户端设置了超时机制，提前关闭了tcp链接的socket，导致服务端在处理完请求，返回data时，找不到对应的socket，则会引起此错误。</p>
@@ -554,7 +556,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">155</span>
+                    <span class="site-state-item-count">151</span>
                     <span class="site-state-item-name">日志</span>
                   </a>
                 </div>
@@ -623,7 +625,7 @@
                     
                       
                     
-                    <span class="site-state-item-count">28</span>
+                    <span class="site-state-item-count">26</span>
                     <span class="site-state-item-name">分类</span>
                   </a>
                 </div>
@@ -704,7 +706,7 @@
                     
                       
                     
-                    <span class="site-state-item-count">34</span>
+                    <span class="site-state-item-count">33</span>
                     <span class="site-state-item-name">标签</span>
                   </a>
                 </div>

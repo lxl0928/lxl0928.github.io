@@ -116,10 +116,12 @@
 <meta property="og:site_name" content="Timilong&#39;s blog">
 <meta property="og:description" content="已知两个有序数组, 现在要求将两个有序数组合并为一个有序数组.">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-12-02T08:06:38.337Z">
+<meta property="og:image" content="http://qiniucdn.timilong.com/1543736968107.jpg">
+<meta property="og:updated_time" content="2018-12-04T06:42:41.482Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="面试-两个有序数组合并">
 <meta name="twitter:description" content="已知两个有序数组, 现在要求将两个有序数组合并为一个有序数组.">
+<meta name="twitter:image" content="http://qiniucdn.timilong.com/1543736968107.jpg">
 
 
 
@@ -368,7 +370,7 @@
                 
                   <span class="post-meta-item-text">Edited on</span>
                 
-                <time title="更新于：2018-12-02 08:06:38" itemprop="dateModified" datetime="2018-12-02T08:06:38Z">2018-12-02</time>
+                <time title="更新于：2018-12-04 06:42:41" itemprop="dateModified" datetime="2018-12-04T06:42:41Z">2018-12-04</time>
               
             
           </span>
@@ -421,7 +423,8 @@
       
 
       
-        <h2 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">已知两个有序数组, 现在要求将两个有序数组合并为一个有序数组.</span><br></pre></td></tr></table></figure>
+        <p><img src="http://qiniucdn.timilong.com/1543736968107.jpg" alt="tu"></p>
+<h2 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">已知两个有序数组, 现在要求将两个有序数组合并为一个有序数组.</span><br></pre></td></tr></table></figure>
 <h2 id="信息"><a href="#信息" class="headerlink" title="信息"></a>信息</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">1. 两个有序数组是否都为升序 or 降序: 需要统一</span><br><span class="line">2. 目标数组是升序 or 降序</span><br></pre></td></tr></table></figure>
 <h2 id="代码实现"><a href="#代码实现" class="headerlink" title="代码实现"></a>代码实现</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># coding: utf-8</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">merge_array</span><span class="params">(num1, num2)</span>:</span></span><br><span class="line">    i, j, _res = <span class="number">0</span>, <span class="number">0</span>, list()</span><br><span class="line">    len1, len2 = len(num1), len(num2)</span><br><span class="line"></span><br><span class="line">    <span class="keyword">while</span> i &lt; len1 <span class="keyword">and</span> j &lt; len2:</span><br><span class="line">        <span class="keyword">if</span> num1[i] &lt; num2[j]:</span><br><span class="line">            _res.append(num1[i])</span><br><span class="line">            i += <span class="number">1</span></span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            _res.append(num2[j])</span><br><span class="line">            j += <span class="number">1</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> i == len1:</span><br><span class="line">        _res.extend(num2[j:])</span><br><span class="line">    <span class="keyword">else</span>:</span><br><span class="line">        _res.extend(num1[i:])</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> _res</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">"__main__"</span>:</span><br><span class="line">    num1 = [<span class="number">0</span>, <span class="number">2</span>, <span class="number">4</span>, <span class="number">6</span>, <span class="number">8</span>]</span><br><span class="line">    num2 = [<span class="number">1</span>, <span class="number">3</span>, <span class="number">5</span>, <span class="number">7</span>, <span class="number">9</span>, <span class="number">11</span>]</span><br><span class="line">    print(merge_array(num1, num2))</span><br></pre></td></tr></table></figure>
 
@@ -539,7 +542,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">155</span>
+                    <span class="site-state-item-count">151</span>
                     <span class="site-state-item-name">日志</span>
                   </a>
                 </div>
@@ -608,7 +611,7 @@
                     
                       
                     
-                    <span class="site-state-item-count">28</span>
+                    <span class="site-state-item-count">26</span>
                     <span class="site-state-item-name">分类</span>
                   </a>
                 </div>
@@ -689,7 +692,7 @@
                     
                       
                     
-                    <span class="site-state-item-count">34</span>
+                    <span class="site-state-item-count">33</span>
                     <span class="site-state-item-name">标签</span>
                   </a>
                 </div>
