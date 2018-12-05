@@ -1,0 +1,950 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=6.4.1" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=6.4.1">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=6.4.1">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=6.4.1">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=6.4.1" color="#222">
+
+
+
+
+
+
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    version: '6.4.1',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: false,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  
+
+
+
+
+  <meta name="description" content="转载自微信公众号《架构师成长之路》2017年的80篇精选文章。">
+<meta name="keywords" content="架构">
+<meta property="og:type" content="article">
+<meta property="og:title" content="转载-架构师成长之路2017-80篇精选">
+<meta property="og:url" content="http://blog.timilong.com/2018/12/05/转载-架构师成长之路2017-80篇精选/index.html">
+<meta property="og:site_name" content="Timilong&#39;s blog">
+<meta property="og:description" content="转载自微信公众号《架构师成长之路》2017年的80篇精选文章。">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2018-12-05T03:20:16.479Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="转载-架构师成长之路2017-80篇精选">
+<meta name="twitter:description" content="转载自微信公众号《架构师成长之路》2017年的80篇精选文章。">
+
+
+
+
+
+
+  <link rel="canonical" href="http://blog.timilong.com/2018/12/05/转载-架构师成长之路2017-80篇精选/"/>
+
+
+
+<script type="text/javascript" id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>转载-架构师成长之路2017-80篇精选 | Timilong's blog</title>
+  
+
+
+
+
+
+
+
+
+
+  <noscript>
+  <style type="text/css">
+    .use-motion .motion-element,
+    .use-motion .brand,
+    .use-motion .menu-item,
+    .sidebar-inner,
+    .use-motion .post-block,
+    .use-motion .pagination,
+    .use-motion .comments,
+    .use-motion .post-header,
+    .use-motion .post-body,
+    .use-motion .collection-title { opacity: initial; }
+
+    .use-motion .logo,
+    .use-motion .site-title,
+    .use-motion .site-subtitle {
+      opacity: initial;
+      top: initial;
+    }
+
+    .use-motion {
+      .logo-line-before i { left: initial; }
+      .logo-line-after i { right: initial; }
+    }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Timilong's blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+    
+      
+        <p class="site-subtitle">Cease to struggle and you cease to live.--Thomas Carlyle</p>
+      
+    
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="Toggle navigation bar">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+          
+          <li class="menu-item menu-item-home">
+    <a href="/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-home"></i> <br />首页</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-tags">
+    <a href="/tags/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />标签</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-categories">
+    <a href="/categories/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-th"></i> <br />分类</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+    <a href="/archives/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />归档</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-about">
+    <a href="/about/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-user"></i> <br />关于</a>
+  </li>
+
+      
+      
+    </ul>
+  
+
+  
+    
+
+  
+
+  
+</nav>
+
+
+
+  
+
+
+
+</div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://blog.timilong.com/2018/12/05/转载-架构师成长之路2017-80篇精选/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="博主">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Timilong's blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">转载-架构师成长之路2017-80篇精选
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建于：2018-12-05 10:58:46 / 更新于：03:20:16" itemprop="dateCreated datePublished" datetime="2018-12-05T10:58:46Z">2018-12-05</time>
+            
+
+            
+              
+
+              
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/架构/" itemprop="url" rel="index"><span itemprop="name">架构</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+              <div class="post-description">转载自微信公众号《架构师成长之路》2017年的80篇精选文章。</div>
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <blockquote>
+<p>转载自: 微信公众号，<a href="https://mp.weixin.qq.com/s?__biz=MjM5ODYxMDA5OQ==&amp;mid=2651960945&amp;idx=1&amp;sn=d08f33c5f317fee8956252da8e0236b6&amp;chksm=bd2d03ad8a5a8abb0370b826b7384a4095a5ed36238f0911d102b0ceee8e5d2fbe3bc80c56d9&amp;scene=21#wechat_redirect" target="_blank" rel="noopener">架构师之路</a></p>
+</blockquote>
+<h2 id="【架构必备】"><a href="#【架构必备】" class="headerlink" title="【架构必备】"></a>【架构必备】</h2><p><a href="http://mp.weixin.qq.com/s?__biz=MjM5ODYxMDA5OQ==&amp;mid=2651959830&amp;idx=1&amp;sn=ce1c5a58caed227d7dfdbc16d6e1cea4&amp;chksm=bd2d07ca8a5a8edc45cc45c4787cc72cf4c8b96fb43d2840c7ccd44978036a7d39a03dd578b5&amp;scene=21#wechat_redirect" target="_blank" rel="noopener">《互联网架构如何实现“高并发”》</a><br><a href="http://mp.weixin.qq.com/s?__biz=MjM5ODYxMDA5OQ==&amp;mid=2651960086&amp;idx=1&amp;sn=70bbe7165ecddc7896767f4503a927fe&amp;chksm=bd2d06ca8a5a8fdc67fcacb169583f53a968fdf623a20395926059d44e6abae6b2e56ff1f9f9&amp;scene=21#wechat_redirect" target="_blank" rel="noopener">《TCP接入层的负载均衡、高可用、扩展性架构设计》</a><br><a href="http://mp.weixin.qq.com/s?__biz=MjM5ODYxMDA5OQ==&amp;mid=2651960061&amp;idx=1&amp;sn=3747338a91e85fc33f43d9c1bb98ab10&amp;chksm=bd2d07218a5a8e37ad2e5078736d2449a6ba1e0d75bb18d09990a5f3dcc3af2b7ff414158adb&amp;scene=21#wechat_redirect" target="_blank" rel="noopener">《配置中心架构设计演进》</a><br><a href="http://mp.weixin.qq.com/s?__biz=MjM5ODYxMDA5OQ==&amp;mid=2651960105&amp;idx=1&amp;sn=0069f2264e227e86a63ee50a4899e0a7&amp;chksm=bd2d06f58a5a8fe33271ed3a378932ad023af7a9004d7fdb44e30a53d53928f984f293a41256&amp;scene=21#wechat_redirect" target="_blank" rel="noopener">《跨公网调用的大坑与架构优化》</a><br><a href="">《DNS在架构设计中的巧用》</a><br><a href="">《消息如何在网络上安全传输》</a><br><a href="">《10W定时任务，如何高效触发》</a><br><a href="">《工作线程究竟设置为多少合适》</a><br><a href="">《URI设计原则》</a></p>
+<p>##【一致性】</p>
+<p><a href="">《session一致性架构设计实践》</a><br><a href="">《MySQL双主架构一致性优化》</a><br><a href="">《库存扣多了，到底怎么整》</a><br><a href="">《再议库存扣减多种方案》</a><br><a href="">《浅谈CAS在分布式ID生成方案上的应用》</a><br><a href="">《CAS下ABA问题及优化方案》</a></p>
+<p>##【分层架构设计】</p>
+<p><a href="">《互联网分层架构的本质》</a><br><a href="">《分层架构，为什么需要服务化》</a><br><a href="">《分层架构，是否需要业务服务层》</a><br><a href="">《分层架构，为什么需要前后端分离》</a><br><a href="">《分层架构，前后端分离的坏处》</a><br><a href="">《分层架构，为什么要引入数据库中间层》</a><br><a href="">《分层架构，APP分层架构随想》</a></p>
+<h2 id="【数据库-SQL】"><a href="#【数据库-SQL】" class="headerlink" title="【数据库-SQL】"></a>【数据库-SQL】</h2><p><a href="">《或许你不知道的10条SQL技巧》</a><br><a href="">《MySQL索引or/in/union优化》</a><br><a href="">《58到家数据库30条军规解读》</a><br><a href="">《再议58到家数据库军规》</a><br><a href="">《赶集MySQL军规》</a></p>
+<h2 id="【数据库架构】"><a href="#【数据库架构】" class="headerlink" title="【数据库架构】"></a>【数据库架构】</h2><p><a href="">《100亿数据量1万属性10万并发数据库架构设计》</a><br><a href="">《数据库秒级平滑扩容架构方案》</a><br><a href="">《业界难题，跨库分页的四种方案》</a><br><a href="">《100亿数据平滑迁移，不停服务》</a><br><a href="">《MySQL数据冗余的三种方案》</a></p>
+<p>##【数据库-容量】</p>
+<p><a href="">《每每谈到数据库架构，我们在讨论什么》</a><br><a href="">《用户中心，数据库架构优化与实践》</a><br><a href="">《帖子中心，数据库架构优化与实践》</a><br><a href="">《好友中心，数据库架构优化与实践》</a><br><a href="">《订单中心，如何做到数据库无限容量》</a></p>
+<p>##【数据库中间件】</p>
+<p><a href="">《数据库中间件，需求调研》</a><br><a href="">《数据库中间件，cobar调研笔记》</a><br><a href="">《数据库中间件，TDDL调研笔记》</a><br><a href="">《数据库中间件，atlas调研笔记》</a><br><a href="">《数据库中间件，mysql-proxy调研笔记》</a><br><a href="">《假如让你来设计数据库中间件》</a></p>
+<p>##【架构解耦】</p>
+<p><a href="">《小小的IP，大大的耦合，如何解耦》</a><br><a href="">《小小的公共库，大大的耦合，如何解耦》</a><br><a href="">《数据库耦合，如何解耦》</a><br><a href="">《为何服务化了，耦合却更加严重》</a><br><a href="">《MQ，互联网架构解耦神器》</a><br><a href="">《配置中心，互联网架构解耦利器》</a></p>
+<p>##【MQ】</p>
+<p><a href="">《究竟什么时候使用MQ》</a><br><a href="">《MQ，如何做到消息必达》</a><br><a href="">《MQ，如何做到消息幂等》</a><br><a href="">《MQ，如何做到消息延时》</a><br><a href="">《MQ，如何做到削峰填谷》</a></p>
+<p>##【搜索】</p>
+<p><a href="">《搜索引擎的原理，架构与细节》</a><br><a href="">《流量从小到大，检索架构演进》</a><br><a href="">《全网搜索引擎，如何检索到15分钟之前生成的网页》</a></p>
+<p>##【典型系统】</p>
+<p><a href="">《秒杀系统，架构与优化细节》</a><br><a href="">《广告系统，业务与架构细节》</a><br><a href="">《计数系统，架构与优化细节》</a></p>
+<p>##【线上实战】</p>
+<p><a href="">《线上问题排查实战》</a><br><a href="">《CPU100%问题排查实战》</a><br><a href="">《内存OOM问题排查实战》</a></p>
+<p>##【一分钟系列】</p>
+<p><a href="">《1分钟理解LF线程模型》</a><br><a href="">《1分钟了解索引技巧》</a><br><a href="">《1分钟了解四层/七层反向代理》</a><br><a href="">《1分钟写好连接池》</a><br><a href="">《1分钟了解好接口的设计原则》</a></p>
+<p>##【评论比文章精彩，架构讨论】</p>
+<p><a href="">《服务读写分离，是否可行？》</a><br><a href="">《服务读写分离，绝不推荐》</a><br><a href="">《服务通过缓存传递数据，是否可行？》</a><br><a href="">《服务通过缓存传递数据，绝不推荐》</a></p>
+<p>##【通用】</p>
+<p><a href="">《如何精准理解leader布置的任务》</a><br><a href="">《如何快速精准的和leader沟通》</a><br><a href="">《罗振宇送给新员工的四句话》</a><br><a href="">《远离中国式辩论》</a></p>
+<p>##【惊喜】</p>
+<p><a href="">《架构师之路，支持历史文章搜索》</a></p>
+
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/架构/" rel="tag"># 架构</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/12/04/mysql-关于MySQL内核-一定要知道的-转载/" rel="next" title="mysql-关于MySQL内核-一定要知道的-转载">
+                <i class="fa fa-chevron-left"></i> mysql-关于MySQL内核-一定要知道的-转载
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+  </div>
+
+
+          </div>
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">博主</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/">
+                
+                    <span class="site-state-item-count">152</span>
+                    <span class="site-state-item-name">日志</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-categories">
+                  <a href="/categories/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">27</span>
+                    <span class="site-state-item-name">分类</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  <a href="/tags/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">34</span>
+                    <span class="site-state-item-name">标签</span>
+                  </a>
+                </div>
+              
+            </nav>
+          
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+            
+          
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#【架构必备】"><span class="nav-number">1.</span> <span class="nav-text">【架构必备】</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#【数据库-SQL】"><span class="nav-number">2.</span> <span class="nav-text">【数据库-SQL】</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#【数据库架构】"><span class="nav-number">3.</span> <span class="nav-text">【数据库架构】</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder"><a href="http://blog.timilong.com/about" target="_blank"> Timi.long </a></span>
+  
+
+  
+</div>
+
+
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动 v3.7.1</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 – <a class="theme-link" target="_blank" href="https://theme-next.org">NexT.Muse</a> v6.4.1</div>
+
+
+
+
+<!-- 新增访客统计代码 -->
+
+<div class="busuanzi-count">
+    <script async="" src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>  
+    <span class="site-uv">
+      <i class="fa fa-user"></i>
+      访问用户： <span class="busuanzi-value" id="busuanzi_value_site_uv"></span> 人
+    </span>
+    <div class="powered-by"></div>
+    <span class="site-uv">
+      <i class="fa fa-eye"></i>
+      访问次数： <span class="busuanzi-value" id="busuanzi_value_site_pv"></span> 次
+    </span>
+    <!-- 博客字数统计
+    <span class="site-pv">
+      <i class="fa fa-pencil"></i>
+      博客全站共： <span class="post-count"> </span> 字
+    </span> -->
+</div>
+<!-- 新增访客统计代码 END-->
+
+        
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+	
+    
+
+    
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=6.4.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=6.4.1"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=6.4.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=6.4.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=6.4.1"></script>
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
