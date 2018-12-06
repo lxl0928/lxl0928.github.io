@@ -117,7 +117,14 @@
 <meta property="og:description" content="服务器为每个用户创建一个会话，存储用户的相关信息，以便多次请求能够定位到同一个上下文。">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="http://qiniucdn.timilong.com/1543735436252.jpg">
-<meta property="og:updated_time" content="2018-12-06T04:56:55.603Z">
+<meta property="og:image" content="http://qiniucdn.timilong.com/2017060621.jpg">
+<meta property="og:image" content="http://qiniucdn.timilong.com/2017060622.jpg">
+<meta property="og:image" content="http://qiniucdn.timilong.com/2017060623.jpg">
+<meta property="og:image" content="http://qiniucdn.timilong.com/2017060624.jpg">
+<meta property="og:image" content="http://qiniucdn.timilong.com/2017060625.jpg">
+<meta property="og:image" content="http://qiniucdn.timilong.com/2017060626.jpg">
+<meta property="og:image" content="http://qiniucdn.timilong.com/2017060627.jpg">
+<meta property="og:updated_time" content="2018-12-06T07:08:15.670Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="转载-session一致性架构设计实践">
 <meta name="twitter:description" content="服务器为每个用户创建一个会话，存储用户的相关信息，以便多次请求能够定位到同一个上下文。">
@@ -208,7 +215,7 @@
   </div>
 
   <div class="site-nav-toggle">
-    <button aria-label="ナビゲーションバーの切り替え">
+    <button aria-label="Toggle navigation bar">
       <span class="btn-bar"></span>
       <span class="btn-bar"></span>
       <span class="btn-bar"></span>
@@ -353,7 +360,7 @@
                 
               
 
-              <time title="创建于：2018-12-06 12:50:44 / 更新于：04:56:55" itemprop="dateCreated datePublished" datetime="2018-12-06T12:50:44Z">2018-12-06</time>
+              <time title="创建于：2018-12-06 12:50:44 / 更新于：07:08:15" itemprop="dateCreated datePublished" datetime="2018-12-06T12:50:44Z">2018-12-06</time>
             
 
             
@@ -418,12 +425,14 @@
 <h2 id="缘起"><a href="#缘起" class="headerlink" title="缘起"></a>缘起</h2><h3 id="什么是session？"><a href="#什么是session？" class="headerlink" title="什么是session？"></a>什么是session？</h3><p>服务器为每个用户创建一个会话，存储用户的相关信息，以便多次请求能够定位到同一个上下文。</p>
 <p>Web开发中，web-server可以自动为同一个浏览器的访问用户自动创建session，提供数据存储功能。最常见的，会把用户的登录信息、用户信息存储在session中，以保持登录状态。</p>
 <h3 id="什么是session一致性问题？"><a href="#什么是session一致性问题？" class="headerlink" title="什么是session一致性问题？"></a>什么是session一致性问题？</h3><p>只要用户不重启浏览器，每次http短连接请求，理论上服务端都能定位到session，保持会话。</p>
+<p><img src="http://qiniucdn.timilong.com/2017060621.jpg" alt="tu"></p>
 <p>当只有一台web-server提供服务时，每次http短连接请求，都能够正确路由到存储session的对应web-server（废话，因为只有一台）。</p>
 <p>此时的web-server是无法保证高可用的，采用“冗余+故障转移”的多台web-server来保证高可用时，每次http短连接请求就不一定能路由到正确的session了。</p>
-<p><img src="" alt="tu"></p>
+<p><img src="http://qiniucdn.timilong.com/2017060622.jpg" alt="tu"></p>
 <p>如上图，假设用户包含登录信息的session都记录在第一台web-server上，反向代理如果将请求路由到另一台web-server上，可能就找不到相关信息，而导致用户需要重新登录。</p>
 <p>在web-server高可用时，如何保证session路由的一致性，是今天将要讨论的问题。</p>
-<h2 id="session同步法"><a href="#session同步法" class="headerlink" title="session同步法"></a>session同步法</h2><p>思路：多个web-server之间相互同步session，这样每个web-server之间都包含全部的session</p>
+<h2 id="session同步法"><a href="#session同步法" class="headerlink" title="session同步法"></a>session同步法</h2><p><img src="http://qiniucdn.timilong.com/2017060623.jpg" alt="tu"></p>
+<p>思路：多个web-server之间相互同步session，这样每个web-server之间都包含全部的session</p>
 <p>优点：web-server支持的功能，应用程序不需要修改代码</p>
 <p>不足：</p>
 <ul>
@@ -434,7 +443,8 @@
 <li><p>有更多web-server时要歇菜</p>
 </li>
 </ul>
-<h2 id="客户端存储法"><a href="#客户端存储法" class="headerlink" title="客户端存储法"></a>客户端存储法</h2><p>思路：服务端存储所有用户的session，内存占用较大，可以将session存储到浏览器cookie中，每个端只要存储一个用户的数据了</p>
+<h2 id="客户端存储法"><a href="#客户端存储法" class="headerlink" title="客户端存储法"></a>客户端存储法</h2><p><img src="http://qiniucdn.timilong.com/2017060624.jpg" alt="tu"></p>
+<p>思路：服务端存储所有用户的session，内存占用较大，可以将session存储到浏览器cookie中，每个端只要存储一个用户的数据了</p>
 <p>优点：服务端不需要存储</p>
 <p>缺点：</p>
 <ul>
@@ -447,7 +457,9 @@
 </ul>
 <p>“端存储”的方案虽然不常用，但确实是一种思路。</p>
 <h2 id="反向代理hash一致性"><a href="#反向代理hash一致性" class="headerlink" title="反向代理hash一致性"></a>反向代理hash一致性</h2><p>思路：web-server为了保证高可用，有多台冗余，反向代理层能不能做一些事情，让同一个用户的请求保证落在一台web-server上呢？</p>
+<p><img src="http://qiniucdn.timilong.com/2017060625.jpg" alt="tu"></p>
 <h3 id="方案一：四层代理hash"><a href="#方案一：四层代理hash" class="headerlink" title="方案一：四层代理hash"></a>方案一：四层代理hash</h3><p>反向代理层使用用户ip来做hash，以保证同一个ip的请求落在同一个web-server上</p>
+<p><img src="http://qiniucdn.timilong.com/2017060626.jpg" alt="tu"></p>
 <h3 id="方案二：七层代理hash"><a href="#方案二：七层代理hash" class="headerlink" title="方案二：七层代理hash"></a>方案二：七层代理hash</h3><p>反向代理使用http协议中的某些业务属性来做hash，例如sid，city_id，user_id等，能够更加灵活的实施hash策略，以保证同一个浏览器用户的请求落在同一个web-server上</p>
 <p>优点：</p>
 <ul>
@@ -467,7 +479,8 @@
 </ul>
 <p>session一般是有有效期的，所有不足中的两点，可以认为等同于部分session失效，一般问题不大。</p>
 <p>对于四层hash还是七层hash，个人推荐前者：让专业的软件做专业的事情，反向代理就负责转发，尽量不要引入应用层业务属性，除非不得不这么做（例如，有时候多机房多活需要按照业务属性路由到不同机房的web-server）。</p>
-<h2 id="后端统一存储"><a href="#后端统一存储" class="headerlink" title="后端统一存储"></a>后端统一存储</h2><p>思路：将session存储在web-server后端的存储层，数据库或者缓存</p>
+<h2 id="后端统一存储"><a href="#后端统一存储" class="headerlink" title="后端统一存储"></a>后端统一存储</h2><p><img src="http://qiniucdn.timilong.com/2017060627.jpg" alt="tu"></p>
+<p>思路：将session存储在web-server后端的存储层，数据库或者缓存</p>
 <p>优点：</p>
 <ul>
 <li><p>没有安全隐患</p>
@@ -529,6 +542,10 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018/12/06/转载-缓存架构-一篇足够/" rel="prev" title="转载-缓存架构-一篇足够">
+                转载-缓存架构-一篇足够 <i class="fa fa-chevron-right"></i>
+              </a>
             
           </div>
         </div>
@@ -598,7 +615,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">154</span>
+                    <span class="site-state-item-count">155</span>
                     <span class="site-state-item-name">日志</span>
                   </a>
                 </div>
