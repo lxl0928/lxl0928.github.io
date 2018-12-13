@@ -1,0 +1,1035 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=6.4.1" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=6.4.1">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=6.4.1">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=6.4.1">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=6.4.1" color="#222">
+
+
+
+
+
+
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    version: '6.4.1',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: false,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  
+
+
+
+
+  <meta name="description" content="高可用架构设计-总结">
+<meta name="keywords" content="架构">
+<meta property="og:type" content="article">
+<meta property="og:title" content="转载-互联网架构设计">
+<meta property="og:url" content="http://blog.timilong.com/2018/12/13/转载-互联网架构设计/index.html">
+<meta property="og:site_name" content="Timilong&#39;s blog">
+<meta property="og:description" content="高可用架构设计-总结">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2018-12-13T03:26:10.774Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="转载-互联网架构设计">
+<meta name="twitter:description" content="高可用架构设计-总结">
+
+
+
+
+
+
+  <link rel="canonical" href="http://blog.timilong.com/2018/12/13/转载-互联网架构设计/"/>
+
+
+
+<script type="text/javascript" id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>转载-互联网架构设计 | Timilong's blog</title>
+  
+
+
+
+
+
+
+
+
+
+  <noscript>
+  <style type="text/css">
+    .use-motion .motion-element,
+    .use-motion .brand,
+    .use-motion .menu-item,
+    .sidebar-inner,
+    .use-motion .post-block,
+    .use-motion .pagination,
+    .use-motion .comments,
+    .use-motion .post-header,
+    .use-motion .post-body,
+    .use-motion .collection-title { opacity: initial; }
+
+    .use-motion .logo,
+    .use-motion .site-title,
+    .use-motion .site-subtitle {
+      opacity: initial;
+      top: initial;
+    }
+
+    .use-motion {
+      .logo-line-before i { left: initial; }
+      .logo-line-after i { right: initial; }
+    }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Timilong's blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+    
+      
+        <p class="site-subtitle">Cease to struggle and you cease to live.--Thomas Carlyle</p>
+      
+    
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="Toggle navigation bar">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+          
+          <li class="menu-item menu-item-home">
+    <a href="/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-home"></i> <br />首页</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-tags">
+    <a href="/tags/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />标签</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-categories">
+    <a href="/categories/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-th"></i> <br />分类</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+    <a href="/archives/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />归档</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-about">
+    <a href="/about/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-user"></i> <br />关于</a>
+  </li>
+
+      
+      
+    </ul>
+  
+
+  
+    
+
+  
+
+  
+</nav>
+
+
+
+  
+
+
+
+</div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://blog.timilong.com/2018/12/13/转载-互联网架构设计/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="博主">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Timilong's blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">转载-互联网架构设计
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建于：2018-12-13 11:02:23 / 更新于：03:26:10" itemprop="dateCreated datePublished" datetime="2018-12-13T11:02:23Z">2018-12-13</time>
+            
+
+            
+              
+
+              
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/架构/" itemprop="url" rel="index"><span itemprop="name">架构</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+              <div class="post-description">高可用架构设计-总结</div>
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <blockquote>
+<p>转载自: 发者开知识库，<a href="http://www.itdaan.com/blog/2018/04/27/d9d4f6a074ed53401cd73c1dee33d9d9.html" target="_blank" rel="noopener">架构师之路总结01</a></p>
+</blockquote>
+<h2 id="互联网架构设计如何进行容量评估："><a href="#互联网架构设计如何进行容量评估：" class="headerlink" title="互联网架构设计如何进行容量评估："></a>互联网架构设计如何进行容量评估：</h2><p>【步骤一：评估总访问量】 -&gt; 询问业务、产品、运营</p>
+<p>【步骤二：评估平均访问量QPS】-&gt; 除以时间，一天算4w秒</p>
+<p>【步骤三：评估高峰QPS】 -&gt; 根据业务曲线图来</p>
+<p>【步骤四：评估系统、单机极限QPS】 -&gt; 压测很重要</p>
+<p>【步骤五：根据线上冗余度回答两个问题】 -&gt; 估计冗余度与线上冗余度差值</p>
+<h2 id="单点系统架构的可用性与性能优化"><a href="#单点系统架构的可用性与性能优化" class="headerlink" title="单点系统架构的可用性与性能优化"></a>单点系统架构的可用性与性能优化</h2><p>1）单点系统存在的问题：可用性问题，性能瓶颈问题</p>
+<p>2）shadow-master是一种常见的解决单点系统可用性问题的方案</p>
+<p>3）减少与单点的交互，是存在单点的系统优化的核心方向，常见方法有批量写，客户端缓存</p>
+<p>4）水平扩展也是提升单点系统性能的好方案</p>
+<h2 id="负载均衡"><a href="#负载均衡" class="headerlink" title="负载均衡"></a>负载均衡</h2><p>负载均衡（Load Balance）是分布式系统架构设计中必须考虑的因素之一，它通常是指，将请求/数据【均匀】分摊到多个操作单元上执行，负载均衡的关键在于【均匀】。</p>
+<p>1）【客户端层】到【反向代理层】的负载均衡，是通过“DNS轮询”实现的</p>
+<p>2）【反向代理层】到【站点层】的负载均衡，是通过“nginx”实现的</p>
+<p>3）【站点层】到【服务层】的负载均衡，是通过“服务连接池”实现的</p>
+<p>4）【数据层】的负载均衡，要考虑“数据的均衡”与“请求的均衡”两个点，常见的方式有“按照范围水平切分”与“hash水平切分”</p>
+<h2 id="如何实施异构服务器的负载均衡及过载保护？"><a href="#如何实施异构服务器的负载均衡及过载保护？" class="headerlink" title="如何实施异构服务器的负载均衡及过载保护？"></a>如何实施异构服务器的负载均衡及过载保护？</h2><p>1）service的负载均衡、故障转移、超时处理通常是RPC-client连接池层面来实施的</p>
+<p>2）异构服务器负载均衡，最简单的方式是静态权重法，缺点是无法自适应动态调整</p>
+<p>3）动态权重法，可以动态的根据service的处理能力来分配负载，需要有连接池层面的微小改动 （权重值，成功 +1，失败 -10）</p>
+<p>4）过载保护，是在负载过高时，service为了保护自己，保证一定处理能力的一种自救方法（）</p>
+<p>5）动态权重法，还可以用做service的过载保护</p>
+<p>动态权重是用来标识每个service的处理能力的一个值，它是RPC-client客户端连接池层面的一个东东。服务端处理超时，客户端RPC-client连接池都能够知道，这里只要实施一些策略，就能够对“疑似过载”的服务器进行降压，</p>
+<p>而不用服务器“抛弃请求”这么粗暴的实施过载保护。</p>
+<p>应该实施一些什么样的策略呢，例如：</p>
+<p>1）如果某一个service的连接上，连续3个请求都超时，即连续-10分三次，客户端就可以认为，服务器慢慢的要处理不过来了，得给这个service缓一小口气，于是设定策略：接下来的若干时间内， 例如1秒（或者接下来的若干个请求），请求不再分配给这个service；</p>
+<p>2）如果某一个service的动态权重，降为了0（像连续10个请求超时，中间休息了3次还超时），客户端就可以认为，服务器完全处理不过来了，得给这个service喘一大口气，于是设定策略： 接下来的若干时间内，例如1分钟（为什么是1分钟，根据经验，此时service一般在发生fullGC，差不多1分钟能回过神来），请求不再分配给这个service；</p>
+<p>3）可以有更复杂的保护策略, 这样的话，不但能借助“动态权重”来实施动态自适应的异构服务器负载均衡，还能在客户端层面更优雅的实施过载保护，在某个下游service快要响应不过来的时候，给其喘息的机会。</p>
+<p>需要注意的是：要防止客户端的过载保护引起service的雪崩，如果“整体负载”已经超过了“service集群”的处理能力，怎么转移请求也是处理不过来的，还得通过抛弃请求来实施自我保护。<br>转自：<a href="https://mp.weixin.qq.com/s?__biz=MjM5ODYxMDA5OQ==&amp;mid=2651959601&amp;idx=1&amp;sn=5684c39676b1f6d9366d9d15a2cdcec3&amp;scene=21#wechat_redirect" target="_blank" rel="noopener">https://mp.weixin.qq.com/s?__biz=MjM5ODYxMDA5OQ==&amp;mid=2651959601&amp;idx=1&amp;sn=5684c39676b1f6d9366d9d15a2cdcec3&amp;scene=21#wechat_redirect</a></p>
+<h2 id="主从DB与cache一致性"><a href="#主从DB与cache一致性" class="headerlink" title="主从DB与cache一致性"></a>主从DB与cache一致性</h2><p>在“异常时序”或者“读从库”导致脏数据入缓存时，可以用二次异步淘汰的“缓存双淘汰”法来解决缓存与数据库中数据不一致的问题，具体实施至少有三种方案：</p>
+<p>1）timer异步淘汰（本文没有细讲，本质就是起个线程专门异步二次淘汰缓存）</p>
+<p>2）总线异步淘汰</p>
+<p>3）读binlog异步淘汰</p>
+<h2 id="DB主从一致性架构优化4种方法"><a href="#DB主从一致性架构优化4种方法" class="headerlink" title="DB主从一致性架构优化4种方法"></a>DB主从一致性架构优化4种方法</h2><p>为了解决主从数据库读取旧数据的问题，常用的方案有四种：</p>
+<h3 id="半同步复制："><a href="#半同步复制：" class="headerlink" title="半同步复制："></a>半同步复制：</h3><p>a. 系统先对DB-master进行了一个写操作，写主库</p>
+<p>b. 等主从同步完成，写主库的请求才返回</p>
+<p>c. 读从库，读到最新的数据（如果读请求先完成，写请求后完成，读取到的是“当时”最新的数据）</p>
+<p>方案优点：利用数据库原生功能，比较简单</p>
+<p>方案缺点：主库的写请求时延会增长，吞吐量会降低</p>
+<h3 id="强制读主"><a href="#强制读主" class="headerlink" title="强制读主"></a>强制读主</h3><p> 如果不使用“增加从库”的方式来增加提升系统的读性能，完全可以读写都落到主库，这样就不会出现不一致了：</p>
+<p> 方案优点：“一致性”上不需要进行系统改造</p>
+<p> 方案缺点：只能通过cache来提升系统的读性能，这里要进行系统改造</p>
+<h3 id="数据库中间件"><a href="#数据库中间件" class="headerlink" title="数据库中间件"></a>数据库中间件</h3><p>如果有了数据库中间件，所有的数据库请求都走中间件，这个主从不一致的问题可以这么解决：</p>
+<p>a. 有的读写都走数据库中间件，通常情况下，写请求路由到主库，读请求路由到从库</p>
+<p>b. 记录所有路由到写库的key，在经验主从同步时间窗口内（假设是500ms），如果有读请求访问中间件，此时有可能从库还是旧数据，就把这个key上的读请求路由到主库</p>
+<p>c. 经验主从同步时间过完后，对应key的读请求继续路由到从库</p>
+<p>方案优点：能保证绝对一致</p>
+<p>方案缺点：数据库中间件的成本比较高</p>
+<h3 id="缓存记录写key"><a href="#缓存记录写key" class="headerlink" title="缓存记录写key"></a>缓存记录写key</h3><p>使用缓存，当写请求发生的时候：</p>
+<p>a. 将某个库上的某个key要发生写操作，记录在cache里，并设置“经验主从同步时间”的cache超时时间，例如500ms</p>
+<p>b. 修改数据库</p>
+<p>而读请求发生的时候：</p>
+<p>a. 先到cache里查看，对应库的对应key有没有相关数据</p>
+<p>b. 如果cache hit，有相关数据，说明这个key上刚发生过写操作，此时需要将请求路由到主库读最新的数据</p>
+<p>c. 如果cache miss，说明这个key上近期没有发生过写操作，此时将请求路由到从库，继续读写分离</p>
+<p>方案优点：相对数据库中间件，成本较低</p>
+<p>方案缺点：为了保证“一致性”，引入了一个cache组件，并且读写数据库时都多了一步cache操作</p>
+<h2 id="mysql并行复制降低主从同步延时的思路与启示"><a href="#mysql并行复制降低主从同步延时的思路与启示" class="headerlink" title="mysql并行复制降低主从同步延时的思路与启示"></a>mysql并行复制降低主从同步延时的思路与启示</h2><p>从mysql并行复制缩短主从同步时延的思想可以看到，架构的思路是相同的：</p>
+<p>（1）多线程是一种常见的缩短执行时间的方法</p>
+<p>（2）多线程并发分派任务时必须保证幂等性：mysql的演进思路，提供了“按照库幂等”，“按照commit_id幂等”两种方式，思路大伙可以借鉴</p>
+<p>另，mysql在并行复制上的逐步优化演进：</p>
+<p>mysql5.5 -&gt; 不支持并行复制，对大伙的启示：升级mysql吧</p>
+<p>mysql5.6 -&gt; 按照库并行复制，对大伙的启示：使用“多库”架构吧</p>
+<p>mysql5.7 -&gt; 按照GTID并行复制</p>
+<h2 id="即使删了全库，保证半小时恢复"><a href="#即使删了全库，保证半小时恢复" class="headerlink" title="即使删了全库，保证半小时恢复"></a>即使删了全库，保证半小时恢复</h2><p>保证数据的安全性是DBA第一要务，需要进行：</p>
+<p>（1）全量备份+增量备份，并定期进行恢复演练，但该方案恢复时间较久，对系统可用性影响大</p>
+<p>（2）1小时延时从，双份1小时延时从能极大加速数据库恢复时间</p>
+<p>（3）个人建议1小时延时从足够，后台只读服务可以连1小时延时从，提高资源利用率</p>
+<h2 id="啥，又要为表增加一列属性？"><a href="#啥，又要为表增加一列属性？" class="headerlink" title="啥，又要为表增加一列属性？"></a>啥，又要为表增加一列属性？</h2><p>1）方案一：版本号+通用列</p>
+<p>2）方案二：通过扩展行的方式来扩展属性</p>
+<h2 id="这才是真正的表扩展方案"><a href="#这才是真正的表扩展方案" class="headerlink" title="这才是真正的表扩展方案"></a>这才是真正的表扩展方案</h2><h3 id="常见“新表-触发器-迁移数据-rename”方案（pt-online-schema-change），这是业内非常成熟的扩展列的方案"><a href="#常见“新表-触发器-迁移数据-rename”方案（pt-online-schema-change），这是业内非常成熟的扩展列的方案" class="headerlink" title="常见“新表+触发器+迁移数据+rename”方案（pt-online-schema-change），这是业内非常成熟的扩展列的方案"></a>常见“新表+触发器+迁移数据+rename”方案（pt-online-schema-change），这是业内非常成熟的扩展列的方案</h3><p>以user(uid, name, passwd)</p>
+<p>扩展到user(uid, name, passwd, age, sex)为例</p>
+<p>基本原理是：</p>
+<p>（1）先创建一个扩充字段后的新表user_new(uid, name, passwd, age, sex)</p>
+<p>（2）在原表user上创建三个触发器，对原表user进行的所有insert/delete/update操作，都会对新表user_new进行相同的操作</p>
+<p>（3）分批将原表user中的数据insert到新表user_new，直至数据迁移完成</p>
+<p>（4）删掉触发器，把原表移走（默认是drop掉）</p>
+<p>（5）把新表user_new重命名（rename）成原表user</p>
+<p>扩充字段完成。</p>
+<p>优点：整个过程不需要锁表，可以持续对外提供服务</p>
+<p>操作过程中需要注意：<br>（1）变更过程中，最重要的是冲突的处理，一条原则，以触发器的新数据为准，这就要求被迁移的表必须有主键（这个要求基本都满足）</p>
+<p>（2）变更过程中，写操作需要建立触发器，所以如果原表已经有很多触发器，方案就不行（互联网大数据高并发的在线业务，一般都禁止使用触发器）</p>
+<p>（3）触发器的建立，会影响原表的性能，所以这个操作建议在流量低峰期进行</p>
+<p>pt-online-schema-change是DBA必备的利器，比较成熟，在互联网公司使用广泛。</p>
+<h3 id="哪些方案一定是不行的"><a href="#哪些方案一定是不行的" class="headerlink" title="哪些方案一定是不行的"></a>哪些方案一定是不行的</h3><p>（1）alter table add column</p>
+<p>要坚持这个方案的，也不多解释了，大数据高并发情况下，一定不可行</p>
+<p>（2）通过增加表的方式扩展，通过外键join来查询</p>
+<p>大数据高并发情况下，join性能较差，一定不可行</p>
+<p>（3）通过增加表的方式扩展，通过视图来对外</p>
+<p>一定不可行。大数据高并发情况下，互联网不怎么使用视图，至少58禁止使用视图</p>
+<p>（4）必须遵循“第x范式”的方案</p>
+<p>一定不可行。互联网的主要矛盾之一是吞吐量，为了保证吞吐量甚至可能牺牲一些事务性和一致性，通过反范式的方式来确保吞吐量的设计是很常见的，例如：冗余数据。互联网的主要矛盾之二是可用性，</p>
+<p>为了保证可用性，常见的技术方案也是数据冗余。在互联网数据库架构设计中，第x范式真的没有这么重要</p>
+<h3 id="哪些方案可行，但文章未提及"><a href="#哪些方案可行，但文章未提及" class="headerlink" title="哪些方案可行，但文章未提及"></a>哪些方案可行，但文章未提及</h3><p>（1）提前预留一些reserved字段</p>
+<p>这个是可以的。但如果预留过多，会造成空间浪费，预留过少，不一定达得到扩展效果。</p>
+<p>（2）通过增加表的方式扩展列，上游通过service来屏蔽底层的细节</p>
+<p>这个也是可以的。Jeff同学提到的UserExt(uid, newCol1, newCol2)就是这样的方案（但join连表和视图是不行的）<br>转自：<a href="https://mp.weixin.qq.com/s?__biz=MjM5ODYxMDA5OQ==&amp;mid=2651959765&amp;idx=1&amp;sn=b9916aa95c320e41035977e0a8098ca6&amp;chksm=bd2d04098a5a8d1f3af38f658c05002151e621170949d2e3bb5b1bceea55c64b0477dba4c647&amp;scene=21#wechat_redirect" target="_blank" rel="noopener">https://mp.weixin.qq.com/s?__biz=MjM5ODYxMDA5OQ==&amp;mid=2651959765&amp;idx=1&amp;sn=b9916aa95c320e41035977e0a8098ca6&amp;chksm=bd2d04098a5a8d1f3af38f658c05002151e621170949d2e3bb5b1bceea55c64b0477dba4c647&amp;scene=21#wechat_redirect</a></p>
+<h2 id="一分钟掌握数据库垂直拆分"><a href="#一分钟掌握数据库垂直拆分" class="headerlink" title="一分钟掌握数据库垂直拆分"></a>一分钟掌握数据库垂直拆分</h2><h3 id="拆分依据"><a href="#拆分依据" class="headerlink" title="拆分依据"></a>拆分依据</h3><p>当一个表属性很多时，如何来进行垂直拆分呢？如果没有特殊情况，拆分依据主要有几点：<br>1）将长度较短，访问频率较高的属性尽量放在一个表里，这个表暂且称为主表</p>
+<p>2）将字段较长，访问频率较低的属性尽量放在一个表里，这个表暂且称为扩展表</p>
+<p>如果1和2都满足，还可以考虑第三点：</p>
+<p>3）经常一起访问的属性，也可以放在一个表里</p>
+<p>优先考虑1和2，第3点不是必须。另，如果实在属性过多，主表和扩展表都可以有多个。</p>
+<p>一般来说，数据量并发量比较大时，数据库的上层都会有一个服务层。需要注意的是，当应用方需要同时访问主表和扩展表中的属性时，服务层不要使用join来连表访问，而应该分两次进行查询：</p>
+<p>原因是，大数据高并发互联网场景下，一般来说，吞吐量和扩展性是主要矛盾：<br>1）join更消损耗数据库性能</p>
+<p>2）join会让base表和ext表耦合在一起（必须在一个数据库实例上），不利于数据量大时拆分到不同的数据库实例上（机器上）。毕竟减少数据量，提升性能才是垂直拆分的初衷。</p>
+<h3 id="为什么要这么这么拆分"><a href="#为什么要这么这么拆分" class="headerlink" title="为什么要这么这么拆分"></a>为什么要这么这么拆分</h3><p>为何要将字段短，访问频率高的属性放到一个表内？为何这么垂直拆分可以提升性能？因为：<br>（1）数据库有自己的内存buffer，会将磁盘上的数据load到内存buffer里（暂且理解为进程内缓存吧）</p>
+<p>（2）内存buffer缓存数据是以row为单位的</p>
+<p>（3）在内存有限的情况下，在数据库内存buffer里缓存短row，就能缓存更多的数据</p>
+<p>（4）在数据库内存buffer里缓存访问频率高的row，就能提升缓存命中率，减少磁盘的访问</p>
+<p>举个例子就很好理解了：</p>
+<p>假设数据库内存buffer为1G，未拆分的user表1行数据大小为1k，那么只能缓存100w行数据。</p>
+<p>如果垂直拆分成user_base和user_ext，其中：<br>（1）user_base访问频率高（例如uid, name, passwd, 以及一些flag等），一行大小为0.1k</p>
+<p>（2）user_ext访问频率低（例如签名, 个人介绍等），一行大小为0.9k<br> 那边内存buffer就就能缓存近乎1000w行user_base的记录，访问磁盘的概率会大大降低，数据库访问的时延会大大降低，吞吐量会大大增加。</p>
+
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/架构/" rel="tag"># 架构</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/12/06/转载-缓存架构-一篇足够/" rel="next" title="转载-缓存架构-一篇足够">
+                <i class="fa fa-chevron-left"></i> 转载-缓存架构-一篇足够
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+  </div>
+
+
+          </div>
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">博主</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/">
+                
+                    <span class="site-state-item-count">156</span>
+                    <span class="site-state-item-name">日志</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-categories">
+                  <a href="/categories/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">28</span>
+                    <span class="site-state-item-name">分类</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  <a href="/tags/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">35</span>
+                    <span class="site-state-item-name">标签</span>
+                  </a>
+                </div>
+              
+            </nav>
+          
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+            
+          
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#互联网架构设计如何进行容量评估："><span class="nav-number">1.</span> <span class="nav-text">互联网架构设计如何进行容量评估：</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#单点系统架构的可用性与性能优化"><span class="nav-number">2.</span> <span class="nav-text">单点系统架构的可用性与性能优化</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#负载均衡"><span class="nav-number">3.</span> <span class="nav-text">负载均衡</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#如何实施异构服务器的负载均衡及过载保护？"><span class="nav-number">4.</span> <span class="nav-text">如何实施异构服务器的负载均衡及过载保护？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#主从DB与cache一致性"><span class="nav-number">5.</span> <span class="nav-text">主从DB与cache一致性</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#DB主从一致性架构优化4种方法"><span class="nav-number">6.</span> <span class="nav-text">DB主从一致性架构优化4种方法</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#半同步复制："><span class="nav-number">6.1.</span> <span class="nav-text">半同步复制：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#强制读主"><span class="nav-number">6.2.</span> <span class="nav-text">强制读主</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#数据库中间件"><span class="nav-number">6.3.</span> <span class="nav-text">数据库中间件</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#缓存记录写key"><span class="nav-number">6.4.</span> <span class="nav-text">缓存记录写key</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#mysql并行复制降低主从同步延时的思路与启示"><span class="nav-number">7.</span> <span class="nav-text">mysql并行复制降低主从同步延时的思路与启示</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#即使删了全库，保证半小时恢复"><span class="nav-number">8.</span> <span class="nav-text">即使删了全库，保证半小时恢复</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#啥，又要为表增加一列属性？"><span class="nav-number">9.</span> <span class="nav-text">啥，又要为表增加一列属性？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#这才是真正的表扩展方案"><span class="nav-number">10.</span> <span class="nav-text">这才是真正的表扩展方案</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#常见“新表-触发器-迁移数据-rename”方案（pt-online-schema-change），这是业内非常成熟的扩展列的方案"><span class="nav-number">10.1.</span> <span class="nav-text">常见“新表+触发器+迁移数据+rename”方案（pt-online-schema-change），这是业内非常成熟的扩展列的方案</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#哪些方案一定是不行的"><span class="nav-number">10.2.</span> <span class="nav-text">哪些方案一定是不行的</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#哪些方案可行，但文章未提及"><span class="nav-number">10.3.</span> <span class="nav-text">哪些方案可行，但文章未提及</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#一分钟掌握数据库垂直拆分"><span class="nav-number">11.</span> <span class="nav-text">一分钟掌握数据库垂直拆分</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#拆分依据"><span class="nav-number">11.1.</span> <span class="nav-text">拆分依据</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#为什么要这么这么拆分"><span class="nav-number">11.2.</span> <span class="nav-text">为什么要这么这么拆分</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder"><a href="http://blog.timilong.com/about" target="_blank"> Timi.long </a></span>
+  
+
+  
+</div>
+
+
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动 v3.7.1</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 – <a class="theme-link" target="_blank" href="https://theme-next.org">NexT.Muse</a> v6.4.1</div>
+
+
+
+
+<!-- 新增访客统计代码 -->
+
+<div class="busuanzi-count">
+    <script async="" src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>  
+    <span class="site-uv">
+      <i class="fa fa-user"></i>
+      访问用户： <span class="busuanzi-value" id="busuanzi_value_site_uv"></span> 人
+    </span>
+    <div class="powered-by"></div>
+    <span class="site-uv">
+      <i class="fa fa-eye"></i>
+      访问次数： <span class="busuanzi-value" id="busuanzi_value_site_pv"></span> 次
+    </span>
+    <!-- 博客字数统计
+    <span class="site-pv">
+      <i class="fa fa-pencil"></i>
+      博客全站共： <span class="post-count"> </span> 字
+    </span> -->
+</div>
+<!-- 新增访客统计代码 END-->
+
+        
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+	
+    
+
+    
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=6.4.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=6.4.1"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=6.4.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=6.4.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=6.4.1"></script>
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
