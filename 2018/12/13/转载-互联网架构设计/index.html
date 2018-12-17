@@ -116,7 +116,7 @@
 <meta property="og:site_name" content="Timilong&#39;s blog">
 <meta property="og:description" content="高可用架构设计-总结">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-12-13T03:26:10.774Z">
+<meta property="og:updated_time" content="2018-12-17T02:12:16.878Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="转载-互联网架构设计">
 <meta name="twitter:description" content="高可用架构设计-总结">
@@ -206,7 +206,7 @@
   </div>
 
   <div class="site-nav-toggle">
-    <button aria-label="Toggle navigation bar">
+    <button aria-label="ナビゲーションバーの切り替え">
       <span class="btn-bar"></span>
       <span class="btn-bar"></span>
       <span class="btn-bar"></span>
@@ -351,12 +351,24 @@
                 
               
 
-              <time title="创建于：2018-12-13 11:02:23 / 更新于：03:26:10" itemprop="dateCreated datePublished" datetime="2018-12-13T11:02:23Z">2018-12-13</time>
+              <time title="创建于：2018-12-13 11:02:23" itemprop="dateCreated datePublished" datetime="2018-12-13T11:02:23Z">2018-12-13</time>
             
 
             
               
 
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">に編集されました</span>
+                
+                <time title="更新于：2018-12-17 02:12:16" itemprop="dateModified" datetime="2018-12-17T02:12:16Z">2018-12-17</time>
               
             
           </span>
@@ -437,7 +449,7 @@
 <p>1）如果某一个service的连接上，连续3个请求都超时，即连续-10分三次，客户端就可以认为，服务器慢慢的要处理不过来了，得给这个service缓一小口气，于是设定策略：接下来的若干时间内， 例如1秒（或者接下来的若干个请求），请求不再分配给这个service；</p>
 <p>2）如果某一个service的动态权重，降为了0（像连续10个请求超时，中间休息了3次还超时），客户端就可以认为，服务器完全处理不过来了，得给这个service喘一大口气，于是设定策略： 接下来的若干时间内，例如1分钟（为什么是1分钟，根据经验，此时service一般在发生fullGC，差不多1分钟能回过神来），请求不再分配给这个service；</p>
 <p>3）可以有更复杂的保护策略, 这样的话，不但能借助“动态权重”来实施动态自适应的异构服务器负载均衡，还能在客户端层面更优雅的实施过载保护，在某个下游service快要响应不过来的时候，给其喘息的机会。</p>
-<p>需要注意的是：要防止客户端的过载保护引起service的雪崩，如果“整体负载”已经超过了“service集群”的处理能力，怎么转移请求也是处理不过来的，还得通过抛弃请求来实施自我保护。<br>转自：<a href="https://mp.weixin.qq.com/s?__biz=MjM5ODYxMDA5OQ==&amp;mid=2651959601&amp;idx=1&amp;sn=5684c39676b1f6d9366d9d15a2cdcec3&amp;scene=21#wechat_redirect" target="_blank" rel="noopener">https://mp.weixin.qq.com/s?__biz=MjM5ODYxMDA5OQ==&amp;mid=2651959601&amp;idx=1&amp;sn=5684c39676b1f6d9366d9d15a2cdcec3&amp;scene=21#wechat_redirect</a></p>
+<p>需要注意的是：要防止客户端的过载保护引起service的雪崩，如果“整体负载”已经超过了“service集群”的处理能力，怎么转移请求也是处理不过来的，还得通过抛弃请求来实施自我保护。 转自：<a href="https://mp.weixin.qq.com/s?__biz=MjM5ODYxMDA5OQ==&amp;mid=2651959601&amp;idx=1&amp;sn=5684c39676b1f6d9366d9d15a2cdcec3&amp;scene=21#wechat_redirect" target="_blank" rel="noopener">https://mp.weixin.qq.com/s?__biz=MjM5ODYxMDA5OQ==&amp;mid=2651959601&amp;idx=1&amp;sn=5684c39676b1f6d9366d9d15a2cdcec3&amp;scene=21#wechat_redirect</a></p>
 <h2 id="主从DB与cache一致性"><a href="#主从DB与cache一致性" class="headerlink" title="主从DB与cache一致性"></a>主从DB与cache一致性</h2><p>在“异常时序”或者“读从库”导致脏数据入缓存时，可以用二次异步淘汰的“缓存双淘汰”法来解决缓存与数据库中数据不一致的问题，具体实施至少有三种方案：</p>
 <p>1）timer异步淘汰（本文没有细讲，本质就是起个线程专门异步二次淘汰缓存）</p>
 <p>2）总线异步淘汰</p>
@@ -474,37 +486,37 @@
 <p>mysql5.6 -&gt; 按照库并行复制，对大伙的启示：使用“多库”架构吧</p>
 <p>mysql5.7 -&gt; 按照GTID并行复制</p>
 <h2 id="即使删了全库，保证半小时恢复"><a href="#即使删了全库，保证半小时恢复" class="headerlink" title="即使删了全库，保证半小时恢复"></a>即使删了全库，保证半小时恢复</h2><p>保证数据的安全性是DBA第一要务，需要进行：</p>
-<p>（1）全量备份+增量备份，并定期进行恢复演练，但该方案恢复时间较久，对系统可用性影响大</p>
-<p>（2）1小时延时从，双份1小时延时从能极大加速数据库恢复时间</p>
-<p>（3）个人建议1小时延时从足够，后台只读服务可以连1小时延时从，提高资源利用率</p>
+<p>1）全量备份+增量备份，并定期进行恢复演练，但该方案恢复时间较久，对系统可用性影响大</p>
+<p>2）1小时延时从，双份1小时延时从能极大加速数据库恢复时间</p>
+<p>3）个人建议1小时延时从足够，后台只读服务可以连1小时延时从，提高资源利用率</p>
 <h2 id="啥，又要为表增加一列属性？"><a href="#啥，又要为表增加一列属性？" class="headerlink" title="啥，又要为表增加一列属性？"></a>啥，又要为表增加一列属性？</h2><p>1）方案一：版本号+通用列</p>
 <p>2）方案二：通过扩展行的方式来扩展属性</p>
 <h2 id="这才是真正的表扩展方案"><a href="#这才是真正的表扩展方案" class="headerlink" title="这才是真正的表扩展方案"></a>这才是真正的表扩展方案</h2><h3 id="常见“新表-触发器-迁移数据-rename”方案（pt-online-schema-change），这是业内非常成熟的扩展列的方案"><a href="#常见“新表-触发器-迁移数据-rename”方案（pt-online-schema-change），这是业内非常成熟的扩展列的方案" class="headerlink" title="常见“新表+触发器+迁移数据+rename”方案（pt-online-schema-change），这是业内非常成熟的扩展列的方案"></a>常见“新表+触发器+迁移数据+rename”方案（pt-online-schema-change），这是业内非常成熟的扩展列的方案</h3><p>以user(uid, name, passwd)</p>
 <p>扩展到user(uid, name, passwd, age, sex)为例</p>
 <p>基本原理是：</p>
-<p>（1）先创建一个扩充字段后的新表user_new(uid, name, passwd, age, sex)</p>
-<p>（2）在原表user上创建三个触发器，对原表user进行的所有insert/delete/update操作，都会对新表user_new进行相同的操作</p>
-<p>（3）分批将原表user中的数据insert到新表user_new，直至数据迁移完成</p>
-<p>（4）删掉触发器，把原表移走（默认是drop掉）</p>
-<p>（5）把新表user_new重命名（rename）成原表user</p>
+<p>1）先创建一个扩充字段后的新表user_new(uid, name, passwd, age, sex)</p>
+<p>2）在原表user上创建三个触发器，对原表user进行的所有insert/delete/update操作，都会对新表user_new进行相同的操作</p>
+<p>3）分批将原表user中的数据insert到新表user_new，直至数据迁移完成</p>
+<p>4）删掉触发器，把原表移走（默认是drop掉）</p>
+<p>5）把新表user_new重命名（rename）成原表user</p>
 <p>扩充字段完成。</p>
 <p>优点：整个过程不需要锁表，可以持续对外提供服务</p>
-<p>操作过程中需要注意：<br>（1）变更过程中，最重要的是冲突的处理，一条原则，以触发器的新数据为准，这就要求被迁移的表必须有主键（这个要求基本都满足）</p>
-<p>（2）变更过程中，写操作需要建立触发器，所以如果原表已经有很多触发器，方案就不行（互联网大数据高并发的在线业务，一般都禁止使用触发器）</p>
-<p>（3）触发器的建立，会影响原表的性能，所以这个操作建议在流量低峰期进行</p>
+<p>操作过程中需要注意：<br>1）变更过程中，最重要的是冲突的处理，一条原则，以触发器的新数据为准，这就要求被迁移的表必须有主键（这个要求基本都满足）</p>
+<p>2）变更过程中，写操作需要建立触发器，所以如果原表已经有很多触发器，方案就不行（互联网大数据高并发的在线业务，一般都禁止使用触发器）</p>
+<p>3）触发器的建立，会影响原表的性能，所以这个操作建议在流量低峰期进行</p>
 <p>pt-online-schema-change是DBA必备的利器，比较成熟，在互联网公司使用广泛。</p>
-<h3 id="哪些方案一定是不行的"><a href="#哪些方案一定是不行的" class="headerlink" title="哪些方案一定是不行的"></a>哪些方案一定是不行的</h3><p>（1）alter table add column</p>
+<h3 id="哪些方案一定是不行的"><a href="#哪些方案一定是不行的" class="headerlink" title="哪些方案一定是不行的"></a>哪些方案一定是不行的</h3><p>1）alter table add column</p>
 <p>要坚持这个方案的，也不多解释了，大数据高并发情况下，一定不可行</p>
-<p>（2）通过增加表的方式扩展，通过外键join来查询</p>
+<p>2）通过增加表的方式扩展，通过外键join来查询</p>
 <p>大数据高并发情况下，join性能较差，一定不可行</p>
-<p>（3）通过增加表的方式扩展，通过视图来对外</p>
+<p>3）通过增加表的方式扩展，通过视图来对外</p>
 <p>一定不可行。大数据高并发情况下，互联网不怎么使用视图，至少58禁止使用视图</p>
-<p>（4）必须遵循“第x范式”的方案</p>
+<p>4）必须遵循“第x范式”的方案</p>
 <p>一定不可行。互联网的主要矛盾之一是吞吐量，为了保证吞吐量甚至可能牺牲一些事务性和一致性，通过反范式的方式来确保吞吐量的设计是很常见的，例如：冗余数据。互联网的主要矛盾之二是可用性，</p>
 <p>为了保证可用性，常见的技术方案也是数据冗余。在互联网数据库架构设计中，第x范式真的没有这么重要</p>
-<h3 id="哪些方案可行，但文章未提及"><a href="#哪些方案可行，但文章未提及" class="headerlink" title="哪些方案可行，但文章未提及"></a>哪些方案可行，但文章未提及</h3><p>（1）提前预留一些reserved字段</p>
+<h3 id="哪些方案可行，但文章未提及"><a href="#哪些方案可行，但文章未提及" class="headerlink" title="哪些方案可行，但文章未提及"></a>哪些方案可行，但文章未提及</h3><p>1）提前预留一些reserved字段</p>
 <p>这个是可以的。但如果预留过多，会造成空间浪费，预留过少，不一定达得到扩展效果。</p>
-<p>（2）通过增加表的方式扩展列，上游通过service来屏蔽底层的细节</p>
+<p>2）通过增加表的方式扩展列，上游通过service来屏蔽底层的细节</p>
 <p>这个也是可以的。Jeff同学提到的UserExt(uid, newCol1, newCol2)就是这样的方案（但join连表和视图是不行的）<br>转自：<a href="https://mp.weixin.qq.com/s?__biz=MjM5ODYxMDA5OQ==&amp;mid=2651959765&amp;idx=1&amp;sn=b9916aa95c320e41035977e0a8098ca6&amp;chksm=bd2d04098a5a8d1f3af38f658c05002151e621170949d2e3bb5b1bceea55c64b0477dba4c647&amp;scene=21#wechat_redirect" target="_blank" rel="noopener">https://mp.weixin.qq.com/s?__biz=MjM5ODYxMDA5OQ==&amp;mid=2651959765&amp;idx=1&amp;sn=b9916aa95c320e41035977e0a8098ca6&amp;chksm=bd2d04098a5a8d1f3af38f658c05002151e621170949d2e3bb5b1bceea55c64b0477dba4c647&amp;scene=21#wechat_redirect</a></p>
 <h2 id="一分钟掌握数据库垂直拆分"><a href="#一分钟掌握数据库垂直拆分" class="headerlink" title="一分钟掌握数据库垂直拆分"></a>一分钟掌握数据库垂直拆分</h2><h3 id="拆分依据"><a href="#拆分依据" class="headerlink" title="拆分依据"></a>拆分依据</h3><p>当一个表属性很多时，如何来进行垂直拆分呢？如果没有特殊情况，拆分依据主要有几点：<br>1）将长度较短，访问频率较高的属性尽量放在一个表里，这个表暂且称为主表</p>
 <p>2）将字段较长，访问频率较低的属性尽量放在一个表里，这个表暂且称为扩展表</p>
@@ -514,14 +526,14 @@
 <p>一般来说，数据量并发量比较大时，数据库的上层都会有一个服务层。需要注意的是，当应用方需要同时访问主表和扩展表中的属性时，服务层不要使用join来连表访问，而应该分两次进行查询：</p>
 <p>原因是，大数据高并发互联网场景下，一般来说，吞吐量和扩展性是主要矛盾：<br>1）join更消损耗数据库性能</p>
 <p>2）join会让base表和ext表耦合在一起（必须在一个数据库实例上），不利于数据量大时拆分到不同的数据库实例上（机器上）。毕竟减少数据量，提升性能才是垂直拆分的初衷。</p>
-<h3 id="为什么要这么这么拆分"><a href="#为什么要这么这么拆分" class="headerlink" title="为什么要这么这么拆分"></a>为什么要这么这么拆分</h3><p>为何要将字段短，访问频率高的属性放到一个表内？为何这么垂直拆分可以提升性能？因为：<br>（1）数据库有自己的内存buffer，会将磁盘上的数据load到内存buffer里（暂且理解为进程内缓存吧）</p>
-<p>（2）内存buffer缓存数据是以row为单位的</p>
-<p>（3）在内存有限的情况下，在数据库内存buffer里缓存短row，就能缓存更多的数据</p>
-<p>（4）在数据库内存buffer里缓存访问频率高的row，就能提升缓存命中率，减少磁盘的访问</p>
+<h3 id="为什么要这么这么拆分"><a href="#为什么要这么这么拆分" class="headerlink" title="为什么要这么这么拆分"></a>为什么要这么这么拆分</h3><p>为何要将字段短，访问频率高的属性放到一个表内？为何这么垂直拆分可以提升性能？因为：<br>1）数据库有自己的内存buffer，会将磁盘上的数据load到内存buffer里（暂且理解为进程内缓存吧）</p>
+<p>2）内存buffer缓存数据是以row为单位的</p>
+<p>3）在内存有限的情况下，在数据库内存buffer里缓存短row，就能缓存更多的数据</p>
+<p>4）在数据库内存buffer里缓存访问频率高的row，就能提升缓存命中率，减少磁盘的访问</p>
 <p>举个例子就很好理解了：</p>
 <p>假设数据库内存buffer为1G，未拆分的user表1行数据大小为1k，那么只能缓存100w行数据。</p>
-<p>如果垂直拆分成user_base和user_ext，其中：<br>（1）user_base访问频率高（例如uid, name, passwd, 以及一些flag等），一行大小为0.1k</p>
-<p>（2）user_ext访问频率低（例如签名, 个人介绍等），一行大小为0.9k<br> 那边内存buffer就就能缓存近乎1000w行user_base的记录，访问磁盘的概率会大大降低，数据库访问的时延会大大降低，吞吐量会大大增加。</p>
+<p>如果垂直拆分成user_base和user_ext，其中：<br>1）user_base访问频率高（例如uid, name, passwd, 以及一些flag等），一行大小为0.1k</p>
+<p>2）user_ext访问频率低（例如签名, 个人介绍等），一行大小为0.9k<br> 那边内存buffer就就能缓存近乎1000w行user_base的记录，访问磁盘的概率会大大降低，数据库访问的时延会大大降低，吞吐量会大大增加。</p>
 
       
     </div>
