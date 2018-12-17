@@ -108,17 +108,18 @@
 
 
 
-  <meta name="description" content="转载自: 微信公众号，架构师之路本文系原创, 转载请联系作者 Timilong">
+  <meta name="description" content="关于缓存架构中，会涉及到的问题.">
+<meta name="keywords" content="架构">
 <meta property="og:type" content="article">
 <meta property="og:title" content="转载-缓存架构-到底设计些什么">
 <meta property="og:url" content="http://blog.timilong.com/2018/12/18/转载-缓存架构-到底设计些什么/index.html">
 <meta property="og:site_name" content="Timilong&#39;s blog">
-<meta property="og:description" content="转载自: 微信公众号，架构师之路本文系原创, 转载请联系作者 Timilong">
+<meta property="og:description" content="关于缓存架构中，会涉及到的问题.">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-12-17T09:23:21.681Z">
+<meta property="og:updated_time" content="2018-12-17T09:38:38.039Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="转载-缓存架构-到底设计些什么">
-<meta name="twitter:description" content="转载自: 微信公众号，架构师之路本文系原创, 转载请联系作者 Timilong">
+<meta name="twitter:description" content="关于缓存架构中，会涉及到的问题.">
 
 
 
@@ -205,7 +206,7 @@
   </div>
 
   <div class="site-nav-toggle">
-    <button aria-label="ナビゲーションバーの切り替え">
+    <button aria-label="Toggle navigation bar">
       <span class="btn-bar"></span>
       <span class="btn-bar"></span>
       <span class="btn-bar"></span>
@@ -350,7 +351,7 @@
                 
               
 
-              <time title="创建于：2018-12-17 17:23:21 / 更新于：09:23:21" itemprop="dateCreated datePublished" datetime="2018-12-17T17:23:21Z">2018-12-17</time>
+              <time title="创建于：2018-12-17 17:23:21 / 更新于：09:38:38" itemprop="dateCreated datePublished" datetime="2018-12-17T17:23:21Z">2018-12-17</time>
             
 
             
@@ -361,6 +362,24 @@
           </span>
 
           
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/架构/" itemprop="url" rel="index"><span itemprop="name">架构</span></a></span>
+
+                
+                
+              
+            </span>
+          
 
           
             
@@ -373,6 +392,8 @@
 
           
 
+          
+              <div class="post-description">关于缓存架构中，会涉及到的问题.</div>
           
 
         </div>
@@ -389,8 +410,21 @@
 
       
         <blockquote>
-<p>转载自: 微信公众号，<a href="https://juejin.im/book/5af56a3c518825426642e004" target="_blank" rel="noopener">架构师之路</a><br>本文系原创, 转载请联系作者 <a href="http://blog.timilong.com/about">Timilong</a></p>
+<p>转载自: 微信公众号，<a href="https://mp.weixin.qq.com/s/DM0dKHyD3FweVSHcjabLaw" target="_blank" rel="noopener">架构师之路</a></p>
 </blockquote>
+<h2 id="不同业务场景下的缓存选型"><a href="#不同业务场景下的缓存选型" class="headerlink" title="不同业务场景下的缓存选型"></a>不同业务场景下的缓存选型</h2><blockquote>
+<p>什么是穿透型缓存，什么是旁路型缓存？<br>什么时候用进程内缓存，什么时候用缓存服务？<br>啥时候用memcache，啥时候用redis？又或者？<br>缓存在微服务体系架构中的位置，以及设计原则？</p>
+</blockquote>
+<h2 id="关于缓存的设计折衷"><a href="#关于缓存的设计折衷" class="headerlink" title="关于缓存的设计折衷"></a>关于缓存的设计折衷</h2><blockquote>
+<p>什么时候适合使用缓存？<br>引入缓存后，对读写业务流程有什么影响？<br>到底应该修改缓存，还是淘汰缓存？<br>应该先操作数据库，还是操作缓存？</p>
+</blockquote>
+<h2 id="关于缓存的架构设计"><a href="#关于缓存的架构设计" class="headerlink" title="关于缓存的架构设计"></a>关于缓存的架构设计</h2><blockquote>
+<p>缓存失效会引发什么雪崩？<br>缓存是否需要保证高可用？如何保证高可用？<br>缓存如何保证与数据库中的数据一致性？<br>缓存如何保证无限量的扩展性？</p>
+</blockquote>
+<h2 id="各类典型业务的缓存实践"><a href="#各类典型业务的缓存实践" class="headerlink" title="各类典型业务的缓存实践"></a>各类典型业务的缓存实践</h2><blockquote>
+<p>…</p>
+</blockquote>
+<p>很多人说，遇到瓶颈，就用缓存。<br>缓存如同万金油一般。<br>缓存是架构设计中非常重要的一环。</p>
 
       
     </div>
@@ -408,6 +442,12 @@
     
 
     <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/架构/" rel="tag"># 架构</a>
+          
+        </div>
       
 
       
@@ -471,8 +511,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -665,6 +714,22 @@
         </div>
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#不同业务场景下的缓存选型"><span class="nav-number">1.</span> <span class="nav-text">不同业务场景下的缓存选型</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#关于缓存的设计折衷"><span class="nav-number">2.</span> <span class="nav-text">关于缓存的设计折衷</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#关于缓存的架构设计"><span class="nav-number">3.</span> <span class="nav-text">关于缓存的架构设计</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#各类典型业务的缓存实践"><span class="nav-number">4.</span> <span class="nav-text">各类典型业务的缓存实践</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       
