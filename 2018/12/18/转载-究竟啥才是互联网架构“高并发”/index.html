@@ -1,0 +1,1000 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=6.4.1" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=6.4.1">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=6.4.1">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=6.4.1">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=6.4.1" color="#222">
+
+
+
+
+
+
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    version: '6.4.1',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: false,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  
+
+
+
+
+  <meta name="description" content="本文详细介绍了提高服务高并发能力的几种思路。">
+<meta name="keywords" content="高并发">
+<meta property="og:type" content="article">
+<meta property="og:title" content="转载-究竟啥才是互联网架构“高并发”">
+<meta property="og:url" content="http://blog.timilong.com/2018/12/18/转载-究竟啥才是互联网架构“高并发”/index.html">
+<meta property="og:site_name" content="Timilong&#39;s blog">
+<meta property="og:description" content="本文详细介绍了提高服务高并发能力的几种思路。">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="http://qiniucdn.timilong.com/154468335938.jpg">
+<meta property="og:image" content="http://qiniucdn.timilong.com/jiujingshenmeshigaobingfa_01.png">
+<meta property="og:image" content="http://qiniucdn.timilong.com/jiujingshenmeshigaobingfa_02.png">
+<meta property="og:image" content="http://qiniucdn.timilong.com/jiujingshenmeshigaobingfa_03.png">
+<meta property="og:image" content="http://qiniucdn.timilong.com/jiujingshenmeshigaobingfa_04.png">
+<meta property="og:image" content="http://qiniucdn.timilong.com/jiujingshenmeshigaobingfa_05.png">
+<meta property="og:image" content="http://qiniucdn.timilong.com/jiujingshenmeshigaobingfa_06.png">
+<meta property="og:updated_time" content="2018-12-18T02:42:17.332Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="转载-究竟啥才是互联网架构“高并发”">
+<meta name="twitter:description" content="本文详细介绍了提高服务高并发能力的几种思路。">
+<meta name="twitter:image" content="http://qiniucdn.timilong.com/154468335938.jpg">
+
+
+
+
+
+
+  <link rel="canonical" href="http://blog.timilong.com/2018/12/18/转载-究竟啥才是互联网架构“高并发”/"/>
+
+
+
+<script type="text/javascript" id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>转载-究竟啥才是互联网架构“高并发” | Timilong's blog</title>
+  
+
+
+
+
+
+
+
+
+
+  <noscript>
+  <style type="text/css">
+    .use-motion .motion-element,
+    .use-motion .brand,
+    .use-motion .menu-item,
+    .sidebar-inner,
+    .use-motion .post-block,
+    .use-motion .pagination,
+    .use-motion .comments,
+    .use-motion .post-header,
+    .use-motion .post-body,
+    .use-motion .collection-title { opacity: initial; }
+
+    .use-motion .logo,
+    .use-motion .site-title,
+    .use-motion .site-subtitle {
+      opacity: initial;
+      top: initial;
+    }
+
+    .use-motion {
+      .logo-line-before i { left: initial; }
+      .logo-line-after i { right: initial; }
+    }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Timilong's blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+    
+      
+        <p class="site-subtitle">Cease to struggle and you cease to live.--Thomas Carlyle</p>
+      
+    
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="ナビゲーションバーの切り替え">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+          
+          <li class="menu-item menu-item-home">
+    <a href="/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-home"></i> <br />首页</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-tags">
+    <a href="/tags/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />标签</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-categories">
+    <a href="/categories/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-th"></i> <br />分类</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+    <a href="/archives/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />归档</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-about">
+    <a href="/about/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-user"></i> <br />关于</a>
+  </li>
+
+      
+      
+    </ul>
+  
+
+  
+    
+
+  
+
+  
+</nav>
+
+
+
+  
+
+
+
+</div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://blog.timilong.com/2018/12/18/转载-究竟啥才是互联网架构“高并发”/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="博主">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Timilong's blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">转载-究竟啥才是互联网架构“高并发”
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建于：2018-12-18 10:25:26 / 更新于：02:42:17" itemprop="dateCreated datePublished" datetime="2018-12-18T10:25:26Z">2018-12-18</time>
+            
+
+            
+              
+
+              
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/架构/" itemprop="url" rel="index"><span itemprop="name">架构</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+              <div class="post-description">本文详细介绍了提高服务高并发能力的几种思路。</div>
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p><img src="http://qiniucdn.timilong.com/154468335938.jpg" alt="cover_img"></p>
+<blockquote>
+<p>转载自: 微信公众号，<a href="https://mp.weixin.qq.com/s/fo8V6veY2WZ9Yo6SFnB80w" target="_blank" rel="noopener">架构师之路</a></p>
+</blockquote>
+<h2 id="什么是高并发"><a href="#什么是高并发" class="headerlink" title="什么是高并发"></a>什么是高并发</h2><p>高并发（High Concurrency）是互联网分布式系统架构设计中必须考虑的因素之一，它通常是指，通过设计保证系统能够同时并行处理很多请求。</p>
+<p>高并发相关常用的一些指标有响应时间（Response Time），吞吐量（Throughput），每秒查询率QPS（Query Per Second），并发用户数等。</p>
+<p><b>响应时间</b>：系统对请求做出响应的时间。例如系统处理一个HTTP请求需要200ms，这个200ms就是系统的响应时间。</p>
+<p><b>吞吐量</b>：单位时间内处理的请求数量。</p>
+<p><b>QPS</b>：每秒响应请求数。在互联网领域，这个指标和吞吐量区分的没有这么明显。</p>
+<p>并发用户数：同时承载正常使用系统功能的用户数量。例如一个即时通讯系统，同时在线量一定程度上代表了系统的并发用户数。</p>
+<h2 id="如何提升系统的并发能力"><a href="#如何提升系统的并发能力" class="headerlink" title="如何提升系统的并发能力"></a>如何提升系统的并发能力</h2><p>互联网分布式架构设计，提高系统并发能力的方式，方法论上主要有两种：垂直扩展（Scale Up）与水平扩展（Scale Out）。</p>
+<p>垂直扩展：提升单机处理能力。垂直扩展的方式又有两种：</p>
+<blockquote>
+<p>（1）增强单机硬件性能，例如：增加CPU核数如32核，升级更好的网卡如万兆，升级更好的硬盘如SSD，扩充硬盘容量如2T，扩充系统内存如128G；<br>（2）提升单机架构性能，例如：使用Cache来减少IO次数，使用异步来增加单服务吞吐量，使用无锁数据结构来减少响应时间；</p>
+</blockquote>
+<p>在互联网业务发展非常迅猛的早期，如果预算不是问题，强烈建议使用“增强单机硬件性能”的方式提升系统并发能力，因为这个阶段，公司的战略往往是发展业务抢时间，而“增强单机硬件性能”往往是最快的方法。</p>
+<p>不管是提升单机硬件性能，还是提升单机架构性能，都有一个致命的不足：单机性能总是有极限的。所以互联网分布式架构设计高并发终极解决方案还是水平扩展。</p>
+<p>水平扩展：只要增加服务器数量，就能线性扩充系统性能。水平扩展对系统架构设计是有要求的，如何在架构各层进行可水平扩展的设计，以及互联网公司架构各层常见的水平扩展实践，是本文重点讨论的内容。</p>
+<h2 id="常见的互联网分层架构"><a href="#常见的互联网分层架构" class="headerlink" title="常见的互联网分层架构"></a>常见的互联网分层架构</h2><p><img src="http://qiniucdn.timilong.com/jiujingshenmeshigaobingfa_01.png" alt="tu"></p>
+<p>常见互联网分布式架构如上，分为：</p>
+<blockquote>
+<p>（1）客户端层：典型调用方是浏览器browser或者手机应用APP<br>（2）反向代理层：系统入口，反向代理<br>（3）站点应用层：实现核心应用逻辑，返回html或者json<br>（4）服务层：如果实现了服务化，就有这一层<br>（5）数据-缓存层：缓存加速访问存储<br>（6）数据-数据库层：数据库固化数据存储</p>
+</blockquote>
+<p>整个系统各层次的水平扩展，又分别是如何实施的呢？</p>
+<h2 id="分层水平扩展架构实践"><a href="#分层水平扩展架构实践" class="headerlink" title="分层水平扩展架构实践"></a>分层水平扩展架构实践</h2><h3 id="反向代理层的水平扩展"><a href="#反向代理层的水平扩展" class="headerlink" title="反向代理层的水平扩展"></a>反向代理层的水平扩展</h3><p><img src="http://qiniucdn.timilong.com/jiujingshenmeshigaobingfa_02.png" alt="tu"></p>
+<p>反向代理层的水平扩展，是通过“DNS轮询”实现的：dns-server对于一个域名配置了多个解析ip，每次DNS解析请求来访问dns-server，会轮询返回这些ip。</p>
+<p>当nginx成为瓶颈的时候，只要增加服务器数量，新增nginx服务的部署，增加一个外网ip，就能扩展反向代理层的性能，做到理论上的无限高并发。</p>
+<h3 id="站点层的水平扩展"><a href="#站点层的水平扩展" class="headerlink" title="站点层的水平扩展"></a>站点层的水平扩展</h3><p><img src="http://qiniucdn.timilong.com/jiujingshenmeshigaobingfa_03.png" alt="tu"></p>
+<p>站点层的水平扩展，是通过“nginx”实现的。通过修改nginx.conf，可以设置多个web后端。</p>
+<p>当web后端成为瓶颈的时候，只要增加服务器数量，新增web服务的部署，在nginx配置中配置上新的web后端，就能扩展站点层的性能，做到理论上的无限高并发。</p>
+<h3 id="服务层的水平扩展"><a href="#服务层的水平扩展" class="headerlink" title="服务层的水平扩展"></a>服务层的水平扩展</h3><p><img src="http://qiniucdn.timilong.com/jiujingshenmeshigaobingfa_04.png" alt="tu"></p>
+<p>服务层的水平扩展，是通过“服务连接池”实现的。</p>
+<p>站点层通过RPC-client调用下游的服务层RPC-server时，RPC-client中的连接池会建立与下游服务多个连接，当服务成为瓶颈的时候，只要增加服务器数量，新增服务部署，在RPC-client处建立新的下游服务连接，就能扩展服务层性能，做到理论上的无限高并发。如果需要优雅的进行服务层自动扩容，这里可能需要配置中心里服务自动发现功能的支持。</p>
+<h3 id="数据层的水平扩展"><a href="#数据层的水平扩展" class="headerlink" title="数据层的水平扩展"></a>数据层的水平扩展</h3><p>在数据量很大的情况下，数据层（缓存，数据库）涉及数据的水平扩展，将原本存储在一台服务器上的数据（缓存，数据库）水平拆分到不同服务器上去，以达到扩充系统性能的目的。</p>
+<p>互联网数据层常见的水平拆分方式有这么几种，以数据库为例：</p>
+<h4 id="按照范围水平拆分"><a href="#按照范围水平拆分" class="headerlink" title="按照范围水平拆分"></a>按照范围水平拆分</h4><p><img src="http://qiniucdn.timilong.com/jiujingshenmeshigaobingfa_05.png" alt="tu"></p>
+<p>每一个数据服务，存储一定范围的数据，上图为例：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">user0库，存储uid范围1-1kw</span><br><span class="line"></span><br><span class="line">user1库，存储uid范围1kw-2kw</span><br></pre></td></tr></table></figure></p>
+<p>这个方案的好处是：</p>
+<blockquote>
+<p>（1）规则简单，service只需判断一下uid范围就能路由到对应的存储服务；<br>（2）数据均衡性较好；<br>（3）比较容易扩展，可以随时加一个uid[2kw,3kw]的数据服务；</p>
+</blockquote>
+<p>不足是：</p>
+<blockquote>
+<p>（1）请求的负载不一定均衡，一般来说，新注册的用户会比老用户更活跃，大range的服务请求压力会更大；</p>
+</blockquote>
+<h4 id="按照哈希水平拆分"><a href="#按照哈希水平拆分" class="headerlink" title="按照哈希水平拆分"></a>按照哈希水平拆分</h4><p><img src="http://qiniucdn.timilong.com/jiujingshenmeshigaobingfa_06.png" alt="tu"></p>
+<p>每一个数据库，存储某个key值hash后的部分数据，上图为例：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">user0库，存储偶数uid数据</span><br><span class="line"></span><br><span class="line">user1库，存储奇数uid数据</span><br></pre></td></tr></table></figure></p>
+<p>这个方案的好处是：</p>
+<blockquote>
+<p>（1）规则简单，service只需对uid进行hash能路由到对应的存储服务；<br>（2）数据均衡性较好；<br>（3）请求均匀性较好；</p>
+</blockquote>
+<p>不足是：</p>
+<blockquote>
+<p>（1）不容易扩展，扩展一个数据服务，hash方法改变时候，可能需要进行数据迁移；</p>
+</blockquote>
+<p>这里需要注意的是，通过水平拆分来扩充系统性能，与主从同步读写分离来扩充数据库性能的方式有本质的不同。</p>
+<h4 id="通过水平拆分扩展数据库性能"><a href="#通过水平拆分扩展数据库性能" class="headerlink" title="通过水平拆分扩展数据库性能"></a>通过水平拆分扩展数据库性能</h4><blockquote>
+<p>（1）每个服务器上存储的数据量是总量的1/n，所以单机的性能也会有提升；<br>（2）n个服务器上的数据没有交集，那个服务器上数据的并集是数据的全集；<br>（3）数据水平拆分到了n个服务器上，理论上读性能扩充了n倍，写性能也扩充了n倍（其实远不止n倍，因为单机的数据量变为了原来的1/n）；</p>
+</blockquote>
+<h4 id="通过主从同步读写分离扩展数据库性能"><a href="#通过主从同步读写分离扩展数据库性能" class="headerlink" title="通过主从同步读写分离扩展数据库性能"></a>通过主从同步读写分离扩展数据库性能</h4><blockquote>
+<p>（1）每个服务器上存储的数据量是和总量相同；<br>（2）n个服务器上的数据都一样，都是全集；<br>（3）理论上读性能扩充了n倍，写仍然是单点，写性能不变；</p>
+</blockquote>
+<p>缓存层的水平拆分和数据库层的水平拆分类似，也是以范围拆分和哈希拆分的方式居多，就不再展开。</p>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>高并发（High Concurrency）是互联网分布式系统架构设计中必须考虑的因素之一，它通常是指，通过设计保证系统能够同时并行处理很多请求。</p>
+<p>提高系统并发能力的方式，方法论上主要有两种：垂直扩展（Scale Up）与水平扩展（Scale Out）。前者垂直扩展可以通过提升单机硬件性能，或者提升单机架构性能，来提高并发性，但单机性能总是有极限的，互联网分布式架构设计高并发终极解决方案还是后者：水平扩展。</p>
+<p>互联网分层架构中，各层次水平扩展的实践又有所不同：</p>
+<blockquote>
+<p>（1）反向代理层可以通过“DNS轮询”的方式来进行水平扩展；<br>（2）站点层可以通过nginx来进行水平扩展；<br>（3）服务层可以通过服务连接池来进行水平扩展；<br>（4）数据库可以按照数据范围，或者数据哈希的方式来进行水平扩展；</p>
+</blockquote>
+<p>各层实施水平扩展后，能够通过增加服务器数量的方式来提升系统的性能，做到理论上的性能无限。</p>
+
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/架构/" rel="tag"># 架构</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/12/18/转载-feed流-单聊群聊-系统通知-状态同步-到底是推还是拉？/" rel="next" title="转载-feed流-单聊群聊-系统通知-状态同步-到底是推还是拉？">
+                <i class="fa fa-chevron-left"></i> 转载-feed流-单聊群聊-系统通知-状态同步-到底是推还是拉？
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+  </div>
+
+
+          </div>
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">博主</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/">
+                
+                    <span class="site-state-item-count">161</span>
+                    <span class="site-state-item-name">日志</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-categories">
+                  <a href="/categories/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">28</span>
+                    <span class="site-state-item-name">分类</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  <a href="/tags/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">35</span>
+                    <span class="site-state-item-name">标签</span>
+                  </a>
+                </div>
+              
+            </nav>
+          
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+            
+          
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#什么是高并发"><span class="nav-number">1.</span> <span class="nav-text">什么是高并发</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#如何提升系统的并发能力"><span class="nav-number">2.</span> <span class="nav-text">如何提升系统的并发能力</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#常见的互联网分层架构"><span class="nav-number">3.</span> <span class="nav-text">常见的互联网分层架构</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#分层水平扩展架构实践"><span class="nav-number">4.</span> <span class="nav-text">分层水平扩展架构实践</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#反向代理层的水平扩展"><span class="nav-number">4.1.</span> <span class="nav-text">反向代理层的水平扩展</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#站点层的水平扩展"><span class="nav-number">4.2.</span> <span class="nav-text">站点层的水平扩展</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#服务层的水平扩展"><span class="nav-number">4.3.</span> <span class="nav-text">服务层的水平扩展</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#数据层的水平扩展"><span class="nav-number">4.4.</span> <span class="nav-text">数据层的水平扩展</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#按照范围水平拆分"><span class="nav-number">4.4.1.</span> <span class="nav-text">按照范围水平拆分</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#按照哈希水平拆分"><span class="nav-number">4.4.2.</span> <span class="nav-text">按照哈希水平拆分</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#通过水平拆分扩展数据库性能"><span class="nav-number">4.4.3.</span> <span class="nav-text">通过水平拆分扩展数据库性能</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#通过主从同步读写分离扩展数据库性能"><span class="nav-number">4.4.4.</span> <span class="nav-text">通过主从同步读写分离扩展数据库性能</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#总结"><span class="nav-number">5.</span> <span class="nav-text">总结</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder"><a href="http://blog.timilong.com/about" target="_blank"> Timi.long </a></span>
+  
+
+  
+</div>
+
+
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动 v3.7.1</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 – <a class="theme-link" target="_blank" href="https://theme-next.org">NexT.Muse</a> v6.4.1</div>
+
+
+
+
+<!-- 新增访客统计代码 -->
+
+<div class="busuanzi-count">
+    <script async="" src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>  
+    <span class="site-uv">
+      <i class="fa fa-user"></i>
+      访问用户： <span class="busuanzi-value" id="busuanzi_value_site_uv"></span> 人
+    </span>
+    <div class="powered-by"></div>
+    <span class="site-uv">
+      <i class="fa fa-eye"></i>
+      访问次数： <span class="busuanzi-value" id="busuanzi_value_site_pv"></span> 次
+    </span>
+    <!-- 博客字数统计
+    <span class="site-pv">
+      <i class="fa fa-pencil"></i>
+      博客全站共： <span class="post-count"> </span> 字
+    </span> -->
+</div>
+<!-- 新增访客统计代码 END-->
+
+        
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+	
+    
+
+    
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=6.4.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=6.4.1"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=6.4.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=6.4.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=6.4.1"></script>
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
