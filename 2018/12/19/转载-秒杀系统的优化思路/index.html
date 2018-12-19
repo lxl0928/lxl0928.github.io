@@ -108,27 +108,27 @@
 
 
 
-  <meta name="description" content="leetcode-43字符串相乘的题解.">
-<meta name="keywords" content="leetcode">
+  <meta name="description" content="经典秒杀系统，有哪些优化思路?">
+<meta name="keywords" content="架构, 秒杀系统">
 <meta property="og:type" content="article">
-<meta property="og:title" content="leetcode-43字符串相乘">
-<meta property="og:url" content="http://blog.timilong.com/2018/10/02/leetcode-43字符串相乘/index.html">
+<meta property="og:title" content="转载-秒杀系统的优化思路">
+<meta property="og:url" content="http://blog.timilong.com/2018/12/19/转载-秒杀系统的优化思路/index.html">
 <meta property="og:site_name" content="Timilong&#39;s blog">
-<meta property="og:description" content="leetcode-43字符串相乘的题解.">
+<meta property="og:description" content="经典秒杀系统，有哪些优化思路?">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="http://qiniucdn.timilong.com/1543387770478.jpg">
-<meta property="og:updated_time" content="2018-12-04T06:52:04.254Z">
+<meta property="og:image" content="http://qiniucdn.timilong.com/1544683310467.jpg">
+<meta property="og:updated_time" content="2018-12-19T02:12:23.855Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="leetcode-43字符串相乘">
-<meta name="twitter:description" content="leetcode-43字符串相乘的题解.">
-<meta name="twitter:image" content="http://qiniucdn.timilong.com/1543387770478.jpg">
+<meta name="twitter:title" content="转载-秒杀系统的优化思路">
+<meta name="twitter:description" content="经典秒杀系统，有哪些优化思路?">
+<meta name="twitter:image" content="http://qiniucdn.timilong.com/1544683310467.jpg">
 
 
 
 
 
 
-  <link rel="canonical" href="http://blog.timilong.com/2018/10/02/leetcode-43字符串相乘/"/>
+  <link rel="canonical" href="http://blog.timilong.com/2018/12/19/转载-秒杀系统的优化思路/"/>
 
 
 
@@ -138,7 +138,7 @@
   };
 </script>
 
-  <title>leetcode-43字符串相乘 | Timilong's blog</title>
+  <title>转载-秒杀系统的优化思路 | Timilong's blog</title>
   
 
 
@@ -311,7 +311,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://blog.timilong.com/2018/10/02/leetcode-43字符串相乘/">
+    <link itemprop="mainEntityOfPage" href="http://blog.timilong.com/2018/12/19/转载-秒杀系统的优化思路/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="博主">
@@ -328,7 +328,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">leetcode-43字符串相乘
+          <h1 class="post-title" itemprop="name headline">转载-秒杀系统的优化思路
               
             
           </h1>
@@ -353,24 +353,12 @@
                 
               
 
-              <time title="创建于：2018-10-01 16:37:19" itemprop="dateCreated datePublished" datetime="2018-10-01T16:37:19Z">2018-10-01</time>
+              <time title="创建于：2018-12-19 10:07:54 / 更新于：02:12:23" itemprop="dateCreated datePublished" datetime="2018-12-19T10:07:54Z">2018-12-19</time>
             
 
             
               
 
-              
-                
-                <span class="post-meta-divider">|</span>
-                
-
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">に編集されました</span>
-                
-                <time title="更新于：2018-12-04 06:52:04" itemprop="dateModified" datetime="2018-12-04T06:52:04Z">2018-12-04</time>
               
             
           </span>
@@ -387,7 +375,7 @@
                 <span class="post-meta-item-text">分类于</span>
               
               
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/leetcode/" itemprop="url" rel="index"><span itemprop="name">leetcode</span></a></span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/架构/" itemprop="url" rel="index"><span itemprop="name">架构</span></a></span>
 
                 
                 
@@ -407,7 +395,7 @@
           
 
           
-              <div class="post-description">leetcode-43字符串相乘的题解.</div>
+              <div class="post-description">经典秒杀系统，有哪些优化思路?</div>
           
 
         </div>
@@ -423,22 +411,36 @@
       
 
       
-        <p><img src="http://qiniucdn.timilong.com/1543387770478.jpg" alt="tu"></p>
-<h2 id="题目描述"><a href="#题目描述" class="headerlink" title="题目描述"></a>题目描述</h2><p>给定两个以字符串形式表示的非负整数 num1 和 num2，返回 num1 和 num2 的乘积，它们的乘积也表示为字符串形式。</p>
-<p>示例 1:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">输入: num1 = &quot;2&quot;, num2 = &quot;3&quot;</span><br><span class="line">输出: &quot;6&quot;</span><br><span class="line">示例 2:</span><br><span class="line"></span><br><span class="line">输入: num1 = &quot;123&quot;, num2 = &quot;456&quot;</span><br><span class="line">输出: &quot;56088&quot;</span><br><span class="line">说明：</span><br></pre></td></tr></table></figure></p>
-<p>num1 和 num2 的长度小于110。<br>num1 和 num2 只包含数字 0-9。<br>num1 和 num2 均不以零开头，除非是数字 0 本身。<br>不能使用任何标准库的大数类型（比如 BigInteger）或直接将输入转换为整数来处理。</p>
-<h2 id="解题方案"><a href="#解题方案" class="headerlink" title="解题方案"></a>解题方案</h2><h3 id="思路-1"><a href="#思路-1" class="headerlink" title="思路 1"></a>思路 1</h3><p>直接一位一位的搞，最后转string, 但是考虑到这样kennel最后str2int(num1) * str2int(num2)是一个极大的数字可能会导致溢出，所以有了后面的思路2</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span><span class="params">(object)</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">multiply</span><span class="params">(self, num1, num2)</span>:</span></span><br><span class="line">        <span class="string">"""</span></span><br><span class="line"><span class="string">        :type num1: str</span></span><br><span class="line"><span class="string">        :type num2: str</span></span><br><span class="line"><span class="string">        :rtype: str</span></span><br><span class="line"><span class="string">        """</span></span><br><span class="line">        <span class="function"><span class="keyword">def</span> <span class="title">str2int</span><span class="params">(num)</span>:</span></span><br><span class="line">            res = <span class="number">0</span></span><br><span class="line">            <span class="keyword">for</span> i <span class="keyword">in</span> range(len(num)<span class="number">-1</span>, <span class="number">-1</span>, <span class="number">-1</span>):</span><br><span class="line">                res += int(num[i]) * pow(<span class="number">10</span>, len(num)<span class="number">-1</span>-i)</span><br><span class="line">            <span class="keyword">return</span> res</span><br><span class="line">        <span class="keyword">return</span> str(str2int(num1) * str2int(num2))</span><br></pre></td></tr></table></figure>
-<h3 id="思路-2"><a href="#思路-2" class="headerlink" title="思路 2"></a>思路 2</h3><p>参考了别人的思路：</p>
-<ol>
-<li>m位的数字乘以n位的数字的结果最大为m+n位：<ul>
-<li>999<em>99 &lt; 1000</em>100 = 100000，最多为3+2 = 5位数。</li>
-</ul>
-</li>
-<li>先将字符串逆序便于从最低位开始计算。</li>
-</ol>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span><span class="params">(object)</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">multiply</span><span class="params">(self, num1, num2)</span>:</span></span><br><span class="line">        <span class="string">"""</span></span><br><span class="line"><span class="string">        :type num1: str</span></span><br><span class="line"><span class="string">        :type num2: str</span></span><br><span class="line"><span class="string">        :rtype: str</span></span><br><span class="line"><span class="string">        """</span></span><br><span class="line">        lookup = &#123;<span class="string">"0"</span>:<span class="number">0</span>,<span class="string">"1"</span>:<span class="number">1</span>,<span class="string">"2"</span>:<span class="number">2</span>,<span class="string">"3"</span>:<span class="number">3</span>,<span class="string">"4"</span>:<span class="number">4</span>,<span class="string">"5"</span>:<span class="number">5</span>,<span class="string">"6"</span>:<span class="number">6</span>,<span class="string">"7"</span>:<span class="number">7</span>,<span class="string">"8"</span>:<span class="number">8</span>,<span class="string">"9"</span>:<span class="number">9</span>&#125; <span class="comment"># 节省查找时间，避免无休止使用ord函数来得到数字</span></span><br><span class="line">        <span class="keyword">if</span> num1 == <span class="string">'0'</span> <span class="keyword">or</span> num2 == <span class="string">'0'</span>:</span><br><span class="line">            <span class="keyword">return</span> <span class="string">'0'</span></span><br><span class="line">        num1, num2 = num1[::<span class="number">-1</span>], num2[::<span class="number">-1</span>]</span><br><span class="line">        </span><br><span class="line">        tmp_res = [<span class="number">0</span> <span class="keyword">for</span> i <span class="keyword">in</span> range(len(num1)+len(num2))]</span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> range(len(num1)):</span><br><span class="line">            <span class="keyword">for</span> j <span class="keyword">in</span> range(len(num2)):</span><br><span class="line">                tmp_res[i+j] += lookup[num1[i]] * lookup[num2[j]]</span><br><span class="line"></span><br><span class="line">        res = [<span class="number">0</span> <span class="keyword">for</span> i <span class="keyword">in</span> range(len(num1)+len(num2))]</span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> range(len(num1)+len(num2)):</span><br><span class="line">            res[i] = tmp_res[i] % <span class="number">10</span></span><br><span class="line">            <span class="keyword">if</span> i &lt; len(num1)+len(num2)<span class="number">-1</span>:</span><br><span class="line">                tmp_res[i+<span class="number">1</span>] += tmp_res[i]/<span class="number">10</span> </span><br><span class="line">        <span class="keyword">return</span> <span class="string">''</span>.join(str(i) <span class="keyword">for</span> i <span class="keyword">in</span> res[::<span class="number">-1</span>]).lstrip(<span class="string">'0'</span>)  <span class="comment"># 去掉最终结果头部可能存在的‘0’</span></span><br></pre></td></tr></table></figure>
-<p>觉得这样写才是最容易理解的，看一个具体的例子:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">input: num1, num2 = &apos;91&apos;, &apos;91&apos;</span><br><span class="line">tmp_res = [1,18,81,0]</span><br><span class="line">res = [1,8,2,8]</span><br><span class="line"></span><br><span class="line">最终返回 &quot;8281&quot;</span><br><span class="line"></span><br><span class="line">要注意最终返回头部可能会有‘0’，所以我们用lstrip去除一下</span><br></pre></td></tr></table></figure></p>
+        <p><img src="http://qiniucdn.timilong.com/1544683310467.jpg" alt="cover_img"></p>
+<blockquote>
+<p>转载自: 微信公众号，<a href="https://mp.weixin.qq.com/s?__biz=MjM5ODYxMDA5OQ==&amp;mid=204965266&amp;idx=1&amp;sn=aad227dbcb544394ae1717e6af8b77ae&amp;scene=21#wechat_redirect" target="_blank" rel="noopener">架构师之路</a></p>
+</blockquote>
+<h2 id="为什么难"><a href="#为什么难" class="headerlink" title="为什么难"></a>为什么难</h2><p>秒杀系统难做的原因：库存只有一份，所有人会在集中的时间读和写这些数据。</p>
+<p>例如小米手机每周二的秒杀，可能手机只有1万部，但瞬时进入的流量可能是几百几千万。</p>
+<p>又例如12306抢票，亦与秒杀类似，瞬时流量更甚。</p>
+<h2 id="常见架构"><a href="#常见架构" class="headerlink" title="常见架构"></a>常见架构</h2><p>流量到了亿级别，常见站点架构如上：</p>
+<p>1）浏览器端，最上层，会执行到一些JS代码</p>
+<p>2）站点层，这一层会访问后端数据，拼html页面返回给浏览器</p>
+<p>3）服务层，向上游屏蔽底层数据细节</p>
+<p>4）数据层，最终的库存是存在这里的，mysql是一个典型</p>
+<h2 id="优化方向"><a href="#优化方向" class="headerlink" title="优化方向"></a>优化方向</h2><p>1）将请求尽量拦截在系统上游：传统秒杀系统之所以挂，请求都压倒了后端数据层，数据读写锁冲突严重，并发高响应慢，几乎所有请求都超时，流量虽大，下单成功的有效流量甚小【一趟火车其实只有2000张票，200w个人来买，基本没有人能买成功，请求有效率为0】</p>
+<p>2）充分利用缓存：这是一个典型的读多些少的应用场景【一趟火车其实只有2000张票，200w个人来买，最多2000个人下单成功，其他人都是查询库存，写比例只有0.1%，读比例占99.9%】，非常适合使用缓存</p>
+<h2 id="优化细节"><a href="#优化细节" class="headerlink" title="优化细节"></a>优化细节</h2><h3 id="浏览器层请求拦截"><a href="#浏览器层请求拦截" class="headerlink" title="浏览器层请求拦截"></a>浏览器层请求拦截</h3><p>点击了“查询”按钮之后，系统那个卡呀，进度条涨的慢呀，作为用户，会不自觉的再去点击“查询”，继续点，继续点，点点点。。。有用么？平白无故的增加了系统负载（一个用户点5次，80%的请求是这么多出来的），怎么整？</p>
+<p>a）产品层面，用户点击“查询”或者“购票”后，按钮置灰，禁止用户重复提交请求</p>
+<p>b）JS层面，限制用户在x秒之内只能提交一次请求</p>
+<p>如此限流，80%流量已拦</p>
+<h3 id="站点层请求拦截与页面缓存"><a href="#站点层请求拦截与页面缓存" class="headerlink" title="站点层请求拦截与页面缓存"></a>站点层请求拦截与页面缓存</h3><p>浏览器层的请求拦截，只能拦住小白用户（不过这是99%的用户哟），高端的程序员根本不吃这一套，写个for循环，直接调用你后端的http请求，怎么整？</p>
+<p>a）同一个uid，限制访问频度，做页面缓存，x秒内到达站点层的请求，均返回同一页面</p>
+<p>b）同一个item的查询，例如手机车次，做页面缓存，x秒内到达站点层的请求，均返回同一页面</p>
+<p>如此限流，又有99%的流量会被拦截在站点层</p>
+<h3 id="服务层请求拦截与数据缓存"><a href="#服务层请求拦截与数据缓存" class="headerlink" title="服务层请求拦截与数据缓存"></a>服务层请求拦截与数据缓存</h3><p>站点层的请求拦截，只能拦住普通程序员，高级黑客，假设他控制了10w台肉鸡（并且假设买票不需要实名认证），这下uid的限制不行了吧？怎么整？</p>
+<p>a）大哥，我是服务层，我清楚的知道小米只有1万部手机，我清楚的知道一列火车只有2000张车票，我透10w个请求去数据库有什么意义呢？对于写请求，做请求队列，每次只透过有限的写请求去数据层，如果均成功再放下一批，如果库存不够则队列里的写请求全部返回“已售完”</p>
+<p>b）对于读请求，还用说么？cache来抗，不管是memcached还是redis，单机抗个每秒10w应该都是没什么问题的</p>
+<p>如此限流，只有非常少的写请求，和非常少的读缓存mis的请求会透到数据层去，又有99.9%的请求被拦住了</p>
+<h3 id="数据层闲庭信步"><a href="#数据层闲庭信步" class="headerlink" title="数据层闲庭信步"></a>数据层闲庭信步</h3><p>到了数据这一层，几乎就没有什么请求了，单机也能扛得住，还是那句话，库存是有限的，小米的产能有限，透过过多请求来数据库没有意义。</p>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>没什么总结了，上文应该描述的非常清楚了，对于秒杀系统，再次重复下笔者的两个架构优化思路：</p>
+<p>1）尽量将请求拦截在系统上游</p>
+<p>2）读多写少的常用多使用缓存</p>
 
       
     </div>
@@ -459,7 +461,7 @@
       
         <div class="post-tags">
           
-            <a href="/tags/leetcode/" rel="tag"># leetcode</a>
+            <a href="/tags/架构/" rel="tag"># 架构</a>
           
         </div>
       
@@ -472,8 +474,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2018/10/01/leetcode-49字母异位词分组/" rel="next" title="leetcode-49字母异位词分组">
-                <i class="fa fa-chevron-left"></i> leetcode-49字母异位词分组
+              <a href="/2018/12/18/转载-究竟啥才是互联网架构“高并发”/" rel="next" title="转载-究竟啥才是互联网架构“高并发”">
+                <i class="fa fa-chevron-left"></i> 转载-究竟啥才是互联网架构“高并发”
               </a>
             
           </div>
@@ -481,10 +483,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2018/10/03/leetcode-46全排列/" rel="prev" title="leetcode-46全排列">
-                leetcode-46全排列 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -742,7 +740,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#题目描述"><span class="nav-number">1.</span> <span class="nav-text">题目描述</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#解题方案"><span class="nav-number">2.</span> <span class="nav-text">解题方案</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#思路-1"><span class="nav-number">2.1.</span> <span class="nav-text">思路 1</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#思路-2"><span class="nav-number">2.2.</span> <span class="nav-text">思路 2</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#为什么难"><span class="nav-number">1.</span> <span class="nav-text">为什么难</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#常见架构"><span class="nav-number">2.</span> <span class="nav-text">常见架构</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#优化方向"><span class="nav-number">3.</span> <span class="nav-text">优化方向</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#优化细节"><span class="nav-number">4.</span> <span class="nav-text">优化细节</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#浏览器层请求拦截"><span class="nav-number">4.1.</span> <span class="nav-text">浏览器层请求拦截</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#站点层请求拦截与页面缓存"><span class="nav-number">4.2.</span> <span class="nav-text">站点层请求拦截与页面缓存</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#服务层请求拦截与数据缓存"><span class="nav-number">4.3.</span> <span class="nav-text">服务层请求拦截与数据缓存</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#数据层闲庭信步"><span class="nav-number">4.4.</span> <span class="nav-text">数据层闲庭信步</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#总结"><span class="nav-number">5.</span> <span class="nav-text">总结</span></a></li></ol></div>
             
 
           </div>
