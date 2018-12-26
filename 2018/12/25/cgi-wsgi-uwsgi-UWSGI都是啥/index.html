@@ -118,7 +118,7 @@
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="http://qiniucdn.timilong.com/1544683269405.jpg">
 <meta property="og:image" content="http://qiniucdn.timilong.com/cgi_wsgi_uwsgi_uWSGI.JPEG">
-<meta property="og:updated_time" content="2018-12-25T07:48:11.788Z">
+<meta property="og:updated_time" content="2018-12-26T04:34:03.300Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="cgi_wsgi_uwsgi_uWSGI都是啥">
 <meta name="twitter:description" content="浅谈CGI, WSGI, uwsgi, uWSGI">
@@ -354,12 +354,24 @@
                 
               
 
-              <time title="创建于：2018-12-25 10:26:29 / 更新于：07:48:11" itemprop="dateCreated datePublished" datetime="2018-12-25T10:26:29Z">2018-12-25</time>
+              <time title="创建于：2018-12-25 10:26:29" itemprop="dateCreated datePublished" datetime="2018-12-25T10:26:29Z">2018-12-25</time>
             
 
             
               
 
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Edited on</span>
+                
+                <time title="更新于：2018-12-26 04:34:03" itemprop="dateModified" datetime="2018-12-26T04:34:03Z">2018-12-26</time>
               
             
           </span>
@@ -419,7 +431,7 @@
 <p>当然，CGI 只是一个很基本的协议，在现代常见的服务器结构中基本已经没有了它的身影，更多的则是它的扩展和更新。</p>
 <p>在讲更进一步之前首先我们要了解目前比较常见的服务端结构：</p>
 <p>假设我们使用 python 的 Django 框架写了一个网站，现在要将它挂在网上运行，我们一般需要：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">nginx 做为代理服务器：负责静态资源发送（js、css、图片等）、动态请求转发以及结果的回复；</span><br><span class="line">uWSGI 做为后端服务器：负责接收 nginx 请求转发并处理后发给 Django 应用以及接收 Django 应用返回信息转发给 nginx；</span><br><span class="line">Django 应用收到请求后处理数据并渲染相应的返回页面给 uWSGI 服务器。</span><br></pre></td></tr></table></figure></p>
-<h2 id="接下来的协议及接口就是应用在以上三者之间"><a href="#接下来的协议及接口就是应用在以上三者之间" class="headerlink" title="接下来的协议及接口就是应用在以上三者之间:"></a>接下来的协议及接口就是应用在以上三者之间:</h2><p>FastCGI: <b>CGI的一个扩展， 提升了性能，废除了 CGI fork-and-execute （来一个请求 fork 一个新进程处理，处理完再把进程 kill 掉）的工作方式，转而使用一种长生存期的方法，减少了进程消耗，提升了性能。</b></p>
+<h2 id="接下来的协议及接口就是应用在以上三者之间"><a href="#接下来的协议及接口就是应用在以上三者之间" class="headerlink" title="接下来的协议及接口就是应用在以上三者之间"></a>接下来的协议及接口就是应用在以上三者之间</h2><p>FastCGI: <b>CGI的一个扩展， 提升了性能，废除了 CGI fork-and-execute （来一个请求 fork 一个新进程处理，处理完再把进程 kill 掉）的工作方式，转而使用一种长生存期的方法，减少了进程消耗，提升了性能。</b></p>
 <p>这里 FastCGI 就应用于前端 server（nginx）与后端 server（uWSGI）的通信中，制定规范等等，让前后端服务器可以顺利理解双方都在说什么（当然 uWSGI 本身并不用 FastCGI, 它有另外的协议）</p>
 <p>WSGI（Python Web Server GateWay Interface）: <b>它是用在 python web 框架编写的应用程序与后端服务器之间的规范（本例就是 Django 和 uWSGI 之间），让你写的应用程序可以与后端服务器顺利通信。</b></p>
 <p>在 WSGI 出现之前你不得不专门为某个后端服务器而写特定的 API，并且无法更换后端服务器，而 WSGI 就是一种统一规范， 所有使用 WSGI 的服务器都可以运行使用 WSGI 规范的 web 框架，反之亦然。</p>
@@ -738,7 +750,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#介绍"><span class="nav-number">1.</span> <span class="nav-text">介绍</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#接下来的协议及接口就是应用在以上三者之间"><span class="nav-number">2.</span> <span class="nav-text">接下来的协议及接口就是应用在以上三者之间:</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#介绍"><span class="nav-number">1.</span> <span class="nav-text">介绍</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#接下来的协议及接口就是应用在以上三者之间"><span class="nav-number">2.</span> <span class="nav-text">接下来的协议及接口就是应用在以上三者之间</span></a></li></ol></div>
             
 
           </div>
