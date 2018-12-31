@@ -50,6 +50,12 @@
 
 
 
+  
+  
+    
+  
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.3.5/jquery.fancybox.min.css" rel="stylesheet" type="text/css" />
+
 
 
 
@@ -87,7 +93,7 @@
     scheme: 'Muse',
     version: '6.4.1',
     sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
-    fancybox: false,
+    fancybox: true,
     fastclick: false,
     lazyload: false,
     tabs: true,
@@ -176,6 +182,7 @@
   </style>
 </noscript>
 
+  <link rel="stylesheet" href="/photos/photos.css">
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -253,6 +260,14 @@
           <li class="menu-item menu-item-archives">
     <a href="/archives/" rel="section">
       <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />归档</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-photos">
+    <a href="/photos/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-camera-retro"></i> <br />photos</a>
   </li>
         
         
@@ -922,7 +937,7 @@
     
 
     
-	
+
     
 
     
@@ -946,6 +961,8 @@
 
 
 
+
+  
 
 
 
@@ -974,6 +991,11 @@
   
   
     <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.3.5/jquery.fancybox.min.js"></script>
   
 
 
@@ -1044,5 +1066,7 @@
 
   
 
+  <script type="text/javascript" src="https://unpkg.com/minigrid@3.1.1/dist/minigrid.min.js"></script>
+  <script type="text/javascript" src="/photos/photo.js"></script>
 </body>
 </html>
