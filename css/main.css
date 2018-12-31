@@ -1838,7 +1838,7 @@ pre .javascript .function {
   width: 4px;
   height: 4px;
   border-radius: 50%;
-  background: #6c3365;
+  background: #2bff22;
 }
 .links-of-blogroll {
   font-size: 13px;
@@ -2590,10 +2590,10 @@ embed {
   color: #fff;
 }
 .header {
-  background: url("/uploads/header-bg.jpg");
+  background: url("http://qiniucdn.timilong.com/header-bg.jpg");
 }
 body {
-  background-image: url("/uploads/body-bg.png");
+  background-image: url("http://qiniucdn.timilong.com/body-bg.png");
   background-repeat: repeat;
   background-attachment: fixed;
   background-position: 50% 50%;
