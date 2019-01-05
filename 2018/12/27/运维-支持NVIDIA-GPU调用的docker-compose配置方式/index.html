@@ -123,7 +123,7 @@
 <meta property="og:description" content="docker-compose.yml支持runtime位nvidia的调用。">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="http://qiniucdn.timilong.com/1544683570720.jpg">
-<meta property="og:updated_time" content="2018-12-27T04:48:51.866Z">
+<meta property="og:updated_time" content="2019-01-05T03:47:08.480Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="运维-支持NVIDIA-GPU调用的docker-compose配置方式">
 <meta name="twitter:description" content="docker-compose.yml支持runtime位nvidia的调用。">
@@ -214,7 +214,7 @@
   </div>
 
   <div class="site-nav-toggle">
-    <button aria-label="ナビゲーションバーの切り替え">
+    <button aria-label="Toggle navigation bar">
       <span class="btn-bar"></span>
       <span class="btn-bar"></span>
       <span class="btn-bar"></span>
@@ -367,12 +367,24 @@
                 
               
 
-              <time title="创建于：2018-12-27 12:43:48 / 更新于：04:48:51" itemprop="dateCreated datePublished" datetime="2018-12-27T12:43:48Z">2018-12-27</time>
+              <time title="创建于：2018-12-27 12:43:48" itemprop="dateCreated datePublished" datetime="2018-12-27T12:43:48Z">2018-12-27</time>
             
 
             
               
 
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Edited on</span>
+                
+                <time title="更新于：2019-01-05 03:47:08" itemprop="dateModified" datetime="2019-01-05T03:47:08Z">2019-01-05</time>
               
             
           </span>
@@ -426,7 +438,10 @@
 
       
         <p><img src="http://qiniucdn.timilong.com/1544683570720.jpg" alt="cover_img"></p>
-<h2 id="docker-compose-yml"><a href="#docker-compose-yml" class="headerlink" title="docker-compose.yml"></a>docker-compose.yml</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">version: &quot;2.3&quot;</span><br><span class="line">services:</span><br><span class="line">  xxxxxx-service:</span><br><span class="line">    image: daocloud.io/xxxxxxxxxxx/xxxxxxxxx:latest</span><br><span class="line">    container_name: xxxxxxx-service</span><br><span class="line">    runtime: nvidia</span><br><span class="line">    devices:</span><br><span class="line">      - /dev/nvidia0</span><br><span class="line">    restart: always</span><br><span class="line">    command: python3 run.py</span><br><span class="line">    volumes:</span><br><span class="line">      - /data:/data</span><br><span class="line">    environment:</span><br><span class="line">      FACE_VERIFY_RADIUS: 1.2</span><br><span class="line">      TF_SERVING_SERVER:</span><br><span class="line">      DBSCAN_EUCLIDEAN_EPS: 1.1</span><br><span class="line">      CACHE_DIRS_ROOT: /data</span><br><span class="line">      CUDA_VISIBLE_DEVICES: 0</span><br><span class="line">      TF_CPP_MIN_LOG_LEVEL: 3</span><br></pre></td></tr></table></figure>
+<h2 id="安装NVIDIA-docker"><a href="#安装NVIDIA-docker" class="headerlink" title="安装NVIDIA-docker"></a>安装NVIDIA-docker</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">curl -s -L https://nvidia.github.io/nvidia-docker/$distribution/nvidia-docker.repo |   sudo tee /etc/yum.repos.d/nvidia-docker.repo</span><br><span class="line"></span><br><span class="line">yum install -y nvidia-docker2</span><br></pre></td></tr></table></figure>
+<h2 id="docker-compose-yml"><a href="#docker-compose-yml" class="headerlink" title="docker-compose.yml"></a>docker-compose.yml</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">version: &quot;2.3&quot;</span><br><span class="line">services:</span><br><span class="line">  xxxxxx-service:</span><br><span class="line">    image: daocloud.io/xxxxxxxxxxx/xxxxxxxxx:latest</span><br><span class="line">    container_name: xxxxxxx-service</span><br><span class="line">#    runtime: nvidia</span><br><span class="line">#    devices:</span><br><span class="line">#      - /dev/nvidia0</span><br><span class="line">    restart: always</span><br><span class="line">    command: python3 run.py</span><br><span class="line">    volumes:</span><br><span class="line">      - /data:/data</span><br><span class="line">    environment:</span><br><span class="line">      FACE_VERIFY_RADIUS: 1.2</span><br><span class="line">      TF_SERVING_SERVER:</span><br><span class="line">      DBSCAN_EUCLIDEAN_EPS: 1.1</span><br><span class="line">      CACHE_DIRS_ROOT: /data</span><br><span class="line">      CUDA_VISIBLE_DEVICES: 0</span><br><span class="line">      TF_CPP_MIN_LOG_LEVEL: 3</span><br></pre></td></tr></table></figure>
+<h2 id="tf-serving"><a href="#tf-serving" class="headerlink" title="tf-serving"></a>tf-serving</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">version: &quot;3.0&quot;</span><br><span class="line">services:</span><br><span class="line">  tf-serving-youju:</span><br><span class="line">    image: registry-vpc.cn-beijing.aliyuncs.com/xxxx/tf-serving:1.12.0-gpu</span><br><span class="line">#    runtime: nvidia</span><br><span class="line">#    devices:</span><br><span class="line">#      - /dev/nvidia0</span><br><span class="line">    restart: always</span><br><span class="line">    ports:</span><br><span class="line">      - &quot;8500:8500&quot;</span><br><span class="line">    environment:</span><br><span class="line">      MODEL_NAME: all_tf_serving</span><br><span class="line">      CUDA_VISIBLE_DEVICES: 0</span><br><span class="line">    volumes:</span><br><span class="line">      - /models/all_tf_serving:/models/all_tf_serving</span><br></pre></td></tr></table></figure>
+<h2 id="启动"><a href="#启动" class="headerlink" title="启动"></a>启动</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker-compose pull &amp;&amp; docker-compose up -d</span><br></pre></td></tr></table></figure>
 
       
     </div>
@@ -740,7 +755,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#docker-compose-yml"><span class="nav-number">1.</span> <span class="nav-text">docker-compose.yml</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#安装NVIDIA-docker"><span class="nav-number">1.</span> <span class="nav-text">安装NVIDIA-docker</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#docker-compose-yml"><span class="nav-number">2.</span> <span class="nav-text">docker-compose.yml</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#tf-serving"><span class="nav-number">3.</span> <span class="nav-text">tf-serving</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#启动"><span class="nav-number">4.</span> <span class="nav-text">启动</span></a></li></ol></div>
             
 
           </div>
