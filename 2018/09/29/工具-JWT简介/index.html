@@ -124,7 +124,7 @@
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="http://qiniucdn.timilong.com/1543735276657.jpg">
 <meta property="og:image" content="http://blog.leapoahead.com/2015/09/06/understanding-jwt/sig1.png">
-<meta property="og:updated_time" content="2018-12-04T06:42:41.457Z">
+<meta property="og:updated_time" content="2019-01-06T23:36:09.103Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="工具-JWT简介">
 <meta name="twitter:description" content="JSON Web Token（JWT）是一个非常轻巧的规范。这个规范允许我们使用JWT在用户和服务器之间传递安全可靠的信息。">
@@ -215,7 +215,7 @@
   </div>
 
   <div class="site-nav-toggle">
-    <button aria-label="Toggle navigation bar">
+    <button aria-label="ナビゲーションバーの切り替え">
       <span class="btn-bar"></span>
       <span class="btn-bar"></span>
       <span class="btn-bar"></span>
@@ -383,9 +383,9 @@
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 
-                  <span class="post-meta-item-text">Edited on</span>
+                  <span class="post-meta-item-text">に編集されました</span>
                 
-                <time title="更新于：2018-12-04 06:42:41" itemprop="dateModified" datetime="2018-12-04T06:42:41Z">2018-12-04</time>
+                <time title="更新于：2019-01-06 23:36:09" itemprop="dateModified" datetime="2019-01-06T23:36:09Z">2019-01-06</time>
               
             
           </span>
@@ -448,8 +448,8 @@
 <p><a href="https://your.awesome-app.com/make-friend/?from_user=B&amp;target_user=A" target="_blank" rel="noopener">https://your.awesome-app.com/make-friend/?from_user=B&amp;target_user=A</a></p>
 </blockquote>
 <p>上面的URL主要通过URL来描述这个当然这样做有一个弊端，那就是要求用户B用户是一定要先登录的。可不可以简化这个流程，让B用户不用登录就可以完成这个操作。JWT就允许我们做到这点。</p>
-<h3 id="JWT的组成"><a href="#JWT的组成" class="headerlink" title="JWT的组成"></a>JWT的组成</h3><p>一个JWT实际上就是一个字符串，它由三部分组成，头部、载荷与签名。</p>
-<h4 id="载荷（Payload）"><a href="#载荷（Payload）" class="headerlink" title="载荷（Payload）"></a>载荷（Payload）</h4><p>我们先将上面的添加好友的操作描述成一个JSON对象。其中添加了一些其他的信息，帮助今后收到这个JWT的服务器理解这个JWT。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    &quot;iss&quot;: &quot;John Wu JWT&quot;,</span><br><span class="line">    &quot;iat&quot;: 1441593502,</span><br><span class="line">    &quot;exp&quot;: 1441594722,</span><br><span class="line">    &quot;aud&quot;: &quot;www.example.com&quot;,</span><br><span class="line">    &quot;sub&quot;: &quot;jrocket@example.com&quot;,</span><br><span class="line">    &quot;from_user&quot;: &quot;B&quot;,</span><br><span class="line">    &quot;target_user&quot;: &quot;A&quot;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h2 id="JWT的组成"><a href="#JWT的组成" class="headerlink" title="JWT的组成"></a>JWT的组成</h2><p>一个JWT实际上就是一个字符串，它由三部分组成，头部、载荷与签名。</p>
+<h3 id="载荷（Payload）"><a href="#载荷（Payload）" class="headerlink" title="载荷（Payload）"></a>载荷（Payload）</h3><p>我们先将上面的添加好友的操作描述成一个JSON对象。其中添加了一些其他的信息，帮助今后收到这个JWT的服务器理解这个JWT。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    &quot;iss&quot;: &quot;John Wu JWT&quot;,</span><br><span class="line">    &quot;iat&quot;: 1441593502,</span><br><span class="line">    &quot;exp&quot;: 1441594722,</span><br><span class="line">    &quot;aud&quot;: &quot;www.example.com&quot;,</span><br><span class="line">    &quot;sub&quot;: &quot;jrocket@example.com&quot;,</span><br><span class="line">    &quot;from_user&quot;: &quot;B&quot;,</span><br><span class="line">    &quot;target_user&quot;: &quot;A&quot;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
 <p>这里面的前五个字段都是由JWT的标准所定义的。</p>
 <ul>
 <li>iss: 该JWT的签发者</li>
@@ -464,10 +464,10 @@
 <blockquote>
 <p>小知识：Base64是一种编码，也就是说，它是可以被翻译回原来的样子来的。它并不是一种加密过程。</p>
 </blockquote>
-<h4 id="头部（Header）"><a href="#头部（Header）" class="headerlink" title="头部（Header）"></a>头部（Header）</h4><p>JWT还需要一个头部，头部用于描述关于该JWT的最基本的信息，例如其类型以及签名所用的算法等。这也可以被表示成一个JSON对象。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  &quot;typ&quot;: &quot;JWT&quot;,</span><br><span class="line">  &quot;alg&quot;: &quot;HS256&quot;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h3 id="头部（Header）"><a href="#头部（Header）" class="headerlink" title="头部（Header）"></a>头部（Header）</h3><p>JWT还需要一个头部，头部用于描述关于该JWT的最基本的信息，例如其类型以及签名所用的算法等。这也可以被表示成一个JSON对象。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  &quot;typ&quot;: &quot;JWT&quot;,</span><br><span class="line">  &quot;alg&quot;: &quot;HS256&quot;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
 <p>在这里，我们说明了这是一个JWT，并且我们所用的签名算法（后面会提到）是HS256算法。</p>
 <p>对它也要进行Base64编码，之后的字符串就成了JWT的Header（头部）。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9</span><br></pre></td></tr></table></figure></p>
-<h4 id="签名（签名）"><a href="#签名（签名）" class="headerlink" title="签名（签名）"></a>签名（签名）</h4><p>将上面的两个编码后的字符串都用句号.连接在一起（头部在前），就形成了<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJmcm9tX3VzZXIiOiJCIiwidGFyZ2V0X3VzZXIiOiJBIn0</span><br></pre></td></tr></table></figure></p>
+<h3 id="签名（签名）"><a href="#签名（签名）" class="headerlink" title="签名（签名）"></a>签名（签名）</h3><p>将上面的两个编码后的字符串都用句号.连接在一起（头部在前），就形成了<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJmcm9tX3VzZXIiOiJCIiwidGFyZ2V0X3VzZXIiOiJBIn0</span><br></pre></td></tr></table></figure></p>
 <blockquote>
 <p>这一部分的过程在node-jws的源码中有体现</p>
 </blockquote>
@@ -477,10 +477,9 @@
 <p>于是，我们就可以将邮件中的URL改成<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">https://your.awesome-app.com/make-friend/?jwt=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJmcm9tX3VzZXIiOiJCIiwidGFyZ2V0X3VzZXIiOiJBIn0.rSWamyAYwuHCo7IFAgd1oRpSP7nzL7BF5t7ItqpKViM</span><br></pre></td></tr></table></figure></p>
 <p>这样就可以安全地完成添加好友的操作了！</p>
 <p>且慢，我们一定会有一些问题：</p>
-<h3 id="问题"><a href="#问题" class="headerlink" title="问题"></a>问题</h3><blockquote>
+<h2 id="问题"><a href="#问题" class="headerlink" title="问题"></a>问题</h2><blockquote>
 <p>签名的目的是什么？<br>Base64是一种编码，是可逆的，那么我的信息不就被暴露了吗？</p>
 </blockquote>
-<p>让我逐一为你说明。</p>
 <h3 id="签名的目的"><a href="#签名的目的" class="headerlink" title="签名的目的"></a>签名的目的</h3><p>最后一步签名的过程，实际上是对头部以及载荷内容进行签名。一般而言，加密算法对于不同的输入产生的输出总是不一样的。对于两个不同的输入，产生同样的输出的概率极其地小（有可能比我成世界首富的概率还小）。所以，我们就把“不一样的输入产生不一样的输出”当做必然事件来看待吧。</p>
 <p>所以，如果有人对头部以及载荷的内容解码之后进行修改，再进行编码的话，那么新的头部和载荷的签名和之前的签名就将是不一样的。而且，如果不知道服务器加密的时候用的密钥的话，得出来的签名也一定会是不一样的。</p>
 <h3 id="签名过程"><a href="#签名过程" class="headerlink" title="签名过程"></a>签名过程</h3><p>服务器应用在接受到JWT后，会首先对头部和载荷的内容用同一算法再次签名。那么服务器应用是怎么知道我们用的是哪一种算法呢？别忘了，我们在JWT的头部中已经用alg字段指明了我们的加密算法了。</p>
@@ -802,7 +801,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#JWT的组成"><span class="nav-number">1.</span> <span class="nav-text">JWT的组成</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#载荷（Payload）"><span class="nav-number">1.1.</span> <span class="nav-text">载荷（Payload）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#头部（Header）"><span class="nav-number">1.2.</span> <span class="nav-text">头部（Header）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#签名（签名）"><span class="nav-number">1.3.</span> <span class="nav-text">签名（签名）</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#问题"><span class="nav-number">2.</span> <span class="nav-text">问题</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#签名的目的"><span class="nav-number">3.</span> <span class="nav-text">签名的目的</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#签名过程"><span class="nav-number">4.</span> <span class="nav-text">签名过程</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#信息会暴露？"><span class="nav-number">5.</span> <span class="nav-text">信息会暴露？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#JWT的适用场景"><span class="nav-number">6.</span> <span class="nav-text">JWT的适用场景</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#JWT的组成"><span class="nav-number">1.</span> <span class="nav-text">JWT的组成</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#载荷（Payload）"><span class="nav-number">1.1.</span> <span class="nav-text">载荷（Payload）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#头部（Header）"><span class="nav-number">1.2.</span> <span class="nav-text">头部（Header）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#签名（签名）"><span class="nav-number">1.3.</span> <span class="nav-text">签名（签名）</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#问题"><span class="nav-number">2.</span> <span class="nav-text">问题</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#签名的目的"><span class="nav-number">2.1.</span> <span class="nav-text">签名的目的</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#签名过程"><span class="nav-number">2.2.</span> <span class="nav-text">签名过程</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#信息会暴露？"><span class="nav-number">2.3.</span> <span class="nav-text">信息会暴露？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#JWT的适用场景"><span class="nav-number">2.4.</span> <span class="nav-text">JWT的适用场景</span></a></li></ol></li></ol></div>
             
 
           </div>
