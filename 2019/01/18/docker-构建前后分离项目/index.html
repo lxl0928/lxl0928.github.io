@@ -114,19 +114,19 @@
 
 
 
-  <meta name="description" content="记录一次帮助前端搭建Docker的经历.">
+  <meta name="description" content="记录一次帮助前后端分离的纯前端项目搭建Docker的经历.">
 <meta name="keywords" content="Docker">
 <meta property="og:type" content="article">
 <meta property="og:title" content="docker-构建前后分离项目">
 <meta property="og:url" content="https://blog.timilong.com/2019/01/18/docker-构建前后分离项目/index.html">
 <meta property="og:site_name" content="Timilong&#39;s blog">
-<meta property="og:description" content="记录一次帮助前端搭建Docker的经历.">
+<meta property="og:description" content="记录一次帮助前后端分离的纯前端项目搭建Docker的经历.">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="http://qiniucdn.timilong.com/1544683505643.jpg">
-<meta property="og:updated_time" content="2019-01-18T02:32:30.447Z">
+<meta property="og:updated_time" content="2019-01-18T03:48:24.169Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="docker-构建前后分离项目">
-<meta name="twitter:description" content="记录一次帮助前端搭建Docker的经历.">
+<meta name="twitter:description" content="记录一次帮助前后端分离的纯前端项目搭建Docker的经历.">
 <meta name="twitter:image" content="http://qiniucdn.timilong.com/1544683505643.jpg">
 
 
@@ -367,7 +367,7 @@
                 
               
 
-              <time title="创建于：2019-01-18 10:29:28 / 更新于：02:32:30" itemprop="dateCreated datePublished" datetime="2019-01-18T10:29:28Z">2019-01-18</time>
+              <time title="创建于：2019-01-18 10:29:28 / 更新于：03:48:24" itemprop="dateCreated datePublished" datetime="2019-01-18T10:29:28Z">2019-01-18</time>
             
 
             
@@ -409,7 +409,7 @@
           
 
           
-              <div class="post-description">记录一次帮助前端搭建Docker的经历.</div>
+              <div class="post-description">记录一次帮助前后端分离的纯前端项目搭建Docker的经历.</div>
           
 
         </div>
@@ -426,9 +426,6 @@
 
       
         <p><img src="http://qiniucdn.timilong.com/1544683505643.jpg" alt="cover_img"></p>
-<blockquote>
-<p>转载自: 微信公众号，<a href="">架构师之路</a><br>本文系原创, 转载请联系作者 <a href="http://blog.timilong.com/about">Timilong</a></p>
-</blockquote>
 <h2 id="前端项目"><a href="#前端项目" class="headerlink" title="前端项目"></a>前端项目</h2><h3 id="docker-compose"><a href="#docker-compose" class="headerlink" title="docker-compose"></a>docker-compose</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">mocha-xxxx:</span><br><span class="line">  image: xxxxxxx:latest</span><br><span class="line">  command: nginx -g &quot;daemon off;&quot;</span><br><span class="line">  privileged: false</span><br><span class="line">  restart: always</span><br><span class="line">  ports:</span><br><span class="line">  - 8080:80</span><br></pre></td></tr></table></figure>
 <h3 id="Dockerfile"><a href="#Dockerfile" class="headerlink" title="Dockerfile"></a>Dockerfile</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line">FROM daocloud.io/library/ubuntu:latest</span><br><span class="line"></span><br><span class="line">MAINTAINER wangxingkang&lt;wang_xingkang@qq.com&gt;</span><br><span class="line"></span><br><span class="line"># 安装nginx</span><br><span class="line"># RUN apt-get install -y epel-release</span><br><span class="line"># 安装node</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">RUN apt-get update &amp;&amp; apt-get install -y nginx &amp;&amp; apt-get install -y nodejs &amp;&amp; node -v &amp;&amp; apt-get install -y npm</span><br><span class="line"></span><br><span class="line"># 创建一个临时工作目录</span><br><span class="line">RUN mkdir /app</span><br><span class="line"></span><br><span class="line"># 切换到当前工作目录</span><br><span class="line">WORKDIR /app</span><br><span class="line"></span><br><span class="line"># copy当前的所有文件到临时工作目录</span><br><span class="line">COPY . /app/</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"># 安装依赖 # 执行编译</span><br><span class="line">RUN npm install -g yarn &amp;&amp; npm run bootstrap &amp;&amp; npm run build</span><br><span class="line"></span><br><span class="line"># 处理静态资源</span><br><span class="line">ADD nginx.conf /etc/nginx/nginx.conf</span><br><span class="line"></span><br><span class="line">RUN mkdir /var/www/html/dist</span><br><span class="line">RUN cp -r dist/* /var/www/html/dist</span><br><span class="line"></span><br><span class="line"># 删除临时目录</span><br><span class="line">RUN rm -rf /app &amp;&amp; apt-get --purge remove -y nodejs &amp;&amp;  apt-get --purge remove -y npm &amp;&amp; apt autoremove -y</span><br><span class="line"></span><br><span class="line">EXPOSE 80 443</span><br><span class="line"></span><br><span class="line">CMD [&quot;nginx&quot;, &quot;-g&quot;, &quot;daemon off;&quot;]</span><br></pre></td></tr></table></figure>
 
