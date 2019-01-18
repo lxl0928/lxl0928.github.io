@@ -114,27 +114,25 @@
 
 
 
-  <meta name="description" content="给定一个只包含数字的字符串，复原它并返回所有可能的 IP 地址格式。">
-<meta name="keywords" content="leetcode">
+  <meta name="description" content="CentOS 7 上升级Docker，并升级系统内核">
+<meta name="keywords" content="运维">
 <meta property="og:type" content="article">
-<meta property="og:title" content="leetcode-93复原IP地址">
-<meta property="og:url" content="https://blog.timilong.com/2018/07/09/leetcode-93复原IP地址/index.html">
+<meta property="og:title" content="运维-centos升级系统内核和docker版本">
+<meta property="og:url" content="https://blog.timilong.com/2019/01/18/运维-centos升级系统内核和docker版本/index.html">
 <meta property="og:site_name" content="Timilong&#39;s blog">
-<meta property="og:description" content="给定一个只包含数字的字符串，复原它并返回所有可能的 IP 地址格式。">
+<meta property="og:description" content="CentOS 7 上升级Docker，并升级系统内核">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="http://qiniucdn.timilong.com/1543387776398.png">
-<meta property="og:updated_time" content="2018-12-04T06:52:04.212Z">
+<meta property="og:updated_time" content="2019-01-18T03:36:01.479Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="leetcode-93复原IP地址">
-<meta name="twitter:description" content="给定一个只包含数字的字符串，复原它并返回所有可能的 IP 地址格式。">
-<meta name="twitter:image" content="http://qiniucdn.timilong.com/1543387776398.png">
+<meta name="twitter:title" content="运维-centos升级系统内核和docker版本">
+<meta name="twitter:description" content="CentOS 7 上升级Docker，并升级系统内核">
 
 
 
 
 
 
-  <link rel="canonical" href="https://blog.timilong.com/2018/07/09/leetcode-93复原IP地址/"/>
+  <link rel="canonical" href="https://blog.timilong.com/2019/01/18/运维-centos升级系统内核和docker版本/"/>
 
 
 
@@ -144,7 +142,7 @@
   };
 </script>
 
-  <title>leetcode-93复原IP地址 | Timilong's blog</title>
+  <title>运维-centos升级系统内核和docker版本 | Timilong's blog</title>
   
 
 
@@ -325,7 +323,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://blog.timilong.com/2018/07/09/leetcode-93复原IP地址/">
+    <link itemprop="mainEntityOfPage" href="https://blog.timilong.com/2019/01/18/运维-centos升级系统内核和docker版本/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="博主">
@@ -342,7 +340,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">leetcode-93复原IP地址
+          <h1 class="post-title" itemprop="name headline">运维-centos升级系统内核和docker版本
               
             
           </h1>
@@ -367,24 +365,12 @@
                 
               
 
-              <time title="创建于：2018-07-09 11:26:14" itemprop="dateCreated datePublished" datetime="2018-07-09T11:26:14Z">2018-07-09</time>
+              <time title="创建于：2019-01-18 11:29:59 / 更新于：03:36:01" itemprop="dateCreated datePublished" datetime="2019-01-18T11:29:59Z">2019-01-18</time>
             
 
             
               
 
-              
-                
-                <span class="post-meta-divider">|</span>
-                
-
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">Edited on</span>
-                
-                <time title="更新于：2018-12-04 06:52:04" itemprop="dateModified" datetime="2018-12-04T06:52:04Z">2018-12-04</time>
               
             
           </span>
@@ -401,7 +387,7 @@
                 <span class="post-meta-item-text">分类于</span>
               
               
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/leetcode/" itemprop="url" rel="index"><span itemprop="name">leetcode</span></a></span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/运维/" itemprop="url" rel="index"><span itemprop="name">运维</span></a></span>
 
                 
                 
@@ -421,7 +407,7 @@
           
 
           
-              <div class="post-description">给定一个只包含数字的字符串，复原它并返回所有可能的 IP 地址格式。</div>
+              <div class="post-description">CentOS 7 上升级Docker，并升级系统内核</div>
           
 
         </div>
@@ -437,10 +423,8 @@
       
 
       
-        <p><img src="http://qiniucdn.timilong.com/1543387776398.png" alt="tu"></p>
-<h2 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">给定一个只包含数字的字符串，复原它并返回所有可能的 IP 地址格式。</span><br><span class="line"></span><br><span class="line">示例:</span><br><span class="line"></span><br><span class="line">输入: &quot;25525511135&quot;</span><br><span class="line">输出: [&quot;255.255.11.135&quot;, &quot;255.255.111.35&quot;]</span><br></pre></td></tr></table></figure>
-<h2 id="解题"><a href="#解题" class="headerlink" title="解题"></a>解题</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"># 解题思路:</span><br><span class="line">   回溯法: 看到所有的组合相关的题目，一般都是用回溯。 </span><br><span class="line"></span><br><span class="line">   回溯 + 深度优先搜索 + 剪枝</span><br></pre></td></tr></table></figure>
-<h2 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span><span class="params">(object)</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">restoreIpAddresses</span><span class="params">(self, s)</span>:</span></span><br><span class="line">        <span class="string">"""</span></span><br><span class="line"><span class="string">        :type s: str</span></span><br><span class="line"><span class="string">        :rtype: List[str]</span></span><br><span class="line"><span class="string">        """</span></span><br><span class="line">        res = list()</span><br><span class="line">        self.dfs(s, list(), res)</span><br><span class="line">        <span class="keyword">return</span> res</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">dfs</span><span class="params">(self, s, path, res)</span>:</span></span><br><span class="line">        <span class="keyword">if</span> len(s) &gt; (<span class="number">4</span> - len(path)) * <span class="number">3</span>:</span><br><span class="line">            <span class="keyword">return</span></span><br><span class="line">        <span class="keyword">if</span> <span class="keyword">not</span> s <span class="keyword">and</span> len(path) == <span class="number">4</span>:</span><br><span class="line">            res.append(<span class="string">'.'</span>.join(path))</span><br><span class="line">            <span class="keyword">return</span></span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> range(min(<span class="number">3</span>, len(s))):</span><br><span class="line">            curr = s[:i+<span class="number">1</span>]</span><br><span class="line">            <span class="keyword">if</span> (curr[<span class="number">0</span>] == <span class="string">'0'</span> <span class="keyword">and</span> len(curr) &gt;= <span class="number">2</span>) <span class="keyword">or</span> int(curr) &gt; <span class="number">255</span>:</span><br><span class="line">                <span class="keyword">continue</span></span><br><span class="line">            self.dfs(s[i+<span class="number">1</span>:], path + [s[:i+<span class="number">1</span>]], res)</span><br></pre></td></tr></table></figure>
+        <p>升级docker原文：<a href="https://blog.csdn.net/kongxx/article/details/78361048" target="_blank" rel="noopener">https://blog.csdn.net/kongxx/article/details/78361048</a><br>升级系统内核原文: <a href="https://www.jianshu.com/p/726bd9f37220" target="_blank" rel="noopener">https://www.jianshu.com/p/726bd9f37220</a></p>
+<h2 id="命令行"><a href="#命令行" class="headerlink" title="命令行"></a>命令行</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br></pre></td><td class="code"><pre><span class="line">    1  ls</span><br><span class="line">    2  yum update</span><br><span class="line">   20  yum erase docker docker-common docker-client docker-compose  # 卸载安装好的旧版本的docker</span><br><span class="line"></span><br><span class="line">   23  yum update</span><br><span class="line">   24  vim /etc/yum.repos.d/docker.repo</span><br><span class="line"></span><br><span class="line">          [dockerrepo]</span><br><span class="line">          name=Docker Repository</span><br><span class="line">          baseurl=https://yum.dockerproject.org/repo/main/centos/7/</span><br><span class="line">          enabled=1</span><br><span class="line">          gpgcheck=1</span><br><span class="line">          gpgkey=https://yum.dockerproject.org/gpg</span><br><span class="line"></span><br><span class="line">   25  yum install -y docker-engine</span><br><span class="line">   26  yum install -y docker-compose</span><br><span class="line">   27  docker --version</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">---------------------------------------------------------------------------------------------------------</span><br><span class="line"></span><br><span class="line">   28  uname -a</span><br><span class="line">   29  rpm --import https://www.elrepo.org/RPM-GPG-KEY-elrepo.org</span><br><span class="line">   30  rpm -Uvh http://www.elrepo.org/elrepo-release-7.0-2.el7.elrepo.noarch.rpm</span><br><span class="line">   31  yum --disablerepo=&quot;*&quot; --enablerepo=&quot;elrepo-kernel&quot; list available</span><br><span class="line">   32  yum --enablerepo=elrepo-kernel install kernel-ml</span><br><span class="line">   36  uname -sr</span><br><span class="line">   37  vim /etc/default/grub</span><br><span class="line"></span><br><span class="line">          GRUB_DEFAULT=0</span><br><span class="line">          GRUB_TIMEOUT=5</span><br><span class="line">          GRUB_DEFAULT=0</span><br><span class="line">          GRUB_DISTRIBUTOR=&quot;$(sed &apos;s, release .*$,,g&apos; /etc/system-release)&quot;</span><br><span class="line">          GRUB_DISABLE_SUBMENU=true</span><br><span class="line">          GRUB_TERMINAL_OUTPUT=&quot;console&quot;</span><br><span class="line">          GRUB_CMDLINE_LINUX=&quot;rd.lvm.lv=centos/root rd.lvm.lv=centos/swap crashkernel=auto rhgb quiet&quot;</span><br><span class="line">          GRUB_DISABLE_RECOVERY=&quot;true&quot;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">   39  grub2-mkconfig -o /boot/grub2/grub.cfg</span><br><span class="line">   42  shutdown now -r</span><br><span class="line">   43  uname -sr</span><br></pre></td></tr></table></figure>
 
       
     </div>
@@ -461,7 +445,7 @@
       
         <div class="post-tags">
           
-            <a href="/tags/leetcode/" rel="tag"># leetcode</a>
+            <a href="/tags/运维/" rel="tag"># 运维</a>
           
         </div>
       
@@ -474,8 +458,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2018/07/06/leetcode-18四数之和/" rel="next" title="leetcode-18四数之和1">
-                <i class="fa fa-chevron-left"></i> leetcode-18四数之和1
+              <a href="/2019/01/18/docker-构建前后分离项目/" rel="next" title="docker-构建前后分离项目">
+                <i class="fa fa-chevron-left"></i> docker-构建前后分离项目
               </a>
             
           </div>
@@ -483,10 +467,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2018/07/09/leetcode-205判断两字符串是否同构/" rel="prev" title="leetcode-205.同构字符串">
-                leetcode-205.同构字符串 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -758,7 +738,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#题目"><span class="nav-number">1.</span> <span class="nav-text">题目</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#解题"><span class="nav-number">2.</span> <span class="nav-text">解题</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#代码"><span class="nav-number">3.</span> <span class="nav-text">代码</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#命令行"><span class="nav-number">1.</span> <span class="nav-text">命令行</span></a></li></ol></div>
             
 
           </div>
