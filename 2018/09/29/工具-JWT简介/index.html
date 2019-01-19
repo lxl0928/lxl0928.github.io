@@ -124,7 +124,7 @@
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="http://qiniucdn.timilong.com/1543735276657.jpg">
 <meta property="og:image" content="http://blog.leapoahead.com/2015/09/06/understanding-jwt/sig1.png">
-<meta property="og:updated_time" content="2019-01-06T23:36:09.103Z">
+<meta property="og:updated_time" content="2019-01-19T10:44:06.412Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="工具-JWT简介">
 <meta name="twitter:description" content="JSON Web Token（JWT）是一个非常轻巧的规范。这个规范允许我们使用JWT在用户和服务器之间传递安全可靠的信息。">
@@ -385,7 +385,7 @@
                 
                   <span class="post-meta-item-text">Edited on</span>
                 
-                <time title="更新于：2019-01-06 23:36:09" itemprop="dateModified" datetime="2019-01-06T23:36:09Z">2019-01-06</time>
+                <time title="更新于：2019-01-19 10:44:06" itemprop="dateModified" datetime="2019-01-19T10:44:06Z">2019-01-19</time>
               
             
           </span>
@@ -477,7 +477,7 @@
 <p>于是，我们就可以将邮件中的URL改成<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">https://your.awesome-app.com/make-friend/?jwt=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJmcm9tX3VzZXIiOiJCIiwidGFyZ2V0X3VzZXIiOiJBIn0.rSWamyAYwuHCo7IFAgd1oRpSP7nzL7BF5t7ItqpKViM</span><br></pre></td></tr></table></figure></p>
 <p>这样就可以安全地完成添加好友的操作了！</p>
 <p>且慢，我们一定会有一些问题：</p>
-<h2 id="问题"><a href="#问题" class="headerlink" title="问题"></a>问题</h2><blockquote>
+<h3 id="问题"><a href="#问题" class="headerlink" title="问题"></a>问题</h3><blockquote>
 <p>签名的目的是什么？<br>Base64是一种编码，是可逆的，那么我的信息不就被暴露了吗？</p>
 </blockquote>
 <h3 id="签名的目的"><a href="#签名的目的" class="headerlink" title="签名的目的"></a>签名的目的</h3><p>最后一步签名的过程，实际上是对头部以及载荷内容进行签名。一般而言，加密算法对于不同的输入产生的输出总是不一样的。对于两个不同的输入，产生同样的输出的概率极其地小（有可能比我成世界首富的概率还小）。所以，我们就把“不一样的输入产生不一样的输出”当做必然事件来看待吧。</p>
@@ -805,7 +805,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#JWT的组成"><span class="nav-number">1.</span> <span class="nav-text">JWT的组成</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#载荷（Payload）"><span class="nav-number">1.1.</span> <span class="nav-text">载荷（Payload）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#头部（Header）"><span class="nav-number">1.2.</span> <span class="nav-text">头部（Header）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#签名（签名）"><span class="nav-number">1.3.</span> <span class="nav-text">签名（签名）</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#问题"><span class="nav-number">2.</span> <span class="nav-text">问题</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#签名的目的"><span class="nav-number">2.1.</span> <span class="nav-text">签名的目的</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#签名过程"><span class="nav-number">2.2.</span> <span class="nav-text">签名过程</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#信息会暴露？"><span class="nav-number">2.3.</span> <span class="nav-text">信息会暴露？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#JWT的适用场景"><span class="nav-number">2.4.</span> <span class="nav-text">JWT的适用场景</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#JWT的组成"><span class="nav-number">1.</span> <span class="nav-text">JWT的组成</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#载荷（Payload）"><span class="nav-number">1.1.</span> <span class="nav-text">载荷（Payload）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#头部（Header）"><span class="nav-number">1.2.</span> <span class="nav-text">头部（Header）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#签名（签名）"><span class="nav-number">1.3.</span> <span class="nav-text">签名（签名）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#问题"><span class="nav-number">1.4.</span> <span class="nav-text">问题</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#签名的目的"><span class="nav-number">1.5.</span> <span class="nav-text">签名的目的</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#签名过程"><span class="nav-number">1.6.</span> <span class="nav-text">签名过程</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#信息会暴露？"><span class="nav-number">1.7.</span> <span class="nav-text">信息会暴露？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#JWT的适用场景"><span class="nav-number">1.8.</span> <span class="nav-text">JWT的适用场景</span></a></li></ol></li></ol></div>
             
 
           </div>
