@@ -123,7 +123,7 @@
 <meta property="og:description" content="Linux下有三个命令：ls、grep、wc。通过这三个命令的组合可以统计目录下文件及文件夹的个数。">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="http://qiniucdn.timilong.com/1543736935686.jpg">
-<meta property="og:updated_time" content="2018-12-04T06:52:04.248Z">
+<meta property="og:updated_time" content="2019-01-25T04:52:36.276Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="linux-ls命令统计文件个数">
 <meta name="twitter:description" content="Linux下有三个命令：ls、grep、wc。通过这三个命令的组合可以统计目录下文件及文件夹的个数。">
@@ -214,7 +214,7 @@
   </div>
 
   <div class="site-nav-toggle">
-    <button aria-label="Toggle navigation bar">
+    <button aria-label="ナビゲーションバーの切り替え">
       <span class="btn-bar"></span>
       <span class="btn-bar"></span>
       <span class="btn-bar"></span>
@@ -382,9 +382,9 @@
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 
-                  <span class="post-meta-item-text">Edited on</span>
+                  <span class="post-meta-item-text">に編集されました</span>
                 
-                <time title="更新于：2018-12-04 06:52:04" itemprop="dateModified" datetime="2018-12-04T06:52:04Z">2018-12-04</time>
+                <time title="更新于：2019-01-25 04:52:36" itemprop="dateModified" datetime="2019-01-25T04:52:36Z">2019-01-25</time>
               
             
           </span>
@@ -442,10 +442,10 @@
 <p>本文系原创, 转载请联系作者 <a href="http://blog.timilong.com/about">Timilong</a></p>
 </blockquote>
 <p>Linux下有三个命令：<code>ls</code>、<code>grep</code>、<code>wc</code>。通过这三个命令的组合可以统计目录下文件及文件夹的个数。</p>
-<h3 id="统计当前目录下文件的个数（不包括目录）"><a href="#统计当前目录下文件的个数（不包括目录）" class="headerlink" title="统计当前目录下文件的个数（不包括目录）"></a>统计当前目录下文件的个数（不包括目录）</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ ls -l | grep &quot;^-&quot; | wc -l</span><br></pre></td></tr></table></figure>
-<h3 id="统计当前目录下文件的个数（包括子目录）"><a href="#统计当前目录下文件的个数（包括子目录）" class="headerlink" title="统计当前目录下文件的个数（包括子目录）"></a>统计当前目录下文件的个数（包括子目录）</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ ls -lR | grep &quot;^-&quot; | wc -l</span><br></pre></td></tr></table></figure>
-<h3 id="查看某目录下文件夹-目录-的个数（包括子目录）"><a href="#查看某目录下文件夹-目录-的个数（包括子目录）" class="headerlink" title="查看某目录下文件夹(目录)的个数（包括子目录）"></a>查看某目录下文件夹(目录)的个数（包括子目录）</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ ls -lR | grep &quot;^d&quot; | wc -l</span><br></pre></td></tr></table></figure>
-<p>命令解析：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">$ ls -l</span><br><span class="line"># 长列表输出该目录下文件信息(注意这里的文件是指目录、链接、设备文件等)。</span><br><span class="line"># 每一行对应一个文件或目录，ls -lR是列出所有文件，包括子目录。</span><br><span class="line"></span><br><span class="line">$ grep &quot;^-&quot;</span><br><span class="line"># 过滤ls的输出信息，只保留一般文件，只保留目录是grep &quot;^d&quot;。</span><br><span class="line"></span><br><span class="line">$ wc -l</span><br><span class="line"># 统计输出信息的行数，统计结果就是输出信息的行数，一行信息对应一个文件，所以就是文件的个数。</span><br></pre></td></tr></table></figure></p>
+<h3 id="统计当前目录下文件的个数（不包括目录）"><a href="#统计当前目录下文件的个数（不包括目录）" class="headerlink" title="统计当前目录下文件的个数（不包括目录）"></a>统计当前目录下文件的个数（不包括目录）</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span> ls -l | grep "^-" | wc -l</span><br></pre></td></tr></table></figure>
+<h3 id="统计当前目录下文件的个数（包括子目录）"><a href="#统计当前目录下文件的个数（包括子目录）" class="headerlink" title="统计当前目录下文件的个数（包括子目录）"></a>统计当前目录下文件的个数（包括子目录）</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span> ls -lR | grep "^-" | wc -l</span><br></pre></td></tr></table></figure>
+<h3 id="查看某目录下文件夹-目录-的个数（包括子目录）"><a href="#查看某目录下文件夹-目录-的个数（包括子目录）" class="headerlink" title="查看某目录下文件夹(目录)的个数（包括子目录）"></a>查看某目录下文件夹(目录)的个数（包括子目录）</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span> ls -lR | grep "^d" | wc -l</span><br></pre></td></tr></table></figure>
+<p>命令解析：<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span> ls -l</span><br><span class="line"><span class="meta">#</span> 长列表输出该目录下文件信息(注意这里的文件是指目录、链接、设备文件等)。</span><br><span class="line"><span class="meta">#</span> 每一行对应一个文件或目录，ls -lR是列出所有文件，包括子目录。</span><br><span class="line"></span><br><span class="line"><span class="meta">$</span> grep "^-"</span><br><span class="line"><span class="meta">#</span> 过滤ls的输出信息，只保留一般文件，只保留目录是grep "^d"。</span><br><span class="line"></span><br><span class="line"><span class="meta">$</span> wc -l</span><br><span class="line"><span class="meta">#</span> 统计输出信息的行数，统计结果就是输出信息的行数，一行信息对应一个文件，所以就是文件的个数。</span><br></pre></td></tr></table></figure></p>
 
       
     </div>
