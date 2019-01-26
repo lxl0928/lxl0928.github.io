@@ -128,7 +128,7 @@
 <meta property="og:image" content="https://mmbiz.qpic.cn/mmbiz_jpg/UtWdDgynLdZhQ6fWAlVvvjQHibiaQmR5Pryic4JL9GkOd91PmYkBundQicd6fvFfrJX6UkyUxkia8rUq5OZAPaq5qPQ/640?tp=webp&wxfrom=5&wx_lazy=1&wx_co=1">
 <meta property="og:image" content="https://mmbiz.qpic.cn/mmbiz_jpg/UtWdDgynLdZhQ6fWAlVvvjQHibiaQmR5PrW22NrpkGIUgzeoSbHR8dbdg5Uv9HzDsLf4OXQIkUrlYRibepZ7IJreg/640?tp=webp&wxfrom=5&wx_lazy=1&wx_co=1">
 <meta property="og:image" content="https://mmbiz.qpic.cn/mmbiz_jpg/UtWdDgynLdZhQ6fWAlVvvjQHibiaQmR5ProdZg5LicfumAHIP38W0maR0owsNfb6X5YETF7ZwT9G921VkKu2agbXw/640?wx_fmt=jpeg&tp=webp&wxfrom=5&wx_lazy=1&wx_co=1">
-<meta property="og:updated_time" content="2018-12-04T06:52:03.845Z">
+<meta property="og:updated_time" content="2019-01-26T04:45:51.366Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="mysql-10亿级订单系统分库分表设计思路">
 <meta name="twitter:description" content="转载自[10亿级订单系统分库分表设计思路](https://juejin.im/book/5af56a3c518825426642e004)">
@@ -389,7 +389,7 @@
                 
                   <span class="post-meta-item-text">Edited on</span>
                 
-                <time title="更新于：2018-12-04 06:52:03" itemprop="dateModified" datetime="2018-12-04T06:52:03Z">2018-12-04</time>
+                <time title="更新于：2019-01-26 04:45:51" itemprop="dateModified" datetime="2019-01-26T04:45:51Z">2019-01-26</time>
               
             
           </span>
@@ -446,48 +446,35 @@
 <blockquote>
 <p>转载自: 微信公众号, 架构师之巅，<a href="https://juejin.im/book/5af56a3c518825426642e004" target="_blank" rel="noopener">10亿级订单系统分库分表设计思路</a></p>
 </blockquote>
-<h3 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h3><p>随着公司业务增长，如果每天1000多万笔订单的话，3个月将有约10亿的订单量，之前数据库采用单库单表的形式已经不满足于业务需求，数据库改造迫在眉睫。</p>
-<h3 id="订单数据如何划分"><a href="#订单数据如何划分" class="headerlink" title="订单数据如何划分"></a>订单数据如何划分</h3><p>我们可以将订单数据划分成两大类型：分别是热数据和冷数据。</p>
+<h2 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h2><p>随着公司业务增长，如果每天1000多万笔订单的话，3个月将有约10亿的订单量，之前数据库采用单库单表的形式已经不满足于业务需求，数据库改造迫在眉睫。</p>
+<h2 id="订单数据如何划分"><a href="#订单数据如何划分" class="headerlink" title="订单数据如何划分"></a>订单数据如何划分</h2><p>我们可以将订单数据划分成两大类型：分别是热数据和冷数据。</p>
 <ul>
-<li><p>热数据：3个月内的订单数据，查询实时性较高;</p>
-</li>
-<li><p>冷数据A：3个月 ~ 12个月前的订单数据，查询频率不高;</p>
-</li>
-<li><p>冷数据B：1年前的订单数据，几乎不会查询，只有偶尔的查询需求;</p>
-</li>
+<li>热数据：3个月内的订单数据，查询实时性较高;</li>
+<li>冷数据A：3个月 ~ 12个月前的订单数据，查询频率不高;</li>
+<li>冷数据B：1年前的订单数据，几乎不会查询，只有偶尔的查询需求;</li>
 </ul>
 <p>可能这里有个疑惑为什么要将冷数据分成两类，因为根据实际场景需求，用户基本不会去查看1年前的数据，如果将这部分数据还存储在db中，那么成本会非常高，而且也不便于维护。另外如果真遇到有个别用户需要查看1年前的订单信息，可以让用户走离线数据查看。</p>
 <p>对于这三类数据的存储，目前规划如下：</p>
 <ul>
-<li><p>热数据： 使用mysql进行存储，当然需要分库分表；</p>
-</li>
-<li><p>冷数据A: 对于这类数据可以存储在ES中，利用搜索引擎的特性基本上也可以做到比较快的查询；</p>
-</li>
-<li><p>冷数据B: 对于这类不经常查询的数据，可以存放到Hive中；</p>
-</li>
+<li>热数据： 使用mysql进行存储，当然需要分库分表；</li>
+<li>冷数据A: 对于这类数据可以存储在ES中，利用搜索引擎的特性基本上也可以做到比较快的查询；</li>
+<li>冷数据B: 对于这类不经常查询的数据，可以存放到Hive中；</li>
 </ul>
-<h3 id="MySql-如何分库分表"><a href="#MySql-如何分库分表" class="headerlink" title="MySql 如何分库分表"></a>MySql 如何分库分表</h3><h4 id="按业务拆分"><a href="#按业务拆分" class="headerlink" title="按业务拆分"></a>按业务拆分</h4><p>在业务初始阶段，为了加快应用上线和快速迭代，很多应用都采用集中式的架构。但是随着业务系统的扩大，系统匾额越来越复杂，越来越难以维护，开发效率变得越来越低，并且对资源的消耗也变得越来越大，通过硬件提高系统性能的成本会变得更高。</p>
+<h2 id="MySql-如何分库分表"><a href="#MySql-如何分库分表" class="headerlink" title="MySql 如何分库分表"></a>MySql 如何分库分表</h2><h3 id="按业务拆分"><a href="#按业务拆分" class="headerlink" title="按业务拆分"></a>按业务拆分</h3><p>在业务初始阶段，为了加快应用上线和快速迭代，很多应用都采用集中式的架构。但是随着业务系统的扩大，系统匾额越来越复杂，越来越难以维护，开发效率变得越来越低，并且对资源的消耗也变得越来越大，通过硬件提高系统性能的成本会变得更高。</p>
 <p>通常一般的电商平台，包含了用户、商品、订单等几大模块，简单的做法是在同一个库中分别建4张表，如下图所示：</p>
 <p><img src="https://mmbiz.qpic.cn/mmbiz_jpg/UtWdDgynLdZhQ6fWAlVvvjQHibiaQmR5Prdv3moclL7gfBXvKIO3yhqa30ah8wsvPyjQj3pH0seRNJIrltHOH9Rw/640?tp=webp&amp;wxfrom=5&amp;wx_lazy=1&amp;wx_co=1" alt="MySQL"></p>
 <p>但是随着业务的提升，将所有业务都放在一个库中已经变得越来越难以维护，因此我们建议，将不同业务放在不同的库中，如下图所示：<br><img src="https://mmbiz.qpic.cn/mmbiz_jpg/UtWdDgynLdZhQ6fWAlVvvjQHibiaQmR5PrzwvRy8icBpI2zkakOtTSzCnhtXH4cULHkUaj2csWhHmFAu3sFzqicibEg/640?tp=webp&amp;wxfrom=5&amp;wx_lazy=1&amp;wx_co=1" alt="MySQL"></p>
 <p>由图中我们可以看出，我们将不同的业务放到不同的库中，将原来所有压力由同一个库中分散到不同的库中，提升了系统的吞吐量。</p>
-<h4 id="分库与分表"><a href="#分库与分表" class="headerlink" title="分库与分表"></a>分库与分表</h4><p>我们知道每台机器无论配置多么好它都有自身的物理上限，所以当我们应用已经能触及或远远超出单台机器的某个上限的时候，我们惟有寻找别的机器的帮助或者继续升级的我们的硬件，但常见的方案还是通过添加更多的机器来共同承担压力。</p>
-<p>我们还得考虑当我们的业务逻辑不断增长，我们的机器能不能通过线性增长就能满足需求？因此，使用数据库的分库分表，能够立竿见影的提升系统的性能，关于为什么要使用数据库的分库分表的其他原因这里不再赘述，主要讲具体的实现策略。</p>
-<h5 id="分表策略"><a href="#分表策略" class="headerlink" title="分表策略"></a>分表策略</h5><p>我们以订单表为例，在订单表中，订单id肯定是不可重复的，因此将该字段当做shard key 是非常适合的,其他表类似。假设订单表的字段如下：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">create table order(</span><br><span class="line">    order_id bigint(11),</span><br><span class="line">    user_id bigint(11),</span><br><span class="line">    phone varchar(15),</span><br><span class="line">...</span><br><span class="line">)</span><br></pre></td></tr></table></figure></p>
+<h3 id="分库与分表"><a href="#分库与分表" class="headerlink" title="分库与分表"></a>分库与分表</h3><p>我们知道每台机器无论配置多么好它都有自身的物理上限，所以当我们应用已经能触及或远远超出单台机器的某个上限的时候，我们惟有寻找别的机器的帮助或者继续升级的我们的硬件，但常见的方案还是通过添加更多的机器来共同承担压力。<br>我们还得考虑当我们的业务逻辑不断增长，我们的机器能不能通过线性增长就能满足需求？因此，使用数据库的分库分表，能够立竿见影的提升系统的性能，关于为什么要使用数据库的分库分表的其他原因这里不再赘述，主要讲具体的实现策略。</p>
+<h4 id="分表策略"><a href="#分表策略" class="headerlink" title="分表策略"></a>分表策略</h4><p>我们以订单表为例，在订单表中，订单id肯定是不可重复的，因此将该字段当做shard key 是非常适合的,其他表类似。假设订单表的字段如下：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">create table order(</span><br><span class="line">    order_id bigint(11),</span><br><span class="line">    user_id bigint(11),</span><br><span class="line">    phone varchar(15),</span><br><span class="line">...</span><br><span class="line">)</span><br></pre></td></tr></table></figure></p>
 <p>我们假设预估单个库需要分配100个表满足我们的业务需求，我们可以简单的取模计算出订单在哪个子表中，例如： order_id % 100,</p>
 <p><img src="https://mmbiz.qpic.cn/mmbiz_jpg/UtWdDgynLdZhQ6fWAlVvvjQHibiaQmR5Pryic4JL9GkOd91PmYkBundQicd6fvFfrJX6UkyUxkia8rUq5OZAPaq5qPQ/640?tp=webp&amp;wxfrom=5&amp;wx_lazy=1&amp;wx_co=1" alt="MySQL"></p>
 <p>这时候可能会有人问了，如果我根据order_id 进行分表规则，但是我想根据user_id 查询相应的订单，不是定位不到哪个子表了吗，的确是这样，一旦确定shard key，就只能根据shard key定位到子表进而查询该子表下的数据；如果确实想根据user_id 去查询相关订单，那应该将shard key设置为user_id, 那分表规则也相应的变更为： user_id % 100;</p>
-<h5 id="分库实现策略"><a href="#分库实现策略" class="headerlink" title="分库实现策略"></a>分库实现策略</h5><p>数据库分表能够解决单表数据量很大的时候数据查询的效率问题，但是无法给数据库的并发操作带来效率上的提高，因为分表的实质还是在一个数据库上进行的操作，很容易受数据库IO性能的限制。</p>
-<p>因此，如何将数据库IO性能的问题平均分配出来，很显然将数据进行分库操作可以很好地解决单台数据库的性能问题。</p>
-<p>分库策略与分表策略的实现很相似，最简单的都是可以通过取模的方式进行路由。</p>
-<p>我们还是以order表举例，</p>
-<p>例如：order_id % 库容量,</p>
-<p>如果order_id 不是整数类型，可以先hash 在进行取模，</p>
-<p>例如： hash(order_id) % 库容量</p>
-<h5 id="分库分表结合使用策略"><a href="#分库分表结合使用策略" class="headerlink" title="分库分表结合使用策略"></a>分库分表结合使用策略</h5><p>数据库分表可以解决单表海量数据的查询性能问题，分库可以解决单台数据库的并发访问压力问题。有时候，我们需要同时考虑这两个问题，因此，我们既需要对单表进行分表操作，还需要进行分库操作，以便同时扩展系统的并发处理能力和提升单表的查询性能，就是我们使用到的分库分表。</p>
+<h4 id="分库实现策略"><a href="#分库实现策略" class="headerlink" title="分库实现策略"></a>分库实现策略</h4><p>数据库分表能够解决单表数据量很大的时候数据查询的效率问题，但是无法给数据库的并发操作带来效率上的提高，因为分表的实质还是在一个数据库上进行的操作，很容易受数据库IO性能的限制。<br>因此，如何将数据库IO性能的问题平均分配出来，很显然将数据进行分库操作可以很好地解决单台数据库的性能问题。<br>分库策略与分表策略的实现很相似，最简单的都是可以通过取模的方式进行路由。</p>
+<p>我们还是以order表举例:<br>例如：order_id % 库容量, 如果order_id 不是整数类型，可以先hash 在进行取模，<br>例如： hash(order_id) % 库容量</p>
+<h4 id="分库分表结合使用策略"><a href="#分库分表结合使用策略" class="headerlink" title="分库分表结合使用策略"></a>分库分表结合使用策略</h4><p>数据库分表可以解决单表海量数据的查询性能问题，分库可以解决单台数据库的并发访问压力问题。有时候，我们需要同时考虑这两个问题，因此，我们既需要对单表进行分表操作，还需要进行分库操作，以便同时扩展系统的并发处理能力和提升单表的查询性能，就是我们使用到的分库分表。</p>
 <p>如果使用分库分表结合使用的话，不能简单进行order_id 取模操作，需要加一个中间变量用来打散到不同的子表，公式如下：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">中间变量 - shard key % (库数量 * 单个库的表数量);</span><br><span class="line">库序号 - 取整(中间变量/单个库的表数量);</span><br><span class="line">表序号 - 中间变量 % 单个库的表数量;</span><br></pre></td></tr></table></figure></p>
-<p>中间变量　＝ shard key %（库数量 * 单个库的表数量）;2库序号　＝　取整（中间变量／单</p>
-<p>例如：数据库有10个，每一个库中有100个数据表，用户的order_id＝1001，按照上述的路由策略，可得：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">中间变量 - 1001 % (10 * 100) = 1;</span><br><span class="line">库序号 - 取整 (1/100) = 0;</span><br><span class="line">表序号 - 1 % 100 = 1;</span><br></pre></td></tr></table></figure></p>
+<p>中间变量　＝ shard key %（库数量 * 单个库的表数量）; 2库序号＝取整（中间变量／单<br>例如：数据库有10个，每一个库中有100个数据表，用户的order_id＝1001，按照上述的路由策略，可得：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">中间变量 - 1001 % (10 * 100) = 1;</span><br><span class="line">库序号 - 取整 (1/100) = 0;</span><br><span class="line">表序号 - 1 % 100 = 1;</span><br></pre></td></tr></table></figure></p>
 <p>这样的话，对于order_id＝1001，将被路由到第1个数据库的第2个表中(索引0 代表1，依次类推)。<br><img src="https://mmbiz.qpic.cn/mmbiz_jpg/UtWdDgynLdZhQ6fWAlVvvjQHibiaQmR5PrW22NrpkGIUgzeoSbHR8dbdg5Uv9HzDsLf4OXQIkUrlYRibepZ7IJreg/640?tp=webp&amp;wxfrom=5&amp;wx_lazy=1&amp;wx_co=1" alt="MySQL"></p>
 <h3 id="整体架构设计"><a href="#整体架构设计" class="headerlink" title="整体架构设计"></a>整体架构设计</h3><p><img src="https://mmbiz.qpic.cn/mmbiz_jpg/UtWdDgynLdZhQ6fWAlVvvjQHibiaQmR5ProdZg5LicfumAHIP38W0maR0owsNfb6X5YETF7ZwT9G921VkKu2agbXw/640?wx_fmt=jpeg&amp;tp=webp&amp;wxfrom=5&amp;wx_lazy=1&amp;wx_co=1" alt="MySQL"><br>从图中我们将请求分成read和write请求，write请求比较简单，就是根据分库分表规则写入db即可。</p>
 <p>对于read请求，我们需要计算出查询的是热数据还是冷数据，一般order_id生成规则如下，“商户所在地区号+时间戳+随机数”，我们可以根据时间戳计算出查询的是热数据还是冷数据，（当然具体业务需要具体对待，这里不再详细阐述）</p>
@@ -812,7 +799,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#背景"><span class="nav-number">1.</span> <span class="nav-text">背景</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#订单数据如何划分"><span class="nav-number">2.</span> <span class="nav-text">订单数据如何划分</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#MySql-如何分库分表"><span class="nav-number">3.</span> <span class="nav-text">MySql 如何分库分表</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#按业务拆分"><span class="nav-number">3.1.</span> <span class="nav-text">按业务拆分</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#分库与分表"><span class="nav-number">3.2.</span> <span class="nav-text">分库与分表</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#分表策略"><span class="nav-number">3.2.1.</span> <span class="nav-text">分表策略</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#分库实现策略"><span class="nav-number">3.2.2.</span> <span class="nav-text">分库实现策略</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#分库分表结合使用策略"><span class="nav-number">3.2.3.</span> <span class="nav-text">分库分表结合使用策略</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#整体架构设计"><span class="nav-number">4.</span> <span class="nav-text">整体架构设计</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#背景"><span class="nav-number">1.</span> <span class="nav-text">背景</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#订单数据如何划分"><span class="nav-number">2.</span> <span class="nav-text">订单数据如何划分</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#MySql-如何分库分表"><span class="nav-number">3.</span> <span class="nav-text">MySql 如何分库分表</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#按业务拆分"><span class="nav-number">3.1.</span> <span class="nav-text">按业务拆分</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#分库与分表"><span class="nav-number">3.2.</span> <span class="nav-text">分库与分表</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#分表策略"><span class="nav-number">3.2.1.</span> <span class="nav-text">分表策略</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#分库实现策略"><span class="nav-number">3.2.2.</span> <span class="nav-text">分库实现策略</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#分库分表结合使用策略"><span class="nav-number">3.2.3.</span> <span class="nav-text">分库分表结合使用策略</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#整体架构设计"><span class="nav-number">3.3.</span> <span class="nav-text">整体架构设计</span></a></li></ol></li></ol></div>
             
 
           </div>
