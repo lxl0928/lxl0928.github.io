@@ -114,17 +114,20 @@
 
 
 
-  <meta name="description" content="代码123456789101112131415161718192021222324class A(object):    &quot;&quot;&quot; 类属性 &quot;&quot;&quot;    NAME = &quot;Timilong&quot;    SCORE = 100    def __init__(self, name, score):        &quot;&quot;&quot; 实例属性 &quot;&quot;&quot;        self.name = name        sel">
+  <meta name="description" content="Python 类方法、实例方法、静态方法.">
+<meta name="keywords" content="python">
 <meta property="og:type" content="article">
 <meta property="og:title" content="python-静态方法-类方法-实例方法">
 <meta property="og:url" content="https://blog.timilong.com/2019/02/12/python-静态方法-类方法-实例方法/index.html">
 <meta property="og:site_name" content="Timilong&#39;s blog">
-<meta property="og:description" content="代码123456789101112131415161718192021222324class A(object):    &quot;&quot;&quot; 类属性 &quot;&quot;&quot;    NAME = &quot;Timilong&quot;    SCORE = 100    def __init__(self, name, score):        &quot;&quot;&quot; 实例属性 &quot;&quot;&quot;        self.name = name        sel">
+<meta property="og:description" content="Python 类方法、实例方法、静态方法.">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-02-11T10:12:38.960Z">
+<meta property="og:image" content="http://qiniucdn.timilong.com/1544683266425.jpg">
+<meta property="og:updated_time" content="2019-02-11T10:27:14.329Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="python-静态方法-类方法-实例方法">
-<meta name="twitter:description" content="代码123456789101112131415161718192021222324class A(object):    &quot;&quot;&quot; 类属性 &quot;&quot;&quot;    NAME = &quot;Timilong&quot;    SCORE = 100    def __init__(self, name, score):        &quot;&quot;&quot; 实例属性 &quot;&quot;&quot;        self.name = name        sel">
+<meta name="twitter:description" content="Python 类方法、实例方法、静态方法.">
+<meta name="twitter:image" content="http://qiniucdn.timilong.com/1544683266425.jpg">
 
 
 
@@ -364,7 +367,7 @@
                 
               
 
-              <time title="创建于：2019-02-11 18:00:25 / 更新于：10:12:38" itemprop="dateCreated datePublished" datetime="2019-02-11T18:00:25Z">2019-02-11</time>
+              <time title="创建于：2019-02-11 18:00:25 / 更新于：10:27:14" itemprop="dateCreated datePublished" datetime="2019-02-11T18:00:25Z">2019-02-11</time>
             
 
             
@@ -375,6 +378,24 @@
           </span>
 
           
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/python/" itemprop="url" rel="index"><span itemprop="name">python</span></a></span>
+
+                
+                
+              
+            </span>
+          
 
           
             
@@ -387,6 +408,8 @@
 
           
 
+          
+              <div class="post-description">Python 类方法、实例方法、静态方法.</div>
           
 
         </div>
@@ -402,7 +425,7 @@
       
 
       
-        <p><img src="" alt="cover_img"></p>
+        <p><img src="http://qiniucdn.timilong.com/1544683266425.jpg" alt="cover_img"></p>
 <h2 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">A</span><span class="params">(object)</span>:</span></span><br><span class="line">    <span class="string">""" 类属性 """</span></span><br><span class="line">    NAME = <span class="string">"Timilong"</span></span><br><span class="line">    SCORE = <span class="number">100</span></span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self, name, score)</span>:</span></span><br><span class="line">        <span class="string">""" 实例属性 """</span></span><br><span class="line">        self.name = name</span><br><span class="line">        self.score = score</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">foo</span><span class="params">(self, x)</span>:</span></span><br><span class="line">        <span class="comment"># 类实例方法</span></span><br><span class="line">        print(<span class="string">"executing foo(%s, %s)"</span> % (self, x))</span><br><span class="line"></span><br><span class="line"><span class="meta">    @classmethod</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">class_foo</span><span class="params">(cls, x)</span>:</span></span><br><span class="line">        <span class="comment"># 类方法</span></span><br><span class="line">        print(<span class="string">"executing class_foo(%s, %s)"</span> % (cls, x))</span><br><span class="line"></span><br><span class="line"><span class="meta">    @staticmethod</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">static_foo</span><span class="params">(x)</span>:</span></span><br><span class="line">        <span class="comment"># 静态方法</span></span><br><span class="line">        print(<span class="string">"executing static_foo(%s)"</span> % x)</span><br></pre></td></tr></table></figure>
 <h2 id="调用方式"><a href="#调用方式" class="headerlink" title="调用方式"></a>调用方式</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">a = A()</span><br><span class="line">a.foo(<span class="number">1</span>)          <span class="comment"># executing foo(&lt;main.A object at 0xb77d67ec&gt;, 1)</span></span><br><span class="line">a.class_foo(<span class="number">1</span>)    <span class="comment"># executing class_foo(&lt;class 'main.A'&gt;, 1)</span></span><br><span class="line">A.class_foo(<span class="number">1</span>)    <span class="comment"># executing class_foo(&lt;class 'main.A'&gt;, 1)</span></span><br><span class="line">a.static_foo(<span class="number">1</span>)   <span class="comment"># executing static_foo(1)</span></span><br><span class="line">A.static_foo(<span class="number">1</span>)   <span class="comment"># executing static_foo(1)</span></span><br></pre></td></tr></table></figure>
 <h2 id="说明"><a href="#说明" class="headerlink" title="说明"></a>说明</h2><p>类方法和静态方法都可以被类和类实例调用<br>类实例方法仅可以被类实例调用</p>
@@ -424,6 +447,12 @@
     
 
     <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/python/" rel="tag"># python</a>
+          
+        </div>
       
 
       
