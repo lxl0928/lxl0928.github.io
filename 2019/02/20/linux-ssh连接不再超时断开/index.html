@@ -123,7 +123,7 @@
 <meta property="og:description" content="远程通过ssh连接服务器进行开发调试时，避免ssh超时自动断开.">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="http://qiniucdn.timilong.com/1544683402503.jpg">
-<meta property="og:updated_time" content="2019-02-20T02:49:02.843Z">
+<meta property="og:updated_time" content="2019-02-20T16:21:32.220Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="linux-ssh连接不再超时断开">
 <meta name="twitter:description" content="远程通过ssh连接服务器进行开发调试时，避免ssh超时自动断开.">
@@ -214,7 +214,7 @@
   </div>
 
   <div class="site-nav-toggle">
-    <button aria-label="ナビゲーションバーの切り替え">
+    <button aria-label="Toggle navigation bar">
       <span class="btn-bar"></span>
       <span class="btn-bar"></span>
       <span class="btn-bar"></span>
@@ -367,7 +367,7 @@
                 
               
 
-              <time title="创建于：2019-02-20 10:42:50 / 更新于：02:49:02" itemprop="dateCreated datePublished" datetime="2019-02-20T10:42:50Z">2019-02-20</time>
+              <time title="创建于：2019-02-20 10:42:50 / 更新于：16:21:32" itemprop="dateCreated datePublished" datetime="2019-02-20T10:42:50Z">2019-02-20</time>
             
 
             
@@ -427,14 +427,7 @@
       
         <p><img src="http://qiniucdn.timilong.com/1544683402503.jpg" alt="cover_img"></p>
 <h2 id="TMOUT-系统环境变量"><a href="#TMOUT-系统环境变量" class="headerlink" title="TMOUT 系统环境变量"></a>TMOUT 系统环境变量</h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span> 用以下命令判断是否是否设置了该参数</span><br><span class="line"></span><br><span class="line"><span class="meta">$</span> echo $TMOUT  # 如果输出空或0表示不超时，大于0的数字n表示n秒没有收入则超时</span><br><span class="line"></span><br><span class="line"><span class="meta">$</span> vi /etc/profile  # 修改方法</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span> ----------------------------</span><br><span class="line">export TMOUT=900  # 将以上900修改为0就是设置不超时</span><br><span class="line"><span class="meta">#</span> ----------------------------</span><br><span class="line"></span><br><span class="line"><span class="meta">$</span> source /etc/profile   # 让配置立即生效</span><br></pre></td></tr></table></figure>
-<h2 id="sshd-服务配置"><a href="#sshd-服务配置" class="headerlink" title="sshd 服务配置"></a>sshd 服务配置</h2><p><code>`</code>shell<br>$ cd /etc/ssh  # 查看sshd_config中关于客户端活动状态的配置</p>
-<p>$ grep ClientAlive sshd_config</p>
-<h1 id="默认配置如下"><a href="#默认配置如下" class="headerlink" title="默认配置如下"></a>默认配置如下</h1><p>ClientAliveInterval 0   # ClientAliveInterval指定了服务器端向客户端请求消息的时间间隔, 默认是0, 不发送。设置60表示每分钟发送一次, 然后客户端响应, 这样就保持长连接了。<br>ClientAliveCountMax 3   # ClientAliveCountMax表示服务器发出请求后客户端没有响应的次数达到一定值, 就自动断开。正常情况下, 客户端不会不响应，使用默认值3即可。</p>
-<h1 id="备份原配置文件"><a href="#备份原配置文件" class="headerlink" title="备份原配置文件"></a>备份原配置文件</h1><p>$ cp sshd_config sshd_config.bak</p>
-<h1 id="启用客户端活动检查，每60秒检查一次，3次不活动断开连接"><a href="#启用客户端活动检查，每60秒检查一次，3次不活动断开连接" class="headerlink" title="启用客户端活动检查，每60秒检查一次，3次不活动断开连接"></a>启用客户端活动检查，每60秒检查一次，3次不活动断开连接</h1><p>$ sed -i “s/#ClientAliveInterval 0/ClientAliveInterval 60/g” sshd_config<br>$ sed -i “s/#ClientAliveCountMax 3/ClientAliveCountMax 3/g” sshd_config</p>
-<h1 id="确认修改"><a href="#确认修改" class="headerlink" title="确认修改"></a>确认修改</h1><p>$ grep ClientAlive sshd_config</p>
-<h1 id="比较配置文件差异"><a href="#比较配置文件差异" class="headerlink" title="比较配置文件差异"></a>比较配置文件差异</h1><p>$ diff sshd_config sshd_config.bak</p>
-<h1 id="重新加载ssd配置，让配置生效"><a href="#重新加载ssd配置，让配置生效" class="headerlink" title="重新加载ssd配置，让配置生效"></a>重新加载ssd配置，让配置生效</h1><p>$ service sshd reload</p>
+<h2 id="sshd-服务配置"><a href="#sshd-服务配置" class="headerlink" title="sshd 服务配置"></a>sshd 服务配置</h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span> cd /etc/ssh  # 查看sshd_config中关于客户端活动状态的配置</span><br><span class="line"></span><br><span class="line"><span class="meta">$</span> grep ClientAlive sshd_config</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span> 默认配置如下</span><br><span class="line">ClientAliveInterval 0   # ClientAliveInterval指定了服务器端向客户端请求消息的时间间隔, 默认是0, 不发送。设置60表示每分钟发送一次, 然后客户端响应, 这样就保持长连接了。</span><br><span class="line">ClientAliveCountMax 3   # ClientAliveCountMax表示服务器发出请求后客户端没有响应的次数达到一定值, 就自动断开。正常情况下, 客户端不会不响应，使用默认值3即可。</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span> 备份原配置文件</span><br><span class="line"><span class="meta">$</span> cp sshd_config sshd_config.bak</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span> 启用客户端活动检查，每60秒检查一次，3次不活动断开连接</span><br><span class="line"><span class="meta">$</span> sed -i "s/#ClientAliveInterval 0/ClientAliveInterval 60/g" sshd_config</span><br><span class="line"><span class="meta">$</span> sed -i "s/#ClientAliveCountMax 3/ClientAliveCountMax 3/g" sshd_config</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span> 确认修改</span><br><span class="line"><span class="meta">$</span> grep ClientAlive sshd_config</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span> 比较配置文件差异</span><br><span class="line"><span class="meta">$</span> diff sshd_config sshd_config.bak</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span> 重新加载ssd配置，让配置生效</span><br><span class="line"><span class="meta">$</span> service sshd reload</span><br></pre></td></tr></table></figure>
 
       
     </div>
@@ -750,7 +743,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#TMOUT-系统环境变量"><span class="nav-number">1.</span> <span class="nav-text">TMOUT 系统环境变量</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#sshd-服务配置"><span class="nav-number">2.</span> <span class="nav-text">sshd 服务配置</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#默认配置如下"><span class="nav-number"></span> <span class="nav-text">默认配置如下</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#备份原配置文件"><span class="nav-number"></span> <span class="nav-text">备份原配置文件</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#启用客户端活动检查，每60秒检查一次，3次不活动断开连接"><span class="nav-number"></span> <span class="nav-text">启用客户端活动检查，每60秒检查一次，3次不活动断开连接</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#确认修改"><span class="nav-number"></span> <span class="nav-text">确认修改</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#比较配置文件差异"><span class="nav-number"></span> <span class="nav-text">比较配置文件差异</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#重新加载ssd配置，让配置生效"><span class="nav-number"></span> <span class="nav-text">重新加载ssd配置，让配置生效</span></a></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#TMOUT-系统环境变量"><span class="nav-number">1.</span> <span class="nav-text">TMOUT 系统环境变量</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#sshd-服务配置"><span class="nav-number">2.</span> <span class="nav-text">sshd 服务配置</span></a></li></ol></div>
             
 
           </div>
