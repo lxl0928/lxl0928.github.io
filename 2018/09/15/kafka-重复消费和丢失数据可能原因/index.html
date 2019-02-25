@@ -123,7 +123,7 @@
 <meta property="og:description" content="Kafka重复消费和丢失数据研究">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="http://qiniucdn.timilong.com/1543387763929.png">
-<meta property="og:updated_time" content="2018-12-04T06:52:04.227Z">
+<meta property="og:updated_time" content="2019-02-25T03:30:11.366Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="kafka-重复消费和丢失数据可能原因">
 <meta name="twitter:description" content="Kafka重复消费和丢失数据研究">
@@ -214,7 +214,7 @@
   </div>
 
   <div class="site-nav-toggle">
-    <button aria-label="Toggle navigation bar">
+    <button aria-label="ナビゲーションバーの切り替え">
       <span class="btn-bar"></span>
       <span class="btn-bar"></span>
       <span class="btn-bar"></span>
@@ -382,9 +382,9 @@
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 
-                  <span class="post-meta-item-text">Edited on</span>
+                  <span class="post-meta-item-text">に編集されました</span>
                 
-                <time title="更新于：2018-12-04 06:52:04" itemprop="dateModified" datetime="2018-12-04T06:52:04Z">2018-12-04</time>
+                <time title="更新于：2019-02-25 03:30:11" itemprop="dateModified" datetime="2019-02-25T03:30:11Z">2019-02-25</time>
               
             
           </span>
@@ -439,7 +439,7 @@
       
         <p><img src="http://qiniucdn.timilong.com/1543387763929.png" alt="tu"></p>
 <blockquote>
-<p>转载自: CSDN，<a href="https://blog.csdn.net/zollty/article/details/53958641" target="_blank" rel="noopener">Kafka重复消费和丢失数据研究</a></p>
+<p>转载自: <a href="https://blog.csdn.net/zollty/article/details/53958641" target="_blank" rel="noopener">CSDN: Kafka重复消费和丢失数据研究</a></p>
 </blockquote>
 <h2 id="Kafka重复消费原因"><a href="#Kafka重复消费原因" class="headerlink" title="Kafka重复消费原因"></a>Kafka重复消费原因</h2><p>底层根本原因：<code>已经消费了数据，但是offset没提交。</code></p>
 <h3 id="原因1：强行kill线程，导致消费后的数据，offset没有提交。"><a href="#原因1：强行kill线程，导致消费后的数据，offset没有提交。" class="headerlink" title="原因1：强行kill线程，导致消费后的数据，offset没有提交。"></a>原因1：强行kill线程，导致消费后的数据，offset没有提交。</h3><h3 id="原因2：设置offset为自动提交，关闭kafka时，如果在close之前，调用-consumer-unsubscribe-则有可能部分offset没提交，下次重启会重复消费。"><a href="#原因2：设置offset为自动提交，关闭kafka时，如果在close之前，调用-consumer-unsubscribe-则有可能部分offset没提交，下次重启会重复消费。" class="headerlink" title="原因2：设置offset为自动提交，关闭kafka时，如果在close之前，调用 consumer.unsubscribe() 则有可能部分offset没提交，下次重启会重复消费。"></a>原因2：设置offset为自动提交，关闭kafka时，如果在close之前，调用 consumer.unsubscribe() 则有可能部分offset没提交，下次重启会重复消费。</h3><p>例如：</p>
