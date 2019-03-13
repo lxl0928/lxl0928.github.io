@@ -1,0 +1,1003 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.3.5/jquery.fancybox.min.css" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=6.4.1" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=6.4.1">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=6.4.1">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=6.4.1">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=6.4.1" color="#222">
+
+
+
+
+
+
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    version: '6.4.1',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  
+
+
+
+
+  <meta name="description" content="转载自微信公众号《架构师成长之路》2017年的80篇精选文章。">
+<meta name="keywords" content="架构">
+<meta property="og:type" content="article">
+<meta property="og:title" content="转载-架构师成长之路2017-80篇精选">
+<meta property="og:url" content="https://blog.timilong.com/2019/03/05/转载-架构师成长之路2017-80篇精选/index.html">
+<meta property="og:site_name" content="Timilong&#39;s blog">
+<meta property="og:description" content="转载自微信公众号《架构师成长之路》2017年的80篇精选文章。">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="http://qiniucdn.timilong.com/1543736759592.jpg">
+<meta property="og:updated_time" content="2019-03-13T07:34:02.687Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="转载-架构师成长之路2017-80篇精选">
+<meta name="twitter:description" content="转载自微信公众号《架构师成长之路》2017年的80篇精选文章。">
+<meta name="twitter:image" content="http://qiniucdn.timilong.com/1543736759592.jpg">
+
+
+
+
+
+
+  <link rel="canonical" href="https://blog.timilong.com/2019/03/05/转载-架构师成长之路2017-80篇精选/"/>
+
+
+
+<script type="text/javascript" id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>转载-架构师成长之路2017-80篇精选 | Timilong's blog</title>
+  
+
+
+
+
+
+
+
+
+
+  <noscript>
+  <style type="text/css">
+    .use-motion .motion-element,
+    .use-motion .brand,
+    .use-motion .menu-item,
+    .sidebar-inner,
+    .use-motion .post-block,
+    .use-motion .pagination,
+    .use-motion .comments,
+    .use-motion .post-header,
+    .use-motion .post-body,
+    .use-motion .collection-title { opacity: initial; }
+
+    .use-motion .logo,
+    .use-motion .site-title,
+    .use-motion .site-subtitle {
+      opacity: initial;
+      top: initial;
+    }
+
+    .use-motion {
+      .logo-line-before i { left: initial; }
+      .logo-line-after i { right: initial; }
+    }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Timilong's blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+    
+      
+        <p class="site-subtitle">Cease to struggle and you cease to live.--Thomas Carlyle</p>
+      
+    
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="Toggle navigation bar">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+          
+          <li class="menu-item menu-item-home">
+    <a href="/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-home"></i> <br />首页</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-tags">
+    <a href="/tags/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />标签</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-categories">
+    <a href="/categories/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-th"></i> <br />分类</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+    <a href="/archives/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />归档</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-photos">
+    <a href="/photos/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-camera-retro"></i> <br />相册</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-about">
+    <a href="/about/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-user"></i> <br />关于</a>
+  </li>
+
+      
+      
+    </ul>
+  
+
+  
+    
+
+  
+
+  
+</nav>
+
+
+
+  
+
+
+
+</div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://blog.timilong.com/2019/03/05/转载-架构师成长之路2017-80篇精选/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="博主">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Timilong's blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">转载-架构师成长之路2017-80篇精选
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建于：2019-03-05 10:58:46" itemprop="dateCreated datePublished" datetime="2019-03-05T10:58:46Z">2019-03-05</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Edited on</span>
+                
+                <time title="更新于：2019-03-13 07:34:02" itemprop="dateModified" datetime="2019-03-13T07:34:02Z">2019-03-13</time>
+              
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/架构/" itemprop="url" rel="index"><span itemprop="name">架构</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+              <div class="post-description">转载自微信公众号《架构师成长之路》2017年的80篇精选文章。</div>
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p><img src="http://qiniucdn.timilong.com/1543736759592.jpg" alt="cover_img"></p>
+<blockquote>
+<p>转载自: 微信公众号，<a href="https://mp.weixin.qq.com/s?__biz=MjM5ODYxMDA5OQ==&amp;mid=2651960945&amp;idx=1&amp;sn=d08f33c5f317fee8956252da8e0236b6&amp;chksm=bd2d03ad8a5a8abb0370b826b7384a4095a5ed36238f0911d102b0ceee8e5d2fbe3bc80c56d9&amp;scene=21#wechat_redirect" target="_blank" rel="noopener">架构师之路</a></p>
+</blockquote>
+<h2 id="【架构必备】"><a href="#【架构必备】" class="headerlink" title="【架构必备】"></a>【架构必备】</h2><p><a href="http://mp.weixin.qq.com/s?__biz=MjM5ODYxMDA5OQ==&amp;mid=2651959830&amp;idx=1&amp;sn=ce1c5a58caed227d7dfdbc16d6e1cea4&amp;chksm=bd2d07ca8a5a8edc45cc45c4787cc72cf4c8b96fb43d2840c7ccd44978036a7d39a03dd578b5&amp;scene=21#wechat_redirect" target="_blank" rel="noopener">《互联网架构如何实现“高并发”》</a><br><a href="http://mp.weixin.qq.com/s?__biz=MjM5ODYxMDA5OQ==&amp;mid=2651960086&amp;idx=1&amp;sn=70bbe7165ecddc7896767f4503a927fe&amp;chksm=bd2d06ca8a5a8fdc67fcacb169583f53a968fdf623a20395926059d44e6abae6b2e56ff1f9f9&amp;scene=21#wechat_redirect" target="_blank" rel="noopener">《TCP接入层的负载均衡、高可用、扩展性架构设计》</a><br><a href="http://mp.weixin.qq.com/s?__biz=MjM5ODYxMDA5OQ==&amp;mid=2651960061&amp;idx=1&amp;sn=3747338a91e85fc33f43d9c1bb98ab10&amp;chksm=bd2d07218a5a8e37ad2e5078736d2449a6ba1e0d75bb18d09990a5f3dcc3af2b7ff414158adb&amp;scene=21#wechat_redirect" target="_blank" rel="noopener">《配置中心架构设计演进》</a><br><a href="http://mp.weixin.qq.com/s?__biz=MjM5ODYxMDA5OQ==&amp;mid=2651960105&amp;idx=1&amp;sn=0069f2264e227e86a63ee50a4899e0a7&amp;chksm=bd2d06f58a5a8fe33271ed3a378932ad023af7a9004d7fdb44e30a53d53928f984f293a41256&amp;scene=21#wechat_redirect" target="_blank" rel="noopener">《跨公网调用的大坑与架构优化》</a><br><a href="http://mp.weixin.qq.com/s?__biz=MjM5ODYxMDA5OQ==&amp;mid=2651960118&amp;idx=1&amp;sn=767e038cb4378be1c88dd42569a9264f&amp;chksm=bd2d06ea8a5a8ffc7c69c71c2153b10565ecf72b6957c5667fbf9099c9f5478111132e967a35&amp;scene=21#wechat_redirect" target="_blank" rel="noopener">《DNS在架构设计中的巧用》</a><br><a href="http://mp.weixin.qq.com/s?__biz=MjM5ODYxMDA5OQ==&amp;mid=2651960315&amp;idx=1&amp;sn=8592c5cd15732096bb3b84b3074a2d37&amp;chksm=bd2d06278a5a8f310e3ac5bcdf82b5ec0815a3175466b999d58e173c89900dec00a55aa3f0bb&amp;scene=21#wechat_redirect" target="_blank" rel="noopener">《消息如何在网络上安全传输》</a><br><a href="http://mp.weixin.qq.com/s?__biz=MjM5ODYxMDA5OQ==&amp;mid=2651959957&amp;idx=1&amp;sn=a82bb7e8203b20b2a0cb5fc95b7936a5&amp;chksm=bd2d07498a5a8e5f9f8e7b5aeaa5bd8585a0ee4bf470956e7fd0a2b36d132eb46553265f4eaf&amp;scene=21#wechat_redirect" target="_blank" rel="noopener">《10W定时任务，如何高效触发》</a><br><a href="http://mp.weixin.qq.com/s?__biz=MjM5ODYxMDA5OQ==&amp;mid=2651960260&amp;idx=1&amp;sn=051fd566d43d7fd35724bdf55484ee5f&amp;chksm=bd2d06188a5a8f0e64467381c7b3df5bdcb7f81ba055d5d21ec2f8b888492be15527d23070b0&amp;scene=21#wechat_redirect" target="_blank" rel="noopener">《工作线程究竟设置为多少合适》</a><br><a href="http://mp.weixin.qq.com/s?__biz=MjM5ODYxMDA5OQ==&amp;mid=2651960359&amp;idx=1&amp;sn=a036190cc369507aa67de9c9281fdc38&amp;chksm=bd2d01fb8a5a88edd8b1750b8564a3e9eec90e19235f1fa7edce82ee2731e8beed668c9cc015&amp;scene=21#wechat_redirect" target="_blank" rel="noopener">《URI设计原则》</a></p>
+<h2 id="【一致性】"><a href="#【一致性】" class="headerlink" title="【一致性】"></a>【一致性】</h2><p><a href="http://mp.weixin.qq.com/s?__biz=MjM5ODYxMDA5OQ==&amp;mid=2651960128&amp;idx=1&amp;sn=8e0e409b10ab9db549432af461385314&amp;chksm=bd2d069c8a5a8f8ab5cdee602d4062bbdbb25da290668515d36682afa854e374d2a5ff02004b&amp;scene=21#wechat_redirect" target="_blank" rel="noopener">《session一致性架构设计实践》</a><br><a href="http://mp.weixin.qq.com/s?__biz=MjM5ODYxMDA5OQ==&amp;mid=2651960253&amp;idx=1&amp;sn=cce01d9d305024b5cc7e1e7149507ae9&amp;chksm=bd2d06618a5a8f77db3731e8687f9a116c0c3113a4b9a8574149530610dc95fbcf7e4ab92ae5&amp;scene=21#wechat_redirect" target="_blank" rel="noopener">《MySQL双主架构一致性优化》</a><br><a href="http://mp.weixin.qq.com/s?__biz=MjM5ODYxMDA5OQ==&amp;mid=2651960197&amp;idx=1&amp;sn=2e5c17d521772d28d39f31af5d22b34a&amp;chksm=bd2d06598a5a8f4f9de2da89ba8fab711823935442fc632b65d461c923852485ff392c987568&amp;scene=21#wechat_redirect" target="_blank" rel="noopener">《库存扣多了，到底怎么整》</a><br><a href="http://mp.weixin.qq.com/s?__biz=MjM5ODYxMDA5OQ==&amp;mid=2651960200&amp;idx=1&amp;sn=fdec629caceee07b3946b6c338b8ceb7&amp;chksm=bd2d06548a5a8f424dd32be960222edf5cecc3c1e5a8fcbb4cfff35e7da6787e702861131597&amp;scene=21#wechat_redirect" target="_blank" rel="noopener">《再议库存扣减多种方案》</a><br><a href="http://mp.weixin.qq.com/s?__biz=MjM5ODYxMDA5OQ==&amp;mid=2651960223&amp;idx=1&amp;sn=121716347174eedd6636b1c2c0b96047&amp;chksm=bd2d06438a5a8f55d35add7dc99940c280264fa7caeacb21f7dc79884d00c050d0367a745f87&amp;scene=21#wechat_redirect" target="_blank" rel="noopener">《浅谈CAS在分布式ID生成方案上的应用》</a><br><a href="http://mp.weixin.qq.com/s?__biz=MjM5ODYxMDA5OQ==&amp;mid=2651960240&amp;idx=1&amp;sn=18c4ce7c3baf6705940847c1c9bf49e3&amp;chksm=bd2d066c8a5a8f7a27acb5603611b5cbcf6396a8a5e5d06571dcd41deaa64e615b097e84fef3&amp;scene=21#wechat_redirect" target="_blank" rel="noopener">《CAS下ABA问题及优化方案》</a></p>
+<h2 id="【分层架构设计】"><a href="#【分层架构设计】" class="headerlink" title="【分层架构设计】"></a>【分层架构设计】</h2><p><a href="http://mp.weixin.qq.com/s?__biz=MjM5ODYxMDA5OQ==&amp;mid=2651960455&amp;idx=1&amp;sn=02cb2345ae9862edad11113726c49512&amp;chksm=bd2d015b8a5a884d9619cdf7ae0dc1a480979a95abb24bac2645cecd54caec4c6bdb3aa617d7&amp;scene=21#wechat_redirect" target="_blank" rel="noopener">《互联网分层架构的本质》</a><br><a href="http://mp.weixin.qq.com/s?__biz=MjM5ODYxMDA5OQ==&amp;mid=2651960468&amp;idx=1&amp;sn=82bb21ff787f2ae3db2630e0823f3062&amp;chksm=bd2d01488a5a885eb4bbd2470cbd5f2d92a473a45cac02a5d68f55b5d8f72cd8cbb38b18962a&amp;scene=21#wechat_redirect" target="_blank" rel="noopener">《分层架构，为什么需要服务化》</a><br><a href="http://mp.weixin.qq.com/s?__biz=MjM5ODYxMDA5OQ==&amp;mid=2651960482&amp;idx=1&amp;sn=feb27bdd202093a5e4747f7c043415d1&amp;chksm=bd2d017e8a5a8868888e553a30559cb9eefa93e0a1da557342e1a13127ca67143ea87b721363&amp;scene=21#wechat_redirect" target="_blank" rel="noopener">《分层架构，是否需要业务服务层》</a><br><a href="http://mp.weixin.qq.com/s?__biz=MjM5ODYxMDA5OQ==&amp;mid=2651960501&amp;idx=1&amp;sn=a452bab31c0457063241df237f955332&amp;chksm=bd2d01698a5a887f9dfa5c6966d9e71bf492a040ab2dbe4e469ef38dd8ee5ab00b7c562a88e8&amp;scene=21#wechat_redirect" target="_blank" rel="noopener">《分层架构，为什么需要前后端分离》</a><br><a href="http://mp.weixin.qq.com/s?__biz=MjM5ODYxMDA5OQ==&amp;mid=2651960541&amp;idx=1&amp;sn=6e123e92e69f09c25ca1c8b81e6037d0&amp;chksm=bd2d01018a5a881735fb37045ed187325f1102f01eaee1e78147d6dc702dccb7d9f1899227ed&amp;scene=21#wechat_redirect" target="_blank" rel="noopener">《分层架构，前后端分离的坏处》</a><br><a href="http://mp.weixin.qq.com/s?__biz=MjM5ODYxMDA5OQ==&amp;mid=2651960526&amp;idx=1&amp;sn=3fcf5a358d7166a25ba78010882616e3&amp;chksm=bd2d01128a5a8804d2e0699ceef99c00be1635aeef956e0996f1153a0a1cdd78eb68d2fec8f0&amp;scene=21#wechat_redirect" target="_blank" rel="noopener">《分层架构，为什么要引入数据库中间层》</a><br><a href="http://mp.weixin.qq.com/s?__biz=MjM5ODYxMDA5OQ==&amp;mid=2651960548&amp;idx=1&amp;sn=fa268b779440f75ccd5b4cd18a48d8e9&amp;chksm=bd2d01388a5a882e9c1cff970ab559a5580fe884b2f1e77d5c93d1e08aad52c8e8be55a7aa5c&amp;scene=21#wechat_redirect" target="_blank" rel="noopener">《分层架构，APP分层架构随想》</a></p>
+<h2 id="【数据库-SQL】"><a href="#【数据库-SQL】" class="headerlink" title="【数据库-SQL】"></a>【数据库-SQL】</h2><p><a href="http://mp.weixin.qq.com/s?__biz=MjM5ODYxMDA5OQ==&amp;mid=2651960280&amp;idx=1&amp;sn=da519cff7081ab347eb1aaa4f0f4f408&amp;chksm=bd2d06048a5a8f123730ed91b60ac2f55ec5eb92774f24ec45c3fc0d004aea514e6fc3990e0e&amp;scene=21#wechat_redirect" target="_blank" rel="noopener">《或许你不知道的10条SQL技巧》</a><br><a href="http://mp.weixin.qq.com/s?__biz=MjM5ODYxMDA5OQ==&amp;mid=2651960277&amp;idx=1&amp;sn=bc452fbe863fd915c08f95a680e4bdbe&amp;chksm=bd2d06098a5a8f1fa0262290a65b6a6634f84d394b072f701ed44a6df9dd4b9df8c926537a59&amp;scene=21#wechat_redirect" target="_blank" rel="noopener">《MySQL索引or/in/union优化》</a><br><a href="http://mp.weixin.qq.com/s?__biz=MjM5ODYxMDA5OQ==&amp;mid=2651959906&amp;idx=1&amp;sn=2cbdc66cfb5b53cf4327a1e0d18d9b4a&amp;chksm=bd2d07be8a5a8ea86dc3c04eced3f411ee5ec207f73d317245e1fefea1628feb037ad71531bc&amp;scene=21#wechat_redirect" target="_blank" rel="noopener">《58到家数据库30条军规解读》</a><br><a href="http://mp.weixin.qq.com/s?__biz=MjM5ODYxMDA5OQ==&amp;mid=2651959910&amp;idx=1&amp;sn=6b6853b70dbbe6d689a12a4a60b84d8b&amp;chksm=bd2d07ba8a5a8eac6783bac951dba345d865d875538755fe665a5daaf142efe670e2c02b7c71&amp;scene=21#wechat_redirect" target="_blank" rel="noopener">《再议58到家数据库军规》</a><br><a href="http://mp.weixin.qq.com/s?__biz=MjM5ODYxMDA5OQ==&amp;mid=2651960775&amp;idx=1&amp;sn=1a9c9f4b94dfe71ad2528fb2c84f5ec7&amp;chksm=bd2d001b8a5a890d302d139ea42e9ffde44407738a618865934e40b8e35486b13cafca2933f6&amp;scene=21#wechat_redirect" target="_blank" rel="noopener">《赶集MySQL军规》</a></p>
+<h2 id="【数据库架构】"><a href="#【数据库架构】" class="headerlink" title="【数据库架构】"></a>【数据库架构】</h2><p><a href="http://mp.weixin.qq.com/s?__biz=MjM5ODYxMDA5OQ==&amp;mid=2651959855&amp;idx=1&amp;sn=f33abe8ec598c273f29cebb9365ece59&amp;chksm=bd2d07f38a5a8ee58a944507a134e1da1efc3ac9c4d1c4cff261137cd986e51f5fe7cee9de15&amp;scene=21#wechat_redirect" target="_blank" rel="noopener">《100亿数据量1万属性10万并发数据库架构设计》</a><br><a href="http://mp.weixin.qq.com/s?__biz=MjM5ODYxMDA5OQ==&amp;mid=2651959883&amp;idx=1&amp;sn=e7df8510c7096a5b069e0f12eaaca010&amp;chksm=bd2d07978a5a8e815c2ae41b16b6b4c579923502fb919008a22bb108a1e920109f25387f8903&amp;scene=21#wechat_redirect" target="_blank" rel="noopener">《数据库秒级平滑扩容架构方案》</a><br><a href="http://mp.weixin.qq.com/s?__biz=MjM5ODYxMDA5OQ==&amp;mid=2651959942&amp;idx=1&amp;sn=e9d3fe111b8a1d44335f798bbb6b9eea&amp;chksm=bd2d075a8a5a8e4cad985b847778aa83056e22931767bb835132c04571b66d5434020fd4147f&amp;scene=21#wechat_redirect" target="_blank" rel="noopener">《业界难题，跨库分页的四种方案》</a><br><a href="http://mp.weixin.qq.com/s?__biz=MjM5ODYxMDA5OQ==&amp;mid=2651959992&amp;idx=1&amp;sn=eb2fbd7d7922db42a593c304e50a65b7&amp;chksm=bd2d07648a5a8e72d489022ec6006274d7e43ab48449b255d5661658c2af8e9221977a9609ed&amp;scene=21#wechat_redirect" target="_blank" rel="noopener">《100亿数据平滑迁移，不停服务》</a><br><a href="http://mp.weixin.qq.com/s?__biz=MjM5ODYxMDA5OQ==&amp;mid=2651960255&amp;idx=1&amp;sn=1bf42b6d8f5658f9d8b54274d62ca714&amp;chksm=bd2d06638a5a8f757502004f4d206f1a4e0f3e8ab4b1d3ba0635308e7d5b7a30860ae6d91e0c&amp;scene=21#wechat_redirect" target="_blank" rel="noopener">《MySQL数据冗余的三种方案》</a></p>
+<h2 id="【数据库-容量】"><a href="#【数据库-容量】" class="headerlink" title="【数据库-容量】"></a>【数据库-容量】</h2><p><a href="http://mp.weixin.qq.com/s?__biz=MjM5ODYxMDA5OQ==&amp;mid=2651960158&amp;idx=1&amp;sn=019e9dca6e074f62478b2562044cf8de&amp;chksm=bd2d06828a5a8f945e1e6c2aa4702f48b7857ac9a79acf867496f25b28c86e2f28bed19b38e4&amp;scene=21#wechat_redirect" target="_blank" rel="noopener">《每每谈到数据库架构，我们在讨论什么》</a><br><a href="http://mp.weixin.qq.com/s?__biz=MjM5ODYxMDA5OQ==&amp;mid=2651960212&amp;idx=1&amp;sn=ab4c52ab0309f7380f7e0207fa357128&amp;chksm=bd2d06488a5a8f5e3b7c9de0cc5936818bd9a6ed4058679ae8d819175e0693c6fbd9cdea0c87&amp;scene=21#wechat_redirect" target="_blank" rel="noopener">《用户中心，数据库架构优化与实践》</a><br><a href="http://mp.weixin.qq.com/s?__biz=MjM5ODYxMDA5OQ==&amp;mid=2651960274&amp;idx=1&amp;sn=81714a692f3c29395c6e2ff3e8f00350&amp;chksm=bd2d060e8a5a8f188c90253a496c97661da7f3bcab9d42c48b95665fae3916b2c2cdc2ea33e6&amp;scene=21#wechat_redirect" target="_blank" rel="noopener">《帖子中心，数据库架构优化与实践》</a><br><a href="http://mp.weixin.qq.com/s?__biz=MjM5ODYxMDA5OQ==&amp;mid=2651960302&amp;idx=1&amp;sn=ba3d794bd9cc42bead23b7877ad54643&amp;chksm=bd2d06328a5a8f24d9d43a36093dc701c63393e61781ff7fa1e47e5d2ae0631edb7cf514bb6d&amp;scene=21#wechat_redirect" target="_blank" rel="noopener">《好友中心，数据库架构优化与实践》</a><br><a href="http://mp.weixin.qq.com/s?__biz=MjM5ODYxMDA5OQ==&amp;mid=2651960373&amp;idx=1&amp;sn=abf7d36840c4d3d556b17a8776ee536c&amp;chksm=bd2d01e98a5a88ff0cbf615cb3444668ccdfca58d5dca2da00ed0cc8948585b7509adf648db0&amp;scene=21#wechat_redirect" target="_blank" rel="noopener">《订单中心，如何做到数据库无限容量》</a></p>
+<h2 id="【数据库中间件】"><a href="#【数据库中间件】" class="headerlink" title="【数据库中间件】"></a>【数据库中间件】</h2><p><a href="http://mp.weixin.qq.com/s?__biz=MjM5ODYxMDA5OQ==&amp;mid=2651960679&amp;idx=1&amp;sn=aecca24f1150e353bcf9e63c9e6ae7b4&amp;chksm=bd2d00bb8a5a89ad9820ae4b2b674cd0508be87be6b2d802b4417a864aad7db2eb9ccf19635c&amp;scene=21#wechat_redirect" target="_blank" rel="noopener">《数据库中间件，需求调研》</a><br><a href="http://mp.weixin.qq.com/s?__biz=MjM5ODYxMDA5OQ==&amp;mid=2651960594&amp;idx=1&amp;sn=b9d39a5591ceeee4e7896627482f05f6&amp;chksm=bd2d00ce8a5a89d885deb207bbdb4a265862888e62fd18c1091830a418b58d4dec1753c6fab9&amp;scene=21#wechat_redirect" target="_blank" rel="noopener">《数据库中间件，cobar调研笔记》</a><br><a href="http://mp.weixin.qq.com/s?__biz=MjM5ODYxMDA5OQ==&amp;mid=2651960601&amp;idx=1&amp;sn=4ea55404a2fc96dc5a7bb613bb9e3d32&amp;chksm=bd2d00c58a5a89d307e062e4ad5fe5f0091d514b65881d0829e8f26c5aee965b225fd3eb1909&amp;scene=21#wechat_redirect" target="_blank" rel="noopener">《数据库中间件，TDDL调研笔记》</a><br><a href="http://mp.weixin.qq.com/s?__biz=MjM5ODYxMDA5OQ==&amp;mid=2651960656&amp;idx=1&amp;sn=06717a19b6be3adfdb90e8c57d3274b8&amp;chksm=bd2d008c8a5a899ad044dc6db27a07981937de61257112651f8d05d981a5efe86845c0248adf&amp;scene=21#wechat_redirect" target="_blank" rel="noopener">《数据库中间件，atlas调研笔记》</a><br><a href="http://mp.weixin.qq.com/s?__biz=MjM5ODYxMDA5OQ==&amp;mid=2651960133&amp;idx=1&amp;sn=07acfeac5306f92f81dfccf4c880da4f&amp;chksm=bd2d06998a5a8f8fc8c3bbb2c2ea01825ebe6576a35aa4d9789774dba0f7964baf4edf584f1b&amp;scene=21#wechat_redirect" target="_blank" rel="noopener">《数据库中间件，mysql-proxy调研笔记》</a><br><a href="http://mp.weixin.qq.com/s?__biz=MjM5ODYxMDA5OQ==&amp;mid=2651960632&amp;idx=1&amp;sn=769f12c5180bdc37d71c99cdf7b4077f&amp;chksm=bd2d00e48a5a89f2fa42e0c360e31c28cfd9cce7ab31b425cb5ef8da43bef117c95d0ca8c2cd&amp;scene=21#wechat_redirect" target="_blank" rel="noopener">《假如让你来设计数据库中间件》</a></p>
+<h2 id="【架构解耦】"><a href="#【架构解耦】" class="headerlink" title="【架构解耦】"></a>【架构解耦】</h2><p><a href="http://mp.weixin.qq.com/s?__biz=MjM5ODYxMDA5OQ==&amp;mid=2651960643&amp;idx=1&amp;sn=adb2660bc1a367e118d0a3a799a312fa&amp;chksm=bd2d009f8a5a898917ebe65caf0dc31d3f257594d5c18a468ebef344877b64e989ee292bf22e&amp;scene=21#wechat_redirect" target="_blank" rel="noopener">《小小的IP，大大的耦合，如何解耦》</a><br><a href="http://mp.weixin.qq.com/s?__biz=MjM5ODYxMDA5OQ==&amp;mid=2651960650&amp;idx=1&amp;sn=7c63fdc50a130e1d9fc3e5b6791ce01f&amp;chksm=bd2d00968a5a89801861bd1665ad60fe240b5ff3d6eab984e70938d9cfd6502aca8de5686e0c&amp;scene=21#wechat_redirect" target="_blank" rel="noopener">《小小的公共库，大大的耦合，如何解耦》</a><br><a href="http://mp.weixin.qq.com/s?__biz=MjM5ODYxMDA5OQ==&amp;mid=2651960667&amp;idx=1&amp;sn=850cc7370b7fe3fec43878e39baadb2b&amp;chksm=bd2d00878a5a89917bf55546a0c1b44523190679849953cfcc94c886bc5b77ad136006b448f1&amp;scene=21#wechat_redirect" target="_blank" rel="noopener">《数据库耦合，如何解耦》</a><br><a href="http://mp.weixin.qq.com/s?__biz=MjM5ODYxMDA5OQ==&amp;mid=2651960690&amp;idx=1&amp;sn=2631832538639dde2de42e4dfc7008ac&amp;chksm=bd2d00ae8a5a89b8e636e25d0d83723244a6462a9cfd4f477865899b7d72f3d899a1de5892ca&amp;scene=21#wechat_redirect" target="_blank" rel="noopener">《为何服务化了，耦合却更加严重》</a><br><a href="http://mp.weixin.qq.com/s?__biz=MjM5ODYxMDA5OQ==&amp;mid=2651960726&amp;idx=1&amp;sn=0fdaf0e7040318aabfeba553f815d691&amp;chksm=bd2d004a8a5a895ca80180443cc0f18e66b3d15dbbbd120dabaf3e6d4ef00fbc1030bf41c24b&amp;scene=21#wechat_redirect" target="_blank" rel="noopener">《MQ，互联网架构解耦神器》</a><br><a href="http://mp.weixin.qq.com/s?__biz=MjM5ODYxMDA5OQ==&amp;mid=2651960763&amp;idx=1&amp;sn=63da208faee72464fa11691215229bc4&amp;chksm=bd2d00678a5a8971fd2218247accac0f2367603c981c1d3c705d60d08a212ca2399f4bf076e0&amp;scene=21#wechat_redirect" target="_blank" rel="noopener">《配置中心，互联网架构解耦利器》</a></p>
+<h2 id="【MQ】"><a href="#【MQ】" class="headerlink" title="【MQ】"></a>【MQ】</h2><p><a href="http://mp.weixin.qq.com/s?__biz=MjM5ODYxMDA5OQ==&amp;mid=2651960012&amp;idx=1&amp;sn=c6af5c79ecead98daa4d742e5ad20ce5&amp;chksm=bd2d07108a5a8e0624ae6ad95001c4efe09d7ba695f2ddb672064805d771f3f84bee8123b8a6&amp;scene=21#wechat_redirect" target="_blank" rel="noopener">《究竟什么时候使用MQ》</a><br><a href="http://mp.weixin.qq.com/s?__biz=MjM5ODYxMDA5OQ==&amp;mid=2651959966&amp;idx=1&amp;sn=068a2866dcc49335d613d75c4a5d1b17&amp;chksm=bd2d07428a5a8e54162ad8ea8e1e9302dfaeb664cecc453bd16a5f299820755bd2e1e0e17b60&amp;scene=21#wechat_redirect" target="_blank" rel="noopener">《MQ，如何做到消息必达》</a><br><a href="http://mp.weixin.qq.com/s?__biz=MjM5ODYxMDA5OQ==&amp;mid=2651960002&amp;idx=1&amp;sn=c0775231bccf002c3178eabe43f1cdcb&amp;chksm=bd2d071e8a5a8e08c3a5287247ea41dee6b2621e6ffafbf909ec1e8a866b7c816eeeea227246&amp;scene=21#wechat_redirect" target="_blank" rel="noopener">《MQ，如何做到消息幂等》</a><br><a href="http://mp.weixin.qq.com/s?__biz=MjM5ODYxMDA5OQ==&amp;mid=2651959961&amp;idx=1&amp;sn=afec02c8dc6db9445ce40821b5336736&amp;chksm=bd2d07458a5a8e5314560620c240b1c4cf3bbf801fc0ab524bd5e8aa8b8ef036cf755d7eb0f6&amp;scene=21#wechat_redirect" target="_blank" rel="noopener">《MQ，如何做到消息延时》</a><br><a href="http://mp.weixin.qq.com/s?__biz=MjM5ODYxMDA5OQ==&amp;mid=2651960021&amp;idx=1&amp;sn=4bbe275c249a70ab20e36959fc01d4e0&amp;chksm=bd2d07098a5a8e1fd9b505778b551002ab59c35953fa3deaaddc79e3f21bcea5ff48076b4a89&amp;scene=21#wechat_redirect" target="_blank" rel="noopener">《MQ，如何做到削峰填谷》</a></p>
+<h2 id="【搜索】"><a href="#【搜索】" class="headerlink" title="【搜索】"></a>【搜索】</h2><p><a href="http://mp.weixin.qq.com/s?__biz=MjM5ODYxMDA5OQ==&amp;mid=2651959895&amp;idx=1&amp;sn=de25ce2544c088ff9be0b93fd3ea4d15&amp;chksm=bd2d078b8a5a8e9d5ae4339a683d3f980ff2994f3c10c4081c7bab7f0d77f37521de95e974bf&amp;scene=21#wechat_redirect" target="_blank" rel="noopener">《搜索引擎的原理，架构与细节》</a><br><a href="http://mp.weixin.qq.com/s?__biz=MjM5ODYxMDA5OQ==&amp;mid=2651959917&amp;idx=1&amp;sn=8faeae7419a756b0c355af2b30c255df&amp;chksm=bd2d07b18a5a8ea75f16f7e98ea897c7e7f47a0441c64bdaef8445a2100e0bdd2a7de99786c0&amp;scene=21#wechat_redirect" target="_blank" rel="noopener">《流量从小到大，检索架构演进》</a><br><a href="http://mp.weixin.qq.com/s?__biz=MjM5ODYxMDA5OQ==&amp;mid=2651959949&amp;idx=1&amp;sn=83f78cf6293714bd1fd97a11ff7c2c35&amp;chksm=bd2d07518a5a8e47e6fce9fc03cddec1d8a43f2b4ac67cfbbf73a55143593da8a132da7a0815&amp;scene=21#wechat_redirect" target="_blank" rel="noopener">《全网搜索引擎，如何检索到15分钟之前生成的网页》</a></p>
+<h2 id="【典型系统】"><a href="#【典型系统】" class="headerlink" title="【典型系统】"></a>【典型系统】</h2><p><a href="http://mp.weixin.qq.com/s?__biz=MjM5ODYxMDA5OQ==&amp;mid=2651959391&amp;idx=1&amp;sn=fb28fd5e5f0895ddb167406d8a735548&amp;scene=21#wechat_redirect" target="_blank" rel="noopener">《秒杀系统，架构与优化细节》</a><br><a href="http://mp.weixin.qq.com/s?__biz=MjM5ODYxMDA5OQ==&amp;mid=2651960148&amp;idx=1&amp;sn=7c8a2d789fb20981355e49c3defe0229&amp;chksm=bd2d06888a5a8f9e5ef5cf6cfa415d06800f5468148a0ba7a802e646aeec9610823ec0fc6d5d&amp;scene=21#wechat_redirect" target="_blank" rel="noopener">《广告系统，业务与架构细节》</a><br><a href="http://mp.weixin.qq.com/s?__biz=MjM5ODYxMDA5OQ==&amp;mid=2651960185&amp;idx=1&amp;sn=0acd4a563c8c9684373fd05c116c4441&amp;chksm=bd2d06a58a5a8fb3281acd95a7d9494161e75dcd27e95fdd526fce2b031ba79c4153bf255cee&amp;scene=21#wechat_redirect" target="_blank" rel="noopener">《计数系统，架构与优化细节》</a></p>
+<h2 id="【线上实战】"><a href="#【线上实战】" class="headerlink" title="【线上实战】"></a>【线上实战】</h2><p><a href="http://mp.weixin.qq.com/s?__biz=MjM5ODYxMDA5OQ==&amp;mid=2651960323&amp;idx=1&amp;sn=e04af14d2ebf939133869e0f18bb0dd1&amp;chksm=bd2d01df8a5a88c98c3cb94a99334a16b372fd997f36bc757a38bb44b70d977797fa840064dc&amp;scene=21#wechat_redirect" target="_blank" rel="noopener">《线上问题排查实战》</a><br><a href="http://mp.weixin.qq.com/s?__biz=MjM5ODYxMDA5OQ==&amp;mid=2651960332&amp;idx=1&amp;sn=63cb23e04ac4bf926434f34001c0718a&amp;chksm=bd2d01d08a5a88c6a01e62533162cc3535defb37cefa61a800e405edda8240ad17432e023d53&amp;scene=21#wechat_redirect" target="_blank" rel="noopener">《CPU100%问题排查实战》</a><br><a href="http://mp.weixin.qq.com/s?__biz=MjM5ODYxMDA5OQ==&amp;mid=2651960342&amp;idx=1&amp;sn=9b2dbbb2cfd7710f25be1a0862a9b2be&amp;chksm=bd2d01ca8a5a88dcc14608cb00e0dbde11869d053ee8c83bc96e7b4a0fbd71d28d7fbb009c98&amp;scene=21#wechat_redirect" target="_blank" rel="noopener">《内存OOM问题排查实战》</a></p>
+<h2 id="【一分钟系列】"><a href="#【一分钟系列】" class="headerlink" title="【一分钟系列】"></a>【一分钟系列】</h2><p><a href="http://mp.weixin.qq.com/s?__biz=MjM5ODYxMDA5OQ==&amp;mid=2651959914&amp;idx=1&amp;sn=3600fc162970b39afe25d65bee10cd2e&amp;chksm=bd2d07b68a5a8ea03c2b1372345991b74aa412b7fd96cc82e9ed0eb38e8dd481bf5d8b7b631c&amp;scene=21#wechat_redirect" target="_blank" rel="noopener">《1分钟理解LF线程模型》</a><br><a href="http://mp.weixin.qq.com/s?__biz=MjM5ODYxMDA5OQ==&amp;mid=2651960258&amp;idx=1&amp;sn=caf8295fa5c0ee47d6b9e6bf5cffcb49&amp;chksm=bd2d061e8a5a8f08374ddc84a3c59355368b840ab38ba97782947e02c0d9d6d3c289032b3d39&amp;scene=21#wechat_redirect" target="_blank" rel="noopener">《1分钟了解索引技巧》</a><br><a href="http://mp.weixin.qq.com/s?__biz=MjM5ODYxMDA5OQ==&amp;mid=2651960131&amp;idx=1&amp;sn=a3bbcbe03f9e12d32ba751ce6ffae067&amp;chksm=bd2d069f8a5a8f895fed39cad842f6f5a390bb18493f964b910270128f19f0b8af1d1f30b5c7&amp;scene=21#wechat_redirect" target="_blank" rel="noopener">《1分钟了解四层/七层反向代理》</a><br><a href="http://mp.weixin.qq.com/s?__biz=MjM5ODYxMDA5OQ==&amp;mid=2651959821&amp;idx=1&amp;sn=4ede084b05ce81a9a5ddb87ec62434bb&amp;chksm=bd2d07d18a5a8ec7726619dbb9f1e99df8239ebd07d5f01d748e01c08dd543f0a434945301c6&amp;scene=21#wechat_redirect" target="_blank" rel="noopener">《1分钟写好连接池》</a><br><a href="http://mp.weixin.qq.com/s?__biz=MjM5ODYxMDA5OQ==&amp;mid=2651960736&amp;idx=1&amp;sn=bdbe301539eadead10da880ce7d51d55&amp;chksm=bd2d007c8a5a896a1ab5743438a05e8553f41bca9761d2b2b9e78f398f6f30ba69702cb7da59&amp;scene=21#wechat_redirect" target="_blank" rel="noopener">《1分钟了解好接口的设计原则》</a></p>
+<h2 id="【评论比文章精彩，架构讨论】"><a href="#【评论比文章精彩，架构讨论】" class="headerlink" title="【评论比文章精彩，架构讨论】"></a>【评论比文章精彩，架构讨论】</h2><p><a href="http://mp.weixin.qq.com/s?__biz=MjM5ODYxMDA5OQ==&amp;mid=2651960734&amp;idx=1&amp;sn=df69c556bcd87f9758d4c4c7d4625a7a&amp;chksm=bd2d00428a5a89541874a438e96ded1fa5a0b27d4ba5e9cd62273b6295d740fe4e032ccd57f7&amp;scene=21#wechat_redirect" target="_blank" rel="noopener">《服务读写分离，是否可行？》</a><br><a href="http://mp.weixin.qq.com/s?__biz=MjM5ODYxMDA5OQ==&amp;mid=2651960749&amp;idx=1&amp;sn=3577ba4bdc80cf1820e14b1610ade7b4&amp;chksm=bd2d00718a5a896754dc53798af38ab46347f85c084c2469761961e3716f8351782cbd86cb84&amp;scene=21#wechat_redirect" target="_blank" rel="noopener">《服务读写分离，绝不推荐》</a><br><a href="http://mp.weixin.qq.com/s?__biz=MjM5ODYxMDA5OQ==&amp;mid=2651960768&amp;idx=1&amp;sn=7a10095e20208e2cb6ac2ce68f1bbd27&amp;chksm=bd2d001c8a5a890a8db2f512ad85ddb860d8dbe0ca99afdc2af9a7eb0dc4620160111c53a26b&amp;scene=21#wechat_redirect" target="_blank" rel="noopener">《服务通过缓存传递数据，是否可行？》</a><br><a href="http://mp.weixin.qq.com/s?__biz=MjM5ODYxMDA5OQ==&amp;mid=2651960786&amp;idx=1&amp;sn=58fce15972702181cf0711700c31e29d&amp;chksm=bd2d000e8a5a891827bf65f3d4ff41445bb41243f1a2bbb535e09fd8fdb8a52229523261f384&amp;scene=21#wechat_redirect" target="_blank" rel="noopener">《服务通过缓存传递数据，绝不推荐》</a></p>
+<h2 id="【通用】"><a href="#【通用】" class="headerlink" title="【通用】"></a>【通用】</h2><p><a href="http://mp.weixin.qq.com/s?__biz=MjM5ODYxMDA5OQ==&amp;mid=2651960035&amp;idx=1&amp;sn=e0a14e8539b001e4d6d149164987235b&amp;chksm=bd2d073f8a5a8e290202fcdfac077744eab84e6549e0608698ae5e1d3ed221ee97ca21f42e6f&amp;scene=21#wechat_redirect" target="_blank" rel="noopener">《如何精准理解leader布置的任务》</a><br><a href="http://mp.weixin.qq.com/s?__biz=MjM5ODYxMDA5OQ==&amp;mid=2651960073&amp;idx=1&amp;sn=3ac3bb78bb643d73e9e68d713d6eceeb&amp;chksm=bd2d06d58a5a8fc378e7cde71808c09dea9b4d5462deec0238a3d6f0ade62976a3d2bd0faafb&amp;scene=21#wechat_redirect" target="_blank" rel="noopener">《如何快速精准的和leader沟通》</a><br><a href="http://mp.weixin.qq.com/s?__biz=MjM5ODYxMDA5OQ==&amp;mid=2651960162&amp;idx=1&amp;sn=0a4814e76ae98f7b4597205bc9b4402c&amp;chksm=bd2d06be8a5a8fa8ea9cac53144d780160c853329af461b6ffa2d8002f93425c394140d1edb3&amp;scene=21#wechat_redirect" target="_blank" rel="noopener">《罗振宇送给新员工的四句话》</a><br><a href="http://mp.weixin.qq.com/s?__biz=MjM5ODYxMDA5OQ==&amp;mid=2651960490&amp;idx=1&amp;sn=c55da79ed49af175d86c71678f047a50&amp;chksm=bd2d01768a5a886064fb23c75f6f81133584102ec687f4e1b0659e1a583a8178e9e127829427&amp;scene=21#wechat_redirect" target="_blank" rel="noopener">《远离中国式辩论》</a></p>
+
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/架构/" rel="tag"># 架构</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/03/04/python-实例方法-静态方法-类方法2/" rel="next" title="python-实例方法-静态方法-类方法2">
+                <i class="fa fa-chevron-left"></i> python-实例方法-静态方法-类方法2
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2019/03/06/读书-增长黑客/" rel="prev" title="读书-增长黑客">
+                读书-增长黑客 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+  </div>
+
+
+          </div>
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">博主</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/">
+                
+                    <span class="site-state-item-count">192</span>
+                    <span class="site-state-item-name">日志</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-categories">
+                  <a href="/categories/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">32</span>
+                    <span class="site-state-item-name">分类</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  <a href="/tags/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">41</span>
+                    <span class="site-state-item-name">标签</span>
+                  </a>
+                </div>
+              
+            </nav>
+          
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+            
+          
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#【架构必备】"><span class="nav-number">1.</span> <span class="nav-text">【架构必备】</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#【一致性】"><span class="nav-number">2.</span> <span class="nav-text">【一致性】</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#【分层架构设计】"><span class="nav-number">3.</span> <span class="nav-text">【分层架构设计】</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#【数据库-SQL】"><span class="nav-number">4.</span> <span class="nav-text">【数据库-SQL】</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#【数据库架构】"><span class="nav-number">5.</span> <span class="nav-text">【数据库架构】</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#【数据库-容量】"><span class="nav-number">6.</span> <span class="nav-text">【数据库-容量】</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#【数据库中间件】"><span class="nav-number">7.</span> <span class="nav-text">【数据库中间件】</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#【架构解耦】"><span class="nav-number">8.</span> <span class="nav-text">【架构解耦】</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#【MQ】"><span class="nav-number">9.</span> <span class="nav-text">【MQ】</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#【搜索】"><span class="nav-number">10.</span> <span class="nav-text">【搜索】</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#【典型系统】"><span class="nav-number">11.</span> <span class="nav-text">【典型系统】</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#【线上实战】"><span class="nav-number">12.</span> <span class="nav-text">【线上实战】</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#【一分钟系列】"><span class="nav-number">13.</span> <span class="nav-text">【一分钟系列】</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#【评论比文章精彩，架构讨论】"><span class="nav-number">14.</span> <span class="nav-text">【评论比文章精彩，架构讨论】</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#【通用】"><span class="nav-number">15.</span> <span class="nav-text">【通用】</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder"><a href="http://blog.timilong.com/about" target="_blank"> Timi.long </a></span>
+  
+
+  
+</div>
+
+
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动 v3.7.1</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 – <a class="theme-link" target="_blank" href="https://theme-next.org">NexT.Muse</a> v6.4.1</div>
+
+
+
+
+<!-- 新增访客统计代码 -->
+
+<div class="busuanzi-count">
+    <script async="" src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>  
+    <span class="site-uv">
+      <i class="fa fa-user"></i>
+      访问用户： <span class="busuanzi-value" id="busuanzi_value_site_uv"></span> 人
+    </span>
+    <div class="powered-by"></div>
+    <span class="site-uv">
+      <i class="fa fa-eye"></i>
+      访问次数： <span class="busuanzi-value" id="busuanzi_value_site_pv"></span> 次
+    </span>
+    <!-- 博客字数统计
+    <span class="site-pv">
+      <i class="fa fa-pencil"></i>
+      博客全站共： <span class="post-count"> </span> 字
+    </span> -->
+</div>
+<!-- 新增访客统计代码 END-->
+
+        
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+    
+
+    
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.3.5/jquery.fancybox.min.js"></script>
+  
+
+
+  
+
+
+
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=6.4.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=6.4.1"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=6.4.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=6.4.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=6.4.1"></script>
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
