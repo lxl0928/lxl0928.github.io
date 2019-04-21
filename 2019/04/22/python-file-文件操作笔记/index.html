@@ -127,7 +127,7 @@
 <meta property="og:image" content="http://qiniucdn.timilong.com/16a38f316f9ffc64">
 <meta property="og:image" content="http://qiniucdn.timilong.com/16a39b4e1cf8e07c">
 <meta property="og:image" content="http://qiniucdn.timilong.com/16a39b88599d62bb">
-<meta property="og:updated_time" content="2019-04-21T08:48:41.180Z">
+<meta property="og:updated_time" content="2019-04-21T08:51:32.793Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="python-file-文件操作笔记">
 <meta name="twitter:description" content="Python 文件操作解读.">
@@ -218,7 +218,7 @@
   </div>
 
   <div class="site-nav-toggle">
-    <button aria-label="Toggle navigation bar">
+    <button aria-label="ナビゲーションバーの切り替え">
       <span class="btn-bar"></span>
       <span class="btn-bar"></span>
       <span class="btn-bar"></span>
@@ -371,7 +371,7 @@
                 
               
 
-              <time title="创建于：2019-04-21 16:33:56 / 更新于：08:48:41" itemprop="dateCreated datePublished" datetime="2019-04-21T16:33:56Z">2019-04-21</time>
+              <time title="创建于：2019-04-21 16:33:56 / 更新于：08:51:32" itemprop="dateCreated datePublished" datetime="2019-04-21T16:33:56Z">2019-04-21</time>
             
 
             
@@ -430,18 +430,18 @@
 
       
         <p><img src="http://qiniucdn.timilong.com/1551520858891.jpg" alt="cover_img"></p>
-<h2 id="文件属性"><a href="#文件属性" class="headerlink" title="文件属性"></a>文件属性</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">file.fileno(): 文件描述符</span><br><span class="line">file.mode :文件打开权限</span><br><span class="line">file.encoding: 文件的编码格式</span><br><span class="line">file.closed: 文件是否关闭</span><br></pre></td></tr></table></figure>
-<h2 id="标准文件"><a href="#标准文件" class="headerlink" title="标准文件"></a>标准文件</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">sys.stdin : 文件标准输入</span><br><span class="line">sys.stdout : 文件标准输出</span><br><span class="line">sys.stderr :  文件标准错误</span><br></pre></td></tr></table></figure>
+<h2 id="文件属性"><a href="#文件属性" class="headerlink" title="文件属性"></a>文件属性</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">file.fileno(): 文件描述符</span><br><span class="line">file.mode :文件打开权限</span><br><span class="line">file.encoding: 文件的编码格式</span><br><span class="line">file.closed: 文件是否关闭</span><br></pre></td></tr></table></figure>
+<h2 id="标准文件"><a href="#标准文件" class="headerlink" title="标准文件"></a>标准文件</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">sys.stdin : 文件标准输入</span><br><span class="line">sys.stdout : 文件标准输出</span><br><span class="line">sys.stderr :  文件标准错误</span><br></pre></td></tr></table></figure>
 <h2 id="文件命令行参数"><a href="#文件命令行参数" class="headerlink" title="文件命令行参数"></a>文件命令行参数</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sys.argv</span><br></pre></td></tr></table></figure>
-<h2 id="文件的编码格式"><a href="#文件的编码格式" class="headerlink" title="文件的编码格式"></a>文件的编码格式</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">1. u&apos;&apos;的使用 unicode 编码格式</span><br><span class="line">2. 使用 codecs 模块提供方法创建制定编码格式的文件</span><br><span class="line">3. 函数：codecs.open(fname,mode,encoding,error,buffering)</span><br><span class="line">4. mode: 打开方式</span><br><span class="line">5. encoding: 编码格式</span><br></pre></td></tr></table></figure>
+<h2 id="文件的编码格式"><a href="#文件的编码格式" class="headerlink" title="文件的编码格式"></a>文件的编码格式</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">1.</span> <span class="string">u''</span>的使用 unicode 编码格式</span><br><span class="line"><span class="number">2.</span> 使用 codecs 模块提供方法创建制定编码格式的文件</span><br><span class="line"><span class="number">3.</span> 函数：codecs.open(fname,mode,encoding,error,buffering)</span><br><span class="line"><span class="number">4.</span> mode: 打开方式</span><br><span class="line"><span class="number">5.</span> encoding: 编码格式</span><br></pre></td></tr></table></figure>
 <h2 id="文件系统"><a href="#文件系统" class="headerlink" title="文件系统"></a>文件系统</h2><p><img src="http://qiniucdn.timilong.com/16a38f24d64e31d8" alt="文件系统"></p>
 <p><img src="http://qiniucdn.timilong.com/16a38f316f9ffc64" alt="python操作文件流程"></p>
 <h2 id="使用os模块打开文件"><a href="#使用os模块打开文件" class="headerlink" title="使用os模块打开文件"></a>使用os模块打开文件</h2><blockquote>
 <p>os.open(filename, flage [, mode])</p>
 </blockquote>
-<p><code>flage</code>定义如下<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">os.O_CREAT：创建文件</span><br><span class="line">os.O_RDONLY: 只读方式打开</span><br><span class="line">os.O_WRONLY: 只写方式打开</span><br><span class="line">os.O_RDWR: 读写方式打开</span><br></pre></td></tr></table></figure></p>
+<p><code>flage</code>定义如下<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">os.O_CREAT：创建文件</span><br><span class="line">os.O_RDONLY: 只读方式打开</span><br><span class="line">os.O_WRONLY: 只写方式打开</span><br><span class="line">os.O_RDWR: 读写方式打开</span><br></pre></td></tr></table></figure></p>
 <hr>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">os.read(fd,buffersize): 读取文件</span><br><span class="line">os.write(fd,string): 写入文件</span><br><span class="line">os.lseek(fd,pos.how):文件指针操作</span><br><span class="line">os.close(fd):关闭文件</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">os.read(fd,buffersize): 读取文件</span><br><span class="line">os.write(fd,string): 写入文件</span><br><span class="line">os.lseek(fd,pos.how):文件指针操作</span><br><span class="line">os.close(fd):关闭文件</span><br></pre></td></tr></table></figure>
 <p><img src="http://qiniucdn.timilong.com/16a39b4e1cf8e07c" alt="方法1"></p>
 <p><img src="http://qiniucdn.timilong.com/16a39b88599d62bb" alt="方法2"></p>
 
