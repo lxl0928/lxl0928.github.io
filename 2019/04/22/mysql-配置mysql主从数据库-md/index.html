@@ -123,7 +123,7 @@
 <meta property="og:description" content="MySQL主从数据库配置.">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="http://qiniucdn.timilong.com/1551520678591.jpg">
-<meta property="og:updated_time" content="2019-04-22T03:54:51.288Z">
+<meta property="og:updated_time" content="2019-04-22T03:57:00.873Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="mysql-配置mysql主从数据库.md">
 <meta name="twitter:description" content="MySQL主从数据库配置.">
@@ -367,7 +367,7 @@
                 
               
 
-              <time title="创建于：2019-04-22 10:23:48 / 更新于：03:54:51" itemprop="dateCreated datePublished" datetime="2019-04-22T10:23:48Z">2019-04-22</time>
+              <time title="创建于：2019-04-22 10:23:48 / 更新于：03:57:00" itemprop="dateCreated datePublished" datetime="2019-04-22T10:23:48Z">2019-04-22</time>
             
 
             
@@ -436,14 +436,8 @@
 <p>修改port ， server-id和主机做区分， 主机分别是3306， 1 ， 另外不开启日志<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">sudo vim ~/mysql_slave/mysql.conf.d/mysqld.cnf</span><br><span class="line">port  =  8306</span><br><span class="line">general_log  = 0</span><br><span class="line">server-id  = 2</span><br></pre></td></tr></table></figure></p>
 <h3 id="创建docker容器"><a href="#创建docker容器" class="headerlink" title="创建docker容器"></a>创建docker容器</h3><p>创建docker容器,    MYSQL_ROOT_PASSWORD 是创建mysql root用户的密码<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker run --name mysql-slave -e MYSQL_ROOT_PASSWORD=mysql -d --network=host -v /home/python/mysql_slave/data:/var/lib/mysql -v /home/python/mysql_slave/mysql.conf.d:/etc/mysql/mysql.conf.d mysql:5.7.22</span><br></pre></td></tr></table></figure></p>
 <p>测试， 在ubuntu中使用mysql命令尝试连接docker容器中的mysql<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mysql -uroot -pmysql -h 127.0.0.1 --port=8306</span><br></pre></td></tr></table></figure></p>
-<h3 id="冷备份"><a href="#冷备份" class="headerlink" title="冷备份"></a>冷备份</h3><ol>
-<li><p>登录到MySQL主机，收集数据</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mysqldump -uroot -pmysql --all-databases --lock-all-tables &gt; ~/master_db.sql</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>登录到MySQL从机，同步数据 </p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mysql -uroot -pmysql -h127.0.0.1 --port=8306 &lt; ~/master_db.sql</span><br></pre></td></tr></table></figure>
-</li>
-</ol>
+<h3 id="冷备份"><a href="#冷备份" class="headerlink" title="冷备份"></a>冷备份</h3><p>登录到MySQL主机，收集数据<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mysqldump -uroot -pmysql --all-databases --lock-all-tables &gt; ~/master_db.sql</span><br></pre></td></tr></table></figure></p>
+<p>登录到MySQL从机，同步数据<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mysql -uroot -pmysql -h127.0.0.1 --port=8306 &lt; ~/master_db.sql</span><br></pre></td></tr></table></figure></p>
 <h3 id="配置主机"><a href="#配置主机" class="headerlink" title="配置主机"></a>配置主机</h3><p>编辑设置mysqld的配置文件， 设置log_bin 和server_id<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo vim /etc/mysql/mysql.conf.d/mysqld.cnf</span><br></pre></td></tr></table></figure></p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">server-id   = 1</span><br><span class="line">log_bin     =  /var/log/mysql/mysql-bin.log</span><br></pre></td></tr></table></figure>
 <p>重启主机mysql服务<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo service mysql restart</span><br></pre></td></tr></table></figure></p>
