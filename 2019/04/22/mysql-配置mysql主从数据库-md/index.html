@@ -114,17 +114,20 @@
 
 
 
-  <meta name="description" content="配置主从同步有很多种方法，可以总结为如下的步骤：123456789（1） 在主服务器上，必须开启二进制日志机制和配置一个独立的ID（2） 在每一个从服务器上，配置一个唯一的ID，创建一个用来专门复制主服务器数据的账号（3） 在开始复制进程前，在主服务器上记录二进制文件的位置信息（4） 如果在开始复制之前，数据库中已经有数据，就必须先创建一个数据快照（可以使用mysqldump导出数据库，或者直接">
+  <meta name="description" content="MySQL主从数据库配置.">
+<meta name="keywords" content="mysql">
 <meta property="og:type" content="article">
 <meta property="og:title" content="mysql-配置mysql主从数据库.md">
 <meta property="og:url" content="https://blog.timilong.com/2019/04/22/mysql-配置mysql主从数据库-md/index.html">
 <meta property="og:site_name" content="Timilong&#39;s blog">
-<meta property="og:description" content="配置主从同步有很多种方法，可以总结为如下的步骤：123456789（1） 在主服务器上，必须开启二进制日志机制和配置一个独立的ID（2） 在每一个从服务器上，配置一个唯一的ID，创建一个用来专门复制主服务器数据的账号（3） 在开始复制进程前，在主服务器上记录二进制文件的位置信息（4） 如果在开始复制之前，数据库中已经有数据，就必须先创建一个数据快照（可以使用mysqldump导出数据库，或者直接">
+<meta property="og:description" content="MySQL主从数据库配置.">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-04-22T02:32:41.872Z">
+<meta property="og:image" content="http://qiniucdn.timilong.com/1551520678591.jpg">
+<meta property="og:updated_time" content="2019-04-22T02:36:56.736Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="mysql-配置mysql主从数据库.md">
-<meta name="twitter:description" content="配置主从同步有很多种方法，可以总结为如下的步骤：123456789（1） 在主服务器上，必须开启二进制日志机制和配置一个独立的ID（2） 在每一个从服务器上，配置一个唯一的ID，创建一个用来专门复制主服务器数据的账号（3） 在开始复制进程前，在主服务器上记录二进制文件的位置信息（4） 如果在开始复制之前，数据库中已经有数据，就必须先创建一个数据快照（可以使用mysqldump导出数据库，或者直接">
+<meta name="twitter:description" content="MySQL主从数据库配置.">
+<meta name="twitter:image" content="http://qiniucdn.timilong.com/1551520678591.jpg">
 
 
 
@@ -364,7 +367,7 @@
                 
               
 
-              <time title="创建于：2019-04-22 10:23:48 / 更新于：02:32:41" itemprop="dateCreated datePublished" datetime="2019-04-22T10:23:48Z">2019-04-22</time>
+              <time title="创建于：2019-04-22 10:23:48 / 更新于：02:36:56" itemprop="dateCreated datePublished" datetime="2019-04-22T10:23:48Z">2019-04-22</time>
             
 
             
@@ -375,6 +378,24 @@
           </span>
 
           
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/mysql/" itemprop="url" rel="index"><span itemprop="name">mysql</span></a></span>
+
+                
+                
+              
+            </span>
+          
 
           
             
@@ -387,6 +408,8 @@
 
           
 
+          
+              <div class="post-description">MySQL主从数据库配置.</div>
           
 
         </div>
@@ -402,7 +425,7 @@
       
 
       
-        <p><img src="" alt="cover_img"></p>
+        <p><img src="http://qiniucdn.timilong.com/1551520678591.jpg" alt="cover_img"></p>
 <h2 id="配置主从同步有很多种方法，可以总结为如下的步骤："><a href="#配置主从同步有很多种方法，可以总结为如下的步骤：" class="headerlink" title="配置主从同步有很多种方法，可以总结为如下的步骤："></a>配置主从同步有很多种方法，可以总结为如下的步骤：</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">（1） 在主服务器上，必须开启二进制日志机制和配置一个独立的ID</span><br><span class="line"></span><br><span class="line">（2） 在每一个从服务器上，配置一个唯一的ID，创建一个用来专门复制主服务器数据的账号</span><br><span class="line"></span><br><span class="line">（3） 在开始复制进程前，在主服务器上记录二进制文件的位置信息</span><br><span class="line"></span><br><span class="line">（4） 如果在开始复制之前，数据库中已经有数据，就必须先创建一个数据快照（可以使用mysqldump导出数据库，或者直接复制数据文件）</span><br><span class="line"></span><br><span class="line">（5） 配置从服务器要连接的主服务器的IP地址和登陆授权，二进制日志文件名和位置</span><br></pre></td></tr></table></figure>
 <p>这里演示主机电脑中的ubuntu⾥⾯的MySQL作为主机 ，使⽤Dokcer安装的MySQL作为从机</p>
 <h2 id="安装MySQL从机"><a href="#安装MySQL从机" class="headerlink" title="安装MySQL从机"></a>安装MySQL从机</h2><p>在docker里面安装mysql的镜像， 此版本的镜像，尽量和⾃⼰MySQL主机版本⼀致</p>
@@ -469,6 +492,12 @@
     
 
     <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/mysql/" rel="tag"># mysql</a>
+          
+        </div>
       
 
       
