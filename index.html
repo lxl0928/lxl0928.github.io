@@ -319,168 +319,6 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://blog.timilong.com/2019/05/17/linux-配置静态IP后无法ping通网关和外部网络的问题/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="博主">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Timilong's blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2019/05/17/linux-配置静态IP后无法ping通网关和外部网络的问题/" itemprop="url">
-                  linux-配置静态IP后无法ping通网关和外部网络的问题
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-
-              
-                
-              
-
-              <time title="创建于：2019-05-16 18:21:01 / 更新于：10:21:50" itemprop="dateCreated datePublished" datetime="2019-05-16T18:21:01Z">2019-05-16</time>
-            
-
-            
-              
-
-              
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-	
-	  <div class="out-img-topic">
-	    <img src=http://qiniucdn.timilong.com/ class="img-topic">
-	  </div>
-	
-        
-          
-            <p><img src="" alt="cover_img"></p>
-<p>centos7配置静态IP<br>centos7安装成功后,为了保证多个虚拟机的通讯,需配置静态ip和统一网关,只需要修改网卡(用ifconfig查看使用的网卡,我的是ens33)的配置文件就行了,其他文件不用动(/etc/sysconfig/network  这个文件不用动(否则会ping不通))</p>
-<p>网卡路径:  /etc/sysconfig/network-scripts/ifcfg-ens33  (rns33为网卡名)</p>
-<p>TYPE=”Ethernet”<br>PROXY_METHOD=”none”<br>BROWSER_ONLY=”no”<br>BOOTPROTO=”static”  #静态获取ip<br>DEFROUTE=”yes”<br>IPV4_FAILURE_FATAL=”no”<br>IPV6INIT=”yes”<br>IPV6_AUTOCONF=”yes”<br>IPV6_DEFROUTE=”yes”<br>IPV6_FAILURE_FATAL=”no”<br>IPV6_ADDR_GEN_MODE=”stable-privacy”<br>NAME=”ens33”<br>UUID=”a8f0def7-cd82-4e97-9615-fc4001fd2282”<br>DEVICE=”ens33”<br>IPADDR=192.168.204.133   #设置的本机静态ip<br>GATEWAY=192.168.204.2    #网关<br>NETMASK=255.255.255.0<br>DNS1=8.8.8.8<br>DNS2=114.114.114<br>ONBOOT=”yes”   #重启后使用该网卡</p>
-<p>修改保存之后重启服务 service network restart</p>
-<p>然后尝试 ping <a href="http://www.baidu.com" target="_blank" rel="noopener">www.baidu.com</a> 或者 ping 192.168.204.2(这里写你自己的网关)   如果ping的通就OK了.</p>
-<p>Ubuntu16.04配置静态IP<br>打开Ubuntu的终端，输入：</p>
-<p>vim /etc/network/interfaces<br>然后输入如下代码：</p>
-<p>auto lo<br>iface lo inet loopback</p>
-<p>auto ens33<br>iface ens33 inet static<br>address 192.168.204.131<br>netmask 255.255.255.0<br>gateway 192.168.204.2<br>然后，配置DNS服务器：(注:dns也可以在上面的文件直接配置即:在interfaces末尾加入dns-nameservers 114.114.114.114 8.8.8.8)</p>
-<p>vim /etc/resolv.conf</p>
-<p>在里面填入:</p>
-<p>nameserver 114.114.114.114</p>
-<p>nameserver 8.8.8.8</p>
-<p>保存退出然后重启网卡:</p>
-<p>sudo /etc/init.d/networking restart</p>
-<p>然后尝试 ping <a href="http://www.baidu.com" target="_blank" rel="noopener">www.baidu.com</a> 或者 ping 192.168.204.2(这里写你自己的网关)   如果ping的通就OK了.</p>
-<p>最后如果用的是VMware的话修改网关或ip后(网卡都已经确定重启), 需要断开 网络适配器 再重新以NAT方式连接,否则就ping不通网关上不了网,,,不知道是不是因为缓存</p>
-
-          
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="https://blog.timilong.com/2019/05/09/mysql-limit的性能问题优化/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1981,11 +1819,178 @@
 
 
     
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://blog.timilong.com/2019/03/08/读书-OKR工作法笔记/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="博主">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Timilong's blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2019/03/08/读书-OKR工作法笔记/" itemprop="url">
+                  读书-OKR工作法笔记
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建于：2019-03-08 11:13:14 / 更新于：03:21:12" itemprop="dateCreated datePublished" datetime="2019-03-08T11:13:14Z">2019-03-08</time>
+            
+
+            
+              
+
+              
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/读书/" itemprop="url" rel="index"><span itemprop="name">读书</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+	
+	  <div class="out-img-topic">
+	    <img src=http://qiniucdn.timilong.com/1551521135223.jpg class="img-topic">
+	  </div>
+	
+        
+          OKR工作法，读书笔记.
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2019/03/08/读书-OKR工作法笔记/">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
   </section>
 
   
   <nav class="pagination">
-    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><span class="space">&hellip;</span><a class="page-number" href="/page/21/">21</a><a class="extend next" rel="next" href="/page/2/"><i class="fa fa-angle-right" aria-label="Next page"></i></a>
+    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><span class="space">&hellip;</span><a class="page-number" href="/page/20/">20</a><a class="extend next" rel="next" href="/page/2/"><i class="fa fa-angle-right" aria-label="Next page"></i></a>
   </nav>
 
 
@@ -2028,7 +2033,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">201</span>
+                    <span class="site-state-item-count">200</span>
                     <span class="site-state-item-name">日志</span>
                   </a>
                 </div>
