@@ -114,17 +114,20 @@
 
 
 
-  <meta name="description" content="centos7配置静态IPcentos7安装成功后,为了保证多个虚拟机的通讯,需配置静态ip和统一网关,只需要修改网卡(用ifconfig查看使用的网卡,我的是ens33)的配置文件就行了,其他文件不用动(/etc/sysconfig/network  这个文件不用动(否则会ping不通)) 网卡路径:  /etc/sysconfig/network-scripts/ifcfg-ens33  (">
+  <meta name="description" content="Linux日常配置。">
+<meta name="keywords" content="Linux">
 <meta property="og:type" content="article">
 <meta property="og:title" content="linux-配置静态IP后无法ping通网关和外部网络的问题">
 <meta property="og:url" content="https://blog.timilong.com/2019/05/17/linux-配置静态IP后无法ping通网关和外部网络的问题/index.html">
 <meta property="og:site_name" content="Timilong&#39;s blog">
-<meta property="og:description" content="centos7配置静态IPcentos7安装成功后,为了保证多个虚拟机的通讯,需配置静态ip和统一网关,只需要修改网卡(用ifconfig查看使用的网卡,我的是ens33)的配置文件就行了,其他文件不用动(/etc/sysconfig/network  这个文件不用动(否则会ping不通)) 网卡路径:  /etc/sysconfig/network-scripts/ifcfg-ens33  (">
+<meta property="og:description" content="Linux日常配置。">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-05-16T10:21:50.838Z">
+<meta property="og:image" content="http://qiniucdn.timilong.com/1551520939891.jpg">
+<meta property="og:updated_time" content="2019-06-02T02:56:24.808Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="linux-配置静态IP后无法ping通网关和外部网络的问题">
-<meta name="twitter:description" content="centos7配置静态IPcentos7安装成功后,为了保证多个虚拟机的通讯,需配置静态ip和统一网关,只需要修改网卡(用ifconfig查看使用的网卡,我的是ens33)的配置文件就行了,其他文件不用动(/etc/sysconfig/network  这个文件不用动(否则会ping不通)) 网卡路径:  /etc/sysconfig/network-scripts/ifcfg-ens33  (">
+<meta name="twitter:description" content="Linux日常配置。">
+<meta name="twitter:image" content="http://qiniucdn.timilong.com/1551520939891.jpg">
 
 
 
@@ -364,17 +367,47 @@
                 
               
 
-              <time title="创建于：2019-05-16 18:21:01 / 更新于：10:21:50" itemprop="dateCreated datePublished" datetime="2019-05-16T18:21:01Z">2019-05-16</time>
+              <time title="创建于：2019-05-16 18:21:01" itemprop="dateCreated datePublished" datetime="2019-05-16T18:21:01Z">2019-05-16</time>
             
 
             
               
 
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Edited on</span>
+                
+                <time title="更新于：2019-06-02 02:56:24" itemprop="dateModified" datetime="2019-06-02T02:56:24Z">2019-06-02</time>
               
             
           </span>
 
           
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Linux/" itemprop="url" rel="index"><span itemprop="name">Linux</span></a></span>
+
+                
+                
+              
+            </span>
+          
 
           
             
@@ -387,6 +420,8 @@
 
           
 
+          
+              <div class="post-description">Linux日常配置。</div>
           
 
         </div>
@@ -402,24 +437,22 @@
       
 
       
-        <p><img src="" alt="cover_img"></p>
-<p>centos7配置静态IP<br>centos7安装成功后,为了保证多个虚拟机的通讯,需配置静态ip和统一网关,只需要修改网卡(用ifconfig查看使用的网卡,我的是ens33)的配置文件就行了,其他文件不用动(/etc/sysconfig/network  这个文件不用动(否则会ping不通))</p>
-<p>网卡路径:  /etc/sysconfig/network-scripts/ifcfg-ens33  (rns33为网卡名)</p>
-<p>TYPE=”Ethernet”<br>PROXY_METHOD=”none”<br>BROWSER_ONLY=”no”<br>BOOTPROTO=”static”  #静态获取ip<br>DEFROUTE=”yes”<br>IPV4_FAILURE_FATAL=”no”<br>IPV6INIT=”yes”<br>IPV6_AUTOCONF=”yes”<br>IPV6_DEFROUTE=”yes”<br>IPV6_FAILURE_FATAL=”no”<br>IPV6_ADDR_GEN_MODE=”stable-privacy”<br>NAME=”ens33”<br>UUID=”a8f0def7-cd82-4e97-9615-fc4001fd2282”<br>DEVICE=”ens33”<br>IPADDR=192.168.204.133   #设置的本机静态ip<br>GATEWAY=192.168.204.2    #网关<br>NETMASK=255.255.255.0<br>DNS1=8.8.8.8<br>DNS2=114.114.114<br>ONBOOT=”yes”   #重启后使用该网卡</p>
-<p>修改保存之后重启服务 service network restart</p>
-<p>然后尝试 ping <a href="http://www.baidu.com" target="_blank" rel="noopener">www.baidu.com</a> 或者 ping 192.168.204.2(这里写你自己的网关)   如果ping的通就OK了.</p>
-<p>Ubuntu16.04配置静态IP<br>打开Ubuntu的终端，输入：</p>
-<p>vim /etc/network/interfaces<br>然后输入如下代码：</p>
-<p>auto lo<br>iface lo inet loopback</p>
-<p>auto ens33<br>iface ens33 inet static<br>address 192.168.204.131<br>netmask 255.255.255.0<br>gateway 192.168.204.2<br>然后，配置DNS服务器：(注:dns也可以在上面的文件直接配置即:在interfaces末尾加入dns-nameservers 114.114.114.114 8.8.8.8)</p>
-<p>vim /etc/resolv.conf</p>
-<p>在里面填入:</p>
-<p>nameserver 114.114.114.114</p>
-<p>nameserver 8.8.8.8</p>
-<p>保存退出然后重启网卡:</p>
-<p>sudo /etc/init.d/networking restart</p>
-<p>然后尝试 ping <a href="http://www.baidu.com" target="_blank" rel="noopener">www.baidu.com</a> 或者 ping 192.168.204.2(这里写你自己的网关)   如果ping的通就OK了.</p>
-<p>最后如果用的是VMware的话修改网关或ip后(网卡都已经确定重启), 需要断开 网络适配器 再重新以NAT方式连接,否则就ping不通网关上不了网,,,不知道是不是因为缓存</p>
+        <p><img src="http://qiniucdn.timilong.com/1551520939891.jpg" alt="cover_img"></p>
+<h3 id="centos7配置静态IP"><a href="#centos7配置静态IP" class="headerlink" title="centos7配置静态IP"></a>centos7配置静态IP</h3><p>centos7安装成功后, 为了保证多个虚拟机的通讯, 需配置静态ip和统一网关, 只需要修改网卡(用ifconfig查看使用的网卡, 我的是ens33)的配置文件就行了。<br>其他文件不用动(/etc/sysconfig/network  这个文件不用动(否则会ping不通))</p>
+<p>网卡路径:  <code>/etc/sysconfig/network-scripts/ifcfg-ens33</code>  (rns33为网卡名)<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">TYPE="Ethernet"</span><br><span class="line">PROXY_METHOD="none"</span><br><span class="line">BROWSER_ONLY="no"</span><br><span class="line">BOOTPROTO="static"  #静态获取ip</span><br><span class="line">DEFROUTE="yes"</span><br><span class="line">IPV4_FAILURE_FATAL="no"</span><br><span class="line">IPV6INIT="yes"</span><br><span class="line">IPV6_AUTOCONF="yes"</span><br><span class="line">IPV6_DEFROUTE="yes"</span><br><span class="line">IPV6_FAILURE_FATAL="no"</span><br><span class="line">IPV6_ADDR_GEN_MODE="stable-privacy"</span><br><span class="line">NAME="ens33"</span><br><span class="line">UUID="a8f0def7-cd82-4e97-9615-fc4001fd2282"</span><br><span class="line">DEVICE="ens33"</span><br><span class="line">IPADDR=192.168.204.133   #设置的本机静态ip</span><br><span class="line">GATEWAY=192.168.204.2    #网关</span><br><span class="line">NETMASK=255.255.255.0</span><br><span class="line">DNS1=8.8.8.8</span><br><span class="line">DNS2=114.114.114</span><br><span class="line">ONBOOT="yes"   #重启后使用该网卡</span><br></pre></td></tr></table></figure></p>
+<p>修改保存之后重启服务 <code>service network restart</code></p>
+<p>然后尝试 <code>ping www.baidu.com</code> 或者 <code>ping 192.168.204.2</code> (这里写你自己的网关)   如果ping的通就OK了.</p>
+<h3 id="Ubuntu16-04配置静态IP"><a href="#Ubuntu16-04配置静态IP" class="headerlink" title="Ubuntu16.04配置静态IP"></a>Ubuntu16.04配置静态IP</h3><p>打开Ubuntu的终端，输入：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">vim /etc/network/interfaces</span><br></pre></td></tr></table></figure></p>
+<p>然后输入如下代码：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">auto lo</span><br><span class="line">iface lo inet loopback</span><br><span class="line"> </span><br><span class="line">auto ens33</span><br><span class="line">iface ens33 inet static</span><br><span class="line">address 192.168.204.131</span><br><span class="line">netmask 255.255.255.0</span><br><span class="line">gateway 192.168.204.2</span><br></pre></td></tr></table></figure></p>
+<p>然后，配置DNS服务器：</p>
+<blockquote>
+<p>注: dns也可以在上面的文件直接配置 即:<br>在interfaces末尾加入dns-nameservers 114.114.114.114 8.8.8.8</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">vim /etc/resolv.conf</span><br></pre></td></tr></table></figure>
+<p>在里面填入:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">nameserver 114.114.114.114</span><br><span class="line"></span><br><span class="line">nameserver 8.8.8.8</span><br></pre></td></tr></table></figure></p>
+<p>保存退出然后重启网卡:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo /etc/init.d/networking restart</span><br></pre></td></tr></table></figure></p>
+<p>然后尝试 <code>ping www.baidu.com</code> 或者 <code>ping 192.168.204.2</code>(这里写你自己的网关), 如果ping的通就OK了.</p>
+<p>最后如果用的是VMware的话修改网关或ip后(网卡都已经确定重启), 需要断开 网络适配器 再重新以NAT方式连接, 否则就ping不通网关上不了网。</p>
 
       
     </div>
@@ -437,6 +470,12 @@
     
 
     <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Linux/" rel="tag"># Linux</a>
+          
+        </div>
       
 
       
@@ -500,8 +539,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -718,6 +766,22 @@
         </div>
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#centos7配置静态IP"><span class="nav-number">1.</span> <span class="nav-text">centos7配置静态IP</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Ubuntu16-04配置静态IP"><span class="nav-number">2.</span> <span class="nav-text">Ubuntu16.04配置静态IP</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       
