@@ -122,12 +122,12 @@
 <meta property="og:site_name" content="Timilong&#39;s blog">
 <meta property="og:description" content="Linux日常配置。">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="http://qiniucdn.timilong.com/1551520939891.jpg">
-<meta property="og:updated_time" content="2019-06-02T02:56:24.808Z">
+<meta property="og:image" content="http://qiniucdn.timilong.com/1551520864412.jpg">
+<meta property="og:updated_time" content="2019-06-02T08:31:41.094Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="linux-配置静态IP后无法ping通网关和外部网络的问题">
 <meta name="twitter:description" content="Linux日常配置。">
-<meta name="twitter:image" content="http://qiniucdn.timilong.com/1551520939891.jpg">
+<meta name="twitter:image" content="http://qiniucdn.timilong.com/1551520864412.jpg">
 
 
 
@@ -384,7 +384,7 @@
                 
                   <span class="post-meta-item-text">Edited on</span>
                 
-                <time title="更新于：2019-06-02 02:56:24" itemprop="dateModified" datetime="2019-06-02T02:56:24Z">2019-06-02</time>
+                <time title="更新于：2019-06-02 08:31:41" itemprop="dateModified" datetime="2019-06-02T08:31:41Z">2019-06-02</time>
               
             
           </span>
@@ -437,7 +437,7 @@
       
 
       
-        <p><img src="http://qiniucdn.timilong.com/1551520939891.jpg" alt="cover_img"></p>
+        <p><img src="http://qiniucdn.timilong.com/1551520864412.jpg" alt="cover_img"></p>
 <h3 id="centos7配置静态IP"><a href="#centos7配置静态IP" class="headerlink" title="centos7配置静态IP"></a>centos7配置静态IP</h3><p>centos7安装成功后, 为了保证多个虚拟机的通讯, 需配置静态ip和统一网关, 只需要修改网卡(用ifconfig查看使用的网卡, 我的是ens33)的配置文件就行了。<br>其他文件不用动(/etc/sysconfig/network  这个文件不用动(否则会ping不通))</p>
 <p>网卡路径:  <code>/etc/sysconfig/network-scripts/ifcfg-ens33</code>  (rns33为网卡名)<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">TYPE="Ethernet"</span><br><span class="line">PROXY_METHOD="none"</span><br><span class="line">BROWSER_ONLY="no"</span><br><span class="line">BOOTPROTO="static"  #静态获取ip</span><br><span class="line">DEFROUTE="yes"</span><br><span class="line">IPV4_FAILURE_FATAL="no"</span><br><span class="line">IPV6INIT="yes"</span><br><span class="line">IPV6_AUTOCONF="yes"</span><br><span class="line">IPV6_DEFROUTE="yes"</span><br><span class="line">IPV6_FAILURE_FATAL="no"</span><br><span class="line">IPV6_ADDR_GEN_MODE="stable-privacy"</span><br><span class="line">NAME="ens33"</span><br><span class="line">UUID="a8f0def7-cd82-4e97-9615-fc4001fd2282"</span><br><span class="line">DEVICE="ens33"</span><br><span class="line">IPADDR=192.168.204.133   #设置的本机静态ip</span><br><span class="line">GATEWAY=192.168.204.2    #网关</span><br><span class="line">NETMASK=255.255.255.0</span><br><span class="line">DNS1=8.8.8.8</span><br><span class="line">DNS2=114.114.114</span><br><span class="line">ONBOOT="yes"   #重启后使用该网卡</span><br></pre></td></tr></table></figure></p>
 <p>修改保存之后重启服务 <code>service network restart</code></p>
