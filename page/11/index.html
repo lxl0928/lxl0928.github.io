@@ -208,7 +208,7 @@
   </div>
 
   <div class="site-nav-toggle">
-    <button aria-label="ナビゲーションバーの切り替え">
+    <button aria-label="Toggle navigation bar">
       <span class="btn-bar"></span>
       <span class="btn-bar"></span>
       <span class="btn-bar"></span>
@@ -319,6 +319,185 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://blog.timilong.com/2018/09/13/RPC-11PreForking同步模型/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="博主">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Timilong's blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/09/13/RPC-11PreForking同步模型/" itemprop="url">
+                  RPC-11PreForking同步模型
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建于：2018-09-13 10:53:03" itemprop="dateCreated datePublished" datetime="2018-09-13T10:53:03Z">2018-09-13</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Edited on</span>
+                
+                <time title="更新于：2018-12-04 06:42:41" itemprop="dateModified" datetime="2018-12-04T06:42:41Z">2018-12-04</time>
+              
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/RPC/" itemprop="url" rel="index"><span itemprop="name">RPC</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+	
+	  <div class="out-img-topic">
+	    <img src=http://qiniucdn.timilong.com/154373696068.jpg class="img-topic">
+	  </div>
+	
+        
+          进程要比线程更加吃资源，如果来一个连接就开一个进程，当连接比较多时，进程数量也会跟着多起来，操作系统的调度压力也就会比较大。所以我们要对服务器开辟的进程数量进行限制，避免系统负载过重。这就需要掌握多进程 PreForking 模型。
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2018/09/13/RPC-11PreForking同步模型/">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="https://blog.timilong.com/2018/09/13/RPC-10多进程同步模型/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -380,7 +559,7 @@
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 
-                  <span class="post-meta-item-text">に編集されました</span>
+                  <span class="post-meta-item-text">Edited on</span>
                 
                 <time title="更新于：2018-12-04 06:42:41" itemprop="dateModified" datetime="2018-12-04T06:42:41Z">2018-12-04</time>
               
@@ -559,7 +738,7 @@
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 
-                  <span class="post-meta-item-text">に編集されました</span>
+                  <span class="post-meta-item-text">Edited on</span>
                 
                 <time title="更新于：2018-12-04 06:42:41" itemprop="dateModified" datetime="2018-12-04T06:42:41Z">2018-12-04</time>
               
@@ -738,7 +917,7 @@
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 
-                  <span class="post-meta-item-text">に編集されました</span>
+                  <span class="post-meta-item-text">Edited on</span>
                 
                 <time title="更新于：2018-12-04 06:42:41" itemprop="dateModified" datetime="2018-12-04T06:42:41Z">2018-12-04</time>
               
@@ -917,7 +1096,7 @@
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 
-                  <span class="post-meta-item-text">に編集されました</span>
+                  <span class="post-meta-item-text">Edited on</span>
                 
                 <time title="更新于：2018-12-04 06:42:41" itemprop="dateModified" datetime="2018-12-04T06:42:41Z">2018-12-04</time>
               
@@ -1096,7 +1275,7 @@
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 
-                  <span class="post-meta-item-text">に編集されました</span>
+                  <span class="post-meta-item-text">Edited on</span>
                 
                 <time title="更新于：2018-12-04 06:42:41" itemprop="dateModified" datetime="2018-12-04T06:42:41Z">2018-12-04</time>
               
@@ -1275,7 +1454,7 @@
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 
-                  <span class="post-meta-item-text">に編集されました</span>
+                  <span class="post-meta-item-text">Edited on</span>
                 
                 <time title="更新于：2018-12-04 06:52:03" itemprop="dateModified" datetime="2018-12-04T06:52:03Z">2018-12-04</time>
               
@@ -1454,7 +1633,7 @@
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 
-                  <span class="post-meta-item-text">に編集されました</span>
+                  <span class="post-meta-item-text">Edited on</span>
                 
                 <time title="更新于：2018-12-04 06:52:04" itemprop="dateModified" datetime="2018-12-04T06:52:04Z">2018-12-04</time>
               
@@ -1633,7 +1812,7 @@
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 
-                  <span class="post-meta-item-text">に編集されました</span>
+                  <span class="post-meta-item-text">Edited on</span>
                 
                 <time title="更新于：2018-12-04 06:52:04" itemprop="dateModified" datetime="2018-12-04T06:52:04Z">2018-12-04</time>
               
@@ -1812,7 +1991,7 @@
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 
-                  <span class="post-meta-item-text">に編集されました</span>
+                  <span class="post-meta-item-text">Edited on</span>
                 
                 <time title="更新于：2018-12-04 06:52:04" itemprop="dateModified" datetime="2018-12-04T06:52:04Z">2018-12-04</time>
               
@@ -1915,190 +2094,11 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://blog.timilong.com/2018/09/09/纪录片-创新中国第一集信息创新/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="博主">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Timilong's blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/09/09/纪录片-创新中国第一集信息创新/" itemprop="url">
-                  纪录片-创新中国第一集信息创新
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-
-              
-                
-              
-
-              <time title="创建于：2018-09-08 18:28:41" itemprop="dateCreated datePublished" datetime="2018-09-08T18:28:41Z">2018-09-08</time>
-            
-
-            
-              
-
-              
-                
-                <span class="post-meta-divider">|</span>
-                
-
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">に編集されました</span>
-                
-                <time title="更新于：2018-12-04 06:42:41" itemprop="dateModified" datetime="2018-12-04T06:42:41Z">2018-12-04</time>
-              
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/纪录片/" itemprop="url" rel="index"><span itemprop="name">纪录片</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-	
-	  <div class="out-img-topic">
-	    <img src=http://qiniucdn.timilong.com/1543736715801.jpg class="img-topic">
-	  </div>
-	
-        
-          《创新中国》是一部讲述中国最新科技成就和创新精神的纪录片。它关注最前沿的科学突破、最新潮的科技热点，聚焦信息技术、新型能源、中国制造、生命科学、航空航天与海洋探索等前沿领域，用鲜活的故事记录当下中国伟大的创新实践。
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2018/09/09/纪录片-创新中国第一集信息创新/">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/page/10/"><i class="fa fa-angle-left" aria-label="前のページ"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/10/">10</a><span class="page-number current">11</span><a class="page-number" href="/page/12/">12</a><span class="space">&hellip;</span><a class="page-number" href="/page/21/">21</a><a class="extend next" rel="next" href="/page/12/"><i class="fa fa-angle-right" aria-label="次のページ"></i></a>
+    <a class="extend prev" rel="prev" href="/page/10/"><i class="fa fa-angle-left" aria-label="Previous page"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/10/">10</a><span class="page-number current">11</span><a class="page-number" href="/page/12/">12</a><span class="space">&hellip;</span><a class="page-number" href="/page/21/">21</a><a class="extend next" rel="next" href="/page/12/"><i class="fa fa-angle-right" aria-label="Next page"></i></a>
   </nav>
 
 
@@ -2141,7 +2141,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">209</span>
+                    <span class="site-state-item-count">210</span>
                     <span class="site-state-item-name">日志</span>
                   </a>
                 </div>
