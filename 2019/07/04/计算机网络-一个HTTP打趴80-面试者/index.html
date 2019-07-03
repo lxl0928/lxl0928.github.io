@@ -114,17 +114,20 @@
 
 
 
-  <meta name="description" content="转载自: 微信公众号，架构师之路本文系原创, 转载请联系作者 Timilong">
+  <meta name="description" content="Http知识面试题-转载">
+<meta name="keywords" content="Http">
 <meta property="og:type" content="article">
-<meta property="og:title" content="计算机网络-一个HTTP打趴80%面试者">
+<meta property="og:title" content="HTTP-一个HTTP打趴80%面试者">
 <meta property="og:url" content="https://blog.timilong.com/2019/07/04/计算机网络-一个HTTP打趴80-面试者/index.html">
 <meta property="og:site_name" content="Timilong&#39;s blog">
-<meta property="og:description" content="转载自: 微信公众号，架构师之路本文系原创, 转载请联系作者 Timilong">
+<meta property="og:description" content="Http知识面试题-转载">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-07-03T17:35:05.656Z">
+<meta property="og:image" content="http://qiniucdn.timilong.com/1551520957205.jpg">
+<meta property="og:updated_time" content="2019-07-03T17:56:27.797Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="计算机网络-一个HTTP打趴80%面试者">
-<meta name="twitter:description" content="转载自: 微信公众号，架构师之路本文系原创, 转载请联系作者 Timilong">
+<meta name="twitter:title" content="HTTP-一个HTTP打趴80%面试者">
+<meta name="twitter:description" content="Http知识面试题-转载">
+<meta name="twitter:image" content="http://qiniucdn.timilong.com/1551520957205.jpg">
 
 
 
@@ -141,7 +144,7 @@
   };
 </script>
 
-  <title>计算机网络-一个HTTP打趴80%面试者 | Timilong's blog</title>
+  <title>HTTP-一个HTTP打趴80%面试者 | Timilong's blog</title>
   
 
 
@@ -211,7 +214,7 @@
   </div>
 
   <div class="site-nav-toggle">
-    <button aria-label="Toggle navigation bar">
+    <button aria-label="ナビゲーションバーの切り替え">
       <span class="btn-bar"></span>
       <span class="btn-bar"></span>
       <span class="btn-bar"></span>
@@ -339,7 +342,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">计算机网络-一个HTTP打趴80%面试者
+          <h1 class="post-title" itemprop="name headline">HTTP-一个HTTP打趴80%面试者
               
             
           </h1>
@@ -379,14 +382,32 @@
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 
-                  <span class="post-meta-item-text">Edited on</span>
+                  <span class="post-meta-item-text">に編集されました</span>
                 
-                <time title="更新于：2019-07-03 17:35:05" itemprop="dateModified" datetime="2019-07-03T17:35:05Z">2019-07-03</time>
+                <time title="更新于：2019-07-03 17:56:27" itemprop="dateModified" datetime="2019-07-03T17:56:27Z">2019-07-03</time>
               
             
           </span>
 
           
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Http/" itemprop="url" rel="index"><span itemprop="name">Http</span></a></span>
+
+                
+                
+              
+            </span>
+          
 
           
             
@@ -399,6 +420,8 @@
 
           
 
+          
+              <div class="post-description">Http知识面试题-转载</div>
           
 
         </div>
@@ -414,10 +437,49 @@
       
 
       
-        <p><img src="" alt="cover_img"></p>
+        <p><img src="http://qiniucdn.timilong.com/1551520957205.jpg" alt="cover_img"></p>
 <blockquote>
-<p>转载自: 微信公众号，<a href="">架构师之路</a><br>本文系原创, 转载请联系作者 <a href="http://blog.timilong.com/about">Timilong</a></p>
+<p>转载自: 微信公众号，<a href="https://mp.weixin.qq.com/s/DY4-yV_QXTGUB5_lvAn3LQ" target="_blank" rel="noopener">码上实战</a></p>
 </blockquote>
+<blockquote>
+<p>面试一年多，每当我问起面试者对HTTP的了解时，个个回答令我瞠目结舌，这些开发者都有3-5年的经验。请不要让我叫你野生程序员，是时候了解HTTP了，让我们当个正规军。</p>
+</blockquote>
+<h2 id="起因"><a href="#起因" class="headerlink" title="起因"></a>起因</h2><p>面试官：请问你了解HTTP协议吗？</p>
+<p>前端开发：这不是应该后端清楚的吗？</p>
+<p>后端开发：这不是前端知道的吗？</p>
+<p>面试官：……</p>
+<p>我们先一本正经的来了解下HTTP（不包含传输层TCP），然后总结其中的精华回复面试官。</p>
+<h2 id="HTTP协议简介"><a href="#HTTP协议简介" class="headerlink" title="HTTP协议简介"></a>HTTP协议简介</h2><p>HTTP（超文本传输协议）是应用层上的一种客户端/服务端模型的通信协议,它由请求和响应构成，且是无状态的。（暂不介绍HTTP2）</p>
+<h3 id="协议"><a href="#协议" class="headerlink" title="协议"></a>协议</h3><p>协议规定了通信双方必须遵循的数据传输格式，这样通信双方按照约定的格式才能准确的通信。</p>
+<h3 id="无状态"><a href="#无状态" class="headerlink" title="无状态"></a>无状态</h3><p>无状态是指两次连接通信之间是没有任何关系的，每次都是一个新的连接，服务端不会记录前后的请求信息。</p>
+<h3 id="客户端-服务端模型"><a href="#客户端-服务端模型" class="headerlink" title="客户端/服务端模型"></a>客户端/服务端模型</h3><h3 id="五层网络模型"><a href="#五层网络模型" class="headerlink" title="五层网络模型"></a>五层网络模型</h3><h3 id="URL构成"><a href="#URL构成" class="headerlink" title="URL构成"></a>URL构成</h3><p>用了这么久，你注意过吗？</p>
+<h3 id="协议内容"><a href="#协议内容" class="headerlink" title="协议内容"></a>协议内容</h3><h4 id="请求（Request）"><a href="#请求（Request）" class="headerlink" title="请求（Request）"></a>请求（Request）</h4><p>客户端发送一个HTTP请求到服务端的格式：</p>
+<ul>
+<li>请求行</li>
+<li>请求头</li>
+<li>请求体</li>
+</ul>
+<h4 id="响应（Response）"><a href="#响应（Response）" class="headerlink" title="响应（Response）"></a>响应（Response）</h4><p>服务端响应客户端格式：</p>
+<ul>
+<li>状态行</li>
+<li>响应头</li>
+<li>响应体</li>
+</ul>
+<h4 id="状态码"><a href="#状态码" class="headerlink" title="状态码"></a>状态码</h4><p>HTTP状态码由三个十进制数字组成，第一个十进制数字定义了状态码的类型，后两个数字没有分类的作用。HTTP状态码共分为5种类型：</p>
+<p>| :–: | :–: |<br>| 分类  | 分类描述|<br>| 1<strong>    | 信息，服务器收到请求，需要请求者继续执行操作 |<br>| 2</strong>    | 成功，操作被成功接收并处理 |<br>| 3<strong>    | 重定向，需要进一步的操作以完成请求 |<br>| 4</strong>    | 客户端错误，请求包含语法错误或无法完成请求 |<br>| 5**    | 服务器错误，服务器在处理请求的过程中发生了错误 |</p>
+<p>更详细的状态码可查看 <a href="https://www.cnblogs.com/xflonga/p/9368993.html" target="_blank" rel="noopener">HTTP状态码</a></p>
+<p>但一般我们只需要知道几个常见的就行，比如 200，400，401，403，404，500，502.</p>
+<h3 id="请求方法"><a href="#请求方法" class="headerlink" title="请求方法"></a>请求方法</h3><p>截止到HTTP1.1共有下面几种方法：</p>
+<p>| :–: | :–: |<br>| 方法    | 描述 |<br>| GET    | GET请求会显示请求指定的资源。一般来说GET方法应该只用于数据的读取，而不应当用于会产生副作用的非幂等的操作中。它期望的应该是而且应该是安全的和幂等的。这里的安全指的是，请求不会影响到资源的状态。 }|<br>| POST    | 向指定资源提交数据进行处理请求（例如提交表单或者上传文件）。数据被包含在请求体中。POST请求可能会导致新的资源的建立和/或已有资源的修改。 |<br>| PUT    | PUT请求会身向指定资源位置上传其最新内容，PUT方法是幂等的方法。通过该方法客户端可以将指定资源的最新数据传送给服务器取代指定的资源的内容。 |<br>| PATCH    | PATCH方法出现的较晚，它在2010年RFC 5789标准中被定义。PATCH请求与PUT请求类似，同样用于资源的更新。二者有以下两点不同： 1.PATCH一般用于资源的部分更新，而PUT一般用于资源的整体更新。2.当资源不存在时，PATCH会创建一个新的资源，而PUT只会对已在资源进行更新。 |<br>| DELETE    | DELETE请求用于请求服务器删除所请求URI（统一资源标识符，Uniform Resource Identifier）所标识的资源。DELETE请求后指定资源会被删除，DELETE方法也是幂等的。 |<br>| OPTIONS    | 允许客户端查看服务器的性能。 |<br>| CONNECT    | HTTP/1.1协议中预留给能够将连接改为管道方式的代理服务器。 |<br>| HEAD    | 类似于get请求，只不过返回的响应中没有具体的内容，用于获取报头。 |<br>| TRACE    | 回显服务器收到的请求，主要用于测试或诊断。 |</p>
+<h3 id="请求和响应常见通用头"><a href="#请求和响应常见通用头" class="headerlink" title="请求和响应常见通用头"></a>请求和响应常见通用头</h3><p>| :–: | :–: |<br>名称    作用<br>Content-Type    请求体/响应体的类型，如：text/plain、application/json<br>Accept    说明接收的类型，可以多个值，用,(半角逗号)分开<br>Content-Length    请求体/响应体的长度，单位字节<br>Content-Encoding    请求体/响应体的编码格式，如gzip,deflate<br>Accept-Encoding    告知对方我方接受的Content-Encoding<br>ETag    给当前资源的标识，和Last-Modified、If-None-Match、If-Modified-Since配合，用于缓存控制<br>Cache-Control    取值为一般为no-cache或max-age=XX，XX为个整数，表示该资源缓存有效期(秒)</p>
+<p>注意<br>Content-Type，内容类型，一般是指网页中存在的Content-Type，用于定义网络文件的类型和网页的编码，决定浏览器将以什么形式、什么编码读取这个文件。</p>
+<p>常见的媒体格式类型如下：</p>
+<p>Content-Type(Mime-Type)    描述<br>text/html    HTML格式<br>text/plain    纯文本格式<br>text/xml    XML格式<br>image/gif    gif图片格式<br>image/jpeg    jpg图片格式<br>image/png    png图片格式</p>
+<p>以application开头的媒体格式类型：</p>
+<p>Content-Type(Mime-Type)    描述<br>application/xml    XML数据格式<br>application/json    JSON数据格式<br>application/pdf    pdf格式<br>application/msword    Word文档格式<br>application/octet-stream    二进制流数据（如常见的文件下载）<br>application/x-www-form-urlencoded    form表单数据被编码为key/value格式发送到服务器（表单默认的提交数据的格式）<br>multipart/form-data    需要在表单中进行文件上传时，就需要使用该格式</p>
+<p>常见请求头<br>名称    作用<br>Authorization    用于设置身份认证信息<br>User-Agent    用户标识，如：OS和浏览器的类型和版本<br>If-Modified-Since    值为上一次服务器返回的 Last-Modified 值，用于确认某个资源是否被更改过，没有更改过(304)就从缓存中读取<br>If-None-Match    值为上一次服务器返回的 ETag 值，一般会和If-Modified-Since一起出现<br>Cookie    已有的Cookie<br>Referer    表示请求引用自哪个地址，比如你从页面A跳转到页面B时，值为页面A的地址<br>Host    请求的主机和端口号</p>
+<p>常见响应头<br>名称    作用<br>Date    服务器的日期<br>Last-Modified    该资源最后被修改时间<br>Transfer-Encoding    取值为一般为chunked，出现在Content-Length不能确定的情况下，表示服务器不知道响应版体的数据大小，一般同时还会出现Content-Encoding响应头<br>Set-Cookie    设置Cookie<br>Location    重定向到另一个URL，如输入浏览器就输入baidu.com回车，会自动跳到 <a href="https://www.baidu.com" target="_blank" rel="noopener">https://www.baidu.com</a> ，就是通过这个响应头控制的<br>Server    后台服务器</p>
+<p>总结<br>清楚的知道这些内容，不仅仅是为了应对面试官，而是能实实在在的提高自己的效率，这一点在前后端联调接口最明显,当你在应用中去请求其他接口或转发请求时这些也是要知道的。不然出现问题的概率会大大提高。</p>
 
       
     </div>
@@ -435,6 +497,12 @@
     
 
     <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Http/" rel="tag"># Http</a>
+          
+        </div>
       
 
       
@@ -498,8 +566,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -597,7 +674,9 @@
                     
                       
                     
-                    <span class="site-state-item-count">35</span>
+                      
+                    
+                    <span class="site-state-item-count">36</span>
                     <span class="site-state-item-name">分类</span>
                   </a>
                 </div>
@@ -694,7 +773,9 @@
                     
                       
                     
-                    <span class="site-state-item-count">42</span>
+                      
+                    
+                    <span class="site-state-item-count">43</span>
                     <span class="site-state-item-name">标签</span>
                   </a>
                 </div>
@@ -720,6 +801,22 @@
         </div>
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#起因"><span class="nav-number">1.</span> <span class="nav-text">起因</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#HTTP协议简介"><span class="nav-number">2.</span> <span class="nav-text">HTTP协议简介</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#协议"><span class="nav-number">2.1.</span> <span class="nav-text">协议</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#无状态"><span class="nav-number">2.2.</span> <span class="nav-text">无状态</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#客户端-服务端模型"><span class="nav-number">2.3.</span> <span class="nav-text">客户端/服务端模型</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#五层网络模型"><span class="nav-number">2.4.</span> <span class="nav-text">五层网络模型</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#URL构成"><span class="nav-number">2.5.</span> <span class="nav-text">URL构成</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#协议内容"><span class="nav-number">2.6.</span> <span class="nav-text">协议内容</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#请求（Request）"><span class="nav-number">2.6.1.</span> <span class="nav-text">请求（Request）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#响应（Response）"><span class="nav-number">2.6.2.</span> <span class="nav-text">响应（Response）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#状态码"><span class="nav-number">2.6.3.</span> <span class="nav-text">状态码</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#请求方法"><span class="nav-number">2.7.</span> <span class="nav-text">请求方法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#请求和响应常见通用头"><span class="nav-number">2.8.</span> <span class="nav-text">请求和响应常见通用头</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       
