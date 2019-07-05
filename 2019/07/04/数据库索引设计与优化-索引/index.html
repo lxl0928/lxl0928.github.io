@@ -1,0 +1,1057 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.3.5/jquery.fancybox.min.css" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=6.4.1" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=6.4.1">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=6.4.1">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=6.4.1">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=6.4.1" color="#222">
+
+
+
+
+
+
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    version: '6.4.1',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  
+
+
+
+
+  <meta name="description" content="数据库索引设计与优化">
+<meta name="keywords" content="数据库">
+<meta property="og:type" content="article">
+<meta property="og:title" content="数据库索引设计与优化-1索引">
+<meta property="og:url" content="https://blog.timilong.com/2019/07/04/数据库索引设计与优化-索引/index.html">
+<meta property="og:site_name" content="Timilong&#39;s blog">
+<meta property="og:description" content="数据库索引设计与优化">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="http://qiniucdn.timilong.com/1551520911534.jpg">
+<meta property="og:image" content="http://qiniucdn.timilong.com/mysql_001.png">
+<meta property="og:updated_time" content="2019-07-05T02:52:05.905Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="数据库索引设计与优化-1索引">
+<meta name="twitter:description" content="数据库索引设计与优化">
+<meta name="twitter:image" content="http://qiniucdn.timilong.com/1551520911534.jpg">
+
+
+
+
+
+
+  <link rel="canonical" href="https://blog.timilong.com/2019/07/04/数据库索引设计与优化-索引/"/>
+
+
+
+<script type="text/javascript" id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>数据库索引设计与优化-1索引 | Timilong's blog</title>
+  
+
+
+
+
+
+
+
+
+
+  <noscript>
+  <style type="text/css">
+    .use-motion .motion-element,
+    .use-motion .brand,
+    .use-motion .menu-item,
+    .sidebar-inner,
+    .use-motion .post-block,
+    .use-motion .pagination,
+    .use-motion .comments,
+    .use-motion .post-header,
+    .use-motion .post-body,
+    .use-motion .collection-title { opacity: initial; }
+
+    .use-motion .logo,
+    .use-motion .site-title,
+    .use-motion .site-subtitle {
+      opacity: initial;
+      top: initial;
+    }
+
+    .use-motion {
+      .logo-line-before i { left: initial; }
+      .logo-line-after i { right: initial; }
+    }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Timilong's blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+    
+      
+        <p class="site-subtitle">Cease to struggle and you cease to live.--Thomas Carlyle</p>
+      
+    
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="Toggle navigation bar">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+          
+          <li class="menu-item menu-item-home">
+    <a href="/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-home"></i> <br />首页</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-tags">
+    <a href="/tags/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />标签</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-categories">
+    <a href="/categories/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-th"></i> <br />分类</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+    <a href="/archives/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />归档</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-photos">
+    <a href="/photos/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-camera-retro"></i> <br />相册</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-about">
+    <a href="/about/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-user"></i> <br />关于</a>
+  </li>
+
+      
+      
+    </ul>
+  
+
+  
+    
+
+  
+
+  
+</nav>
+
+
+
+  
+
+
+
+</div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://blog.timilong.com/2019/07/04/数据库索引设计与优化-索引/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="博主">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Timilong's blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">数据库索引设计与优化-1索引
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建于：2019-07-04 12:43:13" itemprop="dateCreated datePublished" datetime="2019-07-04T12:43:13Z">2019-07-04</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Edited on</span>
+                
+                <time title="更新于：2019-07-05 02:52:05" itemprop="dateModified" datetime="2019-07-05T02:52:05Z">2019-07-05</time>
+              
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/数据库/" itemprop="url" rel="index"><span itemprop="name">数据库</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+              <div class="post-description">数据库索引设计与优化</div>
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p><img src="http://qiniucdn.timilong.com/1551520911534.jpg" alt="cover_img"></p>
+<blockquote>
+<p>转载自: <a href="https://www.yuque.com/jzqt/xq88yc/ya31id" target="_blank" rel="noopener">数据库索引设计与优化-1索引</a></p>
+</blockquote>
+<h2 id="不合适的索引"><a href="#不合适的索引" class="headerlink" title="不合适的索引"></a>不合适的索引</h2><p>多年来，不合适的索引通常是造成 SQL 性能低下的最常见原因。最普遍的情况有</p>
+<ul>
+<li>没有索引足够多的列来支持 WHERE 子句中的条件表达式</li>
+<li>索引了正确的列，但是索引列顺序不对</li>
+<li>SELECT 子句没能包含有效的索引</li>
+</ul>
+<p>关系型数据库中，改进索引一般相对容易，因为不需要对应用代码做任何修改。</p>
+<p>但是在<b>生产环境中改动总会带来风险</b>，而且，<b>创建索引时，更新操作可能会经历长时间等待</b>，比如无法更新为了创建索引而正在被扫描的表。</p>
+<p>笔者注：</p>
+<blockquote>
+<p>现在的关系型数据库比如 MySQL、PostgreSQL 等都支持在不阻塞更新操作时修改或增加索引，但索引期间仍然会影响更新操作的执行时间。</p>
+</blockquote>
+<h2 id="误区和误解"><a href="#误区和误解" class="headerlink" title="误区和误解"></a>误区和误解</h2><p>有些书会认为通常 B 树索引只有 <code>根页</code> 会留在内存中。<br>三十年前这可能是一个合理的假设，因为当时的内存很小（可能小到不及 1 MB），而今天的内存甚至能达到 GB 级别，磁盘读缓存一般就更大了（比如 64 GB）。<br>现在完全可以假设 B 树索引的所有 <code>非叶子页</code> 通常会留在内存或者读缓存中，一般只有叶子页需要从磁盘中读取。</p>
+<p>类似的假设导致了许多过时和危险的建议，比如:</p>
+<h3 id="误区一：索引层级不要超过-5-层"><a href="#误区一：索引层级不要超过-5-层" class="headerlink" title="误区一：索引层级不要超过 5 层"></a>误区一：索引层级不要超过 5 层</h3><blockquote>
+<p>注：这里说的索引层级指的就是 B 树索引的层数。</p>
+</blockquote>
+<p>这个建议会在某些关系型文献出现，通常就是基于 <code>只有根页会留在内存中</code> 的假设。</p>
+<p>每个索引层级会向索引扫描过程贡献约 50 微妙（μs），非叶子页如果不在内存而在磁盘读缓存中，读取索引页可能会花费 1 毫秒（ms）。<br>用这些值和一次磁盘随机读取花费的时间（大约 10 ms）做比较。<br>下面以拥有 1 亿行数据，6 个索引层级，行平均长度为 100 字节，1 个叶子页包含 35 个索引行的索引为例简单说明：</p>
+<p><img src="http://qiniucdn.timilong.com/mysql_001.png" alt="001"></p>
+<p>根据上面的图推导出如下结论:</p>
+<ol>
+<li>该索引有大约 3 000 000 个 4 KB 大小的页，约占 12 GB 磁盘空间</li>
+<li>叶子页总大小（2 900 000 × 4 KB）几乎占满 12 GB 空间，合理的假设是这部分数据通常会从磁盘读取（10 ms）</li>
+<li>叶子页的上一层级大小约为 83 000 × 4 KB，约占 324 MB。如果该索引被频繁使用，即使不在数据库缓冲池（比如 4 GB 内存），也可以能会留在磁盘读缓存（可能是 64 GB）</li>
+<li>再上一层级的大小约 2 400 × 4 KB，约占 10 MB，几乎肯定会在数据库缓冲池中</li>
+</ol>
+<p>那么，访问这个 6 层索引的 1 亿行数据中任意一个索引行，将花费 10～20 ms，即使索引行加入的顺序杂乱无章，这个数字也是对的。因此对索引层数做限制并没有什么意义。</p>
+<p>笔者注：</p>
+<blockquote>
+<p>一般来说索引层数与索引行数以及索引行长度有关。最初我错误地以为索引层数只跟索引行数有关，那么限制索引层数实际上就是限制数据条目数，这样的话这个限制跟对索引如何设计貌似没有什么参考价值。<br>实际上，索引层数还跟索引行长度有关，行长度越大，一个索引页能包含的索引行越少，需要的索引页越多，自然索引层数也越多，访问索引需要读取磁盘次数也越多。<br>那么，对于限制索引层级，我的理解是，相同索引层级下，数据量小，则允许索引行大，即可索引列数越多，数据量大则限制其索引行大小，即允许索引的列越少。</p>
+</blockquote>
+<h3 id="误区二：单表索引数不要超过-6-个"><a href="#误区二：单表索引数不要超过-6-个" class="headerlink" title="误区二：单表索引数不要超过 6 个"></a>误区二：单表索引数不要超过 6 个</h3><p>笔者注：</p>
+<blockquote>
+<p>书中并没有举例解释为什么单表索引数不要超过 6 个，实际上它反驳给单表索引数设置上限的观点，并支持这样一种观点：<br>因为限制单表索引个数往往会导致绝大部分 SQL 运行良好，但少数 SQL 执行起来很糟糕。而保证所有 SQL 都能够流畅运行是设计的底线，为了达到这一点需要在表上建几个索引，那就应该建几个索引。</p>
+</blockquote>
+<h3 id="误区三：不应该索引不稳定的列"><a href="#误区三：不应该索引不稳定的列" class="headerlink" title="误区三：不应该索引不稳定的列"></a>误区三：不应该索引不稳定的列</h3><p>索引行是按照索引键的顺序存储，所以当索引键中有一列被更新，那么数据库需要把相应的行从旧的位置移到新的位置。如果新旧位置在同一个页中，这种情况更新一个页即可，如果不在同一个页，则需要更新两个页。</p>
+<p>几十年前，如果这个索引是一个 4 层索引，那么更新一个索引列也许需要 6 次磁盘读取（这里是基于前面说的 只有根页会留在内存中 的假设），其中 3 次常规读取，即 2 次非叶子页和 1 次叶子页读取，以及新位置涉及的 3 次随机读取。<br>当一次随机读取耗时 30 ms（这里和前面所说的磁盘随机读取耗时约 10 ms 不一样，毕竟书上说的是几十年前，磁盘比现在慢些也正常），迁移一个索引行可能会花费 6 × 30 = 180 ms 的时间。<br>这种情况，不稳定列不推荐索引就不足为奇了。</p>
+<p>而现在，4 层索引的 3 层非叶子页在内存中，一次磁盘随机读需要 10 ms，更新索引行的响应时间变成了 2 × 10 = 20 ms。<br>如果更新后不是迁移到新叶子页，响应时间会降低到 10 ms。</p>
+<p>当前磁盘条件下，更新频率多余 10 次/秒的情况下，不稳定列才可能成为问题，不过这样的列并不常见。</p>
+<p>笔者注：</p>
+<blockquote>
+<p>总之，书中认为现在的磁盘等硬件性能比以前要好得多，虽然这些硬件性能仍然限制了我们能索引的条目数上限等，但这个上限会比以前高得多。</p>
+</blockquote>
+<h2 id="系统化的索引设计"><a href="#系统化的索引设计" class="headerlink" title="系统化的索引设计"></a>系统化的索引设计</h2><p>索引设计方法首次尝试源于 20 世纪 60 年代。那时有一种 <code>列活动矩阵模型方法</code> ，用来预测每个<code>字段</code>的<code>读取</code>和<code>更新</code>频率，以及字段所在<code>行</code>的的插入和<code>删除</code>频率。<br>该模型能帮助人们找到需要被索引的字段的列表。通常这些索引都被假定只包含一个字段，来减少磁盘 I/O 的数量。</p>
+<p>20 世纪 80 年代， <code>面向列的索引设计方式</code> 开始落后于 <code>面向响应时间的索引设计方式</code>。<br>DBA 们开始意识到，<code>创建索引的目的应该是在硬件容量限制的前提下保证所有数据库调用运行得足够快</code>。</p>
+<p>书中所说 系统化的索引设计 包含两个步骤：</p>
+<ol>
+<li>找到当前索引条件下运行过慢的查询，至少是在最差输入条件下运行过慢的查询（比如【最大的客户】、【最老的日期】等）</li>
+<li>设计索引使找到的慢查询变得足够快，且不导致其他 SQL 调用明显变慢</li>
+</ol>
+<p>很长一段时间来，系统化索引设计的第二步都未被认可。教材和课程的 <code>SELECT</code> 语句一般都非常简单以致于很容易就设计出最佳索引。<br>然而实际经验表示即使看起来无害的 <code>SELECT</code> 语句，通常也有大量合理的索引设计方式。<br>估算每种索引方式都花太多精力和时间，即使经验丰富的数据库设计者凭直觉来设计也会放一些错误。<br>这就是我们为什么需要一个算法来为给定的 SQL 设计最佳索引的原因。</p>
+
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/数据库/" rel="tag"># 数据库</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/07/04/计算机网络-一个HTTP打趴80-面试者/" rel="next" title="HTTP-一个HTTP打趴80%面试者">
+                <i class="fa fa-chevron-left"></i> HTTP-一个HTTP打趴80%面试者
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2019/07/04/数据库索引设计与优化-表和索引结构/" rel="prev" title="数据库索引设计与优化-2表和索引结构">
+                数据库索引设计与优化-2表和索引结构 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+  </div>
+
+
+          </div>
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">博主</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/">
+                
+                    <span class="site-state-item-count">214</span>
+                    <span class="site-state-item-name">日志</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-categories">
+                  <a href="/categories/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">37</span>
+                    <span class="site-state-item-name">分类</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  <a href="/tags/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">44</span>
+                    <span class="site-state-item-name">标签</span>
+                  </a>
+                </div>
+              
+            </nav>
+          
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+            
+          
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#不合适的索引"><span class="nav-number">1.</span> <span class="nav-text">不合适的索引</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#误区和误解"><span class="nav-number">2.</span> <span class="nav-text">误区和误解</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#误区一：索引层级不要超过-5-层"><span class="nav-number">2.1.</span> <span class="nav-text">误区一：索引层级不要超过 5 层</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#误区二：单表索引数不要超过-6-个"><span class="nav-number">2.2.</span> <span class="nav-text">误区二：单表索引数不要超过 6 个</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#误区三：不应该索引不稳定的列"><span class="nav-number">2.3.</span> <span class="nav-text">误区三：不应该索引不稳定的列</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#系统化的索引设计"><span class="nav-number">3.</span> <span class="nav-text">系统化的索引设计</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder"><a href="http://blog.timilong.com/about" target="_blank"> Timi.long </a></span>
+  
+
+  
+</div>
+
+
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动 v3.7.1</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 – <a class="theme-link" target="_blank" href="https://theme-next.org">NexT.Muse</a> v6.4.1</div>
+
+
+
+
+<!-- 新增访客统计代码 -->
+
+<div class="busuanzi-count">
+    <script async="" src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>  
+    <span class="site-uv">
+      <i class="fa fa-user"></i>
+      访问用户： <span class="busuanzi-value" id="busuanzi_value_site_uv"></span> 人
+    </span>
+    <div class="powered-by"></div>
+    <span class="site-uv">
+      <i class="fa fa-eye"></i>
+      访问次数： <span class="busuanzi-value" id="busuanzi_value_site_pv"></span> 次
+    </span>
+    <!-- 博客字数统计
+    <span class="site-pv">
+      <i class="fa fa-pencil"></i>
+      博客全站共： <span class="post-count"> </span> 字
+    </span> -->
+</div>
+<!-- 新增访客统计代码 END-->
+
+        
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+    
+
+    
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.3.5/jquery.fancybox.min.js"></script>
+  
+
+
+  
+
+
+
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=6.4.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=6.4.1"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=6.4.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=6.4.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=6.4.1"></script>
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
