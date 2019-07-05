@@ -114,27 +114,28 @@
 
 
 
-  <meta name="description" content="请手写归并排序，实现test_lit = [2, -1, 100, 0, 3, 4, 9, -11, 200, 1, 3] 按降序输出">
-<meta name="keywords" content="算法">
+  <meta name="description" content="数据库索引设计与优化">
+<meta name="keywords" content="数据库">
 <meta property="og:type" content="article">
-<meta property="og:title" content="算法-归并排序">
-<meta property="og:url" content="https://blog.timilong.com/2018/08/21/算法-归并排序/index.html">
+<meta property="og:title" content="数据库索引设计与优化-1索引">
+<meta property="og:url" content="https://blog.timilong.com/2019/07/04/数据库索引设计与优化-1索引/index.html">
 <meta property="og:site_name" content="Timilong&#39;s blog">
-<meta property="og:description" content="请手写归并排序，实现test_lit = [2, -1, 100, 0, 3, 4, 9, -11, 200, 1, 3] 按降序输出">
+<meta property="og:description" content="数据库索引设计与优化">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="http://qiniucdn.timilong.com/1543735473711.jpg">
-<meta property="og:updated_time" content="2018-12-04T06:42:41.605Z">
+<meta property="og:image" content="http://qiniucdn.timilong.com/1551520911534.jpg">
+<meta property="og:image" content="http://qiniucdn.timilong.com/mysql_001.png">
+<meta property="og:updated_time" content="2019-07-05T02:52:05.905Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="算法-归并排序">
-<meta name="twitter:description" content="请手写归并排序，实现test_lit = [2, -1, 100, 0, 3, 4, 9, -11, 200, 1, 3] 按降序输出">
-<meta name="twitter:image" content="http://qiniucdn.timilong.com/1543735473711.jpg">
+<meta name="twitter:title" content="数据库索引设计与优化-1索引">
+<meta name="twitter:description" content="数据库索引设计与优化">
+<meta name="twitter:image" content="http://qiniucdn.timilong.com/1551520911534.jpg">
 
 
 
 
 
 
-  <link rel="canonical" href="https://blog.timilong.com/2018/08/21/算法-归并排序/"/>
+  <link rel="canonical" href="https://blog.timilong.com/2019/07/04/数据库索引设计与优化-1索引/"/>
 
 
 
@@ -144,7 +145,7 @@
   };
 </script>
 
-  <title>算法-归并排序 | Timilong's blog</title>
+  <title>数据库索引设计与优化-1索引 | Timilong's blog</title>
   
 
 
@@ -325,7 +326,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://blog.timilong.com/2018/08/21/算法-归并排序/">
+    <link itemprop="mainEntityOfPage" href="https://blog.timilong.com/2019/07/04/数据库索引设计与优化-1索引/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="博主">
@@ -342,7 +343,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">算法-归并排序
+          <h1 class="post-title" itemprop="name headline">数据库索引设计与优化-1索引
               
             
           </h1>
@@ -367,7 +368,7 @@
                 
               
 
-              <time title="创建于：2018-08-21 14:25:29" itemprop="dateCreated datePublished" datetime="2018-08-21T14:25:29Z">2018-08-21</time>
+              <time title="创建于：2019-07-04 12:43:13" itemprop="dateCreated datePublished" datetime="2019-07-04T12:43:13Z">2019-07-04</time>
             
 
             
@@ -384,7 +385,7 @@
                 
                   <span class="post-meta-item-text">Edited on</span>
                 
-                <time title="更新于：2018-12-04 06:42:41" itemprop="dateModified" datetime="2018-12-04T06:42:41Z">2018-12-04</time>
+                <time title="更新于：2019-07-05 02:52:05" itemprop="dateModified" datetime="2019-07-05T02:52:05Z">2019-07-05</time>
               
             
           </span>
@@ -401,7 +402,7 @@
                 <span class="post-meta-item-text">分类于</span>
               
               
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/算法/" itemprop="url" rel="index"><span itemprop="name">算法</span></a></span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/数据库/" itemprop="url" rel="index"><span itemprop="name">数据库</span></a></span>
 
                 
                 
@@ -421,7 +422,7 @@
           
 
           
-              <div class="post-description">请手写归并排序，实现test_lit = [2, -1, 100, 0, 3, 4, 9, -11, 200, 1, 3] 按降序输出</div>
+              <div class="post-description">数据库索引设计与优化</div>
           
 
         </div>
@@ -437,9 +438,62 @@
       
 
       
-        <p><img src="http://qiniucdn.timilong.com/1543735473711.jpg" alt="tu"></p>
-<h2 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h2><p>请手写归并排序，实现test_lit = [2, -1, 100, 0, 3, 4, 9, -11, 200, 1, 3] 按降序输出</p>
-<h2 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># coding: utf-8</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">merge_sort</span><span class="params">(nums)</span>:</span></span><br><span class="line">    <span class="keyword">if</span> len(nums) &lt;= <span class="number">1</span>:</span><br><span class="line">        <span class="keyword">return</span> nums</span><br><span class="line">    <span class="keyword">else</span>:</span><br><span class="line">        mid = len(nums) / <span class="number">2</span></span><br><span class="line"></span><br><span class="line">    left = merge_sort(nums[:mid])</span><br><span class="line">    right = merge_sort(nums[mid:])</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> merge(left, right)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">merge</span><span class="params">(left, right)</span>:</span></span><br><span class="line">    i, j, res = <span class="number">0</span>, <span class="number">0</span>, list()</span><br><span class="line"></span><br><span class="line">    <span class="keyword">while</span> i &lt; len(left) <span class="keyword">and</span> j &lt; len(right):</span><br><span class="line">        <span class="keyword">if</span> left[i] &lt; right[j]:</span><br><span class="line">            res.append(left[i])</span><br><span class="line">            i += <span class="number">1</span></span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            res.append(right[j])</span><br><span class="line">            j += <span class="number">1</span></span><br><span class="line">    res += left[i:]</span><br><span class="line">    res += right[j:]</span><br><span class="line">    <span class="keyword">return</span> res</span><br><span class="line"></span><br><span class="line">test_list = [<span class="number">2</span>, <span class="number">-1</span>, <span class="number">100</span>, <span class="number">0</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">9</span>, <span class="number">-11</span>, <span class="number">200</span>, <span class="number">1</span>, <span class="number">3</span>] </span><br><span class="line">res = merge_sort(nums=test_list)</span><br><span class="line">print(res[::<span class="number">-1</span>])</span><br></pre></td></tr></table></figure>
+        <p><img src="http://qiniucdn.timilong.com/1551520911534.jpg" alt="cover_img"></p>
+<blockquote>
+<p>转载自: <a href="https://www.yuque.com/jzqt/xq88yc/ya31id" target="_blank" rel="noopener">数据库索引设计与优化-1索引</a></p>
+</blockquote>
+<h2 id="不合适的索引"><a href="#不合适的索引" class="headerlink" title="不合适的索引"></a>不合适的索引</h2><p>多年来，不合适的索引通常是造成 SQL 性能低下的最常见原因。最普遍的情况有</p>
+<ul>
+<li>没有索引足够多的列来支持 WHERE 子句中的条件表达式</li>
+<li>索引了正确的列，但是索引列顺序不对</li>
+<li>SELECT 子句没能包含有效的索引</li>
+</ul>
+<p>关系型数据库中，改进索引一般相对容易，因为不需要对应用代码做任何修改。</p>
+<p>但是在<b>生产环境中改动总会带来风险</b>，而且，<b>创建索引时，更新操作可能会经历长时间等待</b>，比如无法更新为了创建索引而正在被扫描的表。</p>
+<p>笔者注：</p>
+<blockquote>
+<p>现在的关系型数据库比如 MySQL、PostgreSQL 等都支持在不阻塞更新操作时修改或增加索引，但索引期间仍然会影响更新操作的执行时间。</p>
+</blockquote>
+<h2 id="误区和误解"><a href="#误区和误解" class="headerlink" title="误区和误解"></a>误区和误解</h2><p>有些书会认为通常 B 树索引只有 <code>根页</code> 会留在内存中。<br>三十年前这可能是一个合理的假设，因为当时的内存很小（可能小到不及 1 MB），而今天的内存甚至能达到 GB 级别，磁盘读缓存一般就更大了（比如 64 GB）。<br>现在完全可以假设 B 树索引的所有 <code>非叶子页</code> 通常会留在内存或者读缓存中，一般只有叶子页需要从磁盘中读取。</p>
+<p>类似的假设导致了许多过时和危险的建议，比如:</p>
+<h3 id="误区一：索引层级不要超过-5-层"><a href="#误区一：索引层级不要超过-5-层" class="headerlink" title="误区一：索引层级不要超过 5 层"></a>误区一：索引层级不要超过 5 层</h3><blockquote>
+<p>注：这里说的索引层级指的就是 B 树索引的层数。</p>
+</blockquote>
+<p>这个建议会在某些关系型文献出现，通常就是基于 <code>只有根页会留在内存中</code> 的假设。</p>
+<p>每个索引层级会向索引扫描过程贡献约 50 微妙（μs），非叶子页如果不在内存而在磁盘读缓存中，读取索引页可能会花费 1 毫秒（ms）。<br>用这些值和一次磁盘随机读取花费的时间（大约 10 ms）做比较。<br>下面以拥有 1 亿行数据，6 个索引层级，行平均长度为 100 字节，1 个叶子页包含 35 个索引行的索引为例简单说明：</p>
+<p><img src="http://qiniucdn.timilong.com/mysql_001.png" alt="001"></p>
+<p>根据上面的图推导出如下结论:</p>
+<ol>
+<li>该索引有大约 3 000 000 个 4 KB 大小的页，约占 12 GB 磁盘空间</li>
+<li>叶子页总大小（2 900 000 × 4 KB）几乎占满 12 GB 空间，合理的假设是这部分数据通常会从磁盘读取（10 ms）</li>
+<li>叶子页的上一层级大小约为 83 000 × 4 KB，约占 324 MB。如果该索引被频繁使用，即使不在数据库缓冲池（比如 4 GB 内存），也可以能会留在磁盘读缓存（可能是 64 GB）</li>
+<li>再上一层级的大小约 2 400 × 4 KB，约占 10 MB，几乎肯定会在数据库缓冲池中</li>
+</ol>
+<p>那么，访问这个 6 层索引的 1 亿行数据中任意一个索引行，将花费 10～20 ms，即使索引行加入的顺序杂乱无章，这个数字也是对的。因此对索引层数做限制并没有什么意义。</p>
+<p>笔者注：</p>
+<blockquote>
+<p>一般来说索引层数与索引行数以及索引行长度有关。最初我错误地以为索引层数只跟索引行数有关，那么限制索引层数实际上就是限制数据条目数，这样的话这个限制跟对索引如何设计貌似没有什么参考价值。<br>实际上，索引层数还跟索引行长度有关，行长度越大，一个索引页能包含的索引行越少，需要的索引页越多，自然索引层数也越多，访问索引需要读取磁盘次数也越多。<br>那么，对于限制索引层级，我的理解是，相同索引层级下，数据量小，则允许索引行大，即可索引列数越多，数据量大则限制其索引行大小，即允许索引的列越少。</p>
+</blockquote>
+<h3 id="误区二：单表索引数不要超过-6-个"><a href="#误区二：单表索引数不要超过-6-个" class="headerlink" title="误区二：单表索引数不要超过 6 个"></a>误区二：单表索引数不要超过 6 个</h3><p>笔者注：</p>
+<blockquote>
+<p>书中并没有举例解释为什么单表索引数不要超过 6 个，实际上它反驳给单表索引数设置上限的观点，并支持这样一种观点：<br>因为限制单表索引个数往往会导致绝大部分 SQL 运行良好，但少数 SQL 执行起来很糟糕。而保证所有 SQL 都能够流畅运行是设计的底线，为了达到这一点需要在表上建几个索引，那就应该建几个索引。</p>
+</blockquote>
+<h3 id="误区三：不应该索引不稳定的列"><a href="#误区三：不应该索引不稳定的列" class="headerlink" title="误区三：不应该索引不稳定的列"></a>误区三：不应该索引不稳定的列</h3><p>索引行是按照索引键的顺序存储，所以当索引键中有一列被更新，那么数据库需要把相应的行从旧的位置移到新的位置。如果新旧位置在同一个页中，这种情况更新一个页即可，如果不在同一个页，则需要更新两个页。</p>
+<p>几十年前，如果这个索引是一个 4 层索引，那么更新一个索引列也许需要 6 次磁盘读取（这里是基于前面说的 只有根页会留在内存中 的假设），其中 3 次常规读取，即 2 次非叶子页和 1 次叶子页读取，以及新位置涉及的 3 次随机读取。<br>当一次随机读取耗时 30 ms（这里和前面所说的磁盘随机读取耗时约 10 ms 不一样，毕竟书上说的是几十年前，磁盘比现在慢些也正常），迁移一个索引行可能会花费 6 × 30 = 180 ms 的时间。<br>这种情况，不稳定列不推荐索引就不足为奇了。</p>
+<p>而现在，4 层索引的 3 层非叶子页在内存中，一次磁盘随机读需要 10 ms，更新索引行的响应时间变成了 2 × 10 = 20 ms。<br>如果更新后不是迁移到新叶子页，响应时间会降低到 10 ms。</p>
+<p>当前磁盘条件下，更新频率多余 10 次/秒的情况下，不稳定列才可能成为问题，不过这样的列并不常见。</p>
+<p>笔者注：</p>
+<blockquote>
+<p>总之，书中认为现在的磁盘等硬件性能比以前要好得多，虽然这些硬件性能仍然限制了我们能索引的条目数上限等，但这个上限会比以前高得多。</p>
+</blockquote>
+<h2 id="系统化的索引设计"><a href="#系统化的索引设计" class="headerlink" title="系统化的索引设计"></a>系统化的索引设计</h2><p>索引设计方法首次尝试源于 20 世纪 60 年代。那时有一种 <code>列活动矩阵模型方法</code> ，用来预测每个<code>字段</code>的<code>读取</code>和<code>更新</code>频率，以及字段所在<code>行</code>的的插入和<code>删除</code>频率。<br>该模型能帮助人们找到需要被索引的字段的列表。通常这些索引都被假定只包含一个字段，来减少磁盘 I/O 的数量。</p>
+<p>20 世纪 80 年代， <code>面向列的索引设计方式</code> 开始落后于 <code>面向响应时间的索引设计方式</code>。<br>DBA 们开始意识到，<code>创建索引的目的应该是在硬件容量限制的前提下保证所有数据库调用运行得足够快</code>。</p>
+<p>书中所说 系统化的索引设计 包含两个步骤：</p>
+<ol>
+<li>找到当前索引条件下运行过慢的查询，至少是在最差输入条件下运行过慢的查询（比如【最大的客户】、【最老的日期】等）</li>
+<li>设计索引使找到的慢查询变得足够快，且不导致其他 SQL 调用明显变慢</li>
+</ol>
+<p>很长一段时间来，系统化索引设计的第二步都未被认可。教材和课程的 <code>SELECT</code> 语句一般都非常简单以致于很容易就设计出最佳索引。<br>然而实际经验表示即使看起来无害的 <code>SELECT</code> 语句，通常也有大量合理的索引设计方式。<br>估算每种索引方式都花太多精力和时间，即使经验丰富的数据库设计者凭直觉来设计也会放一些错误。<br>这就是我们为什么需要一个算法来为给定的 SQL 设计最佳索引的原因。</p>
 
       
     </div>
@@ -460,7 +514,7 @@
       
         <div class="post-tags">
           
-            <a href="/tags/算法/" rel="tag"># 算法</a>
+            <a href="/tags/数据库/" rel="tag"># 数据库</a>
           
         </div>
       
@@ -473,8 +527,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2018/08/17/linux-设置脚本开机自启动/" rel="next" title="Linux-设置脚本开机自启动">
-                <i class="fa fa-chevron-left"></i> Linux-设置脚本开机自启动
+              <a href="/2019/07/04/计算机网络-一个HTTP打趴80-面试者/" rel="next" title="HTTP-一个HTTP打趴80%面试者">
+                <i class="fa fa-chevron-left"></i> HTTP-一个HTTP打趴80%面试者
               </a>
             
           </div>
@@ -483,8 +537,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2018/09/04/RPC-01解决的核心问题和在企业服务中的地位/" rel="prev" title="RPC_01.解决的核心问题和在企业服务中的地位">
-                RPC_01.解决的核心问题和在企业服务中的地位 <i class="fa fa-chevron-right"></i>
+              <a href="/2019/07/04/数据库索引设计与优化-2表和索引结构/" rel="prev" title="数据库索引设计与优化-2表和索引结构">
+                数据库索引设计与优化-2表和索引结构 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -779,7 +833,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#题目"><span class="nav-number">1.</span> <span class="nav-text">题目</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#代码"><span class="nav-number">2.</span> <span class="nav-text">代码</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#不合适的索引"><span class="nav-number">1.</span> <span class="nav-text">不合适的索引</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#误区和误解"><span class="nav-number">2.</span> <span class="nav-text">误区和误解</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#误区一：索引层级不要超过-5-层"><span class="nav-number">2.1.</span> <span class="nav-text">误区一：索引层级不要超过 5 层</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#误区二：单表索引数不要超过-6-个"><span class="nav-number">2.2.</span> <span class="nav-text">误区二：单表索引数不要超过 6 个</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#误区三：不应该索引不稳定的列"><span class="nav-number">2.3.</span> <span class="nav-text">误区三：不应该索引不稳定的列</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#系统化的索引设计"><span class="nav-number">3.</span> <span class="nav-text">系统化的索引设计</span></a></li></ol></div>
             
 
           </div>
