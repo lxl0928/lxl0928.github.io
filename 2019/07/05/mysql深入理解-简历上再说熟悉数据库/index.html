@@ -135,7 +135,7 @@
 <meta property="og:image" content="http://qiniucdn.timilong.com/20190706_010.jpg">
 <meta property="og:image" content="http://qiniucdn.timilong.com/20190706_011.jpg">
 <meta property="og:image" content="http://qiniucdn.timilong.com/20190706_012.png">
-<meta property="og:updated_time" content="2019-07-16T01:54:58.322Z">
+<meta property="og:updated_time" content="2019-07-16T06:26:22.146Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="mysql深入理解-简历上再说熟悉数据库">
 <meta name="twitter:description" content="面试中常问的关于MySQL的面试题">
@@ -396,7 +396,7 @@
                 
                   <span class="post-meta-item-text">Edited on</span>
                 
-                <time title="更新于：2019-07-16 01:54:58" itemprop="dateModified" datetime="2019-07-16T01:54:58Z">2019-07-16</time>
+                <time title="更新于：2019-07-16 06:26:22" itemprop="dateModified" datetime="2019-07-16T06:26:22Z">2019-07-16</time>
               
             
           </span>
@@ -558,7 +558,8 @@
 <p><img src="http://qiniucdn.timilong.com/20190706_010.jpg" alt="010"></p>
 <p>order_no = ‘201912102322’ 这条记录不存在的情况下，如果order_no 是主键索引，则会加一个间隙锁，而这个间隙是主键索引中 order_no 小于 201912102322 的第一条记录到大于 201912102322 的第一条记录。试想一下如果不加间隙锁，如果其他事物插入了一条 order_no = ‘201912102322’ 的记录，由于 select for update 是当前读，即使上面那个事物没有提交，如果在该事物中重新查询一次就会发生幻读。</p>
 <p><img src="http://qiniucdn.timilong.com/20190706_011.jpg" alt="011"></p>
-<p>如果没有索引，则对扫描到的所有记录和间隙都加锁，如果不匹配行锁将会释放只剩下间隙锁。回忆一下上面讲的数据页的结果中又一个最大记录和最小记录，Infimum 和 Supremum Record，这两个记录在加间隙锁的时候就会用到。<br><img src="http://qiniucdn.timilong.com/20190706_012.png" alt="012"></p>
+<p>如果没有索引，则对扫描到的所有记录和间隙都加锁，如果不匹配行锁将会释放只剩下间隙锁。回忆一下上面讲的数据页的结果中又一个最大记录和最小记录，Infimum 和 Supremum Record，这两个记录在加间隙锁的时候就会用到。</p>
+<p><img src="http://qiniucdn.timilong.com/20190706_012.png" alt="012"></p>
 <h3 id="事务"><a href="#事务" class="headerlink" title="事务"></a>事务</h3><p>InnoDB 存储引擎的事务需完全符合 ACID 特性。下面我们一起看下 InnoDB 做了哪些事情。</p>
 <p>原子性 : 是指一个事务内的所有操作要么全部成功要么全部失败，数据库中将 redolog 和 binlog 的写入采用两阶段提交就是为了保证事务的原子性。另外由于 InnodDB 是按页进行存储的，每个页大小为 16kb 而操作系统的一般以 4KB 为一页进行读取，所以可能出现一个 InnoDB 的数据页只写了一部分的情况。而 InnoDB 为了防止这种情况的发生采用双写机制，除了写入磁盘上的数据页还会在共享空间中写入。而 redolog 按块存储，每个块 512 字节，正好和扇区大小一样所以，可以保证原子性，不需要进行双写。<br>一致性 ：保证磁盘和缓存的数据一致，binlog 数据和 主库中的数据一致。<br>隔离性 ：默认为可重复读，采用 undolog 来实现。<br>持久性 ：事务一旦提交，其结果就是永久的，redolog 需要在事务提交前进行刷盘，磁盘采用 RAID 等。</p>
 
