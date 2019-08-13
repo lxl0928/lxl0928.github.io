@@ -114,22 +114,23 @@
 
 
 
-  <meta name="description" content="存储引擎的选择(MyISAM和Innodb)存储引擎：MySQL中的数据、索引以及其他对象是如何存储的，是一套文件系统的实现。 5.1之前默认存储引擎是MyISAM, 5.1之后默认存储引擎是Innodb。 功能差异 选择依据MyISAM引擎设计简单，数据以紧密格式存储，所以某些读取场景下性能很好。 如果没有特别的需求，使用默认的Innodb即可。 MyISAM：以读写插入为主的应用程序，比如博">
+  <meta name="description" content="MySQL优化的一些总结.">
+<meta name="keywords" content="MySQL">
 <meta property="og:type" content="article">
 <meta property="og:title" content="MySQL优化总结">
 <meta property="og:url" content="https://blog.timilong.com/2019/08/14/mysql-MySQL优化总结/index.html">
 <meta property="og:site_name" content="Timilong&#39;s blog">
-<meta property="og:description" content="存储引擎的选择(MyISAM和Innodb)存储引擎：MySQL中的数据、索引以及其他对象是如何存储的，是一套文件系统的实现。 5.1之前默认存储引擎是MyISAM, 5.1之后默认存储引擎是Innodb。 功能差异 选择依据MyISAM引擎设计简单，数据以紧密格式存储，所以某些读取场景下性能很好。 如果没有特别的需求，使用默认的Innodb即可。 MyISAM：以读写插入为主的应用程序，比如博">
+<meta property="og:description" content="MySQL优化的一些总结.">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="https://blog.timilong.com/2019/08/14/mysql-MySQL优化总结/%27http://qiniucdn.timilong.com/ChMkJlwhnwaIJ0Y-AAL4x4oByVsAAt-BwK3fvoAAvjf984.jpg%27">
+<meta property="og:image" content="http://qiniucdn.timilong.com/ChMkJlwhnwaIJ0Y-AAL4x4oByVsAAt-BwK3fvoAAvjf984.jpg">
 <meta property="og:image" content="https://pic1.zhimg.com/80/v2-0e38e0faa85d457ad767f98da68fd424_hd.jpg">
 <meta property="og:image" content="https://pic1.zhimg.com/80/v2-e60cf162b49402bc91056d167bfb2460_hd.jpg">
 <meta property="og:image" content="https://pic4.zhimg.com/80/v2-ed8326097720340c80d151800d5691a7_hd.jpg">
-<meta property="og:updated_time" content="2019-08-13T14:24:05.714Z">
+<meta property="og:updated_time" content="2019-08-13T14:30:44.044Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="MySQL优化总结">
-<meta name="twitter:description" content="存储引擎的选择(MyISAM和Innodb)存储引擎：MySQL中的数据、索引以及其他对象是如何存储的，是一套文件系统的实现。 5.1之前默认存储引擎是MyISAM, 5.1之后默认存储引擎是Innodb。 功能差异 选择依据MyISAM引擎设计简单，数据以紧密格式存储，所以某些读取场景下性能很好。 如果没有特别的需求，使用默认的Innodb即可。 MyISAM：以读写插入为主的应用程序，比如博">
-<meta name="twitter:image" content="https://blog.timilong.com/2019/08/14/mysql-MySQL优化总结/%27http://qiniucdn.timilong.com/ChMkJlwhnwaIJ0Y-AAL4x4oByVsAAt-BwK3fvoAAvjf984.jpg%27">
+<meta name="twitter:description" content="MySQL优化的一些总结.">
+<meta name="twitter:image" content="http://qiniucdn.timilong.com/ChMkJlwhnwaIJ0Y-AAL4x4oByVsAAt-BwK3fvoAAvjf984.jpg">
 
 
 
@@ -216,7 +217,7 @@
   </div>
 
   <div class="site-nav-toggle">
-    <button aria-label="Toggle navigation bar">
+    <button aria-label="ナビゲーションバーの切り替え">
       <span class="btn-bar"></span>
       <span class="btn-bar"></span>
       <span class="btn-bar"></span>
@@ -369,7 +370,7 @@
                 
               
 
-              <time title="创建于：2019-08-13 22:00:39 / 更新于：14:24:05" itemprop="dateCreated datePublished" datetime="2019-08-13T22:00:39Z">2019-08-13</time>
+              <time title="创建于：2019-08-13 22:00:39 / 更新于：14:30:44" itemprop="dateCreated datePublished" datetime="2019-08-13T22:00:39Z">2019-08-13</time>
             
 
             
@@ -380,6 +381,24 @@
           </span>
 
           
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/MySQL/" itemprop="url" rel="index"><span itemprop="name">MySQL</span></a></span>
+
+                
+                
+              
+            </span>
+          
 
           
             
@@ -392,6 +411,8 @@
 
           
 
+          
+              <div class="post-description">MySQL优化的一些总结.</div>
           
 
         </div>
@@ -407,7 +428,7 @@
       
 
       
-        <p><img src="&#39;http://qiniucdn.timilong.com/ChMkJlwhnwaIJ0Y-AAL4x4oByVsAAt-BwK3fvoAAvjf984.jpg&#39;" alt="cover_img"></p>
+        <p><img src="http://qiniucdn.timilong.com/ChMkJlwhnwaIJ0Y-AAL4x4oByVsAAt-BwK3fvoAAvjf984.jpg" alt="cover_img"></p>
 <h2 id="存储引擎的选择-MyISAM和Innodb"><a href="#存储引擎的选择-MyISAM和Innodb" class="headerlink" title="存储引擎的选择(MyISAM和Innodb)"></a>存储引擎的选择(MyISAM和Innodb)</h2><p>存储引擎：MySQL中的数据、索引以及其他对象是如何存储的，是一套文件系统的实现。</p>
 <p>5.1之前默认存储引擎是MyISAM, 5.1之后默认存储引擎是Innodb。</p>
 <h4 id="功能差异"><a href="#功能差异" class="headerlink" title="功能差异"></a>功能差异</h4><p><img src="https://pic1.zhimg.com/80/v2-0e38e0faa85d457ad767f98da68fd424_hd.jpg" alt="zhihu"></p>
@@ -544,6 +565,12 @@
     
 
     <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/MySQL/" rel="tag"># MySQL</a>
+          
+        </div>
       
 
       
