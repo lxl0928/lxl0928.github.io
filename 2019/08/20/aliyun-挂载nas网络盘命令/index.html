@@ -114,27 +114,27 @@
 
 
 
-  <meta name="description" content="shortuuid的使用指南.">
-<meta name="keywords" content="python">
+  <meta name="description" content="挂载阿里云NAS网络盘的一个命令">
+<meta name="keywords" content="运维">
 <meta property="og:type" content="article">
-<meta property="og:title" content="python-shortuuid使用方式">
-<meta property="og:url" content="https://blog.timilong.com/2019/08/14/python-shortuuid使用方式/index.html">
+<meta property="og:title" content="aliyun-挂载nas网络盘命令">
+<meta property="og:url" content="https://blog.timilong.com/2019/08/20/aliyun-挂载nas网络盘命令/index.html">
 <meta property="og:site_name" content="Timilong&#39;s blog">
-<meta property="og:description" content="shortuuid的使用指南.">
+<meta property="og:description" content="挂载阿里云NAS网络盘的一个命令">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="http://qiniucdn.timilong.com/1551520954637.jpg">
-<meta property="og:updated_time" content="2019-08-14T02:28:35.692Z">
+<meta property="og:image" content="http://qiniucdn.timilong.com/1551520931257.jpg">
+<meta property="og:updated_time" content="2019-08-19T09:15:01.319Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="python-shortuuid使用方式">
-<meta name="twitter:description" content="shortuuid的使用指南.">
-<meta name="twitter:image" content="http://qiniucdn.timilong.com/1551520954637.jpg">
+<meta name="twitter:title" content="aliyun-挂载nas网络盘命令">
+<meta name="twitter:description" content="挂载阿里云NAS网络盘的一个命令">
+<meta name="twitter:image" content="http://qiniucdn.timilong.com/1551520931257.jpg">
 
 
 
 
 
 
-  <link rel="canonical" href="https://blog.timilong.com/2019/08/14/python-shortuuid使用方式/"/>
+  <link rel="canonical" href="https://blog.timilong.com/2019/08/20/aliyun-挂载nas网络盘命令/"/>
 
 
 
@@ -144,7 +144,7 @@
   };
 </script>
 
-  <title>python-shortuuid使用方式 | Timilong's blog</title>
+  <title>aliyun-挂载nas网络盘命令 | Timilong's blog</title>
   
 
 
@@ -325,7 +325,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://blog.timilong.com/2019/08/14/python-shortuuid使用方式/">
+    <link itemprop="mainEntityOfPage" href="https://blog.timilong.com/2019/08/20/aliyun-挂载nas网络盘命令/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="博主">
@@ -342,7 +342,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">python-shortuuid使用方式
+          <h1 class="post-title" itemprop="name headline">aliyun-挂载nas网络盘命令
               
             
           </h1>
@@ -367,7 +367,7 @@
                 
               
 
-              <time title="创建于：2019-08-14 10:23:30 / 更新于：02:28:35" itemprop="dateCreated datePublished" datetime="2019-08-14T10:23:30Z">2019-08-14</time>
+              <time title="创建于：2019-08-19 17:11:58 / 更新于：09:15:01" itemprop="dateCreated datePublished" datetime="2019-08-19T17:11:58Z">2019-08-19</time>
             
 
             
@@ -389,7 +389,7 @@
                 <span class="post-meta-item-text">分类于</span>
               
               
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/python/" itemprop="url" rel="index"><span itemprop="name">python</span></a></span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/运维/" itemprop="url" rel="index"><span itemprop="name">运维</span></a></span>
 
                 
                 
@@ -409,7 +409,7 @@
           
 
           
-              <div class="post-description">shortuuid的使用指南.</div>
+              <div class="post-description">挂载阿里云NAS网络盘的一个命令</div>
           
 
         </div>
@@ -425,33 +425,8 @@
       
 
       
-        <p><img src="http://qiniucdn.timilong.com/1551520954637.jpg" alt="cover_img"></p>
-<h3 id="Description"><a href="#Description" class="headerlink" title="Description"></a>Description</h3><p><code>shortuuid</code> is a simple python library that generates concise, unambiguous, URL-safe UUIDs.</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">Often, one needs to use non-sequential IDs in places where users will see them,</span><br><span class="line">but the IDs must be as concise and easy to use as possible. ``shortuuid`` solves</span><br><span class="line">this problem by generating uuids using Python&apos;s built-in ``uuid`` module and then</span><br><span class="line">translating them to base57 using lowercase and uppercase letters and digits, and</span><br><span class="line">removing similar-looking characters such as l, 1, I, O and 0.</span><br><span class="line"></span><br><span class="line">.. image:: https://travis-ci.org/skorokithakis/shortuuid.svg?branch=master</span><br><span class="line">    :target: https://travis-ci.org/skorokithakis/shortuuid</span><br></pre></td></tr></table></figure>
-<h3 id="Installation"><a href="#Installation" class="headerlink" title="Installation"></a>Installation</h3><p>To install <code>shortuuid</code> you need:</p>
-<ul>
-<li>Python 2.5 or later in the 2.x line (earlier than 2.6 not tested), or any 3.x.</li>
-</ul>
-<p>If you have the dependencies, you have multiple options of installation:</p>
-<ul>
-<li>With pip (preferred), do <code>pip install shortuuid</code>.</li>
-<li>With setuptools, do <code>easy_install shortuuid</code>.</li>
-<li>To install the source, download it from<br><a href="https://github.com/stochastic-technologies/shortuuid" target="_blank" rel="noopener">https://github.com/stochastic-technologies/shortuuid</a> and do<br><code>python setup.py install</code>.</li>
-</ul>
-<h3 id="Usage"><a href="#Usage" class="headerlink" title="Usage"></a>Usage</h3><p>To use <code>shortuuid</code>, just import it in your project like so:<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span><span class="keyword">import</span> shortuuid</span><br></pre></td></tr></table></figure></p>
-<p>You can then generate a short UUID:<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span>shortuuid.uuid()</span><br><span class="line"><span class="string">'vytxeTZskVKR7C7WgdSP3d'</span></span><br></pre></td></tr></table></figure></p>
-<p>If you prefer a version 5 UUID, you can pass a name (DNS or URL) to the call and<br>it will be used as a namespace (uuid.NAMESPACE_DNS or uuid.NAMESPACE_URL) for the<br>resulting UUID:<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span>shortuuid.uuid(name=<span class="string">"example.com"</span>)</span><br><span class="line"><span class="string">'wpsWLdLt9nscn2jbTD3uxe'</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>shortuuid.uuid(name=<span class="string">"http://example.com"</span>)</span><br><span class="line"><span class="string">'c8sh5y9hdSMS6zVnrvf53T'</span></span><br></pre></td></tr></table></figure></p>
-<p>You can also generate a cryptographically secure random string (using<br><code>os.urandom()</code>, internally) with:<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span>shortuuid.ShortUUID().random(length=<span class="number">22</span>)</span><br><span class="line"><span class="string">'RaF56o2r58hTKT7AYS9doj'</span></span><br></pre></td></tr></table></figure></p>
-<p>To see the alphabet that is being used to generate new UUIDs:<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span>shortuuid.get_alphabet()</span><br><span class="line"><span class="string">'23456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz'</span></span><br></pre></td></tr></table></figure></p>
-<p>If you want to use your own alphabet to generate UUIDs, use <code>set_alphabet()</code>:<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span>shortuuid.set_alphabet(<span class="string">"aaaaabcdefgh1230123"</span>)</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>shortuuid.uuid()</span><br><span class="line"><span class="string">'0agee20aa1hehebcagddhedddc0d2chhab3b'</span></span><br></pre></td></tr></table></figure></p>
-<p><code>shortuuid</code> will automatically sort and remove duplicates from your alphabet to<br>ensure consistency:</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span>shortuuid.get_alphabet()</span><br><span class="line"><span class="string">'0123abcdefgh'</span></span><br></pre></td></tr></table></figure>
-<p>If the default 22 digits are too long for you, you can get shorter IDs by just<br>truncating the string to the desired length. The IDs won’t be universally unique<br>any longer, but the probability of a collision will still be very low.</p>
-<p>To serialize existing UUIDs, use <code>encode()</code> and <code>decode()</code>:<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span><span class="keyword">import</span> uuid ; u = uuid.uuid4() ; u</span><br><span class="line">UUID(<span class="string">'6ca4f0f8-2508-4bac-b8f1-5d1e3da2247a'</span>)</span><br><span class="line"></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>s = shortuuid.encode(u) ; s</span><br><span class="line"><span class="string">'cu8Eo9RyrUsV4MXEiDZpLM'</span></span><br><span class="line"></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>shortuuid.decode(s) == u</span><br><span class="line"><span class="keyword">True</span></span><br><span class="line"></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>short = s[:<span class="number">7</span>] ; short</span><br><span class="line"><span class="string">'cu8Eo9R'</span></span><br><span class="line"></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>h = shortuuid.decode(short)</span><br><span class="line">UUID(<span class="string">'00000000-0000-0000-0000-00b8c0b9f952'</span>)</span><br><span class="line"></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>shortuuid.decode(shortuuid.encode(h)) == h</span><br><span class="line"><span class="keyword">True</span></span><br></pre></td></tr></table></figure></p>
-<h3 id="Class-based-usage"><a href="#Class-based-usage" class="headerlink" title="Class-based usage"></a>Class-based usage</h3><p>If you need to have various alphabets per-thread, you can use the <code>ShortUUID</code> class, like so:<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span>su = shortuuid.ShortUUID(alphabet=<span class="string">"01345678"</span>)</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>su.uuid()</span><br><span class="line"><span class="string">'034636353306816784480643806546503818874456'</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>su.get_alphabet()</span><br><span class="line"><span class="string">'01345678'</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>su.set_alphabet(<span class="string">"21345687654123456"</span>)</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>su.get_alphabet()</span><br><span class="line"><span class="string">'12345678'</span></span><br></pre></td></tr></table></figure></p>
-<h3 id="Compatibility-note"><a href="#Compatibility-note" class="headerlink" title="Compatibility note"></a>Compatibility note</h3><p>Earlier versions of ShortUUID generated UUIDs with their MSB last, i.e. reversed. This was later fixed, but if you have some UUIDs stored as a string in the old way, you need to pass <code>legacy=True</code> to <code>decode()</code> when converting your strings back to ints.</p>
-<p>That option will go away in the future, so you will want to convert your UUIDs to strings using the new way, with:<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span>uuid = encode(decode(uuid))</span><br></pre></td></tr></table></figure></p>
-<h3 id="License"><a href="#License" class="headerlink" title="License"></a>License</h3><p><code>shortuuid</code> is distributed under the BSD license.</p>
+        <p><img src="http://qiniucdn.timilong.com/1551520931257.jpg" alt="cover_img"></p>
+<h2 id="命令如下"><a href="#命令如下" class="headerlink" title="命令如下"></a>命令如下</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mount -t nfs -o vers=4 xxxxxx.nas.aliyuncs.com:/ /root/nas</span><br></pre></td></tr></table></figure>
 
       
     </div>
@@ -472,7 +447,7 @@
       
         <div class="post-tags">
           
-            <a href="/tags/python/" rel="tag"># python</a>
+            <a href="/tags/运维/" rel="tag"># 运维</a>
           
         </div>
       
@@ -485,8 +460,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2019/08/14/mysql-MySQL优化总结/" rel="next" title="MySQL优化总结">
-                <i class="fa fa-chevron-left"></i> MySQL优化总结
+              <a href="/2019/08/20/redis-推荐规范1/" rel="next" title="redis-推荐规范1">
+                <i class="fa fa-chevron-left"></i> redis-推荐规范1
               </a>
             
           </div>
@@ -494,10 +469,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2019/08/15/python3_6后字典有序并且效率更高/" rel="prev" title="为什么python3_6以后字典有序并且效率更高">
-                为什么python3_6以后字典有序并且效率更高 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -791,7 +762,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#Description"><span class="nav-number">1.</span> <span class="nav-text">Description</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Installation"><span class="nav-number">2.</span> <span class="nav-text">Installation</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Usage"><span class="nav-number">3.</span> <span class="nav-text">Usage</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Class-based-usage"><span class="nav-number">4.</span> <span class="nav-text">Class-based usage</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Compatibility-note"><span class="nav-number">5.</span> <span class="nav-text">Compatibility note</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#License"><span class="nav-number">6.</span> <span class="nav-text">License</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#命令如下"><span class="nav-number">1.</span> <span class="nav-text">命令如下</span></a></li></ol></div>
             
 
           </div>
