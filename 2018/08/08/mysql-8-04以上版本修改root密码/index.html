@@ -123,7 +123,7 @@
 <meta property="og:description" content="记录一次更改myql root用户密码的经历.">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="http://qiniucdn.timilong.com/1543736741455.jpg">
-<meta property="og:updated_time" content="2018-12-04T06:52:03.941Z">
+<meta property="og:updated_time" content="2019-08-21T04:44:31.569Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="mysql-8.04以上版本修改root密码">
 <meta name="twitter:description" content="记录一次更改myql root用户密码的经历.">
@@ -384,7 +384,7 @@
                 
                   <span class="post-meta-item-text">Edited on</span>
                 
-                <time title="更新于：2018-12-04 06:52:03" itemprop="dateModified" datetime="2018-12-04T06:52:03Z">2018-12-04</time>
+                <time title="更新于：2019-08-21 04:44:31" itemprop="dateModified" datetime="2019-08-21T04:44:31Z">2019-08-21</time>
               
             
           </span>
@@ -443,6 +443,7 @@
 <p>use mysql<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">&gt;&gt;&gt; use mysql;</span><br><span class="line"></span><br><span class="line">&gt;&gt;&gt; ALTER USER &apos;root&apos;@&apos;localhost&apos; IDENTIFIED WITH mysql_native_password BY &apos;123456&apos;;  # 123456为新密码</span><br><span class="line"></span><br><span class="line">&gt;&gt;&gt; FLUSH PRIVILEGES;</span><br><span class="line"></span><br><span class="line">&gt;&gt;&gt; exit</span><br></pre></td></tr></table></figure></p>
 <p>重新登录, 需要密码<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">mysql -uroot -p123456</span><br><span class="line"></span><br><span class="line"># 成功进入</span><br></pre></td></tr></table></figure></p>
 <h1 id="没有忘记root密码，只是需要一个新密码"><a href="#没有忘记root密码，只是需要一个新密码" class="headerlink" title="没有忘记root密码，只是需要一个新密码"></a>没有忘记root密码，只是需要一个新密码</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mysqladmin -u用户名 -p旧密码 password 新密码</span><br></pre></td></tr></table></figure>
+<h1 id="进入mysql-client修改密码"><a href="#进入mysql-client修改密码" class="headerlink" title="进入mysql_client修改密码"></a>进入mysql_client修改密码</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt; set password for root@localhost = password(&apos;root&apos;);</span><br><span class="line">Query OK, 0 rows affected, 1 warning (0.02 sec)</span><br><span class="line"></span><br><span class="line">mysql&gt; set password for root@&apos;%&apos; = password(&apos;root&apos;);</span><br><span class="line">Query OK, 0 rows affected, 1 warning (0.02 sec)</span><br><span class="line"></span><br><span class="line">mysql&gt; FLUSH PRIVILEGES;</span><br><span class="line">Query OK, 0 rows affected (0.05 sec)</span><br><span class="line"></span><br><span class="line">mysql&gt; exit</span><br></pre></td></tr></table></figure>
 
       
     </div>
@@ -784,7 +785,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#忘记root密码"><span class="nav-number">1.</span> <span class="nav-text">忘记root密码</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#用安全方式打开mysql服务，然后更新存密码的表"><span class="nav-number">1.1.</span> <span class="nav-text">用安全方式打开mysql服务，然后更新存密码的表</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#新开终端、更新密码"><span class="nav-number">1.2.</span> <span class="nav-text">新开终端、更新密码</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#没有忘记root密码，只是需要一个新密码"><span class="nav-number">2.</span> <span class="nav-text">没有忘记root密码，只是需要一个新密码</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#忘记root密码"><span class="nav-number">1.</span> <span class="nav-text">忘记root密码</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#用安全方式打开mysql服务，然后更新存密码的表"><span class="nav-number">1.1.</span> <span class="nav-text">用安全方式打开mysql服务，然后更新存密码的表</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#新开终端、更新密码"><span class="nav-number">1.2.</span> <span class="nav-text">新开终端、更新密码</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#没有忘记root密码，只是需要一个新密码"><span class="nav-number">2.</span> <span class="nav-text">没有忘记root密码，只是需要一个新密码</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#进入mysql-client修改密码"><span class="nav-number">3.</span> <span class="nav-text">进入mysql_client修改密码</span></a></li></ol></div>
             
 
           </div>
