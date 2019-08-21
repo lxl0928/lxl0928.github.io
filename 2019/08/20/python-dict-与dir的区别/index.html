@@ -123,7 +123,7 @@
 <meta property="og:description" content="Python中的__dict__属性和dir()方法的区别">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="http://qiniucdn.timilong.com/1551521146198.jpg">
-<meta property="og:updated_time" content="2019-08-20T03:25:39.173Z">
+<meta property="og:updated_time" content="2019-08-21T02:13:58.391Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="python-__dict__与dir的区别">
 <meta name="twitter:description" content="Python中的__dict__属性和dir()方法的区别">
@@ -214,7 +214,7 @@
   </div>
 
   <div class="site-nav-toggle">
-    <button aria-label="ナビゲーションバーの切り替え">
+    <button aria-label="Toggle navigation bar">
       <span class="btn-bar"></span>
       <span class="btn-bar"></span>
       <span class="btn-bar"></span>
@@ -367,12 +367,24 @@
                 
               
 
-              <time title="创建于：2019-08-20 11:14:33 / 更新于：03:25:39" itemprop="dateCreated datePublished" datetime="2019-08-20T11:14:33Z">2019-08-20</time>
+              <time title="创建于：2019-08-20 11:14:33" itemprop="dateCreated datePublished" datetime="2019-08-20T11:14:33Z">2019-08-20</time>
             
 
             
               
 
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Edited on</span>
+                
+                <time title="更新于：2019-08-21 02:13:58" itemprop="dateModified" datetime="2019-08-21T02:13:58Z">2019-08-21</time>
               
             
           </span>
@@ -450,8 +462,8 @@
 <h2 id="dir-函数"><a href="#dir-函数" class="headerlink" title="dir()函数"></a>dir()函数</h2><p>​<code>dir()</code>是Python提供的一个API函数，<code>dir()</code>函数会自动寻找一个对象的所有属性(包括从父类中继承的属性)。</p>
 <p>​一个实例的<code>__dict__</code>属性仅仅是那个实例的实例属性的集合，并不包含该实例的所有有效属性。</p>
 <p>所以如果想获取一个对象所有有效属性，应使用<code>dir()</code>。<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">print</span> dir(A)</span><br><span class="line"><span class="string">"""</span></span><br><span class="line"><span class="string">['__class__', '__delattr__', '__dict__', '__doc__', '__format__', '__getattribute__', '__hash__', '__init__', '__module__', '__new__',\</span></span><br><span class="line"><span class="string"> '__reduce__', '__reduce_ex__', '__repr__', '__setattr__', '__sizeof__', '__str__', '__subclasshook__', '__weakref__', 'age', 'class_f', \</span></span><br><span class="line"><span class="string">'class_var', 'fun', 'level1', 'level2', 'name', 'num', 'static_f']</span></span><br><span class="line"><span class="string">"""</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">a_dict = a.__dict__.keys()</span><br><span class="line">A_dict = A.__dict__.keys()</span><br><span class="line">object_dict = object.__dict__.keys()</span><br><span class="line"><span class="keyword">print</span> a_dict  </span><br><span class="line"><span class="keyword">print</span> A_dict  </span><br><span class="line"><span class="keyword">print</span> object_dict </span><br><span class="line"></span><br><span class="line"><span class="string">"""</span></span><br><span class="line"><span class="string">['fun', 'level1', 'age', 'name']</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">['__module__', 'level2', 'num', 'static_f', '__dict__', '__weakref__', '__init__', 'class_f', 'class_var', 'fun', '__doc__']</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">['__setattr__', '__reduce_ex__', '__new__', '__reduce__', '__str__', '__format__', '__getattribute__', '__class__', '__delattr__',\</span></span><br><span class="line"><span class="string"> '__subclasshook__', '__repr__', '__hash__', '__sizeof__', '__doc__', '__init__']</span></span><br><span class="line"><span class="string">"""</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 因为每个类都有一个__doc__属性，所以需要去重，去重后然后比较</span></span><br><span class="line"><span class="keyword">print</span> set(dir(a)) == set(a_dict + A_dict + object_dict)  <span class="comment"># True</span></span><br></pre></td></tr></table></figure></p>
-<h2 id="结论"><a href="#结论" class="headerlink" title="结论"></a>结论</h2><p>dir()函数会自动寻找一个对象的所有属性，包括<strong>dict</strong>中的属性。</p>
-<p><strong>dict</strong>是dir()的子集，dir()包含<strong>dict</strong>中的属性。</p>
+<h2 id="结论"><a href="#结论" class="headerlink" title="结论"></a>结论</h2><p><code>dir()</code>函数会自动寻找一个对象的所有属性，包括<code>__dict__</code>中的属性。</p>
+<p><code>__dict__</code>是<code>dir()</code>的子集，<code>dir()</code>包含<code>__dict__</code>中的属性。</p>
 
       
     </div>
