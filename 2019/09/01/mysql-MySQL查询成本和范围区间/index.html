@@ -114,34 +114,27 @@
 
 
 
-  <meta name="description" content="服务器为每个用户创建一个会话，存储用户的相关信息，以便多次请求能够定位到同一个上下文。">
-<meta name="keywords" content="架构">
+  <meta name="description" content="MySQL查询成本和范围区间.">
+<meta name="keywords" content="MySQL">
 <meta property="og:type" content="article">
-<meta property="og:title" content="转载-session一致性架构设计实践">
-<meta property="og:url" content="https://blog.timilong.com/2018/12/06/转载-session一致性架构设计实践/index.html">
+<meta property="og:title" content="MySQL查询成本和范围区间">
+<meta property="og:url" content="https://blog.timilong.com/2019/09/01/mysql-MySQL查询成本和范围区间/index.html">
 <meta property="og:site_name" content="Timilong&#39;s blog">
-<meta property="og:description" content="服务器为每个用户创建一个会话，存储用户的相关信息，以便多次请求能够定位到同一个上下文。">
+<meta property="og:description" content="MySQL查询成本和范围区间.">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="http://qiniucdn.timilong.com/1543735436252.jpg">
-<meta property="og:image" content="http://qiniucdn.timilong.com/2017060621.jpg">
-<meta property="og:image" content="http://qiniucdn.timilong.com/2017060622.jpg">
-<meta property="og:image" content="http://qiniucdn.timilong.com/2017060623.jpg">
-<meta property="og:image" content="http://qiniucdn.timilong.com/2017060624.jpg">
-<meta property="og:image" content="http://qiniucdn.timilong.com/2017060625.jpg">
-<meta property="og:image" content="http://qiniucdn.timilong.com/2017060626.jpg">
-<meta property="og:image" content="http://qiniucdn.timilong.com/2017060627.jpg">
-<meta property="og:updated_time" content="2018-12-06T07:10:43.007Z">
+<meta property="og:image" content="http://qiniucdn.timilong.com/ChMkJlbKy1-ISQwUAHS2-UvN6FIAALIqAFe3bwAdLcR482.jpg">
+<meta property="og:updated_time" content="2019-09-01T05:44:32.396Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="转载-session一致性架构设计实践">
-<meta name="twitter:description" content="服务器为每个用户创建一个会话，存储用户的相关信息，以便多次请求能够定位到同一个上下文。">
-<meta name="twitter:image" content="http://qiniucdn.timilong.com/1543735436252.jpg">
+<meta name="twitter:title" content="MySQL查询成本和范围区间">
+<meta name="twitter:description" content="MySQL查询成本和范围区间.">
+<meta name="twitter:image" content="http://qiniucdn.timilong.com/ChMkJlbKy1-ISQwUAHS2-UvN6FIAALIqAFe3bwAdLcR482.jpg">
 
 
 
 
 
 
-  <link rel="canonical" href="https://blog.timilong.com/2018/12/06/转载-session一致性架构设计实践/"/>
+  <link rel="canonical" href="https://blog.timilong.com/2019/09/01/mysql-MySQL查询成本和范围区间/"/>
 
 
 
@@ -151,7 +144,7 @@
   };
 </script>
 
-  <title>转载-session一致性架构设计实践 | Timilong's blog</title>
+  <title>MySQL查询成本和范围区间 | Timilong's blog</title>
   
 
 
@@ -332,7 +325,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://blog.timilong.com/2018/12/06/转载-session一致性架构设计实践/">
+    <link itemprop="mainEntityOfPage" href="https://blog.timilong.com/2019/09/01/mysql-MySQL查询成本和范围区间/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="博主">
@@ -349,7 +342,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">转载-session一致性架构设计实践
+          <h1 class="post-title" itemprop="name headline">MySQL查询成本和范围区间
               
             
           </h1>
@@ -374,7 +367,7 @@
                 
               
 
-              <time title="创建于：2018-12-06 12:50:44 / 更新于：07:10:43" itemprop="dateCreated datePublished" datetime="2018-12-06T12:50:44Z">2018-12-06</time>
+              <time title="创建于：2019-09-01 13:25:00 / 更新于：05:44:32" itemprop="dateCreated datePublished" datetime="2019-09-01T13:25:00Z">2019-09-01</time>
             
 
             
@@ -396,7 +389,7 @@
                 <span class="post-meta-item-text">分类于</span>
               
               
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/架构/" itemprop="url" rel="index"><span itemprop="name">架构</span></a></span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/MySQL/" itemprop="url" rel="index"><span itemprop="name">MySQL</span></a></span>
 
                 
                 
@@ -416,7 +409,7 @@
           
 
           
-              <div class="post-description">服务器为每个用户创建一个会话，存储用户的相关信息，以便多次请求能够定位到同一个上下文。</div>
+              <div class="post-description">MySQL查询成本和范围区间.</div>
           
 
         </div>
@@ -432,88 +425,10 @@
       
 
       
-        <p><img src="http://qiniucdn.timilong.com/1543735436252.jpg" alt="tu"></p>
+        <p><img src="http://qiniucdn.timilong.com/ChMkJlbKy1-ISQwUAHS2-UvN6FIAALIqAFe3bwAdLcR482.jpg" alt="cover_img"></p>
 <blockquote>
-<p>转载自: 微信公众号，<a href="https://mp.weixin.qq.com/s?__biz=MjM5ODYxMDA5OQ==&amp;mid=2651960128&amp;idx=1&amp;sn=8e0e409b10ab9db549432af461385314&amp;chksm=bd2d069c8a5a8f8ab5cdee602d4062bbdbb25da290668515d36682afa854e374d2a5ff02004b&amp;scene=21#wechat_redirect" target="_blank" rel="noopener">架构师之路</a></p>
+<p>转载自: 掘金，<a href="https://juejin.im/post/5d5f4b3a51882540b16f35be" target="_blank" rel="noopener">MySQL查询成本和范围区间</a></p>
 </blockquote>
-<h2 id="缘起"><a href="#缘起" class="headerlink" title="缘起"></a>缘起</h2><h3 id="什么是session？"><a href="#什么是session？" class="headerlink" title="什么是session？"></a>什么是session？</h3><p>服务器为每个用户创建一个会话，存储用户的相关信息，以便多次请求能够定位到同一个上下文。</p>
-<p>Web开发中，web-server可以自动为同一个浏览器的访问用户自动创建session，提供数据存储功能。最常见的，会把用户的登录信息、用户信息存储在session中，以保持登录状态。</p>
-<h3 id="什么是session一致性问题？"><a href="#什么是session一致性问题？" class="headerlink" title="什么是session一致性问题？"></a>什么是session一致性问题？</h3><p>只要用户不重启浏览器，每次http短连接请求，理论上服务端都能定位到session，保持会话。</p>
-<p><img src="http://qiniucdn.timilong.com/2017060621.jpg" alt="tu"></p>
-<p>当只有一台web-server提供服务时，每次http短连接请求，都能够正确路由到存储session的对应web-server（废话，因为只有一台）。</p>
-<p>此时的web-server是无法保证高可用的，采用“冗余+故障转移”的多台web-server来保证高可用时，每次http短连接请求就不一定能路由到正确的session了。</p>
-<p><img src="http://qiniucdn.timilong.com/2017060622.jpg" alt="tu"></p>
-<p>如上图，假设用户包含登录信息的session都记录在第一台web-server上，反向代理如果将请求路由到另一台web-server上，可能就找不到相关信息，而导致用户需要重新登录。</p>
-<p>在web-server高可用时，如何保证session路由的一致性，是今天将要讨论的问题。</p>
-<h2 id="session同步法"><a href="#session同步法" class="headerlink" title="session同步法"></a>session同步法</h2><p><img src="http://qiniucdn.timilong.com/2017060623.jpg" alt="tu"></p>
-<p>思路：多个web-server之间相互同步session，这样每个web-server之间都包含全部的session</p>
-<p>优点：web-server支持的功能，应用程序不需要修改代码</p>
-<p>不足：</p>
-<ul>
-<li><p>session的同步需要数据传输，占内网带宽，有时延</p>
-</li>
-<li><p>所有web-server都包含所有session数据，数据量受内存限制，无法水平扩展</p>
-</li>
-<li><p>有更多web-server时要歇菜</p>
-</li>
-</ul>
-<h2 id="客户端存储法"><a href="#客户端存储法" class="headerlink" title="客户端存储法"></a>客户端存储法</h2><p><img src="http://qiniucdn.timilong.com/2017060624.jpg" alt="tu"></p>
-<p>思路：服务端存储所有用户的session，内存占用较大，可以将session存储到浏览器cookie中，每个端只要存储一个用户的数据了</p>
-<p>优点：服务端不需要存储</p>
-<p>缺点：</p>
-<ul>
-<li><p>每次http请求都携带session，占外网带宽</p>
-</li>
-<li><p>数据存储在端上，并在网络传输，存在泄漏、篡改、窃取等安全隐患</p>
-</li>
-<li><p>session存储的数据大小受cookie限制</p>
-</li>
-</ul>
-<p>“端存储”的方案虽然不常用，但确实是一种思路。</p>
-<h2 id="反向代理hash一致性"><a href="#反向代理hash一致性" class="headerlink" title="反向代理hash一致性"></a>反向代理hash一致性</h2><p>思路：web-server为了保证高可用，有多台冗余，反向代理层能不能做一些事情，让同一个用户的请求保证落在一台web-server上呢？</p>
-<p><img src="http://qiniucdn.timilong.com/2017060625.jpg" alt="tu"></p>
-<h3 id="方案一：四层代理hash"><a href="#方案一：四层代理hash" class="headerlink" title="方案一：四层代理hash"></a>方案一：四层代理hash</h3><p>反向代理层使用用户ip来做hash，以保证同一个ip的请求落在同一个web-server上</p>
-<p><img src="http://qiniucdn.timilong.com/2017060626.jpg" alt="tu"></p>
-<h3 id="方案二：七层代理hash"><a href="#方案二：七层代理hash" class="headerlink" title="方案二：七层代理hash"></a>方案二：七层代理hash</h3><p>反向代理使用http协议中的某些业务属性来做hash，例如sid，city_id，user_id等，能够更加灵活的实施hash策略，以保证同一个浏览器用户的请求落在同一个web-server上</p>
-<p>优点：</p>
-<ul>
-<li><p>只需要改nginx配置，不需要修改应用代码</p>
-</li>
-<li><p>负载均衡，只要hash属性是均匀的，多台web-server的负载是均衡的</p>
-</li>
-<li><p>可以支持web-server水平扩展（session同步法是不行的，受内存限制）</p>
-</li>
-</ul>
-<p>不足：</p>
-<ul>
-<li><p>如果web-server重启，一部分session会丢失，产生业务影响，例如部分用户重新登录</p>
-</li>
-<li><p>如果web-server水平扩展，rehash后session重新分布，也会有一部分用户路由不到正确的session</p>
-</li>
-</ul>
-<p>session一般是有有效期的，所有不足中的两点，可以认为等同于部分session失效，一般问题不大。</p>
-<p>对于四层hash还是七层hash，个人推荐前者：让专业的软件做专业的事情，反向代理就负责转发，尽量不要引入应用层业务属性，除非不得不这么做（例如，有时候多机房多活需要按照业务属性路由到不同机房的web-server）。</p>
-<h2 id="后端统一存储"><a href="#后端统一存储" class="headerlink" title="后端统一存储"></a>后端统一存储</h2><p><img src="http://qiniucdn.timilong.com/2017060627.jpg" alt="tu"></p>
-<p>思路：将session存储在web-server后端的存储层，数据库或者缓存</p>
-<p>优点：</p>
-<ul>
-<li><p>没有安全隐患</p>
-</li>
-<li><p>可以水平扩展，数据库/缓存水平切分即可</p>
-</li>
-<li><p>web-server重启或者扩容都不会有session丢失</p>
-</li>
-</ul>
-<p>不足：增加了一次网络调用，并且需要修改应用代码</p>
-<p>对于db存储还是cache，个人推荐后者：session读取的频率会很高，数据库压力会比较大。如果有session高可用需求，cache可以做高可用，但大部分情况下session可以丢失，一般也不需要考虑高可用。</p>
-<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>保证session一致性的架构设计常见方法：</p>
-<p><b>session同步法</b>：多台web-server相互同步数据</p>
-<p><b>客户端存储法</b>：一个用户只存储自己的数据</p>
-<p><b>反向代理hash一致性</b>：四层hash和七层hash都可以做，保证一个用户的请求落在一台web-server上</p>
-<p><b>后端统一存储<b>：web-server重启和扩容，session也不会丢失</b></b></p>
-<p>对于方案3和方案4，个人建议推荐后者：</p>
-<p>web层、service层无状态是大规模分布式系统设计原则之一，session属于状态，不宜放在web层</p>
-<p>让专业的软件做专业的事情，web-server存session？还是让cache去做这样的事情吧</p>
 
       
     </div>
@@ -534,7 +449,7 @@
       
         <div class="post-tags">
           
-            <a href="/tags/架构/" rel="tag"># 架构</a>
+            <a href="/tags/MySQL/" rel="tag"># MySQL</a>
           
         </div>
       
@@ -547,8 +462,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2018/12/05/转载-线上运维相关文章-架构师之路/" rel="next" title="转载-线上运维相关术技文章-架构师之路">
-                <i class="fa fa-chevron-left"></i> 转载-线上运维相关术技文章-架构师之路
+              <a href="/2019/09/01/mysql-group-by查询语句的sql-model/" rel="next" title="mysql-group_by查询语句的sql_model">
+                <i class="fa fa-chevron-left"></i> mysql-group_by查询语句的sql_model
               </a>
             
           </div>
@@ -557,8 +472,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2018/12/06/转载-缓存架构-一篇足够/" rel="prev" title="转载-缓存架构-一篇足够">
-                转载-缓存架构-一篇足够 <i class="fa fa-chevron-right"></i>
+              <a href="/2019/09/01/mysql-数据库锁机制/" rel="prev" title="mysql-数据库锁机制">
+                mysql-数据库锁机制 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -604,17 +519,8 @@
       
 
       
-        <ul class="sidebar-nav motion-element">
-          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
-            文章目录
-          </li>
-          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
-            站点概览
-          </li>
-        </ul>
-      
 
-      <section class="site-overview-wrap sidebar-panel">
+      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -845,22 +751,6 @@
         </div>
       </section>
 
-      
-      <!--noindex-->
-        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
-          <div class="post-toc">
-
-            
-              
-            
-
-            
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#缘起"><span class="nav-number">1.</span> <span class="nav-text">缘起</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#什么是session？"><span class="nav-number">1.1.</span> <span class="nav-text">什么是session？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#什么是session一致性问题？"><span class="nav-number">1.2.</span> <span class="nav-text">什么是session一致性问题？</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#session同步法"><span class="nav-number">2.</span> <span class="nav-text">session同步法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#客户端存储法"><span class="nav-number">3.</span> <span class="nav-text">客户端存储法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#反向代理hash一致性"><span class="nav-number">4.</span> <span class="nav-text">反向代理hash一致性</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#方案一：四层代理hash"><span class="nav-number">4.1.</span> <span class="nav-text">方案一：四层代理hash</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#方案二：七层代理hash"><span class="nav-number">4.2.</span> <span class="nav-text">方案二：七层代理hash</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#后端统一存储"><span class="nav-number">5.</span> <span class="nav-text">后端统一存储</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#总结"><span class="nav-number">6.</span> <span class="nav-text">总结</span></a></li></ol></div>
-            
-
-          </div>
-        </section>
-      <!--/noindex-->
       
 
       
