@@ -1,0 +1,994 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.3.5/jquery.fancybox.min.css" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=6.4.1" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=6.4.1">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=6.4.1">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=6.4.1">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=6.4.1" color="#222">
+
+
+
+
+
+
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    version: '6.4.1',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  
+
+
+
+
+  <meta name="description" content="Python-paho客户端学习指南">
+<meta name="keywords" content="Python">
+<meta property="og:type" content="article">
+<meta property="og:title" content="python-paho-mqtt客户端">
+<meta property="og:url" content="https://blog.timilong.com/2019/10/25/python-paho-mqtt客户端/index.html">
+<meta property="og:site_name" content="Timilong&#39;s blog">
+<meta property="og:description" content="Python-paho客户端学习指南">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="http://qiniucdn.timilong.com/ChMkJ1bKy16IZPEyAEPR5Y3qI1YAALIqAAAAAAAQ9H9855.jpg">
+<meta property="og:updated_time" content="2019-10-25T04:58:13.950Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="python-paho-mqtt客户端">
+<meta name="twitter:description" content="Python-paho客户端学习指南">
+<meta name="twitter:image" content="http://qiniucdn.timilong.com/ChMkJ1bKy16IZPEyAEPR5Y3qI1YAALIqAAAAAAAQ9H9855.jpg">
+
+
+
+
+
+
+  <link rel="canonical" href="https://blog.timilong.com/2019/10/25/python-paho-mqtt客户端/"/>
+
+
+
+<script type="text/javascript" id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>python-paho-mqtt客户端 | Timilong's blog</title>
+  
+
+
+
+
+
+
+
+
+
+  <noscript>
+  <style type="text/css">
+    .use-motion .motion-element,
+    .use-motion .brand,
+    .use-motion .menu-item,
+    .sidebar-inner,
+    .use-motion .post-block,
+    .use-motion .pagination,
+    .use-motion .comments,
+    .use-motion .post-header,
+    .use-motion .post-body,
+    .use-motion .collection-title { opacity: initial; }
+
+    .use-motion .logo,
+    .use-motion .site-title,
+    .use-motion .site-subtitle {
+      opacity: initial;
+      top: initial;
+    }
+
+    .use-motion {
+      .logo-line-before i { left: initial; }
+      .logo-line-after i { right: initial; }
+    }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Timilong's blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+    
+      
+        <p class="site-subtitle">Cease to struggle and you cease to live.--Thomas Carlyle</p>
+      
+    
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="Toggle navigation bar">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+          
+          <li class="menu-item menu-item-home">
+    <a href="/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-home"></i> <br />首页</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-tags">
+    <a href="/tags/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />标签</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-categories">
+    <a href="/categories/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-th"></i> <br />分类</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+    <a href="/archives/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />归档</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-photos">
+    <a href="/photos/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-camera-retro"></i> <br />相册</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-about">
+    <a href="/about/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-user"></i> <br />关于</a>
+  </li>
+
+      
+      
+    </ul>
+  
+
+  
+    
+
+  
+
+  
+</nav>
+
+
+
+  
+
+
+
+</div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://blog.timilong.com/2019/10/25/python-paho-mqtt客户端/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="博主">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Timilong's blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">python-paho-mqtt客户端
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建于：2019-10-25 12:54:37 / 更新于：04:58:13" itemprop="dateCreated datePublished" datetime="2019-10-25T12:54:37Z">2019-10-25</time>
+            
+
+            
+              
+
+              
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Python/" itemprop="url" rel="index"><span itemprop="name">Python</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+              <div class="post-description">Python-paho客户端学习指南</div>
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p><img src="http://qiniucdn.timilong.com/ChMkJ1bKy16IZPEyAEPR5Y3qI1YAALIqAAAAAAAQ9H9855.jpg" alt="cover_img"></p>
+<blockquote>
+<p>本文系原创, 转载请联系作者 <a href="http://blog.timilong.com/about">Timilong</a></p>
+</blockquote>
+<h3 id="base-py"><a href="#base-py" class="headerlink" title="base.py"></a>base.py</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br><span class="line">151</span><br><span class="line">152</span><br><span class="line">153</span><br><span class="line">154</span><br><span class="line">155</span><br><span class="line">156</span><br><span class="line">157</span><br><span class="line">158</span><br><span class="line">159</span><br><span class="line">160</span><br><span class="line">161</span><br><span class="line">162</span><br><span class="line">163</span><br><span class="line">164</span><br><span class="line">165</span><br><span class="line">166</span><br><span class="line">167</span><br><span class="line">168</span><br><span class="line">169</span><br><span class="line">170</span><br><span class="line">171</span><br><span class="line">172</span><br><span class="line">173</span><br><span class="line">174</span><br><span class="line">175</span><br><span class="line">176</span><br><span class="line">177</span><br><span class="line">178</span><br><span class="line">179</span><br><span class="line">180</span><br><span class="line">181</span><br><span class="line">182</span><br><span class="line">183</span><br><span class="line">184</span><br><span class="line">185</span><br><span class="line">186</span><br><span class="line">187</span><br><span class="line">188</span><br><span class="line">189</span><br><span class="line">190</span><br><span class="line">191</span><br><span class="line">192</span><br><span class="line">193</span><br><span class="line">194</span><br><span class="line">195</span><br><span class="line">196</span><br><span class="line">197</span><br><span class="line">198</span><br><span class="line">199</span><br><span class="line">200</span><br><span class="line">201</span><br><span class="line">202</span><br><span class="line">203</span><br><span class="line">204</span><br><span class="line">205</span><br><span class="line">206</span><br><span class="line">207</span><br><span class="line">208</span><br><span class="line">209</span><br><span class="line">210</span><br><span class="line">211</span><br><span class="line">212</span><br><span class="line">213</span><br><span class="line">214</span><br><span class="line">215</span><br><span class="line">216</span><br><span class="line">217</span><br><span class="line">218</span><br><span class="line">219</span><br><span class="line">220</span><br><span class="line">221</span><br><span class="line">222</span><br><span class="line">223</span><br><span class="line">224</span><br><span class="line">225</span><br><span class="line">226</span><br><span class="line">227</span><br><span class="line">228</span><br><span class="line">229</span><br><span class="line">230</span><br><span class="line">231</span><br><span class="line">232</span><br><span class="line">233</span><br><span class="line">234</span><br><span class="line">235</span><br><span class="line">236</span><br><span class="line">237</span><br><span class="line">238</span><br><span class="line">239</span><br><span class="line">240</span><br><span class="line">241</span><br><span class="line">242</span><br><span class="line">243</span><br><span class="line">244</span><br><span class="line">245</span><br><span class="line">246</span><br><span class="line">247</span><br><span class="line">248</span><br><span class="line">249</span><br><span class="line">250</span><br><span class="line">251</span><br><span class="line">252</span><br><span class="line">253</span><br><span class="line">254</span><br><span class="line">255</span><br><span class="line">256</span><br><span class="line">257</span><br><span class="line">258</span><br><span class="line">259</span><br><span class="line">260</span><br><span class="line">261</span><br><span class="line">262</span><br><span class="line">263</span><br><span class="line">264</span><br><span class="line">265</span><br><span class="line">266</span><br><span class="line">267</span><br><span class="line">268</span><br><span class="line">269</span><br><span class="line">270</span><br><span class="line">271</span><br><span class="line">272</span><br><span class="line">273</span><br><span class="line">274</span><br><span class="line">275</span><br><span class="line">276</span><br><span class="line">277</span><br><span class="line">278</span><br><span class="line">279</span><br><span class="line">280</span><br><span class="line">281</span><br><span class="line">282</span><br><span class="line">283</span><br><span class="line">284</span><br><span class="line">285</span><br><span class="line">286</span><br><span class="line">287</span><br><span class="line">288</span><br><span class="line">289</span><br><span class="line">290</span><br><span class="line">291</span><br><span class="line">292</span><br><span class="line">293</span><br><span class="line">294</span><br><span class="line">295</span><br><span class="line">296</span><br><span class="line">297</span><br><span class="line">298</span><br><span class="line">299</span><br><span class="line">300</span><br><span class="line">301</span><br><span class="line">302</span><br><span class="line">303</span><br><span class="line">304</span><br><span class="line">305</span><br><span class="line">306</span><br><span class="line">307</span><br><span class="line">308</span><br><span class="line">309</span><br><span class="line">310</span><br><span class="line">311</span><br><span class="line">312</span><br><span class="line">313</span><br><span class="line">314</span><br><span class="line">315</span><br><span class="line">316</span><br><span class="line">317</span><br><span class="line">318</span><br><span class="line">319</span><br><span class="line">320</span><br><span class="line">321</span><br><span class="line">322</span><br><span class="line">323</span><br><span class="line">324</span><br><span class="line">325</span><br><span class="line">326</span><br><span class="line">327</span><br><span class="line">328</span><br><span class="line">329</span><br><span class="line">330</span><br><span class="line">331</span><br><span class="line">332</span><br><span class="line">333</span><br><span class="line">334</span><br><span class="line">335</span><br><span class="line">336</span><br><span class="line">337</span><br><span class="line">338</span><br><span class="line">339</span><br><span class="line">340</span><br><span class="line">341</span><br><span class="line">342</span><br><span class="line">343</span><br><span class="line">344</span><br><span class="line">345</span><br><span class="line">346</span><br><span class="line">347</span><br><span class="line">348</span><br><span class="line">349</span><br><span class="line">350</span><br><span class="line">351</span><br><span class="line">352</span><br><span class="line">353</span><br><span class="line">354</span><br><span class="line">355</span><br><span class="line">356</span><br><span class="line">357</span><br><span class="line">358</span><br><span class="line">359</span><br><span class="line">360</span><br><span class="line">361</span><br><span class="line">362</span><br><span class="line">363</span><br><span class="line">364</span><br><span class="line">365</span><br><span class="line">366</span><br><span class="line">367</span><br><span class="line">368</span><br><span class="line">369</span><br><span class="line">370</span><br><span class="line">371</span><br><span class="line">372</span><br><span class="line">373</span><br><span class="line">374</span><br><span class="line">375</span><br><span class="line">376</span><br><span class="line">377</span><br><span class="line">378</span><br><span class="line">379</span><br><span class="line">380</span><br><span class="line">381</span><br><span class="line">382</span><br><span class="line">383</span><br><span class="line">384</span><br><span class="line">385</span><br><span class="line">386</span><br><span class="line">387</span><br><span class="line">388</span><br><span class="line">389</span><br><span class="line">390</span><br><span class="line">391</span><br><span class="line">392</span><br><span class="line">393</span><br><span class="line">394</span><br><span class="line">395</span><br><span class="line">396</span><br><span class="line">397</span><br><span class="line">398</span><br><span class="line">399</span><br><span class="line">400</span><br><span class="line">401</span><br><span class="line">402</span><br><span class="line">403</span><br><span class="line">404</span><br><span class="line">405</span><br><span class="line">406</span><br><span class="line">407</span><br><span class="line">408</span><br><span class="line">409</span><br><span class="line">410</span><br><span class="line">411</span><br><span class="line">412</span><br><span class="line">413</span><br><span class="line">414</span><br><span class="line">415</span><br><span class="line">416</span><br><span class="line">417</span><br><span class="line">418</span><br><span class="line">419</span><br><span class="line">420</span><br><span class="line">421</span><br><span class="line">422</span><br><span class="line">423</span><br><span class="line">424</span><br><span class="line">425</span><br><span class="line">426</span><br><span class="line">427</span><br><span class="line">428</span><br><span class="line">429</span><br><span class="line">430</span><br><span class="line">431</span><br><span class="line">432</span><br><span class="line">433</span><br><span class="line">434</span><br><span class="line">435</span><br><span class="line">436</span><br><span class="line">437</span><br><span class="line">438</span><br><span class="line">439</span><br><span class="line">440</span><br><span class="line">441</span><br><span class="line">442</span><br><span class="line">443</span><br><span class="line">444</span><br><span class="line">445</span><br><span class="line">446</span><br><span class="line">447</span><br><span class="line">448</span><br><span class="line">449</span><br><span class="line">450</span><br><span class="line">451</span><br><span class="line">452</span><br><span class="line">453</span><br><span class="line">454</span><br><span class="line">455</span><br><span class="line">456</span><br><span class="line">457</span><br><span class="line">458</span><br><span class="line">459</span><br><span class="line">460</span><br><span class="line">461</span><br><span class="line">462</span><br><span class="line">463</span><br><span class="line">464</span><br><span class="line">465</span><br><span class="line">466</span><br><span class="line">467</span><br><span class="line">468</span><br><span class="line">469</span><br><span class="line">470</span><br><span class="line">471</span><br><span class="line">472</span><br><span class="line">473</span><br><span class="line">474</span><br><span class="line">475</span><br><span class="line">476</span><br><span class="line">477</span><br><span class="line">478</span><br><span class="line">479</span><br><span class="line">480</span><br><span class="line">481</span><br><span class="line">482</span><br><span class="line">483</span><br><span class="line">484</span><br><span class="line">485</span><br><span class="line">486</span><br><span class="line">487</span><br><span class="line">488</span><br><span class="line">489</span><br><span class="line">490</span><br><span class="line">491</span><br><span class="line">492</span><br><span class="line">493</span><br><span class="line">494</span><br><span class="line">495</span><br><span class="line">496</span><br><span class="line">497</span><br><span class="line">498</span><br><span class="line">499</span><br><span class="line">500</span><br><span class="line">501</span><br><span class="line">502</span><br><span class="line">503</span><br><span class="line">504</span><br><span class="line">505</span><br><span class="line">506</span><br><span class="line">507</span><br><span class="line">508</span><br><span class="line">509</span><br><span class="line">510</span><br><span class="line">511</span><br><span class="line">512</span><br><span class="line">513</span><br><span class="line">514</span><br><span class="line">515</span><br><span class="line">516</span><br><span class="line">517</span><br><span class="line">518</span><br><span class="line">519</span><br><span class="line">520</span><br><span class="line">521</span><br><span class="line">522</span><br><span class="line">523</span><br><span class="line">524</span><br><span class="line">525</span><br><span class="line">526</span><br><span class="line">527</span><br><span class="line">528</span><br><span class="line">529</span><br><span class="line">530</span><br><span class="line">531</span><br><span class="line">532</span><br><span class="line">533</span><br><span class="line">534</span><br><span class="line">535</span><br><span class="line">536</span><br><span class="line">537</span><br><span class="line">538</span><br><span class="line">539</span><br><span class="line">540</span><br><span class="line">541</span><br><span class="line">542</span><br><span class="line">543</span><br><span class="line">544</span><br><span class="line">545</span><br><span class="line">546</span><br><span class="line">547</span><br><span class="line">548</span><br><span class="line">549</span><br><span class="line">550</span><br><span class="line">551</span><br><span class="line">552</span><br><span class="line">553</span><br><span class="line">554</span><br><span class="line">555</span><br><span class="line">556</span><br><span class="line">557</span><br><span class="line">558</span><br><span class="line">559</span><br><span class="line">560</span><br><span class="line">561</span><br><span class="line">562</span><br><span class="line">563</span><br><span class="line">564</span><br><span class="line">565</span><br><span class="line">566</span><br><span class="line">567</span><br><span class="line">568</span><br><span class="line">569</span><br><span class="line">570</span><br><span class="line">571</span><br><span class="line">572</span><br><span class="line">573</span><br><span class="line">574</span><br><span class="line">575</span><br><span class="line">576</span><br><span class="line">577</span><br><span class="line">578</span><br><span class="line">579</span><br><span class="line">580</span><br><span class="line">581</span><br><span class="line">582</span><br><span class="line">583</span><br><span class="line">584</span><br><span class="line">585</span><br><span class="line">586</span><br><span class="line">587</span><br><span class="line">588</span><br><span class="line">589</span><br><span class="line">590</span><br><span class="line">591</span><br><span class="line">592</span><br><span class="line">593</span><br><span class="line">594</span><br><span class="line">595</span><br><span class="line">596</span><br><span class="line">597</span><br><span class="line">598</span><br><span class="line">599</span><br><span class="line">600</span><br><span class="line">601</span><br><span class="line">602</span><br><span class="line">603</span><br><span class="line">604</span><br><span class="line">605</span><br><span class="line">606</span><br><span class="line">607</span><br><span class="line">608</span><br><span class="line">609</span><br><span class="line">610</span><br><span class="line">611</span><br><span class="line">612</span><br><span class="line">613</span><br><span class="line">614</span><br><span class="line">615</span><br><span class="line">616</span><br><span class="line">617</span><br><span class="line">618</span><br><span class="line">619</span><br><span class="line">620</span><br><span class="line">621</span><br><span class="line">622</span><br><span class="line">623</span><br><span class="line">624</span><br><span class="line">625</span><br><span class="line">626</span><br><span class="line">627</span><br><span class="line">628</span><br><span class="line">629</span><br><span class="line">630</span><br><span class="line">631</span><br><span class="line">632</span><br><span class="line">633</span><br><span class="line">634</span><br><span class="line">635</span><br><span class="line">636</span><br><span class="line">637</span><br><span class="line">638</span><br><span class="line">639</span><br><span class="line">640</span><br><span class="line">641</span><br><span class="line">642</span><br><span class="line">643</span><br><span class="line">644</span><br><span class="line">645</span><br><span class="line">646</span><br><span class="line">647</span><br><span class="line">648</span><br><span class="line">649</span><br><span class="line">650</span><br><span class="line">651</span><br><span class="line">652</span><br><span class="line">653</span><br><span class="line">654</span><br><span class="line">655</span><br><span class="line">656</span><br><span class="line">657</span><br><span class="line">658</span><br><span class="line">659</span><br><span class="line">660</span><br><span class="line">661</span><br><span class="line">662</span><br><span class="line">663</span><br><span class="line">664</span><br><span class="line">665</span><br><span class="line">666</span><br><span class="line">667</span><br><span class="line">668</span><br><span class="line">669</span><br><span class="line">670</span><br><span class="line">671</span><br><span class="line">672</span><br><span class="line">673</span><br><span class="line">674</span><br><span class="line">675</span><br><span class="line">676</span><br><span class="line">677</span><br><span class="line">678</span><br><span class="line">679</span><br><span class="line">680</span><br><span class="line">681</span><br><span class="line">682</span><br><span class="line">683</span><br><span class="line">684</span><br><span class="line">685</span><br><span class="line">686</span><br><span class="line">687</span><br><span class="line">688</span><br><span class="line">689</span><br><span class="line">690</span><br><span class="line">691</span><br><span class="line">692</span><br><span class="line">693</span><br><span class="line">694</span><br><span class="line">695</span><br><span class="line">696</span><br><span class="line">697</span><br><span class="line">698</span><br><span class="line">699</span><br><span class="line">700</span><br><span class="line">701</span><br><span class="line">702</span><br><span class="line">703</span><br><span class="line">704</span><br><span class="line">705</span><br><span class="line">706</span><br><span class="line">707</span><br><span class="line">708</span><br><span class="line">709</span><br><span class="line">710</span><br><span class="line">711</span><br><span class="line">712</span><br><span class="line">713</span><br><span class="line">714</span><br><span class="line">715</span><br><span class="line">716</span><br><span class="line">717</span><br><span class="line">718</span><br><span class="line">719</span><br><span class="line">720</span><br><span class="line">721</span><br><span class="line">722</span><br><span class="line">723</span><br><span class="line">724</span><br><span class="line">725</span><br><span class="line">726</span><br><span class="line">727</span><br><span class="line">728</span><br><span class="line">729</span><br><span class="line">730</span><br><span class="line">731</span><br><span class="line">732</span><br><span class="line">733</span><br><span class="line">734</span><br><span class="line">735</span><br><span class="line">736</span><br><span class="line">737</span><br><span class="line">738</span><br><span class="line">739</span><br><span class="line">740</span><br><span class="line">741</span><br><span class="line">742</span><br><span class="line">743</span><br><span class="line">744</span><br><span class="line">745</span><br><span class="line">746</span><br><span class="line">747</span><br><span class="line">748</span><br><span class="line">749</span><br><span class="line">750</span><br><span class="line">751</span><br><span class="line">752</span><br><span class="line">753</span><br><span class="line">754</span><br><span class="line">755</span><br><span class="line">756</span><br><span class="line">757</span><br><span class="line">758</span><br><span class="line">759</span><br><span class="line">760</span><br><span class="line">761</span><br><span class="line">762</span><br><span class="line">763</span><br><span class="line">764</span><br><span class="line">765</span><br><span class="line">766</span><br><span class="line">767</span><br><span class="line">768</span><br><span class="line">769</span><br><span class="line">770</span><br><span class="line">771</span><br><span class="line">772</span><br><span class="line">773</span><br><span class="line">774</span><br><span class="line">775</span><br><span class="line">776</span><br><span class="line">777</span><br><span class="line">778</span><br><span class="line">779</span><br><span class="line">780</span><br><span class="line">781</span><br><span class="line">782</span><br><span class="line">783</span><br><span class="line">784</span><br><span class="line">785</span><br><span class="line">786</span><br><span class="line">787</span><br><span class="line">788</span><br><span class="line">789</span><br><span class="line">790</span><br><span class="line">791</span><br><span class="line">792</span><br><span class="line">793</span><br><span class="line">794</span><br><span class="line">795</span><br><span class="line">796</span><br><span class="line">797</span><br><span class="line">798</span><br><span class="line">799</span><br><span class="line">800</span><br><span class="line">801</span><br><span class="line">802</span><br><span class="line">803</span><br><span class="line">804</span><br><span class="line">805</span><br><span class="line">806</span><br><span class="line">807</span><br><span class="line">808</span><br><span class="line">809</span><br><span class="line">810</span><br><span class="line">811</span><br><span class="line">812</span><br><span class="line">813</span><br><span class="line">814</span><br><span class="line">815</span><br><span class="line">816</span><br><span class="line">817</span><br><span class="line">818</span><br><span class="line">819</span><br><span class="line">820</span><br><span class="line">821</span><br><span class="line">822</span><br><span class="line">823</span><br><span class="line">824</span><br><span class="line">825</span><br><span class="line">826</span><br><span class="line">827</span><br><span class="line">828</span><br><span class="line">829</span><br><span class="line">830</span><br><span class="line">831</span><br><span class="line">832</span><br><span class="line">833</span><br><span class="line">834</span><br><span class="line">835</span><br><span class="line">836</span><br><span class="line">837</span><br><span class="line">838</span><br><span class="line">839</span><br><span class="line">840</span><br><span class="line">841</span><br><span class="line">842</span><br><span class="line">843</span><br><span class="line">844</span><br><span class="line">845</span><br><span class="line">846</span><br><span class="line">847</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># coding: utf-8</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> rsa</span><br><span class="line"><span class="keyword">import</span> time</span><br><span class="line"><span class="keyword">import</span> ujson</span><br><span class="line"><span class="keyword">import</span> hashlib</span><br><span class="line"><span class="keyword">import</span> logging</span><br><span class="line"></span><br><span class="line"><span class="keyword">from</span> timi_uuid <span class="keyword">import</span> timi_uuid</span><br><span class="line"><span class="keyword">from</span> Crypto.Cipher <span class="keyword">import</span> AES</span><br><span class="line"></span><br><span class="line"><span class="keyword">from</span> settings <span class="keyword">import</span> (</span><br><span class="line">    EMQTT_RSA_PUBLIC_KEY_PEM, EMQTT_RSA_PRIVATE_KEY_PEM,</span><br><span class="line">    KSYUN_ACCESS_KEY, KSYUN_SECRET_KEY, KSYUN_OSS_BUCKET_NAME,</span><br><span class="line">    KSYUN_REGEION_HOST_URL, DEEPGRINT_CALLBACK_URL</span><br><span class="line">)</span><br><span class="line"></span><br><span class="line"><span class="keyword">from</span> sensoro.connection.redis_client <span class="keyword">import</span> redis_service</span><br><span class="line"><span class="keyword">from</span> sensoro.common.redis_key <span class="keyword">import</span> RedisKeyConstants</span><br><span class="line"><span class="keyword">from</span> sensoro.common.errors <span class="keyword">import</span> Error</span><br><span class="line"><span class="keyword">from</span> sensoro.utils.redis_helper <span class="keyword">import</span> FirmwareReplyDataRedisHelper</span><br><span class="line"></span><br><span class="line"><span class="keyword">from</span> sensoro.utils.types <span class="keyword">import</span> (</span><br><span class="line">    DeviceBindStatusType, DeviceStatus,</span><br><span class="line">    DeviceNetWorkType, TfCardStateType,</span><br><span class="line">    AlphaStateType</span><br><span class="line">)</span><br><span class="line"><span class="keyword">from</span> sensoro.utils.sign_vms_stream_url <span class="keyword">import</span> get_vms_push_url_with_sign</span><br><span class="line"></span><br><span class="line"><span class="keyword">from</span> sensoro.emqtt.publish <span class="keyword">import</span> PublishToOneDevice</span><br><span class="line"><span class="keyword">from</span> sensoro.core.dao.device_produce_sys <span class="keyword">import</span> ProductSysSourceDataDao</span><br><span class="line"><span class="keyword">from</span> sensoro.core.dao.device_fw_config <span class="keyword">import</span> DeviceFwConfigDao</span><br><span class="line"><span class="keyword">from</span> sensoro.core.dao.device <span class="keyword">import</span> DeviceDao</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">BaseMqttHandler</span><span class="params">(object)</span>:</span></span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self, sn=None, token=None)</span>:</span></span><br><span class="line">        self.sn = sn</span><br><span class="line">        self.token = token</span><br><span class="line">        self.aes_iv = <span class="keyword">None</span></span><br><span class="line">        self.aes_key = <span class="keyword">None</span></span><br><span class="line">        self.msg_id = <span class="keyword">None</span></span><br><span class="line">        self.aes_decrypt_data = <span class="keyword">None</span></span><br><span class="line">        self.protocol_version = <span class="keyword">None</span></span><br><span class="line">        self.mqtt_publish = PublishToOneDevice(sn=self.sn, token=self.token)</span><br><span class="line"></span><br><span class="line"><span class="meta">    @staticmethod</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">generate_string_with_length</span><span class="params">(length=<span class="number">16</span>)</span>:</span></span><br><span class="line">        <span class="keyword">assert</span> length <span class="keyword">in</span> (<span class="number">16</span>, <span class="number">32</span>), <span class="string">'The String Length Error, Only support (16, 32)'</span></span><br><span class="line">        _string = timi_uuid.get_hex_id()</span><br><span class="line">        <span class="keyword">return</span> _string[:length]</span><br><span class="line"></span><br><span class="line"><span class="meta">    @staticmethod</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">generate_message_id</span><span class="params">()</span>:</span></span><br><span class="line">        msg_id = timi_uuid.get_hex_id()</span><br><span class="line">        <span class="keyword">return</span> msg_id</span><br><span class="line"></span><br><span class="line"><span class="meta">    @classmethod</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">str2hex</span><span class="params">(cls, bytes_string)</span>:</span></span><br><span class="line">        <span class="keyword">return</span> bytes_string.hex()</span><br><span class="line"></span><br><span class="line"><span class="meta">    @classmethod</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">hex2str</span><span class="params">(cls, hex_str)</span>:</span></span><br><span class="line">        <span class="keyword">return</span> bytes.fromhex(hex_str)</span><br><span class="line"></span><br><span class="line"><span class="meta">    @staticmethod</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">create_keys</span><span class="params">()</span>:</span>  <span class="comment"># 生成公钥和私钥</span></span><br><span class="line">        (pubkey, privkey) = rsa.newkeys(<span class="number">1024</span>)</span><br><span class="line">        pub = pubkey.save_pkcs1()</span><br><span class="line">        <span class="keyword">with</span> open(<span class="string">'public.pem'</span>, <span class="string">'wb+'</span>)<span class="keyword">as</span> f:</span><br><span class="line">            f.write(pub)</span><br><span class="line"></span><br><span class="line">        pri = privkey.save_pkcs1()</span><br><span class="line">        <span class="keyword">with</span> open(<span class="string">'private.pem'</span>, <span class="string">'wb+'</span>)<span class="keyword">as</span> f:</span><br><span class="line">            f.write(pri)</span><br><span class="line"></span><br><span class="line"><span class="meta">    @classmethod</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">rsa_encrypt</span><span class="params">(cls, data)</span>:</span>  <span class="comment"># 用公钥加密</span></span><br><span class="line">        <span class="string">""" pkcs8()</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">        :param data:</span></span><br><span class="line"><span class="string">        :return:</span></span><br><span class="line"><span class="string">        """</span></span><br><span class="line">        <span class="keyword">with</span> open(EMQTT_RSA_PUBLIC_KEY_PEM, <span class="string">'rb'</span>) <span class="keyword">as</span> public_file:</span><br><span class="line">            p = public_file.read()</span><br><span class="line">        pub_key = rsa.PublicKey.load_pkcs1(p)</span><br><span class="line">        original_text = data.encode(<span class="string">'utf8'</span>)</span><br><span class="line">        crypt_text = rsa.encrypt(original_text, pub_key)</span><br><span class="line">        <span class="keyword">return</span> crypt_text</span><br><span class="line"></span><br><span class="line"><span class="meta">    @classmethod</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">rsa_decrypt</span><span class="params">(cls, crypt_text)</span>:</span>  <span class="comment"># 用私钥解密</span></span><br><span class="line">        <span class="string">""" pkcs1()</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">        :param crypt_text:</span></span><br><span class="line"><span class="string">        :return:</span></span><br><span class="line"><span class="string">        """</span></span><br><span class="line">        <span class="keyword">with</span> open(EMQTT_RSA_PRIVATE_KEY_PEM, <span class="string">'rb'</span>) <span class="keyword">as</span> private_file:</span><br><span class="line">            p = private_file.read()</span><br><span class="line">        priv_key = rsa.PrivateKey.load_pkcs1(p)</span><br><span class="line">        lase_text = rsa.decrypt(crypt_text, priv_key).decode()  <span class="comment"># 注意，这里如果结果是bytes类型，就需要进行decode()转化为str</span></span><br><span class="line">        <span class="keyword">return</span> lase_text</span><br><span class="line"></span><br><span class="line"><span class="meta">    @classmethod</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">md5_convert</span><span class="params">(cls, string)</span>:</span></span><br><span class="line">        <span class="string">"""</span></span><br><span class="line"><span class="string">        计算字符串md5值</span></span><br><span class="line"><span class="string">        :param string: 输入字符串</span></span><br><span class="line"><span class="string">        :return: 字符串md5</span></span><br><span class="line"><span class="string">        """</span></span><br><span class="line">        m = hashlib.md5()</span><br><span class="line">        m.update(string.encode())</span><br><span class="line">        <span class="keyword">return</span> m.hexdigest()</span><br><span class="line"></span><br><span class="line"><span class="meta">    @classmethod</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">sha256_encrypt</span><span class="params">(cls, data)</span>:</span></span><br><span class="line">        <span class="string">"""</span></span><br><span class="line"><span class="string">        sha256加密</span></span><br><span class="line"><span class="string">        return:加密结果转成16进制字符串形式，并大写</span></span><br><span class="line"><span class="string">        """</span></span><br><span class="line">        _hash = hashlib.sha256()</span><br><span class="line">        _hash.update(data.encode(<span class="string">"utf-8"</span>))</span><br><span class="line">        <span class="keyword">return</span> _hash.hexdigest()</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">aes_encrypt</span><span class="params">(self, iv, key, data)</span>:</span></span><br><span class="line">        <span class="comment"># 密钥（key）, 密斯偏移量（iv） CBC模式加密</span></span><br><span class="line">        pad = <span class="keyword">lambda</span> s: s + (<span class="number">16</span> - len(s) % <span class="number">16</span>) * chr(<span class="number">16</span> - len(s) % <span class="number">16</span>)</span><br><span class="line">        <span class="comment"># pad = lambda s: s + (32 - len(s) % 32) * chr(32 - len(s) % 32)</span></span><br><span class="line">        <span class="comment"># 字符串补位</span></span><br><span class="line">        data = pad(data)</span><br><span class="line"></span><br><span class="line">        cipher = AES.new(key.encode(<span class="string">'utf8'</span>), AES.MODE_CBC, iv.encode(<span class="string">'utf8'</span>))</span><br><span class="line">        cipher.block_size = <span class="number">16</span></span><br><span class="line"></span><br><span class="line">        <span class="comment"># 加密后得到的是bytes类型的数据</span></span><br><span class="line">        encrypted_bytes = cipher.encrypt(data.encode(<span class="string">'utf8'</span>))</span><br><span class="line"></span><br><span class="line">        <span class="comment"># 加密后转成16进制bytes-&gt;hex</span></span><br><span class="line">        encrypted_hex_str = self.str2hex(bytes_string=encrypted_bytes)</span><br><span class="line">        <span class="keyword">return</span> encrypted_hex_str</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">aes_decrypt</span><span class="params">(self, hex_data)</span>:</span></span><br><span class="line">        <span class="comment"># 解密前进行16进制转换成hex-&gt;bytes</span></span><br><span class="line">        data = self.hex2str(hex_str=hex_data)</span><br><span class="line"></span><br><span class="line">        cipher = AES.new(self.aes_key.encode(<span class="string">'utf8'</span>), AES.MODE_CBC, self.aes_iv.encode(<span class="string">'utf8'</span>))</span><br><span class="line">        cipher.block_size = <span class="number">32</span></span><br><span class="line">        text_decrypted = cipher.decrypt(data)</span><br><span class="line">        un_pad = <span class="keyword">lambda</span> s: s[<span class="number">0</span>:-s[<span class="number">-1</span>]]</span><br><span class="line">        text_decrypted = un_pad(text_decrypted)</span><br><span class="line">        <span class="comment"># 去补位</span></span><br><span class="line">        text_decrypted = text_decrypted.decode(<span class="string">'utf8'</span>)</span><br><span class="line">        <span class="keyword">return</span> text_decrypted</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">do_aes_analysis</span><span class="params">(self, input_data)</span>:</span></span><br><span class="line">        <span class="comment"># 初始化aes_iv, aes_key</span></span><br><span class="line">        self.set_and_get_aes_config()</span><br><span class="line"></span><br><span class="line">        s_data = input_data.get(<span class="string">'sData'</span>)</span><br><span class="line">        protocol_version = input_data.get(<span class="string">'sProtocolVersion'</span>)</span><br><span class="line">        self.msg_id = input_data.get(<span class="string">'sMsgId'</span>, <span class="keyword">None</span>)</span><br><span class="line">        <span class="keyword">assert</span> protocol_version, <span class="string">"sProtocolVersion not found"</span></span><br><span class="line">        <span class="keyword">assert</span> s_data, <span class="string">"sData not found"</span></span><br><span class="line"></span><br><span class="line">        aes_decrypt_data = self.aes_decrypt(hex_data=s_data)</span><br><span class="line"></span><br><span class="line">        logging.info(<span class="string">"aes_decrypt: &#123;&#125;, type: &#123;&#125;"</span>.format(aes_decrypt_data, type(aes_decrypt_data)))</span><br><span class="line">        self.aes_decrypt_data = ujson.loads(aes_decrypt_data)</span><br><span class="line">        logging.info(<span class="string">"self.aes_decrypt_data: &#123;&#125;"</span>.format(self.aes_decrypt_data))</span><br><span class="line"></span><br><span class="line">        self.protocol_version = protocol_version</span><br><span class="line">        logging.info(msg=<span class="string">"protocol_version: &#123;&#125;"</span>.format(self.protocol_version))</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">do_rsa_handshake</span><span class="params">(self, input_data)</span>:</span></span><br><span class="line">        <span class="string">""" iCmdType: 0</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">        :param input_data:</span></span><br><span class="line"><span class="string">        :return:</span></span><br><span class="line"><span class="string">        """</span></span><br><span class="line">        s_data = input_data.get(<span class="string">'sData'</span>)</span><br><span class="line">        protocol_version = input_data.get(<span class="string">'sProtocolVersion'</span>)</span><br><span class="line">        <span class="keyword">assert</span> protocol_version, <span class="string">"sProtocolVersion not found"</span></span><br><span class="line">        <span class="keyword">assert</span> s_data, <span class="string">"sData not found"</span></span><br><span class="line"></span><br><span class="line">        s_data = self.hex2str(hex_str=s_data)</span><br><span class="line"></span><br><span class="line">        rsa_decode_data = self.rsa_decrypt(crypt_text=s_data)</span><br><span class="line">        split_rsa_decode_data = rsa_decode_data.split(<span class="string">':'</span>)</span><br><span class="line"></span><br><span class="line">        aes_key1 = split_rsa_decode_data[<span class="number">0</span>]</span><br><span class="line"></span><br><span class="line">        iv1 = split_rsa_decode_data[<span class="number">1</span>]</span><br><span class="line"></span><br><span class="line">        md51 = split_rsa_decode_data[<span class="number">2</span>]</span><br><span class="line"></span><br><span class="line">        md51_cloud = self.md5_convert(string=aes_key1 + <span class="string">":"</span> + iv1)</span><br><span class="line">        <span class="keyword">assert</span> md51 == md51_cloud, <span class="string">"MD5 Error."</span></span><br><span class="line"></span><br><span class="line">        aes_key2 = self.generate_string_with_length(length=<span class="number">32</span>)</span><br><span class="line"></span><br><span class="line">        iv2 = self.generate_string_with_length(length=<span class="number">16</span>)</span><br><span class="line"></span><br><span class="line">        md52 = self.md5_convert(string=aes_key2 + <span class="string">":"</span> + iv2)</span><br><span class="line"></span><br><span class="line">        c_req_str = aes_key2 + <span class="string">":"</span> + iv2 + <span class="string">":"</span> + md52</span><br><span class="line"></span><br><span class="line">        d_aes_encrypt_data = self.aes_encrypt(iv=iv1, key=aes_key1, data=c_req_str)</span><br><span class="line"></span><br><span class="line">        <span class="comment"># 发送给设备</span></span><br><span class="line">        payload = &#123;</span><br><span class="line">            <span class="string">'iCmdType'</span>: <span class="number">0</span>,</span><br><span class="line">            <span class="string">'sProtocolVersion'</span>: protocol_version,</span><br><span class="line">            <span class="string">'sData'</span>: d_aes_encrypt_data</span><br><span class="line">        &#125;</span><br><span class="line">        self.publish_message(payload=payload, force_online=<span class="keyword">False</span>)</span><br><span class="line"></span><br><span class="line">        self.aes_iv = iv1</span><br><span class="line">        self.aes_key = aes_key1</span><br><span class="line">        aes_decrypt_data = self.aes_decrypt(hex_data=d_aes_encrypt_data)</span><br><span class="line">        logging.info(msg=<span class="string">"aes_decrypt_data: &#123;&#125;"</span>.format(aes_decrypt_data))</span><br><span class="line"></span><br><span class="line">        f_req_str = aes_key1 + iv1 + aes_key2 + iv2</span><br><span class="line">        sha256_str = self.sha256_encrypt(data=f_req_str)</span><br><span class="line"></span><br><span class="line">        iv = sha256_str[:<span class="number">16</span>]</span><br><span class="line">        aes_key = sha256_str[<span class="number">16</span>:<span class="number">48</span>]</span><br><span class="line"></span><br><span class="line">        <span class="comment"># g. 之后，设备与AMS服务器之间的数据通信均使用最后得到AESKEY和IV进行加密。</span></span><br><span class="line"></span><br><span class="line">        <span class="comment"># h. 最后，设备端并拼接字符串AESKEY1+IV1+AESKEY2+IV2，对拼接得到的字符串做SHA256加密，并取前16位作为IV，紧接的32位作为AESKEY；</span></span><br><span class="line">        redis_service.client.setex(</span><br><span class="line">            name=RedisKeyConstants.mqtt_aes_iv.format(self.sn), time=<span class="number">60</span> * <span class="number">60</span> * <span class="number">24</span> * <span class="number">365</span>, value=iv)</span><br><span class="line">        redis_service.client.setex(</span><br><span class="line">            name=RedisKeyConstants.mqtt_aes_key.format(self.sn), time=<span class="number">60</span> * <span class="number">60</span> * <span class="number">24</span> * <span class="number">365</span>, value=aes_key)</span><br><span class="line"></span><br><span class="line">        self.aes_iv = iv</span><br><span class="line">        self.aes_key = aes_key</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">set_and_get_aes_config</span><span class="params">(self)</span>:</span></span><br><span class="line"></span><br><span class="line">        iv = redis_service.client.get(name=RedisKeyConstants.mqtt_aes_iv.format(self.sn))</span><br><span class="line">        key = redis_service.client.get(name=RedisKeyConstants.mqtt_aes_key.format(self.sn))</span><br><span class="line">        <span class="keyword">if</span> iv <span class="keyword">and</span> key:</span><br><span class="line">            self.aes_iv = iv.decode()</span><br><span class="line">            self.aes_key = key.decode()</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">publish_message</span><span class="params">(self, payload, force_online=True)</span>:</span></span><br><span class="line"></span><br><span class="line">        logging.info(<span class="string">"发送消息云端-&gt;固件: payload: &#123;&#125;"</span>.format(payload))</span><br><span class="line">        <span class="keyword">if</span> force_online:</span><br><span class="line">            <span class="keyword">assert</span> self.get_device_status() == DeviceStatus.ONLINE, Error.CNT_DEVICE_IS_OFFLINE</span><br><span class="line">        self.mqtt_publish.publish_message(ujson.dumps(payload))</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">do_device_config</span><span class="params">(self, input_data)</span>:</span></span><br><span class="line">        <span class="string">""" iCmdType: 1</span></span><br><span class="line"><span class="string">        设备主动上传设备信息</span></span><br><span class="line"><span class="string">        self.aes_decrypt_data: &#123;</span></span><br><span class="line"><span class="string">            'sDeviceSn': '0505050505050003',</span></span><br><span class="line"><span class="string">            'sHwVersion': 'V100',</span></span><br><span class="line"><span class="string">            'sModelName': 'S2111-SEP-W2',</span></span><br><span class="line"><span class="string">            'sIpAddr': '192.168.1.243',</span></span><br><span class="line"><span class="string">            'sMacAddr': '8e:79:a1:37:7f:65',</span></span><br><span class="line"><span class="string">            'sVPNIpAddr': '192.168.1.243',</span></span><br><span class="line"><span class="string">            'sFwVersion': 'V1.0.0_20190903',</span></span><br><span class="line"><span class="string">            'sAlphaVer': 'V1.0.0',</span></span><br><span class="line"><span class="string">            'sAiModelVer': 'V1.0.0',</span></span><br><span class="line"><span class="string">            'sIEVer': 'V1.0.0',</span></span><br><span class="line"><span class="string">            'iChnCnt': 3,</span></span><br><span class="line"><span class="string">            'iAlarmIn': 2,</span></span><br><span class="line"><span class="string">            'iAlarmOut': 1,</span></span><br><span class="line"><span class="string">            'iNetMethod': 0,</span></span><br><span class="line"><span class="string">            'iTFCardState': 6,</span></span><br><span class="line"><span class="string">            'iTFCardCapacitySize': 33554432,</span></span><br><span class="line"><span class="string">            'iTFCardUseSize': 33554432</span></span><br><span class="line"><span class="string">        &#125;</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">        :return:</span></span><br><span class="line"><span class="string">        """</span></span><br><span class="line">        <span class="comment"># 1. 解析设备上传设备信息</span></span><br><span class="line">        self.do_aes_analysis(input_data=input_data)</span><br><span class="line"></span><br><span class="line">        <span class="comment"># 2. 拿解析的数据去做业务</span></span><br><span class="line">        <span class="keyword">try</span>:</span><br><span class="line">            logging.info(msg=<span class="string">"开始更新数据库...的设备配置信息"</span>)</span><br><span class="line">            <span class="keyword">assert</span> self.aes_decrypt_data[<span class="string">'sDeviceSn'</span>] == self.sn, Error.CNT_DEVICE_NOT_EXIST</span><br><span class="line">            DeviceFwConfigDao.get_or_create(config=&#123;</span><br><span class="line">                <span class="string">"sn"</span>: self.sn,</span><br><span class="line">                <span class="string">"hwVersion"</span>: self.aes_decrypt_data[<span class="string">"sHwVersion"</span>],</span><br><span class="line">                <span class="string">"modelName"</span>: self.aes_decrypt_data[<span class="string">"sModelName"</span>],</span><br><span class="line">                <span class="string">"vpnIp"</span>: self.aes_decrypt_data[<span class="string">"sVPNIpAddr"</span>],</span><br><span class="line">                <span class="string">"ip"</span>: self.aes_decrypt_data[<span class="string">'sIpAddr'</span>],</span><br><span class="line">                <span class="string">"mac"</span>: self.aes_decrypt_data[<span class="string">'sMacAddr'</span>],</span><br><span class="line">                <span class="string">"fwVersion"</span>: self.aes_decrypt_data[<span class="string">'sFwVersion'</span>],</span><br><span class="line">                <span class="string">"alphaVersion"</span>: self.aes_decrypt_data[<span class="string">"sAlphaVer"</span>],</span><br><span class="line">                <span class="string">"alphaStatus"</span>: AlphaStateType.NORMAL,  <span class="comment"># 阿尔法基站状态</span></span><br><span class="line">                <span class="string">"aiVersion"</span>: self.aes_decrypt_data[<span class="string">'sAiModelVer'</span>],</span><br><span class="line">                <span class="string">"wifiSSID"</span>: self.aes_decrypt_data.get(<span class="string">'sSSID'</span>, <span class="string">''</span>),</span><br><span class="line">                <span class="string">"wifiStrength"</span>: self.aes_decrypt_data.get(<span class="string">'iWifiStrength'</span>, <span class="number">0</span>),</span><br><span class="line">                <span class="string">"ieVersion"</span>: self.aes_decrypt_data[<span class="string">'sIEVer'</span>],</span><br><span class="line">                <span class="string">"chnCount"</span>: self.aes_decrypt_data[<span class="string">'iChnCnt'</span>],</span><br><span class="line">                <span class="string">"alarmIn"</span>: self.aes_decrypt_data[<span class="string">'iAlarmIn'</span>],</span><br><span class="line">                <span class="string">"alarmOut"</span>: self.aes_decrypt_data[<span class="string">'iAlarmOut'</span>],</span><br><span class="line">                <span class="string">"netMethod"</span>: DeviceNetWorkType(int(self.aes_decrypt_data.get(<span class="string">'iNetMethod'</span>, <span class="number">0</span>))),  <span class="comment"># 网络格式</span></span><br><span class="line">                <span class="string">"sdStatus"</span>: TfCardStateType(int(self.aes_decrypt_data.get(<span class="string">'iTFCardState'</span>, <span class="number">2</span>))),  <span class="comment"># SD卡状态</span></span><br><span class="line">                <span class="string">"sdCnt"</span>: float(self.aes_decrypt_data.get(<span class="string">'iTFCardCapacitySize'</span>, <span class="number">0.0</span>) / <span class="number">100.0</span>),</span><br><span class="line">                <span class="string">"sdTotal"</span>: float(self.aes_decrypt_data.get(<span class="string">"iTFCardUseSize"</span>, <span class="number">0.0</span>) / <span class="number">100.0</span>)</span><br><span class="line">            &#125;)</span><br><span class="line"></span><br><span class="line">            logging.info(msg=<span class="string">"更新设备配置信息成功..."</span>)</span><br><span class="line"></span><br><span class="line">            <span class="comment"># 设备配置后，更新设备的状态未在线</span></span><br><span class="line">            self.get_or_set_device_status_in_redis()</span><br><span class="line"></span><br><span class="line">        <span class="keyword">except</span> Exception <span class="keyword">as</span> e:</span><br><span class="line">            logging.info(msg=<span class="string">"新建或者更新设备配置出错: &#123;&#125;"</span>.format(e))</span><br><span class="line"></span><br><span class="line">        <span class="comment"># 3. 响应设备</span></span><br><span class="line">        produce_device = ProductSysSourceDataDao.get_object_by_no_session(sn=self.sn)</span><br><span class="line">        <span class="comment"># 设备上传配置后，下发一次设备名称(为了防止设备绑定、设备名称更新中，固件没有响应设备名称的update, 增加额外的名称下发机会)</span></span><br><span class="line">        <span class="keyword">if</span> produce_device.bindStatus == DeviceBindStatusType.BINDED:</span><br><span class="line">            user_device = DeviceDao.get_device_by_sn(sn=produce_device.sn)</span><br><span class="line">            <span class="keyword">if</span> user_device:</span><br><span class="line">                self.do_issue_device_name(device_name=user_device.name)</span><br><span class="line"></span><br><span class="line">        <span class="comment"># 下发设备绑定状态</span></span><br><span class="line">        cmd = &#123;<span class="string">"iGetconfig"</span>: <span class="number">1</span>, <span class="string">"iBindStatus"</span>: <span class="number">1</span> <span class="keyword">if</span> produce_device.bindStatus == DeviceBindStatusType.BINDED <span class="keyword">else</span> <span class="number">0</span>&#125;</span><br><span class="line"></span><br><span class="line">        logging.info(<span class="string">"cmd: &#123;&#125;"</span>.format(cmd))</span><br><span class="line">        aes_encrypt_data_hex = self.aes_encrypt(iv=self.aes_iv, key=self.aes_key, data=ujson.dumps(cmd))</span><br><span class="line">        logging.info(<span class="string">"aes_encrypt_data_hex: &#123;&#125;"</span>.format(aes_encrypt_data_hex))</span><br><span class="line">        payload = &#123;</span><br><span class="line">            <span class="string">"iCmdType"</span>: <span class="number">3</span>,</span><br><span class="line">            <span class="string">"sMsgId"</span>: self.generate_message_id(),</span><br><span class="line">            <span class="string">"iAppCmdType"</span>: <span class="number">301</span>,</span><br><span class="line">            <span class="string">"sProtocolVersion"</span>: self.protocol_version,</span><br><span class="line">            <span class="string">"sData"</span>: aes_encrypt_data_hex</span><br><span class="line">        &#125;</span><br><span class="line">        self.publish_message(payload=payload)</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">do_heartbeat</span><span class="params">(self, input_data)</span>:</span></span><br><span class="line">        <span class="string">""" iCmdType: 2</span></span><br><span class="line"><span class="string">        心跳响应</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">        :return:</span></span><br><span class="line"><span class="string">        """</span></span><br><span class="line">        <span class="comment"># 1. 解析心跳</span></span><br><span class="line">        logging.info(msg=<span class="string">"收到心跳了..."</span>)</span><br><span class="line">        logging.info(msg=<span class="string">"分析心跳..."</span>)</span><br><span class="line">        self.do_aes_analysis(input_data=input_data)</span><br><span class="line">        logging.info(msg=<span class="string">"分析完毕..."</span>)</span><br><span class="line"></span><br><span class="line">        <span class="comment"># 2. 拿到解析的数据去做处理</span></span><br><span class="line"></span><br><span class="line">        <span class="comment"># 3. 响应心跳</span></span><br><span class="line">        cmd = &#123;<span class="string">'iOnline'</span>: <span class="number">1</span>&#125;  <span class="comment"># <span class="doctag">TODO:</span> 这里看协议文档，去拿设备的在线状态</span></span><br><span class="line">        logging.info(<span class="string">"cmd: &#123;&#125;"</span>.format(cmd))</span><br><span class="line"></span><br><span class="line">        aes_encrypt_data_hex = self.aes_encrypt(iv=self.aes_iv, key=self.aes_key, data=ujson.dumps(cmd))</span><br><span class="line">        logging.info(msg=<span class="string">"开始设置redis缓存..."</span>)</span><br><span class="line"></span><br><span class="line">        <span class="comment"># 收到心跳后，更新设备的状态未在线</span></span><br><span class="line">        self.get_or_set_device_status_in_redis()</span><br><span class="line"></span><br><span class="line">        payload = &#123;</span><br><span class="line">            <span class="string">"iCmdType"</span>: <span class="number">2</span>,</span><br><span class="line">            <span class="string">"sProtocolVersion"</span>: self.protocol_version,</span><br><span class="line">            <span class="string">"sData"</span>: aes_encrypt_data_hex</span><br><span class="line">        &#125;</span><br><span class="line">        self.publish_message(payload=payload)</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">get_or_set_device_status_in_redis</span><span class="params">(self)</span>:</span></span><br><span class="line">        redis_key = RedisKeyConstants.mqtt_online.format(self.sn)</span><br><span class="line">        old_redis_data = redis_service.client.get(redis_key)</span><br><span class="line">        <span class="keyword">try</span>:</span><br><span class="line">            <span class="keyword">if</span> old_redis_data:</span><br><span class="line">                <span class="comment"># 99%的心跳会走这里</span></span><br><span class="line">                logging.info(msg=<span class="string">"redis有缓存设备&#123;&#125; 的状态: &#123;&#125;"</span>.format(self.sn, old_redis_data.decode()))</span><br><span class="line">                redis_data = old_redis_data.decode()</span><br><span class="line">                <span class="keyword">if</span> redis_data == <span class="string">"DeviceStatus.OFFLINE"</span>:</span><br><span class="line">                    <span class="comment"># 如果原来状态是离线，但是现在收到心跳包了，则需要更新设备的状态未在线</span></span><br><span class="line">                    DeviceDao.update_device_status_with_online(sn=self.sn)</span><br><span class="line">            <span class="keyword">else</span>:</span><br><span class="line">                logging.info(msg=<span class="string">"redis没有缓存设备&#123;&#125;的状态, 开始更新数据库状态为在线，并设置redis缓存"</span>.format(self.sn))</span><br><span class="line">                <span class="comment"># 当且仅当redis中关于设备状态的key过期时，收到设备心跳包后，会走一次更新数据库设备状态</span></span><br><span class="line">                DeviceDao.update_device_status_with_online(sn=self.sn)</span><br><span class="line">        <span class="keyword">except</span> Exception <span class="keyword">as</span> err:</span><br><span class="line">            logging.error(msg=<span class="string">"心跳更新设备状态出错: &#123;&#125;"</span>.format(err))</span><br><span class="line"></span><br><span class="line">        redis_service.client.setex(name=redis_key, time=<span class="number">90</span>, value=DeviceStatus.ONLINE)</span><br><span class="line">        logging.info(msg=<span class="string">"redis缓存设置完毕..."</span>)</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">get_device_status</span><span class="params">(self)</span>:</span></span><br><span class="line">        redis_key = RedisKeyConstants.mqtt_online.format(self.sn)</span><br><span class="line">        cnt_redis_data = redis_service.client.get(redis_key)</span><br><span class="line"></span><br><span class="line">        <span class="comment"># logging.info(msg="redis是否缓存设备: &#123;&#125; 心跳: &#123;&#125;".format(self.sn, cnt_redis_data))</span></span><br><span class="line">        <span class="keyword">if</span> <span class="keyword">not</span> cnt_redis_data:</span><br><span class="line">            <span class="keyword">return</span> DeviceStatus.OFFLINE</span><br><span class="line"></span><br><span class="line">        cnt_status = cnt_redis_data.decode()</span><br><span class="line">        <span class="keyword">if</span> cnt_status == <span class="string">"DeviceStatus.ONLINE"</span>:</span><br><span class="line">            <span class="comment"># logging.info(msg="设备的状态: &#123;&#125;, type: &#123;&#125;".format(cnt_status, type(cnt_status)))</span></span><br><span class="line">            <span class="keyword">return</span> DeviceStatus.ONLINE</span><br><span class="line">        <span class="keyword">return</span> DeviceStatus.OFFLINE</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">do_firmware_upload_data</span><span class="params">(self, input_data)</span>:</span></span><br><span class="line">        <span class="string">""" iCmdType: 6</span></span><br><span class="line"><span class="string">        固件主动上报数据(云端要求下发，需要监控msgid)</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">        :return:</span></span><br><span class="line"><span class="string">        """</span></span><br><span class="line">        <span class="comment"># 1. 解析设备按要求上报的数据</span></span><br><span class="line">        self.do_aes_analysis(input_data=input_data)</span><br><span class="line"></span><br><span class="line">        <span class="comment"># 2. 根据解析出来的数据去做业务</span></span><br><span class="line">        <span class="keyword">assert</span> self.msg_id, <span class="string">"设备按要求上传的数据中，没有msg_id"</span></span><br><span class="line">        <span class="comment"># 3. 将当前回复的消息，存进redis的阻塞队列中</span></span><br><span class="line">        FirmwareReplyDataRedisHelper.reply_user_cmd_by_firmware(</span><br><span class="line">            sn=self.sn, msg_id=self.msg_id, s_data=self.aes_decrypt_data)</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">do_issue_vms_stream_url</span><span class="params">(self, input_data)</span>:</span></span><br><span class="line">        logging.info(msg=<span class="string">"开始下发流媒体加密后的url..."</span>)</span><br><span class="line">        self.do_aes_analysis(input_data=input_data)</span><br><span class="line">        self.set_and_get_aes_config()</span><br><span class="line"></span><br><span class="line">        i_index_time = self.aes_decrypt_data.get(<span class="string">'iGetVMSURL'</span>)</span><br><span class="line">        i_expire_time = self.aes_decrypt_data.get(<span class="string">'iExpiresTime'</span>)  <span class="comment"># 固件协议中写的是当前时间戳 + 有效期， 单位s</span></span><br><span class="line">        default_expire_time = time.time() * <span class="number">1000</span> + <span class="number">2</span> * <span class="number">60</span> * <span class="number">1000</span>  <span class="comment"># 默认有效期为2分钟</span></span><br><span class="line">        expire_time = float(i_expire_time) * <span class="number">1000</span> <span class="keyword">if</span> i_expire_time <span class="keyword">else</span> default_expire_time  <span class="comment"># 单位ms</span></span><br><span class="line"></span><br><span class="line">        logging.info(msg=<span class="string">"i_index_time: &#123;&#125;"</span>.format(i_index_time))</span><br><span class="line">        <span class="keyword">assert</span> self.sn, Error.CNT_DEVICE_NOT_EXIST</span><br><span class="line"></span><br><span class="line">        user_device = DeviceDao.get_device_by_sn(sn=self.sn)</span><br><span class="line">        logging.info(msg=<span class="string">"当前设备: &#123;&#125;"</span>.format(user_device))</span><br><span class="line">        <span class="keyword">if</span> user_device:</span><br><span class="line">            <span class="comment"># <span class="doctag">TODO:</span> 设备未被用户绑定之前，禁止下发推流地址</span></span><br><span class="line">            base_stream_url = <span class="string">''</span>,  <span class="comment"># "rtmp://&#123;&#125;/live/&#123;&#125;".format(VMS_STREAM_BASE_URL, self.sn)</span></span><br><span class="line">            stream_url = user_device.stream_url <span class="keyword">if</span> user_device <span class="keyword">else</span> base_stream_url</span><br><span class="line">            logging.info(msg=<span class="string">"开始下发..."</span>)</span><br><span class="line">            cmd = &#123;</span><br><span class="line">                <span class="string">'isForBidden'</span>: <span class="number">0</span>,</span><br><span class="line">                <span class="string">'pushurl'</span>: get_vms_push_url_with_sign(</span><br><span class="line">                    sn=self.sn, token=self.token, stream_url=stream_url, expire_time=expire_time),</span><br><span class="line">                <span class="string">'index'</span>: i_index_time,</span><br><span class="line">                <span class="string">'iExpiresTime'</span>: expire_time / <span class="number">1000.0</span>,  <span class="comment"># 单位转成s, 固件端只需要s</span></span><br><span class="line">                <span class="string">'protocol'</span>: <span class="string">'rtmp'</span>  <span class="comment"># 当前仅支持rtmp, 以后可能支持rtsp</span></span><br><span class="line">            &#125;</span><br><span class="line">            logging.info(msg=<span class="string">'sData: &#123;&#125;'</span>.format(cmd))</span><br><span class="line">            aes_encrypt_data_hex = self.aes_encrypt(iv=self.aes_iv, key=self.aes_key, data=ujson.dumps(cmd))</span><br><span class="line"></span><br><span class="line">            payload = &#123;</span><br><span class="line">                <span class="string">"iCmdType"</span>: <span class="number">7</span>,</span><br><span class="line">                <span class="string">"sMsgId"</span>: self.generate_message_id(),</span><br><span class="line">                <span class="string">"iAmsCmdType"</span>: <span class="number">702</span>,</span><br><span class="line">                <span class="string">"sProtocolVersion"</span>: self.protocol_version,</span><br><span class="line">                <span class="string">"sData"</span>: aes_encrypt_data_hex</span><br><span class="line">            &#125;</span><br><span class="line">            self.publish_message(payload=payload)</span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            <span class="comment"># self.do_issue_vms_stream_control_cmd(cmd_type=1)</span></span><br><span class="line">            <span class="comment"># 设备未绑定，停止回复</span></span><br><span class="line">            logging.info(msg=<span class="string">"设备未绑定，停止下发..."</span>)</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">do_issue_pic_upload_param</span><span class="params">(self, input_data)</span>:</span></span><br><span class="line">        <span class="string">""" 下发金山云对象存储配置</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">        :param input_data:</span></span><br><span class="line"><span class="string">        :return:</span></span><br><span class="line"><span class="string">        """</span></span><br><span class="line">        logging.info(msg=<span class="string">"开始下发FTP-金山云图片上传的配置..."</span>)</span><br><span class="line">        self.do_aes_analysis(input_data=input_data)</span><br><span class="line">        self.set_and_get_aes_config()</span><br><span class="line"></span><br><span class="line">        i_index_time = self.aes_decrypt_data.get(<span class="string">'iGetPicUploadPara'</span>)</span><br><span class="line">        logging.info(msg=<span class="string">"i_index_time: &#123;&#125;"</span>.format(i_index_time))</span><br><span class="line"></span><br><span class="line">        <span class="comment"># <span class="doctag">TODO:</span> 设备未被用户绑定之前，禁止下发推流地址</span></span><br><span class="line">        logging.info(msg=<span class="string">"开始下发..."</span>)</span><br><span class="line">        cmd = &#123;</span><br><span class="line">            <span class="string">"isForBidden"</span>: <span class="number">0</span>,</span><br><span class="line">            <span class="string">"uploadmethod"</span>: <span class="string">"http"</span>,</span><br><span class="line">            <span class="string">"ftp"</span>: &#123;</span><br><span class="line">                <span class="string">"ftpurl"</span>: <span class="string">""</span>,</span><br><span class="line">                <span class="string">"ftpport"</span>: <span class="string">""</span>,</span><br><span class="line">                <span class="string">"ftpuser"</span>: <span class="string">""</span>,</span><br><span class="line">                <span class="string">"ftppassword"</span>: <span class="string">""</span>,</span><br><span class="line">                <span class="string">"ftppath"</span>: <span class="string">""</span></span><br><span class="line">            &#125;,</span><br><span class="line">            <span class="string">"http"</span>: &#123;</span><br><span class="line">                <span class="string">"hosturl"</span>: KSYUN_REGEION_HOST_URL,</span><br><span class="line">                <span class="string">"access_key"</span>: KSYUN_ACCESS_KEY,</span><br><span class="line">                <span class="string">"secret_key"</span>: KSYUN_SECRET_KEY,</span><br><span class="line">                <span class="string">"bucket_name"</span>: KSYUN_OSS_BUCKET_NAME,</span><br><span class="line">                <span class="string">"object_path"</span>: <span class="string">"ai_engine_imgs"</span>,</span><br><span class="line">                <span class="string">"callbackurl"</span>: DEEPGRINT_CALLBACK_URL</span><br><span class="line">            &#125;,</span><br><span class="line">            <span class="string">"index"</span>: i_index_time</span><br><span class="line">        &#125;</span><br><span class="line">        logging.info(msg=<span class="string">'sData: &#123;&#125;'</span>.format(cmd))</span><br><span class="line">        aes_encrypt_data_hex = self.aes_encrypt(iv=self.aes_iv, key=self.aes_key, data=ujson.dumps(cmd))</span><br><span class="line"></span><br><span class="line">        payload = &#123;</span><br><span class="line">            <span class="string">"iCmdType"</span>: <span class="number">7</span>,</span><br><span class="line">            <span class="string">"sMsgId"</span>: self.generate_message_id(),</span><br><span class="line">            <span class="string">"iAmsCmdType"</span>: <span class="number">703</span>,</span><br><span class="line">            <span class="string">"sProtocolVersion"</span>: self.protocol_version,</span><br><span class="line">            <span class="string">"sData"</span>: aes_encrypt_data_hex</span><br><span class="line">        &#125;</span><br><span class="line">        self.publish_message(payload=payload)</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">do_issue_vms_stream_control_cmd</span><span class="params">(self, cmd_type=None)</span>:</span></span><br><span class="line">        <span class="string">""" 下发vms流媒体推流控制命令</span></span><br><span class="line"><span class="string">        &#123;</span></span><br><span class="line"><span class="string">           icmdtype: 0 / 1 / 2  # 0停止，1开始，2，使用新的推流地址重新开始</span></span><br><span class="line"><span class="string">        &#125;</span></span><br><span class="line"><span class="string">        :param cmd_type:</span></span><br><span class="line"><span class="string">        :return:</span></span><br><span class="line"><span class="string">        """</span></span><br><span class="line">        <span class="comment"># 所有下发命令必须先获得加密数据用的iv, key</span></span><br><span class="line">        self.set_and_get_aes_config()</span><br><span class="line"></span><br><span class="line">        logging.info(msg=<span class="string">"客户端调用控制固件是否推流的命令了...cmdType: 704"</span>)</span><br><span class="line">        <span class="keyword">assert</span> cmd_type <span class="keyword">in</span> (<span class="number">0</span>, <span class="number">1</span>, <span class="number">2</span>)</span><br><span class="line">        cmd = &#123;</span><br><span class="line">            <span class="string">"icmdtype"</span>: int(cmd_type),</span><br><span class="line">        &#125;</span><br><span class="line">        logging.info(msg=<span class="string">'sData: &#123;&#125;'</span>.format(cmd))</span><br><span class="line">        aes_encrypt_data_hex = self.aes_encrypt(iv=self.aes_iv, key=self.aes_key, data=ujson.dumps(cmd))</span><br><span class="line"></span><br><span class="line">        payload = &#123;</span><br><span class="line">            <span class="string">"iCmdType"</span>: <span class="number">7</span>,</span><br><span class="line">            <span class="string">"sMsgId"</span>: self.generate_message_id(),</span><br><span class="line">            <span class="string">"iAmsCmdType"</span>: <span class="number">704</span>,</span><br><span class="line">            <span class="string">"sProtocolVersion"</span>: self.protocol_version,</span><br><span class="line">            <span class="string">"sData"</span>: aes_encrypt_data_hex</span><br><span class="line">        &#125;</span><br><span class="line">        self.publish_message(payload=payload)</span><br><span class="line">        logging.info(msg=<span class="string">"下发推流控制命令: &#123;&#125;到设备&#123;&#125;成功"</span>.format(cmd, self.sn))</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">do_issue_vms_ftp_control_cmd</span><span class="params">(self, cmd_type=None)</span>:</span></span><br><span class="line">        <span class="string">""" 下发金山云对象存储控制命令</span></span><br><span class="line"><span class="string">        &#123;</span></span><br><span class="line"><span class="string">           icmdtype: 0 / 1  # 0停止，1开始</span></span><br><span class="line"><span class="string">        &#125;</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">        :param cmd_type:</span></span><br><span class="line"><span class="string">        :return:</span></span><br><span class="line"><span class="string">        """</span></span><br><span class="line">        <span class="comment"># 所有下发命令必须先获得加密数据用的iv, key</span></span><br><span class="line">        self.set_and_get_aes_config()</span><br><span class="line"></span><br><span class="line">        logging.info(msg=<span class="string">"客户端调用控制固件是否推图片流的命令了...cmdType: 705"</span>)</span><br><span class="line">        <span class="keyword">assert</span> cmd_type <span class="keyword">in</span> (<span class="number">0</span>, <span class="number">1</span>)</span><br><span class="line">        cmd = &#123;</span><br><span class="line">            <span class="string">"icmdtype"</span>: int(cmd_type),</span><br><span class="line">        &#125;</span><br><span class="line">        logging.info(msg=<span class="string">'sData: &#123;&#125;'</span>.format(cmd))</span><br><span class="line">        aes_encrypt_data_hex = self.aes_encrypt(iv=self.aes_iv, key=self.aes_key, data=ujson.dumps(cmd))</span><br><span class="line"></span><br><span class="line">        payload = &#123;</span><br><span class="line">            <span class="string">"iCmdType"</span>: <span class="number">7</span>,</span><br><span class="line">            <span class="string">"sMsgId"</span>: self.generate_message_id(),</span><br><span class="line">            <span class="string">"iAmsCmdType"</span>: <span class="number">705</span>,</span><br><span class="line">            <span class="string">"sProtocolVersion"</span>: self.protocol_version,</span><br><span class="line">            <span class="string">"sData"</span>: aes_encrypt_data_hex</span><br><span class="line">        &#125;</span><br><span class="line">        self.publish_message(payload=payload)</span><br><span class="line">        logging.info(msg=<span class="string">"下发推图片流控制命令: &#123;&#125;到设备&#123;&#125;成功"</span>.format(cmd, self.sn))</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">do_issue_reboot_cmd</span><span class="params">(self, cmd_type=<span class="number">1</span>)</span>:</span></span><br><span class="line">        <span class="string">""" 下发设备重启命令</span></span><br><span class="line"><span class="string">        iReboot: 1</span></span><br><span class="line"><span class="string">        :param cmd_type:</span></span><br><span class="line"><span class="string">        :return:</span></span><br><span class="line"><span class="string">        """</span></span><br><span class="line">        self.set_and_get_aes_config()</span><br><span class="line">        <span class="keyword">assert</span> cmd_type == <span class="number">1</span>, Error.REQUEST_PARAMETER_IS_INVALID</span><br><span class="line"></span><br><span class="line">        msg_id = self.generate_message_id()</span><br><span class="line"></span><br><span class="line">        cmd = &#123;<span class="string">"iReboot"</span>: cmd_type&#125;</span><br><span class="line">        aes_encrypt_data_hex = self.aes_encrypt(iv=self.aes_iv, key=self.aes_key, data=ujson.dumps(cmd))</span><br><span class="line"></span><br><span class="line">        payload = &#123;</span><br><span class="line">            <span class="string">"iCmdType"</span>: <span class="number">3</span>,</span><br><span class="line">            <span class="string">"sProtocolVersion"</span>: self.protocol_version,</span><br><span class="line">            <span class="string">"sMsgId"</span>: msg_id,</span><br><span class="line">            <span class="string">"iAppCmdType"</span>: <span class="number">313</span>,</span><br><span class="line">            <span class="string">"sData"</span>: aes_encrypt_data_hex</span><br><span class="line">        &#125;</span><br><span class="line">        self.publish_message(payload=payload)</span><br><span class="line">        <span class="keyword">return</span> msg_id</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">do_issue_reset_cmd</span><span class="params">(self, cmd_type)</span>:</span></span><br><span class="line">        <span class="string">""" 下发重置命令</span></span><br><span class="line"><span class="string">            # 1-&gt; 恢复出厂设置(恢复所有，配置，sd卡，模型)   0-&gt;恢复默认, 恢复默认设置</span></span><br><span class="line"><span class="string">            # 恢复出厂设置: 1</span></span><br><span class="line"><span class="string">            # 恢复默认设置: 0</span></span><br><span class="line"><span class="string">            # 视音频恢复默认值: 331</span></span><br><span class="line"><span class="string">            # OSD恢复默认值: 333</span></span><br><span class="line"><span class="string">            # 人脸抓拍设置恢复默认值: 328</span></span><br><span class="line"><span class="string">            # 车辆抓拍恢复默认值: 329</span></span><br><span class="line"><span class="string">            # 设备配置恢复默认值:  330</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">        :param cmd_type:</span></span><br><span class="line"><span class="string">        :return:</span></span><br><span class="line"><span class="string">        """</span></span><br><span class="line">        self.set_and_get_aes_config()</span><br><span class="line">        <span class="keyword">assert</span> cmd_type <span class="keyword">in</span> (<span class="number">0</span>, <span class="number">1</span>, <span class="number">328</span>, <span class="number">329</span>, <span class="number">330</span>, <span class="number">331</span>, <span class="number">333</span>), Error.REQUEST_PARAMETER_IS_INVALID</span><br><span class="line"></span><br><span class="line">        msg_id = self.generate_message_id()</span><br><span class="line"></span><br><span class="line">        cmd = &#123;<span class="string">"iReset"</span>: cmd_type&#125;</span><br><span class="line">        aes_encrypt_data_hex = self.aes_encrypt(iv=self.aes_iv, key=self.aes_key, data=ujson.dumps(cmd))</span><br><span class="line">        payload = &#123;</span><br><span class="line">            <span class="string">"iCmdType"</span>: <span class="number">3</span>,</span><br><span class="line">            <span class="string">"sProtocolVersion"</span>: self.protocol_version,</span><br><span class="line">            <span class="string">"sMsgId"</span>: msg_id,</span><br><span class="line">            <span class="string">"iAppCmdType"</span>: <span class="number">314</span>,</span><br><span class="line">            <span class="string">"sData"</span>: aes_encrypt_data_hex</span><br><span class="line">        &#125;</span><br><span class="line">        self.publish_message(payload=payload)</span><br><span class="line">        <span class="keyword">return</span> msg_id</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">do_issue_log_upload_cmd</span><span class="params">(self, cmd_type=<span class="number">1</span>)</span>:</span></span><br><span class="line">        <span class="string">""" 下发日志上传命令</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">        :param cmd_type:</span></span><br><span class="line"><span class="string">        :return:</span></span><br><span class="line"><span class="string">        """</span></span><br><span class="line">        self.set_and_get_aes_config()</span><br><span class="line">        log_body = &#123;</span><br><span class="line">            <span class="string">"iReqUploadZlog"</span>: cmd_type</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">assert</span> isinstance(log_body, dict), Error.REQUEST_PARAMETER_IS_INVALID</span><br><span class="line"></span><br><span class="line">        msg_id = self.generate_message_id()</span><br><span class="line"></span><br><span class="line">        aes_encrypt_data_hex = self.aes_encrypt(iv=self.aes_iv, key=self.aes_key, data=ujson.dumps(log_body))</span><br><span class="line"></span><br><span class="line">        payload = &#123;</span><br><span class="line">            <span class="string">"iCmdType"</span>: <span class="number">3</span>,</span><br><span class="line">            <span class="string">"sProtocolVersion"</span>: self.protocol_version,</span><br><span class="line">            <span class="string">"sMsgId"</span>: msg_id,</span><br><span class="line">            <span class="string">"iAppCmdType"</span>: <span class="number">317</span>,</span><br><span class="line">            <span class="string">"sData"</span>: aes_encrypt_data_hex</span><br><span class="line">        &#125;</span><br><span class="line">        self.publish_message(payload=payload)</span><br><span class="line">        <span class="keyword">return</span> msg_id</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">do_issue_reset_sd_card_cmd</span><span class="params">(self, cmd_type=<span class="number">1</span>)</span>:</span></span><br><span class="line">        <span class="string">""" 下发格式化sd卡命令</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">        :param cmd_type:</span></span><br><span class="line"><span class="string">        :return:</span></span><br><span class="line"><span class="string">        """</span></span><br><span class="line">        self.set_and_get_aes_config()</span><br><span class="line">        <span class="keyword">assert</span> cmd_type == <span class="number">1</span>, Error.REQUEST_PARAMETER_IS_INVALID</span><br><span class="line"></span><br><span class="line">        msg_id = self.generate_message_id()</span><br><span class="line"></span><br><span class="line">        cmd = &#123;<span class="string">"iFormat"</span>: cmd_type&#125;</span><br><span class="line">        aes_encrypt_data_hex = self.aes_encrypt(iv=self.aes_iv, key=self.aes_key, data=ujson.dumps(cmd))</span><br><span class="line"></span><br><span class="line">        payload = &#123;</span><br><span class="line">            <span class="string">"iCmdType"</span>: <span class="number">3</span>,</span><br><span class="line">            <span class="string">"sProtocolVersion"</span>: self.protocol_version,</span><br><span class="line">            <span class="string">"sMsgId"</span>: msg_id,</span><br><span class="line">            <span class="string">"iAppCmdType"</span>: <span class="number">318</span>,</span><br><span class="line">            <span class="string">"sData"</span>: aes_encrypt_data_hex</span><br><span class="line">        &#125;</span><br><span class="line">        self.publish_message(payload=payload)</span><br><span class="line">        <span class="keyword">return</span> msg_id</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">do_issue_device_name</span><span class="params">(self, device_name=<span class="string">"李小龙测试"</span>)</span>:</span></span><br><span class="line">        <span class="string">""" 下发设备名称</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">        :param device_name:</span></span><br><span class="line"><span class="string">        :return:</span></span><br><span class="line"><span class="string">        """</span></span><br><span class="line">        self.set_and_get_aes_config()</span><br><span class="line"></span><br><span class="line">        cmd = &#123;</span><br><span class="line">            <span class="string">'sOsdName'</span>: &#123;  <span class="comment"># 通道名称控制</span></span><br><span class="line">                <span class="string">"iEnable"</span>: <span class="number">1</span>,</span><br><span class="line">                <span class="string">"strText"</span>: device_name  <span class="comment"># 通道名称</span></span><br><span class="line">            &#125;,</span><br><span class="line">        &#125;</span><br><span class="line">        logging.info(<span class="string">"cmd: &#123;&#125;"</span>.format(cmd))</span><br><span class="line">        aes_encrypt_data_hex = self.aes_encrypt(iv=self.aes_iv, key=self.aes_key, data=ujson.dumps(cmd))</span><br><span class="line">        msg_id = self.generate_message_id()</span><br><span class="line"></span><br><span class="line">        logging.info(<span class="string">"aes_encrypt_data_hex: &#123;&#125;"</span>.format(aes_encrypt_data_hex))</span><br><span class="line">        payload = &#123;</span><br><span class="line">            <span class="string">"iCmdType"</span>: <span class="number">3</span>,</span><br><span class="line">            <span class="string">"sMsgId"</span>: msg_id,</span><br><span class="line">            <span class="string">"iAppCmdType"</span>: <span class="number">333</span>,</span><br><span class="line">            <span class="string">"sProtocolVersion"</span>: self.protocol_version,</span><br><span class="line">            <span class="string">"sData"</span>: aes_encrypt_data_hex</span><br><span class="line">        &#125;</span><br><span class="line">        self.publish_message(payload=payload)</span><br><span class="line">        <span class="keyword">return</span> msg_id</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">do_issue_snapshot_face_cmd</span><span class="params">(self, snapshot_body)</span>:</span></span><br><span class="line">        <span class="string">""" 下发人脸抓拍设置</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">        :param snapshot_body:</span></span><br><span class="line"><span class="string">        :return:</span></span><br><span class="line"><span class="string">        """</span></span><br><span class="line">        self.set_and_get_aes_config()</span><br><span class="line">        <span class="keyword">assert</span> isinstance(snapshot_body, dict), Error.REQUEST_PARAMETER_IS_INVALID</span><br><span class="line"></span><br><span class="line">        msg_id = self.generate_message_id()</span><br><span class="line"></span><br><span class="line">        aes_encrypt_data_hex = self.aes_encrypt(iv=self.aes_iv, key=self.aes_key, data=ujson.dumps(snapshot_body))</span><br><span class="line"></span><br><span class="line">        payload = &#123;</span><br><span class="line">            <span class="string">"iCmdType"</span>: <span class="number">3</span>,</span><br><span class="line">            <span class="string">"sProtocolVersion"</span>: self.protocol_version,</span><br><span class="line">            <span class="string">"sMsgId"</span>: msg_id,</span><br><span class="line">            <span class="string">"iAppCmdType"</span>: <span class="number">328</span>,</span><br><span class="line">            <span class="string">"sData"</span>: aes_encrypt_data_hex</span><br><span class="line">        &#125;</span><br><span class="line">        self.publish_message(payload=payload)</span><br><span class="line">        <span class="keyword">return</span> msg_id</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">do_issue_snapshot_car_cmd</span><span class="params">(self, snapshot_body)</span>:</span></span><br><span class="line">        <span class="string">""" 下发车辆抓拍设置</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">        :param snapshot_body:</span></span><br><span class="line"><span class="string">        :return:</span></span><br><span class="line"><span class="string">        """</span></span><br><span class="line">        self.set_and_get_aes_config()</span><br><span class="line">        <span class="keyword">assert</span> isinstance(snapshot_body, dict), Error.REQUEST_PARAMETER_IS_INVALID</span><br><span class="line"></span><br><span class="line">        msg_id = self.generate_message_id()</span><br><span class="line"></span><br><span class="line">        aes_encrypt_data_hex = self.aes_encrypt(iv=self.aes_iv, key=self.aes_key, data=ujson.dumps(snapshot_body))</span><br><span class="line"></span><br><span class="line">        payload = &#123;</span><br><span class="line">            <span class="string">"iCmdType"</span>: <span class="number">3</span>,</span><br><span class="line">            <span class="string">"sProtocolVersion"</span>: self.protocol_version,</span><br><span class="line">            <span class="string">"sMsgId"</span>: msg_id,</span><br><span class="line">            <span class="string">"iAppCmdType"</span>: <span class="number">329</span>,</span><br><span class="line">            <span class="string">"sData"</span>: aes_encrypt_data_hex</span><br><span class="line">        &#125;</span><br><span class="line">        self.publish_message(payload=payload)</span><br><span class="line">        <span class="keyword">return</span> msg_id</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">do_issue_device_other_settings_cmd</span><span class="params">(self, settings_body)</span>:</span></span><br><span class="line">        <span class="string">"""时区，报警灯，警笛设置</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">        :return:</span></span><br><span class="line"><span class="string">        """</span></span><br><span class="line">        self.set_and_get_aes_config()</span><br><span class="line">        <span class="keyword">assert</span> isinstance(settings_body, dict), Error.REQUEST_PARAMETER_IS_INVALID</span><br><span class="line"></span><br><span class="line">        msg_id = self.generate_message_id()</span><br><span class="line"></span><br><span class="line">        aes_encrypt_data_hex = self.aes_encrypt(iv=self.aes_iv, key=self.aes_key, data=ujson.dumps(settings_body))</span><br><span class="line"></span><br><span class="line">        payload = &#123;</span><br><span class="line">            <span class="string">"iCmdType"</span>: <span class="number">3</span>,</span><br><span class="line">            <span class="string">"sProtocolVersion"</span>: self.protocol_version,</span><br><span class="line">            <span class="string">"sMsgId"</span>: msg_id,</span><br><span class="line">            <span class="string">"iAppCmdType"</span>: <span class="number">330</span>,</span><br><span class="line">            <span class="string">"sData"</span>: aes_encrypt_data_hex</span><br><span class="line">        &#125;</span><br><span class="line">        self.publish_message(payload=payload)</span><br><span class="line">        <span class="keyword">return</span> msg_id</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">do_issue_audio_and_video_cmd</span><span class="params">(self, config_body)</span>:</span></span><br><span class="line">        <span class="string">"""下发音视频设置</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">        :return:</span></span><br><span class="line"><span class="string">        """</span></span><br><span class="line">        self.set_and_get_aes_config()</span><br><span class="line">        <span class="keyword">assert</span> isinstance(config_body, dict), Error.REQUEST_PARAMETER_IS_INVALID</span><br><span class="line"></span><br><span class="line">        msg_id = self.generate_message_id()</span><br><span class="line"></span><br><span class="line">        aes_encrypt_data_hex = self.aes_encrypt(iv=self.aes_iv, key=self.aes_key, data=ujson.dumps(config_body))</span><br><span class="line"></span><br><span class="line">        payload = &#123;</span><br><span class="line">            <span class="string">"iCmdType"</span>: <span class="number">3</span>,</span><br><span class="line">            <span class="string">"sProtocolVersion"</span>: self.protocol_version,</span><br><span class="line">            <span class="string">"sMsgId"</span>: msg_id,</span><br><span class="line">            <span class="string">"iAppCmdType"</span>: <span class="number">331</span>,</span><br><span class="line">            <span class="string">"sData"</span>: aes_encrypt_data_hex</span><br><span class="line">        &#125;</span><br><span class="line">        self.publish_message(payload=payload)</span><br><span class="line">        <span class="keyword">return</span> msg_id</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">do_issue_get_sd_card_info_cmd</span><span class="params">(self, cmd_type=<span class="number">1</span>)</span>:</span></span><br><span class="line">        <span class="string">""" 获取sd卡存储状态</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">        :param cmd_type:</span></span><br><span class="line"><span class="string">        :return:</span></span><br><span class="line"><span class="string">        """</span></span><br><span class="line">        <span class="keyword">assert</span> cmd_type == <span class="number">1</span>, Error.REQUEST_PARAMETER_IS_INVALID</span><br><span class="line">        self.set_and_get_aes_config()</span><br><span class="line"></span><br><span class="line">        cmd = &#123;<span class="string">"iGetSDInfo"</span>: <span class="number">1</span>&#125;</span><br><span class="line"></span><br><span class="line">        msg_id = self.generate_message_id()</span><br><span class="line"></span><br><span class="line">        aes_encrypt_data_hex = self.aes_encrypt(iv=self.aes_iv, key=self.aes_key, data=ujson.dumps(cmd))</span><br><span class="line"></span><br><span class="line">        payload = &#123;</span><br><span class="line">            <span class="string">"iCmdType"</span>: <span class="number">3</span>,</span><br><span class="line">            <span class="string">"sProtocolVersion"</span>: self.protocol_version,</span><br><span class="line">            <span class="string">"sMsgId"</span>: msg_id,</span><br><span class="line">            <span class="string">"iAppCmdType"</span>: <span class="number">332</span>,</span><br><span class="line">            <span class="string">"sData"</span>: aes_encrypt_data_hex</span><br><span class="line">        &#125;</span><br><span class="line">        self.publish_message(payload=payload)</span><br><span class="line">        <span class="keyword">return</span> msg_id</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">do_issue_osd_cmd</span><span class="params">(self, osd_body)</span>:</span></span><br><span class="line">        <span class="string">""" 下发osd名称设置</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">        :param osd_body:</span></span><br><span class="line"><span class="string">        :return:</span></span><br><span class="line"><span class="string">        """</span></span><br><span class="line">        self.set_and_get_aes_config()</span><br><span class="line">        <span class="keyword">assert</span> isinstance(osd_body, dict), Error.REQUEST_PARAMETER_IS_INVALID</span><br><span class="line"></span><br><span class="line">        msg_id = self.generate_message_id()</span><br><span class="line"></span><br><span class="line">        aes_encrypt_data_hex = self.aes_encrypt(iv=self.aes_iv, key=self.aes_key, data=ujson.dumps(osd_body))</span><br><span class="line"></span><br><span class="line">        payload = &#123;</span><br><span class="line">            <span class="string">"iCmdType"</span>: <span class="number">3</span>,</span><br><span class="line">            <span class="string">"sProtocolVersion"</span>: self.protocol_version,</span><br><span class="line">            <span class="string">"sMsgId"</span>: msg_id,</span><br><span class="line">            <span class="string">"iAppCmdType"</span>: <span class="number">333</span>,</span><br><span class="line">            <span class="string">"sData"</span>: aes_encrypt_data_hex</span><br><span class="line">        &#125;</span><br><span class="line">        self.publish_message(payload=payload)</span><br><span class="line">        <span class="keyword">return</span> msg_id</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">get_device_status</span><span class="params">(sn, token)</span>:</span></span><br><span class="line">    <span class="keyword">return</span> BaseMqttHandler(sn=sn, token=token).get_device_status()</span><br></pre></td></tr></table></figure>
+<h3 id="client-py"><a href="#client-py" class="headerlink" title="client.py"></a>client.py</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br><span class="line">151</span><br><span class="line">152</span><br><span class="line">153</span><br><span class="line">154</span><br><span class="line">155</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># coding: utf-8</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> json</span><br><span class="line"><span class="keyword">import</span> logging</span><br><span class="line"></span><br><span class="line"><span class="keyword">from</span> paho.mqtt <span class="keyword">import</span> client <span class="keyword">as</span> mqtt</span><br><span class="line"></span><br><span class="line"><span class="keyword">from</span> settings <span class="keyword">import</span> EMQTT_SERVER_HOST, EMQTT_SERVER_PORT</span><br><span class="line"><span class="keyword">from</span> sensoro.utils.types <span class="keyword">import</span> MqttiCmdType</span><br><span class="line"></span><br><span class="line"><span class="keyword">from</span> sensoro.core.dao.device_produce_sys <span class="keyword">import</span> ProductSysSourceDataDao</span><br><span class="line"><span class="keyword">from</span> sensoro.emqtt.base <span class="keyword">import</span> BaseMqttHandler</span><br><span class="line"><span class="keyword">from</span> sensoro.utils.types <span class="keyword">import</span> MqttiAmsCmdType</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">ListenPubTopic</span><span class="params">(object)</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self, sn=<span class="string">''</span>, token=<span class="string">''</span>)</span>:</span></span><br><span class="line">        self.sn = sn</span><br><span class="line">        self.topic = <span class="string">"/ivms/pub/&#123;&#125;"</span>.format(sn)  <span class="comment"># 监听/ivms/pub/&#123;sn&#125;</span></span><br><span class="line">        self.token = token</span><br><span class="line">        self.username = sn</span><br><span class="line">        self.password = token</span><br><span class="line">        self.client_loop()</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">client_loop</span><span class="params">(self)</span>:</span></span><br><span class="line">        client_id = self.sn + <span class="string">"-ivms"</span></span><br><span class="line">        client = mqtt.Client(client_id=client_id, transport=<span class="string">'tcp'</span>)</span><br><span class="line">        client.username_pw_set(self.username, self.password)  <span class="comment"># 必须设置，否则会返回「Connected with result code 4」</span></span><br><span class="line">        client.on_connect = self.on_connect</span><br><span class="line">        client.on_message = self.on_message</span><br><span class="line">        client.loop_start()</span><br><span class="line">        client.connect(EMQTT_SERVER_HOST, EMQTT_SERVER_PORT, <span class="number">60</span>)</span><br><span class="line">        <span class="comment"># client.loop_forever()  # 网络循环的阻塞形式，直到客户端调用disconnect（）时才会返回。它会自动处理重新连接。</span></span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">on_connect</span><span class="params">(self, client, userdata, flags, rc)</span>:</span></span><br><span class="line">        client.subscribe(self.topic)</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">on_message</span><span class="params">(self, client, userdata, msg)</span>:</span></span><br><span class="line">        message = msg.payload.decode(<span class="string">"utf-8"</span>)</span><br><span class="line">        <span class="comment"># message = str(msg.payload)</span></span><br><span class="line"></span><br><span class="line">        self.analysis_message(message=message)</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">analysis_message</span><span class="params">(self, message=<span class="string">''</span>)</span>:</span></span><br><span class="line">        <span class="string">"""</span></span><br><span class="line"><span class="string">        :param message:</span></span><br><span class="line"><span class="string">        :return:</span></span><br><span class="line"><span class="string">        """</span></span><br><span class="line">        logging.info(msg=<span class="string">"*"</span> * <span class="number">60</span> + self.sn + <span class="string">"*"</span> * <span class="number">60</span>)</span><br><span class="line">        logging.info(<span class="string">"message: &#123;&#125;"</span>.format(message))</span><br><span class="line">        logging.info(<span class="string">"message type: &#123;&#125;"</span>.format(type(message)))</span><br><span class="line">        <span class="keyword">try</span>:</span><br><span class="line">            firmware_post_data = json.loads(message)</span><br><span class="line">            i_cmd_type = firmware_post_data.get(<span class="string">'iCmdType'</span>)</span><br><span class="line">        <span class="keyword">except</span> Exception <span class="keyword">as</span> e:</span><br><span class="line">            logging.error(<span class="string">"解析固件上传的数据包错误: &#123;&#125;"</span>.format(e))</span><br><span class="line">            <span class="keyword">return</span></span><br><span class="line"></span><br><span class="line">        <span class="keyword">try</span>:</span><br><span class="line">            <span class="comment"># 目前只用了0 ~ 8</span></span><br><span class="line">            <span class="keyword">assert</span> i_cmd_type <span class="keyword">in</span> (<span class="number">0</span>, <span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>, <span class="number">6</span>, <span class="number">7</span>, <span class="number">8</span>, <span class="number">9</span>, <span class="number">10</span>, <span class="number">11</span>, <span class="number">12</span>, <span class="number">13</span>, <span class="number">14</span>, <span class="number">15</span>, <span class="number">16</span>), <span class="string">"iCmdType not found"</span></span><br><span class="line">        <span class="keyword">except</span> AssertionError <span class="keyword">as</span> e:</span><br><span class="line">            logging.info(<span class="string">"协议的iCmdType错误: &#123;&#125;, e: &#123;&#125;"</span>.format(i_cmd_type, e))</span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span> i_cmd_type == MqttiCmdType.ICMD_HANDSHAKE:</span><br><span class="line">            <span class="comment"># iCmdType: 0</span></span><br><span class="line">            <span class="comment"># 设备上网，进行三次握手，换取aes_key, iv进行后续的加密通信, 云端需要redis存储</span></span><br><span class="line">            logging.info(<span class="string">"进行三次握手中...iCmdType: &#123;&#125;"</span>.format(i_cmd_type))</span><br><span class="line">            <span class="keyword">try</span>:</span><br><span class="line">                BaseMqttHandler(sn=self.sn, token=self.token).do_rsa_handshake(input_data=firmware_post_data)</span><br><span class="line">            <span class="keyword">except</span> Exception <span class="keyword">as</span> e:</span><br><span class="line">                logging.info(<span class="string">"三次握手发生异常: &#123;&#125;"</span>.format(e))</span><br><span class="line">            logging.info(<span class="string">"三次握手完毕..."</span>)</span><br><span class="line"></span><br><span class="line">        <span class="keyword">elif</span> i_cmd_type == MqttiCmdType.ICMD_ONLINE_HANDLE:</span><br><span class="line">            <span class="comment"># iCmdType: 1</span></span><br><span class="line">            <span class="comment"># 处理设备联网上线</span></span><br><span class="line">            logging.info(<span class="string">"设备开始上传配置信息...iCmdType: &#123;&#125;"</span>.format(i_cmd_type))</span><br><span class="line">            <span class="keyword">try</span>:</span><br><span class="line">                BaseMqttHandler(sn=self.sn, token=self.token).do_device_config(input_data=firmware_post_data)</span><br><span class="line">            <span class="keyword">except</span> Exception <span class="keyword">as</span> e:</span><br><span class="line">                logging.error(<span class="string">"处理设备联网上线上传设备配置错误: &#123;&#125;"</span>.format(e))</span><br><span class="line">            logging.info(<span class="string">"设备上传配置信息完毕..."</span>)</span><br><span class="line"></span><br><span class="line">        <span class="keyword">elif</span> i_cmd_type == MqttiCmdType.ICMD_HEARTBEAT:</span><br><span class="line">            <span class="comment"># iCmdType: 2</span></span><br><span class="line">            <span class="comment"># 处理设备心跳</span></span><br><span class="line">            logging.info(<span class="string">"设备心跳...iCmdType: &#123;&#125;"</span>.format(i_cmd_type))</span><br><span class="line">            <span class="keyword">try</span>:</span><br><span class="line">                BaseMqttHandler(sn=self.sn, token=self.token).do_heartbeat(input_data=firmware_post_data)</span><br><span class="line">            <span class="keyword">except</span> Exception <span class="keyword">as</span> e:</span><br><span class="line">                logging.info(<span class="string">"处理设备心跳错误: &#123;&#125;"</span>.format(e))</span><br><span class="line">            logging.info(<span class="string">"设备心跳响应完毕..."</span>)</span><br><span class="line"></span><br><span class="line">        <span class="keyword">elif</span> i_cmd_type == MqttiCmdType.ICMD_RES_HANDLE:</span><br><span class="line">            <span class="comment"># iCmdType: 6</span></span><br><span class="line">            <span class="comment"># 固件回复云端下发的某条命令的消息</span></span><br><span class="line">            logging.info(<span class="string">"固件回复上传云端要的数据...iCmdType: &#123;&#125;"</span>.format(i_cmd_type))</span><br><span class="line">            <span class="keyword">try</span>:</span><br><span class="line">                BaseMqttHandler(sn=self.sn, token=self.token).do_firmware_upload_data(input_data=firmware_post_data)</span><br><span class="line">            <span class="keyword">except</span> Exception <span class="keyword">as</span> e:</span><br><span class="line">                logging.error(<span class="string">"固件回复上传云端要的数据出错: &#123;&#125;"</span>.format(e))</span><br><span class="line">            logging.info(<span class="string">"固件回复上传云端要得数据完毕..."</span>)</span><br><span class="line"></span><br><span class="line">        <span class="keyword">elif</span> i_cmd_type == MqttiCmdType.ICMD_FIRMWARE_SUB_HANDLER:</span><br><span class="line">            <span class="comment"># 固件主动上行的业务: iCmdType: 6</span></span><br><span class="line">            <span class="keyword">pass</span></span><br><span class="line"></span><br><span class="line">        <span class="keyword">elif</span> i_cmd_type == MqttiCmdType.ICMD_GET_VMS_SMS_CONFIG:</span><br><span class="line">            <span class="comment"># 帮固件获取vms的配置: iCmdType: 7</span></span><br><span class="line">            logging.info(msg=<span class="string">"设备获取vms配置..."</span>)</span><br><span class="line">            <span class="keyword">try</span>:</span><br><span class="line">                i_ams_cmd_type = int(firmware_post_data.get(<span class="string">'iAmsCmdType'</span>))</span><br><span class="line">                <span class="keyword">if</span> i_ams_cmd_type == MqttiAmsCmdType.GET_VMS_STREAM_URL:</span><br><span class="line">                    <span class="comment"># 获取vms流媒体url</span></span><br><span class="line">                    BaseMqttHandler(</span><br><span class="line">                        sn=self.sn, token=self.token).do_issue_vms_stream_url(input_data=firmware_post_data)</span><br><span class="line">                <span class="keyword">elif</span> i_ams_cmd_type == MqttiAmsCmdType.GET_PIC_UPLOAD_PARAM:</span><br><span class="line">                    <span class="comment"># 获取vms的对象存储配置</span></span><br><span class="line">                    BaseMqttHandler(</span><br><span class="line">                        sn=self.sn, token=self.token).do_issue_pic_upload_param(input_data=firmware_post_data)</span><br><span class="line">                <span class="keyword">elif</span> i_ams_cmd_type == MqttiAmsCmdType.STREAM_CONTROL_CMD:</span><br><span class="line">                    <span class="comment"># 固件回复AMS响应推流控制命令结果</span></span><br><span class="line">                    <span class="keyword">pass</span></span><br><span class="line">                <span class="keyword">elif</span> i_ams_cmd_type == MqttiAmsCmdType.PIC_CONTROL_CMD:</span><br><span class="line">                    <span class="comment"># 固件回复AMS响应图片上传控制命令结果</span></span><br><span class="line">                    <span class="keyword">pass</span></span><br><span class="line">            <span class="keyword">except</span> Exception <span class="keyword">as</span> e:</span><br><span class="line">                logging.info(msg=<span class="string">"设备获取vms配置错误: &#123;&#125;"</span>.format(e))</span><br><span class="line"></span><br><span class="line">        <span class="keyword">elif</span> i_cmd_type == MqttiCmdType.ICMD_FIRMWARE_SUB_HANDLER:</span><br><span class="line">            <span class="comment"># 固件主动上行的业务: 设备上传日志成功以后通知AMS</span></span><br><span class="line">            <span class="keyword">pass</span></span><br><span class="line"></span><br><span class="line">        logging.info(<span class="string">"*"</span> * <span class="number">136</span>)</span><br><span class="line">        logging.info(<span class="string">"\n\n\n"</span>)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">start_listen_mqtt_pub_topic</span><span class="params">()</span>:</span></span><br><span class="line">    count, rows = ProductSysSourceDataDao.get_all_device_count_and_rows()</span><br><span class="line">    logging.info(msg=<span class="string">"一共: &#123;&#125;个设备需要监听"</span>.format(count))</span><br><span class="line">    logging.info(msg=<span class="string">"开始监听所有设备的topic..."</span>)</span><br><span class="line">    <span class="keyword">for</span> row <span class="keyword">in</span> rows:</span><br><span class="line">        ListenPubTopic(sn=row.sn, token=row.token)</span><br><span class="line">    logging.info(msg=<span class="string">"所有设备处于监听中...\n"</span>)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">register_sn_into_emqtt_with_listen</span><span class="params">(sn, token)</span>:</span></span><br><span class="line">    <span class="string">""" 生产系统生成了设备，需要在ivms_ams_api中启动该设备的监听</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">    :param sn:</span></span><br><span class="line"><span class="string">    :param token:</span></span><br><span class="line"><span class="string">    :return:</span></span><br><span class="line"><span class="string">    """</span></span><br><span class="line">    ListenPubTopic(sn=sn, token=token)</span><br></pre></td></tr></table></figure>
+<h3 id="disconnect-client-py"><a href="#disconnect-client-py" class="headerlink" title="disconnect_client.py"></a>disconnect_client.py</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># coding: utf-8</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> json</span><br><span class="line"><span class="keyword">import</span> logging</span><br><span class="line"></span><br><span class="line"><span class="keyword">from</span> timi_uuid <span class="keyword">import</span> timi_uuid</span><br><span class="line"><span class="keyword">from</span> paho.mqtt <span class="keyword">import</span> client <span class="keyword">as</span> mqtt</span><br><span class="line"></span><br><span class="line"><span class="keyword">from</span> settings <span class="keyword">import</span> EMQTT_SERVER_HOST, EMQTT_SERVER_PORT</span><br><span class="line"></span><br><span class="line"><span class="keyword">from</span> sensoro.connection.redis_client <span class="keyword">import</span> redis_service</span><br><span class="line"><span class="keyword">from</span> sensoro.common.redis_key <span class="keyword">import</span> RedisKeyConstants</span><br><span class="line"><span class="keyword">from</span> sensoro.utils.types <span class="keyword">import</span> DeviceStatus</span><br><span class="line"></span><br><span class="line"><span class="keyword">from</span> sensoro.core.dao.device <span class="keyword">import</span> DeviceDao</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">ListenSysTopic</span><span class="params">(object)</span>:</span></span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self)</span>:</span></span><br><span class="line">        self.topic = <span class="string">"$SYS/brokers/+/clients/+/disconnected"</span></span><br><span class="line">        self.client_loop()</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">client_loop</span><span class="params">(self)</span>:</span></span><br><span class="line">        client_id = timi_uuid.get_hex_id()</span><br><span class="line">        client = mqtt.Client(client_id=client_id, transport=<span class="string">'tcp'</span>)</span><br><span class="line">        client.username_pw_set(<span class="string">"sys-disconnected"</span>, <span class="string">"sys-disconnected"</span>)  <span class="comment"># 必须设置，否则会返回「Connected with result code 4」</span></span><br><span class="line">        client.on_connect = self.on_connect</span><br><span class="line">        client.on_message = self.on_message</span><br><span class="line">        client.loop_start()</span><br><span class="line">        client.connect(EMQTT_SERVER_HOST, EMQTT_SERVER_PORT, <span class="number">60</span>)</span><br><span class="line">        <span class="comment"># client.loop_forever()  # 网络循环的阻塞形式，直到客户端调用disconnect（）时才会返回。它会自动处理重新连接。</span></span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">on_connect</span><span class="params">(self, client, userdata, flags, rc)</span>:</span></span><br><span class="line">        client.subscribe(self.topic)</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">on_message</span><span class="params">(self, client, userdata, msg)</span>:</span></span><br><span class="line">        message = msg.payload.decode(<span class="string">"utf-8"</span>)</span><br><span class="line">        self.analysis_message(message=message)</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">analysis_message</span><span class="params">(self, message=<span class="string">''</span>)</span>:</span></span><br><span class="line">        <span class="string">"""</span></span><br><span class="line"><span class="string">        :param message:</span></span><br><span class="line"><span class="string">        :return:</span></span><br><span class="line"><span class="string">        """</span></span><br><span class="line"></span><br><span class="line">        <span class="keyword">try</span>:</span><br><span class="line">            sys_data = json.loads(message)</span><br><span class="line">            i_cmd_type = sys_data.get(<span class="string">'iCmdType'</span>)</span><br><span class="line">            clientid = sys_data.get(<span class="string">'clientid'</span>)</span><br><span class="line">            username = sys_data.get(<span class="string">'username'</span>)</span><br><span class="line">            reason = sys_data.get(<span class="string">'reason'</span>)</span><br><span class="line"></span><br><span class="line">            <span class="string">"""</span></span><br><span class="line"><span class="string">            &#123;</span></span><br><span class="line"><span class="string">                'clientid': '8ed92895de05cf2c273a974c10000313',</span></span><br><span class="line"><span class="string">                'username': '0505050505050005',</span></span><br><span class="line"><span class="string">                'reason': 'normal',</span></span><br><span class="line"><span class="string">                'ts': 1570633399</span></span><br><span class="line"><span class="string">            &#125;  # 正常的设备断线, 不处理</span></span><br><span class="line"><span class="string">            """</span></span><br><span class="line">            <span class="string">"""</span></span><br><span class="line"><span class="string">            &#123;</span></span><br><span class="line"><span class="string">                'clientid': '02931117C6ED8D30',</span></span><br><span class="line"><span class="string">                'username': '02931117C6ED8D30',</span></span><br><span class="line"><span class="string">                'reason': 'keepalive_timeout',  # 需要处理</span></span><br><span class="line"><span class="string">                'ts': 1570633147</span></span><br><span class="line"><span class="string">            &#125;</span></span><br><span class="line"><span class="string">            """</span></span><br><span class="line"></span><br><span class="line">            <span class="keyword">if</span> <span class="keyword">not</span> i_cmd_type <span class="keyword">and</span> username <span class="keyword">and</span> reason != <span class="string">"normal"</span>:</span><br><span class="line">                logging.info(<span class="string">"\n\n\n\n\n\n"</span>)</span><br><span class="line">                logging.info(<span class="string">"*"</span> * <span class="number">136</span>)</span><br><span class="line">                logging.info(<span class="string">"设备&#123;&#125;已disconnect...."</span>.format(username))</span><br><span class="line">                logging.info(msg=<span class="string">"系统disconnect的数据: &#123;&#125;, reason: &#123;&#125;"</span>.format(sys_data, reason))</span><br><span class="line">                <span class="comment"># 固件约定sn为mqtt连接的client_id, username。</span></span><br><span class="line">                redis_key = RedisKeyConstants.mqtt_online.format(username)</span><br><span class="line">                old_redis_data = redis_service.client.get(redis_key)</span><br><span class="line"></span><br><span class="line">                <span class="keyword">if</span> old_redis_data:</span><br><span class="line">                    <span class="comment"># 99%的disconnect走这里</span></span><br><span class="line">                    redis_data = old_redis_data.decode()</span><br><span class="line">                    <span class="keyword">if</span> redis_data == <span class="string">"DeviceStatus.ONLINE"</span>:</span><br><span class="line">                        <span class="comment"># 如果原来状态是在线，但是现在收到心跳包了，则需要更新设备的状态未在线</span></span><br><span class="line">                        DeviceDao.update_device_status_with_offline(sn=username)</span><br><span class="line">                <span class="keyword">else</span>:</span><br><span class="line">                    <span class="comment"># 及少数的disconnect走这里: 设备无心跳？导致当前redis_key超时</span></span><br><span class="line">                    DeviceDao.update_device_status_with_offline(sn=username)</span><br><span class="line"></span><br><span class="line">                <span class="comment"># 设置设备断线的缓存</span></span><br><span class="line">                redis_service.client.setex(</span><br><span class="line">                    name=redis_key,</span><br><span class="line">                    time=<span class="number">60</span>,</span><br><span class="line">                    value=DeviceStatus.OFFLINE</span><br><span class="line">                )</span><br><span class="line"></span><br><span class="line">                logging.info(msg=<span class="string">"redis缓存设置完毕..."</span>)</span><br><span class="line"></span><br><span class="line">                logging.info(msg=<span class="string">"更新设备&#123;&#125;的在线状态为: 离线 -&gt; 成功."</span>.format(username))</span><br><span class="line"></span><br><span class="line">                logging.info(<span class="string">"*"</span> * <span class="number">136</span>)</span><br><span class="line">                logging.info(<span class="string">"\n\n\n\n\n\n"</span>)</span><br><span class="line"></span><br><span class="line">        <span class="keyword">except</span> Exception <span class="keyword">as</span> e:</span><br><span class="line">            logging.error(<span class="string">"解析固件上传的数据包错误: &#123;&#125;"</span>.format(e))</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">start_listen_mqtt_sys_disconnect_topic</span><span class="params">()</span>:</span></span><br><span class="line">    logging.info(msg=<span class="string">"开始进行系统监听..."</span>)</span><br><span class="line">    ListenSysTopic()</span><br><span class="line">    logging.info(msg=<span class="string">"系统监听进行中..."</span>)</span><br></pre></td></tr></table></figure>
+<h3 id="publish-py"><a href="#publish-py" class="headerlink" title="publish.py"></a>publish.py</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># coding: utf-8</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> ujson</span><br><span class="line"></span><br><span class="line"><span class="keyword">from</span> typing <span class="keyword">import</span> Dict, AnyStr, Any</span><br><span class="line"></span><br><span class="line"><span class="keyword">from</span> paho.mqtt <span class="keyword">import</span> publish <span class="keyword">as</span> publish</span><br><span class="line"><span class="keyword">from</span> timi_uuid <span class="keyword">import</span> timi_uuid <span class="keyword">as</span> uuid</span><br><span class="line"></span><br><span class="line"><span class="keyword">from</span> settings <span class="keyword">import</span> EMQTT_SERVER_HOST, EMQTT_SERVER_PORT</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">PublishToOneDevice</span><span class="params">(object)</span>:</span></span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self, sn, token)</span>:</span></span><br><span class="line">        self.sn = sn</span><br><span class="line">        self.topic = <span class="string">"/ivms/sub/&#123;&#125;"</span>.format(sn)  <span class="comment"># 监听/ivms/pub/&#123;sn&#125;</span></span><br><span class="line">        self.username = sn</span><br><span class="line">        self.password = token</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">publish_message</span><span class="params">(self, payload: Any)</span>:</span></span><br><span class="line">        <span class="string">"""</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">        :param sn: 当前通信的设备</span></span><br><span class="line"><span class="string">        :param payload: 当前通信的数据内容</span></span><br><span class="line"><span class="string">        :param auth: 当前通信的鉴权信息</span></span><br><span class="line"><span class="string">        :return:</span></span><br><span class="line"><span class="string">        """</span></span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span> <span class="keyword">not</span> isinstance(payload, str):</span><br><span class="line">            payload = ujson.dumps(payload)</span><br><span class="line"></span><br><span class="line">        publish.single(</span><br><span class="line">            topic=self.topic,</span><br><span class="line">            payload=payload,</span><br><span class="line">            qos=<span class="number">1</span>,</span><br><span class="line">            hostname=EMQTT_SERVER_HOST,</span><br><span class="line">            port=EMQTT_SERVER_PORT,</span><br><span class="line">            client_id=uuid.get_hex_id(),</span><br><span class="line">            auth=&#123;<span class="string">'username'</span>: self.username, <span class="string">'password'</span>: self.password&#125;</span><br><span class="line">        )</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">BroadcastMessage</span><span class="params">(object)</span>:</span></span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self)</span>:</span></span><br><span class="line">        self.topic = <span class="string">"/ivms/push"</span>  <span class="comment"># 监听/ivms/push</span></span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">publish_message</span><span class="params">(self, payload: Any, auth: Dict)</span>:</span></span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span> <span class="keyword">not</span> isinstance(payload, str):</span><br><span class="line">            payload = ujson.dumps(payload)</span><br><span class="line"></span><br><span class="line">        publish.single(</span><br><span class="line">            topic=self.topic,</span><br><span class="line">            payload=payload,</span><br><span class="line">            qos=<span class="number">1</span>,</span><br><span class="line">            hostname=EMQTT_SERVER_HOST,</span><br><span class="line">            port=EMQTT_SERVER_PORT,</span><br><span class="line">            client_id=uuid.get_hex_id(),</span><br><span class="line">            auth=auth</span><br><span class="line">        )</span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Python/" rel="tag"># Python</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/10/25/python-static-class-self方法举例/" rel="next" title="python_static_class_self方法举例">
+                <i class="fa fa-chevron-left"></i> python_static_class_self方法举例
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+  </div>
+
+
+          </div>
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">博主</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/">
+                
+                    <span class="site-state-item-count">237</span>
+                    <span class="site-state-item-name">日志</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-categories">
+                  <a href="/categories/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">37</span>
+                    <span class="site-state-item-name">分类</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  <a href="/tags/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">45</span>
+                    <span class="site-state-item-name">标签</span>
+                  </a>
+                </div>
+              
+            </nav>
+          
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+            
+          
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#base-py"><span class="nav-number">1.</span> <span class="nav-text">base.py</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#client-py"><span class="nav-number">2.</span> <span class="nav-text">client.py</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#disconnect-client-py"><span class="nav-number">3.</span> <span class="nav-text">disconnect_client.py</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#publish-py"><span class="nav-number">4.</span> <span class="nav-text">publish.py</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder"><a href="http://blog.timilong.com/about" target="_blank"> Timi.long </a></span>
+  
+
+  
+</div>
+
+
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动 v3.7.1</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 – <a class="theme-link" target="_blank" href="https://theme-next.org">NexT.Muse</a> v6.4.1</div>
+
+
+
+
+<!-- 新增访客统计代码 -->
+
+<div class="busuanzi-count">
+    <script async="" src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>  
+    <span class="site-uv">
+      <i class="fa fa-user"></i>
+      访问用户： <span class="busuanzi-value" id="busuanzi_value_site_uv"></span> 人
+    </span>
+    <div class="powered-by"></div>
+    <span class="site-uv">
+      <i class="fa fa-eye"></i>
+      访问次数： <span class="busuanzi-value" id="busuanzi_value_site_pv"></span> 次
+    </span>
+    <!-- 博客字数统计
+    <span class="site-pv">
+      <i class="fa fa-pencil"></i>
+      博客全站共： <span class="post-count"> </span> 字
+    </span> -->
+</div>
+<!-- 新增访客统计代码 END-->
+
+        
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+    
+
+    
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.3.5/jquery.fancybox.min.js"></script>
+  
+
+
+  
+
+
+
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=6.4.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=6.4.1"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=6.4.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=6.4.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=6.4.1"></script>
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

@@ -123,7 +123,7 @@
 <meta property="og:description" content="Python 类方法、成员方法、静态方法的一个例子">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="http://qiniucdn.timilong.com/ChMkJ1bKy1uIPW3MABfM2owFPrIAALIpwESAgYAF8zy703.jpg">
-<meta property="og:updated_time" content="2019-10-25T04:20:17.362Z">
+<meta property="og:updated_time" content="2019-10-25T04:55:48.410Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="python_static_class_self方法举例">
 <meta name="twitter:description" content="Python 类方法、成员方法、静态方法的一个例子">
@@ -367,7 +367,7 @@
                 
               
 
-              <time title="创建于：2019-10-25 12:15:10 / 更新于：04:20:17" itemprop="dateCreated datePublished" datetime="2019-10-25T12:15:10Z">2019-10-25</time>
+              <time title="创建于：2019-10-25 12:15:10 / 更新于：04:55:48" itemprop="dateCreated datePublished" datetime="2019-10-25T12:15:10Z">2019-10-25</time>
             
 
             
@@ -427,7 +427,7 @@
       
         <p><img src="http://qiniucdn.timilong.com/ChMkJ1bKy1uIPW3MABfM2owFPrIAALIpwESAgYAF8zy703.jpg" alt="cover_img"></p>
 <blockquote>
-<p>转载自: 微信公众号，<a href="">架构师之路</a><br>本文系原创, 转载请联系作者 <a href="http://blog.timilong.com/about">Timilong</a></p>
+<p>本文系原创, 转载请联系作者 <a href="http://blog.timilong.com/about">Timilong</a></p>
 </blockquote>
 <h2 id="距离如下"><a href="#距离如下" class="headerlink" title="距离如下"></a>距离如下</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># coding: utf-8</span></span><br><span class="line"><span class="keyword">from</span> timi_uuid <span class="keyword">import</span> timi_uuid</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">BaseMqttHandler</span><span class="params">(object)</span>:</span></span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self, sn=None, token=None)</span>:</span></span><br><span class="line">        self.sn = sn</span><br><span class="line">        self.token = token</span><br><span class="line"></span><br><span class="line"><span class="meta">    @staticmethod</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">generate_string_with_length</span><span class="params">(length=<span class="number">16</span>)</span>:</span></span><br><span class="line">        <span class="keyword">assert</span> length <span class="keyword">in</span> (<span class="number">16</span>, <span class="number">32</span>), <span class="string">'The String Length Error, Only support (16, 32)'</span></span><br><span class="line">        _string = timi_uuid.get_hex_id()</span><br><span class="line">        <span class="keyword">return</span> _string[:length]</span><br><span class="line"></span><br><span class="line"><span class="meta">    @staticmethod</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">generate_message_id</span><span class="params">()</span>:</span></span><br><span class="line">        msg_id = timi_uuid.get_hex_id()</span><br><span class="line">        <span class="keyword">return</span> msg_id</span><br><span class="line"></span><br><span class="line"><span class="meta">    @classmethod</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">print_staticmethod</span><span class="params">(cls)</span>:</span></span><br><span class="line">        print(cls.generate_message_id())</span><br><span class="line">        print(<span class="string">"\n############类方法##############"</span>)</span><br><span class="line">        print(<span class="string">"不能调用: cls.sn"</span>)</span><br><span class="line">        print(<span class="string">"不同调用: cls.token"</span>)</span><br><span class="line">        print(<span class="string">"##########################\n"</span>)</span><br><span class="line">        print(cls.generate_string_with_length())</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">print</span><span class="params">(self)</span>:</span></span><br><span class="line">        print(<span class="string">"\n############成员方法##############"</span>)</span><br><span class="line">        print(self.generate_string_with_length())</span><br><span class="line">        print(self.generate_message_id())</span><br><span class="line">        print(<span class="string">"##########################\n"</span>)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">print(<span class="string">"#"</span> * <span class="number">10</span>, <span class="string">"类方法，不需要实例化"</span>)</span><br><span class="line">BaseMqttHandler().print_staticmethod()</span><br><span class="line"></span><br><span class="line">BaseMqttHandler().print()</span><br><span class="line"></span><br><span class="line">print(BaseMqttHandler().generate_message_id())</span><br></pre></td></tr></table></figure>
 
@@ -472,6 +472,10 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2019/10/25/python-paho-mqtt客户端/" rel="prev" title="python-paho-mqtt客户端">
+                python-paho-mqtt客户端 <i class="fa fa-chevron-right"></i>
+              </a>
             
           </div>
         </div>
@@ -541,7 +545,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">236</span>
+                    <span class="site-state-item-count">237</span>
                     <span class="site-state-item-name">日志</span>
                   </a>
                 </div>
